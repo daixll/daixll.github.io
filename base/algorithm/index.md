@@ -67,7 +67,16 @@
 8. 计算几何
    1. [距离]()
 
+---
 
+* 真题训练
+
+   1. [USACO-Bronze](./Content/真题/USACO_Bronze.html)
+   2. [USACO-Silver]()
+   3. [CCF-J]()
+   4. CCF-S
+   5. USACO-Gold
+   6. USACO-Platinum 
 ---
 
 书籍推荐：
