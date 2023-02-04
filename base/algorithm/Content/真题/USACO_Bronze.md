@@ -76,6 +76,88 @@ int main(){
 </details>
 
 
+<a href="https://www.acwing.com/problem/content/4822/" target="_blank">AcWing 4819. 喂饱奶牛</a>
+
+<details><summary>ideas</summary>
+
+> 求种植的方案 `res`
+>
+> 对于第 i 头奶牛, 其可以移动的区间为 `[i-k, i+k]`, 其中`i-k>=1`, `i+k<=n`
+>
+> 对于第 i 颗草, 其可以满足的奶牛区间为 `[i-k, i+k]`, 其中`i-k>=1`, `i+k<=n`
+>
+> 我们先考虑第一种牛:
+>
+> 为了使得种植的草最少, 当在 `i` 找到牛, 便在 `i+k` 种草, 其影响区间`[i+k -k, i+k +k]`
+>
+> 如此往复, 下一次从 `i+k+k +1` 位置找牛
+>
+> 此题边界判断比较简单, `min(i+k, n)` 即种草位置
+>
+> 接下来考虑第二种牛:
+>
+> 总体思想和考虑第一头牛的时候一致, 唯一的变数是, 种第二种草的位置可能已经被第一种草给占据了
+>
+> 显然, 此时我们只能将种草位置左移动, 因为向右移动, 第i头牛没得草吃
+>
+> `while(res[j] == '草一') --j;` 如果被种草了, 就不断前移
+>
+> 但实际上, 只需要移动到 j-1, `if(res[j] == '草一') --j;`
+>
+> 对于学有余力的小朋友,可以尝试用反证法证明其正确性:
+> notice: 第 i 位和 i-1 位置都被 G 占用( 当且仅当 k==0 )
+
+</details>
+
+<details><summary>code</summary> 
+
+```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+const int N=1e5+10;
+
+char res[N];    // 种植方案(答案)
+char g[N];      // 奶牛种类
+int n, k, cnt;  // 奶牛数量 移动 种植数量
+
+void solve(){
+    cnt=0;
+    memset(res, '.', sizeof res);
+    cin>>n>>k;
+    for(int i=1; i<=n; i++) cin>>g[i];
+    
+    for(int i=1; i<=n; i++)
+    if( g[i] == 'G' ){
+        int j=min(n, i+k);  // 种植 G 的位置
+        res[j] = 'G'; cnt++;// 种植
+        i=j+k;              // 可以影响到的右边界
+    }
+    
+    for(int i=1; i<=n; i++)
+    if( g[i] == 'H' ){
+        int j=min(n, i+k);  // 种植 H 的位置
+        if( res[j] == 'G' ) --j; // 思考:为什么--j的位置一定不会冲突?
+        res[j] = 'H'; cnt++;
+        i=j+k;
+    }
+    
+    cout<<cnt<<"\n";
+    for(int i=1; i<=n; i++)
+        cout<<res[i];
+    cout<<"\n";
+}
+
+int main(){
+    int T; cin>>T; 
+    while(T--) solve();
+    return 0;
+}
+```
+</details>
+
+
 
 ---
 
