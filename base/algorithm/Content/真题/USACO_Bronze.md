@@ -16,6 +16,11 @@ html:
 ## 2023 US Open
 ## 2023 Feb
 ## 2023 Jan
+
+<a href="" target="_blank">还未收录</a>
+
+
+
 ## 2022 DEC
 
 <a href="https://www.acwing.com/problem/content/4821/" target="_blank">AcWing 4818. 奶牛大学</a>
@@ -158,12 +163,103 @@ int main(){
 </details>
 
 
+<a href="https://www.acwing.com/problem/content/4823/" target="_blank">AcWing 4820. 逆向工程</a>
+
+<details><summary>ideas</summary>
+
+> 枚举可能的第一个分支代码，筛选出剩余的行，继续枚举第二个分支
+
+</details>
+
+<details><summary>code</summary>
+
+</details>
 
 ---
 
 # 2021-2022 Season
 
 ## 2022 US Open 
+
+<a href="https://www.acwing.com/problem/content/4443/" target="_blank">AcWing 4440. 照相</a>
+
+<details><summary>ideas</summary>
+
+> 求最小的翻转的次数 `ans`
+>
+> 观察题目, 题目保证字符串是偶数, 且每次翻转也是偶数, 因此我们将字符串看为
+>
+> `GG`, `HH`, `GH`, `HG` 组成的, 显然, `GG`和`HH`无论怎么翻转都不会让`ans`增加
+> 
+> 而只有翻转`GH`, 才会使得答案更好, 不如模拟一下:
+> 
+> `GHGH HGHG GHGH` 原串
+> `HGHG HGHG GHGH` 翻转 4
+> `GHGH GHGH GHGH` 翻转 8
+> `HGHG HGHG HGHG` 翻转 12
+>
+> 因为每次翻转是`1-n`的, 我们发现, `HG` 也需要翻转
+>
+> 因此答案其实就是连续的 `GH` 和 `HG` 的段数
+>
+> 值得注意, 如果以 `HG` 结尾, 我们将会多统计一次
+
+
+</details>
+
+<details><summary>code</summary>
+
+```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int n, ans;
+string s;
+
+int main(){
+    cin>>n>>s;
+    s=" "+s;
+
+    bool gh = 0, hg = 0;
+    for(int i=1; i<=n; i+=2)
+        if(s[i]=='G' && s[i+1]=='H' && !gh)
+            ans++, gh=1, hg=0;
+        else 
+        if(s[i]=='H' && s[i+1]=='G' && !hg)
+            ans++, gh=0, hg=1;
+    
+    cout<< ans - hg;
+    return 0;
+}
+```
+
+</details>
+
+<a href="https://www.acwing.com/problem/content/4444/" target="_blank">AcWing 4441. 谎牛计数</a>
+
+<details><summary>ideas</summary>
+
+> t
+
+</details>
+
+<details><summary>code</summary>
+
+</details>
+
+<a href="https://www.acwing.com/problem/content/4445/" target="_blank">AcWing 4442. 炼金术</a>
+
+<details><summary>ideas</summary>
+
+> t
+
+</details>
+
+<details><summary>code</summary>
+
+</details>
+
 ## 2022 Feb
 ## 2022 Jan
 ## 2021 DEc

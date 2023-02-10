@@ -26,7 +26,7 @@ html:
 
 ## 国三 码题杯
 
-- `2022-10` `第一届“码题杯”全国职业院校程序设计大赛` `决赛铜奖`
+- `2022-10` `第四届“码题杯”全国职业院校程序设计大赛` `决赛铜奖`
 [公示 \ 排名](https://mp.weixin.qq.com/s/pbwGtLsuM2l_8ftM-ir4Cg)
 
 <figure class="half">
