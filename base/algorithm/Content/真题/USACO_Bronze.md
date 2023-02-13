@@ -16,20 +16,19 @@ html:
 
 # <center> 2022-2023 Season </center>
 
-
 ## 2023 US Open
 ## 2023 Feb
 ## 2023 Jan
 
-<a href="" target="_blank">还未收录</a>
+<a href="" target="_blank">-</a>
 
 
 
 ## 2022 DEC
 
-<a href="https://www.acwing.com/problem/content/4821/" target="_blank">AcWing 4818. 奶牛大学</a>
 
-<details><summary>ideas</summary> 
+
+<details><summary><a href="https://www.acwing.com/problem/content/4821/" target="_blank">AcWing 4818. 奶牛大学</a> code</summary> 
 
 > 求赚到的钱`res`及收取的学费`fees`
 > 
@@ -50,9 +49,6 @@ html:
 > 此时枚举的`fees`, 就是`c[i]`, 而上学的奶牛的数量就是`i`
 >
 > 答案要求学费尽可能小, 因此枚举时, `res`可以被 `>=res` 更新, 而不是`>res`
-</details>
-
-<details><summary>code</summary> 
 
 ```cpp
 #include <iostream>
@@ -84,10 +80,7 @@ int main(){
 ```
 </details>
 
-
-<a href="https://www.acwing.com/problem/content/4822/" target="_blank">AcWing 4819. 喂饱奶牛</a>
-
-<details><summary>ideas</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/4822/" target="_blank">AcWing 4819. 喂饱奶牛</a> code</summary>
 
 > 求种植的方案 `res`
 >
@@ -115,10 +108,6 @@ int main(){
 >
 > 对于学有余力的小朋友,可以尝试用反证法证明其正确性:
 > notice: 第 i 位和 i-1 位置都被 G 占用( 当且仅当 k==0 )
-
-</details>
-
-<details><summary>code</summary> 
 
 ```cpp
 #include <iostream>
@@ -166,16 +155,10 @@ int main(){
 ```
 </details>
 
-
-<a href="https://www.acwing.com/problem/content/4823/" target="_blank">~~AcWing 4820. 逆向工程~~</a>
-
-<details><summary>ideas</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/4823/" target="_blank"> AcWing 4820. 逆向工程</a> code</summary>
 
 > 枚举可能的第一个分支代码，筛选出剩余的行，继续枚举第二个分支
 
-</details>
-
-<details><summary>code</summary>
 
 </details>
 
@@ -195,9 +178,9 @@ int main(){
 
 ## 2022 US Open 
 
-<a href="https://www.acwing.com/problem/content/4443/" target="_blank">AcWing 4440. 照相</a>
 
-<details><summary>ideas</summary>
+
+<details><summary><a href="https://www.acwing.com/problem/content/4443/" target="_blank">AcWing 4440. 照相</a> code</summary>
 
 > 求最小的翻转的次数 `ans`
 >
@@ -217,12 +200,6 @@ int main(){
 > 因此答案其实就是连续的 `GH` 和 `HG` 的段数
 >
 > 值得注意, 如果以 `HG` 结尾, 我们将会多统计一次
-
-
-</details>
-
-<details><summary>code</summary>
-
 ```cpp
 #include <iostream>
 #include <cstring>
@@ -250,9 +227,9 @@ int main(){
 
 </details>
 
-<a href="https://www.acwing.com/problem/content/4444/" target="_blank">AcWing 4441. 谎牛计数</a>
 
-<details><summary>ideas</summary>
+
+<details><summary><a href="https://www.acwing.com/problem/content/4444/" target="_blank">AcWing 4441. 谎牛计数</a> code</summary>
 
 > 求撒谎的奶牛的最小数量 `ans`
 > 
@@ -270,10 +247,6 @@ int main(){
 > 因此, 我们可以枚举 `r` 轴上每一个位置
 >
 > 找到 `l` 轴上 `<r[i]` 的最后一个位置 `j` 
-
-</details>
-
-<details><summary>code</summary>
 
 ```cpp
 #include <iostream>
@@ -313,9 +286,7 @@ int main(){
 
 </details>
 
-<a href="https://www.acwing.com/problem/content/4445/" target="_blank">AcWing 4442. 炼金术</a>
-
-<details><summary>ideas</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/4445/" target="_blank">AcWing 4442. 炼金术</a> code</summary>
 
 > 求金属 `n` 的最大数量
 >
@@ -342,11 +313,6 @@ int main(){
 > 而答案显然是具有单调性, 因此我们可以用二分来尝试 `cnt`
 >
 > 二分模板即 `满足条件中最大的一个`, 即 `在单调递增序列中找 <=x 的数中最大的一个`
-
-
-</details>
-
-<details><summary>code</summary>
 
 ```cpp
 #include <iostream>
