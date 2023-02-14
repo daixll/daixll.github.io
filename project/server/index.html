@@ -261,7 +261,10 @@ pre[data-line] .line-highlight[data-end]:after {
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      <h1 class="mume-header" id="-socket-%E5%A5%97%E6%8E%A5%E5%AD%97-">Socket &#x5957;&#x63A5;&#x5B57;</h1>
+      <h1 class="mume-header" id="-readme-">README</h1>
+
+<p>&#x4E00;&#x4E2A;</p>
+<h1 class="mume-header" id="-socket-%E5%A5%97%E6%8E%A5%E5%AD%97-">Socket &#x5957;&#x63A5;&#x5B57;</h1>
 
 <ul>
 <li>TCP/IP &#x5206;&#x5C42;&#x6A21;&#x578B;</li>
@@ -425,22 +428,156 @@ pre[data-line] .line-highlight[data-end]:after {
 &#x4ECE;&#x6240;&#x5904;&#x7684;&#x5730;&#x4F4D;&#x6765;&#x8BB2;&#xFF0C;&#x5957;&#x63A5;&#x5B57;&#x4E0A;&#x8054;&#x5E94;&#x7528;&#x8FDB;&#x7A0B;&#xFF0C;&#x4E0B;&#x8054;&#x7F51;&#x7EDC;&#x534F;&#x8BAE;&#x6808;&#xFF0C;&#x662F;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x534F;&#x8BAE;&#x8FDB;&#x884C;&#x901A;&#x4FE1;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x662F;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E0E;&#x7F51;&#x7EDC;&#x534F;&#x8BAE;&#x6808;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#x7684;&#x63A5;&#x53E3;&#x3002;</p>
 </blockquote>
 <ul>
-<li>&#x5934;&#x6587;&#x4EF6; &#x53CA; &#x5E38;&#x7528;&#x51FD;&#x6570;
+<li>&#x76F8;&#x5173;&#x51FD;&#x6570;<br>
+<code>#include &lt;sys/types.h&gt; &#x63D0;&#x4F9B;&#x7C7B;&#x578B;</code><br>
+<code>#include &lt;sys/socket.h&gt; &#x63D0;&#x4F9B;socket&#x51FD;&#x6570;&#x53CA;&#x6570;&#x636E;&#x7ED3;&#x6784;</code><br>
+<code>#include &lt;arpa/inet.h&gt; &#x63D0;&#x4F9B;IP&#x5730;&#x5740;&#x8F6C;&#x6362;&#x51FD;&#x6570;</code><br>
+<code>#include &lt;unistd.h&gt; &#x63D0;&#x4F9B;close()</code></li>
+</ul>
+<details><summary> socket() </summary>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-int">int</span> <span class="token function">socket</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> domain<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> type<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> protocol<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><blockquote>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A; socket</p>
 <ul>
-<li><code>#include &lt;sys/socket.h&gt;</code> &#x63D0;&#x4F9B;socket&#x51FD;&#x6570;&#x53CA;&#x6570;&#x636E;&#x7ED3;&#x6784;
+<li>domain: &#x534F;&#x8BAE;&#x57DF;<br>
+<code>AF_INET</code>: IPV4<br>
+<code>AF_INET6</code>: IPV6<br>
+<code>AD_LOCAL</code>: &#x4E00;&#x4E2A;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#x540D;</li>
+<li>type: socket&#x7C7B;&#x578B;<br>
+<code>SOCK_STREAM</code>: &#x6D41;&#x5F0F;&#x5957;&#x63A5;&#x5B57;, TCP&#x534F;&#x8BAE;&#x7B49;<br>
+<code>SOCK_DGRAM</code>: &#x6570;&#x636E;&#x5305;&#x5957;&#x63A5;&#x5B57;, UDP&#x534F;&#x8BAE;&#x7B49;<br>
+<code>SOCK_RAW</code>: &#x539F;&#x59CB;&#x5957;&#x63A5;&#x5B57;, IP/ICMP&#x534F;&#x8BAE;&#x7B49;, &#x63A5;&#x6536;&#x53D1;&#x5411;&#x672C;&#x673A;&#x7684;ICMP&#x3001;IGMP&#x534F;&#x8BAE;&#x5305;</li>
+<li>protocol: &#x6307;&#x5B9A;&#x534F;&#x8BAE;<br>
+<code>IPPROTO_TCP</code>: TCP&#x4F20;&#x8F93;&#x534F;&#x8BAE;<br>
+<code>IPPTOTO_UDP</code>: UDP&#x4F20;&#x8F93;&#x534F;&#x8BAE;<br>
+<code>IPPROTO_SCTP</code>: SCTP&#x4F20;&#x8F93;&#x534F;&#x8BAE;<br>
+<code>IPPROTO_TIPC</code>: TIPC&#x4F20;&#x8F93;&#x534F;&#x8BAE;</li>
+</ul>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-int">int</span> serv_sock <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// IPV4&#x534F;&#x8BAE; &#x6D41;&#x5F0F;&#x5957;&#x63A5;&#x5B57; &#x81EA;&#x52A8;&#x5339;&#x914D;type&#x5BF9;&#x5E94;&#x7684;&#x534F;&#x8BAE;</span>
+</pre></details> 
+<details><summary> bind() </summary>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-int">int</span> <span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-struct">struct</span> <span class="token class-name">sockaddr</span> <span class="token operator">*</span>addr<span class="token punctuation">,</span> socklen_t addrlen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><blockquote>
 <ul>
-<li>``</li>
+<li>sockfd: socket&#x63CF;&#x8FF0;&#x5B57;, &#x7ED9;&#x54EA;&#x4E2A;sockfd&#x7ED1;&#x5B9A;&#x5730;&#x5740;</li>
+<li>addr: &#x4E00;&#x4E2A;const struct sockaddr *&#x6307;&#x9488;, &#x6307;&#x5411;&#x8981;&#x7ED1;&#x5B9A;&#x7ED9;sockfd&#x7684;&#x534F;&#x8BAE;&#x5730;&#x5740;<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-struct">struct</span> <span class="token class-name">sockaddr_in</span> <span class="token punctuation">{</span>            <span class="token comment">// IPV4</span>
+    sa_family_t    sin_family<span class="token punctuation">;</span>  <span class="token comment">// &#x534F;&#x8BAE;&#x65CF;</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">in_addr</span> sin_addr<span class="token punctuation">;</span>    <span class="token comment">// &#x5730;&#x5740;</span>
+    in_port_t      sin_port<span class="token punctuation">;</span>    <span class="token comment">// &#x7AEF;&#x53E3;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre></li>
+<li>addrlen: &#x5730;&#x5740;&#x7684;&#x957F;&#x5EA6;</li>
 </ul>
-</li>
-<li><code>#include &lt;arpa/inet.h&gt;</code></li>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp">sockaddr_in serv_addr<span class="token punctuation">;</span>
+<span class="token function">bzero</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>serv_addr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> serv_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+serv_addr<span class="token punctuation">.</span>sin_family      <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+serv_addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span><span class="token string">&quot;192.168.0.203&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+serv_addr<span class="token punctuation">.</span>sin_port        <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">9070</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">bind</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>serv_addr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> serv_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></details>
+<details><summary> listen() </summary>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-int">int</span> <span class="token function">listen</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> backlog<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><blockquote>
+<ul>
+<li>sockfd: &#x76D1;&#x542C;&#x54EA;&#x4E2A;sockfd</li>
+<li>backlog: &#x6700;&#x5927;&#x8FDE;&#x63A5;&#x6570;</li>
 </ul>
-</li>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token function">listen</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">,</span> <span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></details>
+<details><summary> connect() </summary>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-int">int</span> <span class="token function">connect</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-struct">struct</span> <span class="token class-name">sockaddr</span> <span class="token operator">*</span>addr<span class="token punctuation">,</span> socklen_t addrlen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><blockquote>
+<p>sockfd: &#x5BA2;&#x6237;&#x7AEF;&#x7684;sockfd<br>
+addr: &#x670D;&#x52A1;&#x5668;&#x7684;socket&#x5730;&#x5740;<br>
+addrlen: &#x670D;&#x52A1;&#x5668;&#x5730;&#x5740;&#x7684;&#x957F;&#x5EA6;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token function">connect</span><span class="token punctuation">(</span>clnt_sock<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>serv_addr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> serv_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></details>
+<details><summary> accept() </summary>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-int">int</span> <span class="token function">accept</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword keyword-struct">struct</span> <span class="token class-name">sockaddr</span> <span class="token operator">*</span>addr<span class="token punctuation">,</span> socklen_t <span class="token operator">*</span>addrlen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><blockquote>
+<ul>
+<li>sockfd: &#x670D;&#x52A1;&#x5668;&#x7684;sockfd</li>
+<li>addr: &#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x5730;&#x5740;</li>
+<li>addrlen: &#x5BA2;&#x6237;&#x7AEF;&#x5730;&#x5740;&#x7684;&#x957F;&#x5EA6;</li>
 </ul>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp">sockaddr_in clnt_addr<span class="token punctuation">;</span>
+<span class="token function">bzero</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>clnt_addr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> clnt_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+socklen_t clnt_addr_len <span class="token operator">=</span> <span class="token keyword keyword-sizeof">sizeof</span> clnt_addr<span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> clnt_sock <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>clnt_addr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>clnt_addr_len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></details>
+<details><summary> recv() </summary>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp">ssize_t <span class="token function">recv</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword keyword-void">void</span> <span class="token operator">*</span>buf<span class="token punctuation">,</span> size_t len<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> flags<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><blockquote>
+<p>sockfd: &#x63A5;&#x53D7;&#x7684;&#x5957;&#x63A5;&#x5B57;<br>
+buf: &#x76EE;&#x6807;&#x7F13;&#x51B2;&#x533A;<br>
+len: &#x7F13;&#x51B2;&#x533A;&#x63A5;&#x53D7;&#x5B57;&#x8282;&#x957F;&#x5EA6;<br>
+flags: &#x4E00;&#x822C;&#x4E3A;0</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"></pre></details>
+<details><summary> sendms() </summary>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp">ssize_t <span class="token function">send</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> sockfd<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-void">void</span> <span class="token operator">*</span>buf<span class="token punctuation">,</span> size_t len<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> flags<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></details>
+<details><summary> close() </summary>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-int">int</span> <span class="token function">close</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><blockquote>
+<p>&#x8FD9;&#x4E2A;&#x6709;&#x70B9;&#x590D;&#x6742;, &#x540E;&#x9762;&#x5199;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token function">close</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></details>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h&gt;</span></span>
 
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">// &#x521B;&#x5EFA;</span>
+    <span class="token keyword keyword-int">int</span> serv_sock <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// &#x7ED1;&#x5B9A;</span>
+    sockaddr_in serv_addr<span class="token punctuation">;</span>
+    <span class="token function">bzero</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>serv_addr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> serv_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    serv_addr<span class="token punctuation">.</span>sin_family      <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+    serv_addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span><span class="token string">&quot;192.168.0.203&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    serv_addr<span class="token punctuation">.</span>sin_port        <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">9070</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">bind</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>serv_addr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> serv_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// &#x76D1;&#x542C;</span>
+    <span class="token function">listen</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">,</span> <span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// &#x8FDE;&#x63A5;</span>
+    sockaddr_in clnt_addr<span class="token punctuation">;</span>
+    <span class="token function">bzero</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>clnt_addr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> clnt_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    socklen_t clnt_addr_len <span class="token operator">=</span> <span class="token keyword keyword-sizeof">sizeof</span> clnt_addr<span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> clnt_sock <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>clnt_addr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>clnt_addr_len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// &#x8BFB;&#x53D6;</span>
+    <span class="token keyword keyword-char">char</span> s<span class="token punctuation">[</span><span class="token number">1000</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> n <span class="token operator">=</span> <span class="token function">recv</span><span class="token punctuation">(</span>clnt_sock<span class="token punctuation">,</span> s<span class="token punctuation">,</span> <span class="token number">1024</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    s<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">&apos;\0&apos;</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span><span class="token string">&apos;0&apos;</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token function">putchar</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// &#x5173;&#x95ED;</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#-readme-" class="md-toc-link">
+            <p>README</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#-socket-&#x5957;&#x63A5;&#x5B57;-" class="md-toc-link">
             <p>Socket &#x5957;&#x63A5;&#x5B57;</p>
 

@@ -9,6 +9,12 @@ html:
     theme: united
 --- 
 
+# README
+
+一个
+
+
+
 # Socket 套接字
 
 * TCP/IP 分层模型
@@ -73,7 +79,198 @@ html:
 一个套接字就是网络上进程通信的一端，提供了应用层进程利用网络协议交换数据的机制。
 从所处的地位来讲，套接字上联应用进程，下联网络协议栈，是应用程序通过网络协议进行通信的接口，是应用程序与网络协议栈进行交互的接口。
 
-* 头文件 及 常用函数
-    * `#include <sys/socket.h>` 提供socket函数及数据结构
-      * ``
-    * `#include <arpa/inet.h>` 
+
+* 相关函数
+`#include <sys/types.h> 提供类型`
+`#include <sys/socket.h> 提供socket函数及数据结构`
+`#include <arpa/inet.h> 提供IP地址转换函数`
+`#include <unistd.h> 提供close()` 
+
+<details><summary> socket() </summary>
+
+```cpp
+int socket(int domain, int type, int protocol);
+```
+> 创建一个 socket 
+> - domain: 协议域
+> `AF_INET`: IPV4
+> `AF_INET6`: IPV6
+> `AD_LOCAL`: 一个绝对路径名
+> - type: socket类型
+> `SOCK_STREAM`: 流式套接字, TCP协议等
+> `SOCK_DGRAM`: 数据包套接字, UDP协议等
+> `SOCK_RAW`: 原始套接字, IP/ICMP协议等, 接收发向本机的ICMP、IGMP协议包
+> - protocol: 指定协议
+> `IPPROTO_TCP`: TCP传输协议
+> `IPPTOTO_UDP`: UDP传输协议
+> `IPPROTO_SCTP`: SCTP传输协议
+> `IPPROTO_TIPC`: TIPC传输协议
+
+```cpp 
+int serv_sock = socket(AF_INET, SOCK_STREAM, 0);
+// IPV4协议 流式套接字 自动匹配type对应的协议
+```
+</details> 
+
+<details><summary> bind() </summary>
+
+```cpp
+int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+```
+> - sockfd: socket描述字, 给哪个sockfd绑定地址
+> - addr: 一个const struct sockaddr *指针, 指向要绑定给sockfd的协议地址
+>   ```cpp
+>   struct sockaddr_in {            // IPV4
+>       sa_family_t    sin_family;  // 协议族
+>       struct in_addr sin_addr;    // 地址
+>       in_port_t      sin_port;    // 端口
+>   };
+>   ```
+> - addrlen: 地址的长度
+```cpp
+sockaddr_in serv_addr;
+bzero(&serv_addr, sizeof serv_addr);
+serv_addr.sin_family      = AF_INET;
+serv_addr.sin_addr.s_addr = inet_addr("192.168.0.203");
+serv_addr.sin_port        = htons(9070);
+bind(serv_sock, (sockaddr*)&serv_addr, sizeof serv_addr);
+```
+</details>
+
+
+
+<details><summary> listen() </summary>
+
+```cpp
+int listen(int sockfd, int backlog);
+```
+> - sockfd: 监听哪个sockfd
+> - backlog: 最大连接数
+
+```cpp
+listen(serv_sock, 1024);
+```
+</details>
+
+<details><summary> connect() </summary>
+
+```cpp
+int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
+```
+> sockfd: 客户端的sockfd
+> addr: 服务器的socket地址
+> addrlen: 服务器地址的长度
+```cpp
+connect(clnt_sock, (sockaddr*)&serv_addr, sizeof serv_addr);
+```
+
+</details>
+
+
+<details><summary> accept() </summary>
+
+```cpp
+int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
+```
+> - sockfd: 服务器的sockfd
+> - addr: 客户端的地址
+> - addrlen: 客户端地址的长度
+```cpp
+sockaddr_in clnt_addr;
+bzero(&clnt_addr, sizeof clnt_addr);
+socklen_t clnt_addr_len = sizeof clnt_addr;
+int clnt_sock = accept(serv_sock, (sockaddr*)&clnt_addr, &clnt_addr_len);
+```
+</details>
+
+
+
+
+
+
+
+<details><summary> recv() </summary>
+
+```cpp
+ssize_t recv(int sockfd, void *buf, size_t len, int flags);
+```
+> sockfd: 接受的套接字
+> buf: 目标缓冲区
+> len: 缓冲区接受字节长度
+> flags: 一般为0
+
+```cpp
+
+```
+</details>
+
+
+
+
+
+
+<details><summary> sendms() </summary>
+
+```cpp
+ssize_t send(int sockfd, const void *buf, size_t len, int flags);
+```
+</details>
+
+
+
+
+
+
+<details><summary> close() </summary>
+
+```cpp
+int close(int fd);
+```
+> 这个有点复杂, 后面写
+```cpp
+close(serv_sock);
+```
+</details>
+
+
+```cpp
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+
+#include <string.h>
+#include <iostream>
+
+int main(){
+    // 创建
+    int serv_sock = socket(AF_INET, SOCK_STREAM, 0);
+
+    // 绑定
+    sockaddr_in serv_addr;
+    bzero(&serv_addr, sizeof serv_addr);
+    serv_addr.sin_family      = AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr("192.168.0.203");
+    serv_addr.sin_port        = htons(9070);
+    bind(serv_sock, (sockaddr*)&serv_addr, sizeof serv_addr);
+
+    // 监听
+    listen(serv_sock, 1024);
+
+    // 连接
+    sockaddr_in clnt_addr;
+    bzero(&clnt_addr, sizeof clnt_addr);
+    socklen_t clnt_addr_len = sizeof clnt_addr;
+    int clnt_sock = accept(serv_sock, (sockaddr*)&clnt_addr, &clnt_addr_len);
+
+    // 读取
+    char s[1000];
+    int n = recv(clnt_sock, s, 1024, 0);
+    s[n]='\0';
+    for(int i=0; s[i]!='0'; i++) putchar(s[i]);
+
+    // 关闭
+    close(serv_sock);
+    return 0;
+}
+```
