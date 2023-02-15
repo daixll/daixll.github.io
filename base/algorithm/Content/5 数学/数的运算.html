@@ -634,6 +634,39 @@ string <span class="token function">MUL_FFT</span><span class="token punctuation
 <span class="token punctuation">}</span>
 </pre></details>
 <hr>
+<h1 class="mume-header" id="-center%E5%BF%AB%E9%80%9F%E5%B9%82center-"><center>&#x5FEB;&#x901F;&#x5E42;</center></h1>
+
+<details><summary>&#x9012;&#x5F52;&#x5B9E;&#x73B0;</summary>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-long">long</span> <span class="token keyword keyword-long">long</span> LL<span class="token punctuation">;</span>
+
+LL <span class="token function">qmi</span><span class="token punctuation">(</span>LL a<span class="token punctuation">,</span> LL k<span class="token punctuation">,</span> LL p<span class="token punctuation">)</span><span class="token punctuation">{</span>       <span class="token comment">// a^k == a^(k/2)^2</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>k<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword keyword-return">return</span> <span class="token number">1</span><span class="token punctuation">;</span>          <span class="token comment">// &#x6B21;&#x65B9;&#x4E3A; 0</span>
+    LL res <span class="token operator">=</span> <span class="token function">qmi</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> k<span class="token operator">&gt;&gt;</span><span class="token number">1</span><span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// &#x8BA1;&#x7B97; a^(k/2)</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>k<span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span>res<span class="token operator">%</span>p <span class="token operator">*</span> res<span class="token operator">%</span>p<span class="token punctuation">)</span> <span class="token operator">%</span> p<span class="token punctuation">;</span> 
+    <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span>res<span class="token operator">%</span>p <span class="token operator">*</span> res<span class="token operator">%</span>p <span class="token operator">*</span> a<span class="token punctuation">)</span> <span class="token operator">%</span> p<span class="token punctuation">;</span> <span class="token comment">// &#x5BF9;&#x4E8E;&#x4E0D;&#x80FD;&#x9664;&#x5C3D;&#x7684;, &#x8FD8;&#x9700;&#x518D; *a</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">solve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    LL a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> p<span class="token punctuation">;</span>
+    cin<span class="token operator">&gt;&gt;</span>a<span class="token operator">&gt;&gt;</span>b<span class="token operator">&gt;&gt;</span>p<span class="token punctuation">;</span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token function">qmi</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> T<span class="token punctuation">;</span> cin<span class="token operator">&gt;&gt;</span>T<span class="token punctuation">;</span> <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>T<span class="token operator">--</span><span class="token punctuation">)</span>
+    <span class="token function">solve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></details>
+<details><summary>&#x8FED;&#x4EE3;&#x5B9E;&#x73B0;</summary>
+</details>
+<hr>
+<h1 class="mume-header" id="-center%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95center-"><center>&#x77E9;&#x9635;&#x4E58;&#x6CD5;</center></h1>
+
+<hr>
 <h1 class="mume-header" id="-center%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2center-"><center>&#x8FDB;&#x5236;&#x8F6C;&#x6362;</center></h1>
 
 <h3 class="mume-header" id="-%E8%BD%AC-10-%E8%BF%9B%E5%88%B6-">&#x8F6C; 10 &#x8FDB;&#x5236;</h3>
@@ -832,36 +865,9 @@ string <span class="token function">x_a</span><span class="token punctuation">(<
 <span class="token punctuation">}</span>
 </pre></details>
 <hr>
-<h1 class="mume-header" id="-center%E5%BF%AB%E9%80%9F%E5%B9%82center-"><center>&#x5FEB;&#x901F;&#x5E42;</center></h1>
+<h1 class="mume-header" id="-center%E4%BD%8D%E8%BF%90%E7%AE%97center"><center>&#x4F4D;&#x8FD0;&#x7B97;</center></h1>
 
-<details><summary>&#x9012;&#x5F52;&#x5B9E;&#x73B0;</summary>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
-<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
 
-<span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-long">long</span> <span class="token keyword keyword-long">long</span> LL<span class="token punctuation">;</span>
-
-LL <span class="token function">qmi</span><span class="token punctuation">(</span>LL a<span class="token punctuation">,</span> LL k<span class="token punctuation">,</span> LL p<span class="token punctuation">)</span><span class="token punctuation">{</span>       <span class="token comment">// a^k == a^(k/2)^2</span>
-    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>k<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword keyword-return">return</span> <span class="token number">1</span><span class="token punctuation">;</span>          <span class="token comment">// &#x6B21;&#x65B9;&#x4E3A; 0</span>
-    LL res <span class="token operator">=</span> <span class="token function">qmi</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> k<span class="token operator">&gt;&gt;</span><span class="token number">1</span><span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// &#x8BA1;&#x7B97; a^(k/2)</span>
-    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>k<span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span>res<span class="token operator">%</span>p <span class="token operator">*</span> res<span class="token operator">%</span>p<span class="token punctuation">)</span> <span class="token operator">%</span> p<span class="token punctuation">;</span> 
-    <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span>res<span class="token operator">%</span>p <span class="token operator">*</span> res<span class="token operator">%</span>p <span class="token operator">*</span> a<span class="token punctuation">)</span> <span class="token operator">%</span> p<span class="token punctuation">;</span> <span class="token comment">// &#x5BF9;&#x4E8E;&#x4E0D;&#x80FD;&#x9664;&#x5C3D;&#x7684;, &#x8FD8;&#x9700;&#x518D; *a</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword keyword-void">void</span> <span class="token function">solve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    LL a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> p<span class="token punctuation">;</span>
-    cin<span class="token operator">&gt;&gt;</span>a<span class="token operator">&gt;&gt;</span>b<span class="token operator">&gt;&gt;</span>p<span class="token punctuation">;</span>
-    cout<span class="token operator">&lt;&lt;</span><span class="token function">qmi</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword keyword-int">int</span> T<span class="token punctuation">;</span> cin<span class="token operator">&gt;&gt;</span>T<span class="token punctuation">;</span> <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>T<span class="token operator">--</span><span class="token punctuation">)</span>
-    <span class="token function">solve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</pre></details>
-<details><summary>&#x8FED;&#x4EE3;&#x5B9E;&#x73B0;</summary>
-
-</details>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
@@ -894,7 +900,15 @@ LL <span class="token function">qmi</span><span class="token punctuation">(</spa
           </a></div>
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#-center&#x5FEB;&#x901F;&#x5E42;center-" class="md-toc-link">
+             <center>&#x5FEB;&#x901F;&#x5E42;</center>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#-center&#x77E9;&#x9635;&#x4E58;&#x6CD5;center-" class="md-toc-link">
+             <center>&#x77E9;&#x9635;&#x4E58;&#x6CD5;</center>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open>
         <summary class="md-toc-link-wrapper">
           <a href="#-center&#x8FDB;&#x5236;&#x8F6C;&#x6362;center-" class="md-toc-link"> <center>&#x8FDB;&#x5236;&#x8F6C;&#x6362;</center>
 </a>
@@ -912,9 +926,8 @@ LL <span class="token function">qmi</span><span class="token punctuation">(</spa
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-center&#x5FEB;&#x901F;&#x5E42;center-" class="md-toc-link">
-             <center>&#x5FEB;&#x901F;&#x5E42;</center>
-
+          <a href="#-center&#x4F4D;&#x8FD0;&#x7B97;center" class="md-toc-link">
+             <center>&#x4F4D;&#x8FD0;&#x7B97;</center>
           </a></div>
 </div>
 </div>
