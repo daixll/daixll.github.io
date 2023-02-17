@@ -316,9 +316,9 @@ pre[data-line] .line-highlight[data-end]:after {
 &#x987A;&#x5E8F;&#x8FDB;&#x884C;&#x57C3;&#x7B5B;, &#x82E5;&#x53D1;&#x73B0; <code>st[x]==0</code>, &#x5219;&#x8BF4;&#x660E; x &#x662F;&#x7D20;&#x6570;</p>
 <p>&#x4E00;&#x4E2A;&#x5F88;&#x7B80;&#x5355;&#x7684;&#x4F18;&#x5316;, &#x4ECE; x*x &#x5F00;&#x59CB;&#x7B5B;</p>
 <blockquote>
-<p>&#x5F53;&#x6211;&#x4EEC;&#x7B5B;&#x5230; 6 &#x7684;&#x65F6;&#x5019;,<br>
-&#x5DF2;&#x7ECF;&#x7B5B;&#x8FC7; 2x6, 3x6, 4x6, 5x6<br>
-&#x56E0;&#x6B64;, &#x4E0D;&#x5FC5;&#x53BB;&#x7B97; 6x2, 6x3, 6x4, 6x5, &#x53EF;&#x76F4;&#x63A5;&#x8BA1;&#x7B97;6x6, 6x7 ...</p>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x7B5B;&#x5230; 5 &#x7684;&#x65F6;&#x5019;,<br>
+&#x5DF2;&#x7ECF;&#x7B5B;&#x8FC7; 2x5, 3x5, 4x5<br>
+&#x56E0;&#x6B64;, &#x4E0D;&#x5FC5;&#x53BB;&#x7B97; 5x2, 5x3, 5x4, &#x53EF;&#x76F4;&#x63A5;&#x8BA1;&#x7B97;5x5, 5x6 ...</p>
 </blockquote>
 </blockquote>
 <details><summary>&#x57C3;&#x5F0F;&#x7B5B; O(log(log(n)))</summary>
@@ -353,8 +353,38 @@ pre[data-line] .line-highlight[data-end]:after {
     <span class="token punctuation">}</span>       <span class="token comment">// &#x56E0;&#x6B64;, &#x6211;&#x4EEC;&#x4E0D;&#x5FC5;&#x7528;&#x5176;&#x4ED6;&#x8D28;&#x56E0;&#x5B50;&#x53BB;&#x7B5B;&#x4E86;</span>
 <span class="token punctuation">}</span>
 </pre></details>
-<h2 class="mume-header" id="-%E5%8C%BA%E9%97%B4%E7%AD%9B">&#x533A;&#x95F4;&#x7B5B;</h2>
+<h2 class="mume-header" id="-%E5%8C%BA%E9%97%B4%E7%AD%9B-">&#x533A;&#x95F4;&#x7B5B;</h2>
 
+<blockquote>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x60F3;&#x83B7;&#x53D6;&#x4E00;&#x6BB5;&#x533A;&#x95F4;&#x7684;&#x7D20;&#x6570;&#x4FE1;&#x606F;, &#x8FD9;&#x4E2A;&#x533A;&#x95F4;&#x4E0D;&#x5927;, &#x90A3;&#x4E48;&#x5C31;&#x53EF;&#x4EE5;&#x7528;&#x533A;&#x95F4;&#x7B5B;<br>
+&#x56DE;&#x987E;&#x4E00;&#x4E0B;&#x57C3;&#x5F0F;&#x7B5B;, &#x5728;&#x7B5B;&#x65B0;&#x7684;&#x6570;&#x65F6;, &#x662F;&#x4ECE; p^2 &#x5F00;&#x59CB;&#x7B5B;<br>
+&#x56E0;&#x6B64;&#x5728;&#x7B5B; l-r &#x533A;&#x95F4;&#x5185;&#x7684;&#x6570;&#x65F6;, &#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5148;&#x751F;&#x6210; sqrt(r) &#x8303;&#x56F4;&#x7684;&#x7D20;&#x6570;<br>
+&#x518D;&#x7528;&#x8FD9;&#x4E9B;&#x7D20;&#x6570;&#x4F9D;&#x6B21;&#x7B5B; l-r &#x533A;&#x95F4;</p>
+</blockquote>
+<details><summary>&#x533A;&#x95F4;&#x7B5B;</summary>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-bool">bool</span> st<span class="token punctuation">[</span>N<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token comment">// 0,1&#x4E0D;&#x662F;&#x7D20;&#x6570;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> primes<span class="token punctuation">;</span>     <span class="token comment">// &#x7D20;&#x6570;&#x96C6;</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">make_primes</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token operator">!</span>st<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> primes<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> p<span class="token operator">:</span> primes<span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token comment">// &#x7528;&#x8D28;&#x6570;&#x53BB;&#x7B5B;</span>
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>p<span class="token operator">&gt;</span>n<span class="token operator">/</span>i<span class="token punctuation">)</span> <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>    <span class="token comment">// &#x8D85;&#x8FC7;&#x4E0A;&#x754C; n &#x6CA1;&#x610F;&#x4E49;</span>
+            st<span class="token punctuation">[</span>p<span class="token operator">*</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>          <span class="token comment">// &#x7B5B;&#x6389;</span>
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>i<span class="token operator">%</span>p<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>   <span class="token comment">// &#x6700;&#x5C0F;&#x8D28;&#x56E0;&#x5B50;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">make_r_primes</span><span class="token punctuation">(</span>LL L<span class="token punctuation">,</span> LL R<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">// L, R&#x533A;&#x95F4; &#x67D0;&#x7D20;&#x6570;  st[i-L]</span>
+    <span class="token function">make_primes</span><span class="token punctuation">(</span><span class="token function">sqrt</span><span class="token punctuation">(</span>R<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// &#x5148;&#x6C42;&#x51FA; sqrt(r) &#x8303;&#x56F4;&#x5185;&#x7684;&#x7D20;&#x6570;</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>st<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> st<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// &#x590D;&#x7528;st, &#x53D6;&#x51FA; primes</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>L<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span> st<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>           <span class="token comment">// &#x5C06; i*p &#x5B9A;&#x4F4D;&#x5230; l-r &#x533A;&#x95F4; </span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> p <span class="token operator">:</span> primes<span class="token punctuation">)</span>        <span class="token comment">// l &#x8FB9;&#x754C;&#x9700;&#x8981;&#x5411;&#x4E0A;&#x53D6;&#x6574;</span>
+	<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span>LL i <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token number">2LL</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>L<span class="token operator">+</span>p<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> R<span class="token operator">/</span>p<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>  
+        st<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">*</span> p<span class="token punctuation">)</span> <span class="token operator">-</span> L<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>    <span class="token comment">// &#x56E0;&#x4E3A; p &#x662F;&#x8D28;&#x6570;, &#x6240;&#x4EE5;i&#x5FC5;&#x987B; &gt;=2</span>
+<span class="token punctuation">}</span>
+</pre></details>
 
       </div>
       <div class="md-sidebar-toc">
@@ -395,7 +425,7 @@ pre[data-line] .line-highlight[data-end]:after {
             <p>&#x6B27;&#x62C9;(&#x7EBF;)&#x7B5B;&#x6CD5;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-&#x533A;&#x95F4;&#x7B5B;" class="md-toc-link">
+          <a href="#-&#x533A;&#x95F4;&#x7B5B;-" class="md-toc-link">
             <p>&#x533A;&#x95F4;&#x7B5B;</p>
 
           </a></div>
