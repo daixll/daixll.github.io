@@ -46,14 +46,21 @@ html:
 * cpolar [管理面板](https://dashboard.cpolar.com/status)
     > cpolar不能固定ip, 但流量无限
     1. 安装 `curl -L https://www.cpolar.com/static/downloads/install-release-cpolar.sh | sudo bash`
-    2. 查看token 在管理面板
+    2. 查看 `token`在管理面板
     3. 认证 `cpolar authtoken 你的token`
     4. 穿透 `cpolar http 9070`
 
 
 
-### code-server
+### 编程环境
+* code-server   
+    > vscode 服务器版
+    1. 安装 `curl -fsSL https://code-server.dev/install.sh | sh`
+    2. 运行 `./code-server`
 
+* build-essential
+    > GNU编辑器合辑
+    1. 安装 `apt install build-essential`    
 
 ### 开机自启
 
