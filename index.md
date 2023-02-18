@@ -20,6 +20,7 @@ ___
 ___
 
 # 杂谈
+###### [服务器配置](/else/ubuntu_server.html)
 ###### [vscode 配置](/)
 
 ___
