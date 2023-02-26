@@ -1,5 +1,5 @@
 dxl 学习笔记
-
+[vercel备用链接](https://daixll-github-io.vercel.app/)
 
 ___
 
@@ -15,12 +15,10 @@ ___
 # 项目
 
 ###### [-](/project/-/index.html)
-###### [服务器](/project/server/index.html)
+###### [网络服务器](/project/server/index.html)
 
 ___
 
 # 杂谈
-###### [服务器配置](/else/ubuntu_server.html)
+###### [Ubuntu 配置](/else/ubuntu_server.html)
 ###### [vscode 配置](/)
-
-___
