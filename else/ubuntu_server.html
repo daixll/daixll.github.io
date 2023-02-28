@@ -274,22 +274,55 @@ pre[data-line] .line-highlight[data-end]:after {
 </li>
 </ul>
 <img src="https://git.acwing.com/jiao/p/-/raw/main/set/ubuntu1.jpg" height="400"> 
-<h3 class="mume-header" id="-%E5%AE%9A%E6%97%B6%E9%87%8D%E5%90%AF-">&#x5B9A;&#x65F6;&#x91CD;&#x542F;</h3>
+<h3 class="mume-header" id="-%E5%AE%9A%E6%97%B6%E5%90%AF%E5%8A%A8-">&#x5B9A;&#x65F6;&#x542F;&#x52A8;</h3>
 
-<hr>
+<blockquote>
+<p>bios &#x7535;&#x6E90;&#x7BA1;&#x7406;</p>
+</blockquote>
+<ol>
+<li>AC power loss &#x6765;&#x7535;&#x81EA;&#x542F;</li>
+<li>RTC &#x5B9A;&#x65F6;&#x542F;&#x52A8;</li>
+</ol>
+<h3 class="mume-header" id="-%E5%AE%9A%E6%97%B6%E5%85%B3%E6%9C%BA-">&#x5B9A;&#x65F6;&#x5173;&#x673A;</h3>
+
+<blockquote>
+<p>&#x76F4;&#x63A5;&#x5728;&#x5F00;&#x673A;&#x542F;&#x52A8;&#x811A;&#x672C;&#x8BBE;&#x7F6E;</p>
+</blockquote>
+<h3 class="mume-header" id="-%E5%BC%80%E6%9C%BA%E9%BB%98%E8%AE%A4%E8%BF%9B%E5%85%A5%E5%91%BD%E4%BB%A4%E8%A1%8C--%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2-">&#x5F00;&#x673A;&#x9ED8;&#x8BA4;&#x8FDB;&#x5165;&#x547D;&#x4EE4;&#x884C; / &#x56FE;&#x5F62;&#x754C;&#x9762;</h3>
+
+<blockquote>
+<p>&#x9ED8;&#x8BA4;&#x547D;&#x4EE4;&#x884C;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="sh" class="language-bash">systemctl set-default multi-user.target
+</pre><blockquote>
+<p>&#x547D;&#x4EE4;&#x884C;&#x8FDB;&#x5165;&#x56FE;&#x5F62;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="sh" class="language-bash">startx
+</pre><blockquote>
+<p>&#x9ED8;&#x8BA4;&#x56FE;&#x5F62;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="sh" class="language-bash">systemctl set-default graphical.target
+</pre><hr>
 <h2 class="mume-header" id="-%E8%BD%AF%E4%BB%B6-">&#x8F6F;&#x4EF6;</h2>
 
 <h3 class="mume-header" id="-%E5%9F%BA%E7%A1%80%E8%BD%AF%E4%BB%B6-">&#x57FA;&#x7840;&#x8F6F;&#x4EF6;</h3>
 
 <ul>
 <li>
+<p>&#x66F4;&#x65B0;</p>
+<ol>
+<li>&#x66F4;&#x65B0; <code>apt update &amp;&amp; apt upgrade</code></li>
+<li>&#x5B89;&#x88C5;&#x5347;&#x7EA7;&#x7BA1;&#x7406;&#x6838;&#x5FC3; <code>apt install update-manager-core</code></li>
+<li>&#x68C0;&#x67E5;&#x66F4;&#x65B0; <code>do-release-upgrade -d</code></li>
+</ol>
+</li>
+<li>
 <p>ssh</p>
 <blockquote>
 <p>ssh&#x5B89;&#x88C5;</p>
 </blockquote>
 <ol>
-<li>&#x66F4;&#x65B0; <code>apt update &amp;&amp; apt upgrade</code></li>
-<li>&#x4E0B;&#x8F7D; <code>apt install openssh-server</code></li>
+<li>&#x5B89;&#x88C5; <code>apt install openssh-server</code></li>
 </ol>
 </li>
 <li>
@@ -314,26 +347,22 @@ pre[data-line] .line-highlight[data-end]:after {
 </ol>
 </li>
 </ul>
-<h3 class="mume-header" id="-ddns-">DDNS</h3>
+<h3 class="mume-header" id="-ddns-%E5%8F%8A-%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F-">DDNS &#x53CA; &#x5185;&#x7F51;&#x7A7F;&#x900F;</h3>
 
 <ul>
-<li>NO-IP <a href="https://my.noip.com/dynamic-dns">&#x7BA1;&#x7406;&#x9762;&#x677F;</a> <a href="https://www.noip.com/support/knowledgebase/installing-the-linux-dynamic-update-client-on-ubuntu/">&#x5B98;&#x65B9;&#x6587;&#x6863;</a> <a href="https://www.noip.com/support/knowledgebase/automatic-ipv6-updates-linux-duc/">Linux ipv6</a>
+<li>NO-IP <a href="https://my.noip.com/dynamic-dns">&#x7BA1;&#x7406;&#x9762;&#x677F;</a> <a href="https://www.noip.com/support/knowledgebase/install-linux-3-x-dynamic-update-client-duc/">&#x5B98;&#x65B9;&#x6587;&#x6863;</a> <a href="https://www.noip.com/support/knowledgebase/automatic-ipv6-updates-linux-duc/">Linux ipv6</a>
 <blockquote>
 <p>&#x53EA;&#x80FD;&#x641E;&#x4E00;&#x4E2A;&#x57DF;&#x540D;</p>
 </blockquote>
 <ol>
 <li>&#x4E0B;&#x8F7D; <a href="https://my.noip.com/dynamic-dns/duc">&#x4E0B;&#x8F7D;&#x5730;&#x5740;</a></li>
-<li>&#x89E3;&#x538B; <code>tar -xzf noip*.tar.gz</code></li>
-<li>&#x5B89;&#x88C5; <code>make install</code></li>
-<li>&#x914D;&#x7F6E; <code>xxxxxxxx</code></li>
-<li>&#x6B64;&#x65F6;&#x9700;&#x8981;&#x8F93;&#x5165;&#x8D26;&#x6237;&#x5BC6;&#x7801;</li>
-<li>&#x8FD0;&#x884C; <code>xxxxxxx</code></li>
-<li>ipv6 <code>noip --username &#x7528;&#x6237;&#x540D; --password &#x5BC6;&#x7801; -g &#x57DF;&#x540D; --ip-method http://ip1.dynupdate6.no-ip.com/</code></li>
+<li>&#x89E3;&#x538B; <code>tar -xf noip*.tar.gz</code></li>
+<li>&#x5B89;&#x88C5; <code>cd binaries &amp;&amp; apt install ./noip-duc_3.0.0-beta.5_amd64.deb</code></li>
+<li><code>noip-duc --username &#x8D26;&#x53F7; --password &#x5BC6;&#x7801; -g &#x57DF;&#x540D; --ip-method http://ip1.dynupdate6.no-ip.com/</code></li>
 </ol>
 </li>
 </ul>
-<h3 class="mume-header" id="-%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F-">&#x5185;&#x7F51;&#x7A7F;&#x900F;</h3>
-
+<details><summary>&#x5185;&#x7F51;&#x7A7F;&#x900F;(&#x6709;&#x5907;&#x65E0;&#x60A3;, &#x65E0;&#x5948;&#x4E4B;&#x4E3E;)</summary>
 <ul>
 <li>
 <p>&#x5C0F;&#x9E21;&#x7A7F;&#x900F; <a href="https://console.chickfrp.com/#/penManage/tunnel">&#x7BA1;&#x7406;&#x9762;&#x677F;</a> <a href="http://help.chickfrp.com/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">&#x5B98;&#x65B9;&#x6587;&#x6863;</a></p>
@@ -374,6 +403,7 @@ pre[data-line] .line-highlight[data-end]:after {
 </ol>
 </li>
 </ul>
+</details>
 <h3 class="mume-header" id="-%E6%9C%8D%E5%8A%A1-">&#x670D;&#x52A1;</h3>
 
 <ul>
@@ -384,7 +414,7 @@ pre[data-line] .line-highlight[data-end]:after {
 </blockquote>
 <ol>
 <li>&#x4E0B;&#x8F7D; <a href="https://github.com/coder/code-server/releases">&#x4E0B;&#x8F7D;&#x5730;&#x5740;</a></li>
-<li>&#x89E3;&#x538B; <code>tar -zxvf code-server*.tar.gz</code></li>
+<li>&#x5B89;&#x88C5; <code>apt install ./code-server*.deb</code></li>
 <li>&#x5E26;&#x53C2;&#x542F;&#x52A8; <code>export PASSWORD=&quot;hh&quot; &amp;&amp; ./code-server --host 127.0.0.1 --port 8080</code></li>
 </ol>
 </li>
@@ -393,11 +423,50 @@ pre[data-line] .line-highlight[data-end]:after {
 <blockquote>
 <p>&#x6587;&#x4EF6;&#x5206;&#x4EAB;</p>
 </blockquote>
+<ol>
+<li>&#x4E0B;&#x8F7D; <code>apt install samba samba-common</code></li>
+<li>&#x914D;&#x7F6E;&#x5206;&#x4EAB;&#x6587;&#x4EF6;&#x5939; <code>chmod 777 /home/share/ -R</code></li>
+<li>&#x6DFB;&#x52A0;samba&#x7528;&#x6237; <code>smbpasswd -a &#x7528;&#x6237;&#x540D;</code></li>
+<li>&#x63D0;&#x793A;&#x8F93;&#x5165;&#x5BC6;&#x7801; x2</li>
+<li>&#x914D;&#x7F6E;samba <code>vim /etc/samba/smb.conf</code></li>
+</ol>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"><span class="token punctuation">[</span>share<span class="token punctuation">]</span>                 <span class="token comment"># &#x5171;&#x4EAB;&#x540D;</span>
+    comment <span class="token operator">=</span> share     <span class="token comment"># &#x5171;&#x4EAB;&#x5907;&#x6CE8;</span>
+    path <span class="token operator">=</span> /home/share/ <span class="token comment"># &#x5171;&#x4EAB;&#x8DEF;&#x5F84;</span>
+    browseable <span class="token operator">=</span> <span class="token function">yes</span>    <span class="token comment"># &#x6240;&#x6709;&#x4EBA;&#x53EF;&#x89C1;</span>
+    public <span class="token operator">=</span> no         <span class="token comment"># &#x4E0D;&#x5141;&#x8BB8;&#x533F;&#x540D;&#x8BBF;&#x95EE;</span>
+    writable <span class="token operator">=</span> <span class="token function">yes</span>      <span class="token comment"># &#x53EF;&#x5199;</span>
+    valid <span class="token function">users</span> <span class="token operator">=</span> &#x7528;&#x6237;&#x540D; <span class="token comment"># &#x8BBE;&#x7F6E;&#x8BBF;&#x95EE;&#x7528;&#x6237;</span>
+</pre><ol start="6">
+<li>&#x91CD;&#x542F;samba <code>samba restart</code></li>
+<li>&#x5F00;&#x542F;&#x7AEF;&#x53E3; <code>ufw allow 445</code></li>
+</ol>
 </li>
 </ul>
-<h3 class="mume-header" id="-%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF-">&#x5F00;&#x673A;&#x81EA;&#x542F;</h3>
+<h3 class="mume-header" id="-%E5%BC%80%E6%9C%BA%E8%BF%90%E8%A1%8C---">&#x5F00;&#x673A;&#x8FD0;&#x884C;</h3>
 
-
+<ol>
+<li>&#x521B;&#x5EFA; <code>rc-local.service</code> &#x6587;&#x4EF6;</li>
+</ol>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"><span class="token function">cp</span> /lib/systemd/system/rc-local.service /etc/systemd/system
+</pre><ol start="2">
+<li>&#x4FEE;&#x6539; <code>/etc/systemd/system/rc-local.service</code> &#x6587;&#x4EF6;, &#x6DFB;&#x52A0;&#x5982;&#x4E0B;&#x5185;&#x5BB9;</li>
+</ol>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"><span class="token punctuation">[</span>Install<span class="token punctuation">]</span>   
+<span class="token assign-left variable">WantedBy</span><span class="token operator">=</span>multi-user.target   
+<span class="token assign-left variable">Alias</span><span class="token operator">=</span>rc-local.service
+</pre><ol start="3">
+<li>&#x521B;&#x5EFA; <code>/etc/rc.local</code> &#x6587;&#x4EF6;, &#x8F93;&#x5165;&#x6267;&#x884C;&#x7684;&#x811A;&#x672C;</li>
+</ol>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"><span class="token shebang important">#!/bin/sh</span>
+noip-duc --username xx --password xx -g xx --ip-method http://ip1.dynupdate6.no-ip.com/ <span class="token operator">&amp;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">PASSWORD</span><span class="token operator">=</span><span class="token string">&quot;xx&quot;</span> <span class="token operator">&amp;&amp;</span> code-server --host <span class="token punctuation">[</span>::<span class="token punctuation">]</span> --port <span class="token number">9070</span> <span class="token operator">&amp;</span>
+<span class="token function">shutdown</span> -h <span class="token number">23</span>:55
+</pre><ol start="4">
+<li>&#x7ED9;&#x6587;&#x4EF6; <code>/etc/rc.local</code> &#x53EF;&#x6267;&#x884C;&#x6743;&#x9650;</li>
+</ol>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"><span class="token function">chmod</span> +x /etc/rc.local
+</pre>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
@@ -412,8 +481,16 @@ pre[data-line] .line-highlight[data-end]:after {
             <p>&#x542F;&#x52A8;&#x76D8;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-&#x5B9A;&#x65F6;&#x91CD;&#x542F;-" class="md-toc-link">
-            <p>&#x5B9A;&#x65F6;&#x91CD;&#x542F;</p>
+          <a href="#-&#x5B9A;&#x65F6;&#x542F;&#x52A8;-" class="md-toc-link">
+            <p>&#x5B9A;&#x65F6;&#x542F;&#x52A8;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#-&#x5B9A;&#x65F6;&#x5173;&#x673A;-" class="md-toc-link">
+            <p>&#x5B9A;&#x65F6;&#x5173;&#x673A;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#-&#x5F00;&#x673A;&#x9ED8;&#x8BA4;&#x8FDB;&#x5165;&#x547D;&#x4EE4;&#x884C;--&#x56FE;&#x5F62;&#x754C;&#x9762;-" class="md-toc-link">
+            <p>&#x5F00;&#x673A;&#x9ED8;&#x8BA4;&#x8FDB;&#x5165;&#x547D;&#x4EE4;&#x884C; / &#x56FE;&#x5F62;&#x754C;&#x9762;</p>
 
           </a></div>
         </div>
@@ -429,20 +506,16 @@ pre[data-line] .line-highlight[data-end]:after {
             <p>&#x57FA;&#x7840;&#x8F6F;&#x4EF6;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-ddns-" class="md-toc-link">
-            <p>DDNS</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-&#x5185;&#x7F51;&#x7A7F;&#x900F;-" class="md-toc-link">
-            <p>&#x5185;&#x7F51;&#x7A7F;&#x900F;</p>
+          <a href="#-ddns-&#x53CA;-&#x5185;&#x7F51;&#x7A7F;&#x900F;-" class="md-toc-link">
+            <p>DDNS &#x53CA; &#x5185;&#x7F51;&#x7A7F;&#x900F;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#-&#x670D;&#x52A1;-" class="md-toc-link">
             <p>&#x670D;&#x52A1;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-&#x5F00;&#x673A;&#x81EA;&#x542F;-" class="md-toc-link">
-            <p>&#x5F00;&#x673A;&#x81EA;&#x542F;</p>
+          <a href="#-&#x5F00;&#x673A;&#x8FD0;&#x884C;---" class="md-toc-link">
+            <p>&#x5F00;&#x673A;&#x8FD0;&#x884C;</p>
 
           </a></div>
         </div>
