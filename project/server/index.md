@@ -35,7 +35,7 @@ html:
 | 2 | `bind()`  | 绑定 ip + port 至该 socket 上 |  
 | 3 | `listen()`| 监听该 端口                   |
 | 4 | `accept()`| 接受来自服务端的连接请求        | 
-| 5 | `read()`  | 从 socket 中读取字符          |  
+| 5 | `recv()`  | 从 socket 中读取字符          |  
 | 6 | `close()` | 关闭 socket                   |  
 
 
@@ -63,7 +63,7 @@ html:
 1. `客户端` 请求连接, `connect()阻塞` 
 2. 服务器端收到请求, `accept()阻塞`, 向客户端发送连接确认信息, 等待`客户端`返回确认信息
 3. `客户端` 发送连接确认信息, `connect()返回`, 服务器端收到确认信息, `accept()返回`
-- `read()阻塞`, 等待`send()`发送完
+- `recv()阻塞`, 等待`send()`发送完
 
 > TCP的四次挥手过程:
 1. `客户端`请求断开, `close()阻塞`
@@ -103,16 +103,16 @@ html:
 ```cpp
 int socket(int domain, int type, int protocol);
 ```
-> 创建一个 socket 
-> - domain: 协议域
+创建一个 socket 
+- domain: 协议域
 > `AF_INET`: IPV4
 > `AF_INET6`: IPV6
 > `AD_LOCAL`: 一个绝对路径名
-> - type: socket类型
+- type: socket类型
 > `SOCK_STREAM`: 流式套接字, TCP协议等
 > `SOCK_DGRAM`: 数据包套接字, UDP协议等
 > `SOCK_RAW`: 原始套接字, IP/ICMP协议等, 接收发向本机的ICMP、IGMP协议包
-> - protocol: 指定协议
+- protocol: 指定协议
 > `IPPROTO_TCP`: TCP传输协议
 > `IPPTOTO_UDP`: UDP传输协议
 > `IPPROTO_SCTP`: SCTP传输协议
@@ -129,8 +129,8 @@ int serv_sock = socket(AF_INET, SOCK_STREAM, 0);
 ```cpp
 int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
 ```
-> - sockfd: socket描述字, 给哪个sockfd绑定地址
-> - addr: 一个const struct sockaddr *指针, 指向要绑定给sockfd的协议地址
+- sockfd: socket描述字, 给哪个sockfd绑定地址
+- addr: 一个const struct sockaddr *指针, 指向要绑定给sockfd的协议地址
 >   ```cpp
 >   struct sockaddr_in {            // IPV4
 >       sa_family_t    sin_family;  // 协议族
@@ -138,7 +138,7 @@ int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
 >       in_port_t      sin_port;    // 端口
 >   };
 >   ```
-> - addrlen: 地址的长度
+- addrlen: 地址的长度
 ```cpp
 sockaddr_in serv_addr;
 bzero(&serv_addr, sizeof serv_addr);
@@ -156,8 +156,8 @@ bind(serv_sock, (sockaddr*)&serv_addr, sizeof serv_addr);
 ```cpp
 int listen(int sockfd, int backlog);
 ```
-> - sockfd: 监听哪个sockfd
-> - backlog: 最大连接数
+- sockfd: 监听哪个sockfd
+- backlog: 最大连接数
 
 ```cpp
 listen(serv_sock, 1024);
@@ -169,9 +169,9 @@ listen(serv_sock, 1024);
 ```cpp
 int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
 ```
-> - sockfd: 客户端的sockfd
-> - addr: 服务器的socket地址
-> - addrlen: 服务器地址的长度
+- sockfd: 客户端的sockfd
+- addr: 服务器的socket地址
+- addrlen: 服务器地址的长度
 ```cpp
 connect(clnt_sock, (sockaddr*)&serv_addr, sizeof serv_addr);
 ```
@@ -184,9 +184,9 @@ connect(clnt_sock, (sockaddr*)&serv_addr, sizeof serv_addr);
 ```cpp
 int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
 ```
-> - sockfd: 服务器的sockfd
-> - addr: 客户端的地址
-> - addrlen: 客户端地址的长度
+- sockfd: 服务器的sockfd
+- addr: 客户端的地址
+- addrlen: 客户端地址的长度
 ```cpp
 sockaddr_in clnt_addr;
 bzero(&clnt_addr, sizeof clnt_addr);
@@ -206,26 +206,28 @@ int clnt_sock = accept(serv_sock, (sockaddr*)&clnt_addr, &clnt_addr_len);
 ```cpp
 ssize_t recv(int sockfd, void *buf, size_t len, int flags);
 ```
-> sockfd: 接受的套接字
-> buf: 目标缓冲区
-> len: 缓冲区接受字节长度
-> flags: 一般为0
+- sockfd: 接受的套接字
+- buf: 目标缓冲区
+- len: 缓冲区接受字节长度
+- flags: 一般为0
 
 ```cpp
-
+int len = recv(fd, buf, strlen(buf), 0);
 ```
 </details>
 
-
-
-
-
-
-<details><summary> sendms() </summary>
+<details><summary> send() </summary>
 
 ```cpp
 ssize_t send(int sockfd, const void *buf, size_t len, int flags);
 ```
+
+```cpp
+int len = send(fd, buf, strlen(buf), 0);
+```
+
+
+
 </details>
 
 
@@ -246,15 +248,32 @@ close(serv_sock);
 
 <br>
 
-> 类
+> Socket.h
 
-socket 作为一个接口, 在服务器端, 就是等待请求来连接
+socket 作为一个接口, 在服务器端, 等待请求来连接
 创建接口, 等待连接, 连接成功; 即 `初始化` + `服务上线` + `服务运行`
 
 ```cpp
+class Sock
+{
+public:
+    Sock(const char* ip, uint16_t port);    // 初始化
+    ~Sock();
 
+    void    online();           // 服务上线
+    int     start(sockaddr_in6 clnt_addr, socklen_t clnt_addr_len); // 服务运行
 
+    void    setnonblocking();   // 此socket设置为非阻塞模式
+    
+    int             fd;         // 获取标识符
+    sockaddr_in6    addr();     // 地址( 协议 + ip + port )
+    socklen_t       addr_len(); // 地址大小
+private:
+    void    iport(const char* ip, uint16_t port);
 
+    sockaddr_in6    _addr;       // 地址( 协议 + ip + port )
+    socklen_t       _addr_len;   // 地址大小
+};
 ```
 --- 
 
@@ -279,8 +298,117 @@ socket 作为一个接口, 在服务器端, 就是等待请求来连接
 >* 优化空间: fast
     销毁所有空闲内存块
 
-
 ---
 
 
+# Epoll IO复用
 
+> Epoll 工作流
+
+1. 创建 Epoll
+2. 在 Epoll 上注册事件
+3. 取出就绪事件
+
+> 相关函数
+
+`#include <sys/epoll.h>`
+
+<details><summary> epoll_create1() </summary>
+
+```cpp
+int epoll_create1(int flags);
+```
+- flags: 一般为0
+
+```cpp
+int epfd = epoll_create1(0);
+```
+
+</details>
+
+
+
+
+
+<details><summary> epoll_ctl() </summary>
+
+```cpp
+int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
+```
+
+- epfd:创建epoll的文件描述符
+- op:动作
+
+> EPOLL_CTL_ADD: 注册新的fd到epfd中
+> EPOLL_CTL_MOD: 修改已经注册的fd
+> EPOLL_CTL_DEL: 从epfd中删除一个fd
+
+- fd:目标fd
+- epoll_events:目标fd事件类型
+
+> EPOLLIN: 表示对应的文件描述符可以读
+> EPOLLOUT: 表示对应的文件描述符可以写
+> EPOLLPRI: 表示对应的文件描述符有紧急的数据可读
+> EPOLLERR: 表示对应的文件描述符发生错误
+> EPOLLHUP: 表示对应的文件描述符被挂断
+> EPOLLET: 将EPOLL设为边缘触发(Edge Triggered)模式
+> EPOLLONESHOT: 只监听一次事件
+
+```cpp
+int flg = epoll_ctl(epfd, EPOLL_CTL_ADD, fd, &ev); // 增加 fd 到 epfd
+```
+
+</details>
+
+
+
+
+
+<details><summary> epoll_wait() </summary>
+
+```cpp
+int epoll_wait(int epfd, struct epoll_event* events, int maxevents, int timeout);
+```
+
+- epfd:创建epoll的文件描述符
+- events: 复制到的事件表
+- maxevents: 事件表的最大容量
+- timeout: 每次赋值等待的时间(-1, 阻塞), (0, 不等待)
+
+```cpp
+int nfds = epoll_wait(epfd, events, MAX_EVENTS, timeout);
+```
+
+</details>
+
+
+
+
+> Epoll.h
+
+```cpp
+class Epoll
+{
+private:
+    int epfd;               
+    epoll_event* events;
+public:
+    Epoll();
+    ~Epoll();
+
+    // 添加事件到epoll
+    void addFd(int fd, uint32_t op);
+    // 修改事件到epoll
+    void modFd(int fd, uint32_t op);
+    // 获取内核事件表
+    std::vector<epoll_event> poll(int timeout=-1);
+};
+```
+---
+
+# ThreadPool 线程池
+
+
+---
+
+# Log 异步日志
