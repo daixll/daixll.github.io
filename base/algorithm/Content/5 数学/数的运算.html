@@ -261,7 +261,7 @@ pre[data-line] .line-highlight[data-end]:after {
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      <h1 class="mume-header" id="%E9%AB%98%E7%B2%BE%E5%BA%A6center">&#x9AD8;&#x7CBE;&#x5EA6;</h1>
+      <h1 class="mume-header" id="%E9%AB%98%E7%B2%BE%E5%BA%A6">&#x9AD8;&#x7CBE;&#x5EA6;</h1>
 
 <h2 class="mume-header" id="%E5%8A%A0%E6%B3%95">&#x52A0;&#x6CD5;</h2>
 
@@ -634,7 +634,7 @@ string <span class="token function">MUL_FFT</span><span class="token punctuation
 <span class="token punctuation">}</span>
 </pre></details>
 <hr>
-<h1 class="mume-header" id="%E5%BF%AB%E9%80%9F%E5%B9%82center">&#x5FEB;&#x901F;&#x5E42;</h1>
+<h1 class="mume-header" id="%E5%BF%AB%E9%80%9F%E5%B9%82">&#x5FEB;&#x901F;&#x5E42;</h1>
 
 <details><summary>&#x9012;&#x5F52;&#x5B9E;&#x73B0;</summary>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
@@ -664,10 +664,10 @@ LL <span class="token function">qmi</span><span class="token punctuation">(</spa
 <details><summary>&#x8FED;&#x4EE3;&#x5B9E;&#x73B0;</summary>
 </details>
 <hr>
-<h1 class="mume-header" id="%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95center">&#x77E9;&#x9635;&#x4E58;&#x6CD5;</h1>
+<h1 class="mume-header" id="%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95">&#x77E9;&#x9635;&#x4E58;&#x6CD5;</h1>
 
 <hr>
-<h1 class="mume-header" id="%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2center">&#x8FDB;&#x5236;&#x8F6C;&#x6362;</h1>
+<h1 class="mume-header" id="%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2">&#x8FDB;&#x5236;&#x8F6C;&#x6362;</h1>
 
 <h3 class="mume-header" id="%E8%BD%AC-10-%E8%BF%9B%E5%88%B6">&#x8F6C; 10 &#x8FDB;&#x5236;</h3>
 
@@ -865,41 +865,27 @@ string <span class="token function">x_a</span><span class="token punctuation">(<
 <span class="token punctuation">}</span>
 </pre></details>
 <hr>
-<h1 class="mume-header" id="%E4%BD%8D%E8%BF%90%E7%AE%97center">&#x4F4D;&#x8FD0;&#x7B97;</h1>
+<h1 class="mume-header" id="%E4%BD%8D%E8%BF%90%E7%AE%97">&#x4F4D;&#x8FD0;&#x7B97;</h1>
 
-<table>
-<thead>
-<tr>
-<th>&#x64CD;&#x4F5C;</th>
-<th>&#x4EE3;&#x7801;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>&#x751F;&#x6210; n &#x4F4D;&#x5168; 1</td>
-<td><code>int a = (1&lt;&lt;n)-1</code></td>
-</tr>
-<tr>
-<td>&#x5C06; a &#x7684;&#x7B2C; i &#x4F4D;&#x6539;&#x4E3A; 1</td>
-<td><code>a | ( 1&lt;&lt;(i-1) )</code></td>
-</tr>
-<tr>
-<td>&#x5C06; a &#x7684;&#x7B2C; i &#x4F4D;&#x6539;&#x4E3A; 0</td>
-<td><code>a &amp; ( ~(1&lt;&lt;i) )</code></td>
-</tr>
-<tr>
-<td>&#x5224;&#x65AD; a &#x7684;&#x7B2C; i &#x4F4D;&#x662F;&#x5426;&#x4E3A; 1</td>
-<td><code>(1 &lt;&lt; (i-1)) &amp; a</code></td>
-</tr>
-</tbody>
-</table>
-
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-int">int</span> <span class="token function">bal1</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &#x751F;&#x6210; n &#x4F4D;&#x5168; 1</span>
+	<span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> n<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-bool">bool</span> <span class="token function">bis1</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &#x5224;&#x65AD; a &#x7684;&#x7B2C; i &#x4F4D;&#x662F;&#x4E0D;&#x662F; 1    </span>
+	<span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> a<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-void">void</span> <span class="token function">b21</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &#x4FEE;&#x6539; a &#x7684;&#x7B2C; i &#x4F4D;&#x4E3A; 1</span>
+	a <span class="token operator">|=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-void">void</span> <span class="token function">b20</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> i<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// &#x4FEE;&#x6539; a &#x7684;&#x7B2C; i &#x4F4D;&#x4E3A; 0</span>
+	a <span class="token operator">&amp;=</span> <span class="token operator">~</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open>
         <summary class="md-toc-link-wrapper">
-          <a href="#&#x9AD8;&#x7CBE;&#x5EA6;center" class="md-toc-link"><p>&#x9AD8;&#x7CBE;&#x5EA6;</p>
+          <a href="#&#x9AD8;&#x7CBE;&#x5EA6;" class="md-toc-link"><p>&#x9AD8;&#x7CBE;&#x5EA6;</p>
 </a>
           </summary>
         <div>
@@ -927,16 +913,16 @@ string <span class="token function">x_a</span><span class="token punctuation">(<
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#&#x5FEB;&#x901F;&#x5E42;center" class="md-toc-link">
+          <a href="#&#x5FEB;&#x901F;&#x5E42;" class="md-toc-link">
             <p>&#x5FEB;&#x901F;&#x5E42;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#&#x77E9;&#x9635;&#x4E58;&#x6CD5;center" class="md-toc-link">
+          <a href="#&#x77E9;&#x9635;&#x4E58;&#x6CD5;" class="md-toc-link">
             <p>&#x77E9;&#x9635;&#x4E58;&#x6CD5;</p>
 
           </a></div><details style="padding:0;;padding-left:0px;" open>
         <summary class="md-toc-link-wrapper">
-          <a href="#&#x8FDB;&#x5236;&#x8F6C;&#x6362;center" class="md-toc-link"><p>&#x8FDB;&#x5236;&#x8F6C;&#x6362;</p>
+          <a href="#&#x8FDB;&#x5236;&#x8F6C;&#x6362;" class="md-toc-link"><p>&#x8FDB;&#x5236;&#x8F6C;&#x6362;</p>
 </a>
           </summary>
         <div>
@@ -952,7 +938,7 @@ string <span class="token function">x_a</span><span class="token punctuation">(<
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#&#x4F4D;&#x8FD0;&#x7B97;center" class="md-toc-link">
+          <a href="#&#x4F4D;&#x8FD0;&#x7B97;" class="md-toc-link">
             <p>&#x4F4D;&#x8FD0;&#x7B97;</p>
 
           </a></div>
