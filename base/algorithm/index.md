@@ -1,8 +1,12 @@
+题目来源：
+[AcWing](https://www.acwing.com/) / [洛谷](https://www.luogu.com.cn/training/list) / [算法竞赛进阶指南](https://github.com/lydrainbowcat/tedukuri) / [信息学奥赛一本通 上](http://ybt.ssoier.cn:8088/index.php) [下](https://www.maxuetang.cn/course/285-list.html) / [算法训练营 上](https://vjudge.net/article/2652) [下](https://vjudge.net/article/2642) / 
+
+---
 
 1. 基础
    1. [枚举与模拟](./Content/1%20基础/)
-   2. [递归](./Content/1%20基础/递归.html)
-   3. [前缀和与差分](./Content/1%20基础/)
+   2. [递归与递推](./Content/1%20基础/递归.html)
+   3. [前缀和与差分](./Content/1%20基础/前缀和.html)
    4. [排序]()
    5. [哈希与离散化]()
    6. [二分]()
@@ -81,14 +85,3 @@
    4. CCF-S
    5. USACO-Gold
    6. USACO-Platinum 
----
-
-书籍推荐：
-
-* 李熠东 《算法竞赛进阶指南》
-* 陈小玉 《算法训练营》
-* 罗勇军 《算法竞赛》
-* 巫泽俊 《挑战程序设计竞赛》
-* 董勇建 《信息学奥赛一本通》
-* 刘汝佳 《算法竞赛入门经典》
-[电子版仅供交流学习](https://www.aliyundrive.com/s/PZFRUW4CgRP)

@@ -938,9 +938,63 @@ string a<span class="token punctuation">;</span>
 <details><summary><a href="https://www.acwing.com/problem/content/100/" target="_blank">AcWing 98. &#x5206;&#x5F62;&#x4E4B;&#x57CE;</a> code</summary> 
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp"></pre></details>
 <details><summary><a href="https://www.acwing.com/problem/content/1210/" target="_blank">AcWing 1208. &#x7FFB;&#x786C;&#x5E01;</a> code</summary> 
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp"></pre></details>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm&gt;</span></span>
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+
+string a<span class="token punctuation">,</span> b<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">cg</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">&apos;*&apos;</span><span class="token punctuation">)</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&apos;o&apos;</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-else">else</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span><span class="token string">&apos;*&apos;</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">&apos;*&apos;</span><span class="token punctuation">)</span> a<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&apos;o&apos;</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-else">else</span> a<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span><span class="token string">&apos;*&apos;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> ans<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    cin<span class="token operator">&gt;&gt;</span>a<span class="token operator">&gt;&gt;</span>b<span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>a<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token function">cg</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span> ans<span class="token operator">++</span><span class="token punctuation">;</span>
+    cout<span class="token operator">&lt;&lt;</span>ans<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</pre></details>
 <details><summary><a href="https://www.acwing.com/problem/content/1211/" target="_blank">AcWing 1209. &#x5E26;&#x5206;&#x6570;</a> code</summary> 
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp"></pre></details>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm&gt;</span></span>
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> a<span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">getnum</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> j<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> res<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>i<span class="token operator">&lt;=</span>j<span class="token punctuation">)</span> res <span class="token operator">=</span> res<span class="token operator">*</span><span class="token number">10</span> <span class="token operator">+</span> a<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    cin<span class="token operator">&gt;&gt;</span><span class="token operator">*</span>a<span class="token punctuation">;</span>
+    <span class="token keyword keyword-do">do</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">7</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> j<span class="token operator">=</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">&lt;=</span><span class="token number">8</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword keyword-int">int</span> A <span class="token operator">=</span> <span class="token function">getnum</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword keyword-int">int</span> B <span class="token operator">=</span> <span class="token function">getnum</span><span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword keyword-int">int</span> C <span class="token operator">=</span> <span class="token function">getnum</span><span class="token punctuation">(</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                
+                <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>A <span class="token operator">+</span> B<span class="token operator">/</span>C <span class="token operator">==</span> <span class="token operator">*</span>a <span class="token operator">&amp;&amp;</span> B<span class="token operator">%</span>C<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> a<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token keyword keyword-while">while</span><span class="token punctuation">(</span><span class="token function">next_permutation</span><span class="token punctuation">(</span>a<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> a<span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    cout<span class="token operator">&lt;&lt;</span>a<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></details>
 
       </div>
       <div class="md-sidebar-toc">
