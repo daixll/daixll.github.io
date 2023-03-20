@@ -1,5 +1,5 @@
 题目来源：
-[AcWing](https://www.acwing.com/) / [洛谷](https://www.luogu.com.cn/training/list) / [算法竞赛进阶指南](https://github.com/lydrainbowcat/tedukuri) / [信息学奥赛一本通 上](http://ybt.ssoier.cn:8088/index.php) [下](https://www.maxuetang.cn/course/285-list.html) / [算法训练营 上](https://vjudge.net/article/2652) [下](https://vjudge.net/article/2642) / 
+[AcWing](https://www.acwing.com/) / [洛谷](https://www.luogu.com.cn/training/list) / [算法竞赛进阶指南](https://github.com/lydrainbowcat/tedukuri) / [信息学奥赛一本通](http://ybt.ssoier.cn:8088/index.php) / [算法训练营 上](https://vjudge.net/article/2652) [下](https://vjudge.net/article/2642) / 
 
 ---
 

@@ -16,8 +16,6 @@ html:
   * [ubuntu server](https://cn.ubuntu.com/download/server/step1) iso镜像下载
   * [rufus](https://rufus.ie/zh/)   制作启动u盘
 
-<img src="https://git.acwing.com/jiao/p/-/raw/main/set/ubuntu1.jpg" height="400"> 
-
 ### 定时启动
 > bios 电源管理
   1. AC power loss 来电自启
