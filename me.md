@@ -9,12 +9,15 @@ html:
     theme: united
 --- 
 
+## 2023
+
 ### 综合奖学金
+### 单项
 
 ---
 ## 2022
 
-http://dxll.ddns.net/home/jiao/Desktop/doc/me
+![1](http://dxll.ddns.net/home/jiao/Desktop/doc/me/t.jpg)
 
 ### 省二 传智杯
 - `2022-12` `第五届“传智杯”程序设计挑战赛本科B组` `初赛二等奖` 
