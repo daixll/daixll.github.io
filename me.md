@@ -17,8 +17,6 @@ html:
 ---
 ## 2022
 
-![1](http://dxll.ddns.net/home/jiao/Desktop/doc/me/t.jpg)
-
 ### 省二 传智杯
 - `2022-12` `第五届“传智杯”程序设计挑战赛本科B组` `初赛二等奖` 
 [公示 \ 排名](https://docs.qq.com/sheet/DZlpxVFVjY1FXSWl2?tab=BB08J2)
