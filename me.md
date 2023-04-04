@@ -9,10 +9,35 @@ html:
     theme: united
 --- 
 
+
+|国|省|金|
+|-|-|-|
+|2|6|15550￥| 
+
+> 求知若渴，日积月累，虽在繁星之中或难觉察，然内心感悟其温暖光辉，鼓舞前行。
+> 如此微薄，唯愿勉己，追求卓越。
+
+---
+
 ## 2023
 
-### 综合奖学金
-### 单项
+### 单项奖学金 (2)
+
+- `2023-3` `重庆工业职业技术学院单项奖学金` `$ 12000+1000`
+
+<figure class="half">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（金单项）12000.jpg" height="200"> 
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（金单项）1000.jpg" height="200">
+</figure>
+
+### 校级先进个人
+
+- `2023-1` `重庆工业职业技术学院优秀毕业生` `科技创新先进个人`
+
+<figure class="half">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（证）科技创新先进个人.jpg" height="200"> 
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（证）优秀毕业生.jpg" height="200">
+</figure>
 
 ---
 ## 2022
@@ -22,8 +47,8 @@ html:
 [公示 \ 排名](https://docs.qq.com/sheet/DZlpxVFVjY1FXSWl2?tab=BB08J2)
 
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/b2_czb.png" height="200"> 
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/p/b2_czb.png" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（省2）传智杯.png" height="200"> 
+    <img src="https://raw.github.com/kiddxl/imgbed/main/p/（省2）传智杯.png" height="200">
 </figure>
 
 ### 国三 码题杯
@@ -32,9 +57,10 @@ html:
 [公示 \ 排名](https://mp.weixin.qq.com/s/pbwGtLsuM2l_8ftM-ir4Cg)
 
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/p/jbmtj.jpg" height="200"> 
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/a3_mtb.jpg" height="200"> 
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/p/a3_mtb.jpg" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/p/（奖杯）码题集.jpg" height="200"> 
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（国3）码题杯.jpg
+" height="200"> 
+    <img src="https://raw.github.com/kiddxl/imgbed/main/p/（国3）码题杯.jpg" height="200">
 </figure>
 
 ### 志愿者 码题集
@@ -42,27 +68,27 @@ html:
 - `2022-9` `全国高等学校计算机教学与产业实践资源建设专家委员会（TIPCC）志愿者`
 
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/z_mtj.jpg" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（证）码题集.jpg" height="200">
 </figure>
 
 ### 省一 互联网+ 
 
 - `2022-8` `第八届“互联网+”大学生创新创业大赛` `重庆市金奖`
-[公示 \ 排名](http://dxll.ddns.net/home/jiao/Desktop/doc/me/p/b1_hlw.pdf)
+[公示 \ 排名](https://raw.github.com/kiddxl/imgbed/main/p/（省1）互联网+.pdf)
 
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/b1_hlw.jpg" height="200"> 
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/p/b1_hlw.png" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（省1）互联网+.jpg" height="200"> 
+    <img src="https://raw.github.com/kiddxl/imgbed/main/p/（省1）互联网+.png" height="200">
 </figure>
 
 ### 省三 挑战杯
 
 - `2022-8` `第十三届“挑战杯”中国大学生创业计划竞赛` `重庆市铜奖`   
-[公示 \ 排名](http://dxll.ddns.net/home/jiao/Desktop/doc/me/p/b3_tzb.pdf)
+[公示 \ 排名](https://raw.github.com/kiddxl/imgbed/main/p/（省3）挑战杯.pdf)
 
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/b3_tzb.jpg" height="200"> 
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/p/b3_tzb.png" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（省3）挑战杯.jpg" height="200"> 
+    <img src="https://raw.github.com/kiddxl/imgbed/main/p/（省3）挑战杯.png" height="200">
 </figure>
 
 ### 单项奖学金 (2)
@@ -70,8 +96,8 @@ html:
 - `2022-7` `重庆工业职业技术学院单项奖学金` `$ 3000+150`
 
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/dx_3000.jpg" height="200"> 
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/dx_150.jpg" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（金单项）3000.jpg" height="200"> 
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（金单项）150.jpg" height="200">
 </figure>
 
 ### 国优 蓝桥杯
@@ -80,8 +106,8 @@ html:
 [公示 / 排名](https://dasai.lanqiao.cn/notices/1341)
     
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/a4_lqb22.jpg" height="200"> 
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/p/a4_lqb22.png" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（国优）蓝桥杯22.jpg" height="200"> 
+    <img src="https://raw.github.com/kiddxl/imgbed/main/p/（国优）蓝桥杯22.png" height="200">
 </figure>
 
 ### 省一 蓝桥杯
@@ -90,8 +116,8 @@ html:
 [公示 / 排名](https://dasai.lanqiao.cn/notices/1305)
 
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/b1_lqb22.jpg" height="200"> 
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/p/b1_lqb22.png" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（省1）蓝桥杯22.jpg" height="200"> 
+    <img src="https://raw.github.com/kiddxl/imgbed/main/p/（省1）蓝桥杯22.png" height="200">
 </figure>
 
 ### 综合奖学金
@@ -99,7 +125,7 @@ html:
 - `2022-4` `重庆工业职业技术学院综合奖学金` `$ 400`
 
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/zx_400.jpg" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（金综合）400.jpg" height="200">
 </figure>
 
 ---
@@ -112,7 +138,7 @@ html:
 - `2021-12` `全国工业和信息化技术技能大赛-工业大数据算法` `重庆市第3名`
 
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/b2_gydsj.jpg" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（省2）工业大数据算法.jpg" height="200">
 </figure>
 
 ### 数据标注
@@ -120,7 +146,7 @@ html:
 - `2021-10` `全国行业职业技能竞赛-数据智能标注分析与应用` `重庆市第八名`
 
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/p/sjbz.jpg" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/p/数据标注.jpg" height="200">
 </figure>
 
 ### 英语B级
@@ -128,7 +154,7 @@ html:
 - `2021-9` `高等学校英语应用能力考试` `B级`
 
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/z_yyb.jpg" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（证）英语B级.jpg" height="200">
 </figure>
 
 ### 省二 心理论坛
@@ -136,8 +162,8 @@ html:
 - `2021-7` `重庆市第十二届大学生心理成长论坛心理成长微课比赛` `重庆市二等奖`
     
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/b2_xl.jpg" height="200">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/p/b2_xl.png" height="100">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（省2）心理.jpg" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/p/（省2）心理.png" height="100">
 </figure>
 
 
@@ -146,7 +172,7 @@ html:
 - `2021-3` `普通话水平测试` `二级乙等` 
 
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/z_pth.png" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（证）普通话二乙.png" height="200">
 </figure>
 
 ### 计算机二级
@@ -154,5 +180,5 @@ html:
 - `2021-3` `计算机等级考试二级C语言程序设计` `良好` 
 
 <figure class="half">
-    <img src="http://dxll.ddns.net/home/jiao/Desktop/doc/me/z_jsj2.png" height="200">
+    <img src="https://raw.github.com/kiddxl/imgbed/main/（证）计算机二级.png" height="200">
 </figure>

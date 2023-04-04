@@ -552,13 +552,48 @@ int main(){
 ## 2022 Jan
 
 
-<details><summary><a href="" target="_blank">AcWing </a> code</summary> 
+<details><summary><a href="https://www.acwing.com/problem/content/description/4332/" target="_blank">AcWing 4329. Herdle</a> code</summary> 
 
->
->
+> 统计两个方阵中, 各个颜色的数量
+> 先算绿的(同一位置同一颜色), 再算黄的(两个方块中, 减去绿色的数量, 取两个方块中的最小值)
+> 
 
 ```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
 
+int n, ans1, ans2;
+int cnt1[26];
+int cnt2[26];
+
+string a[3], b[3];
+
+int main(){
+    for(int i=0; i<3; i++) cin>>a[i];
+    for(int i=0; i<3; i++) cin>>b[i];
+    
+    for(int i=0; i<3; i++)
+        for(int j=0; j<3; j++)
+            cnt1[ a[i][j]-'A' ]++,
+            cnt2[ b[i][j]-'A' ]++;
+    
+    for(int i=0; i<3; i++)
+        for(int j=0; j<3; j++)
+            if( a[i][j] == b[i][j] ){
+                ans1++;
+                cnt1[ a[i][j]-'A' ]--,
+                cnt2[ b[i][j]-'A' ]--;
+            }
+        
+    for(int i=0; i<26; i++)
+        if(cnt1[i] && cnt2[i])
+            ans2 += min(cnt1[i], cnt2[i]);
+    
+    cout<<ans1<<"\n"<<ans2;
+    
+    return 0;
+}
 ```
 
 </details>
