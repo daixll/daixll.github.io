@@ -12,7 +12,7 @@ html:
 
 |国|省|金|
 |-|-|-|
-|2|6|15550￥| 
+|3|7|17350￥| 
 
 > 求知若渴，日积月累，虽在繁星之中或难觉察，然内心感悟其温暖光辉，鼓舞前行。
 > 如此微薄，唯愿勉己，追求卓越。
@@ -20,6 +20,48 @@ html:
 ---
 
 ## 2023
+
+
+
+
+### 重庆市先进个人
+
+- `2023-5` `重庆市创新能力提升先进个人` 
+
+<figure class="half">
+    <img src="https://raw.githubusercontent.com/kiddxl/imgbed/main/（证）重庆市创新能力提升先进个人.jpg" height="200"> 
+</figure>
+
+
+### 省一 蓝桥杯
+
+- `2023-4` `第十四届“蓝桥杯”C/C++程序设计本科B组` `重庆市一等奖`  
+[！！！！公示 / 排名]()
+
+<figure class="half">
+    <img src="https://raw.githubusercontent.com/kiddxl/imgbed/main/（省1）蓝桥杯23.jpg" height="200"> 
+    <img src="https://raw.githubusercontent.com/kiddxl/imgbed/main/p/（省1）蓝桥杯23.png" height="200">
+</figure>
+
+
+
+### 国二 传智杯
+- `2023-4` `第五届“传智杯”程序设计挑战赛本科B组` `决赛二等奖` 
+[！！！公示 \ 排名]()
+
+<figure class="half">
+    <img src="https://raw.githubusercontent.com/kiddxl/imgbed/main/（国2）传智杯.png" height="200"> 
+    <img src="https://raw.githubusercontent.com/kiddxl/imgbed/main/p/（国2）传智杯.png" height="200">
+</figure>
+
+### 综合奖学金（2）
+
+- `2023-4` `重庆工业职业技术学院综合奖学金` `$ 400`
+
+<figure class="half">
+    <img src="https://raw.githubusercontent.com/kiddxl/imgbed/main/（金综合22b）400.png" height="200">
+    <img src="https://raw.githubusercontent.com/kiddxl/imgbed/main/（金综合22a）400.png" height="200">
+</figure>
 
 ### 单项奖学金 (2)
 
@@ -125,7 +167,7 @@ html:
 - `2022-4` `重庆工业职业技术学院综合奖学金` `$ 400`
 
 <figure class="half">
-    <img src="https://raw.githubusercontent.com/kiddxl/imgbed/main/（金综合）400.jpg" height="200">
+    <img src="https://raw.githubusercontent.com/kiddxl/imgbed/main/（金综合21b）400.jpg" height="200">
 </figure>
 
 ---
