@@ -261,11 +261,73 @@ pre[data-line] .line-highlight[data-end]:after {
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      <hr>
+      <h1 class="mume-header" id="%E4%BA%8C%E5%88%86%E6%A8%A1%E6%9D%BF">&#x4E8C;&#x5206;&#x6A21;&#x677F;</h1>
+
+<blockquote>
+<p>&#x7B54;&#x6848;&#x8981;&#x6C42;&#x5C3D;&#x53EF;&#x80FD;<code>&#x5C0F;</code>, <code>&#x53F3;&#x534A;&#x8FB9;</code>&#x5408;&#x6CD5;, <code>&gt;=</code> &#x76EE;&#x6807;&#x503C;&#x4E2D;, &#x6700;&#x5C0F;&#x7684;&#x4E00;&#x4E2A;, &#x5373;<code>&#x7B2C;&#x4E00;&#x4E2A;</code></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>l<span class="token operator">&lt;</span>r<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> mid <span class="token operator">=</span> l<span class="token operator">+</span>r <span class="token operator">&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&gt;=</span> x<span class="token punctuation">)</span> r<span class="token operator">=</span>mid<span class="token punctuation">;</span>  <span class="token comment">// &#x53F3;&#x8FB9;&#x662F;&#x5408;&#x6CD5;&#x7684;, r&#x5411;&#x4E2D;&#x95F4;&#x9760;</span>
+    <span class="token keyword keyword-else">else</span> l<span class="token operator">=</span>mid<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><blockquote>
+<p>&#x7B54;&#x6848;&#x8981;&#x6C42;&#x5C3D;&#x53EF;&#x80FD;<code>&#x5927;</code>, <code>&#x5DE6;&#x534A;&#x8FB9;</code>&#x5408;&#x6CD5;, <code>&lt;=</code> &#x76EE;&#x6807;&#x503C;&#x4E2D;, &#x6700;&#x5927;&#x7684;&#x4E00;&#x4E2A;, &#x5373;<code>&#x6700;&#x540E;&#x4E00;&#x4E2A;</code></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>l<span class="token operator">&lt;</span>r<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> mid <span class="token operator">=</span> l<span class="token operator">+</span>r<span class="token operator">+</span><span class="token number">1</span> <span class="token operator">&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> x<span class="token punctuation">)</span> l<span class="token operator">=</span>mid<span class="token punctuation">;</span>  <span class="token comment">// &#x5DE6;&#x8FB9;&#x662F;&#x5408;&#x6CD5;&#x7684;, l&#x5411;&#x4E2D;&#x95F4;&#x9760;</span>
+    <span class="token keyword keyword-else">else</span> r<span class="token operator">=</span>mid<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><h1 class="mume-header" id="%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE">&#x4E8C;&#x5206;&#x67E5;&#x627E;</h1>
+
+<hr>
+<h1 class="mume-header" id="%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88">&#x4E8C;&#x5206;&#x7B54;&#x6848;</h1>
+
+<hr>
+<h1 class="mume-header" id="stl">STL</h1>
+
+<h2 class="mume-header" id="lower_bound">lower_bound()</h2>
+
+<h2 class="mume-header" id="upper_bound">upper_bound()</h2>
+
 <details><summary><a href target="_blank"></a> code</summary> 
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp"></pre></details>
       </div>
-      <div class="md-sidebar-toc"></div>
+      <div class="md-sidebar-toc">
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#&#x4E8C;&#x5206;&#x6A21;&#x677F;" class="md-toc-link">
+            <p>&#x4E8C;&#x5206;&#x6A21;&#x677F;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#&#x4E8C;&#x5206;&#x67E5;&#x627E;" class="md-toc-link">
+            <p>&#x4E8C;&#x5206;&#x67E5;&#x627E;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#&#x4E8C;&#x5206;&#x7B54;&#x6848;" class="md-toc-link">
+            <p>&#x4E8C;&#x5206;&#x7B54;&#x6848;</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open>
+        <summary class="md-toc-link-wrapper">
+          <a href="#stl" class="md-toc-link"><p>STL</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#lower_bound" class="md-toc-link">
+            <p>lower_bound()</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#upper_bound" class="md-toc-link">
+            <p>upper_bound()</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+</div>
+</div>
       <a id="sidebar-toc-btn">&#x2261;</a>
     
     
