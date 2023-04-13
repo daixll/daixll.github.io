@@ -85,3 +85,4 @@
    4. CCF-S
    5. USACO-Gold
    6. USACO-Platinum 
+   7. [蓝桥杯](./Content/真题/lanqiao.html)
