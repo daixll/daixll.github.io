@@ -80,9 +80,7 @@
 * 真题训练
 
    1. [USACO-Bronze](./Content/真题/USACO_Bronze.html)
-   2. [USACO-Silver]()
-   3. [CCF-J]()
+   2. USACO-Silver
+   3. [CCF-J](./Content/真题/CCF_J.html)
    4. CCF-S
-   5. USACO-Gold
-   6. USACO-Platinum 
-   7. [蓝桥杯](./Content/真题/lanqiao.html)
+   5. [蓝桥杯](./Content/真题/lanqiao.html)
