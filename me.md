@@ -50,7 +50,7 @@ html:
 ### 国二 传智杯
 
 - `2023-4` `第五届“传智杯”程序设计挑战赛本科B组` `决赛二等奖`
-[公示 / 排名](https://dasai.lanqiao.cn/notices/1447/)
+[公示 / 排名](https://docs.qq.com/sheet/DZkRWTWZtdG1wU0pF?tab=BB08J2)
 
 <figure class="half">
     <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（国2）传智杯.jpg" height="200"> 
