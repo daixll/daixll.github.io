@@ -12,7 +12,7 @@ html:
 
 |国|省|金|
 |-|-|-|
-|2|8|(7) 17350￥| 
+|3|8|(7) 17350￥| 
 
 > 求知若渴，日积月累，虽在繁星之中或难觉察，然内心感悟其温暖光辉，鼓舞前行。
 > 如此微薄，唯愿勉己，追求卓越。
@@ -20,6 +20,24 @@ html:
 ---
 
 ## 2023
+
+### 单项奖学金 (2)
+
+- `2023-12` `重庆工业职业技术学院单项奖学金` `$ ？+？`
+
+<figure class="half">
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）xxx.jpg" height="200"> 
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）xxx.jpg" height="200">
+</figure>
+
+### 单项奖学金 (2)
+
+- `2023-7` `重庆工业职业技术学院单项奖学金` `$ ？+？`
+
+<figure class="half">
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）xxx.jpg" height="200"> 
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）xxx.jpg" height="200">
+</figure>
 
 ### 国X 蓝桥杯
 
@@ -29,9 +47,15 @@ html:
 
 - `2023-5` `重庆市创新能力提升先进个人`
 
-### 国X 传智杯
+### 国二 传智杯
 
-- `2023-4` `第五届“传智杯”程序设计挑战赛本科B组` `决赛X等奖`
+- `2023-4` `第五届“传智杯”程序设计挑战赛本科B组` `决赛二等奖`
+[公示 / 排名](https://dasai.lanqiao.cn/notices/1447/)
+
+<figure class="half">
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（国2）传智杯.jpg" height="200"> 
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/p/（国2）传智杯.png" height="200">
+</figure>
 
 ### 省一 蓝桥杯
 
