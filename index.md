@@ -1,6 +1,4 @@
 dxl 学习笔记
-[vercel备用链接](https://daixll-github-io.vercel.app/)
-[IPV6链接 http://dxll.ddns.net](http://dxll.ddns.net)
 ___
 
 # 基础 
