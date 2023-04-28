@@ -34,7 +34,7 @@ using namespace std;
 
 const int N=10;
 
-int dxy[4][2]={{-1,0}, {1,0}, {0,-1}, {0,1}};
+int dxy[4][2]={ {-1,0}, {1,0}, {0,-1}, {0,1} };
 
 set<int> cnt; 
 int mp[N][N];
