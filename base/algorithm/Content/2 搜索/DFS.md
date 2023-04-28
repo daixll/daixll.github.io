@@ -244,7 +244,7 @@ using namespace std;
 
 typedef pair<int, int> PII;
 const int N = 1e2+10;
-int dxy[4][2]={{-1,0}, {1,0}, {0,-1}, {0,1}};
+int dxy[4][2]={ {-1,0}, {1,0}, {0,-1}, {0,1} };
 
 int n;          // 地图大小
 char g[N][N];   // 地图
