@@ -145,7 +145,7 @@ using namespace std;
 typedef long long LL;
 typedef pair<int, int> PII;
 
-const int dxy[][2]={{-1,0}, {1,0}, {0,-1}, {0,1}};
+const int dxy[][2]={{1,0},{-1,0}, {0,-1}, {0,1}};
 const double PI = acos(-1.0);
 const int inf = 0x3f3f3f3f;
 const int MOD = 1e9+7;
