@@ -36,9 +36,199 @@ html:
 
 # 2016
 
+<details><summary><a href="https://www.acwing.com/problem/content/467/" target="_blank">AcWing 465. 买铅笔</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int n;
+
+int main(){
+    cin>>n;
+    int ans = 0x3f3f3f3f;
+    for(int i=1; i<=3; i++){
+        int a, b; cin>>a>>b;
+        ans = min(ans,  b * ((n+a-1)/a) );
+    }
+    cout<<ans;
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/468/" target="_blank">AcWing 466. 回文日期</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int a, b, ans;
+
+int months[13]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+bool ck(int y, int m, int d){
+    if((y*1e4+m*1e2+d)<a || (y*1e4+m*1e2+d)>b) return 0;
+    
+    months[2]=28;
+    if(y%400==0 || y%4==0 && y%100!=0) months[2]=29;
+    if(m<1 || m>12) return 0;
+    if(d<1 || d>months[m]) return 0;
+    return 1;
+}
+
+int main(){
+    cin>>a>>b;
+    
+    for(int i=a/10000; i<=b/10000; i++)
+        if( ck(i, (i%10)*10+(i/10%10), (i/100%10)*10+(i/1000)) ) ans++;
+
+    cout<<ans;
+    
+    return 0;
+}
+```
+</details>
+
+
 ---
 
 # 2015
+
+<details><summary><a href="https://www.acwing.com/problem/content/description/463/" target="_blank">AcWing 461. 金币</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int k, ans, one=1, x=1, y=1;
+
+int main(){
+    cin>>k;
+    for(int i=1; i<=k; i++, x++){
+        ans+=one;
+        if(x==y){
+            x=0;
+            y++;
+            one++;
+        }
+    }
+    cout<<ans;
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/464/" target="_blank">AcWing 462. 扫雷游戏</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+const int N=1e2+10;
+
+int dxy[8][2]={ {-1,0}, {1,0}, {0,-1}, {0,1}, {-1,-1}, {-1,1}, {1,-1}, {1,1} };
+
+char g[N][N];
+int res[N][N];
+int n, m;
+
+int main(){
+    cin>>n>>m;
+    for(int i=1; i<=n; i++)
+        for(int j=1; j<=m; j++)
+            cin>>g[i][j];
+            
+    for(int i=1; i<=n; i++, cout<<"\n")
+        for(int j=1; j<=m; j++){
+            for(int k=0; k<8; k++)
+                res[i][j] += g[ i+dxy[k][0] ][ j+dxy[k][1] ]=='*';
+        
+            if(g[i][j]=='*')
+                cout<<'*';
+            else 
+                cout<<res[i][j];
+        }
+    
+    return 0;
+}
+```
+</details>
+
+
+<details><summary><a href="https://www.acwing.com/problem/content/465/" target="_blank">AcWing 463. 求和</a> code</summary>
+
+```cpp
+/*
+x+z == 2y, 说明这俩奇偶同性, 那么当x<z时, 必定存在x<y<z. 
+
+分数与y其实是无关的, 所以我们需要找到相同颜色的一对 x,z
+
+在样例中, 
+对于颜色2(蓝), 是(1,5) = 6*7  = 42
+对于颜色1(红), 是(4,6) = 10*4 = 40
+
+显然,与分数无关
+我们只需要在同一个颜色中,将奇偶性质相同的提取出来
+比如,红色的奇数的, 此时会出现(类似于):(1,5), (1,9), (5, 9)这样的玩意儿
+大家肯定也不想非常朴素的去一个一个计算吧
+
+分析一下, 把1,5,9看作a,b,c,对应的数字是na,nb,nc
+(a+b)*(na+nb) =[a*na]+ a*nb + b*na +[b*nb]
+(a+c)*(na+nc) = a*na + a*nc + c*na +[c*nc]
+(b+c)*(nb+nc) = b*nb + b*nc + c*nb + c*nc
+
+求一下和
+= a*na + b*nb + c*nc + ( a*na + a*nb + a*nc ) + ( b*na + b*nb + b*nc ) + ( c*na + c*nb + c*nc )
+= a*na + b*nb + c*nc + ( a*(na+nb+nc) + b*(na+nb+nc) + c*(na+nb+nc) )
+= a*na + b*nb + c*nc + (a+b+c)*(na+nb+nc)
+
+对于a*na + b*nb + c*nc的数量,应该是是n-2的,n是格子数量,而这个是如何推出来的嘞,以后推
+公式就出来了
+ans = (n-2) Σ(i*ni) + Σ(i)Σ(ni)
+*/
+#include <iostream>
+#include <vector>
+using namespace std;
+
+typedef long long LL;
+typedef pair<int, int> PII;
+
+const int N = 1e5+10;
+const int MOD = 10007;
+
+int num[N], cor[N]; // 数字和颜色
+vector<PII> a[N][2];// 同奇同色
+int n, m;
+
+int main(){
+    cin>>n>>m;
+    for(int i=1; i<=n; i++) scanf("%d", num+i);
+    for(int i=1; i<=n; i++) scanf("%d", cor+i);
+    
+    for(int i=1; i<=n; i++)
+        a[ cor[i] ][ i&1 ].push_back({i, num[i]});
+    
+    LL ans=0;
+    for(auto c: a)
+    for(int k=0; k<=1; k++)
+        if(c[k].size()>=2){
+            LL one=0, two=0, thr=0;
+            for(auto &[i,j]: c[k]){
+                one = (one + ((LL)i*j) % MOD) % MOD;
+                two = (two + i) % MOD;
+                thr = (thr + j) % MOD;
+            }
+            ans += (one * (c[k].size()-2)) + (two * thr);
+            ans %= MOD;
+        }
+    
+    cout<<ans%MOD;
+    
+    return 0;
+}
+```
+</details>
+
 
 ---
 
