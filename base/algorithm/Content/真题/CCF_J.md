@@ -24,13 +24,155 @@ html:
 
 # 2019
 
+<details><summary><a href="https://www.acwing.com/problem/content/1163/" target="_blank">AcWing 1161. 数字游戏</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main(){
+    char c; 
+    int ans;
+    while(cin>>c)
+        if(c=='1')
+            ans++;
+    cout<<ans;
+    return 0;
+}
+```
+</details>
+
 ---
 
 # 2018
 
+
+<details><summary><a href="https://www.acwing.com/problem/content/475/" target="_blank">AcWing 473. 标题统计</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+char c;
+int ans;
+
+int main(){
+    while(cin>>c)
+        if(c>='A' && c<='Z' || c>='a' && c<='z' || c>='0' && c<='9')
+            ans++;
+    cout<<ans;
+    return 0;
+}
+```
+</details>
+
+
+<details><summary><a href="https://www.acwing.com/problem/content/description/476/" target="_blank">AcWing 474. 龙虎斗</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+typedef long long LL;
+const int N = 1e5 + 10;
+
+LL a[N];   // 兵营
+LL dragon, tiger, n;
+LL m, s1, p1, s2, p2, cha;
+
+int main() {
+    cin >> n;
+    for (int i = 1; i <= n; i++) scanf("%lld", a + i);
+    cin >> m >> p1 >> s1 >> s2;
+    a[p1] += s1;
+
+    for (int i = 1; i <= n; i++)
+        if (i < m)
+            dragon += (m - i) * a[i];
+        else if (i > m)
+            tiger += (i - m) * a[i];
+
+    p2 = m;
+    cha = llabs(dragon - tiger);
+
+	for (int i = 1; i <= n; i++){
+		if (i < m && llabs(dragon - tiger + s2 * (m - i)) < cha ) 
+	        p2 = i, cha = llabs(dragon - tiger + s2 * (m - i));
+		if (i > m && llabs(dragon - tiger - s2 * (i - m)) < cha)
+			p2 = i, cha = llabs(dragon - tiger - s2 * (i - m));
+	}
+    cout << p2;
+
+    return 0;
+}
+```
+</details>
+
 ---
 
 # 2017
+
+<details><summary><a href="https://www.acwing.com/problem/content/471/" target="_blank">AcWing 469. 成绩</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main(){
+    int a, b, c;
+    cin>>a>>b>>c;
+    cout<<a*0.2+b*0.3+c*0.5;
+    return 0;
+}
+```
+</details>
+
+
+<details><summary><a href="https://www.acwing.com/problem/content/472/" target="_blank">AcWing 470. 图书管理员</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <cstring>
+#include <sstream>
+using namespace std;
+
+const int N=1e3+10;
+
+int n, q;
+string book[N]; // 书
+
+int s2i(string s){
+    stringstream ss;
+    ss<<s;
+    int res;
+    ss>>res;
+    return res;
+}
+
+int main(){
+    cin>>n>>q;
+    for(int i=1; i<=n; i++) cin>>book[i];
+    
+    for(int i=1; i<=q; i++){
+        int l, res=-1;
+        string s;
+        cin>>l>>s;
+        
+        for(int j=1; j<=n; j++)
+            if(l<=book[j].size())
+            if(s==book[j].substr(book[j].size()-l, l))
+                if(res==-1)
+                    res = s2i(book[j]);
+                else    
+                    res = min(res, s2i(book[j]));
+            
+        cout<<res<<"\n";
+    }
+    
+    return 0;
+}
+```
+</details>
 
 ---
 
@@ -83,6 +225,59 @@ int main(){
         if( ck(i, (i%10)*10+(i/10%10), (i/100%10)*10+(i/1000)) ) ans++;
 
     cout<<ans;
+    
+    return 0;
+}
+```
+</details>
+
+
+<details><summary><a href="https://www.acwing.com/problem/content/469/" target="_blank">AcWing 467. 海港</a> code</summary>
+
+```cpp
+#pragma G++ optimize(3, "Ofast")
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <queue>
+using namespace std;
+
+const int N=1e5+10;
+int n;
+int T[N];   // 每艘船到达的时间
+int K[N];   // 船上乘客的数量
+vector<int> X[N];   // x[i]上每个乘客的信息
+
+unordered_map<int, int> ans;  // 每个国籍的人的数量
+
+int main(){
+    cin>>n;
+    for(int i=1; i<=n; i++){
+        scanf("%d%d", T+i, K+i);
+        for(int j=1; j<=K[i]; j++){
+            int t; scanf("%d", &t);
+            X[i].push_back(t);
+        }
+    }
+    
+    queue<int> q;
+    for(int i=1; i<=n; i++){
+        q.push(i);   // 第i秒的人
+        
+        for(int j=0; j<K[i]; j++) 
+            ans[ X[i][j] ]++;
+        
+        while(T[q.front()]+86400 <= T[i]){
+            for(int j=0; j<K[q.front()]; j++) {
+                ans[ X[q.front()][j] ]--;
+                if( ans[ X[q.front()][j] ] == 0 ) ans.erase(X[q.front()][j]);
+            }
+            q.pop();
+        }
+        
+        printf("%d\n", ans.size());
+    }
+    
     
     return 0;
 }
