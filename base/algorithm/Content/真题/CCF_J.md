@@ -174,6 +174,88 @@ int main(){
 ```
 </details>
 
+
+<details><summary><a href="https://www.acwing.com/problem/content/473/" target="_blank">AcWing 471. 棋盘</a> code</summary>
+
+```cpp
+#define fst first
+#define sed second
+#include <iostream>
+#include <queue>
+#include <cstring>
+using namespace std;
+
+typedef pair<int, int> PII;
+const int N=110;
+const int dxy[4][2]={ {-1,0},{1,0},{0,-1},{0,1} };
+
+int g[N][N];    // 地图
+int n, m;
+
+int dis[N][N];  // 最短路
+
+int spfa(PII s, PII e){ 
+    memset(dis, 0x3f, sizeof dis);
+    
+    queue<pair<PII, PII>> q;    // 第二个参数是uxy变的颜色, 没变就是0; 第二个是魔法与花销
+    dis[s.fst][s.sed] = 0;
+    q.push({s, {0, 0}});
+    
+    while(q.size()){
+        auto u = q.front();
+        q.pop();
+        
+        int ux = u.fst.fst;
+        int uy = u.fst.sed;
+        
+        for(int i=0; i<4; i++){ // 去四个方向
+            int nx = ux + dxy[i][0];
+            int ny = uy + dxy[i][1];
+            
+            if(nx<1 || ny<1 || nx>n || ny>n) continue;
+            
+            if( g[nx][ny] == 0 && u.sed.fst == 0 && g[ux][uy] != 0 ){   // 没变过才能继续变
+                if( dis[nx][ny] > u.sed.sed + 2){
+                    dis[nx][ny] = u.sed.sed + 2;
+                    q.push({{nx,ny}, {g[ux][uy], dis[nx][ny]}}); // 这是个变色玩意儿
+                }
+            }
+            else if(g[nx][ny] && (g[nx][ny] == g[ux][uy] || g[nx][ny] == u.sed.fst)){   // 相同, 可以通过变的去
+                if( dis[nx][ny] > u.sed.sed){
+                    dis[nx][ny] = u.sed.sed;
+                    q.push({{nx,ny}, {0, dis[nx][ny]}});
+                }
+            }
+            else if(g[nx][ny] && ((g[ux][uy] && g[nx][ny] != g[ux][uy]) || (u.sed.fst && g[nx][ny] != u.sed.fst)))
+                if( dis[nx][ny] > u.sed.sed + 1){
+                    dis[nx][ny] = u.sed.sed + 1;
+                    q.push({{nx,ny}, {0, dis[nx][ny]}});
+                }
+            
+        }    
+    }
+
+    //for(int i=1; i<=n; i++, cout<<"\n")
+    //    for(int j=1; j<=n; j++)
+    //        cout<<dis[i][j]<<"   ";
+    
+    return dis[e.fst][e.sed] < 0x3f3f3f3f/2 ? dis[e.fst][e.sed] : -1;
+}
+
+int main(){
+    cin>>n>>m;
+    for(int i=1; i<=m; i++){
+        int x, y, z; scanf("%d%d%d", &x, &y, &z);
+        g[x][y] = z+1;
+    }
+    
+    cout<<spfa({1,1}, {n,n});
+    
+    return 0;
+}
+```
+</details>
+
 ---
 
 # 2016
