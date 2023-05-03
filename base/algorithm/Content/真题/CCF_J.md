@@ -20,6 +20,42 @@ html:
 
 # 2020
 
+<details><summary><a href="https://www.acwing.com/problem/content/2769/" target="_blank">AcWing 2767. 优秀的拆分</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int n;
+int a[30];
+
+int main(){
+    a[1]=1;
+    for(n=1; a[n]<=1e7;){
+        ++n;
+        a[n] = a[n-1]*2;
+    }
+    
+    queue<int> q;
+    int k; cin>>k;
+    
+    while(n>=2){
+        if(k >= a[n]) k-=a[n], q.push(a[n]);
+        n--;
+    }
+    if(k==0)
+        while(q.size()){
+            cout<<q.front()<<" ";
+            q.pop();
+        }
+    else
+        cout<<-1;
+    return 0;
+}
+```
+</details>
+
 ---
 
 # 2019
@@ -37,6 +73,52 @@ int main(){
         if(c=='1')
             ans++;
     cout<<ans;
+    return 0;
+}
+```
+</details>
+
+
+<details><summary><a href="https://www.acwing.com/problem/content/1164/" target="_blank">AcWing 1162. 公交换乘</a> code</summary>
+
+```cpp
+#pragma G++ optimize("Ofast", 2, 3)
+#define fst first
+#define sed second
+#include <iostream>
+#include <vector>
+using namespace std;
+
+typedef pair<int, int> PII;
+int n, ans;
+
+int main(){
+    cin>>n;
+    
+    vector<PII> q;
+    
+    for(int i=1; i<=n; i++){
+        int x, y, z; cin>>x>>y>>z;
+        ans+=y;
+        
+        if(x==0)    // 获得券
+            q.push_back({y, z});
+        else{       // 找券
+            
+            while( q.size() && z - q[0].sed > 45 )
+                q.erase(q.begin(), q.begin()+1);    // 清空过期券
+            
+            for(int j=0; j<q.size(); j++)
+                if( q[j].fst >= y ){
+                    q.erase(q.begin()+j, q.begin()+j+1);
+                    ans-=y;
+                    break;
+                }            
+        }
+    }
+    
+    cout<<ans;
+    
     return 0;
 }
 ```
