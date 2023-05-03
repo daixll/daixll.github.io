@@ -299,19 +299,19 @@ int spfa(PII s, PII e){
             if( g[nx][ny] == 0 && u.sed.fst == 0 && g[ux][uy] != 0 ){   // 没变过才能继续变
                 if( dis[nx][ny] > u.sed.sed + 2){
                     dis[nx][ny] = u.sed.sed + 2;
-                    q.push({{nx,ny}, {g[ux][uy], dis[nx][ny]}}); // 这是个变色玩意儿
+                    q.push({ {nx,ny}, {g[ux][uy], dis[nx][ny]} }); // 这是个变色玩意儿
                 }
             }
             else if(g[nx][ny] && (g[nx][ny] == g[ux][uy] || g[nx][ny] == u.sed.fst)){   // 相同, 可以通过变的去
                 if( dis[nx][ny] > u.sed.sed){
                     dis[nx][ny] = u.sed.sed;
-                    q.push({{nx,ny}, {0, dis[nx][ny]}});
+                    q.push({ {nx,ny}, {0, dis[nx][ny]} });
                 }
             }
             else if(g[nx][ny] && ((g[ux][uy] && g[nx][ny] != g[ux][uy]) || (u.sed.fst && g[nx][ny] != u.sed.fst)))
                 if( dis[nx][ny] > u.sed.sed + 1){
                     dis[nx][ny] = u.sed.sed + 1;
-                    q.push({{nx,ny}, {0, dis[nx][ny]}});
+                    q.push({ {nx,ny}, {0, dis[nx][ny]} });
                 }
             
         }    
