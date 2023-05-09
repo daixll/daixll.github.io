@@ -56,6 +56,39 @@ int main(){
 ```
 </details>
 
+
+<details><summary><a href="https://www.acwing.com/problem/content/2770/" target="_blank">AcWing 2768. 直播获奖</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+const int N=1e5+10;
+
+int n, w;   
+
+int a[610]; // 每个分数段的成绩
+
+int calc(int cnt){  // 获奖人数
+    if(!cnt) cnt=1; // 如果获奖人数为0
+    for(int i=600; ; i--){
+        cnt -= a[i];
+        if(cnt<=0) return i;
+    }
+}
+
+int main(){
+    cin>>n>>w;
+    for(int i=1; i<=n; i++){
+        int ai; scanf("%d", &ai);
+        a[ ai ] ++;
+        cout<<calc(i * w / 100)<<" ";
+    }
+    return 0;
+}
+```
+</details>
+
 ---
 
 # 2019
