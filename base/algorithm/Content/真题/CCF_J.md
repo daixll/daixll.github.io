@@ -16,6 +16,28 @@ html:
 
 # 2021
 
+<details><summary><a href="https://www.acwing.com/problem/content/4089/" target="_blank">AcWing 4086. 分糖果</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+typedef long long LL;
+
+LL n, l, r;
+
+int main(){
+    cin>>n>>l>>r;
+    
+    if(l/n==r/n) cout<<r%n; // 如果在同一个区间
+    else cout<<n-1;
+    
+    return 0;
+}
+```
+</details>
+
+
 ---
 
 # 2020
