@@ -88,7 +88,7 @@ using namespace std;
 typedef pair<int, int> PII;
 const int N=110;
 
-int dxy[6][3]={{-1,0,0}, {1,0,0}, {0,-1,0}, {0,1,0}, {0,0,-1}, {0,0,1}};
+int dxy[6][3]={ {-1,0,0}, {1,0,0}, {0,-1,0}, {0,1,0}, {0,0,-1}, {0,0,1} };
 
 char g[N][N][N]; // 地牢
 int dis[N][N][N];// 最短路
