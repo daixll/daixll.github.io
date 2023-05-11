@@ -24,7 +24,7 @@ html:
 
 
 
-## 2022 DEC
+## 2022 Dec
 
 
 
@@ -599,13 +599,66 @@ int main(){
 </details>
 
 
-<details><summary><a href="" target="_blank">AcWing </a> code</summary> 
+<details><summary><a href="https://www.acwing.com/problem/content/description/4333/" target="_blank">AcWing 4330. 非传递骰子</a> code</summary> 
 
 >
 >
 
 ```cpp
+#include <iostream>
+using namespace std;
 
+int a[5], b[5], c[5];
+bool flg;
+
+bool ck(int x[], int y[]){  // x赢 > y赢 1
+    int res=0;
+    for(int i=1; i<=4; i++)
+        for(int j=1; j<=4; j++)
+            if(x[i] > y[j]) res++;
+            else if(y[j] > x[i]) res--;
+    return res>0;
+}
+
+void dfs(int u){    // 当前赋值的
+    if(flg) return ;
+    if(u>4){
+        
+        if(ck(a, b) && ck(b, c) && ck(c, a))
+            flg=1;
+            
+        if(ck(b, a) && ck(a, c) && ck(c, b))
+            flg=1;
+            
+        return ;
+    }
+    
+    for(int i=1; i<=10; i++){
+        c[u]=i;
+        dfs(u+1);
+    }
+    
+    return ;
+}
+
+void solve(){
+    flg=0;
+    for(int i=1; i<=4; i++) scanf("%d", a+i);
+    for(int i=1; i<=4; i++) scanf("%d", b+i);
+    
+    dfs(1); // 枚举 c 的可能
+    
+    if(flg) puts("yes");
+    else puts("no");
+    
+    return ;
+}
+
+int main(){
+    int T; cin>>T;
+    while(T--) solve();
+    return 0;
+}
 ```
 
 </details>
@@ -622,44 +675,199 @@ int main(){
 
 </details>
 
-## 2021 DEc
+## 2021 Dec
 
 
-<details><summary><a href="" target="_blank">AcWing </a> code</summary> 
+<details><summary><a href="https://www.acwing.com/problem/content/description/4264/" target="_blank">AcWing 4261. 孤独的照片</a> code</summary> 
 
->
+> 孤独的牛: 长度>=3, 有且仅有 1 头牛与其他的牛不一样
+> 显然, 只有三种情况
+> ```
+> 1. ___HGH____    孤独数：左边H*右边H
+> 2. __HHG         孤独数：左边H-1
+> 3.     GHH___    孤独数：右边H-1
+> ```
+> 因此，只需要统计每个点，左/右两边不一样的牛的数量
 >
 
 ```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
 
+typedef long long LL;
+const int N=5e5+10;
+
+string s;
+int n, l[N], r[N];
+
+int main(){
+    cin>>n>>s; s=" "+s;
+    
+    for(int i=1, cntH=0, cntG=0; i<=n; i++) // 左边
+        if( s[i]=='H' ){
+            l[i]=cntG;  // 左边G的数量（左边不同者的数量）
+            cntH++;     // H的数量+1
+            cntG=0;     // G被H截胡了，所以G归零
+        }
+        else            // 同上
+            l[i]=cntH, cntG++, cntH=0;
+    
+    for(int i=n, cntH=0, cntG=0; i>=1; i--) // 右边
+        if( s[i]=='H' ){
+            r[i]=cntG;
+            cntH++;
+            cntG=0;
+        }
+        else
+            r[i]=cntH, cntG++, cntH=0;
+    
+    LL ans=0;
+    for(int i=1; i<=n; i++)
+        ans += 1LL*l[i]*r[i] + max(0, l[i]-1)+ max(0, r[i]-1);
+    
+    cout<<ans;
+    return 0;
+}
 ```
 
 </details>
 
 
-<details><summary><a href="" target="_blank">AcWing </a> code</summary> 
+<details><summary><a href="https://www.acwing.com/problem/content/description/4265/" target="_blank">AcWing 4262. 空调</a> code</summary> 
 
 >
 >
 
 ```cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
 
+const int N=1e5+10;
+
+// 现在的温度 希望的温度
+int P[N], T[N];
+
+int main(){
+    int n;
+    cin>>n;
+    for(int i=1; i<=n; i++) scanf("%d", &P[i]);
+    for(int i=1, t; i<=n; i++) scanf("%d", &t), P[i]-=t;
+    
+    for(int i=n; i>1; i--) P[i]-=P[i-1];
+    
+    int a=0, b=0;
+    
+    for(int i=1; i<=n; i++) {
+        
+        if( P[i]>=0 ) a+=P[i];
+        else b-=P[i];
+    
+    }
+    
+    cout<<max(a, b);
+    
+    return 0;
+}
 ```
 
 </details>
 
 
-<details><summary><a href="" target="_blank">AcWing </a> code</summary> 
+<details><summary><a href="https://www.acwing.com/problem/content/4266/" target="_blank">AcWing 4263. 走路回家</a> code</summary> 
 
 >
 >
 
 ```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
 
+const int N=55;
+
+int n, kk, ans;
+string s;
+int g[N][N], dp[N][N][5][2];
+
+
+void solve(){
+    cin>>n>>kk;
+    ans=0;
+    memset(g, 0, sizeof g);
+    memset(dp, 0, sizeof dp);
+
+    for(int i=1; i<=n; i++){
+        cin>>s;
+        for(int j=1; j<=n; j++)
+            if(s[j-1]=='H') g[i][j]=1;
+    }
+
+    dp[1][1][0][0]=1; // 向右
+    dp[1][1][0][1]=1; // 向下
+
+    for(int i=1; i<=n; i++)
+        for(int j=1; j<=n; j++){
+            if(i==1 &&  j==1) continue;
+            if(g[i][j]) continue;
+            
+            for(int k=0; k<=kk; k++){
+                if ((i == 1 || j == 1) && k > 0) continue;  
+                    dp[i][j][k][0] = dp[i - 1][j][k][0];
+                    dp[i][j][k][1] = dp[i][j - 1][k][1];
+                    if (k > 0)  //  可以允许上一步到这一步存在变向
+                        dp[i][j][k][0] += dp[i - 1][j][k - 1][1],
+                        dp[i][j][k][1] += dp[i][j - 1][k - 1][0];
+            }
+
+        }
+
+    for (int k = 1; k <= kk; k ++ ) 
+        ans += dp[n][n][k][0] + dp[n][n][k][1];
+        
+    printf("%d\n", ans);
+
+    return ;
+}
+
+int main(){
+    int T; cin>>T;
+    while(T--) solve();
+    return 0;
+}
 ```
 
 </details>
 
 ---
 
+
+
+
+# <center>2020-2021 Season</center>
+
+## 2021 US Open
+
+
+## 2021 Feb
+
+
+## 2021 Jan
+
+
+## 2020 Dec
+
+
+---
+
+# <center>2019-2020 Season</center>
+
+## 2020 US Open
+
+## 2020 Feb
+
+## 2020 Jan
+
+## 2019 Dec
 
