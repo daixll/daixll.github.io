@@ -9,8 +9,6 @@ html:
     theme: united
 --- 
 
-# DFS
-
 > 先讲二叉树
 > 再拓展到矩阵上
 > 最后抽象到一个序列上
@@ -134,6 +132,103 @@ int main() {
 ```
 </details>
 
+<details><summary><a href="https://www.acwing.com/problem/content/description/118/" target="_blank">AcWing 116. 飞行员兄弟</a> code</summary>
+
+```cpp
+#define fst first
+#define sed second
+
+#include <iostream>
+using namespace std;
+
+typedef pair<int, int> PII;
+
+int g[5][5]; // 需要将所有值变为 0  
+
+PII step[100], ans[100];
+
+bool check(){
+    for(int i=1; i<=4; i++)
+        for(int j=1; j<=4; j++)
+            if(g[i][j])
+                return 0;
+    return 1;
+}
+
+void updata(){
+    if(ans[0].fst < step[0].fst) return ;
+    
+    ans[0].fst=step[0].fst;
+    for(int i=1; i<=step[0].fst; i++)
+        ans[i].fst = step[i].fst,
+        ans[i].sed = step[i].sed;
+}
+
+// 改变该点状态
+void change(int x, int y){
+    for(int i=1; i<=4; i++)
+        g[x][i]^=1, g[i][y]^=1;
+    g[x][y]^=1;
+}
+
+void dfs(int x, int y){
+    
+    // 到达边界
+    if(x>4){
+        // 如果结果合法（是解，但非最优）
+        if ( check() )
+        // 更新（如果是更优解，就更新）
+            updata();
+        // 结束
+        return ;    
+    }
+    
+    // 改变当前点状态
+    change(x, y);
+    // 更新答案
+    step[0].fst++;
+    step[ step[0].fst ] = {x, y};
+    
+    if(y==4)
+        dfs(x+1, 1);
+    else
+        dfs(x, y+1);
+    
+    // 恢复现场
+    change(x, y);
+    step[0].fst--;
+    
+    if(y==4)
+        dfs(x+1, 1);
+    else
+        dfs(x, y+1);
+}
+
+int main(){
+    // 获取地图
+    for(int i=1; i<=4; i++){
+    for(int j=1; j<=4; j++){
+        char c;
+        scanf("%c", &c);
+        if(c=='+') g[i][j]=1;
+    }
+    getchar();
+    }
+    
+    ans[0].fst=99;
+    
+    // 枚举每个点的状态
+    dfs(1,1);
+    
+    cout<<ans[0].fst<<endl;
+    for(int i=1; i<=ans[0].fst; i++)
+        cout<<ans[i].fst<<" "<<ans[i].sed<<endl;
+    
+    return 0;
+}
+```
+</details>
+
 
 <details><summary><a href="https://www.luogu.com.cn/problem/P1219" target="_blank">Luogu P1219 [USACO1.5]八皇后 Checker Challenge
 </a> code</summary>
@@ -224,71 +319,192 @@ int main(){
 ```
 </details>
 
-
-
-## 序列上的DFS
-
-
-
-# BFS
-
-## 矩阵上的BFS
-
-<details><summary><a href="http://ybt.ssoier.cn:8088/problem_show.php?pid=1215" target="_blank">ybt 1215：迷宫</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/4221/" target="_blank">Acwing 4218. 翻转</a> code</summary>
 
 ```cpp
 #include <iostream>
 #include <cstring>
-#include <queue>
 using namespace std;
 
-typedef pair<int, int> PII;
-const int N = 1e2+10;
-int dxy[4][2]={ {-1,0}, {1,0}, {0,-1}, {0,1} };
+const int N=20;
 
-int n;          // 地图大小
-char g[N][N];   // 地图
-bool st[N][N];  // 走过没有
-int sx, sy, ex, ey;
+int g[N][N];
+int bk[N][N];
+int m, n;
+string ans;
+int anscnt=0x3f3f3f3f;
 
-string solve(){
-    memset(g, ' ', sizeof g);
-    memset(st, 0, sizeof g);
-    cin>>n;
-    for(int i=1; i<=n; i++)
-        for(int j=1; j<=n; j++)
-            cin>>g[i][j];
-    cin>>sx>>sy>>ex>>ey;
-    sx++, sy++, ex++, ey++;
-    if(g[sx][sy]=='#' || g[ex][ey]=='#') return "NO";
-    
-    queue<PII> q;
-    q.push({sx, sy}), st[sx][sy]=1;
-    
-    while(q.size()){
-        auto t = q.front();
-        q.pop();
-        int x = t.first;
-        int y = t.second;
-        if(x == ex && y == ey) return "YES";
+void cg(int x, int y){
+    g[x][y] = g[x][y] ? 0: 1;
+    g[x-1][y] = g[x-1][y] ? 0: 1;
+    g[x+1][y] = g[x+1][y] ? 0: 1;
+    g[x][y-1] = g[x][y-1] ? 0: 1;
+    g[x][y+1] = g[x][y+1] ? 0: 1;
+}
+
+bool ck(){
+    for(int j=1; j<=n; j++)
+        if(g[m][j]) return 0;
+    return 1;
+}
+
+void dfs(int u, string res, int cnt){
+    if(u>n){
+        memcpy(bk, g, sizeof bk);   // 备份一下
         
-        for(int i=0; i<4; i++){
-            int nx = x + dxy[i][0];
-            int ny = y + dxy[i][1];
-            
-            if(nx>=1 && ny>=1 && nx<=n && ny<=n)
-            if(g[nx][ny] == '.')
-            if(st[nx][ny] == 0)
-                q.push({nx, ny}), st[nx][ny]=1;
+        for(int i=2; i<=m; i++)
+            for(int j=1; j<=n; j++)
+                if(g[i-1][j])
+                    cg(i, j), res += "1", cnt++;
+                else
+                    res += "0";
+        for(int j=1; j<=n; j++) res += "0";
+        
+        if(!ck()) {
+            memcpy(g, bk, sizeof g);    // 恢复
+            return ;
         }
+        memcpy(g, bk, sizeof g);    // 恢复
+        
+        if(cnt < anscnt || ans=="" || res<ans) ans = res, anscnt = cnt; 
+        return ;
     }
-    return "NO";
+    
+    dfs(u+1, res+"0", cnt);  // 不改变
+    
+    cg(1,u);  // 改变
+    dfs(u+1, res+"1", cnt+1);
+    cg(1,u);  // 恢复现场
 }
 
 int main(){
-    int T; cin>>T;
-    while(T--) cout<<solve()<<"\n";
+    cin>>m>>n;
+    
+    for(int i=1; i<=m; i++)
+        for(int j=1; j<=n; j++)
+            scanf("%d", &g[i][j]);
+    
+    dfs(1, "", 0); 
+    
+    
+    int k=0;
+    
+    if(ans=="")cout<<"IMPOSSIBLE";
+    
+    for(int i=1; i<=m; i++, cout<<"\n")
+        for(int j=1; j<=n; j++)
+            cout<<ans[k++]<<" ";
+    
     return 0;
 }
 ```
 </details>
+
+
+<details><summary><a href="https://www.acwing.com/problem/content/97/" target="_blank">AcWing 95. 费解的开关</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+const int N=10;
+
+int dxy[4][2]={{-1,0}, {1,0}, {0,-1}, {0,1}};
+
+// 地图 地图备份
+int g[N][N], backup[N][N];
+int ans=0x3f3f3f3f;
+
+bool check(){
+    for(int i=0; i<5; i++)
+        if(!g[4][i]) return 0;
+    return 1;
+}
+
+void bf(){
+    for(int i=0; i<5; i++)
+        for(int j=0; j<5; j++)
+            backup[i][j]=g[i][j];
+}
+
+void rbf(){
+    for(int i=0; i<5; i++)
+        for(int j=0; j<5; j++)
+            g[i][j]=backup[i][j];
+}
+
+void change(int x, int y){
+    for(int i=0; i<4; i++){
+        int nx=x+dxy[i][0];
+        int ny=y+dxy[i][1];
+        if(nx<0 || ny<0) continue;
+        g[nx][ny]^=1;
+    }
+    g[x][y]^=1;
+}
+
+// w是当前已经改变的次数
+void dfs(int u, int w){
+    
+    if(w > ans) return ;
+    
+    // 到达边界
+    if(u>4){
+        // 保存当前地图
+        bf();
+        // 直接计算下面4层
+        for(int i=1; i<5 && w<=6; i++)
+            for(int j=0; j<5; j++)
+                if(!g[i-1][j])
+                    change(i, j), w++;
+        
+        if(w<=6 && check()) ans=min(ans, w);
+        // 恢复回去
+        rbf();
+        return ;
+    }
+    
+    // 改变
+    change(0, u);
+    dfs(u+1, w+1);
+    change(0, u);
+    
+    // 不改变
+    dfs(u+1, w);
+}
+
+
+int main(){
+    int n;
+    cin>>n;
+    
+    while(n--){
+        ans=0x3f3f3f3f;
+        
+        for(int i=0; i<5; i++)
+            for(int j=0; j<5; j++){
+                scanf("%1d", &g[i][j]);
+                backup[i][j]=g[i][j];
+            }
+        
+        // 第一排的第几个点
+        // 已经改变了几次
+        dfs(0, 0);
+        
+        if(ans==0x3f3f3f3f)
+            puts("-1");
+        else
+            cout<<ans<<"\n";
+    }
+    
+    return 0;
+}
+```
+</details>
+
+---
+
+## 一般DFS
+
+
