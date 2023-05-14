@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>&#x7B80;&#x5355;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;</title>
+      <title>&#x62BD;&#x8C61;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -263,109 +263,125 @@ pre[data-line] .line-highlight[data-end]:after {
       <div class="mume markdown-preview  ">
       <h2 class="mume-header" id="%E5%90%AB%E4%B9%89">&#x542B;&#x4E49;</h2>
 
-<ul>
-<li>&#x7B80;&#x5355;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;(Simple Factory Pattern): &#x53C8;&#x79F0;&#x4E3A;&#x9759;&#x6001;&#x5DE5;&#x5382;&#x65B9;&#x6CD5;(Static Factory Method)&#x6A21;&#x5F0F;, &#x5B83;&#x5C5E;&#x4E8E;&#x7C7B;&#x521B;&#x5EFA;&#x578B;&#x6A21;&#x5F0F;</li>
-<li>&#x5728;&#x7B80;&#x5355;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#x4E2D;, &#x53EF;&#x4EE5;&#x6839;&#x636E;&#x53C2;&#x6570;&#x7684;&#x4E0D;&#x540C;&#x8FD4;&#x56DE;&#x4E0D;&#x540C;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;</li>
-<li>&#x7B80;&#x5355;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#x4E13;&#x95E8;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x7C7B;&#x6765;&#x8D1F;&#x8D23;&#x521B;&#x5EFA;&#x5176;&#x4ED6;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;, &#x88AB;&#x521B;&#x5EFA;&#x7684;&#x5B9E;&#x4F8B;&#x901A;&#x5E38;&#x90FD;&#x5177;&#x6709;&#x5171;&#x540C;&#x7684;&#x7236;&#x7C7B;</li>
-</ul>
+<p>&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x521B;&#x5EFA;&#x4E00;&#x7CFB;&#x5217;&#x76F8;&#x5173;&#x6216;&#x76F8;&#x4E92;&#x4F9D;&#x8D56;&#x5BF9;&#x8C61;&#x7684;&#x63A5;&#x53E3;, &#x800C;&#x65E0;&#x987B;&#x6307;&#x5B9A;&#x5B83;&#x4EEC;&#x5177;&#x4F53;&#x7684;&#x7C7B;</p>
 <h2 class="mume-header" id="%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98">&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;</h2>
 
-<p>&#x5C06;&#x201C;&#x7C7B;&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x64CD;&#x4F5C;&#x201D;&#x4E0E;&#x201C;&#x4F7F;&#x7528;&#x5BF9;&#x8C61;&#x7684;&#x64CD;&#x4F5C;&#x201D;&#x5206;&#x5F00;, &#x8BA9;&#x4F7F;&#x7528;&#x8005;&#x4E0D;&#x7528;&#x77E5;&#x9053;&#x521B;&#x5EFA;&#x903B;&#x8F91;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x4F8B;&#x5316;&#x51FA;&#x6240;&#x9700;&#x8981;&#x7684;&#x201C;&#x4EA7;&#x54C1;&#x201D;&#x7C7B;, &#x4ECE;&#x800C;&#x907F;&#x514D;&#x4E86;&#x5728;&#x5BA2;&#x6237;&#x7AEF;&#x4EE3;&#x7801;&#x4E2D;&#x663E;&#x5F0F;&#x6307;&#x5B9A;, &#x5B9E;&#x73B0;&#x4E86;&#x89E3;&#x8026;</p>
+<p>&#x5F53;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x5DE5;&#x5382;&#x63D0;&#x4F9B;&#x591A;&#x79CD;&#x4EA7;&#x54C1;, &#x800C;&#x4E0D;&#x662F;&#x5355;&#x4E00;&#x7684;&#x4EA7;&#x54C1;&#x5BF9;&#x8C61;(&#x76F8;&#x8F83;&#x4E8E;&#x5DE5;&#x5382;&#x65B9;&#x6CD5;&#x6A21;&#x5F0F;)</p>
+<blockquote>
+<ul>
+<li>&#x4EA7;&#x54C1;&#x7B49;&#x7EA7;&#x7ED3;&#x6784;: &#x5982; <code>&#x7535;&#x89C6;</code> &#x548C; <code>&#x7535;&#x89C6;&#x7684;&#x5B50;&#x7C7B;</code>(&#x5C0F;&#x7C73;&#x7535;&#x89C6;, &#x4E09;&#x661F;&#x7535;&#x89C6;, &#x7D22;&#x5C3C;&#x7535;&#x89C6;)</li>
+<li>&#x4EA7;&#x54C1;&#x65CF;: &#x540C;&#x4E00;&#x4E2A;&#x5DE5;&#x5382;&#x751F;&#x6210;&#x7684; <code>&#x5C0F;&#x7C73;&#x7535;&#x89C6;</code>, <code>&#x5C0F;&#x7C73;&#x624B;&#x673A;</code>, <code>&#x5C0F;&#x7C73;&#x7535;&#x8111;</code></li>
+</ul>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/daixll/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/13_1.png" alt></p>
 <h2 class="mume-header" id="uml%E7%B1%BB%E5%9B%BE%E5%8F%8A%E6%97%B6%E5%BA%8F%E5%9B%BE">UML&#x7C7B;&#x56FE;&#x53CA;&#x65F6;&#x5E8F;&#x56FE;</h2>
 
-<p><img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/daixll/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/11.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/daixll/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/13.png" alt></p>
 <h2 class="mume-header" id="%E4%BB%A3%E7%A0%81%E5%AE%9E%E4%BE%8B">&#x4EE3;&#x7801;&#x5B9E;&#x4F8B;</h2>
 
-<p>&#x62BD;&#x8C61;&#x4EA7;&#x54C1;</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-class">class</span> &#x4EA7;&#x54C1;
-<span class="token punctuation">{</span>
+<p>&#x4EA7;&#x54C1;&#x7B49;&#x7EA7;&#x7ED3;&#x6784; <code>&#x7535;&#x89C6;</code> &#x548C; <code>&#x5404;&#x4E2A;&#x54C1;&#x724C;&#x7684;&#x7535;&#x89C6;</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token comment">// &#x62BD;&#x8C61;&#x7C7B;</span>
+<span class="token keyword keyword-class">class</span> &#x7535;&#x89C6; <span class="token punctuation">{</span>
 <span class="token keyword keyword-public">public</span><span class="token operator">:</span>
-	<span class="token comment">// &#x63D0;&#x4F9B;&#x63A5;&#x53E3;&#x6846;&#x67B6;&#x7684;&#x7EAF;&#x865A;&#x51FD;&#x6570;</span>
-	<span class="token keyword keyword-virtual">virtual</span> std<span class="token double-colon punctuation">::</span>string &#x4EA7;&#x54C1;&#x540D;&#x5B57;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-	&#x4EA7;&#x54C1;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-	<span class="token operator">~</span>&#x4EA7;&#x54C1;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</pre><p>&#x5177;&#x4F53;&#x4EA7;&#x54C1;</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token comment">// &#x4E09;&#x4E2A;&#x5B9E;&#x9645;&#x4EA7;&#x54C1;</span>
-<span class="token keyword keyword-class">class</span> &#x7535;&#x8111; <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> &#x4EA7;&#x54C1; <span class="token punctuation">{</span>
-<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
-	&#x7535;&#x8111;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-	<span class="token operator">~</span>&#x7535;&#x8111;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-	std<span class="token double-colon punctuation">::</span>string &#x4EA7;&#x54C1;&#x540D;&#x5B57;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword keyword-return">return</span> <span class="token string">&quot;&#x7535;&#x8111;&quot;</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token keyword keyword-virtual">virtual</span> std<span class="token double-colon punctuation">::</span>string &#x5C3A;&#x5BF8;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	&#x7535;&#x89C6;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>&#x7535;&#x89C6;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword keyword-class">class</span> &#x624B;&#x673A; <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> &#x4EA7;&#x54C1; <span class="token punctuation">{</span>
+<span class="token comment">// &#x5177;&#x4F53;&#x7C7B;</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">oppo</span>&#x7535;&#x89C6; <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> &#x7535;&#x89C6; <span class="token punctuation">{</span>
 <span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	std<span class="token double-colon punctuation">::</span>string &#x5C3A;&#x5BF8;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token string">&quot;88&#x5BF8;&quot;</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	oppo&#x7535;&#x89C6;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>oppo&#x7535;&#x89C6;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> &#x4E09;&#x661F;&#x7535;&#x89C6; <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> &#x7535;&#x89C6; <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	std<span class="token double-colon punctuation">::</span>string &#x5C3A;&#x5BF8;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token string">&quot;32&#x5BF8;&quot;</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	&#x4E09;&#x661F;&#x7535;&#x89C6;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>&#x4E09;&#x661F;&#x7535;&#x89C6;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre><p>&#x4EA7;&#x54C1;&#x7B49;&#x7EA7;&#x7ED3;&#x6784; <code>&#x624B;&#x673A;</code> &#x548C; <code>&#x5404;&#x4E2A;&#x54C1;&#x724C;&#x7684;&#x624B;&#x673A;</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token comment">// &#x62BD;&#x8C61;&#x7C7B;</span>
+<span class="token keyword keyword-class">class</span> &#x624B;&#x673A; <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	<span class="token keyword keyword-virtual">virtual</span> std<span class="token double-colon punctuation">::</span>string &#x82AF;&#x7247;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 	&#x624B;&#x673A;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 	<span class="token operator">~</span>&#x624B;&#x673A;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-	std<span class="token double-colon punctuation">::</span>string &#x4EA7;&#x54C1;&#x540D;&#x5B57;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword keyword-return">return</span> <span class="token string">&quot;&#x624B;&#x673A;&quot;</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword keyword-class">class</span> &#x5E73;&#x677F; <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> &#x4EA7;&#x54C1; <span class="token punctuation">{</span>
+<span class="token comment">// &#x5177;&#x4F53;&#x7C7B;</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">oppo</span>&#x624B;&#x673A; <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> &#x624B;&#x673A; <span class="token punctuation">{</span>
 <span class="token keyword keyword-public">public</span><span class="token operator">:</span>
-	&#x5E73;&#x677F;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-	<span class="token operator">~</span>&#x5E73;&#x677F;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-	std<span class="token double-colon punctuation">::</span>string &#x4EA7;&#x54C1;&#x540D;&#x5B57;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword keyword-return">return</span> <span class="token string">&quot;&#x5E73;&#x677F;&quot;</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+	std<span class="token double-colon punctuation">::</span>string &#x82AF;&#x7247;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token string">&quot;&#x9A6C;&#x91CC;&#x4E9A;&#x7EB3;&#x6D77;&#x6C9F;&quot;</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	oppo&#x624B;&#x673A;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>oppo&#x624B;&#x673A;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-</pre><p>&#x5177;&#x4F53;&#x5DE5;&#x5382;</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-class">class</span> &#x5DE5;&#x5382;
-<span class="token punctuation">{</span>
+<span class="token keyword keyword-class">class</span> &#x4E09;&#x661F;&#x624B;&#x673A; <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> &#x624B;&#x673A; <span class="token punctuation">{</span>
 <span class="token keyword keyword-public">public</span><span class="token operator">:</span>
-	&#x5DE5;&#x5382;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-	<span class="token operator">~</span>&#x5DE5;&#x5382;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-	&#x4EA7;&#x54C1;<span class="token operator">*</span> &#x5236;&#x9020;&#x4EA7;&#x54C1;<span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>string &#x4EA7;&#x54C1;&#x540D;<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>&#x4EA7;&#x54C1;&#x540D; <span class="token operator">==</span> <span class="token string">&quot;&#x7535;&#x8111;&quot;</span><span class="token punctuation">)</span>
-			<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> &#x7535;&#x8111;<span class="token punctuation">;</span>
-		<span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>&#x4EA7;&#x54C1;&#x540D; <span class="token operator">==</span> <span class="token string">&quot;&#x624B;&#x673A;&quot;</span><span class="token punctuation">)</span>
-			<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> &#x624B;&#x673A;<span class="token punctuation">;</span>
-		<span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>&#x4EA7;&#x54C1;&#x540D; <span class="token operator">==</span> <span class="token string">&quot;&#x5E73;&#x677F;&quot;</span><span class="token punctuation">)</span>
-			<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> &#x5E73;&#x677F;<span class="token punctuation">;</span>
-		<span class="token keyword keyword-return">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+	std<span class="token double-colon punctuation">::</span>string &#x82AF;&#x7247;<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token string">&quot;&#x730E;&#x6237;&#x5EA7;&quot;</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	&#x4E09;&#x661F;&#x624B;&#x673A;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>&#x4E09;&#x661F;&#x624B;&#x673A;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre><p>&#x4EA7;&#x54C1;&#x65CF; &#x540C;&#x4E00;&#x4E2A;&#x5DE5;&#x5382;&#x751F;&#x4EA7;&#x7684;</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token comment">// &#x62BD;&#x8C61;&#x7C7B;</span>
+<span class="token keyword keyword-class">class</span> &#x54C1;&#x724C; <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	<span class="token keyword keyword-virtual">virtual</span> &#x7535;&#x89C6;<span class="token operator">*</span> &#x5236;&#x9020;&#x7535;&#x89C6;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword keyword-virtual">virtual</span> &#x624B;&#x673A;<span class="token operator">*</span> &#x5236;&#x9020;&#x624B;&#x673A;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	&#x54C1;&#x724C;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>&#x54C1;&#x724C;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// &#x5177;&#x4F53;&#x7C7B;</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">oppo</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> &#x54C1;&#x724C;</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	&#x7535;&#x89C6;<span class="token operator">*</span> &#x5236;&#x9020;&#x7535;&#x89C6;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> oppo&#x7535;&#x89C6;<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	&#x624B;&#x673A;<span class="token operator">*</span> &#x5236;&#x9020;&#x624B;&#x673A;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> oppo&#x624B;&#x673A;<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token function">oppo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span><span class="token function">oppo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-class">class</span> &#x4E09;&#x661F; <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> &#x54C1;&#x724C; <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	&#x7535;&#x89C6;<span class="token operator">*</span> &#x5236;&#x9020;&#x7535;&#x89C6;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> &#x4E09;&#x661F;&#x7535;&#x89C6;<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	&#x624B;&#x673A;<span class="token operator">*</span> &#x5236;&#x9020;&#x624B;&#x673A;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> &#x4E09;&#x661F;&#x624B;&#x673A;<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	&#x4E09;&#x661F;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>&#x4E09;&#x661F;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	&#x5DE5;&#x5382;<span class="token operator">*</span> &#x9F99;&#x9F99;&#x7684;&#x8840;&#x6C57;&#x5DE5;&#x5382; <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> &#x5DE5;&#x5382;<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	&#x4EA7;&#x54C1;<span class="token operator">*</span> &#x4F73;&#x4F73;&#x7684;&#x7535;&#x8111; <span class="token operator">=</span> &#x9F99;&#x9F99;&#x7684;&#x8840;&#x6C57;&#x5DE5;&#x5382;<span class="token operator">-&gt;</span>&#x5236;&#x9020;&#x4EA7;&#x54C1;<span class="token punctuation">(</span><span class="token string">&quot;&#x7535;&#x8111;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	&#x4E09;&#x661F;<span class="token operator">*</span> &#x4E09;&#x661F;&#x91CD;&#x5E86;&#x5206;&#x5382; <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> &#x4E09;&#x661F;<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	oppo<span class="token operator">*</span> oppo&#x91CD;&#x5E86;&#x5206;&#x5382; <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">oppo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-	std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> &#x4F73;&#x4F73;&#x7684;&#x7535;&#x8111;<span class="token operator">-&gt;</span>&#x4EA7;&#x54C1;&#x540D;&#x5B57;<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	&#x624B;&#x673A;<span class="token operator">*</span> &#x5C0F;&#x7CBE;&#x7075;&#x7684;&#x5C0F;&#x624B;&#x673A; <span class="token operator">=</span> oppo&#x91CD;&#x5E86;&#x5206;&#x5382;<span class="token operator">-&gt;</span>&#x5236;&#x9020;&#x624B;&#x673A;<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	&#x7535;&#x89C6;<span class="token operator">*</span> &#x4F73;&#x4F73;&#x7684;&#x5927;&#x7535;&#x89C6; <span class="token operator">=</span> &#x4E09;&#x661F;&#x91CD;&#x5E86;&#x5206;&#x5382;<span class="token operator">-&gt;</span>&#x5236;&#x9020;&#x7535;&#x89C6;<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+	std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> &#x5C0F;&#x7CBE;&#x7075;&#x7684;&#x5C0F;&#x624B;&#x673A;<span class="token operator">-&gt;</span>&#x82AF;&#x7247;<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">&quot;\n&quot;</span><span class="token punctuation">;</span>
+	std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> &#x4F73;&#x4F73;&#x7684;&#x5927;&#x7535;&#x89C6;<span class="token operator">-&gt;</span>&#x5C3A;&#x5BF8;<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </pre><h2 class="mume-header" id="%E4%BC%98%E7%82%B9">&#x4F18;&#x70B9;</h2>
 
-<ul>
-<li>
-<p>&#x5DE5;&#x5382;&#x7C7B;&#x542B;&#x6709;&#x5FC5;&#x8981;&#x7684;&#x5224;&#x65AD;&#x903B;&#x8F91;, &#x53EF;&#x4EE5;&#x51B3;&#x5B9A;&#x5728;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x521B;&#x5EFA;&#x54EA;&#x4E00;&#x4E2A;&#x4EA7;&#x54C1;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;, &#x5BA2;&#x6237;&#x7AEF;&#x53EF;&#x4EE5;&#x514D;&#x9664;&#x76F4;&#x63A5;&#x521B;&#x5EFA;&#x4EA7;&#x54C1;&#x5BF9;&#x8C61;&#x7684;&#x8D23;&#x4EFB;, &#x800C;&#x4EC5;&#x4EC5;&#x201C;&#x6D88;&#x8D39;&#x201D;&#x4EA7;&#x54C1;; &#x7B80;&#x5355;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#x901A;&#x8FC7;&#x8FD9;&#x79CD;&#x505A;&#x6CD5;&#x5B9E;&#x73B0;&#x4E86;&#x5BF9;&#x8D23;&#x4EFB;&#x7684;&#x5206;&#x5272;, &#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E13;&#x95E8;&#x7684;&#x5DE5;&#x5382;&#x7C7B;&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;</p>
-</li>
-<li>
-<p>&#x5BA2;&#x6237;&#x7AEF;&#x65E0;&#x987B;&#x77E5;&#x9053;&#x6240;&#x521B;&#x5EFA;&#x7684;&#x5177;&#x4F53;&#x4EA7;&#x54C1;&#x7C7B;&#x7684;<code>&#x7C7B;&#x540D;</code>, &#x53EA;&#x9700;&#x8981;&#x77E5;&#x9053;&#x5177;&#x4F53;&#x4EA7;&#x54C1;&#x7C7B;&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x53C2;&#x6570;&#x5373;&#x53EF;, &#x5BF9;&#x4E8E;&#x4E00;&#x4E9B;&#x590D;&#x6742;&#x7684;&#x7C7B;&#x540D;, &#x901A;&#x8FC7;&#x7B80;&#x5355;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x4F7F;&#x7528;&#x8005;&#x7684;&#x8BB0;&#x5FC6;&#x91CF;</p>
-</li>
-<li>
-<p>&#x901A;&#x8FC7;&#x5F15;&#x5165;&#x914D;&#x7F6E;&#x6587;&#x4EF6;, &#x53EF;&#x4EE5;&#x5728;&#x4E0D;&#x4FEE;&#x6539;&#x4EFB;&#x4F55;&#x5BA2;&#x6237;&#x7AEF;&#x4EE3;&#x7801;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x66F4;&#x6362;&#x548C;&#x589E;&#x52A0;&#x65B0;&#x7684;&#x5177;&#x4F53;&#x4EA7;&#x54C1;&#x7C7B;, &#x5728;&#x4E00;&#x5B9A;&#x7A0B;&#x5EA6;&#x4E0A;&#x63D0;&#x9AD8;&#x4E86;&#x7CFB;&#x7EDF;&#x7684;&#x7075;&#x6D3B;&#x6027;</p>
-</li>
-</ul>
+<p>&#x5F53;&#x4E00;&#x4E2A;&#x4EA7;&#x54C1;&#x65CF;&#x4E2D;&#x7684;&#x591A;&#x4E2A;&#x5BF9;&#x8C61;&#x88AB;&#x8BBE;&#x8BA1;&#x6210;&#x4E00;&#x8D77;&#x5DE5;&#x4F5C;&#x65F6;, &#x5B83;&#x80FD;&#x4FDD;&#x8BC1;&#x5BA2;&#x6237;&#x7AEF;&#x59CB;&#x7EC8;&#x53EA;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x4EA7;&#x54C1;&#x65CF;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;</p>
 <h2 class="mume-header" id="%E7%BC%BA%E7%82%B9">&#x7F3A;&#x70B9;</h2>
 
-<ul>
-<li>
-<p>&#x7531;&#x4E8E;&#x5DE5;&#x5382;&#x7C7B;&#x96C6;&#x4E2D;&#x4E86;&#x6240;&#x6709;&#x4EA7;&#x54C1;&#x521B;&#x5EFA;&#x903B;&#x8F91;&#xFF0C;&#x4E00;&#x65E6;&#x4E0D;&#x80FD;&#x6B63;&#x5E38;&#x5DE5;&#x4F5C;&#xFF0C;&#x6574;&#x4E2A;&#x7CFB;&#x7EDF;&#x90FD;&#x8981;&#x53D7;&#x5230;&#x5F71;&#x54CD;</p>
-</li>
-<li>
-<p>&#x4F7F;&#x7528;&#x7B80;&#x5355;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#x5C06;&#x4F1A;&#x589E;&#x52A0;&#x7CFB;&#x7EDF;&#x4E2D;&#x7C7B;&#x7684;&#x4E2A;&#x6570;, &#x5728;&#x4E00;&#x5B9A;&#x7A0B;&#x5E8F;&#x4E0A;&#x589E;&#x52A0;&#x4E86;&#x7CFB;&#x7EDF;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x548C;&#x7406;&#x89E3;&#x96BE;&#x5EA6;</p>
-</li>
-<li>
-<p>&#x7CFB;&#x7EDF;&#x6269;&#x5C55;&#x56F0;&#x96BE;, &#x4E00;&#x65E6;&#x6DFB;&#x52A0;&#x65B0;&#x4EA7;&#x54C1;&#x5C31;&#x4E0D;&#x5F97;&#x4E0D;&#x4FEE;&#x6539;&#x5DE5;&#x5382;&#x903B;&#x8F91;, &#x5728;&#x4EA7;&#x54C1;&#x7C7B;&#x578B;&#x8F83;&#x591A;&#x65F6;, &#x6709;&#x53EF;&#x80FD;&#x9020;&#x6210;&#x5DE5;&#x5382;&#x903B;&#x8F91;&#x8FC7;&#x4E8E;&#x590D;&#x6742;, &#x4E0D;&#x5229;&#x4E8E;&#x7CFB;&#x7EDF;&#x7684;&#x6269;&#x5C55;&#x548C;&#x7EF4;&#x62A4;</p>
-</li>
-<li>
-<p>&#x7B80;&#x5355;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#x7531;&#x4E8E;&#x4F7F;&#x7528;&#x4E86;&#x9759;&#x6001;&#x5DE5;&#x5382;&#x65B9;&#x6CD5;, &#x9020;&#x6210;&#x5DE5;&#x5382;&#x89D2;&#x8272;&#x65E0;&#x6CD5;&#x5F62;&#x6210;&#x57FA;&#x4E8E;&#x7EE7;&#x627F;&#x7684;&#x7B49;&#x7EA7;&#x7ED3;&#x6784;</p>
-</li>
-</ul>
+<p>&#x4EA7;&#x54C1;&#x65CF;&#x6269;&#x5C55;&#x975E;&#x5E38;&#x56F0;&#x96BE;, &#x8981;&#x589E;&#x52A0;&#x4E00;&#x4E2A;&#x7CFB;&#x5217;&#x7684;&#x67D0;&#x4E00;&#x4EA7;&#x54C1;, &#x65E2;&#x8981;&#x5728;&#x62BD;&#x8C61;&#x7C7B;&#x91CC;&#x52A0;&#x4EE3;&#x7801;, &#x53C8;&#x8981;&#x5728;&#x5177;&#x4F53;&#x7684;&#x7C7B;&#x91CC;&#x52A0;&#x4EE3;&#x7801;</p>
 <h2 class="mume-header" id="%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8">&#x5178;&#x578B;&#x5E94;&#x7528;</h2>
 
 

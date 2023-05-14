@@ -59,7 +59,7 @@ html:
 * [创建型模式 ( 总结 ) ](./设计模式/创建型模式.html)
     1. [简单工厂模式 ( Simple Factory Pattern )](./设计模式/简单工厂模式.html)
     2. [工厂方法模式 ( Factory Method Pattern )](./设计模式/工厂方法模式.html)
-    3. [抽象工厂模式()]()
+    3. [抽象工厂模式 ( Abstract Factory Pattern )](./设计模式/抽象工厂模式.html)
     4. [建造者模式()]()
     5. [单例模式()]()
 * 结构型模式
