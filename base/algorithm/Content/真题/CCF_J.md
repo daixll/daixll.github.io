@@ -245,6 +245,50 @@ int main() {
 ```
 </details>
 
+<details><summary><a href="https://www.acwing.com/problem/content/description/478/" target="_blank">AcWing 476. 对称二叉树</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+const int N=1e6+10;
+
+int l[N], r[N], v[N], cnt[N];   // 每个节点的子树,权,子树数量
+int n;
+
+void dfs(int i){ // 计算以 i 为节点子树数量
+    if(l[i]) dfs(l[i]);
+    if(r[i]) dfs(r[i]);
+    cnt[i] = cnt[l[i]] + cnt[r[i]] + 1;
+}
+
+bool ck(int i, int j){ // 检查 i,j 是不是对称
+    if(v[i] != v[j] || cnt[i] != cnt[j]) return 0;  // 权,树不同
+    if(i == 0 && j == 0) return 1;  // 两边都是空树
+    if(ck(l[i], r[j]) && ck(r[i], l[j])) return 1;
+    return 0;   
+}
+
+int main(){
+    cin>>n;
+    for(int i=1; i<=n; i++) scanf("%d", v+i);
+    for(int i=1; i<=n; i++){
+        int a, b; scanf("%d%d", &a, &b);
+        l[i] = (a==-1)?0:a, r[i] = (b==-1)?0:b;
+    }
+    dfs(1);
+    
+    for(int i=1; i<=n; i++)
+        if( ck(l[i], r[i]) )    // 检查以 i 为根的子树
+            v[0] = max(v[0], cnt[i]);
+    
+    cout<<v[0];
+    
+    return 0;
+}
+```
+</details>
+
 ---
 
 # 2017
