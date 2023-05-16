@@ -12,6 +12,122 @@ html:
 
 # 2022
 
+<details><summary><a href="https://www.acwing.com/problem/content/description/4731/" target="_blank">AcWing 4728. 乘方</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+typedef long long LL;
+
+int main(){
+    int a, b, c;
+    cin>>a>>b;
+    c=pow(a, b);
+    
+    LL A=a, B=b, C=pow(A, B);
+    
+    if(c<=1000000000 && C<=1000000000 && C==c)
+        cout<<c;
+    else
+        cout<<-1;
+    
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/description/4732/" target="_blank">AcWing 4729. 解密</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+typedef long long LL;
+
+// 枚举 O(sqrt(n)k) 6/10
+void solve1(){
+    int k; cin>>k;
+    while(k--){
+        LL n, e, d, m, p, q;
+        scanf("%lld%lld%lld", &n, &d, &e);
+        
+        bool flg=0;
+        m=n-e*d+2;
+        for(p=1; p<=sqrt(n); p++){
+            q=n/p;
+            if(m==p+q && p*q==n){
+                printf("%lld %lld\n", p, q);
+                flg=1;
+                break;
+            }
+        }
+        if(!flg) puts("NO");
+        
+    }
+}
+
+// 二分 O(klog(m/2))
+void solve2(){
+    int k; cin>>k;
+    while(k--){
+        LL n, e, d, m, p, q;
+        scanf("%lld%lld%lld", &n, &d, &e);
+        
+        m=n-e*d+2;
+        int l=1, r=m/2;
+        while(l<=r){
+            p=(l+r)>>1;
+            q=m-p;
+            if(n==p*q) break;
+            
+            if(n<p*q) r=p-1;
+            else l=p+1;
+        }
+        if(n==p*q) printf("%lld %lld\n", p, q);
+        else puts("NO");
+        
+    }
+}
+
+// 数学 O(k)
+void solve3(){
+    int k; cin>>k;
+    while(k--){
+        LL n, e, d, m, p, q;
+        scanf("%lld%lld%lld", &n, &d, &e);
+        
+        // e*d=(p-1)(q-1)+1
+        // n/p+p=n-e*d+2=m
+        // n/p+p=m 
+        // -> n+p^2=mp
+        // -> p^2-mp+n=0 -> [a=1, b=-m, c=n]
+        m=n-e*d+2;
+        
+        if(pow(m,2)-4*n < 0)
+            puts("NO");
+        else{
+            LL delta = pow(m,2)-4*n;
+            p = (m-sqrt(delta)+1)/2; // 向上取整
+            q = n/p;
+            if(p+q==m && p*q==n) printf("%lld %lld\n", p, q);
+            else puts("NO");
+        }
+        
+    }
+}
+
+int main(){
+    //solve1();
+    //solve2();
+    solve3();
+    return 0;
+}
+```
+</details>
+
 ---
 
 # 2021
@@ -37,6 +153,79 @@ int main(){
 ```
 </details>
 
+<details><summary><a href="https://www.acwing.com/problem/content/4090/" target="_blank">AcWing 4087. 插入排序</a> code</summary>
+
+```cpp
+#define fst first
+#define sed second
+#include <iostream>
+#include <algorithm>
+#include <cstring>
+#include <map>
+using namespace std;
+
+typedef pair<int, int> PII;
+
+const int N=8e3+10;
+
+PII a[N];   // 数组
+int n, q;
+
+int p[N];    // 索引
+
+int main(){
+    cin>>n>>q;
+    for(int i=1; i<=n; i++){
+        scanf("%d", &a[i].fst);
+        a[i].sed = i;
+    }
+    
+    sort(a+1, a+1+n);
+    for(int i=1; i<=n; i++)
+        p[ a[i].sed ] = i;
+    
+    for(int _=1; _<=q; _++){
+        int qq, x, v; scanf("%d", &qq);
+        
+        if( qq==1 ){
+            scanf("%d%d", &x, &v);
+            
+            // 定位到原数组的位置
+            x = p[x];
+            
+            // 将a[i].fst 转换为 v, 检查其应该左移还是右移动
+            if( a[x].fst > v ){   // 左移动
+                a[x].fst = v;
+                for(int i=x; i>=2; i--)
+                    if(a[i] < a[i-1]){
+                        swap(a[i], a[i-1]);
+                    
+                        p[ a[i].sed ] = i;
+                        p[ a[i-1].sed ] = i-1;
+                    }
+                    else break;
+            }else
+            if( a[x].fst < v ){   // 右移动
+                a[x].fst = v;
+                for(int i=x; i<=n-1; i++)
+                    if(a[i] > a[i+1]){
+                        swap(a[i], a[i+1]);
+                    
+                        p[ a[i].sed ] = i;
+                        p[ a[i+1].sed ] = i+1;
+                    }
+                    else break;
+            }
+        }else{
+            scanf("%d", &x);
+            printf("%d\n", p[x]);
+        }
+    }
+    
+    return 0;
+}
+```
+</details>
 
 ---
 
@@ -173,6 +362,49 @@ int main(){
     }
     
     cout<<ans;
+    
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/description/1165/" target="_blank">AcWing 1163. 纪念品</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+const int N=110;
+
+int dp[10010];  // 第 i+1 天, 可以增加的金币的最大值
+int w[N][N];    // 第 i 天, 第 j 种物品的价值
+
+int t, n, m;    // 天数, 纪念品数量, 金币数量
+
+int main(){
+    cin>>t>>n>>m;
+    for(int i=1; i<=t; i++)
+        for(int j=1; j<=n; j++)
+            scanf("%d", &w[i][j]);
+    
+    for(int i=1; i<=t-1; i++){      // 枚举天数
+        memset(dp, 0, sizeof dp);
+        
+        for(int j=1; j<=n; j++)     // 枚举商品
+            for(int k=w[i][j]; k<=m; k++)   // 枚举钱(当前这个商品的价值 到 我身上的所有钱)
+                dp[k] = max(dp[k], dp[k-w[i][j]] + w[i+1][j] - w[i][j] );
+        // 枚举商品是为了考虑所有可能购买或出售的纪念品
+        // 枚举钱是为了考虑所有可能的购买或出售纪念品的组合
+        // 
+        // 通过枚举商品和钱, 我们可以找到在当前这一天
+        // 使用当前拥有的金币, 可以获得的最大收益
+        // 然后, 我们可以使用这个最大收益来更新dp数组
+        
+        m += dp[m];
+    }
+    
+    cout<<m;
     
     return 0;
 }
