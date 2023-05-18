@@ -1013,13 +1013,13 @@ int main(){
                     int x1 = cnt[0].fst, y1 = cnt[0].sed;
                     int x2 = cnt[1].fst, y2 = cnt[1].sed;
                     
-                    if( only.count( {{x1,y1}, {x2,y2}} ) ||
-                        only.count( {{x2,y2}, {x1,y1}} ) )
+                    if( only.count( { {x1,y1}, {x2,y2} } ) ||
+                        only.count( { {x2,y2}, {x1,y1} } ) )
                         continue;
                     else{
                         ans++;
-                        only.insert({{x1,y1}, {x2,y2}});
-                        only.insert({{x2,y2}, {x1,y1}});
+                        only.insert({ {x1,y1}, {x2,y2} });
+                        only.insert({ {x2,y2}, {x1,y1} });
                     }
                 }
             }
