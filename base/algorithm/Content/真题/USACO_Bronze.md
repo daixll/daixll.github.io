@@ -849,15 +849,525 @@ int main(){
 
 ## 2021 US Open
 
+<details><summary><a href="https://www.acwing.com/problem/content/3748/" target="_blank">AcWing 3745. 牛的学术圈 I</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+const int N=1e5+10;
+
+// 每篇文章引用的次数
+int arr[N];
+int used[N]; // 每个数的出现次数
+
+int main(){
+    int n, l;
+    // n篇论文 引用l次
+    cin>>n>>l;
+    
+    for(int i=1; i<=n; i++) scanf("%d", &arr[i]);
+    
+    sort(arr+1, arr+n+1, greater<int>() );
+    
+    // 每个数用了多少次
+    // for(int i=1; i<=n; i++) used[ arr[i] ]++;
+    
+    /*
+    for(int i=1; i<=n; i++) printf("%2d ", i);
+    puts("");
+    for(int i=1; i<=n; i++) cout<<arr[i]<<" ";
+    puts("");
+    */
+    
+    for(int i=1; i<=n; i++)
+        if(i > arr[i]){  // 这里在原本合法的后面一位，从这一位开始+
+            for(int j=i; j && l ; j--, l--) arr[j]++; // 引用 
+            break;
+        }
+        else if(n==i)
+            for(int j=i; j && l ; j--, l--) arr[j]++; // 引用
+        
+    
+    sort(arr+1, arr+n+1, greater<int>() );
+    
+    /*
+    for(int i=1; i<=n; i++) printf("%2d ", i);
+    puts("");
+    for(int i=1; i<=n; i++) cout<<arr[i]<<" ";
+    puts("");
+    */
+        
+    for(int i=1; i<=n; i++) 
+        if(i>arr[i]){
+            cout<<i-1;
+            break;
+        }
+        else if(n==i)
+            cout<<i;
+        
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/3749/" target="_blank">AcWing 3746. 牛的学术圈 II</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <cstring>
+#include <map>
+using namespace std;
+
+const int N = 105;
+
+int res[N][N];  // 最终的结果
+string a[N];    // 人
+int k, n;
+
+map<string, int> p; // 通过人名定位
+
+int main(){
+    cin>>k>>n;
+    for(int i=1; i<=n; i++){
+        string _; cin>>_;
+        p[_] = i;
+    }
+    
+    for(int _=1; _<=k; _++){
+        for(int i=1; i<=n; i++) cin>>a[i];
+        
+        for(int i=1; i<=n; i++){
+            bool flg=0;
+            for(int j=i+1; j<=n; j++)
+                if(a[j-1] > a[j] || flg){   // 一旦出现, 前者和后者, 非字典序了
+                    res[p[a[j]]][p[a[i]]] = 1,
+                    res[p[a[i]]][p[a[j]]] = -1;
+                    flg=1;
+                }
+        }
+    }
+    
+    
+    for(int i=1; i<=n; i++, cout<<"\n")
+        for(int j=1; j<=n; j++){
+            if(i==j){
+                cout<<"B";
+                continue;
+            }
+            if(res[i][j] == 1)
+                cout<<1;
+            if(res[i][j] == -1)
+                cout<<0;
+            if(res[i][j] == 0) 
+                cout<<"?";
+        }    
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/3750/" target="_blank">AcWing 3747. 牛的学术圈 III</a> code</summary>
+
+```cpp
+#define fst first
+#define sed second
+#include <iostream>
+#include <cstring>
+#include <set>
+#include <vector>
+using namespace std;
+
+typedef pair<int, int> PII;
+
+const int N=1e3+10;
+const int dxy[4][2]={ {-1,0},{1,0},{0,-1},{0,1} };
+
+int n, m, ans;
+string g[N];
+
+set<pair<PII, PII>> only; // 一对唯一的奶牛
+
+int main(){
+    cin>>n>>m;
+    for(int i=1; i<=n; i++){
+        cin>>g[i];
+        g[i] = " "+g[i];
+    }
+    
+    for(int i=1; i<=n; i++)
+        for(int j=1; j<=m; j++)
+            if(g[i][j] == 'G'){ // 如果有草
+                
+                vector<PII> cnt;
+                for(int k=0; k<4; k++){
+                    int nx = i + dxy[k][0];
+                    int ny = j + dxy[k][1];
+                    
+                    if( g[nx][ny] == 'C' ) cnt.push_back({nx, ny});
+                }
+                
+                if(cnt.size() > 2) ans++;
+                if(cnt.size() == 2){
+                    int x1 = cnt[0].fst, y1 = cnt[0].sed;
+                    int x2 = cnt[1].fst, y2 = cnt[1].sed;
+                    
+                    if( only.count( {{x1,y1}, {x2,y2}} ) ||
+                        only.count( {{x2,y2}, {x1,y1}} ) )
+                        continue;
+                    else{
+                        ans++;
+                        only.insert({{x1,y1}, {x2,y2}});
+                        only.insert({{x2,y2}, {x1,y1}});
+                    }
+                }
+            }
+    
+    cout<<ans;
+    
+    return 0;
+}
+```
+</details>
 
 ## 2021 Feb
 
+<details><summary><a href="https://www.acwing.com/problem/content/description/3373/" target="_blank">AcWing 3370. 牛年</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <cstring>
+#include <unordered_map>
+using namespace std;
+
+// 用来计算
+unordered_map<string, int> u;
+// 本来的
+unordered_map<string, int> hhash={
+    {"Ox", 0},
+    {"Tiger", 1},
+    {"Rabbit", 2},
+    {"Dragon", 3},
+    {"Snake", 4},
+    {"Horse", 5},
+    {"Goat", 6},
+    {"Monkey", 7},
+    {"Rooster", 8},
+    {"Dog", 9},
+    {"Pig", 10},
+    {"Rat", 11}
+};
+
+int main(){
+    
+    // 以这玩意儿为基准
+    u["Bessie"]=0;
+    
+    int _; cin>>_;
+    while(_--){
+        
+        string str[10];
+        for(int i=1; i<=8; i++) cin>>str[i];
+        
+        // 之前，str[1]在str[8]的左边
+        if(str[4]=="previous"){
+            // 后生的差值
+            int x=u[ str[8] ];
+            // 先生的生肖代码
+            int y=hhash[ str[5] ];
+    
+            // 计算差
+            int r=((x-y)%12+12)%12;
+            if(r==0) r=12;
+            
+            u[ str[1] ] = x-r;
+        }
+        // 之后，str[1]在str[8]的右边
+        else{
+            // 先生的差值
+            int x=u[ str[8] ]; 
+            // 后生的生肖代码
+            int y=hhash[ str[5] ];
+            
+            // 计算差
+            int r=((y-x)%12+12)%12;
+            if(r==0) r=12;
+            
+            u[ str[1] ] = x+r;
+        }
+        
+    }
+    
+    cout<<abs(u["Elsie"]);
+    
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/3374/" target="_blank">AcWing 3371. 舒适的奶牛</a> code</summary>
+
+```cpp
+#pragma GCC optimize(3, "inline", "Ofast")
+
+#include <stdio.h>
+
+//int N=1010;
+
+int g[1010][1010];
+int f[1010][1010]; // 记录这个位置的牛是否舒适
+
+int dxy[4][2]={ {-1,0}, {1,0}, {0,-1}, {0,1} };
+
+// 每一次加入后，只会影响上下左右四个方向的奶牛舒不舒服
+// 那么再check一下
+
+// 检查(x,y)奶牛舒服
+int check(int x, int y){
+    int res=0;
+    
+    for(int i=0; i<4; i++){
+        int nx=x+dxy[i][0];
+        int ny=y+dxy[i][1];
+        
+        if( nx<0 || ny <0 ) continue;
+        
+        if(g[nx][ny]==1)
+            res++;
+    }
+    
+    if(res==3) return 1;
+    return 0;
+}
+
+int main(){
+    int n, ans=0;
+    scanf("%d", &n);
+    
+    for(int i=1; i<=n; i++){
+        int a, b;
+        scanf("%d%d", &a, &b);
+        g[a][b]=1;
+        
+        // 检查这头牛
+        if( check(a, b) ) ans++, f[a][b]=1;
+        
+        // 检查周围四头牛
+        for(int i=0; i<4; i++){
+            int nx=a+dxy[i][0];
+            int ny=b+dxy[i][1];
+            
+            // 有牛, 舒服, 没被舒服过
+            if(g[nx][ny] && check(nx, ny) && f[nx][ny]==0){
+                ans++;
+                f[nx][ny]=1;
+                continue;
+            }
+            
+            // 有牛,不舒服了,曾经舒服过
+            if(g[nx][ny] && check(nx, ny)==0 && f[nx][ny]==1){
+                ans--;
+                f[nx][ny]=0;
+                continue;
+            }
+        }
+        
+        printf("%d\n", ans);
+    }
+    
+    return 0;
+}
+```
+</details>
 
 ## 2021 Jan
 
+<details><summary><a href="https://www.acwing.com/problem/content/description/3361/" target="_blank">AcWing 3358. 放养但没有完全放养</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+string str, sub;
+
+int main(){
+    cin>>str>>sub;
+    
+    int i=0;
+    int ans=0;
+    
+    while(i<sub.size()){
+        
+        
+        for(int j=0; j<str.size(); j++)
+            if(sub[i]==str[j]){
+                i++;
+            }
+        
+        ans++;
+    }
+    
+    cout<<ans;
+    
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/3362/" target="_blank">AcWing 3359. 更多奇怪的照片</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+// 奇数、偶数的数量
+int odd, even;
+
+int main(){
+    int n;
+    cin>>n;
+    for(auto i=1; i<=n; i++){
+        int t;
+        scanf("%d", &t);
+        
+        if(t&1) 
+            odd++;
+        else
+            even++;
+    }
+    // 我有奇数的个数
+    // 有偶数的个数
+    // 那么他们相同的部分，一定可以配 min(odd, even)*2 组数
+    // 剩下 a = abs(odd-even) 数量的 全奇 或者 全偶
+    // 若全奇
+    //      （偶数个）2个奇数的和是偶数
+    //      显然，我们必定可以配出 (a/3)*2 组 
+    //      对于没使用的奇数，一个会影响俩，直接ans--
+    //      如果 a - int(a/3) * 2 >=1 , ans -= ( a - int(a/3) * 2 )
+    // 若全偶
+    //      不管了，再加一个
+    
+    int ans=min(odd, even)*2;
+    
+    //cout<<odd<<" "<<even<<endl;
+    
+    if(odd>even){
+        int a=abs(odd-even);
+        
+        //cout<<a<<endl;
+        
+        ans += (int(a/3))*2;    // 全奇配的
+        
+        //cout<<ans;
+        
+        a -= ( int(a/3)*3 );    // 剩余的
+        
+        if(a==2)
+            ans++;
+        else if(a==1)
+            ans--;
+    }
+    else if(even>odd)
+        ans++;
+    
+    cout<<ans;
+    
+    return 0;
+}
+```
+</details>
 
 ## 2020 Dec
 
+<details><summary><a href="https://www.acwing.com/problem/content/description/3349/" target="_blank">AcWing 3346. 你知道你的ABC吗</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int n[10];
+int used[10];
+
+int main(){
+    for(int i=1; i<=7; i++)
+        cin>>n[i];
+    sort(n+1, n+8);
+    
+    do{
+        sort(n+1, n+4);
+        
+        // a+b
+        if( n[1]+n[2] != n[4] ) continue;
+        // b+c
+        if( n[2]+n[3] != n[5] ) continue;
+        // a+c
+        if( n[1]+n[3] != n[6] ) continue;
+        // a+b+c
+        if( n[1]+n[2]+n[3] != n[7] ) continue;
+        
+        for(int i=1; i<=3; i++)
+            cout<<n[i]<<" ";
+        break;
+        
+    }
+    while(next_permutation(n+1, n+7));
+    
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/3350/" target="_blank">AcWing 3347. 菊花链</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+const int N=1010;
+
+int hua[N];
+
+int main(){
+    int n=0;
+    cin>>n;
+    for(int i=1; i<=n; i++){
+        scanf("%d", &hua[i]);
+        hua[i]+=hua[i-1];     // 做一个前缀和
+    }
+    
+    int res=n; // 提前一朵花 
+    
+    for(int j=1; j<=n; j++){
+        for(int i=1; i<j; i++){ // 这里取消等号 等于的时候是一朵花
+            // i-j的照片
+            int all=hua[j]-hua[i-1]; // 花瓣数量
+            int duo=j-i+1;           // 花朵数量
+            double pp=(double)all/duo;
+            int p=all/duo;
+            //cout<<i<<"-"<<j<<":"<<pp<<endl;
+            if( pp-p>1e-6 )continue;
+            
+
+            // 检查花k是否是平均的花
+            for(int k=i; k<=j; k++)
+                if( p==(hua[k]-hua[k-1]) ){
+                    res++;
+                    break;
+                }
+            
+        }
+    }
+    
+    cout<<res;
+    
+    return 0;
+}
+```
+</details>
 
 ---
 
@@ -867,7 +1377,557 @@ int main(){
 
 ## 2020 Feb
 
+<details><summary><a href="https://www.acwing.com/problem/content/1673/" target="_blank">AcWing 1671. 三角形</a> code</summary>
+
+```cpp
+#pragma GCC optimize(2, 3, "Ofast", "inline")
+
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+
+typedef long long LL;
+typedef pair<LL, LL> PII;
+
+#define x first
+#define y second
+
+PII a[110];
+
+int main(){
+    int n;
+    cin>>n;
+    for(int i=1; i<=n; i++) scanf("%lld%lld", &a[i].x, &a[i].y);
+    
+    LL ans=-1;
+    
+    for(int i=1; i<=n; i++)
+    for(int j=1; j<=n; j++)
+    for(int k=1; k<=n; k++)
+        if(a[i].x==a[j].x && a[j].y==a[k].y)
+            ans=max(ans,  llabs(a[j].y-a[i].y)*llabs(a[k].x-a[j].x)  );
+        
+    cout<<ans;
+    
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/1674/" target="_blank">AcWing 1672. 疯狂的科学家</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int N=1e3+10;
+
+string A, B;
+
+int main(){
+    int n;
+    cin>>n;
+    cin>>A>>B;
+    
+    int res=0;
+    for(int i=0; i<A.size(); i++){
+        
+        if(A[i]!=B[i]){
+            i++;
+            while(A[i]!=B[i]) i++;
+            i--;
+            res++;
+        }
+    
+    }
+    
+    cout<<res;
+    
+    return 0;
+}
+```
+</details>
+
 ## 2020 Jan
+
+<details><summary><a href="https://www.acwing.com/problem/content/1444/" target="_blank">AcWing 1442. 单词处理器</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <algorithm>
+#include <cstring>
+using namespace std;
+
+int main(){
+    int n, k;
+    cin>>n>>k;
+    string str;
+    int a=0;
+    for(int i=1; i<=n; i++){
+        cin>>str;
+        
+        if( str.size()+a > k ){
+            cout<<endl;
+            a=0;
+        }
+        
+        cout<<str<<" ";
+        a+=str.size();
+    }
+    
+    
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/1445/" target="_blank">AcWing 1443. 拍照</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+const int N=1e3+10;
+
+int a[N], b[N];
+
+int main(){
+    int n=0;
+    cin>>n;
+    for(int i=1; i<n; i++) scanf("%d", &b[i]);
+    
+    for(int k=1; k<=n; k++){          
+        unordered_map<int, int> hash; 
+                // 记录某个数字是否出现
+        a[1]=k; // 第一个数字是k
+        hash[k]++;
+        
+        int i=2;
+        for( ; i<=n; i++){
+            a[i]=b[i-1]-a[i-1];
+            
+            if(hash[a[i]]) break;        // 位置重复的牛
+            if(a[i]<=0 || a[i]>n) break; // 不该出现的牛
+            
+            hash[a[i]]++;
+        }
+        
+        if(i>n) break; // a排序完成
+    }
+    
+    for(int i=1; i<=n; i++) cout<<a[i]<<" ";
+    
+    return 0;
+}
+```
+</details>
 
 ## 2019 Dec
 
+<details><summary><a href="https://www.acwing.com/problem/content/1461/" target="_blank">AcWing 1459. 奶牛体操</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+const int N=30;
+
+int a[N][N];
+
+int main(){
+    int k, n;
+    cin>>k>>n;
+    // k次训练
+    // n头奶牛
+    for(int i=1; i<=k; i++)
+        for(int j=1; j<=n; j++)
+            scanf("%d", &a[i][j]);
+    
+    int ans=0;
+    
+    for(int i=1; i<=n; i++)
+        for(int j=i+1; j<=n; j++){
+            
+            // x必须先出现
+            int x=a[1][i], y=a[1][j];
+            
+            bool flg = 1;
+            // 遍历其余次训练情况
+            for(int m=2; m<=k && flg; m++)
+                for(int t=1; t<=n; t++)
+                    if( a[m][t] == y){
+                        flg=0;
+                        break;
+                    }
+                    else if( a[m][t] == x )
+                        break;
+            
+            if(flg) ans++;
+        }
+    
+    cout<<ans;
+    
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/1462/" target="_blank">AcWing 1460. 我在哪？</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+#include <set>
+using namespace std;
+
+int n, ans;
+string s;
+
+bool ck(int res){
+    set<string> H;
+    for(int i=0; i+res<=n; i++)
+        if(H.count(s.substr(i, res))) return 0;
+        else H.insert(s.substr(i, res));
+    return 1;
+}
+
+int main(){
+    cin>>n>>s;
+    for(ans=1; ans<n; ans++)
+        if( ck(ans) ) break;
+    cout<<ans;
+    return 0;
+}
+```
+</details>
+
+
+---
+
+# <center>2018-2019 Season</center>
+
+## 2019 US Open
+
+<details><summary><a href="https://www.acwing.com/problem/content/1472/" target="_blank">AcWing 1470. 水桶传递队列</a> code</summary>
+
+```cpp
+#define fst first
+#define sed second
+
+#include <iostream>
+#include <queue>
+using namespace std;
+
+typedef pair<int, int> PII;
+
+char g[15][15];  // 地图
+int used[15][15];// 是否到达过
+int ans[15][15]; // 到达该点的最短路径
+int dxy[4][2]={ {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+
+// 结束点
+int ex, ey;
+// 开始点
+int sx, sy;
+
+void BFS(int x, int y){
+    
+    queue<PII> q;
+    q.push( {x, y} );
+    used[x][y]=1;
+    
+    while( q.size() ){
+        
+        int nx = q.front().fst;
+        int ny = q.front().sed;
+        
+        for(int i=0; i<4; i++){
+            int nnx = nx+dxy[i][0];
+            int nny = ny+dxy[i][1];
+            
+            if(nnx>=1&&nnx<=10 && nny>=1&&nny<=10)
+            if(used[nnx][nny]==0)
+            if(g[nnx][nny]!='R')
+            {
+                ans[nnx][nny]=ans[nx][ny]+1;
+                used[nnx][nny]=1;
+                q.push( {nnx, nny} );
+                if(g[nnx][nny]=='B') return ;
+            }
+            
+        }
+        
+        q.pop();
+    }
+    
+}
+
+int main(){
+    
+    for(int i=1; i<=10; i++){
+        for(int j=1; j<=10; j++){
+            scanf("%c", &g[i][j]);
+            if(g[i][j]=='L')
+                sx=i, sy=j;
+            if(g[i][j]=='B')
+                ex=i, ey=j;
+        }
+        getchar();
+    }
+    
+    BFS(sx, sy);
+    
+    cout<<ans[ex][ey]-1;
+    
+    return 0;
+}
+```
+</details>
+
+
+## 2019 Feb
+
+<details><summary><a href="https://www.acwing.com/problem/content/1685/" target="_blank">AcWing 1683. 困牛放牧</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int a[3];
+
+int main(){
+    cin>>a[0]>>a[1]>>a[2];
+    sort(a, a+3);
+    
+    if(a[1]-a[0]==1 && a[2]-a[1]==1){ // 6 7 8
+        cout<<0<<endl<<0;
+        return 0;
+    }
+    
+    int mmin=0;
+    int mmax = max(a[2]-a[1]-1, a[1]-a[0]-1);
+    
+    if(a[1]-a[0]==2 || a[2]-a[1]==2)
+        mmin=1;
+    else
+        mmin=2;
+    
+    cout<<mmin<<endl<<mmax;
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/1686/" target="_blank">AcWing 1684. 大型植被恢复</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+#define pb push_back
+
+#define x first
+#define y second
+typedef pair<int, int> PII;
+
+// 每只奶牛喜欢的两块草地
+PII a[160];
+// 每块草地种的草
+int res[110];
+// 该草地不能和那些草地的草相同
+vector<int> ad[110];
+
+int main(){
+    int n, m;
+    cin>>n>>m;
+    
+    for(int i=1; i<=m; i++){
+        scanf("%d%d", &a[i].x, &a[i].y);
+        ad[a[i].x].pb(a[i].y);
+        ad[a[i].y].pb(a[i].x); // 1号草场的不能和5，6冲突
+    } 
+    
+    for(int i=1; i<=n; i++){
+        
+        // 从四块草地里选
+        for(int d=1; d<=4; d++){
+            
+            bool flag=1;
+            for(int j=0; j<ad[i].size(); j++)
+                if(res[ ad[i][j] ]==d){ // 冲突
+                    flag=0;
+                    break;
+                }
+            
+            if(flag){
+                res[i]=d;
+                break;
+            }            
+        }
+        
+    }
+    
+    for(int i=1; i<=n; i++)
+        cout<<res[i];
+    
+    return 0;
+}
+```
+</details>
+
+## 2019 Jan
+
+<details><summary><a href="https://www.acwing.com/problem/content/1697/" target="_blank">AcWing 1695. 果壳游戏</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+// 小模拟
+int arr[110][4];
+int n;
+
+// 在第 u 个壳下面
+int ke(int u){
+    int k[4]={0};
+    k[u]=1;
+    int res=0;
+    
+    for(int i=1; i<=n; i++){
+        
+        swap(k[ arr[i][1] ], k[ arr[i][2] ]);
+        if(k[ arr[i][3] ]) res++;
+    }
+    //cout<<res<<endl;
+    return res;
+}
+
+int main(){
+    
+    cin>>n;
+    for(int i=1; i<=n; i++) scanf("%d%d%d", &arr[i][1], &arr[i][2], &arr[i][3]);
+    
+    int ans=0;
+    for(int i=1; i<=3; i++)
+        ans = max( ans, ke(i) );
+    
+    cout<<ans;
+    
+    return 0;
+}
+```
+</details>
+
+## 2018 Dec
+
+<details><summary><a href="https://www.acwing.com/problem/content/1716/" target="_blank">AcWing 1714. 混合牛奶</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int C[5], M[5];
+
+int main(){
+    for(int i=1; i<=3; i++)
+        scanf("%d%d", &C[i], &M[i]);
+    
+    for(int i=1; i<=33; i++){
+        // 桶1 到 桶2
+        int t=M[1]+M[2];
+        if( t>C[2] ){   // 不够装
+            M[2]=C[2];  // 装满
+            M[1]=t-M[2];// 桶1的奶
+        }
+        else{
+            M[1]=0;
+            M[2]=t;
+        }
+        
+        // 桶2 到 桶3
+        t=M[2]+M[3];
+        if( t>C[3] ){   // 不够装
+            M[3]=C[3];  // 装满
+            M[2]=t-M[3];// 桶2的奶
+        }
+        else{
+            M[2]=0;
+            M[3]=t;
+        }
+        
+        // 桶3 到 桶1
+        t=M[3]+M[1];
+        if( t>C[1] ){   // 不够装
+            M[1]=C[1];  // 装满
+            M[3]=t-M[1];// 桶3的奶
+        }
+        else{
+            M[3]=0;
+            M[1]=t;
+        }
+        
+    }
+    
+    // 桶1 到 桶2
+    int t=M[1]+M[2];
+    if( t>C[2] ){   // 不够装
+        M[2]=C[2];  // 装满
+        M[1]=t-M[2];// 桶1的奶
+    }
+    else{
+        M[1]=0;
+        M[2]=t;
+    }
+    
+    cout<<M[1]<<endl<<M[2]<<endl<<M[3];
+    
+    return 0;
+}
+```
+</details>
+
+
+<details><summary><a href="https://www.acwing.com/problem/content/1717/" target="_blank">AcWing 1715. 桶列表</a> code</summary>
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int arr[1010];
+
+int main(){
+    int n;
+    cin>>n;
+    for(int i=1; i<=n; i++){
+        int a, b, c;
+        scanf("%d%d%d", &a, &b, &c);
+        
+        arr[a]+=c;
+        arr[b]-=c;
+    }
+    
+    int ans=0;
+    
+    for(int i=1; i<=1000; i++){
+        arr[i]+=arr[i-1];
+        ans=max(ans, arr[i]);
+    }
+    
+    cout<<ans;
+    
+    return 0;
+}
+```
+</details>
+
+---
+
+
+# <center>2017-2018 Season</center>
