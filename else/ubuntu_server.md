@@ -9,6 +9,14 @@ html:
     theme: united
 --- 
 
+## WSL自启动
+
+1. win + r 输入  `shell:startup`
+2. 新建 `.bat` 文件
+    ```
+    wsl noip-duc --username 邮箱 --password 密码 -g 域名 --ip-method http://ip1.dynupdate6.no-ip.com/ &
+    ```
+
 ## 操作系统
 
 ### 启动盘
