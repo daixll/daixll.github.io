@@ -227,6 +227,83 @@ int main(){
 ```
 </details>
 
+<details><summary><a href="https://www.acwing.com/problem/content/description/4091/" target="_blank">AcWing 4088. 网络连接</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <cstring>
+#include <sstream>
+#include <map>
+using namespace std;
+
+const int N=1e3+10;
+
+map<string, int> serv;
+int n;
+
+int s2i(string s){
+    stringstream ss;
+    ss<<s;
+    int res;
+    ss>>res;
+    return res;
+}
+
+string i2s(int num){
+    stringstream ss;
+    ss<<num;
+    string res;
+    ss>>res;
+    return res;
+}
+
+bool ck(string s){
+    int a[5];
+    string cmp;
+    sscanf(s.c_str(), "%d.%d.%d.%d:%d", a, a+1, a+2, a+3, a+4);
+    
+    for(int i=0; i<4; i++){
+        if(a[i]<0 || a[i]>255) return 0;
+        cmp += i2s(a[i]) + ".";
+    }
+    cmp[cmp.size()-1]=':'; // 替换最后一个'.'
+    
+    if(a[4]<0 || a[4]>65535) return 0;
+    cmp += i2s(a[4]);
+    return s == cmp;
+}
+
+int main(){
+    cin>>n;
+    for(int i=1; i<=n; i++){
+        string op, ad; cin>>op>>ad;
+        
+        if(op == "Server"){
+            if(ck(ad))  // 符合规范
+                if(serv.count(ad))
+                    cout<<"FAIL\n";
+                else
+                    serv[ad] = i, cout<<"OK\n";
+            else
+                cout<<"ERR\n";
+        }
+        else{
+            if(ck(ad))  // 符合规范
+                if(serv.count(ad))
+                    cout<<serv[ad]<<"\n";
+                else
+                    cout<<"FAIL\n";
+            else
+                cout<<"ERR\n";
+        }
+    }
+    
+    
+    return 0;
+}
+```
+</details>
+
 ---
 
 # 2020
@@ -295,6 +372,55 @@ int main(){
         a[ ai ] ++;
         cout<<calc(i * w / 100)<<" ";
     }
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.acwing.com/problem/content/2772/" target="_blank">AcWing 2770. 方格取数</a> code</summary>
+
+```cpp
+#include <cstring>
+#include <iostream>
+using namespace std;
+
+typedef long long LL;
+
+const int N=1e3+10;
+
+int g[N][N];
+LL dp[N][N][2];
+int n, m;
+
+int main(){
+    //freopen("in.txt", "r", stdin); freopen("out.txt", "w", stdout);
+    memset(g, -0x3f, sizeof g);
+    memset(dp, -0x3f, sizeof dp);
+    cin>>n>>m;
+    for(int i=1; i<=n; i++)
+        for(int j=1; j<=m; j++)
+            scanf("%d", &g[i][j]);
+
+    dp[1][1][0]=dp[1][1][1]=g[1][1];
+    for(int i=2; i<=n; i++) // 用手导第一列
+        dp[i][1][0] = dp[i][1][1] = dp[i-1][1][0] + g[i][1];
+    //for(int i=n-1; i>=1; i--)
+    //    dp[i][1][1] = dp[i+1][1][1] + g[i][1];
+    //for(int i=1; i<=n; i++)
+    //    dp[i][1][0] = dp[i][1][1] = max(dp[i][1][0], dp[i][1][1]);
+
+    for(int j=2; j<=m; j++){
+        for(int i=1; i<=n; i++) // 从上到下，从左边来，从上面来
+            dp[i][j][0] = max(dp[i][j-1][0], dp[i-1][j][0]) + g[i][j];
+
+        for(int i=n; i>=1; i--) // 从下到上，从左边来，从下面来
+            dp[i][j][1] = max(dp[i][j-1][1], dp[i+1][j][1]) + g[i][j];
+        
+        for(int i=1; i<=n; i++)
+            dp[i][j][0] = dp[i][j][1] = max(dp[i][j][0], dp[i][j][1]);
+    }
+
+    cout<<dp[n][m][1];
     return 0;
 }
 ```
