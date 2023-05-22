@@ -18,6 +18,9 @@ html:
 
 ---
 
+
+[高等教育学会学科竞赛榜单](https://www.cahe.edu.cn/site/content/16011.html)
+
 | 月份 | 赛事 |
 | :-:  | :-: |
 | 4月  | [蓝桥杯](https://dasai.lanqiao.cn/)   |
@@ -33,7 +36,7 @@ html:
 
 ---
 
-## 2023 [高等教育学会学科竞赛榜单](https://www.cahe.edu.cn/site/content/16011.html)
+## 2023
 
 ### 单项奖学金 (2)
 
