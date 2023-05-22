@@ -9,7 +9,6 @@ html:
     theme: united
 --- 
 
-
 |国|省|金|
 |-|-|-|
 |3|8|(7) 17350￥| 
@@ -19,7 +18,22 @@ html:
 
 ---
 
-## 2023
+| 月份 | 赛事 |
+| :-:  | :-: |
+| 4月  | [蓝桥杯](https://dasai.lanqiao.cn/)   |
+| 4月  | 传智杯国赛   |
+| 4月  | [天梯赛](https://gplt.patest.cn/notification)   |
+| 6月  | 蓝桥杯国赛   |
+| 7月  | [睿抗](https://www.robocom.com.cn/index.html)     |
+| 8月  | 睿抗国赛     |
+| 8月  | [百度之星](https://www.matiji.net/exam/contest/index) |
+| 9月  | [码题杯](https://www.matiji.net/exam/contest/index)   |
+| 12月 | [ccsp](https://www.ccf.org.cn/ccsp/)    |
+| 12月 | [传智杯](http://dasai.ityxb.com/)   |
+
+---
+
+## 2023 [高等教育学会学科竞赛榜单](https://www.cahe.edu.cn/site/content/16011.html)
 
 ### 单项奖学金 (2)
 
@@ -29,6 +43,11 @@ html:
     <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）xxx.jpg" height="200"> 
     <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）xxx.jpg" height="200">
 </figure>
+
+### 省X 睿抗
+
+- `2023-7` `第五届？？？RAIP赛道 本科组` `省赛X等奖`
+
 
 ### 单项奖学金 (2)
 
