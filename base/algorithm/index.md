@@ -4,12 +4,13 @@
 [AcWing](https://www.acwing.com/)
 [洛谷](https://www.luogu.com.cn/training/list)
 [信息学奥赛一本通](http://ybt.ssoier.cn:8088/index.php)
-
+[力扣](https://leetcode.cn)
 
 # 参考
 
 AcWing 算法基础课 / 提高课 / 进阶课
 kuangbin 专题
+USACO 题单
 洛谷官方题单
 《算法竞赛进阶指南》- 李熠东 
 《算法训练营》- 陈小玉
@@ -101,12 +102,11 @@ kuangbin 专题
 ---
 
 * 真题训练
-   1. [考研真题]
-   2. [USACO-Bronze](./Content/真题/USACO_Bronze.html)
-   3. [USACO-Silver]
-   4. [CCF-J](./Content/真题/CCF_J.html)
-   5. [CCF-S]
-   6. [蓝桥杯](./Content/真题/lanqiao.html)
+   1. [USACO-Bronze](./Content/真题/USACO_Bronze.html)
+   2. [CCF-J](./Content/真题/CCF_J.html)
+   3. [CCF-CSP]
+   4. [蓝桥杯](./Content/真题/lanqiao.html)
+   5. [考研真题]
 
 ---
 
