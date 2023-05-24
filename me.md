@@ -16,10 +16,7 @@ html:
 > 求知若渴，日积月累，虽在繁星之中或难觉察，然内心感悟其温暖光辉，鼓舞前行。
 > 如此微薄，唯愿勉己，追求卓越。
 
----
-
-
-[高等教育学会学科竞赛榜单](https://www.cahe.edu.cn/site/content/16011.html)
+<details><summary><a href="https://www.cahe.edu.cn/site/content/16011.html" target="_blank">高等教育学会学科竞赛榜单</a> 赛事月份表</summary>
 
 | 月份 | 赛事 |
 | :-:  | :-: |
@@ -33,6 +30,9 @@ html:
 | 9月  | [码题杯](https://www.matiji.net/exam/contest/index)   |
 | 12月 | [ccsp](https://www.ccf.org.cn/ccsp/)    |
 | 12月 | [传智杯](http://dasai.ityxb.com/)   |
+
+</details>
+
 
 ---
 
