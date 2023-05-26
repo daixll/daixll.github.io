@@ -1,17 +1,11 @@
-
-# OJ
-
-[AcWing](https://www.acwing.com/)
-[洛谷](https://www.luogu.com.cn/training/list)
-[信息学奥赛一本通](http://ybt.ssoier.cn:8088/index.php)
-[力扣](https://leetcode.cn)
-
 # 参考
 
-AcWing 算法基础课 / 提高课 / 进阶课
-kuangbin 专题
-USACO 题单
-洛谷官方题单
+[AcWing 算法基础课 / 提高课 / 进阶课](https://www.acwing.com/)
+[kuangbin 专题](https://www.acwing.com/activity/content/90/)
+[USACO 题单](https://www.luogu.com.cn/training/list?keyword=USACO%20Section&type=select&page=1)
+[洛谷官方题单](https://www.luogu.com.cn/training/list)
+[信息学奥赛一本通](http://ybt.ssoier.cn:8088/index.php)
+[力扣](https://leetcode.cn)
 《算法竞赛进阶指南》- 李熠东 
 《算法训练营》- 陈小玉
 《算法竞赛》- 罗勇军 
@@ -21,9 +15,9 @@ USACO 题单
    1. [顺序结构](./Content/0%20入门/顺序结构.html)
    2. [分支结构](./Content/0%20入门/分支结构.html)
    3. [循环结构](./Content/0%20入门/循环结构.html)
-   4. [数组]()
-   5. [字符串]()
-   6. [函数与结构体]()
+   4. [数组](./Content/0%20入门/数组.html)
+   5. [字符串](./Content/0%20入门/字符串.html)
+   6. [函数与结构体](./Content/0%20入门/函数.html)
 
 1. 基础
    1. [枚举与模拟](./Content/1%20基础/模拟.html)
@@ -112,4 +106,4 @@ USACO 题单
 ---
 
 * 教学大纲
-   1. [暑假集训](./PLAN/summer.html)
+   1. [暑期集训](./PLAN/summer.html)
