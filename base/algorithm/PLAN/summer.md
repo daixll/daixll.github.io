@@ -16,13 +16,13 @@ margin: auto;
 
 > 前7天的目标是 csp-j2 的第一题，大量基础题，保证第一题的正确性和解题的速度
 
-* 第 1 天 [顺序结构](./Content/0%20入门/顺序结构.html) 算法竞赛及OJ的概念
-* 第 2 天 [分支结构](./Content/0%20入门/分支结构.html) if
-* 第 3 天 [循环结构](./Content/0%20入门/循环结构.html) 循环优化（特判）、嵌套循环
-* 第 4 天 [数组](./Content/0%20入门/数组.html) 一维数组、vector等
-* 第 5 天 [字符串](./Content/0%20入门/字符串.html) 字符串处理及简单技巧 string <-> int
-* 第 6 天 [函数与结构体](./Content/0%20入门/函数.html) pair及利用函数简化解题思路
-* 第 7 天 [枚举与模拟](./Content/1%20基础/模拟.html) 各种常见的问题
+* 第 1 天 [顺序结构](/base/algorithm/Content/0%20入门/顺序结构.html) 算法竞赛及OJ的概念
+* 第 2 天 [分支结构](/base/algorithm/Content/0%20入门/分支结构.html) if
+* 第 3 天 [循环结构](/base/algorithm/Content/0%20入门/循环结构.html) 循环优化（特判）、嵌套循环
+* 第 4 天 [数组](/base/algorithm/Content/0%20入门/数组.html) 一维数组、vector等
+* 第 5 天 [字符串](/base/algorithm/Content/0%20入门/字符串.html) 字符串处理及简单技巧 string <-> int
+* 第 6 天 [函数与结构体](/base/algorithm/Content/0%20入门/函数.html) pair及利用函数简化解题思路
+* 第 7 天 [枚举与模拟](/base/algorithm/Content/1%20基础/模拟.html) 各种常见的问题
 
 > 通过前7天的题海战术，对暴力和模拟已经有了较为深刻的了解
 > 一般而言，已经能写出第二题的暴力做法了
