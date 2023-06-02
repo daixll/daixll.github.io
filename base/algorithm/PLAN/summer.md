@@ -32,14 +32,14 @@ margin: auto;
 > 8-15天的目标是 csp-j2 的第二题
 > 掌握简单算法及数据结构，在暴力的基础上进行优化，第二题轻松拿下
 
-* 第 8 天 [高精度]() 进制转换
-* 第 9 天 [二(N)叉树]() 简单树及特殊树
-* 第 10 天 [递归与递推]()
-* 第 11 天 [DFS]() 暴搜思想
-* 第 12 天 [BFS]() 暴搜最优及洪水覆盖 
-* 第 13 天 [二分]() 一种常见优化
-* 第 14 天 [前缀和与差分]()
-* 第 15 天 [素数筛法]()
+* 第 8 天 [高精度](/base/algorithm/Content/5%20数学/数的运算.html) 进制转换
+* 第 9 天 [二(N)叉树](/base/algorithm/Content/7%20图论/二叉树.html) 简单树及特殊树
+* 第 10 天 [递归与递推](/base/algorithm/Content/1%20基础/递归.html)
+* 第 11 天 [DFS](/base/algorithm/Content/2%20搜索/DFS.html) 暴搜思想
+* 第 12 天 [BFS](/base/algorithm/Content/2%20搜索/BFS.html) 暴搜最优及洪水覆盖 
+* 第 13 天 [二分](/base/algorithm/Content/1%20基础/二分.html) 一种常见优化
+* 第 14 天 [前缀和与差分](/base/algorithm/Content/1%20基础/前缀和.html)
+* 第 15 天 [素数筛法](/base/algorithm/Content/5%20数学/质数.html)
 
 > 16-21天的目标是 csp-j2 的第三题和第四题
 > 或许一时想不出标程解法，但暴力算法未尝不能一试
