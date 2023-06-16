@@ -65,6 +65,11 @@ html:
 
 - `2023-6` `第十四届“蓝桥杯”C/C++程序设计本科B组` `国赛X等奖`
 
+<figure class="half">
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（国2）蓝桥杯23.jpg" height="200"> 
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/p/（国2）蓝桥杯23.png" height="200">
+</figure>
+
 ### 省级先进个人
 
 - `2023-5` `重庆市创新能力提升先进个人`
