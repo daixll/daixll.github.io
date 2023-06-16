@@ -64,7 +64,7 @@ html:
 ### 国二 蓝桥杯
 
 - `2023-6` `第十四届“蓝桥杯”C/C++程序设计本科B组` `国赛二等奖`
-
+[公示/排名](https://dasai.lanqiao.cn/notices/1481/)
 <figure class="half">
     <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（国2）蓝桥杯23.jpg" height="200"> 
     <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/p/（国2）蓝桥杯23.jpg" height="200">
