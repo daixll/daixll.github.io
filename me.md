@@ -11,7 +11,7 @@ html:
 
 |国|省|金|
 |-|-|-|
-|3|8|(7) 17350￥| 
+|4|8|(9) 23850￥| 
 
 > 求知若渴，日积月累，虽在繁星之中或难觉察，然内心感悟其温暖光辉，鼓舞前行。
 > 如此微薄，唯愿勉己，追求卓越。
@@ -54,12 +54,16 @@ html:
 
 ### 单项奖学金 (2)
 
-- `2023-7` `重庆工业职业技术学院单项奖学金` `$ ？+？`
+- `2023-7` `重庆工业职业技术学院单项奖学金` `$ 4500+2000`
 
 <figure class="half">
-    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）xxx.jpg" height="200"> 
-    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）xxx.jpg" height="200">
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）4500.jpg" height="200"> 
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）2000.jpg" height="200">
 </figure>
+
+### 省级先进个人
+
+- `2023-6` `重庆市创新能力提升先进个人`
 
 ### 国二 蓝桥杯
 
@@ -69,10 +73,6 @@ html:
     <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（国2）蓝桥杯23.jpg" height="200"> 
     <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/p/（国2）蓝桥杯23.jpg" height="200">
 </figure>
-
-### 省级先进个人
-
-- `2023-5` `重庆市创新能力提升先进个人`
 
 ### 国二 传智杯
 
