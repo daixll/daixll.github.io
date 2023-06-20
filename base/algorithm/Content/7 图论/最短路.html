@@ -261,7 +261,35 @@ pre[data-line] .line-highlight[data-end]:after {
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      <h2 class="mume-header" id="dijkstra">Dijkstra</h2>
+      <h2 class="mume-header" id="%E9%82%BB%E6%8E%A5%E8%A1%A8">&#x90BB;&#x63A5;&#x8868;</h2>
+
+<h3 class="mume-header" id="%E9%93%BE%E5%BC%8F%E5%89%8D%E5%90%91%E6%98%9F">&#x94FE;&#x5F0F;&#x524D;&#x5411;&#x661F;</h3>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token comment">// &#x5B9A;&#x4E49;</span>
+<span class="token keyword keyword-int">int</span> h<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span> e<span class="token punctuation">[</span>N<span class="token operator">&lt;&lt;</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> ne<span class="token punctuation">[</span>N<span class="token operator">&lt;&lt;</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> idx<span class="token punctuation">;</span>
+<span class="token comment">// &#x521D;&#x59CB;&#x5316;</span>
+idx<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> <span class="token function">memset</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> h<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// &#x589E;&#x52A0;&#x4E00;&#x6761;&#x8FB9;</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    e<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token operator">=</span>b<span class="token punctuation">,</span> ne<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token operator">=</span>h<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">,</span> h<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token operator">=</span>idx<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// &#x904D;&#x5386;&#x70B9; i</span>
+<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> j<span class="token operator">=</span>h<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> j<span class="token operator">!=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">=</span>ne<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    e<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>   <span class="token comment">// e[j] &#x662F;&#x76F4;&#x63A5;&#x8FDE;&#x63A5;&#x7684;&#x90A3;&#x4E2A;&#x70B9;</span>
+
+</pre><h3 class="mume-header" id="stl%E5%A4%A7%E6%B3%95">STL&#x5927;&#x6CD5;</h3>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token comment">// &#x5B9A;&#x4E49;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> g<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// &#x521D;&#x59CB;&#x5316;</span>
+<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>N<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> g<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// &#x589E;&#x52A0;&#x4E00;&#x6761;&#x8FB9;</span>
+g<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// &#x904D;&#x5386;</span>
+<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> j<span class="token operator">:</span> g<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre><h2 class="mume-header" id="%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5">&#x90BB;&#x63A5;&#x77E9;&#x9635;</h2>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"></pre><h2 class="mume-header" id="dijkstra">Dijkstra</h2>
 
 <blockquote>
 <p>&#x5C06;&#x6240;&#x6709;&#x70B9;&#x770B;&#x4F5C;&#x672A;&#x786E;&#x5B9A;&#x6700;&#x77ED;&#x8DEF;<br>
@@ -382,7 +410,28 @@ vector<span class="token operator">&lt;</span>PII<span class="token operator">&g
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+<details style="padding:0;;padding-left:0px;" open>
+        <summary class="md-toc-link-wrapper">
+          <a href="#&#x90BB;&#x63A5;&#x8868;" class="md-toc-link"><p>&#x90BB;&#x63A5;&#x8868;</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#&#x94FE;&#x5F0F;&#x524D;&#x5411;&#x661F;" class="md-toc-link">
+            <p>&#x94FE;&#x5F0F;&#x524D;&#x5411;&#x661F;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#stl&#x5927;&#x6CD5;" class="md-toc-link">
+            <p>STL&#x5927;&#x6CD5;</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#&#x90BB;&#x63A5;&#x77E9;&#x9635;" class="md-toc-link">
+            <p>&#x90BB;&#x63A5;&#x77E9;&#x9635;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#dijkstra" class="md-toc-link">
             <p>Dijkstra</p>
 
