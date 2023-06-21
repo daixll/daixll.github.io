@@ -11,7 +11,7 @@ html:
 
 |国|省|金|
 |-|-|-|
-|4|8|(9) 23850￥| 
+|4|8|(9) 17350￥| 
 
 > 求知若渴，日积月累，虽在繁星之中或难觉察，然内心感悟其温暖光辉，鼓舞前行。
 > 如此微薄，唯愿勉己，追求卓越。
@@ -54,11 +54,11 @@ html:
 
 ### 单项奖学金 (2)
 
-- `2023-7` `重庆工业职业技术学院单项奖学金` `$ 4500+2000`
+- `2023-7` `重庆工业职业技术学院单项奖学金` `$ 150+100`
 
 <figure class="half">
-    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）4500.jpg" height="200"> 
-    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）2000.jpg" height="200">
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）150(23).jpg" height="200"> 
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）100.jpg" height="200">
 </figure>
 
 ### 省级先进个人
