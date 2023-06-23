@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:///c:\Users\jiao\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.6.7\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      <link rel="stylesheet" href="file:///c:\Users\jiao\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.6.8\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
       
       
       
@@ -261,7 +261,7 @@ pre[data-line] .line-highlight[data-end]:after {
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      <h2 class="mume-header" id="-%E5%8A%A0%E6%B3%95%E5%8E%9F%E7%90%86-">&#x52A0;&#x6CD5;&#x539F;&#x7406;</h2>
+      <h2 class="mume-header" id="%E5%8A%A0%E6%B3%95%E5%8E%9F%E7%90%86">&#x52A0;&#x6CD5;&#x539F;&#x7406;</h2>
 
 <ul>
 <li>&#x5B9A;&#x4E49;:
@@ -270,7 +270,7 @@ pre[data-line] .line-highlight[data-end]:after {
 </ul>
 </li>
 </ul>
-<h2 class="mume-header" id="-%E4%B9%98%E6%B3%95%E5%8E%9F%E7%90%86-">&#x4E58;&#x6CD5;&#x539F;&#x7406;</h2>
+<h2 class="mume-header" id="%E4%B9%98%E6%B3%95%E5%8E%9F%E7%90%86">&#x4E58;&#x6CD5;&#x539F;&#x7406;</h2>
 
 <ul>
 <li>&#x5B9A;&#x4E49;:
@@ -279,7 +279,7 @@ pre[data-line] .line-highlight[data-end]:after {
 </ul>
 </li>
 </ul>
-<h2 class="mume-header" id="-%E6%95%B4%E9%99%A4-">&#x6574;&#x9664;</h2>
+<h2 class="mume-header" id="%E6%95%B4%E9%99%A4">&#x6574;&#x9664;</h2>
 
 <ul>
 <li>&#x5B9A;&#x4E49;:
@@ -297,7 +297,7 @@ pre[data-line] .line-highlight[data-end]:after {
 </ol>
 </li>
 </ul>
-<h2 class="mume-header" id="-%E5%90%8C%E4%BD%99-">&#x540C;&#x4F59;</h2>
+<h2 class="mume-header" id="%E5%90%8C%E4%BD%99">&#x540C;&#x4F59;</h2>
 
 <ul>
 <li>&#x5B9A;&#x4E49;:
@@ -320,7 +320,7 @@ pre[data-line] .line-highlight[data-end]:after {
 </ol>
 </li>
 </ul>
-<h2 class="mume-header" id="-%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86-">&#x7B97;&#x672F;&#x57FA;&#x672C;&#x5B9A;&#x7406;</h2>
+<h2 class="mume-header" id="%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86">&#x7B97;&#x672F;&#x57FA;&#x672C;&#x5B9A;&#x7406;</h2>
 
 <ul>
 <li>&#x5B9A;&#x4E49;:
@@ -341,8 +341,8 @@ pre[data-line] .line-highlight[data-end]:after {
 <span class="token keyword keyword-void">void</span> <span class="token function">get_pf</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	pf<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>n<span class="token operator">/</span>i<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-		<span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>n<span class="token operator">%</span>i<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-			pf<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+		<span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>n<span class="token operator">%</span>i<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token comment">// &#x4ECE;&#x5C0F;&#x5230;&#x5927;, &#x5047;&#x8BBE;n%4 == 0, &#x90A3;&#x4E48;&#x4E4B;&#x524D;&#x4E00;&#x5B9A;&#x6709; n%2 == 0</span>
+			pf<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>        <span class="token comment">// &#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1; i &#x4E00;&#x5B9A;&#x4E3A;&#x8D28;&#x6570;</span>
 			n<span class="token operator">/=</span>i<span class="token punctuation">;</span>
 		<span class="token punctuation">}</span>
 	<span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>n<span class="token operator">&gt;</span><span class="token number">1</span><span class="token punctuation">)</span> pf<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
@@ -360,7 +360,7 @@ pre[data-line] .line-highlight[data-end]:after {
     res <span class="token operator">=</span> res <span class="token operator">*</span> one <span class="token operator">%</span> MOD<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </pre></details>
-<h2 class="mume-header" id="-%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0-">&#x6B27;&#x62C9;&#x51FD;&#x6570;</h2>
+<h2 class="mume-header" id="%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0">&#x6B27;&#x62C9;&#x51FD;&#x6570;</h2>
 
 <ul>
 <li>
@@ -382,74 +382,74 @@ pre[data-line] .line-highlight[data-end]:after {
 </ul>
 <details><summary>&#x7B5B;&#x6CD5;&#x6C42;&#x6B27;&#x62C9;&#x51FD;&#x6570;</summary>
 </details>
-<h2 class="mume-header" id="-%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86-">&#x6B27;&#x62C9;&#x5B9A;&#x7406;</h2>
+<h2 class="mume-header" id="%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86">&#x6B27;&#x62C9;&#x5B9A;&#x7406;</h2>
 
-<h2 class="mume-header" id="-%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86-">&#x8D39;&#x9A6C;&#x5C0F;&#x5B9A;&#x7406;</h2>
+<h2 class="mume-header" id="%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86">&#x8D39;&#x9A6C;&#x5C0F;&#x5B9A;&#x7406;</h2>
 
-<h2 class="mume-header" id="-%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86-">&#x88F4;&#x8700;&#x5B9A;&#x7406;</h2>
+<h2 class="mume-header" id="%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86">&#x88F4;&#x8700;&#x5B9A;&#x7406;</h2>
 
-<h2 class="mume-header" id="-%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86-">&#x4E2D;&#x56FD;&#x5269;&#x4F59;&#x5B9A;&#x7406;</h2>
+<h2 class="mume-header" id="%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86">&#x4E2D;&#x56FD;&#x5269;&#x4F59;&#x5B9A;&#x7406;</h2>
 
-<h2 class="mume-header" id="-%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86-">&#x4E8C;&#x9879;&#x5F0F;&#x5B9A;&#x7406;</h2>
+<h2 class="mume-header" id="%E4%BA%8C%E9%A1%B9%E5%BC%8F%E5%AE%9A%E7%90%86">&#x4E8C;&#x9879;&#x5F0F;&#x5B9A;&#x7406;</h2>
 
-<h2 class="mume-header" id="-lucas%E5%AE%9A%E7%90%86-">lucas&#x5B9A;&#x7406;</h2>
+<h2 class="mume-header" id="lucas%E5%AE%9A%E7%90%86">lucas&#x5B9A;&#x7406;</h2>
 
-<h2 class="mume-header" id="-%E5%A8%81%E5%B0%94%E9%80%8A%E5%AE%9A%E7%90%86">&#x5A01;&#x5C14;&#x900A;&#x5B9A;&#x7406;</h2>
+<h2 class="mume-header" id="%E5%A8%81%E5%B0%94%E9%80%8A%E5%AE%9A%E7%90%86">&#x5A01;&#x5C14;&#x900A;&#x5B9A;&#x7406;</h2>
 
 
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-&#x52A0;&#x6CD5;&#x539F;&#x7406;-" class="md-toc-link">
+          <a href="#&#x52A0;&#x6CD5;&#x539F;&#x7406;" class="md-toc-link">
             <p>&#x52A0;&#x6CD5;&#x539F;&#x7406;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-&#x4E58;&#x6CD5;&#x539F;&#x7406;-" class="md-toc-link">
+          <a href="#&#x4E58;&#x6CD5;&#x539F;&#x7406;" class="md-toc-link">
             <p>&#x4E58;&#x6CD5;&#x539F;&#x7406;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-&#x6574;&#x9664;-" class="md-toc-link">
+          <a href="#&#x6574;&#x9664;" class="md-toc-link">
             <p>&#x6574;&#x9664;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-&#x540C;&#x4F59;-" class="md-toc-link">
+          <a href="#&#x540C;&#x4F59;" class="md-toc-link">
             <p>&#x540C;&#x4F59;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-&#x7B97;&#x672F;&#x57FA;&#x672C;&#x5B9A;&#x7406;-" class="md-toc-link">
+          <a href="#&#x7B97;&#x672F;&#x57FA;&#x672C;&#x5B9A;&#x7406;" class="md-toc-link">
             <p>&#x7B97;&#x672F;&#x57FA;&#x672C;&#x5B9A;&#x7406;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-&#x6B27;&#x62C9;&#x51FD;&#x6570;-" class="md-toc-link">
+          <a href="#&#x6B27;&#x62C9;&#x51FD;&#x6570;" class="md-toc-link">
             <p>&#x6B27;&#x62C9;&#x51FD;&#x6570;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-&#x6B27;&#x62C9;&#x5B9A;&#x7406;-" class="md-toc-link">
+          <a href="#&#x6B27;&#x62C9;&#x5B9A;&#x7406;" class="md-toc-link">
             <p>&#x6B27;&#x62C9;&#x5B9A;&#x7406;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-&#x8D39;&#x9A6C;&#x5C0F;&#x5B9A;&#x7406;-" class="md-toc-link">
+          <a href="#&#x8D39;&#x9A6C;&#x5C0F;&#x5B9A;&#x7406;" class="md-toc-link">
             <p>&#x8D39;&#x9A6C;&#x5C0F;&#x5B9A;&#x7406;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-&#x88F4;&#x8700;&#x5B9A;&#x7406;-" class="md-toc-link">
+          <a href="#&#x88F4;&#x8700;&#x5B9A;&#x7406;" class="md-toc-link">
             <p>&#x88F4;&#x8700;&#x5B9A;&#x7406;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-&#x4E2D;&#x56FD;&#x5269;&#x4F59;&#x5B9A;&#x7406;-" class="md-toc-link">
+          <a href="#&#x4E2D;&#x56FD;&#x5269;&#x4F59;&#x5B9A;&#x7406;" class="md-toc-link">
             <p>&#x4E2D;&#x56FD;&#x5269;&#x4F59;&#x5B9A;&#x7406;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-&#x4E8C;&#x9879;&#x5F0F;&#x5B9A;&#x7406;-" class="md-toc-link">
+          <a href="#&#x4E8C;&#x9879;&#x5F0F;&#x5B9A;&#x7406;" class="md-toc-link">
             <p>&#x4E8C;&#x9879;&#x5F0F;&#x5B9A;&#x7406;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-lucas&#x5B9A;&#x7406;-" class="md-toc-link">
+          <a href="#lucas&#x5B9A;&#x7406;" class="md-toc-link">
             <p>lucas&#x5B9A;&#x7406;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#-&#x5A01;&#x5C14;&#x900A;&#x5B9A;&#x7406;" class="md-toc-link">
+          <a href="#&#x5A01;&#x5C14;&#x900A;&#x5B9A;&#x7406;" class="md-toc-link">
             <p>&#x5A01;&#x5C14;&#x900A;&#x5B9A;&#x7406;</p>
 
           </a></div>
