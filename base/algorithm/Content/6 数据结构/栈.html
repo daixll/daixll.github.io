@@ -296,8 +296,7 @@ stack<span class="token operator">&lt;</span><span class="token keyword keyword-
 <h2 class="mume-header" id="%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D">&#x62EC;&#x53F7;&#x5339;&#x914D;</h2>
 
 <details><summary><a href="http://ybt.ssoier.cn:8088/problem_show.php?pid=1353" target="_blank">ybt 1353&#xFF1A;&#x8868;&#x8FBE;&#x5F0F;&#x62EC;&#x53F7;&#x5339;&#x914D;(stack)</a> code</summary>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp">&#x590D;&#x5236;&#x4EE3;&#x7801;&#x5230;&#x7C98;&#x5E16;&#x677F;
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stack&gt;</span></span>
 <span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
@@ -526,8 +525,48 @@ stack<span class="token operator">&lt;</span><span class="token keyword keyword-
 <span class="token punctuation">}</span>
 </pre></details>
 <details><summary><a href="https://www.luogu.com.cn/problem/P1449" target="_blank">Luogu P1449 &#x540E;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;</a> code</summary>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp"></pre></details>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stack&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+
+stack<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> a<span class="token punctuation">;</span>
+string s<span class="token punctuation">;</span>
+<span class="token keyword keyword-bool">bool</span> flg<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	cin<span class="token operator">&gt;&gt;</span>s<span class="token punctuation">;</span>
+	<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> c<span class="token operator">:</span> s<span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>c<span class="token operator">&gt;=</span><span class="token string">&apos;0&apos;</span> <span class="token operator">&amp;&amp;</span> c<span class="token operator">&lt;=</span><span class="token string">&apos;9&apos;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+			<span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>flg<span class="token punctuation">)</span>
+				a<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">10</span> <span class="token operator">+</span> c<span class="token operator">-</span><span class="token string">&apos;0&apos;</span><span class="token punctuation">;</span>
+			<span class="token keyword keyword-else">else</span>
+				a<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>c<span class="token operator">-</span><span class="token string">&apos;0&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			flg<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>c<span class="token operator">==</span><span class="token string">&apos;+&apos;</span> <span class="token operator">||</span> c<span class="token operator">==</span><span class="token string">&apos;-&apos;</span> <span class="token operator">||</span> c<span class="token operator">==</span><span class="token string">&apos;*&apos;</span> <span class="token operator">||</span> c<span class="token operator">==</span><span class="token string">&apos;/&apos;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+			
+			<span class="token keyword keyword-int">int</span> y <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> a<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword keyword-int">int</span> x <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> a<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+			<span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token string">&apos;+&apos;</span><span class="token punctuation">)</span> a<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>x<span class="token operator">+</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token string">&apos;-&apos;</span><span class="token punctuation">)</span> a<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>x<span class="token operator">-</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token string">&apos;*&apos;</span><span class="token punctuation">)</span> a<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>x<span class="token operator">*</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token string">&apos;/&apos;</span><span class="token punctuation">)</span> a<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>x<span class="token operator">/</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			flg<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword keyword-else">else</span>
+			flg<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	cout<span class="token operator">&lt;&lt;</span>a<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></details>
 <hr>
+<h1 class="mume-header" id="%E5%8D%95%E8%B0%83%E6%A0%88">&#x5355;&#x8C03;&#x6808;</h1>
+
 
       </div>
       <div class="md-sidebar-toc">
@@ -549,7 +588,11 @@ stack<span class="token operator">&lt;</span><span class="token keyword keyword-
           </a></div>
         </div>
       </details>
-    
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#&#x5355;&#x8C03;&#x6808;" class="md-toc-link">
+            <p>&#x5355;&#x8C03;&#x6808;</p>
+
+          </a></div>
 </div>
 </div>
       <a id="sidebar-toc-btn">&#x2261;</a>
