@@ -11,25 +11,23 @@ html:
 
 |国|省|金|
 |-|-|-|
-|4|8|(9) 17350￥| 
+|4|8|(9) 17600￥| 
 
 > 求知若渴，日积月累，虽在繁星之中或难觉察，然内心感悟其温暖光辉，鼓舞前行。
 > 如此微薄，唯愿勉己，追求卓越。
 
 <details><summary><a href="https://www.cahe.edu.cn/site/content/16011.html" target="_blank">高等教育学会学科竞赛榜单</a> 赛事月份表</summary>
 
-| 月份 | 赛事 |
-| :-:  | :-: |
-| 4月  | [蓝桥杯](https://dasai.lanqiao.cn/)   |
-| 4月  | 传智杯国赛   |
+| 月份 | 赛事 | 国赛时间 |
+| :-:  | :-: | :-: |
+| 4月  | [蓝桥杯](https://dasai.lanqiao.cn/)   | 6月
 | 4月  | [天梯赛](https://gplt.patest.cn/notification)   |
-| 6月  | 蓝桥杯国赛   |
-| 7月  | [睿抗](https://www.robocom.com.cn/index.html)     |
-| 8月  | 睿抗国赛     |
-| 8月  | [百度之星](https://www.matiji.net/exam/contest/index) |
-| 9月  | [码题杯](https://www.matiji.net/exam/contest/index)   |
+| 7月  | [CCF - CAT](https://ccf.org.cn/catnaec2023) | 7月
+| 7月  | [睿抗](https://www.robocom.com.cn/index.html)     | 8 月
+| 8月  | [百度之星](https://www.matiji.net/exam/contest/index) | 12月
+| 9月  | [码题杯](https://www.matiji.net/exam/contest/index)   | 12月
 | 12月 | [ccsp](https://www.ccf.org.cn/ccsp/)    |
-| 12月 | [传智杯](http://dasai.ityxb.com/)   |
+| 12月 | [传智杯](http://dasai.ityxb.com/)   | 次年4月
 
 </details>
 
