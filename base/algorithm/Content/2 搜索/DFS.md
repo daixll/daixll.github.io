@@ -508,3 +508,136 @@ int main(){
 ## 一般DFS
 
 
+<details><summary><a href="https://www.luogu.com.cn/problem/P2392" target="_blank">Luogu P2392 kkksc03考前临时抱佛脚</a> code</summary>
+
+
+kkk 需要做 $4$ 科习题集
+$A$ 科共有 $s_1$ 道题目，每道题目的消耗时间分别是 $A_1, A_2, A_3, ..., A_{s_1}$
+$B$ 科共有 $s_2$ 道题目，每道题目的消耗时间分别是 $B_1, B_2, B_3, ..., B_{s_2}$
+$C$ 科共有 $s_3$ 道题目，每道题目的消耗时间分别是 $C_1, C_2, C_3, ..., C_{s_3}$
+$D$ 科共有 $s_4$ 道题目，每道题目的消耗时间分别是 $D_1, D_2, D_3, ..., D_{s_4}$
+
+- kkk 可以同时计算两道题目，kkk 必须一科一科的复习
+
+因此这个条件，**完成复习的最短时间 -> 完成每科的最短时间之和**
+
+具体的，我们现在需要解决，完成 $s_i$ 道题目花费的最短时间
+
+- 最短时间 $>=$  $\lceil 所有时间/2 \rceil$
+
+因此，我们不妨考虑 **做题时间的所有排列**，依次累加到 $res$
+
+当 $res >= \lceil 所有时间/2 \rceil$，$res$ 就是其中的一个可行解
+
+最小的 $res$ 就是最短时间
+
+```cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+const int N=30;
+
+int s[N], a[N], ans=0;
+
+int main(){
+    for(int i=1; i<=4; i++) scanf("%d", s+i);
+
+    for(int k=1; k<=4; k++){
+        int all = 0;
+        for(int j=1; j<=s[k]; j++) scanf("%d", a+j), all += a[j];
+        sort(a+1, a+1+s[k]);
+        
+        int res = 0x3f3f3f3f;
+        do{
+            int A=0;
+            // 在该顺序下, 最小时间花费
+            for(int j=1; j<=s[k]; j++){
+                A+=a[j];
+                if(A>=(all+1)/2 || A>res) break;
+            }
+            res = min(res, A);
+            if(A == (all+1)/2) break;
+        }while(next_permutation(a+1, a+1+s[k]));
+        
+        ans += res;
+    }
+
+    cout<<ans;
+    return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://www.luogu.com.cn/problem/P1019" target="_blank">Luogu P1019 [NOIP2000 提高组] 单词接龙</a> code</summary>
+
+给定一些单词，将单词连接起来
+
+此时有两个问题
+
+1. 对于单词 $a$ 和 $b$，$b$ 能否接到 $a$ 的后面
+    显然，我们只需要截取 $a$ 的后面 $i$ 位，$b$ 的前面 $i$ 位
+    如果截取的部分相同，且不等于 $a$ 和 $b$，那么 $b$ 就可以接到 $a$ 后面
+
+2. 对于单词 $a$ 和 $b$，接龙后是什么样子？
+    我们已经知道他们相同的部分，那么只需要用 **$a + b剩下的部分$** 就是连接后的串
+
+此时，我们只需要从第一个单词开始，看此单词能够与那些单词连接。然后是第二个单词...
+
+```cpp
+#include <cstring>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+const int N = 21;
+
+int n;
+string word[N];
+int g[N][N];
+int used[N];
+int ans;
+
+void dfs(string dragon, int last)
+{
+    ans = max((int)dragon.size(), ans);
+
+    used[last] ++ ;
+
+    for (int i = 0; i < n; i ++ )
+        if (g[last][i] && used[i] < 2)
+            dfs(dragon + word[i].substr(g[last][i]), i);
+
+    used[last] -- ;
+}
+
+int main()
+{
+    cin >> n;
+    for (int i = 0; i < n; i ++ ) cin >> word[i];
+    char start;
+    cin >> start;
+
+    for (int i = 0; i < n; i ++ )
+        for (int j = 0; j < n; j ++ )
+        {
+            string a = word[i], b = word[j];
+            for (int k = 1; k < min(a.size(), b.size()); k ++ )
+                if (a.substr(a.size() - k, k) == b.substr(0, k))
+                {
+                    g[i][j] = k;
+                    break;
+                }
+        }
+
+    for (int i = 0; i < n; i ++ )
+        if (word[i][0] == start)
+            dfs(word[i], i);
+
+    cout << ans << endl;
+
+    return 0;
+}
+```
+</details>
