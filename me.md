@@ -48,7 +48,12 @@ html:
 ### 省二 睿抗
 
 - `2023-7` `第五届？？？RAIP赛道 本科组` `省赛二等奖`
+[公示/排名](https://www.robocom.com.cn/match-topic.html?id=78)
 
+<figure class="half">
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/.jpg" height="200"> 
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/p/（省2）睿抗.png" height="200">
+</figure>
 
 ### 单项奖学金 (2)
 
