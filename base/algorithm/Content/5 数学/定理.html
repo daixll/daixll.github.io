@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:///c:\Users\jiao\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.6.8\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
       
       
       
@@ -396,7 +396,51 @@ pre[data-line] .line-highlight[data-end]:after {
 
 <h2 class="mume-header" id="%E5%A8%81%E5%B0%94%E9%80%8A%E5%AE%9A%E7%90%86">&#x5A01;&#x5C14;&#x900A;&#x5B9A;&#x7406;</h2>
 
+<h2 class="mume-header" id="emmm-%E5%85%B6%E4%BB%96">emmm &#x5176;&#x4ED6;</h2>
 
+<h3 class="mume-header" id="%E8%AE%A1%E7%AE%97-ab-%E7%9A%84%E5%9B%A0%E6%95%B0%E6%95%B0%E9%87%8F">&#x8BA1;&#x7B97; a*b &#x7684;&#x56E0;&#x6570;&#x6570;&#x91CF;</h3>
+
+<p>&#x5206;&#x522B;&#x8BA1;&#x7B97; a&#xFF0C;b &#x7684;&#x56E0;&#x6570;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8FD9;&#x4FE9;&#x7684;&#x56E0;&#x6570;&#x5168;&#x90E8;&#x4E58;&#x8D77;&#x6765;</p>
+<details><summary><a href="https://ac.nowcoder.com/acm/contest/61571/D" target="_blank">nk&#x6E38;&#x6E38;&#x7684;&#x56E0;&#x5B50;&#x8BA1;&#x7B97;</a> code</summary>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cmath&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;set&gt;</span></span>
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-long">long</span> <span class="token keyword keyword-long">long</span> LL<span class="token punctuation">;</span>
+<span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> N<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+set<span class="token operator">&lt;</span>LL<span class="token operator">&gt;</span> v1<span class="token punctuation">,</span> v2<span class="token punctuation">,</span> v3<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    LL a<span class="token punctuation">,</span> b<span class="token punctuation">;</span> cin<span class="token operator">&gt;&gt;</span>a<span class="token operator">&gt;&gt;</span>b<span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>a<span class="token operator">/</span>i<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>a<span class="token operator">%</span>i<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            v1<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>i<span class="token operator">*</span>i<span class="token operator">!=</span>a<span class="token punctuation">)</span>
+                v1<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>a<span class="token operator">/</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>b<span class="token operator">/</span>i<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>b<span class="token operator">%</span>i<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            v2<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>i<span class="token operator">*</span>i<span class="token operator">!=</span>b<span class="token punctuation">)</span>
+                v2<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>b<span class="token operator">/</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> i<span class="token operator">:</span> v1<span class="token punctuation">)</span>
+        <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> j<span class="token operator">:</span> v2<span class="token punctuation">)</span>
+            v3<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span> v3<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">,</span> v3<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>i<span class="token operator">*</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    cout<span class="token operator">&lt;&lt;</span>v3<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> i<span class="token operator">:</span> v3<span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span>i<span class="token operator">&lt;&lt;</span><span class="token string">&quot; &quot;</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></details>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
@@ -452,7 +496,20 @@ pre[data-line] .line-highlight[data-end]:after {
           <a href="#&#x5A01;&#x5C14;&#x900A;&#x5B9A;&#x7406;" class="md-toc-link">
             <p>&#x5A01;&#x5C14;&#x900A;&#x5B9A;&#x7406;</p>
 
+          </a></div><details style="padding:0;;padding-left:0px;" open>
+        <summary class="md-toc-link-wrapper">
+          <a href="#emmm-&#x5176;&#x4ED6;" class="md-toc-link"><p>emmm &#x5176;&#x4ED6;</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#&#x8BA1;&#x7B97;-ab-&#x7684;&#x56E0;&#x6570;&#x6570;&#x91CF;" class="md-toc-link">
+            <p>&#x8BA1;&#x7B97; a*b &#x7684;&#x56E0;&#x6570;&#x6570;&#x91CF;</p>
+
           </a></div>
+        </div>
+      </details>
+    
 </div>
 </div>
       <a id="sidebar-toc-btn">&#x2261;</a>
