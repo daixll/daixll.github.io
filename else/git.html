@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>index</title>
+      <title>git</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -261,45 +261,90 @@ pre[data-line] .line-highlight[data-end]:after {
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      <p>dxl &#x5B66;&#x4E60;&#x7B14;&#x8BB0;</p>
-<hr>
-<h1 class="mume-header" id="%E5%9F%BA%E7%A1%80">&#x57FA;&#x7840;</h1>
+      <p><a href="https://www.liaoxuefeng.com/wiki/896043488029600">&#x5ED6;&#x96EA;&#x5CF0;&#x7684;git&#x6559;&#x7A0B;</a></p>
+<h1 class="mume-header" id="%E8%AE%BE%E7%BD%AE%E5%90%8D%E5%AD%97%E5%92%8C%E9%82%AE%E7%AE%B1">&#x8BBE;&#x7F6E;&#x540D;&#x5B57;&#x548C;&#x90AE;&#x7BB1;</h1>
 
-<h6 class="mume-header" id="%E7%AE%97%E6%B3%95basealgorithmindexhtml"><a href="base\algorithm\index.html">&#x7B97;&#x6CD5;</a></h6>
+<p>&#x6B64;&#x64CD;&#x4F5C;&#x7684;&#x76EE;&#x7684;&#xFF0C;&#x662F;&#x4E3A;&#x4E86;&#x8FFD;&#x8E2A;&#x6BCF;&#x6B21;&#x64CD;&#x4F5C;&#xFF0C;&#x7A76;&#x7ADF;&#x662F;&#x8C01;&#x505A;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x4E00;&#x822C;&#x5C06;&#x5176;&#x5B58;&#x50A8;&#x5728; <code>config</code> &#x4E2D;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6709;&#x4E09;&#x4E2A;&#x7EA7;&#x522B;&#x3002;&#x6743;&#x91CD;&#x4ECE;&#x9AD8;&#x5230;&#x5E95;&#xFF0C;&#x4F9D;&#x6B21;&#x662F;&#x4ED3;&#x5E93; <code>local</code>&#x3001;&#x5168;&#x5C40; <code>global</code>&#x3001;&#x7CFB;&#x7EDF; <code>system</code>&#x3002;</p>
+<ol>
+<li>&#x4ED3;&#x5E93;&#x7EA7;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#xFF1A;&#x5F53;&#x524D;&#x4ED3;&#x5E93;&#x4E0B; <code>.git/config</code>&#x3002;&#x6B64;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x53EA;&#x5BF9; <strong>&#x5F53;&#x524D;&#x4ED3;&#x5E93;</strong> &#x6709;&#x6548;&#x3002;</li>
+<li>&#x5168;&#x5C40;&#x7EA7;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#xFF1A;<code>C:\Users\&#x7528;&#x6237;&#x540D;&#x5B57;\.gitconfig</code>&#x3002;&#x6B64;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5BF9; <strong>&#x5F53;&#x524D;&#x7528;&#x6237;</strong> &#x6709;&#x6548;&#x3002;</li>
+<li>&#x7CFB;&#x7EDF;&#x7EA7;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#xFF1A;<code>C:\Program Files\Git\etc\gitconfig</code>&#x3002;&#x6B64;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5BF9; <strong>&#x5168;&#x5C40;</strong> &#x6709;&#x6548;&#x3002;</li>
+</ol>
+<blockquote>
+<p>&#x8BBE;&#x7F6E;&#x540D;&#x5B57;&#x548C;&#x90AE;&#x7BB1;&#xFF1B;&#x540E;&#x7EED;&#x4FEE;&#x6539;&#x4E5F;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x6B64;&#x547D;&#x4EE4;&#x3002;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="shell" class="language-shell"><span class="token function">git</span> config --&#x7EA7;&#x522B; user.name <span class="token string">&quot;&#x540D;&#x5B57;&quot;</span>
+<span class="token function">git</span> config --&#x7EA7;&#x522B; user.email <span class="token string">&quot;&#x90AE;&#x7BB1;&quot;</span>
+</pre><blockquote>
+<p>&#x8BBE;&#x7F6E;&#x597D;&#x4E4B;&#x540E;&#x67E5;&#x770B;&#xFF1B;&#x5176;&#x4E2D; <code>--&#x7EA7;&#x522B;</code> &#x53EF;&#x4EE5;&#x7701;&#x7565;&#xFF0C;&#x4F1A;&#x663E;&#x793A;&#x6700;&#x7EC8;&#x4E09;&#x4E2A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x8BA1;&#x7B97;&#x540E;&#x7684;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#x3002;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="shell" class="language-shell"><span class="token function">git</span> config --&#x7EA7;&#x522B; -l
+</pre><h1 class="mume-header" id="%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%93%E5%BA%93">&#x521D;&#x59CB;&#x5316;&#x4ED3;&#x5E93;</h1>
 
-<h6 class="mume-header" id="%E6%89%A9%E5%B1%95408base408indexhtml"><a href="base\408\index.html">&#x6269;&#x5C55;408</a></h6>
+<blockquote>
+<p>&#x5C06;&#x76EE;&#x6807;&#x76EE;&#x5F55;&#x521D;&#x59CB;&#x5316;&#x6210; git &#x53EF;&#x4EE5;&#x7BA1;&#x7406;&#x7684;&#x4ED3;&#x5E93;&#xFF0C;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A; <code>.git</code> &#x76EE;&#x5F55;&#x3002;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="shell" class="language-shell"><span class="token function">git</span> init
+</pre><h1 class="mume-header" id="%E5%B0%86%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E7%A7%BB%E5%8A%A8%E5%88%B0%E6%9A%82%E5%AD%98%E5%8C%BA">&#x5C06;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x79FB;&#x52A8;&#x5230;&#x6682;&#x5B58;&#x533A;</h1>
 
-<h6 class="mume-header" id="%E8%AF%AD%E8%A8%80baselanguageindexhtml"><a href="base\language\index.html">&#x8BED;&#x8A00;</a></h6>
+<blockquote>
+<p>&#x5C06;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x79FB;&#x52A8;&#x5230;&#x6682;&#x5B58;&#x533A;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="shell" class="language-shell"><span class="token function">git</span> <span class="token function">add</span> &#x76EE;&#x6807;&#x6587;&#x4EF6;
+</pre><h1 class="mume-header" id="%E5%B0%86%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4%E6%9B%B4%E6%94%B9%E6%8F%90%E4%BA%A4%E5%88%B0%E5%BD%93%E5%89%8D%E5%88%86%E6%94%AF">&#x5C06;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x63D0;&#x4EA4;&#x66F4;&#x6539;&#xFF08;&#x63D0;&#x4EA4;&#x5230;&#x5F53;&#x524D;&#x5206;&#x652F;&#xFF09;</h1>
 
-<hr>
-<h1 class="mume-header" id="%E9%A1%B9%E7%9B%AE">&#x9879;&#x76EE;</h1>
+<blockquote>
+<p>&#x5C06;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x63D0;&#x4EA4;&#x66F4;&#x6539;&#xFF08;&#x63D0;&#x4EA4;&#x5230;&#x5F53;&#x524D;&#x5206;&#x652F;&#xFF09;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="shell" class="language-shell"><span class="token function">git</span> commit -m <span class="token string">&quot;&#x63D0;&#x4EA4;&#x8BF4;&#x660E;&quot;</span>
+</pre><h1 class="mume-header" id="%E5%B0%86%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93">&#x5C06;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x63D0;&#x4EA4;&#x5230;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</h1>
 
-<h6 class="mume-header" id="%E7%BD%91%E9%A1%B5%E6%9C%8D%E5%8A%A1%E5%99%A8httpsgithubcomdaixllwebserver"><a href="https://github.com/daixll/WebServer">&#x7F51;&#x9875;&#x670D;&#x52A1;&#x5668;</a></h6>
+<blockquote>
+<p>&#x521B;&#x5EFA;SSH Key&#xFF1B;&#x4F1A;&#x5728;&#x76EE;&#x5F55; <code>C:\Users\&#x7528;&#x6237;&#x540D;\.ssh</code> &#x4E2D;&#x751F;&#x6210; <code>id_rsa.pub</code> &#x6587;&#x4EF6;&#x3002;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">ssh-keygen -t rsa -C <span class="token string">&quot;&#x90AE;&#x7BB1;&quot;</span>
+</pre><blockquote>
+<p>&#x767B;&#x5F55; github&#xFF0C;&#x6253;&#x5F00;&#x8D26;&#x6237;&#x8BBE;&#x7F6E;&#xFF0C;&#x8FDB;&#x5165; <code>SSH Keys</code> &#x9875;&#x9762;&#xFF0C;&#x70B9;&#x51FB;<code>Add SSH key</code>&#xFF0C;title&#x586B;&#x662F;&#x8C01;&#x7684;&#x516C;&#x94A5;&#xFF0C;key&#x586B; <code>id_rsa.pub</code> &#x4E2D;&#x7684;&#x6240;&#x6709;&#x5185;&#x5BB9;&#xFF0C;&#x70B9;&#x51FB; Add Key &#x5B8C;&#x6210;&#x516C;&#x94A5;&#x6DFB;&#x52A0;&#x3002;</p>
+</blockquote>
+<blockquote>
+<p>&#x8BBE;&#x7F6E;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="shell" class="language-shell"><span class="token function">git</span> remote <span class="token function">add</span> origin &#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x5730;&#x5740;
+</pre><blockquote>
+<p>&#x63A8;&#x9001;&#xFF1B;-u&#x662F;&#x63A8;&#x9001;&#x5E76;&#x5173;&#x8054;&#x7684;&#x610F;&#x601D;&#xFF0C;&#x4EC5;&#x5728;&#x9996;&#x6B21;&#x63D0;&#x4EA4;&#x4F7F;&#x7528;</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="shell" class="language-shell"><span class="token function">git</span> push -u origin master
+</pre><h1 class="mume-header" id="%E5%B0%86%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%85%8B%E9%9A%86%E5%88%B0%E6%9C%AC%E5%9C%B0">&#x5C06;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x514B;&#x9686;&#x5230;&#x672C;&#x5730;</h1>
 
-<hr>
-<h1 class="mume-header" id="%E6%9D%82%E8%B0%88">&#x6742;&#x8C08;</h1>
-
-<h6 class="mume-header" id="git-%E4%BD%BF%E7%94%A8elsegithtml"><a href="else/git.html">git &#x4F7F;&#x7528;</a></h6>
-
-<h6 class="mume-header" id="ubuntu-%E9%85%8D%E7%BD%AEelseubuntu_serverhtml"><a href="else\ubuntu_server.html">Ubuntu &#x914D;&#x7F6E;</a></h6>
-
-<h6 class="mume-header" id="vscode-%E9%85%8D%E7%BD%AE">[vscode &#x914D;&#x7F6E;]</h6>
-
-
+<pre data-role="codeBlock" data-info="shell" class="language-shell"><span class="token function">git</span> clone &#x76EE;&#x6807;&#x5730;&#x5740;
+</pre>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#&#x57FA;&#x7840;" class="md-toc-link">
-            <p>&#x57FA;&#x7840;</p>
+          <a href="#&#x8BBE;&#x7F6E;&#x540D;&#x5B57;&#x548C;&#x90AE;&#x7BB1;" class="md-toc-link">
+            <p>&#x8BBE;&#x7F6E;&#x540D;&#x5B57;&#x548C;&#x90AE;&#x7BB1;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#&#x9879;&#x76EE;" class="md-toc-link">
-            <p>&#x9879;&#x76EE;</p>
+          <a href="#&#x521D;&#x59CB;&#x5316;&#x4ED3;&#x5E93;" class="md-toc-link">
+            <p>&#x521D;&#x59CB;&#x5316;&#x4ED3;&#x5E93;</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#&#x6742;&#x8C08;" class="md-toc-link">
-            <p>&#x6742;&#x8C08;</p>
+          <a href="#&#x5C06;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x79FB;&#x52A8;&#x5230;&#x6682;&#x5B58;&#x533A;" class="md-toc-link">
+            <p>&#x5C06;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x79FB;&#x52A8;&#x5230;&#x6682;&#x5B58;&#x533A;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#&#x5C06;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x63D0;&#x4EA4;&#x66F4;&#x6539;&#x63D0;&#x4EA4;&#x5230;&#x5F53;&#x524D;&#x5206;&#x652F;" class="md-toc-link">
+            <p>&#x5C06;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x63D0;&#x4EA4;&#x66F4;&#x6539;&#xFF08;&#x63D0;&#x4EA4;&#x5230;&#x5F53;&#x524D;&#x5206;&#x652F;&#xFF09;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#&#x5C06;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x63D0;&#x4EA4;&#x5230;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;" class="md-toc-link">
+            <p>&#x5C06;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x63D0;&#x4EA4;&#x5230;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#&#x5C06;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x514B;&#x9686;&#x5230;&#x672C;&#x5730;" class="md-toc-link">
+            <p>&#x5C06;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;&#x514B;&#x9686;&#x5230;&#x672C;&#x5730;</p>
 
           </a></div>
 </div>
@@ -314,7 +359,7 @@ pre[data-line] .line-highlight[data-end]:after {
     
     
 <script>
-
+document.body.setAttribute('html-show-sidebar-toc', true)
 var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
 sidebarTOCBtn.addEventListener('click', function(event) {
   event.stopPropagation()

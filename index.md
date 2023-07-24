@@ -17,5 +17,6 @@ ___
 ___
 
 # 杂谈
+###### [git 使用](else/git.html)
 ###### [Ubuntu 配置](/else/ubuntu_server.html)
 ###### [vscode 配置]
