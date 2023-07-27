@@ -60,8 +60,8 @@ html:
 - `2023-7` `重庆工业职业技术学院单项奖学金` `$ 150+100`
 
 <figure class="half">
-    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）150(23).jpg" height="200"> 
-    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）100.jpg" height="200">
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）150（23）.jpg" height="200"> 
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）100（23）.jpg" height="200">
 </figure>
 
 ### 省级先进个人
