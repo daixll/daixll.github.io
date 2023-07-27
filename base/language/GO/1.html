@@ -565,6 +565,48 @@ fmt<span class="token punctuation">.</span><span class="token function">Println<
 </ul>
 <h2 class="mume-header" id="11-json%E5%A4%84%E7%90%86">11 JSON&#x5904;&#x7406;</h2>
 
+<ul>
+<li>
+<p>&#x7ED3;&#x6784;&#x4F53; -&gt; json</p>
+<ol>
+<li>u &#x4E00;&#x4E2A;&#x5E26;&#x5185;&#x5BB9;&#x7ED3;&#x6784;&#x4F53;</li>
+</ol>
+<pre data-role="codeBlock" data-info="Go" class="language-go">u <span class="token operator">:=</span> <span class="token operator">&amp;</span>T<span class="token punctuation">{</span>
+  <span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</pre><ol start="2">
+<li>&#x7ED3;&#x6784;&#x4F53;(u) -&gt; json(uJson)</li>
+</ol>
+<pre data-role="codeBlock" data-info="Go" class="language-go">uJson<span class="token punctuation">,</span> err <span class="token operator">:=</span> json<span class="token punctuation">.</span><span class="token function">Marshal</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span> <span class="token comment">// &#x8F6C;&#x6362;</span>
+<span class="token keyword keyword-if">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9519;&#x8BEF;&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre><ol start="3">
+<li>&#x8F93;&#x51FA;</li>
+</ol>
+<pre data-role="codeBlock" data-info="Go" class="language-go">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>uJson<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// &#x8F93;&#x51FA;&#x9700;&#x8981; string()</span>
+</pre></li>
+<li>
+<p>json -&gt; &#x7ED3;&#x6784;&#x4F53;</p>
+<ol>
+<li>nu &#x4E00;&#x4E2A;&#x7A7A;&#x7684;&#x7ED3;&#x6784;&#x4F53;</li>
+</ol>
+<pre data-role="codeBlock" data-info="Go" class="language-go">nu <span class="token operator">:=</span> <span class="token operator">&amp;</span>T<span class="token punctuation">{</span><span class="token punctuation">}</span>
+</pre><ol start="2">
+<li>json(uJson) -&gt; &#x7ED3;&#x6784;&#x4F53;(nu)</li>
+</ol>
+<pre data-role="codeBlock" data-info="Go" class="language-go">err2 <span class="token operator">:=</span> json<span class="token punctuation">.</span><span class="token function">Unmarshal</span><span class="token punctuation">(</span>uJson<span class="token punctuation">,</span> nu<span class="token punctuation">)</span>
+<span class="token keyword keyword-if">if</span> err2 <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+  fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;&#x9519;&#x8BEF;&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre><ol>
+<li>&#x8F93;&#x51FA;</li>
+</ol>
+<pre data-role="codeBlock" data-info="Go" class="language-go">fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>nu<span class="token punctuation">)</span>
+</pre></li>
+</ul>
 <h2 class="mume-header" id="12-%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86">12 &#x65F6;&#x95F4;&#x5904;&#x7406;</h2>
 
 <h2 class="mume-header" id="13-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86">13 &#x9519;&#x8BEF;&#x5904;&#x7406;</h2>
