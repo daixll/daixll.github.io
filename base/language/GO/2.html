@@ -261,9 +261,153 @@ pre[data-line] .line-highlight[data-end]:after {
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      
+      <h1 class="mume-header" id="goroutine-%E5%92%8C-channel-%E5%AE%9E%E4%BE%8B">goroutine &#x548C; channel &#x5B9E;&#x4F8B;</h1>
+
+<p>A &#x7EBF;&#x7A0B;&#x534F;&#x7A0B; 0~9 &#x4E2A;&#x6570;&#x5B57;</p>
+<p>B &#x7EBF;&#x7A0B;&#x534F;&#x7A0B; &#x8BA1;&#x7B97; &#x63A5;&#x53D7;&#x5230;&#x7684;&#x6570;&#x5B57; &#x7684;&#x5E73;&#x65B9;</p>
+<p>&#x4E3B;&#x51FD;&#x6570;&#x8F93;&#x51FA; B &#x534F;&#x7A0B;&#x8BA1;&#x7B97;&#x7684;</p>
+<pre data-role="codeBlock" data-info="Go" class="language-go"><span class="token keyword keyword-package">package</span> main
+
+<span class="token keyword keyword-import">import</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;fmt&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword keyword-func">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    src <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword keyword-chan">chan</span> <span class="token builtin">int</span><span class="token punctuation">)</span>      <span class="token comment">// &#x65E0;&#x7F13;&#x51B2;&#x901A;&#x9053;</span>
+    dest <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword keyword-chan">chan</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token comment">// &#x6709;&#x7F13;&#x51B2;&#x901A;&#x9053;</span>
+    <span class="token keyword keyword-go">go</span> <span class="token keyword keyword-func">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// A</span>
+        <span class="token keyword keyword-defer">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>src<span class="token punctuation">)</span>
+        <span class="token keyword keyword-for">for</span> i <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+            src <span class="token operator">&lt;-</span> i
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-go">go</span> <span class="token keyword keyword-func">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// B</span>
+        <span class="token keyword keyword-defer">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>dest<span class="token punctuation">)</span>
+        <span class="token keyword keyword-for">for</span> i <span class="token operator">:=</span> <span class="token keyword keyword-range">range</span> src <span class="token punctuation">{</span>
+            dest <span class="token operator">&lt;-</span> i <span class="token operator">*</span> i
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-for">for</span> i <span class="token operator">:=</span> <span class="token keyword keyword-range">range</span> dest <span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre><ul>
+<li>
+<p>&#x65E0;&#x7F13;&#x51B2;&#x901A;&#x9053;<br>
+&#x53D1;&#x9001;&#x65B9;&#x548C;&#x63A5;&#x6536;&#x65B9;&#xFF0C;&#x5FC5;&#x987B;&#x540C;&#x65F6;&#x53D1;&#x9001;&#x548C;&#x63A5;&#x53D7;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x540C;&#x6B65;</p>
+</li>
+<li>
+<p>&#x6709;&#x7F13;&#x51B2;&#x901A;&#x9053;<br>
+&#x53D1;&#x9001;&#x65B9;&#x53EF;&#x4EE5;&#x5148;&#x5C06;&#x4E1C;&#x897F;&#x653E;&#x5230;&#x901A;&#x9053;&#xFF0C;&#x63A5;&#x6536;&#x65B9;&#x9700;&#x8981;&#x4E86;&#x5C31;&#x4ECE;&#x901A;&#x9053;&#x62FF;</p>
+</li>
+</ul>
+<h1 class="mume-header" id="lock-%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8">lock &#x5E76;&#x53D1;&#x5B89;&#x5168;</h1>
+
+<pre data-role="codeBlock" data-info="Go" class="language-go"><span class="token keyword keyword-package">package</span> main
+
+<span class="token keyword keyword-import">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;fmt&quot;</span>
+	<span class="token string">&quot;sync&quot;</span>
+	<span class="token string">&quot;time&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword keyword-var">var</span> <span class="token punctuation">(</span>
+	x    <span class="token builtin">int64</span>
+	lock sync<span class="token punctuation">.</span>Mutex
+<span class="token punctuation">)</span>
+
+<span class="token keyword keyword-func">func</span> <span class="token function">addWithlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword keyword-for">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">2e3</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		lock<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+		x <span class="token operator">+=</span> <span class="token number">1</span>
+		lock<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-func">func</span> <span class="token function">addWithoutlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword keyword-for">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">2e3</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		x <span class="token operator">+=</span> <span class="token number">1</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-func">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+	x <span class="token operator">=</span> <span class="token number">0</span>
+	<span class="token keyword keyword-for">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-go">go</span> <span class="token function">addWithoutlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// &#x65E0;&#x9501;&#x52A0;&#x6CD5;</span>
+	<span class="token punctuation">}</span>
+	time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;&#x65E0;&#x9501;&#xFF1A;&quot;</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span>
+
+	x <span class="token operator">=</span> <span class="token number">0</span>
+	<span class="token keyword keyword-for">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-go">go</span> <span class="token function">addWithlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// &#x6709;&#x9501;&#x52A0;&#x6CD5;</span>
+	<span class="token punctuation">}</span>
+	time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;&#x6709;&#x9501;&#xFF1A;&quot;</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre><blockquote>
+<p>&#x8F93;&#x51FA;&#xFF1A;</p>
+</blockquote>
+<pre class="language-text">&#x65E0;&#x9501;&#xFF1A;9767
+&#x6709;&#x9501;&#xFF1A;10000
+</pre>
+<p>&#x5728;&#x4E0D;&#x52A0;&#x9501;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;x &#x88AB;5&#x4E2A;&#x534F;&#x7A0B;&#x540C;&#x65F6;&#x8BBF;&#x95EE;&#xFF0C;&#x67D0;&#x4E9B;+1&#x52A0;&#x5728;&#x4E86;&#x9519;&#x8BEF;&#x7684; x &#x4E0A;&#x9762;<br>
+&#x56E0;&#x6B64;&#xFF0C;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x9700;&#x8981;&#x7279;&#x522B;&#x6CE8;&#x610F;&#x5E76;&#x53D1;&#x5B89;&#x5168;</p>
+<h1 class="mume-header" id="waitgroup-%E5%8D%8F%E7%A8%8B%E8%AE%A1%E6%95%B0%E5%99%A8">WaitGroup &#x534F;&#x7A0B;&#x8BA1;&#x6570;&#x5668;</h1>
+
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x534F;&#x7A0B;&#x8BA1;&#x6570;&#x5668; <code>var wg sync.WaitGroup</code><br>
+&#x534F;&#x7A0B;&#x6570;&#x91CF;&#x589E;&#x52A0; 1 &#x4E2A; <code>wg.Add(1)</code><br>
+&#x534F;&#x7A0B;&#x6570;&#x91CF;&#x51CF;&#x5C11; 1 &#x4E2A; <code>wg.Done()</code><br>
+&#x7B49;&#x5F85;&#x534F;&#x7A0B;&#x6570;&#x91CF;&#x5F52;&#x96F6; <code>wg.Wait()</code></p>
+<pre data-role="codeBlock" data-info="Go" class="language-go"><span class="token keyword keyword-package">package</span> main
+
+<span class="token keyword keyword-import">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;fmt&quot;</span>
+	<span class="token string">&quot;sync&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword keyword-var">var</span> wg sync<span class="token punctuation">.</span>WaitGroup
+
+<span class="token keyword keyword-func">func</span> <span class="token function">hello</span><span class="token punctuation">(</span>i <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword keyword-defer">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// &#x5F53;&#x51FD;&#x6570;&#x7ED3;&#x675F;&#xFF0C;&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x534F;&#x7A0B;&#x7ED3;&#x675F;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-func">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword keyword-for">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-go">go</span> <span class="token function">hello</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+	wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// &#x7B49;&#x5F85;&#x534F;&#x7A0B;&#x5168;&#x90E8;&#x7ED3;&#x675F;</span>
+<span class="token punctuation">}</span>
+</pre><h1 class="mume-header" id="%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86">&#x4F9D;&#x8D56;&#x7BA1;&#x7406;</h1>
+
+
       </div>
-      <div class="md-sidebar-toc"></div>
+      <div class="md-sidebar-toc">
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#goroutine-&#x548C;-channel-&#x5B9E;&#x4F8B;" class="md-toc-link">
+            <p>goroutine &#x548C; channel &#x5B9E;&#x4F8B;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#lock-&#x5E76;&#x53D1;&#x5B89;&#x5168;" class="md-toc-link">
+            <p>lock &#x5E76;&#x53D1;&#x5B89;&#x5168;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#waitgroup-&#x534F;&#x7A0B;&#x8BA1;&#x6570;&#x5668;" class="md-toc-link">
+            <p>WaitGroup &#x534F;&#x7A0B;&#x8BA1;&#x6570;&#x5668;</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#&#x4F9D;&#x8D56;&#x7BA1;&#x7406;" class="md-toc-link">
+            <p>&#x4F9D;&#x8D56;&#x7BA1;&#x7406;</p>
+
+          </a></div>
+</div>
+</div>
       <a id="sidebar-toc-btn">&#x2261;</a>
     
     
