@@ -45,6 +45,13 @@ html:
     <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（金单项）xxx.jpg" height="200">
 </figure>
 
+### 工业和信息化人才岗位能力评价证书(中级)
+
+<figure class="half">
+    <img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/（证）工信部人才（中级）.jpg" height="200">
+</figure>
+
+
 ### 省二 睿抗
 
 - `2023-7` `第五届？？？RAIP赛道 本科组` `省赛二等奖`
