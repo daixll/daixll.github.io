@@ -557,6 +557,23 @@ node<span class="token operator">*</span> <span class="token function">dfs</span
 </details>
 <h2 class="mume-header" id="%E5%89%8D%E5%BA%8F%E5%90%8E%E5%BA%8F%E6%9E%84%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91">&#x524D;&#x5E8F;+&#x540E;&#x5E8F;&#x6784;&#x5EFA;&#x4E8C;&#x53C9;&#x6811;</h2>
 
+<details><summary><a href="https://www.luogu.com.cn/problem/P1229" target="_blank">Luogu P1229 &#x904D;&#x5386;&#x95EE;&#x9898;</a> code</summary>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm&gt;</span></span>
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> N<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-long">long</span> <span class="token keyword keyword-long">long</span> ans<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    string a<span class="token punctuation">,</span> b<span class="token punctuation">;</span> cin<span class="token operator">&gt;&gt;</span>a<span class="token operator">&gt;&gt;</span>b<span class="token punctuation">;</span> <span class="token function">reverse</span><span class="token punctuation">(</span>b<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> b<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token operator">&lt;</span>a<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span> b<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> string<span class="token double-colon punctuation">::</span>npos <span class="token punctuation">)</span> ans<span class="token operator">++</span><span class="token punctuation">;</span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>ans<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></details>
 <h2 class="mume-header" id="%E5%89%8D%E5%BA%8F%E6%9E%84%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91">&#x524D;&#x5E8F;&#x6784;&#x5EFA;&#x4E8C;&#x53C9;&#x6811;</h2>
 
 <details><summary><a href="https://www.acwing.com/problem/content/3387/" target="_blank">AcWing 3384. &#x4E8C;&#x53C9;&#x6811;&#x904D;&#x5386;</a> ttt</summary> 
