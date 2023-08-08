@@ -736,38 +736,55 @@ int main(){
 
 <details><summary><a href="https://www.acwing.com/problem/content/description/4265/" target="_blank">AcWing 4262. 空调</a> code</summary> 
 
->
->
+<br>
+
+**大意**
+
+给定两个长度为 $n$ 的数组，$p$ 与 $t$。
+我们可以对 $t$ 执行一次操作，使得区间 $[i, j]$ 中的所有数 $+1$ 或者 $-1$。
+最终使得数组 $t=p$，求最少的操作次数。
+
+**思路**
+
+1. 为了使得 $t=p$，对于第 $i$ 位而言，$t_i$ 只需要加上 $p_i-t_i$。
+    $t_i+p_i-t_i=p_i$。
+    因此，我们可以处理出来一个数组 $c$，其中 $c_i=p_i-t_i$。
+
+现在的问题：将 $c$ 数组，操作成一个全 $0$ 的数组，求最少的操作次数。
+
+2. 每次是对区间进行操作，因此，不妨对数组做一次差分，然后再考虑。
+   分析一下样例，下面是已经求完差分后的数组 $c$。
+   `2 0 -2 3 0` $->$ `0 0 0 3 0`：将第 $1$ 位 $-2$，第 $3$ 位 $+2$，操作 $2$ 次。
+   `0 0 0 3 0` $->$ `0 0 0 0 0`：将第 $4$ 位 $-3$, 第 $6$ 位 $+3$，操作 $3$ 次。
+    可以发现，差分后的数组，加减是对应的：如果我某一位加了 $6$，后面必然会减去 $6$。
+
+因此，我们统计我们加的次数 $a$，和减的次数 $b$。
+如果 $a=b$      操作次数是 $a$ 或 $b$。
+如果 $a \neq b$ 操作次数是 $max(a, b)$。
+
 
 ```cpp
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
-const int N=1e5+10;
+const int N=2e5+10;
 
-// 现在的温度 希望的温度
-int P[N], T[N];
+int n;
+int p[N], t[N], c[N];
 
 int main(){
-    int n;
     cin>>n;
-    for(int i=1; i<=n; i++) scanf("%d", &P[i]);
-    for(int i=1, t; i<=n; i++) scanf("%d", &t), P[i]-=t;
-    
-    for(int i=n; i>1; i--) P[i]-=P[i-1];
+    for(int i=1; i<=n; i++) scanf("%d", p+i);
+    for(int i=1; i<=n; i++) scanf("%d", t+i);
+    for(int i=1; i<=n; i++) c[i] = p[i] - t[i];
+    for(int i=n; i>1; i--) c[i] = c[i] - c[i-1];
     
     int a=0, b=0;
-    
-    for(int i=1; i<=n; i++) {
-        
-        if( P[i]>=0 ) a+=P[i];
-        else b-=P[i];
-    
-    }
-    
+    for(int i=1; i<=n; i++)
+        if(c[i]>0) a+=c[i];
+        else b+=abs(c[i]);
+
     cout<<max(a, b);
-    
     return 0;
 }
 ```
@@ -777,8 +794,34 @@ int main(){
 
 <details><summary><a href="https://www.acwing.com/problem/content/4266/" target="_blank">AcWing 4263. 走路回家</a> code</summary> 
 
->
->
+<br>
+
+**大意**
+
+给定一个 $n \times n$ 大小的矩阵 $g$，对于每个点 $g[i][j]$，
+有两种状态，可以到达和不可到达。
+我们需要从 $(1,1)$ 点走到 $(n,n)$ 点，只能向下或者向右走，且转向次数 $\leq k$。
+求到达 $(n,n)$ 点的方案次数。
+
+**思路**
+
+1.  我们先考虑，在转向次数不受限的情况下，走到 $(n,n)$ 点的方案数量。
+    定义一个 $dp[i][j]$，代表到达 $(i,j)$ 点的方案数量。因此，有：
+
+$$ dp[i][j] = dp[i-1][j] + dp[i][j-1] $$
+
+2.  我们在此基础上，统计一下，到达 $(i,j)$ 的转向次数。
+    显然，是不行的。因为不同方案到达 $(i,j)$ 的转向次数可能不同。
+    顺着此思路继续考虑，我们是否可以统计，转向 $1,2,\cdots,k$ 次，到达 $(i,j)$ 的方案数量。
+    很容易想到，定义一个 $dp[i][j][k]$，即到达 $(i,j)$ 点，转向 $k$ 次的方案数量。
+
+只剩一个问题，如何判断，当前是否转向？
+
+3.  在本题中，转向被定义为：
+    * $(i,j-1) -> (i,j)$，$(i,j) -> (i+1,j)$
+    * $(i-1,j) -> (i,j)$，$(i,j) -> (i,j+1)$
+    因此，我们可以增加一个状态，康康 $(i,j)$ 是从上面来的，还是从左边来的。
+    定义一个 $dp[i][j][k][op]$
 
 ```cpp
 #include <iostream>
@@ -790,7 +833,6 @@ const int N=55;
 int n, kk, ans;
 string s;
 int g[N][N], dp[N][N][5][2];
-
 
 void solve(){
     cin>>n>>kk;
@@ -807,23 +849,22 @@ void solve(){
     dp[1][1][0][0]=1; // 向右
     dp[1][1][0][1]=1; // 向下
 
-    for(int i=1; i<=n; i++)
+    for(int i=1; i<=n; i++)             // 枚举所有的点
         for(int j=1; j<=n; j++){
-            if(i==1 &&  j==1) continue;
-            if(g[i][j]) continue;
+            if(i==1 && j==1) continue;  // 忽略 (1,1)
+            if(g[i][j]) continue;       // 如果不能到达
             
-            for(int k=0; k<=kk; k++){
-                if ((i == 1 || j == 1) && k > 0) continue;  
-                    dp[i][j][k][0] = dp[i - 1][j][k][0];
-                    dp[i][j][k][1] = dp[i][j - 1][k][1];
-                    if (k > 0)  //  可以允许上一步到这一步存在变向
-                        dp[i][j][k][0] += dp[i - 1][j][k - 1][1],
-                        dp[i][j][k][1] += dp[i][j - 1][k - 1][0];
+            for(int k=0; k<=kk; k++){   // 枚举所有的转向次数
+                if ((i == 1 || j == 1) && k != 0) continue; // 初始化第一行第一列
+                    dp[i][j][k][0] = dp[i][j-1][k][0];      // 继续向右
+                    dp[i][j][k][1] = dp[i-1][j][k][1];      // 继续向下
+                    if (k > 0)  // 允许上一步到这一步变向
+                        dp[i][j][k][0] += dp[i][j-1][k - 1][1],   // 本来是向下的，现在向右走
+                        dp[i][j][k][1] += dp[i-1][j][k - 1][0];   // 本来是向右的，现在向下走
             }
-
         }
 
-    for (int k = 1; k <= kk; k ++ ) 
+    for (int k = 0; k <= kk; k ++ ) 
         ans += dp[n][n][k][0] + dp[n][n][k][1];
         
     printf("%d\n", ans);
