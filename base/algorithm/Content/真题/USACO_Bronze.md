@@ -892,62 +892,50 @@ int main(){
 
 <details><summary><a href="https://www.acwing.com/problem/content/3748/" target="_blank">AcWing 3745. 牛的学术圈 I</a> code</summary>
 
+<br>
+
+**大意**
+
+给定一个数组 $c$，$c_i$ 是每篇文章被引用的次数。
+我们可以使其中任意 $\leq L$ 篇文章引用次数 $+1$。
+学术成就定义为 $h$：存在 $h$ 篇论文，引用次数 $\geq h$。
+求最大的 $h$。
+
+**思路**
+
+1.  在不考虑 $L$ 的情况下，如果将文章引用次数按照降序排序，
+    如果 $c[i] \geq i$，那么 $i$ 就是一个合法的 $H$，观察样例 `100 3 2 1`：
+    * $c[1]$：存在 $1$ 篇论文，引用次数 $\geq 1$：`100`。
+    * $c[2]$：存在 $2$ 篇论文，引用次数 $\geq 2$：`100 3`。
+    * $c[3]$：不存在 $3$ 篇论文，引用次数 $\geq 3$：`100 3 2`。
+
+2.  这个数组可以分为两部分，左边部分是合法，右边部分是不合法，
+    显然，我们引用合法的论文，是不会增加我们的 $h$，
+    我们需要将不合法论文中，较大的进行引用。
+
 ```cpp
 #include <iostream>
 #include <algorithm>
 using namespace std;
 
-const int N=1e5+10;
+const int N=2e5+10;
 
-// 每篇文章引用的次数
-int arr[N];
-int used[N]; // 每个数的出现次数
+int a[N];
+int n, l;
 
 int main(){
-    int n, l;
-    // n篇论文 引用l次
     cin>>n>>l;
+    for(int i=1; i<=n; i++) scanf("%d", a+i);
     
-    for(int i=1; i<=n; i++) scanf("%d", &arr[i]);
+    sort(a+1, a+1+n, greater());    // 从大到小排
+    int i=1;
+    while(a[i]>=i && i<=n-l) i++;   // 走过合法部分，同时后面必须留够 l 个
+    for(int j=0; j<l; j++) a[i+j]++;// 引用选定的 l 个
     
-    sort(arr+1, arr+n+1, greater<int>() );
-    
-    // 每个数用了多少次
-    // for(int i=1; i<=n; i++) used[ arr[i] ]++;
-    
-    /*
-    for(int i=1; i<=n; i++) printf("%2d ", i);
-    puts("");
-    for(int i=1; i<=n; i++) cout<<arr[i]<<" ";
-    puts("");
-    */
-    
-    for(int i=1; i<=n; i++)
-        if(i > arr[i]){  // 这里在原本合法的后面一位，从这一位开始+
-            for(int j=i; j && l ; j--, l--) arr[j]++; // 引用 
-            break;
-        }
-        else if(n==i)
-            for(int j=i; j && l ; j--, l--) arr[j]++; // 引用
-        
-    
-    sort(arr+1, arr+n+1, greater<int>() );
-    
-    /*
-    for(int i=1; i<=n; i++) printf("%2d ", i);
-    puts("");
-    for(int i=1; i<=n; i++) cout<<arr[i]<<" ";
-    puts("");
-    */
-        
-    for(int i=1; i<=n; i++) 
-        if(i>arr[i]){
-            cout<<i-1;
-            break;
-        }
-        else if(n==i)
-            cout<<i;
-        
+    sort(a+1, a+1+n, greater());    
+    i=1;                            
+    while(a[i]>=i && i<=n) i++;     // 找到第一个不合法的地儿
+    cout<<i-1;
     return 0;
 }
 ```
@@ -955,61 +943,69 @@ int main(){
 
 <details><summary><a href="https://www.acwing.com/problem/content/3749/" target="_blank">AcWing 3746. 牛的学术圈 II</a> code</summary>
 
+<br>
+
+**大意**
+
+给定 $k$ 行，每行 $n$ 个字符串。
+$n$ 个字符串按照贡献从大到小，字典序从小到大给出。
+规定，贡献越小，资历越大。
+对于任意两个字符串，我们需要判断谁的资历更高，或者说无法判断。
+
+**思路**
+
+1.  对于一行字符串 $s[n]$，如果存在 $s_i > s_j (i<j)$，
+    则可以断定 $s_i$ 的贡献大于 $s_j$。
+    进而得出：$[1,i]$ 的贡献都大于 $[j,n]$。
+
+2.  为了找出所有的关系，我们枚举 $j$，
+    在 $[1,j)$ 范围中，找到 $s_i > s_j$：$[1,i]$ 的贡献都大于 $j$。
+
 ```cpp
 #include <iostream>
-#include <cstring>
 #include <map>
+#include <cstring>
 using namespace std;
 
-const int N = 105;
+const int N=110;
 
-int res[N][N];  // 最终的结果
-string a[N];    // 人
+int g[N][N];
+map<string, int> tr;
 int k, n;
-
-map<string, int> p; // 通过人名定位
 
 int main(){
     cin>>k>>n;
     for(int i=1; i<=n; i++){
-        string _; cin>>_;
-        p[_] = i;
+        string t; cin>>t;
+        tr[t] = i;  // t 是第 i 名成员
     }
-    
-    for(int _=1; _<=k; _++){
-        for(int i=1; i<=n; i++) cin>>a[i];
-        
-        for(int i=1; i<=n; i++){
-            bool flg=0;
-            for(int j=i+1; j<=n; j++)
-                if(a[j-1] > a[j] || flg){   // 一旦出现, 前者和后者, 非字典序了
-                    res[p[a[j]]][p[a[i]]] = 1,
-                    res[p[a[i]]][p[a[j]]] = -1;
-                    flg=1;
-                }
+    for(int l=1; l<=k; l++){
+        string s[N];
+        int flg=1;
+        for(int j=1; j<=n; j++){
+            cin>>s[j];
+            if(s[j-1] > s[j]) flg=j;            // 当找到一个地方 s[i] > s[j]
+            for(int i=1; i<flg; i++)            // [1-i]的贡献均大于 j
+                g[ tr[s[i]] ][ tr[s[j]] ] = 1,
+                g[ tr[s[j]] ][ tr[s[i]] ] = -1;   
         }
     }
-    
-    
+
     for(int i=1; i<=n; i++, cout<<"\n")
-        for(int j=1; j<=n; j++){
-            if(i==j){
-                cout<<"B";
-                continue;
+        for(int j=1; j<=n; j++)
+            if(i==j) cout<<"B";
+            else{
+                if(g[i][j] == 1) cout<<"0";
+                if(g[i][j] == -1) cout<<"1";
+                if(g[i][j] == 0) cout<<"?";
             }
-            if(res[i][j] == 1)
-                cout<<1;
-            if(res[i][j] == -1)
-                cout<<0;
-            if(res[i][j] == 0) 
-                cout<<"?";
-        }    
+
     return 0;
 }
 ```
 </details>
 
-<details><summary><a href="https://www.acwing.com/problem/content/3750/" target="_blank">AcWing 3747. 牛的学术圈 III</a> code</summary>
+<1details><summary><a href="https://www.acwing.com/problem/content/3750/" target="_blank">AcWing 3747. 牛的学术圈 III</a> code</summary>
 
 ```cpp
 #define fst first
