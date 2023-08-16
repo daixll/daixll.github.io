@@ -1094,7 +1094,33 @@ map<span class="token operator">&lt;</span>string<span class="token punctuation"
     <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </pre></details>
-<p>&lt;1details&gt;</p><summary><a href="https://www.acwing.com/problem/content/3750/" target="_blank">AcWing 3747. &#x725B;&#x7684;&#x5B66;&#x672F;&#x5708; III</a> code</summary><p></p>
+<details><summary><a href="https://www.acwing.com/problem/content/3750/" target="_blank">AcWing 3747. &#x725B;&#x7684;&#x5B66;&#x672F;&#x5708; III</a> code</summary>
+<br>
+<p><strong>&#x5927;&#x610F;</strong></p>
+<p>&#x7ED9;&#x5B9A;&#x4E00;&#x4E2A; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> &#x884C;&#xFF0C;<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span> &#x5217;&#x7684;&#x77E9;&#x9635; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span></span></span></span>&#x3002;<br>
+&#x5BF9;&#x4E8E; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">g[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span>&#xFF0C;&#x6709;&#x4E09;&#x79CD;&#x72B6;&#x6001;&#xFF1A;<code>C</code> <code>G</code> <code>.</code>&#x3002;<br>
+&#x5BF9;&#x4E8E; <code>G</code> &#x800C;&#x8A00;&#xFF0C;&#x5176;&#x4E0A;&#x4E0B;&#x5DE6;&#x53F3;&#x56DB;&#x4E2A;&#x4F4D;&#x7F6E;&#x7684; <code>C</code> &#xFF0C;&#x53EF;&#x4EE5;&#x5728; <code>G</code> &#x5904;&#x5EFA;&#x7ACB;&#x5173;&#x7CFB;&#xFF0C;<br>
+&#x6BCF;&#x4E2A; <code>G</code> &#x53EA;&#x80FD;&#x4F7F;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x6C42;&#x5EFA;&#x7ACB;&#x4E0D;&#x91CD;&#x590D;&#x5173;&#x7CFB;&#x7684;&#x6700;&#x5927;&#x6570;&#x91CF;&#x3002;</p>
+<p><strong>&#x601D;&#x8DEF;</strong></p>
+<ol>
+<li>
+<p>&#x6BCF;&#x4E2A; <code>G</code> &#x53EA;&#x80FD;&#x4F7F;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x4ECE; <code>G</code> &#x7684;&#x89D2;&#x5EA6;&#x53BB;&#x8003;&#x8651;&#xFF0C;&#x679A;&#x4E3E; <code>G</code>&#xFF0C;<br>
+&#x540C;&#x65F6;&#x7EDF;&#x8BA1; <code>G</code> &#x7684;&#x56DB;&#x5468;&#x6709;&#x591A;&#x5C11; <code>C</code>&#xFF1A;<br>
+<code>C</code> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">&lt; 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>&#xFF1A;&#x4E0D;&#x4F1A;&#x5B58;&#x5728;&#x5173;&#x7CFB;&#xFF1B;<br>
+<code>C</code> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">= 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>&#xFF1A;&#x5B58;&#x5728;&#x4E00;&#x5BF9;&#x5173;&#x7CFB;&#xFF1B;<br>
+<code>C</code> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">&gt; 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>&#xFF1A;&#x5B58;&#x5728;&#x81F3;&#x5C11;&#x4E24;&#x5BF9;&#x5173;&#x7CFB;&#x3002;</p>
+</li>
+<li>
+<p>&#x6B64;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x8003;&#x8651;&#x4E00;&#x4E0B;&#xFF0C;&#x5173;&#x7CFB;&#x91CD;&#x590D;&#x5EFA;&#x7ACB;&#x7684;&#x60C5;&#x51B5;&#xFF1A;<br>
+<code>C1</code> <code>G1</code><br>
+<code>G2</code> <code>C2</code><br>
+&#x663E;&#x7136;&#xFF0C;&#x5F53;&#x51FA;&#x73B0;&#x7C7B;&#x4F3C;&#x4E0A;&#x9762;&#x7684;&#x6392;&#x5217;&#x65F6;&#xFF0C;<code>C1</code> &#x548C; <code>C2</code> &#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x5728; <code>G1</code>&#xFF0C;<code>G2</code> &#x5EFA;&#x7ACB;&#x5173;&#x7CFB;&#xFF0C;<br>
+&#x56E0;&#x6B64;&#xFF0C;&#x9700;&#x8981;&#x7EF4;&#x62A4;&#x4E00;&#x4E0B;&#x6BCF;&#x4E00;&#x5BF9;&#x5173;&#x7CFB;&#x3002;</p>
+</li>
+<li>
+<p>&#x5BF9;&#x4E8E;&#x4E24;&#x4E2A; <code>G</code>&#xFF0C;&#x4ED6;&#x4EEC;&#x6700;&#x591A;&#x53EA;&#x4F1A;&#x91CD;&#x590D;&#x4E00;&#x5BF9;&#x513F;&#x5173;&#x7CFB;&#x3002;</p>
+</li>
+</ol>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">fst</span> <span class="token expression">first</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">sed</span> <span class="token expression">second</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
@@ -1152,10 +1178,10 @@ set<span class="token operator">&lt;</span>pair<span class="token operator">&lt;
     
     <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre>
+</pre></details>
 <h2 class="mume-header" id="2021-feb">2021 Feb</h2>
 
-<details><summary><a href="https://www.acwing.com/problem/content/description/3373/" target="_blank">AcWing 3370. &#x725B;&#x5E74;</a> code</summary>
+<p>&lt;1details&gt;</p><summary><a href="https://www.acwing.com/problem/content/description/3373/" target="_blank">AcWing 3370. &#x725B;&#x5E74;</a> code</summary><p></p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unordered_map&gt;</span></span>
@@ -1223,7 +1249,7 @@ unordered_map<span class="token operator">&lt;</span>string<span class="token pu
     
     <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</pre></details>
+</pre>
 <details><summary><a href="https://www.acwing.com/problem/content/3374/" target="_blank">AcWing 3371. &#x8212;&#x9002;&#x7684;&#x5976;&#x725B;</a> code</summary>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">GCC <span class="token function">optimize</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> </span><span class="token string">&quot;inline&quot;</span><span class="token expression"><span class="token punctuation">,</span> </span><span class="token string">&quot;Ofast&quot;</span><span class="token expression"><span class="token punctuation">)</span></span></span>
 
@@ -1292,6 +1318,33 @@ unordered_map<span class="token operator">&lt;</span>string<span class="token pu
         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">&quot;%d\n&quot;</span><span class="token punctuation">,</span> ans<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></details>
+<details><summary><a href="https://www.acwing.com/problem/content/3375/" target="_blank">AcWing 3372. &#x987A;&#x65F6;&#x9488;&#x56F4;&#x680F;</a> code</summary>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span> N<span class="token operator">=</span><span class="token number">2e5</span><span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">;</span>
+
+string <span class="token function">solve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> res<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    string s<span class="token punctuation">;</span> cin<span class="token operator">&gt;&gt;</span>s<span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> s<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            string t <span class="token operator">=</span> <span class="token function">string</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">string</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> s<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>t<span class="token operator">==</span><span class="token string">&quot;NE&quot;</span> <span class="token operator">||</span> t<span class="token operator">==</span><span class="token string">&quot;ES&quot;</span> <span class="token operator">||</span> t<span class="token operator">==</span><span class="token string">&quot;SW&quot;</span> <span class="token operator">||</span> t<span class="token operator">==</span><span class="token string">&quot;WN&quot;</span><span class="token punctuation">)</span> res<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-else">else</span> res<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>res<span class="token operator">&gt;</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword keyword-return">return</span> <span class="token string">&quot;CW&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token string">&quot;CCW&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> T<span class="token punctuation">;</span> cin<span class="token operator">&gt;&gt;</span>T<span class="token punctuation">;</span>
+    <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>T<span class="token operator">--</span><span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span><span class="token function">solve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token string">&quot;\n&quot;</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </pre></details>

@@ -1005,7 +1005,32 @@ int main(){
 ```
 </details>
 
-<1details><summary><a href="https://www.acwing.com/problem/content/3750/" target="_blank">AcWing 3747. 牛的学术圈 III</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/3750/" target="_blank">AcWing 3747. 牛的学术圈 III</a> code</summary>
+
+<br>
+
+**大意**
+
+给定一个 $N$ 行，$M$ 列的矩阵 $g$。
+对于 $g[i][j]$，有三种状态：`C` `G` `.`。
+对于 `G` 而言，其上下左右四个位置的 `C` ，可以在 `G` 处建立关系，
+每个 `G` 只能使用一次，求建立不重复关系的最大数量。
+
+**思路**
+
+1. 每个 `G` 只能使用一次，那么我们从 `G` 的角度去考虑，枚举 `G`，
+   同时统计 `G` 的四周有多少 `C`：
+   `C` $< 2$：不会存在关系；
+   `C` $= 2$：存在一对关系；
+   `C` $> 2$：存在至少两对关系。
+
+2. 此时，我们考虑一下，关系重复建立的情况：
+   `C1` `G1`
+   `G2` `C2`   
+   显然，当出现类似上面的排列时，`C1` 和 `C2` 可以同时在 `G1`，`G2` 建立关系，
+   因此，需要维护一下每一对关系。
+
+3. 对于两个 `G`，他们最多只会重复一对儿关系。
 
 ```cpp
 #define fst first
@@ -1070,7 +1095,7 @@ int main(){
 
 ## 2021 Feb
 
-<details><summary><a href="https://www.acwing.com/problem/content/description/3373/" target="_blank">AcWing 3370. 牛年</a> code</summary>
+<1details><summary><a href="https://www.acwing.com/problem/content/description/3373/" target="_blank">AcWing 3370. 牛年</a> code</summary>
 
 ```cpp
 #include <iostream>
@@ -1213,6 +1238,38 @@ int main(){
         printf("%d\n", ans);
     }
     
+    return 0;
+}
+```
+</details>
+
+
+<details><summary><a href="https://www.acwing.com/problem/content/3375/" target="_blank">AcWing 3372. 顺时针围栏</a> code</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+const int N=2e5+10;
+
+string solve(){
+    int res=0;
+    string s; cin>>s;
+    for(int i=0; i<s.size()-1; i++)
+        if(s[i] != s[i+1]){
+            string t = string(1, s[i]) + string(1, s[i+1]);
+            if(t=="NE" || t=="ES" || t=="SW" || t=="WN") res++;
+            else res--;
+        }
+
+    if(res>0) return "CW";
+    return "CCW";
+}
+
+int main(){
+    int T; cin>>T;
+    while(T--) cout<<solve()<<"\n";
     return 0;
 }
 ```

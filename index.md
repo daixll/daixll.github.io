@@ -12,11 +12,12 @@ ___
 # 项目
 
 
-###### [网页服务器](https://github.com/daixll/WebServer)
+###### [tiktok](https://github.com/daixll/tiktok)
+###### [网络库](https://github.com/daixll/WebServer)
 
 ___
 
 # 杂谈
-###### [git 使用](else/git.html)
-###### [Ubuntu 配置](/else/ubuntu_server.html)
-###### [vscode 配置]
+###### [Linux](/else/ubuntu_server.html)
+###### [git](else/git.html)
+###### [docker](else/docker.html)
