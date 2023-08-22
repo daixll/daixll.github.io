@@ -19,10 +19,6 @@ html:
  sudo sh test-docker.sh
 ```
 
-
-haha
-
-
 # 镜像
 
 下载镜像

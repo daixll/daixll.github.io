@@ -3,9 +3,9 @@ ___
 
 # 基础 
 
-###### [算法](/base/algorithm/index.html) 
-###### [扩展408](/base/408/index.html)
-###### [语言](/base/language/index.html)
+###### [算法](base/algorithm/index.html) 
+###### [扩展408](base/408/index.html)
+###### [语言](base/language/index.html)
 
 ___
 
@@ -18,6 +18,7 @@ ___
 ___
 
 # 杂谈
-###### [Linux](/else/ubuntu_server.html)
+###### [vscode](else/vscode.html)
+###### [Linux](else/ubuntu_server.html)
 ###### [git](else/git.html)
 ###### [docker](else/docker.html)
