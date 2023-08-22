@@ -62,14 +62,15 @@ win10 22H2 使用 wsl 下的 gcc 编译器，配置竞赛友好的环境
 将 `in` 的数据输入到 `ac`，`ac` 再输出到 `out`。
 
 6. 配置快捷方式，f5一键执行命令
-    修改 `C:\Users\用户名\AppData\Roaming\Code\User\keybindings.json` 文件
-    ```json
-    // 将键绑定放在此文件中以覆盖默认值auto[]
-    [
-    {
-        "key": "f5",
-        "command": "workbench.action.tasks.runTask",
-        "args": "AC"
-    }
-    ]
-    ```
+
+修改 `C:\Users\用户名\AppData\Roaming\Code\User\keybindings.json` 文件
+```json
+// 将键绑定放在此文件中以覆盖默认值auto[]
+[
+{
+  "key": "f5",
+  "command": "workbench.action.tasks.runTask",
+  "args": "AC"
+  }
+]
+```
