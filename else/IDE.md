@@ -10,9 +10,9 @@ html:
 --- 
 
 
-# C++
+# C++ for Algorithm
 
-win10 22H2 使用 wsl 下的 gcc 编译器，配置竞赛友好的环境
+> win10 22H2 使用 wsl 下的 gcc 编译器，配置竞赛友好的环境
 
 1. 微软商店下载 `ubuntu`，vscode 下载拓展 `WSL`
 
@@ -45,7 +45,7 @@ win10 22H2 使用 wsl 下的 gcc 编译器，配置竞赛友好的环境
 }
 ```
 
-文件结构如此
+文件结构如此：
 ```
 ├── .vscode/
 |   ├── tasks.json   
@@ -63,7 +63,7 @@ win10 22H2 使用 wsl 下的 gcc 编译器，配置竞赛友好的环境
 
 6. 配置快捷方式，f5一键执行命令
 
-修改 `C:\Users\用户名\AppData\Roaming\Code\User\keybindings.json` 文件
+修改 `C:\Users\用户名\AppData\Roaming\Code\User\keybindings.json` 文件。
 ```json
 // 将键绑定放在此文件中以覆盖默认值auto[]
 [
@@ -74,3 +74,34 @@ win10 22H2 使用 wsl 下的 gcc 编译器，配置竞赛友好的环境
   }
 ]
 ```
+
+
+在 `ac.cpp` 文件中，即可 `f5` 一键执行。
+
+---
+
+# GO
+
+> win10 22H2 在 Goland 中依赖 wsl 开发 GO
+
+1. [官网](https://golang.google.cn/dl/)康康最新版本，下载
+    * `wget https://golang.google.cn/dl/go1.21.0.linux-amd64.tar.gz`
+
+2. 解压缩至 `/usr/local/`
+    * `tar -zxvf go1.21.0.linux-amd64.tar.gz -C /usr/local/`
+
+3. 配置环境变量 （WSL下的建议方案）
+    * `vim ~/.bashrc`
+      ```sh
+      export GOROOT=/usr/local/go
+      export PATH=$PATH:$GOROOT/bin
+      ```
+
+    * 刷新
+      `source ~/.bashrc`
+
+4. 测试 `go version`
+
+5. GoLand 新建项目
+    * Location：`\\ubuntu\home\工作目录`
+    * GOROOT：`\usr\local\go`
