@@ -9,10 +9,6 @@
       
       
       
-      
-      
-      
-      
       <style>
       /**
  * prism.js Github theme based on GitHub's theme.
@@ -267,18 +263,68 @@ pre[data-line] .line-highlight[data-end]:after {
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      <h2 class="mume-header" id="%E5%88%B6%E4%BD%9C%E5%90%AF%E5%8A%A8%E7%9B%98">&#x5236;&#x4F5C;&#x542F;&#x52A8;&#x76D8;</h2>
+      <h2 class="mume-header" id="%E5%88%B6%E4%BD%9C%E5%90%AF%E5%8A%A8%E7%9B%98">制作启动盘</h2>
 
 <ol>
-<li><a href="https://cn.ubuntu.com/download/server/step1">ubuntu iso</a> &#x955C;&#x50CF;&#x4E0B;&#x8F7D;</li>
-<li><a href="https://rufus.ie/zh/">rufus</a> &#x5236;&#x4F5C;&#x542F;&#x52A8;&#x76D8;</li>
+<li><a href="https://cn.ubuntu.com/download/server/step1">ubuntu iso</a> 镜像下载</li>
+<li><a href="https://rufus.ie/zh/">rufus</a> 制作启动盘</li>
 </ol>
-<h2 class="mume-header" id="%E5%9F%BA%E7%A1%80%E8%BD%AF%E4%BB%B6">&#x57FA;&#x7840;&#x8F6F;&#x4EF6;</h2>
+<h2 class="mume-header" id="%E5%AE%9A%E6%97%B6%E5%90%AF%E5%8A%A8">定时启动</h2>
+
+<blockquote>
+<p>bios 电源管理</p>
+</blockquote>
+<ol>
+<li>AC power loss 来电自启</li>
+<li>RTC 定时启动</li>
+</ol>
+<h2 class="mume-header" id="%E5%BC%80%E6%9C%BA%E9%BB%98%E8%AE%A4%E8%BF%9B%E5%85%A5%E5%91%BD%E4%BB%A4%E8%A1%8C--%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2">开机默认进入命令行 / 图形界面</h2>
+
+<blockquote>
+<p>默认命令行</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="sh" class="language-bash">systemctl set-default multi-user.target
+</pre><blockquote>
+<p>命令行进入图形</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="sh" class="language-bash">startx
+</pre><blockquote>
+<p>默认图形</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="sh" class="language-bash">systemctl set-default graphical.target
+</pre><h2 class="mume-header" id="%E5%BC%80%E6%9C%BA%E8%BF%90%E8%A1%8C">开机运行</h2>
+
+<ol>
+<li>创建 <code>rc-local.service</code> 文件</li>
+</ol>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"><span class="token function">cp</span> /lib/systemd/system/rc-local.service /etc/systemd/system
+</pre><ol start="2">
+<li>修改 <code>/etc/systemd/system/rc-local.service</code> 文件, 添加如下内容</li>
+</ol>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"><span class="token punctuation">[</span>Install<span class="token punctuation">]</span>   
+<span class="token assign-left variable">WantedBy</span><span class="token operator">=</span>multi-user.target   
+<span class="token assign-left variable">Alias</span><span class="token operator">=</span>rc-local.service
+</pre><ol start="3">
+<li>创建 <code>/etc/rc.local</code> 文件, 输入执行的脚本</li>
+</ol>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"><span class="token shebang important">#!/bin/sh</span>
+noip-duc <span class="token parameter variable">--username</span> xx <span class="token parameter variable">--password</span> xx <span class="token parameter variable">-g</span> xx --ip-method http://ip1.dynupdate6.no-ip.com/ <span class="token operator">&amp;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">PASSWORD</span><span class="token operator">=</span><span class="token string">"xx"</span> <span class="token operator">&amp;&amp;</span> code-server <span class="token parameter variable">--host</span> <span class="token punctuation">[</span>::<span class="token punctuation">]</span> <span class="token parameter variable">--port</span> <span class="token number">9070</span> <span class="token operator">&amp;</span>
+<span class="token function">shutdown</span> <span class="token parameter variable">-h</span> <span class="token number">23</span>:55
+</pre><ol start="4">
+<li>给文件 <code>/etc/rc.local</code> 可执行权限</li>
+</ol>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"><span class="token function">chmod</span> +x /etc/rc.local
+</pre><h2 class="mume-header" id="%E5%9F%BA%E7%A1%80%E8%BD%AF%E4%BB%B6">基础软件</h2>
 
 <ul>
-<li>&#x66F4;&#x65B0;&#x8F6F;&#x4EF6;&#x6E90;&#x3001;&#x8F6F;&#x4EF6;&#x3001;&#x7CFB;&#x7EDF;&#x66F4;&#x65B0;&#xFF08;&#x975E;&#x5347;&#x7EA7;&#xFF09;<br>
+<li>更新软件源、软件、系统更新（非升级）<br>
 <code>apt update &amp;&amp; apt upgrade &amp;&amp; apt dist-upgrade</code></li>
 </ul>
+<h3 class="mume-header" id="build-essential">build-essential</h3>
+
+<p>GNU编辑器合辑</p>
+<p><code>apt install build-essential</code></p>
 <h3 class="mume-header" id="ssh">ssh</h3>
 
 <p><code>apt install ssh</code></p>
@@ -286,37 +332,37 @@ pre[data-line] .line-highlight[data-end]:after {
 
 <p><code>apt install ufw</code></p>
 <ol>
-<li>&#x542F;&#x52A8;&#x9632;&#x706B;&#x5899; <code>ufw enable</code></li>
-<li>&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899; <code>ufw disenable</code></li>
-<li>&#x6253;&#x5F00;&#x7AEF;&#x53E3; <code>ufw allow 22</code></li>
-<li>&#x5173;&#x95ED;&#x7AEF;&#x53E3; <code>ufw delete allow 22</code></li>
-<li>&#x9632;&#x706B;&#x5899;&#x72B6;&#x6001; <code>ufw status</code></li>
+<li>启动防火墙 <code>ufw enable</code></li>
+<li>关闭防火墙 <code>ufw disenable</code></li>
+<li>打开端口 <code>ufw allow 22</code></li>
+<li>关闭端口 <code>ufw delete allow 22</code></li>
+<li>防火墙状态 <code>ufw status</code></li>
 </ol>
 <h3 class="mume-header" id="vim">vim</h3>
 
 <p><code>apt install vim</code></p>
 <ol>
-<li>&#x7F16;&#x8F91;&#x6587;&#x4EF6; <code>vim a.txt</code></li>
-<li>&#x9ED8;&#x8BA4;&#x8FDB;&#x5165;&#x6587;&#x4EF6;&#x7684; normal &#x6A21;&#x5F0F;
+<li>编辑文件 <code>vim a.txt</code></li>
+<li>默认进入文件的 normal 模式
 <ul>
-<li><code>i</code> &#x8FDB;&#x5165; &#x7F16;&#x8F91; &#x6A21;&#x5F0F;</li>
-<li><code>esc</code> &#x5207;&#x6362;&#x56DE; normal &#x6A21;&#x5F0F;</li>
+<li><code>i</code> 进入 编辑 模式</li>
+<li><code>esc</code> 切换回 normal 模式</li>
 </ul>
 </li>
-<li>&#x5927;&#x90E8;&#x5206;&#x64CD;&#x4F5C;&#x9700;&#x8981;&#x5728; normal &#x6A21;&#x5F0F;&#x4E0B;&#x8FDB;&#x884C;
+<li>大部分操作需要在 normal 模式下进行
 <ul>
-<li>&#x9000;&#x51FA; <code>q</code>&#xFF0C;&#x5F3A;&#x5236;&#x9000;&#x51FA; <code>q!</code></li>
-<li>&#x4FDD;&#x5B58; <code>wq</code>&#xFF0C;&#x5F3A;&#x5236;&#x4FDD;&#x5B58; <code>wq!</code></li>
-<li>&#x9009;&#x62E9;
+<li>退出 <code>q</code>，强制退出 <code>q!</code></li>
+<li>保存 <code>wq</code>，强制保存 <code>wq!</code></li>
+<li>选择
 <ul>
-<li>&#x5168;&#x9009;</li>
-<li>&#x90E8;&#x5206;&#x9009;&#x62E9;</li>
+<li>全选</li>
+<li>部分选择</li>
 </ul>
 </li>
-<li>&#x590D;&#x5236;</li>
-<li>&#x7C98;&#x8D34;</li>
-<li>&#x67E5;&#x627E;</li>
-<li>&#x66FF;&#x6362;</li>
+<li>复制</li>
+<li>粘贴</li>
+<li>查找</li>
+<li>替换</li>
 </ul>
 </li>
 </ol>
@@ -324,53 +370,87 @@ pre[data-line] .line-highlight[data-end]:after {
 
 <p><code>apt install curl</code></p>
 <ul>
-<li>get &#x8BF7;&#x6C42;<br>
+<li>get 请求<br>
 <code>curl https://www.baidu.com</code></li>
-<li>get &#x8BF7;&#x6C42;&#xFF0C;&#x8FD4;&#x56DE; http &#x6807;&#x5934;<br>
+<li>get 请求，返回 http 标头<br>
 <code>curl -i https://www.baidu.com</code></li>
 </ul>
 <h3 class="mume-header" id="tar">tar</h3>
 
 <p><code>apt install tar</code></p>
 <ul>
-<li>&#x89E3;&#x538B;&#x6587;&#x4EF6;<br>
+<li>解压文件<br>
 <code>tar -zxvf *.tar.gz</code>
 <ul>
-<li>-z &#x89E3;&#x538B;&#x7F29;&#xFF08;gz&#xFF09;</li>
-<li>-x &#x89E3;&#x5305;&#xFF08;tar&#xFF09;</li>
-<li>-v &#x663E;&#x793A;&#x8BE6;&#x7EC6;&#x7684;&#x89E3;&#x538B;&#x8FC7;&#x7A0B;&#x4FE1;&#x606F;</li>
-<li>-f &#x6307;&#x5B9A;&#x540D;&#x79F0;</li>
+<li>-z 解压缩（gz）</li>
+<li>-x 解包（tar）</li>
+<li>-v 显示详细的解压过程信息</li>
+<li>-f 指定名称</li>
 </ul>
 </li>
-<li>&#x538B;&#x7F29;&#x6587;&#x4EF6;<br>
+<li>压缩文件<br>
 <code>tar -zcvf *.tar.gz *</code></li>
 </ul>
-<h3 class="mume-header" id="%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2">&#x8FDC;&#x7A0B;&#x684C;&#x9762;</h3>
+<h3 class="mume-header" id="%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2">远程桌面</h3>
 
 <ol>
-<li>&#x4E0B;&#x8F7D;&#x5FAE;&#x8F6F;&#x7684;&#x8FDC;&#x7A0B;&#x684C;&#x9762;&#x534F;&#x8BAE;&#xFF08;RDP&#xFF09;<br>
+<li>下载微软的远程桌面协议（RDP）<br>
 <code>apt install xrdp</code></li>
 </ol>
 <h3 class="mume-header" id="samba">samba</h3>
 
+<blockquote>
+<p>文件分享</p>
+</blockquote>
 <ol>
-<li></li>
+<li>下载 <code>apt install samba</code></li>
+<li>配置分享文件夹 <code>chmod 777 /home/share/ -R</code></li>
+<li>添加samba用户 <code>smbpasswd -a 用户名</code></li>
+<li>提示输入密码 x2</li>
+<li>配置samba <code>vim /etc/samba/smb.conf</code></li>
+</ol>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"><span class="token punctuation">[</span>share<span class="token punctuation">]</span>                 <span class="token comment"># 共享名</span>
+    comment <span class="token operator">=</span> share     <span class="token comment"># 共享备注</span>
+    path <span class="token operator">=</span> /home/share/ <span class="token comment"># 共享路径</span>
+    browseable <span class="token operator">=</span> <span class="token function">yes</span>    <span class="token comment"># 所有人可见</span>
+    public <span class="token operator">=</span> no         <span class="token comment"># 不允许匿名访问</span>
+    writable <span class="token operator">=</span> <span class="token function">yes</span>      <span class="token comment"># 可写</span>
+    valid <span class="token function">users</span> <span class="token operator">=</span> 用户名 <span class="token comment"># 设置访问用户</span>
+</pre><ol start="6">
+<li>重启samba <code>samba restart</code></li>
+<li>开启端口 <code>ufw allow 445</code></li>
 </ol>
 
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#&#x5236;&#x4F5C;&#x542F;&#x52A8;&#x76D8;" class="md-toc-link">
-            <p>&#x5236;&#x4F5C;&#x542F;&#x52A8;&#x76D8;</p>
+          <a href="#制作启动盘" class="md-toc-link">
+            <p>制作启动盘</p>
 
-          </a></div><details style="padding:0;;padding-left:0px;" open>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#定时启动" class="md-toc-link">
+            <p>定时启动</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#开机默认进入命令行--图形界面" class="md-toc-link">
+            <p>开机默认进入命令行 / 图形界面</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#开机运行" class="md-toc-link">
+            <p>开机运行</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#&#x57FA;&#x7840;&#x8F6F;&#x4EF6;" class="md-toc-link"><p>&#x57FA;&#x7840;&#x8F6F;&#x4EF6;</p>
+          <a href="#基础软件" class="md-toc-link"><p>基础软件</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#build-essential" class="md-toc-link">
+            <p>build-essential</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#ssh" class="md-toc-link">
             <p>ssh</p>
 
@@ -391,8 +471,8 @@ pre[data-line] .line-highlight[data-end]:after {
             <p>tar</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#&#x8FDC;&#x7A0B;&#x684C;&#x9762;" class="md-toc-link">
-            <p>&#x8FDC;&#x7A0B;&#x684C;&#x9762;</p>
+          <a href="#远程桌面" class="md-toc-link">
+            <p>远程桌面</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#samba" class="md-toc-link">
@@ -404,9 +484,7 @@ pre[data-line] .line-highlight[data-end]:after {
     
 </div>
 </div>
-      <a id="sidebar-toc-btn">&#x2261;</a>
-    
-    
+      <a id="sidebar-toc-btn">≡</a>
     
     
     

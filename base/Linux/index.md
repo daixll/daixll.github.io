@@ -1,11 +1,22 @@
-## [Linux setup](LinuxSetup.html)
-* ssh / ufw / curl / tar / vim
-* 远程桌面
-* samba
+### [WSL2](WSL2.html)
 
-## [DDNS & frp]()
-## [nginx]()
-## [clash]()
-## [docker]()
-## [codeserver]()
+* 开机自启
+
+### [Linux setup](LinuxSetup.html)
+* ssh / ufw / vim /
+    curl / wget / tar /
+    rsync / mount / samba / 
+    远程桌面（xrdp）
+
+### [DDNS & frp](DDNS&frp.html)
+* noip / chickfrp
+
+### [clash](clash.html)
+
+### [nginx](nginx.html)
+
+### [codeserver](codeserver.html)
+
+### [docker](docker.html)
+
 

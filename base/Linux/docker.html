@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>index</title>
+      <title>docker</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -263,65 +263,38 @@ pre[data-line] .line-highlight[data-end]:after {
     </head>
     <body for="html-export">
       <div class="mume markdown-preview  ">
-      <h3 class="mume-header" id="wsl2wsl2html"><a href="WSL2.html">WSL2</a></h3>
+      <h1 class="mume-header" id="%E5%AE%89%E8%A3%85docker">安装docker</h1>
 
-<ul>
-<li>开机自启</li>
-</ul>
-<h3 class="mume-header" id="linux-setuplinuxsetuphtml"><a href="LinuxSetup.html">Linux setup</a></h3>
+<p>使用官方安装脚本</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"> <span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://test.docker.com <span class="token parameter variable">-o</span> test-docker.sh
+ <span class="token function">sudo</span> <span class="token function">sh</span> test-docker.sh
+</pre><h1 class="mume-header" id="%E9%95%9C%E5%83%8F">镜像</h1>
 
-<ul>
-<li>ssh / ufw / vim /<br>
-curl / wget / tar /<br>
-rsync / mount / samba /<br>
-远程桌面（xrdp）</li>
-</ul>
-<h3 class="mume-header" id="ddns--frpddnsfrphtml"><a href="DDNS&amp;frp.html">DDNS &amp; frp</a></h3>
+<p>下载镜像</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"><span class="token function">docker</span> pull nginx
+</pre><p>查看镜像</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"><span class="token function">docker</span> images
+</pre><h1 class="mume-header" id="%E5%AE%B9%E5%99%A8">容器</h1>
 
-<ul>
-<li>noip / chickfrp</li>
-</ul>
-<h3 class="mume-header" id="clashclashhtml"><a href="clash.html">clash</a></h3>
-
-<h3 class="mume-header" id="nginxnginxhtml"><a href="nginx.html">nginx</a></h3>
-
-<h3 class="mume-header" id="codeservercodeserverhtml"><a href="codeserver.html">codeserver</a></h3>
-
-<h3 class="mume-header" id="dockerdockerhtml"><a href="docker.html">docker</a></h3>
-
-
+<p>运行容器</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash"><span class="token function">docker</span> run <span class="token parameter variable">--name</span> nginx_proxy  
+</pre>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#wsl2wsl2html" class="md-toc-link">
-            </a><p><a href="#wsl2wsl2html" class="md-toc-link"></a><a href="WSL2.html">WSL2</a></p>
+          <a href="#安装docker" class="md-toc-link">
+            <p>安装docker</p>
 
-          </div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#linux-setuplinuxsetuphtml" class="md-toc-link">
-            </a><p><a href="#linux-setuplinuxsetuphtml" class="md-toc-link"></a><a href="LinuxSetup.html">Linux setup</a></p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#镜像" class="md-toc-link">
+            <p>镜像</p>
 
-          </div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#ddns--frpddnsfrphtml" class="md-toc-link">
-            </a><p><a href="#ddns--frpddnsfrphtml" class="md-toc-link"></a><a href="DDNS&amp;frp.html">DDNS &amp; frp</a></p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#容器" class="md-toc-link">
+            <p>容器</p>
 
-          </div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#clashclashhtml" class="md-toc-link">
-            </a><p><a href="#clashclashhtml" class="md-toc-link"></a><a href="clash.html">clash</a></p>
-
-          </div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#nginxnginxhtml" class="md-toc-link">
-            </a><p><a href="#nginxnginxhtml" class="md-toc-link"></a><a href="nginx.html">nginx</a></p>
-
-          </div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#codeservercodeserverhtml" class="md-toc-link">
-            </a><p><a href="#codeservercodeserverhtml" class="md-toc-link"></a><a href="codeserver.html">codeserver</a></p>
-
-          </div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#dockerdockerhtml" class="md-toc-link">
-            </a><p><a href="#dockerdockerhtml" class="md-toc-link"></a><a href="docker.html">docker</a></p>
-
-          </div>
+          </a></div>
 </div>
 </div>
       <a id="sidebar-toc-btn">≡</a>
@@ -332,7 +305,7 @@ rsync / mount / samba /<br>
     
     
 <script>
-
+document.body.setAttribute('html-show-sidebar-toc', true)
 var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
 sidebarTOCBtn.addEventListener('click', function(event) {
   event.stopPropagation()
