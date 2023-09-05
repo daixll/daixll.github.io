@@ -1,6 +1,7 @@
 ### [WSL2](WSL2.html)
 
 * 开机自启
+* 开发环境配置
 
 ### [Linux setup](LinuxSetup.html)
 * ssh / ufw / vim /
