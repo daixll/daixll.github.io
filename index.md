@@ -147,7 +147,7 @@ margin-right: auto;
 - `2023-7` `工业和信息化人才岗位能力评价证书（中级）`
 
 <div class="center">
-    <img src="/joker/（证）工信部人才（中级）.jpg" width="300">
+    <img src="/joker/（证）工信部人才（中级）.png" width="300">
 </div>
 
 
