@@ -16,18 +16,16 @@ margin-right: auto;
 
 <center>
 
-&nbsp; dxlcq@outlook.com &nbsp;&nbsp; | &nbsp;&nbsp; <a href="url">github</a> &nbsp;&nbsp; | &nbsp;&nbsp; 后端工程师 &nbsp;&nbsp; | &nbsp;&nbsp; 青少年信奥教练
+&nbsp; dxlcq@outlook.com &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://github.com/daixll">github</a> &nbsp;&nbsp; | &nbsp;&nbsp; 后端工程师 &nbsp;&nbsp; | &nbsp;&nbsp; 算法竞赛教练 &nbsp;&nbsp;
 
 </center>
 
 ---
 
-# 项目
+# 🪓 项目
 
 ###### [tiktok](https://github.com/daixll/tiktok)
 
-
-123
 
 ###### [网络库](https://github.com/daixll/WebServer)
 
@@ -38,8 +36,8 @@ margin-right: auto;
 
 #### 后端开发
 
-* 扎实的 数据结构与[算法](base/algorithm/index.html) 功底
-* 计算机[基础](base/408/index.html)
+* 扎实的数据结构与[算法](base/algorithm/index.html) 功底
+* 计算机 [基础](base/408/index.html)
 * 掌握 [Linux](base/Linux/index.html) 的简单使用
 * 常用后端开发[语言](base/language/index.html)
 * 常用工具 [git](else/git.html)，[docker]()
@@ -47,7 +45,7 @@ margin-right: auto;
 
 #### 算法竞赛
 
-* 多次获得算法竞赛国家级奖项，拥有两年的带教经验，主要负责 CSP-J 训练
+* 多次获得算法竞赛国家级奖项，拥有两年的带教经验，主要负责 CSP-J 赛事
 * **蓝桥杯OJ** [出题小组成员](#蓝桥云课)，2023年暑期参与平台命题工作
 * **清华大学出版社** [TIPCC志愿者](#志愿者-码题集)，参与算法竞赛书籍《**算法》内容校对工作，“码题集”题库建设工作
 
