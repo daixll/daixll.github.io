@@ -38,9 +38,9 @@ margin-right: auto;
 
 * 扎实的数据结构与[算法](base/algorithm/index.html) 功底
 * 计算机 [基础](base/408/index.html)
-* 掌握 [Linux](base/Linux/index.html) 的简单使用
-* 常用后端开发[语言](base/language/index.html)
-* 常用工具 [git](else/git.html)，[docker]()
+* 了解 [Linux（包括WSL）](base/Linux/index.html) 环境下的编程
+* 了解常用后端开发 [语言](base/language/index.html)：Golang，C/C++，python
+* 了解常用工具 [git](else/git.html)，[docker]()
 * [其他](else/IDE.html)
 
 #### 算法竞赛
@@ -74,30 +74,7 @@ margin-right: auto;
 求知若渴，日积月累，虽在繁星之中或难觉察<br>
 然内心感悟其温暖光辉，鼓舞前行<br>
 如此微薄，唯愿勉己，追求卓越
-</p>
-
-<div class="center">
-
-
-<details><summary>附：<a href="https://www.cahe.edu.cn/site/content/16011.html" target="_blank">高等教育学会学科竞赛榜单</a> 赛事月份表</summary>
-
-<div class="center">
-
-| 月份 | 赛事 | 国赛时间 |
-| :-:  | :-: | :-: |
-| 4月  | [蓝桥杯](https://dasai.lanqiao.cn/)   | 6月
-| 4月  | [天梯赛](https://gplt.patest.cn/notification)   |
-| 7月  | [CCF - CAT](https://ccf.org.cn/catnaec2023) | 7月
-| 7月  | [睿抗](https://www.robocom.com.cn/index.html)     | 8 月
-| 8月  | [百度之星](https://www.matiji.net/exam/contest/index) | 12月
-| 9月  | [码题杯](https://www.matiji.net/exam/contest/index)   | 12月
-| 12月 | [ccsp](https://www.ccf.org.cn/ccsp/)    |
-| 12月 | [传智杯](http://dasai.ityxb.com/)   | 次年4月
-
-</div>
-</details>
-</div>
-<br>
+</p> 
 
 ## 2023
 
