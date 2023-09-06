@@ -1,16 +1,13 @@
 <style>
-.center
-{
-width: auto;
-display: table;
-margin-left: auto;
-margin-right: auto;
-}
+    .center
+    {
+    width: auto;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    }
 </style>
 
-
-
-</systle>
 
 <h1><center> 戴兴龙 </center></h1>
 
@@ -24,10 +21,18 @@ margin-right: auto;
 
 # 🪓 项目
 
-###### [tiktok](https://github.com/daixll/tiktok)
+#### [tiktok](https://github.com/daixll/tiktok)
 
+* 字节跳动青训营项目，实现抖音的核心功能（视频流，用户登录，评论区等，后续考虑加入商城）。
+* 目前采用单体架构，Gin + JWT 实现业务，Gorm + MySQL 提供数据库服务。
+* 正在重新设计为微服务架构。
 
-###### [网络库](https://github.com/daixll/WebServer)
+#### [WebServer](https://github.com/daixll/WebServer)
+
+* 基于 Socket 实现的一个 HTTP 服务器，主从 Reactor 模型 + 非阻塞 Socket + Epoll（ET） + 线程池 + 内存池。
+* 正在重新考虑线程通信，计划实现一个 Channel。
+* 目前已经支持 IPV4/6 部署上线，待项目成熟后，本页面将由它驱动。
+
 
 ---
 
@@ -36,12 +41,11 @@ margin-right: auto;
 
 #### 后端开发
 
-* 扎实的数据结构与[算法](base/algorithm/index.html) 功底
-* 计算机 [基础](base/408/index.html)
-* 了解 [Linux（包括WSL）](base/Linux/index.html) 环境下的编程
-* 了解常用后端开发 [语言](base/language/index.html)：Golang，C/C++，python
-* 了解常用工具 [git](else/git.html)，[docker]()
-* [其他](else/IDE.html)
+* 了解数据结构与[算法](base/algorithm/index.html)
+* 了解计算机[基础](base/408/index.html)知识：网络、OS、数据库、组成原理等
+* 了解[Linux（包括WSL）](base/Linux/index.html)及其环境下的开发
+* 了解常用后端开发[语言](base/language/index.html)：Golang，C/C++，python
+* 了解常用工具[git](else/git.html)，[docker]()
 
 #### 算法竞赛
 
@@ -78,6 +82,7 @@ margin-right: auto;
 
 ## 2023
 
+<!--
 
 ### 单项奖学金 (3)
 
@@ -94,6 +99,8 @@ margin-right: auto;
 <div class="center">
     <img src="/joker/（金单项）0.jpg" width="300">
 </div>
+
+-->
 
 ### 国一 睿抗
 
