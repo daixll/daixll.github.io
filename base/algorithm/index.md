@@ -1,3 +1,10 @@
+---
+html:
+   toc: false  # 打开侧边目录
+export_on_save:
+   html: true  # 自动保存
+---
+
 # 参考
 
 [AcWing 算法基础课 / 提高课 / 进阶课](https://www.acwing.com/)
@@ -105,6 +112,7 @@
 * 真题训练
    1. [USACO-Bronze](./Content/真题/USACO_Bronze.html)
    2. [CCF-J](./Content/真题/CCF_J.html)
+   3. [CIE](./Content/真题/CIE.html)
    3. [CCF-CSP]
    4. [蓝桥杯](./Content/真题/lanqiao.html)
    5. [考研真题]
