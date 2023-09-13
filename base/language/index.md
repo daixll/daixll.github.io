@@ -1,8 +1,12 @@
-
+---
+export_on_save:
+    html: true  # 自动保存
+---
 
 ## C++
 
-1. [会写一点点现代C++的东西]
+1. [template](./C++/template.html)
+2. [Thread](./C++/Thread.html)
 
 ## python
 

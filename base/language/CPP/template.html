@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>index</title>
+      <title>template</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -18,43 +18,69 @@
     </head>
     <body for="html-export">
       <div class="crossnote markdown-preview  ">
-      <h2 class="crossnote-header" id="c">C++</h2>
+      <h1 class="crossnote-header" id="%E4%BB%80%E4%B9%88%E6%98%AF-template">什么是 template</h1>
 
-<ol>
-<li><a href="./C++/template.html">template</a></li>
-<li><a href="./C++/Thread.html">Thread</a></li>
-</ol>
-<h2 class="crossnote-header" id="python">python</h2>
+<p>template：变参数模板。是一种编译器的特性，用于生成一系列的函数或类。</p>
+<h1 class="crossnote-header" id="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-template">如何使用 template</h1>
 
-<ol>
-<li>[应该是python常用库的一些用法吧]</li>
-</ol>
-<h2 class="crossnote-header" id="go">GO</h2>
+<h2 class="crossnote-header" id="%E5%9C%A8%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8-template">在函数中使用 template</h2>
 
-<ol>
-<li><a href="./GO/1.html">基础语法和常用特性解析</a></li>
-<li><a href="./GO/2.html">语言进阶、依赖管理</a></li>
-<li><a href="./GO/3.html">pprof - 高质量编程与性能调优、分析、测试</a></li>
-<li><a href="./Go/4.html">GORM - 连接数据库</a></li>
-<li><a href="./GO/5.html">Gin - web框架</a></li>
-</ol>
+<p>可以让函数接受任意类型的参数，而不是固定的类型。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">T</span><span class="token operator">&gt;</span>
+<span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-void">void</span> <span class="token function">Tswap</span><span class="token punctuation">(</span>T <span class="token operator">*</span>a<span class="token punctuation">,</span> T <span class="token operator">*</span>b<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    T temp <span class="token operator">=</span> <span class="token operator">*</span>a<span class="token punctuation">;</span>
+    <span class="token operator">*</span>a <span class="token operator">=</span> <span class="token operator">*</span>b<span class="token punctuation">;</span>
+    <span class="token operator">*</span>b <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre><h2 class="crossnote-header" id="%E5%9C%A8%E7%B1%BB%E4%B8%AD%E4%BD%BF%E7%94%A8-templat">在类中使用 templat</h2>
 
+<p>可以让类接受任意类型的参数，而不是固定的类型。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">T</span><span class="token operator">&gt;</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">queue</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">push</span><span class="token punctuation">(</span>T x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        q<span class="token punctuation">[</span>tail<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        head<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    T <span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> q<span class="token punctuation">[</span>head<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-this">this</span><span class="token operator">-&gt;</span>tail<span class="token operator">-</span><span class="token keyword keyword-this">this</span><span class="token operator">-&gt;</span>head<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    T q<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> head <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> tail <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#c" class="md-toc-link">
-            <p>C++</p>
+          <a href="#什么是-template" class="md-toc-link">
+            <p>什么是 template</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#python" class="md-toc-link">
-            <p>python</p>
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#如何使用-template" class="md-toc-link"><p>如何使用 template</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#在函数中使用-template" class="md-toc-link">
+            <p>在函数中使用 template</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#go" class="md-toc-link">
-            <p>GO</p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#在类中使用-templat" class="md-toc-link">
+            <p>在类中使用 templat</p>
 
           </a></div>
+        </div>
+      </details>
+    
 </div>
 </div>
       <a id="sidebar-toc-btn">≡</a>
@@ -65,7 +91,7 @@
     
     
 <script>
-
+document.body.setAttribute('html-show-sidebar-toc', true)
 var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
 sidebarTOCBtn.addEventListener('click', function(event) {
   event.stopPropagation()
