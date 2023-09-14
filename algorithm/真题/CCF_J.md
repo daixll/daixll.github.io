@@ -12,6 +12,62 @@ html:
 
 # 2022
 
+
+
+J-1
+
+<details><summary><a href="" target="_blank"></a> 16</summary>
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    unsigned short x, y;
+    cin >> x >> y;
+    x = (x | x << 2)& 0x33;
+    x = (x | x << 1)& 0x55;
+    y = (y | y << 2)& 0x33;
+    y = (y | y << 1)& 0x55;
+    unsigned short z = x | y << 1;
+    cout << z << endl;
+    return 0;
+}
+```
+
+> 删去第 7 行与第 13 行的 unsigned，程序行为不变。
+
+无符号数与有符号数，范围不同，但此题 `假设输入的 x,y 均是不超过 15 的自然数`。
+
+> 将第 7 行与第 13 行的 short 均改为 char，程序行为不变。
+
+显然，当输入 `10 11` 的时候，x = (char)1， y = (char)0，与程序原意不符。
+
+> 程序总是输出一个整数“0”。
+
+假设输入 `2 2`
+x=2，y=2：`x<<2 = 8`，`8 | 2 = 10`，`x = 10 & 0x33 = 2`
+x=2，y=2：`x<<1 = 4`，`4 | 2 = 6`，`x = 6 & 0x55 = 4`
+x=4，y=2：`y<<2 = 8`，`8 | 2 = 10`，`y = 10 & 0x33 = 2`
+x=4，y=2：`y<<1 = 4`，`4 | 2 = 6`，`y = 6 & 0x55 = 4`
+x=4，y=4：`x | y << 1 = 4 | 4 << 1 = 4 | 8 = 12`
+输出为 `12`，与题意不符
+
+</details>
+
+<details><summary><a href="" target="_blank"></a> 17</summary>
+
+```cpp
+
+```
+</details>
+
+
+<br>
+
+J-2
+
 <details><summary><a href="https://www.acwing.com/problem/content/description/4731/" target="_blank">AcWing 4728. 乘方</a> code</summary>
 
 ```cpp
