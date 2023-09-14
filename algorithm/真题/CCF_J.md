@@ -7,9 +7,10 @@ html:
     smooth_scroll: true # 页面滚动,标题变化
     number_sections: false  # 显示标题编号
     theme: united
+export_on_save:
+    html: true  # 自动保存
+
 --- 
-
-
 # 2022
 
 
