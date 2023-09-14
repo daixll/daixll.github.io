@@ -1,3 +1,9 @@
+---
+html:
+export_on_save:
+    html: true  # 自动保存
+---
+
 <style>
     .center
     {
@@ -41,11 +47,11 @@
 
 #### 后端开发
 
-* 了解数据结构与[算法](base/algorithm/index.html)
-* 了解计算机[基础](base/408/index.html)知识：网络、OS、数据库、组成原理等
-* 了解[Linux（包括WSL）](base/Linux/index.html)及其环境下的开发
-* 了解常用后端开发[语言](base/language/index.html)：Golang，C/C++，python
-* 了解常用工具[git](else/git.html)，[docker]()
+* 了解数据结构与[算法](algorithm/index.html)
+* 了解计算机[基础](408/index.html)知识：网络、OS、数据库、组成原理等
+* 了解[Linux（包括WSL）](Linux/index.html)及其环境下的开发
+* 了解常用后端开发[语言](language/index.html)：Golang，C/C++，python
+* 了解常用工具[git](Linux/git.html)，[docker]()
 
 #### 算法竞赛
 
