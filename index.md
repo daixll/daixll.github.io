@@ -8,7 +8,6 @@
     }
 </style>
 
-
 <h1><center> 戴兴龙 </center></h1>
 
 <center>
@@ -45,7 +44,7 @@
 * 了解计算机[基础](408/index.html)知识：网络、OS、数据库、组成原理等
 * 了解[Linux（包括WSL）](Linux/index.html)及其环境下的开发
 * 了解常用后端开发[语言](language/index.html)：Golang，C/C++，python
-* 了解常用工具[git](Linux/git.html)，[docker]()
+* 了解常用工具[git](Linux/git.html)，[docker](Linux/docker.html)
 
 #### 算法竞赛
 
