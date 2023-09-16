@@ -5,8 +5,9 @@ export_on_save:
 
 ## C++
 
-1. [template](./C++/template.html)
-2. [Thread](./C++/Thread.html)
+1. [string](CPP/string.html)
+2. [template](CPP/template.html)
+3. [Thread](CPP/Thread.html)
 
 ## python
 
