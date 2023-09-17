@@ -1,6 +1,8 @@
 ---
 html:
-    toc: true    # 打开侧边目录
+  toc: true   # 打开侧边目录
+export_on_save:
+  html: true  # 自动保存
 ---
 
 ## WSL2自启动
@@ -17,7 +19,6 @@ html:
 1. 微软商店下载 `ubuntu`，vscode 下载拓展 `WSL`
 
 2. `控制面板\程序\启用或关闭 Windows 功能`：
-    * `Hyper-V`
     * `虚拟机平台`
     * `适用于 Linux 的 Windows 子系统`
 
