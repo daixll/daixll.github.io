@@ -26,7 +26,7 @@
 * 目前采用单体架构，Gin + JWT 实现业务，Gorm + MySQL 提供数据库服务。
 * 正在重新设计为微服务架构。
 
-#### [WebServer](https://github.com/daixll/WebServer)
+#### [HTTPServer](HTTPServer/README.html)
 
 * 基于 Socket 实现的一个 HTTP 服务器，主从 Reactor 模型 + 非阻塞 Socket + Epoll（ET） + 线程池 + 内存池。
 * 正在重新考虑线程通信，计划实现一个 Channel。
