@@ -12,7 +12,7 @@
 
 <center>
 
-&nbsp; dxlcq@outlook.com &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://github.com/daixll">github</a> &nbsp;&nbsp; | &nbsp;&nbsp; 后端工程师 &nbsp;&nbsp; | &nbsp;&nbsp; 算法竞赛教练 &nbsp;&nbsp;
+&nbsp; dxlcq@outlook.com &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://github.com/daixll">Github</a> &nbsp;&nbsp; | &nbsp;&nbsp; 后端工程师 &nbsp;&nbsp; | &nbsp;&nbsp; 算法竞赛教练 &nbsp;&nbsp;
 
 </center>
 
@@ -20,14 +20,17 @@
 
 # 🪓 项目
 
-#### [tiktok](https://github.com/daixll/tiktok)
+<strong> 🎵 <a href=""><font size="4">tiktok</a></font></strong> &nbsp; | &nbsp; [Github](https://github.com/daixll/tiktok)
 
 * 字节跳动青训营项目，实现抖音的核心功能（视频流，用户登录，评论区等，后续考虑加入商城）。
 * 目前采用单体架构，Gin + JWT 实现业务，Gorm + MySQL 提供数据库服务。
-* 正在重新设计为微服务架构。
+* 正在重新设计为微服务架构，完成后会重新上线。
 
-#### [HTTPServer](HTTPServer/README.html)
 
+
+<strong> 🌏 <a href="HTTPServer/README.html"><font size="4">HTTPServer</a></font></strong> &nbsp; | &nbsp; [Github](https://github.com/daixll/HTTPServer)
+
+* 旧项目地址：[WebServer](https://github.com/daixll/WebServer)，功能已经完善，但是代码质量不高，故有了本项目。
 * 基于 Socket 实现的一个 HTTP 服务器，主从 Reactor 模型 + 非阻塞 Socket + Epoll（ET） + 线程池 + 内存池。
 * 正在重新考虑线程通信，计划实现一个 Channel。
 * 目前已经支持 IPV4/6 部署上线，待项目成熟后，本页面将由它驱动。
@@ -56,7 +59,7 @@
 
 # 📚 教育经历
 
-* 本科 重庆科技大学，计算机科学与技术，2023 ~ 2025
+* 本科 重庆科技学院，计算机科学与技术，2023 ~ 2025
 
 * 专科 重庆工业职业技术学院，计算机网络技术，2020 ~ 2023
 
