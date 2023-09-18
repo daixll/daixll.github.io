@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>index</title>
+      <title>nmap</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -19,72 +19,169 @@
     </head>
     <body for="html-export">
       <div class="crossnote markdown-preview  ">
-      <h3 class="crossnote-header" id="wsl2wsl2html"><a href="WSL2.html">WSL2</a></h3>
+      <p><a href="https://nmap.org/man/zh/index.html">官方中文文档</a></p>
+<p><code>nmap [ &lt;扫描类型&gt; ...] [ &lt;选项&gt; ] { &lt;扫描目标说明&gt; }</code></p>
+<h1 class="crossnote-header" id="nmap-%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81">nmap 端口状态</h1>
 
+<h2 class="crossnote-header" id="open%E5%BC%80%E6%94%BE%E7%9A%84">open（开放的）</h2>
+
+<p>应用程序正在监听端口，或者响应一个请求来自已连接的客户端。接收TCP连接或者UDP报文。</p>
+<h2 class="crossnote-header" id="closed%E5%85%B3%E9%97%AD%E7%9A%84">closed（关闭的）</h2>
+
+<p>没有应用程序监听端口。但是此端口可以被探测到，因为没有应用程序监听，所以会返回一个 RST 包或者 ICMP 端口不可达消息。</p>
+<h2 class="crossnote-header" id="filtered%E5%B1%8F%E8%94%BD%E7%9A%84">filtered（屏蔽的）</h2>
+
+<p>防火墙或者 ACL 屏蔽了端口，所以无法确定端口是否开放。目标端口可能有以下几种情况：</p>
 <ul>
-<li>开机自启</li>
-<li>开发环境配置</li>
+<li>未响应，屏蔽器丢弃了探测包，此举会让 nmap 误认为探测包丢失，导致扫描时间变长。</li>
+<li>丢弃了探测包，但是返回了 ICMP 错误消息。</li>
 </ul>
-<h3 class="crossnote-header" id="linux-setuplinuxsetuphtml"><a href="LinuxSetup.html">Linux setup</a></h3>
+<h2 class="crossnote-header" id="unfiltered%E6%9C%AA%E5%B1%8F%E8%94%BD%E7%9A%84">unfiltered（未屏蔽的）</h2>
 
-<ul>
-<li>ssh / ufw / vim /<br>
-curl / wget / tar /<br>
-rsync / mount / samba /<br>
-远程桌面（xrdp）</li>
-</ul>
-<h3 class="crossnote-header" id="ddns--frpddnsfrphtml"><a href="DDNS&amp;frp.html">DDNS &amp; frp</a></h3>
+<p>防火墙或者 ACL 没有屏蔽端口，但是 nmap 无法确定端口开放或者关闭。用其它类型的扫描，如窗口扫描，SYN 扫描，或者 FIN 扫描可以帮助确定端口是否开放。</p>
+<h2 class="crossnote-header" id="openfiltered%E5%BC%80%E6%94%BE%E6%88%96%E8%80%85%E5%B1%8F%E8%94%BD%E7%9A%84">open|filtered（开放或者屏蔽的）</h2>
 
-<ul>
-<li>noip / chickfrp</li>
-</ul>
-<h3 class="crossnote-header" id="clashclashhtml"><a href="clash.html">clash</a></h3>
+<p>开放的端口不响应探测包，屏蔽的端口也不响应探测包。所以无法确定端口是否开放。</p>
+<h2 class="crossnote-header" id="closedfiltered%E5%85%B3%E9%97%AD%E6%88%96%E8%80%85%E5%B1%8F%E8%94%BD%E7%9A%84">closed|filtered（关闭或者屏蔽的）</h2>
 
-<h3 class="crossnote-header" id="nginxnginxhtml"><a href="nginx.html">nginx</a></h3>
+<p>只可能出现在 IPID Idle 扫描中，因为此扫描类型需要发送两个探测包，如果两个探测包都没有响应，那么就无法确定端口是否开放。</p>
+<hr>
+<h1 class="crossnote-header" id="nmap-%E6%89%AB%E6%8F%8F%E6%8A%80%E6%9C%AF">nmap 扫描技术</h1>
 
-<h3 class="crossnote-header" id="codeservercodeserverhtml"><a href="codeserver.html">codeserver</a></h3>
+<h2 class="crossnote-header" id="%E9%BB%98%E8%AE%A4%E6%89%AB%E6%8F%8F">默认扫描</h2>
 
-<h3 class="crossnote-header" id="dockerdockerhtml"><a href="docker.html">docker</a></h3>
+<p><code>nmap dxll.love</code></p>
+<p>默认扫描是 nmap 的最基本的扫描方式，它会扫描 1000 个最常用的端口，扫描方式是 SYN 扫描。</p>
+<p><code>nmap -6 dxll.love</code></p>
+<p>开启 IPv6 扫描。</p>
+<h2 class="crossnote-header" id="%E6%89%AB%E6%8F%8F%E5%A4%9A%E4%B8%AA-ip">扫描多个 IP</h2>
 
-<h3 class="crossnote-header" id="nmapnmaphtml"><a href="nmap.html">nmap</a></h3>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh">nmap spacex.com dxll.love   <span class="token comment"># 扫描多个域名</span>
+nmap <span class="token number">192.168</span>.31.100,101,102 <span class="token comment"># 扫描同一网段的多个 IP，可以用逗号分隔</span>
+nmap <span class="token number">192.168</span>.31.*           <span class="token comment"># 扫描同一网段的多个 IP，可以用通配符</span>
+nmap <span class="token number">192.168</span>.31.1/24        <span class="token comment"># 扫描同一网段的多个 IP，可以用 CIDR 表示法</span>
+</pre><h2 class="crossnote-header" id="%E6%89%AB%E6%8F%8F%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3">扫描指定端口</h2>
 
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh">nmap <span class="token parameter variable">-p</span> <span class="token number">80</span> dxll.love        <span class="token comment"># 扫描单个端口</span>
+nmap <span class="token parameter variable">-p</span> <span class="token number">80,443</span> dxll.love    <span class="token comment"># 扫描多个端口</span>
+nmap <span class="token parameter variable">-p</span> <span class="token number">1</span>-100 dxll.love     <span class="token comment"># 扫描端口范围</span>
+nmap -p-                    <span class="token comment"># 扫描所有端口 等价于 nmap -p 1-65535</span>
+</pre><h2 class="crossnote-header" id="tcp%E6%89%AB%E6%8F%8F">TCP扫描</h2>
+
+<h3 class="crossnote-header" id="tcp-syn-%E6%89%AB%E6%8F%8F">TCP SYN 扫描</h3>
+
+<p><code>nmap -sS dxll.love</code></p>
+<p>此方式不完成 TCP 三次握手，而是发送一个 SYN 包，如果目标端口开放，那么会返回一个 SYN/ACK 包，如果端口关闭，那么会返回一个 RST 包。</p>
+<h3 class="crossnote-header" id="tcp-connect-%E6%89%AB%E6%8F%8F">TCP Connect 扫描</h3>
+
+<p><code>nmap -sT dxll.love</code></p>
+<p>此方式完成 TCP 三次握手，如果目标端口开放，那么会返回一个 SYN/ACK 包，如果端口关闭，那么会返回一个 RST 包。<br>
+目标主机可能会记录下连接，所以此方式不太隐蔽。</p>
+<h3 class="crossnote-header" id="tcp-%E9%9A%90%E7%A7%98%E6%89%AB%E6%8F%8F">TCP 隐秘扫描</h3>
+
+<p>如果收到 RST 响应，则端口关闭，否则判定端口开放或被屏蔽。</p>
+<p><code>nmap -sN dxll.love</code></p>
+<p>不设置任何标志位。</p>
+<p><code>nmap -sF dxll.love</code></p>
+<p>只设置TCP FIN标志位。</p>
+<p><code>nmap -sX dxll.love</code></p>
+<p>flags的FIN、URG、PUSH都为1的包。</p>
+<h3 class="crossnote-header" id="tcp-ping-%E6%89%AB%E6%8F%8F">TCP ping 扫描</h3>
+
+<p><code>nmap -sP dxll.love</code></p>
+<p>通过发送ICMP Echo请求（也称为Ping请求）到目标主机，命令将检测主机是否响应了请求并返回IP地址。如果主机响应，则表示主机是在线的。在这个扫描中，Nmap只检查是否有响应，而不扫描主机的任何端口。</p>
+<h2 class="crossnote-header" id="udp-%E6%89%AB%E6%8F%8F">UDP 扫描</h2>
+
+<p><code>namp -sU dxll.love</code></p>
+<p>UDP 扫描需要发送 UDP 包，如果目标端口开放，那么会返回一个 ICMP 端口不可达消息，如果端口关闭，那么会返回一个 ICMP 端口不可达消息或者没有响应。</p>
 
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#wsl2wsl2html" class="md-toc-link">
-            </a><p><a href="#wsl2wsl2html" class="md-toc-link"></a><a href="WSL2.html">WSL2</a></p>
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#nmap-端口状态" class="md-toc-link"><p>nmap 端口状态</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#open开放的" class="md-toc-link">
+            <p>open（开放的）</p>
 
-          </div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#linux-setuplinuxsetuphtml" class="md-toc-link">
-            </a><p><a href="#linux-setuplinuxsetuphtml" class="md-toc-link"></a><a href="LinuxSetup.html">Linux setup</a></p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#closed关闭的" class="md-toc-link">
+            <p>closed（关闭的）</p>
 
-          </div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#ddns--frpddnsfrphtml" class="md-toc-link">
-            </a><p><a href="#ddns--frpddnsfrphtml" class="md-toc-link"></a><a href="DDNS&amp;frp.html">DDNS &amp; frp</a></p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#filtered屏蔽的" class="md-toc-link">
+            <p>filtered（屏蔽的）</p>
 
-          </div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#clashclashhtml" class="md-toc-link">
-            </a><p><a href="#clashclashhtml" class="md-toc-link"></a><a href="clash.html">clash</a></p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unfiltered未屏蔽的" class="md-toc-link">
+            <p>unfiltered（未屏蔽的）</p>
 
-          </div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#nginxnginxhtml" class="md-toc-link">
-            </a><p><a href="#nginxnginxhtml" class="md-toc-link"></a><a href="nginx.html">nginx</a></p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#openfiltered开放或者屏蔽的" class="md-toc-link">
+            <p>open|filtered（开放或者屏蔽的）</p>
 
-          </div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#codeservercodeserverhtml" class="md-toc-link">
-            </a><p><a href="#codeservercodeserverhtml" class="md-toc-link"></a><a href="codeserver.html">codeserver</a></p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#closedfiltered关闭或者屏蔽的" class="md-toc-link">
+            <p>closed|filtered（关闭或者屏蔽的）</p>
 
-          </div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#dockerdockerhtml" class="md-toc-link">
-            </a><p><a href="#dockerdockerhtml" class="md-toc-link"></a><a href="docker.html">docker</a></p>
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#nmap-扫描技术" class="md-toc-link"><p>nmap 扫描技术</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#默认扫描" class="md-toc-link">
+            <p>默认扫描</p>
 
-          </div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#nmapnmaphtml" class="md-toc-link">
-            </a><p><a href="#nmapnmaphtml" class="md-toc-link"></a><a href="nmap.html">nmap</a></p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#扫描多个-ip" class="md-toc-link">
+            <p>扫描多个 IP</p>
 
-          </div>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#扫描指定端口" class="md-toc-link">
+            <p>扫描指定端口</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#tcp扫描" class="md-toc-link"><p>TCP扫描</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-syn-扫描" class="md-toc-link">
+            <p>TCP SYN 扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-connect-扫描" class="md-toc-link">
+            <p>TCP Connect 扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-隐秘扫描" class="md-toc-link">
+            <p>TCP 隐秘扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-ping-扫描" class="md-toc-link">
+            <p>TCP ping 扫描</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#udp-扫描" class="md-toc-link">
+            <p>UDP 扫描</p>
+
+          </a></div>
+        </div>
+      </details>
+    
 </div>
 </div>
       <a id="sidebar-toc-btn">≡</a>
@@ -95,7 +192,7 @@ rsync / mount / samba /<br>
     
     
 <script>
-
+document.body.setAttribute('html-show-sidebar-toc', true)
 var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
 sidebarTOCBtn.addEventListener('click', function(event) {
   event.stopPropagation()
