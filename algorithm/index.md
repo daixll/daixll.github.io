@@ -19,9 +19,9 @@ export_on_save:
 
 ---
 
-* 教学大纲
-   1. [暑期集训](./PLAN/summer.html)
-   2. [USACO Training](./PLAN/USACOTraining.html)
+* 教学大纲 & 训练计划
+   1. [暑期集训](summer.html)
+   2. [USACO Training](USACOTraining.html)
 
 ---
 1. 入门
