@@ -48,25 +48,36 @@
 <hr>
 <h1 class="crossnote-header" id="nmap-%E6%89%AB%E6%8F%8F%E6%8A%80%E6%9C%AF">nmap 扫描技术</h1>
 
-<h2 class="crossnote-header" id="%E9%BB%98%E8%AE%A4%E6%89%AB%E6%8F%8F">默认扫描</h2>
+<h2 class="crossnote-header" id="1-%E9%BB%98%E8%AE%A4%E6%89%AB%E6%8F%8F">1 默认扫描</h2>
 
 <p><code>nmap dxll.love</code></p>
 <p>默认扫描是 nmap 的最基本的扫描方式，它会扫描 1000 个最常用的端口，扫描方式是 SYN 扫描。</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh">nmap <span class="token parameter variable">-T0</span> dxll.love
+nmap <span class="token parameter variable">-T1</span> dxll.love
+nmap <span class="token parameter variable">-T2</span> dxll.love
+nmap <span class="token parameter variable">-T3</span> dxll.love
+nmap <span class="token parameter variable">-T4</span> dxll.love
+nmap <span class="token parameter variable">-T5</span> dxll.love
+</pre><p><code>-T0</code> 是最慢的扫描方式，<code>-T5</code> 是最快的扫描方式，<code>-T3</code> 是默认的扫描方式，<code>-T4</code> 是常用的扫描方式。</p>
 <p><code>nmap -6 dxll.love</code></p>
 <p>开启 IPv6 扫描。</p>
-<h2 class="crossnote-header" id="%E6%89%AB%E6%8F%8F%E5%A4%9A%E4%B8%AA-ip">扫描多个 IP</h2>
+<p><code>nmap -v dxll.love</code></p>
+<p>开启详细模式，显示扫描过程。</p>
+<p><code>nmap -A dxll.love</code></p>
+<p>全面扫描，包括 1-10000 端口扫描，服务版本探测，操作系统探测，脚本扫描等。</p>
+<h2 class="crossnote-header" id="2-%E6%89%AB%E6%8F%8F%E5%A4%9A%E4%B8%AA-ip">2 扫描多个 IP</h2>
 
 <pre data-role="codeBlock" data-info="sh" class="language-bash sh">nmap spacex.com dxll.love   <span class="token comment"># 扫描多个域名</span>
 nmap <span class="token number">192.168</span>.31.100,101,102 <span class="token comment"># 扫描同一网段的多个 IP，可以用逗号分隔</span>
 nmap <span class="token number">192.168</span>.31.*           <span class="token comment"># 扫描同一网段的多个 IP，可以用通配符</span>
 nmap <span class="token number">192.168</span>.31.1/24        <span class="token comment"># 扫描同一网段的多个 IP，可以用 CIDR 表示法</span>
-</pre><h2 class="crossnote-header" id="%E6%89%AB%E6%8F%8F%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3">扫描指定端口</h2>
+</pre><h2 class="crossnote-header" id="3-%E6%89%AB%E6%8F%8F%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3">3 扫描指定端口</h2>
 
 <pre data-role="codeBlock" data-info="sh" class="language-bash sh">nmap <span class="token parameter variable">-p</span> <span class="token number">80</span> dxll.love        <span class="token comment"># 扫描单个端口</span>
 nmap <span class="token parameter variable">-p</span> <span class="token number">80,443</span> dxll.love    <span class="token comment"># 扫描多个端口</span>
 nmap <span class="token parameter variable">-p</span> <span class="token number">1</span>-100 dxll.love     <span class="token comment"># 扫描端口范围</span>
 nmap -p-                    <span class="token comment"># 扫描所有端口 等价于 nmap -p 1-65535</span>
-</pre><h2 class="crossnote-header" id="tcp%E6%89%AB%E6%8F%8F">TCP扫描</h2>
+</pre><h2 class="crossnote-header" id="4-tcp%E6%89%AB%E6%8F%8F">4 TCP扫描</h2>
 
 <h3 class="crossnote-header" id="tcp-syn-%E6%89%AB%E6%8F%8F">TCP SYN 扫描</h3>
 
@@ -90,10 +101,18 @@ nmap -p-                    <span class="token comment"># 扫描所有端口 等
 
 <p><code>nmap -sP dxll.love</code></p>
 <p>通过发送ICMP Echo请求（也称为Ping请求）到目标主机，命令将检测主机是否响应了请求并返回IP地址。如果主机响应，则表示主机是在线的。在这个扫描中，Nmap只检查是否有响应，而不扫描主机的任何端口。</p>
-<h2 class="crossnote-header" id="udp-%E6%89%AB%E6%8F%8F">UDP 扫描</h2>
+<h2 class="crossnote-header" id="5-udp-%E6%89%AB%E6%8F%8F">5 UDP 扫描</h2>
 
 <p><code>namp -sU dxll.love</code></p>
 <p>UDP 扫描需要发送 UDP 包，如果目标端口开放，那么会返回一个 ICMP 端口不可达消息，如果端口关闭，那么会返回一个 ICMP 端口不可达消息或者没有响应。</p>
+<h2 class="crossnote-header" id="6-%E8%B7%AF%E7%94%B1%E8%B7%9F%E8%B8%AA">6 路由跟踪</h2>
+
+<p><code>nmap --traceroute dxll.love</code></p>
+<p>查出从本地计算机到目标之间所经过的网络节点，并可以看到通过各个节点的时间。</p>
+<h2 class="crossnote-header" id="7-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A2%E6%B5%8B">7 操作系统探测</h2>
+
+<p><code>nmap -O dxll.love</code></p>
+<p>nmap 会发送一系列的 TCP 和 UDP 包，然后分析返回的包，从而判断目标主机的操作系统。</p>
 
       </div>
       <div class="md-sidebar-toc">
@@ -138,20 +157,20 @@ nmap -p-                    <span class="token comment"># 扫描所有端口 等
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#默认扫描" class="md-toc-link">
-            <p>默认扫描</p>
+          <a href="#1-默认扫描" class="md-toc-link">
+            <p>1 默认扫描</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#扫描多个-ip" class="md-toc-link">
-            <p>扫描多个 IP</p>
+          <a href="#2-扫描多个-ip" class="md-toc-link">
+            <p>2 扫描多个 IP</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#扫描指定端口" class="md-toc-link">
-            <p>扫描指定端口</p>
+          <a href="#3-扫描指定端口" class="md-toc-link">
+            <p>3 扫描指定端口</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#tcp扫描" class="md-toc-link"><p>TCP扫描</p>
+          <a href="#4-tcp扫描" class="md-toc-link"><p>4 TCP扫描</p>
 </a>
           </summary>
         <div>
@@ -175,8 +194,16 @@ nmap -p-                    <span class="token comment"># 扫描所有端口 等
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#udp-扫描" class="md-toc-link">
-            <p>UDP 扫描</p>
+          <a href="#5-udp-扫描" class="md-toc-link">
+            <p>5 UDP 扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#6-路由跟踪" class="md-toc-link">
+            <p>6 路由跟踪</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#7-操作系统探测" class="md-toc-link">
+            <p>7 操作系统探测</p>
 
           </a></div>
         </div>

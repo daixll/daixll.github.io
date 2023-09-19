@@ -42,17 +42,36 @@ export_on_save:
 # nmap 扫描技术
 
 
-## 默认扫描
+## 1 默认扫描
 
 `nmap dxll.love`
 
 默认扫描是 nmap 的最基本的扫描方式，它会扫描 1000 个最常用的端口，扫描方式是 SYN 扫描。
 
+```sh
+nmap -T0 dxll.love
+nmap -T1 dxll.love
+nmap -T2 dxll.love
+nmap -T3 dxll.love
+nmap -T4 dxll.love
+nmap -T5 dxll.love
+```
+
+`-T0` 是最慢的扫描方式，`-T5` 是最快的扫描方式，`-T3` 是默认的扫描方式，`-T4` 是常用的扫描方式。
+
 `nmap -6 dxll.love`
 
 开启 IPv6 扫描。
 
-## 扫描多个 IP
+`nmap -v dxll.love`
+
+开启详细模式，显示扫描过程。
+
+`nmap -A dxll.love`
+
+全面扫描，包括 1-10000 端口扫描，服务版本探测，操作系统探测，脚本扫描等。
+
+## 2 扫描多个 IP
 
 ```sh
 nmap spacex.com dxll.love   # 扫描多个域名
@@ -61,7 +80,7 @@ nmap 192.168.31.*           # 扫描同一网段的多个 IP，可以用通配�
 nmap 192.168.31.1/24        # 扫描同一网段的多个 IP，可以用 CIDR 表示法
 ```
 
-## 扫描指定端口
+## 3 扫描指定端口
 
 ```sh
 nmap -p 80 dxll.love        # 扫描单个端口
@@ -70,7 +89,7 @@ nmap -p 1-100 dxll.love     # 扫描端口范围
 nmap -p-                    # 扫描所有端口 等价于 nmap -p 1-65535
 ```
 
-## TCP扫描
+## 4 TCP扫描
 
 ### TCP SYN 扫描
 
@@ -107,11 +126,21 @@ flags的FIN、URG、PUSH都为1的包。
 
 通过发送ICMP Echo请求（也称为Ping请求）到目标主机，命令将检测主机是否响应了请求并返回IP地址。如果主机响应，则表示主机是在线的。在这个扫描中，Nmap只检查是否有响应，而不扫描主机的任何端口。
 
-## UDP 扫描
+## 5 UDP 扫描
 
 `namp -sU dxll.love`
 
 UDP 扫描需要发送 UDP 包，如果目标端口开放，那么会返回一个 ICMP 端口不可达消息，如果端口关闭，那么会返回一个 ICMP 端口不可达消息或者没有响应。
 
 
+## 6 路由跟踪
 
+`nmap --traceroute dxll.love`
+
+查出从本地计算机到目标之间所经过的网络节点，并可以看到通过各个节点的时间。
+
+## 7 操作系统探测
+
+`nmap -O dxll.love`
+
+nmap 会发送一系列的 TCP 和 UDP 包，然后分析返回的包，从而判断目标主机的操作系统。
