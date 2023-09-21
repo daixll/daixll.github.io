@@ -28,7 +28,7 @@
 
 
 
-<strong> 🌏 <a href="HTTPServer/README.html"><font size="4">HTTPServer</a></font></strong> &nbsp; | &nbsp; [Github](https://github.com/daixll/HTTPServer)
+<strong> 🌏 <a href="HTTPServer/README.html"><font size="4">HTTPserver</a></font></strong> &nbsp; | &nbsp; [Github](https://github.com/daixll/HTTPserver)
 
 * 旧项目地址：[WebServer](https://github.com/daixll/WebServer)，功能已经完善，但是代码质量不高，故有了本项目。
 * 基于 Socket 实现的一个 HTTP 服务器，主从 Reactor 模型 + 非阻塞 Socket + Epoll（ET） + 线程池 + 内存池。
