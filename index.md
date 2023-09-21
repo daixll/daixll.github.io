@@ -164,7 +164,7 @@
 - `2023-7` `重庆市创新能力提升先进个人` [公示 / 排名](https://jw.cq.gov.cn/zwxx_209/gggs/202306/t20230615_12069241_wap.html)
 
 <div class="center">
-    <img src="joker/（省0）重庆市先进个人.jpg" width="300">
+    <img src="joker/（证）重庆市先进个人.jpg" width="300">
 </div>
 
 ### 国二 蓝桥杯
