@@ -6,12 +6,12 @@ export_on_save:
 ## C++
 
 0. STL
-    * [迭代器](CPP/iterator.html)
+    * 迭代器](CPP/iterator.html)
     * [序列式容器](CPP/sequence.html)
     * [关联式容器](CPP/associative.html)
-    * [容器适配器](CPP/adapter.html)
-    * [算法](CPP/algorithm.html)
-    * [函数对象](CPP/functor.html)
+    * 容器适配器](CPP/adapter.html)
+    * 算法](CPP/algorithm.html)
+    * 函数对象](CPP/functor.html)
 
 1. [string](CPP/string.html)
 2. [template](CPP/template.html)

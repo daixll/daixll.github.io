@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:////home/jiao/.vscode-server-insiders/extensions/shd101wyy.markdown-preview-enhanced-0.7.8/crossnote/dependencies/katex/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
       
       
       
@@ -15,6 +15,7 @@
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 
       </style>
+      
     </head>
     <body for="html-export">
       <div class="crossnote markdown-preview  ">
@@ -24,30 +25,13 @@
 <p><code>软件</code> gcc: gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)</p>
 <p>这是一个HTTP服务器，目的是通过此项目学习网络编程：</p>
 <ul>
-<li>
-<p><a href="#tcp--ip-%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B">TCP / IP 分层模型</a> 及 <a href="#tcp-%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5">三握四挥</a></p>
-</li>
-<li>
-<p><a href="#socket-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket 通信模型</a></p>
-</li>
-<li>
-<p><a href="#socket-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">socket 编程</a></p>
-</li>
-<li>
-<p>TCP/UDP协议、HTTP协议</p>
-</li>
-<li>
-<p>TCP/UDP编程</p>
-</li>
-<li>
-<p>网络IO接口复用：select、poll、epoll</p>
-</li>
-<li>
-<p>阻塞、非阻塞</p>
-</li>
-<li>
-<p>同步、异步</p>
-</li>
+<li><a href="#tcp--ip-%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B">TCP / IP 分层模型</a> 及 <a href="#tcp-%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5">三握四挥</a></li>
+<li><a href="#socket-tcp-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket TCP 通信模型</a> 及 <a href="#socket-tcp-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">实例</a></li>
+<li><a href="#socket-udp-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket UDP 通信模型</a> 及 <a href="#socket-udp-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">实例</a></li>
+<li>网络IO接口复用：select、poll、<a href="#epoll">epoll</a></li>
+<li>阻塞、<a href="#%E9%9D%9E%E9%98%BB%E5%A1%9E-socket">非阻塞</a></li>
+<li>同步、异步</li>
+<li>HTTP协议</li>
 </ul>
 <h2 class="crossnote-header" id="tcp--ip-%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B">TCP / IP 分层模型</h2>
 
@@ -77,7 +61,7 @@
 </tr>
 </tbody>
 </table>
-<h2 class="crossnote-header" id="socket-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket 通信模型</h2>
+<h2 class="crossnote-header" id="socket-tcp-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket TCP 通信模型</h2>
 
 <p>socket是一个接口，而不是一种协议，其抽象在应用层与传输层之间</p>
 <table>
@@ -152,16 +136,16 @@
 </tr>
 </tbody>
 </table>
-<h2 class="crossnote-header" id="socket-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">socket 通信简单实例</h2>
+<h2 class="crossnote-header" id="socket-tcp-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">socket TCP 通信简单实例</h2>
 
 <ul>
-<li>启动 <a href="%E6%A0%B7%E4%BE%8B/%E5%A5%97%E6%8E%A5%E5%AD%97%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E6%9C%8D%E5%8A%A1%E7%AB%AF.cpp">服务端</a>
+<li>启动 <a href="%E6%A0%B7%E4%BE%8B/TCP%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E6%9C%8D%E5%8A%A1%E7%AB%AF.cpp">服务端</a>
 <ol>
 <li>编译 <code>g++ 服务端.cpp -o 服务端</code></li>
 <li>运行 <code>./服务端</code> 默认运行在本地 8080 端口</li>
 </ol>
 </li>
-<li>启动 <a href="%E6%A0%B7%E4%BE%8B/%E5%A5%97%E6%8E%A5%E5%AD%97%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E5%AE%A2%E6%88%B7%E7%AB%AF.cpp">客户端</a>
+<li>启动 <a href="%E6%A0%B7%E4%BE%8B/TCP%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E5%AE%A2%E6%88%B7%E7%AB%AF.cpp">客户端</a>
 <ol>
 <li>编译 <code>g++ 客户端.cpp -o 客户端</code></li>
 <li>运行 <code>./客户端</code></li>
@@ -205,6 +189,134 @@
 </ol>
 </li>
 </ul>
+<h2 class="crossnote-header" id="socket-udp-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket UDP 通信模型</h2>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">服务端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>socket()</code></td>
+<td style="text-align:center">创建 socket</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><code>bind()</code></td>
+<td style="text-align:center">绑定 ip + port 至该 socket 上</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center"><code>recvfrom()</code></td>
+<td style="text-align:center">接收来自客户端的消息</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center"><code>close()</code></td>
+<td style="text-align:center">关闭 socket</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">客户端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>socket()</code></td>
+<td style="text-align:center">创建 socket</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><code>sendto()</code></td>
+<td style="text-align:center">发送消息</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center"><code>close()</code></td>
+<td style="text-align:center">关闭 socket</td>
+</tr>
+</tbody>
+</table>
+<h2 class="crossnote-header" id="socket-udp-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">socket UDP 通信简单实例</h2>
+
+<ul>
+<li>启动 <a href="%E6%A0%B7%E4%BE%8B/UDP%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E6%9C%8D%E5%8A%A1%E7%AB%AF.cpp">服务端</a>
+<ol>
+<li>编译 <code>g++ 服务端.cpp -o 服务端</code></li>
+<li>运行 <code>./服务端</code> 默认运行在本地 8080 端口</li>
+</ol>
+</li>
+<li>启动 <a href="%E6%A0%B7%E4%BE%8B/UDP%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E5%AE%A2%E6%88%B7%E7%AB%AF.cpp">客户端</a>
+<ol>
+<li>编译 <code>g++ 客户端.cpp -o 客户端</code></li>
+<li>运行 <code>./客户端</code></li>
+</ol>
+</li>
+</ul>
+<p>可以同时运行多个客户端，服务端允许多台客户端连接。连接之后：</p>
+<ol>
+<li>客户端发送消息，服务端接收消息，回复单一消息。</li>
+<li>服务端发送消息，客户端接收消息，回复单一消息。</li>
+<li>不断重复，直到客户端断开连接</li>
+</ol>
+<h2 class="crossnote-header" id="%E9%9D%9E%E9%98%BB%E5%A1%9E-socket">非阻塞 Socket</h2>
+
+<ul>
+<li><code>int fcntl(int fd, int cmd, ... /* arg */ );</code>
+<ul>
+<li><code>fd</code>：文件描述符</li>
+<li><code>cmd</code>：
+<ul>
+<li><code>F_GETFL</code>：获取文件描述符状态标志</li>
+<li><code>F_SETFL</code>：设置文件描述符状态标志</li>
+</ul>
+</li>
+<li><code>arg</code>：文件描述符状态标志
+<ul>
+<li><code>O_NONBLOCK</code>：非阻塞</li>
+<li><code>O_ASYNC</code>：异步</li>
+<li><code>O_SYNC</code>：同步</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>阻塞：调用函数时，如果数据没有准备好，那么函数将一直等待，直到数据准备好为止。</p>
+<p>非阻塞：调用函数时，如果数据没有准备好，那么函数将立即返回，不会等待数据准备好。</p>
+<ul>
+<li>
+<p><code>accept</code></p>
+<ul>
+<li>阻塞：没有新连接时，一直等待。</li>
+<li>非阻塞：没有新连接时，立即返回 <code>EWOULDBLOCK(11)</code> 或 <code>EAGAIN</code></li>
+</ul>
+</li>
+<li>
+<p><code>recv</code></p>
+<ul>
+<li>阻塞：没有数据时，一直等待。</li>
+<li>非阻塞：没有数据时，立即返回 <code>EWOULDBLOCK(11)</code> 或 <code>EAGAIN</code></li>
+</ul>
+</li>
+<li>
+<p><code>read</code></p>
+<ul>
+<li>阻塞：没有数据时，一直等待。</li>
+<li>非阻塞：没有数据时，立即返回 <code>EWOULDBLOCK(11)</code> 或 <code>EAGAIN</code></li>
+</ul>
+</li>
+</ul>
 <h2 class="crossnote-header" id="epoll">Epoll</h2>
 
 <p>eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）的一个实现。</p>
@@ -213,14 +325,32 @@
 <li>
 <p><code>int epoll_create1()</code></p>
 <ul>
-<li>创建一个 epoll 对象，事件轮询的实例，返回一个文件描述符，即事件树。</li>
+<li>创建一个 epoll 文件描述符，事件轮询的实例，返回一个文件描述符，即事件树。</li>
+<li>底层创建一个 红黑树 和 就绪链表（双向链表）。</li>
+<li>红黑树 存储所监控的文件描述符的节点数据，就绪链表 存储就绪的文件描述符的节点数据。</li>
 </ul>
 </li>
 <li>
 <p><code>int epoll_ctl(事件树, 操作, 文件描述符, 事件)</code></p>
 <ul>
-<li>操作：<code>EPOLL_CTL_ADD</code> <code>EPOLL_CTL_MOD</code> <code>EPOLL_CTL_DEL</code></li>
-<li>事件：<code>EPOLLIN</code> <code>EPOLLOUT</code> <code>EPOLLERR</code> <code>EPOLLHUP</code> <code>EPOLLET</code> <code>EPOLLONESHOT</code></li>
+<li>操作：
+<ul>
+<li><code>EPOLL_CTL_ADD</code>：注册新的事件到事件树。</li>
+<li><code>EPOLL_CTL_MOD</code>：修改已经注册的事件。</li>
+<li><code>EPOLL_CTL_DEL</code>：删除已经注册的事件。</li>
+</ul>
+</li>
+<li>事件：
+<ul>
+<li><code>EPOLLIN</code>：对应的文件描述符可以读 <code>read</code>（包括对端SOCKET正常关闭）。</li>
+<li><code>EPOLLPRI</code>：对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）。</li>
+<li><code>EPOLLOUT</code>：对应的文件描述符可以写 <code>recv</code>。</li>
+<li><code>EPOLLERR</code>：对应的文件描述符发生错误。</li>
+<li><code>EPOLLHUP</code>：对应的文件描述符被挂断。</li>
+<li><code>EPOLLET</code>：将 EPOLL 设为边缘触发(Edge Triggered)模式。</li>
+<li><code>EPOLLONESHOT</code>：只监听一次事件，当监听完这次事件之后，删除。</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
@@ -231,6 +361,31 @@
 </ul>
 </li>
 </ul>
+<h2 class="crossnote-header" id="epoll-%E9%80%9A%E4%BF%A1%E5%AE%9E%E4%BE%8B">Epoll 通信实例</h2>
+
+<ul>
+<li>启动 <a href="%E6%A0%B7%E4%BE%8B/%E4%BA%8B%E4%BB%B6%E8%BD%AE%E8%AF%A2%E6%A0%B7%E4%BE%8B/%E6%9C%8D%E5%8A%A1%E7%AB%AF.cpp">服务端</a>
+<ol>
+<li>编译 <code>g++ 服务端.cpp -o 服务端</code></li>
+<li>运行 <code>./服务端</code> 默认运行在本地 8080 端口</li>
+</ol>
+</li>
+<li>启动 <a href="%E6%A0%B7%E4%BE%8B/%E4%BA%8B%E4%BB%B6%E8%BD%AE%E8%AF%A2%E6%A0%B7%E4%BE%8B/%E5%AE%A2%E6%88%B7%E7%AB%AF.cpp">客户端</a>
+<ol>
+<li>编译 <code>g++ 客户端.cpp -o 客户端</code></li>
+<li>运行 <code>./客户端</code></li>
+</ol>
+</li>
+</ul>
+<p>可以同时运行多个客户端，服务端允许多台客户端连接。连接之后：</p>
+<ol>
+<li>客户端发送消息，服务端接收消息，回复单一消息。</li>
+</ol>
+<h2 class="crossnote-header" id="%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">面向对象</h2>
+
+<h2 class="crossnote-header" id="channel">Channel</h2>
+
+<p><code>Channel</code> 是 <code>Epoll</code> 的事件处理类，<code>Epoll</code> 通过 <code>Channel</code> 处理事件。</p>
 
       </div>
       <div class="md-sidebar-toc">
@@ -240,20 +395,44 @@
             <p>TCP / IP 分层模型</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#socket-通信模型" class="md-toc-link">
-            <p>socket 通信模型</p>
+          <a href="#socket-tcp-通信模型" class="md-toc-link">
+            <p>socket TCP 通信模型</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#socket-通信简单实例" class="md-toc-link">
-            <p>socket 通信简单实例</p>
+          <a href="#socket-tcp-通信简单实例" class="md-toc-link">
+            <p>socket TCP 通信简单实例</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#tcp-三握四挥" class="md-toc-link">
             <p>TCP 三握四挥</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#socket-udp-通信模型" class="md-toc-link">
+            <p>socket UDP 通信模型</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#socket-udp-通信简单实例" class="md-toc-link">
+            <p>socket UDP 通信简单实例</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#非阻塞-socket" class="md-toc-link">
+            <p>非阻塞 Socket</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#epoll" class="md-toc-link">
             <p>Epoll</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#epoll-通信实例" class="md-toc-link">
+            <p>Epoll 通信实例</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#面向对象" class="md-toc-link">
+            <p>面向对象</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#channel" class="md-toc-link">
+            <p>Channel</p>
 
           </a></div>
 </div>
