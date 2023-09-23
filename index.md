@@ -114,26 +114,6 @@
 
 ## 2023
 
-<!--
-
-### 单项奖学金 (3)
-
-- `2023-12` `重庆工业职业技术学院单项奖学金`
-
-<div class="center">
-    <img src="/joker/（金单项）0.jpg" width="300">
-</div>
-
-<div class="center">
-    <img src="/joker/（金单项）0.jpg" width="300">
-</div>
-
-<div class="center">
-    <img src="/joker/（金单项）0.jpg" width="300">
-</div>
-
--->
-
 ### 国一 睿抗
 
 - `2023-8` `睿抗机器人开发者大赛（RAICOM）全国总决赛 编程技能竞赛项目` `国赛一等奖` [公示 / 排名](https://www.ncie.org.cn/Category_1397/Index.aspx)
@@ -378,6 +358,26 @@
 </div>
 
 ## 奖学金 ￥17600
+
+<!--
+
+### 单项奖学金 (3)
+
+- `2023-12` `重庆工业职业技术学院单项奖学金`
+
+<div class="center">
+    <img src="/joker/（金单项）0.jpg" width="300">
+</div>
+
+<div class="center">
+    <img src="/joker/（金单项）0.jpg" width="300">
+</div>
+
+<div class="center">
+    <img src="/joker/（金单项）0.jpg" width="300">
+</div>
+
+-->
 
 ### 单项奖学金 (2)
 
