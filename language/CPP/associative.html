@@ -19,9 +19,263 @@
     </head>
     <body for="html-export">
       <div class="crossnote markdown-preview  ">
-      
+      <p>所谓关联式容器，就是将数据元素组织成键值对的容器。</p>
+<ul>
+<li>元素按照一定的排序规则组织的，而不是像顺序容器那样按照元素的插入顺序组织的。</li>
+<li>关联容器的元素类型是pair类型，pair类型的第一个元素是键值，第二个元素是实值。</li>
+</ul>
+<h1 class="crossnote-header" id="%E6%A0%91">树</h1>
+
+<h2 class="crossnote-header" id="%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91-bst">二叉搜索树 BST</h2>
+
+<h2 class="crossnote-header" id="%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91-avlt">平衡二叉树 AVLT</h2>
+
+<h2 class="crossnote-header" id="%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91-bbst">平衡二叉搜索树 BBST</h2>
+
+<h2 class="crossnote-header" id="%E7%BA%A2%E9%BB%91%E6%A0%91-rbt">红黑树 RBT</h2>
+
+<h1 class="crossnote-header" id="set">set</h1>
+
+<h2 class="crossnote-header" id="set-%E9%9B%86%E5%90%88">set 集合</h2>
+
+<p>set 的元素是唯一的，不能重复。</p>
+<p>set 的底层实现是红黑树，所以 set 的元素是有序的。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;set&gt;</span></span>
+</pre><h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA">创建</h4>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp">set<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> s1<span class="token punctuation">;</span>                <span class="token comment">// 元素类型是 int</span>
+set<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> s2<span class="token punctuation">;</span>  <span class="token comment">// 元素类型是 pair 类型</span>
+</pre><h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0">增加</h4>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp">s<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// 插入元素 6</span>
+s2<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 插入元素 {"hello", 6}</span>
+</pre><h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4">删除</h4>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp">s<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// 清空所有元素</span>
+s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 删除元素 6</span>
+s2<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 删除元素 {"hello", 6}</span>
+s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 删除第一个元素</span>
+s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> s<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 删除所有元素</span>
+</pre><h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9">修改</h4>
+
+<p>改不了。</p>
+<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE">查找</h4>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp">s<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// 查找元素 6 返回迭代器</span>
+s<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 查找元素 6 的个数</span>
+s<span class="token punctuation">.</span><span class="token function">lower_bound</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 查找第一个大于等于 6 的元素 返回迭代器</span>
+s<span class="token punctuation">.</span><span class="token function">upper_bound</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 查找第一个大于 6 的元素 返回迭代器</span>
+
+<span class="token keyword keyword-auto">auto</span> it <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">equal_range</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 查找第一个大于等于 6 和 第一个大于 6 的元素 返回迭代器</span>
+cout<span class="token operator">&lt;&lt;</span><span class="token punctuation">(</span><span class="token operator">*</span>it<span class="token punctuation">.</span>first<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token operator">&lt;&lt;</span><span class="token punctuation">(</span><span class="token operator">*</span>it<span class="token punctuation">.</span>second<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 遍历</span>
+<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> it <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> s<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span><span class="token punctuation">(</span><span class="token operator">*</span>it<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> i<span class="token operator">:</span> s<span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span>i<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
+</pre><h2 class="crossnote-header" id="unordered_set-%E6%97%A0%E5%BA%8F%E9%9B%86%E5%90%88">unordered_set 无序集合</h2>
+
+<p>unordered_set 的元素是唯一的，不能重复。</p>
+<p>unordered_set 的底层实现是哈希表，所以 unordered_set 的元素是无序的。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unordered_set&gt;</span></span>
+</pre><h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-1">创建</h4>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp">unordered_set<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> s1<span class="token punctuation">;</span>                <span class="token comment">// 元素类型是 int</span>
+unordered_set<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> s2<span class="token punctuation">;</span>  <span class="token comment">// 元素类型是 pair 类型</span>
+</pre><h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-1">增加</h4>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp">s<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// 插入元素 6</span>
+s2<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 插入元素 {"hello", 6}</span>
+</pre><h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-1">删除</h4>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp">s<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// 清空所有元素</span>
+s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 删除元素 6</span>
+s2<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 删除元素 {"hello", 6}</span>
+s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 删除第一个元素</span>
+s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> s<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 删除所有元素</span>
+</pre><h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-1">修改</h4>
+
+<p>改不了。</p>
+<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-1">查找</h4>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp">s<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// 查找元素 6 返回迭代器</span>
+s<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 查找元素 6 的个数</span>
+</pre><h2 class="crossnote-header" id="multiset-%E5%8F%AF%E9%87%8D%E9%9B%86%E5%90%88">multiset 可重集合</h2>
+
+<p>multiset 的元素是可以重复的。</p>
+<p>multiset 的底层实现是红黑树，所以 multiset 的元素是有序的。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;set&gt;</span></span>
+</pre><h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-2">创建</h4>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp">multiset<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> s1<span class="token punctuation">;</span>                <span class="token comment">// 元素类型是 int</span>
+multiset<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> s2<span class="token punctuation">;</span>  <span class="token comment">// 元素类型是 pair 类型</span>
+</pre><h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-2">增加</h4>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp">s<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// 插入元素 6</span>
+s2<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 插入元素 {"hello", 6}</span>
+</pre><h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-2">删除</h4>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp">s<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// 清空所有元素</span>
+s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 删除元素 6</span>
+s2<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 删除元素 {"hello", 6}</span>
+s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 删除第一个元素</span>
+s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> s<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 删除所有元素</span>
+</pre><h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-2">修改</h4>
+
+<p>改不了。</p>
+<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-2">查找</h4>
+
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp">s<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// 查找元素 6 返回迭代器</span>
+s<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 查找元素 6 的个数</span>
+s<span class="token punctuation">.</span><span class="token function">lower_bound</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 查找第一个大于等于 6 的元素 返回迭代器</span>
+s<span class="token punctuation">.</span><span class="token function">upper_bound</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 查找第一个大于 6 的元素 返回迭代器</span>
+
+s<span class="token punctuation">.</span><span class="token function">equal_range</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 查找第一个大于等于 6 和 第一个大于 6 的元素 返回迭代器</span>
+<span class="token comment">// 如果没有大于等于 6 的元素，那么第一个迭代器指向第一个大于 6 的元素，返回的两个迭代器相等</span>
+</pre><h2 class="crossnote-header" id="unordered_multiset-%E6%97%A0%E5%BA%8F%E5%8F%AF%E9%87%8D%E9%9B%86%E5%90%88">unordered_multiset 无序可重集合</h2>
+
+<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-3">创建</h4>
+
+<h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-3">增加</h4>
+
+<h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-3">删除</h4>
+
+<h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-3">修改</h4>
+
+<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-3">查找</h4>
+
+<hr>
+<h1 class="crossnote-header" id="map">map</h1>
+
+<h2 class="crossnote-header" id="map-%E6%98%A0%E5%B0%84">map 映射</h2>
+
+<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-4">创建</h4>
+
+<h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-4">增加</h4>
+
+<h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-4">删除</h4>
+
+<h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-4">修改</h4>
+
+<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-4">查找</h4>
+
+<h2 class="crossnote-header" id="unordered_map-%E6%97%A0%E5%BA%8F%E6%98%A0%E5%B0%84">unordered_map 无序映射</h2>
+
+<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-5">创建</h4>
+
+<h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-5">增加</h4>
+
+<h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-5">删除</h4>
+
+<h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-5">修改</h4>
+
+<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-5">查找</h4>
+
+<h2 class="crossnote-header" id="multimap-%E5%8F%AF%E9%87%8D%E6%98%A0%E5%B0%84">multimap 可重映射</h2>
+
+<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-6">创建</h4>
+
+<h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-6">增加</h4>
+
+<h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-6">删除</h4>
+
+<h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-6">修改</h4>
+
+<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-6">查找</h4>
+
+<h2 class="crossnote-header" id="unordered_multimap-%E6%97%A0%E5%BA%8F%E5%8F%AF%E9%87%8D%E6%98%A0%E5%B0%84">unordered_multimap 无序可重映射</h2>
+
+<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-7">创建</h4>
+
+<h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-7">增加</h4>
+
+<h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-7">删除</h4>
+
+<h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-7">修改</h4>
+
+<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-7">查找</h4>
+
+
       </div>
-      <div class="md-sidebar-toc"></div>
+      <div class="md-sidebar-toc">
+<div class="md-toc">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#树" class="md-toc-link"><p>树</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#二叉搜索树-bst" class="md-toc-link">
+            <p>二叉搜索树 BST</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#平衡二叉树-avlt" class="md-toc-link">
+            <p>平衡二叉树 AVLT</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#平衡二叉搜索树-bbst" class="md-toc-link">
+            <p>平衡二叉搜索树 BBST</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#红黑树-rbt" class="md-toc-link">
+            <p>红黑树 RBT</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#set" class="md-toc-link"><p>set</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#set-集合" class="md-toc-link">
+            <p>set 集合</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unordered_set-无序集合" class="md-toc-link">
+            <p>unordered_set 无序集合</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#multiset-可重集合" class="md-toc-link">
+            <p>multiset 可重集合</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unordered_multiset-无序可重集合" class="md-toc-link">
+            <p>unordered_multiset 无序可重集合</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#map" class="md-toc-link"><p>map</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#map-映射" class="md-toc-link">
+            <p>map 映射</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unordered_map-无序映射" class="md-toc-link">
+            <p>unordered_map 无序映射</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#multimap-可重映射" class="md-toc-link">
+            <p>multimap 可重映射</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unordered_multimap-无序可重映射" class="md-toc-link">
+            <p>unordered_multimap 无序可重映射</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+</div>
+</div>
       <a id="sidebar-toc-btn">≡</a>
     
     
