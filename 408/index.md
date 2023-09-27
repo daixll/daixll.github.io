@@ -1,13 +1,9 @@
 ---
 html:
-    toc: true           # 打开侧边目录
-    toc_depth: 6        # 打开的目录层级
-    toc_float: true     # 侧边悬停
-    collapsed: true     # 只显示高级别标题(2)
-    smooth_scroll: true # 页面滚动,标题变化
-    number_sections: false  # 显示标题编号
-    theme: united
---- 
+  toc: false   # 打开侧边目录
+export_on_save:
+  html: true  # 自动保存
+---
 
 
 ## 数据结构
@@ -39,6 +35,9 @@ html:
   * [会话层]() SMB, DNS
   * [表示层]() telnet, ftp
   * [应用层](./计算机网络/应用层.html) HTTP, DNS
+
+* 实验 H3C
+  * [实验1：静态ECMP和浮动路由配置实验](./计算机网络/实验1：静态ECMP和浮动路由配置实验.html)
 
 ---
 ## 操作系统

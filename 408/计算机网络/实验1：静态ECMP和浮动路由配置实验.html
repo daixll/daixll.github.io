@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>index</title>
+      <title>实验1：静态ECMP和浮动路由配置实验</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -23,123 +23,57 @@
     
     
       <div class="crossnote markdown-preview  ">
-      <h2 class="crossnote-header" id="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</h2>
+      <h1 class="crossnote-header" id="%E9%9D%99%E6%80%81ecmp">静态ECMP</h1>
 
-<ol>
-<li>[绪论]</li>
-<li><a href="./%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8.html">线性表</a></li>
-<li><a href="./%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97.html">栈和队列</a></li>
-<li>[串]</li>
-<li>[数组和广义表]</li>
-<li>[数和二叉树]</li>
-<li>[图]</li>
-<li>[动态内存管理]</li>
-<li>[查找]</li>
-<li>[内部排序]</li>
-<li>[外部排序]</li>
-<li>[文件]</li>
-</ol>
-<hr>
-<h2 class="crossnote-header" id="%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C">计算机网络</h2>
-
+<p>静态ECMP（Equal-CostMultipathRouting）是一种在网络环境中使用的等值多路径路由协议。</p>
+<p>在存在多条不同链路到达同一目的地址的情况下，如果使用传统的路由技术，发往该目的地址的数据包只能利用其中的一条链路，其它链路处于备份状态或无效状态，并且在动态路由环境下相互的切换需要一定时间。而静态ECMP可以在该网络环境下同时使用多条链路，不仅增加了传输带宽，并且可以无时延无丢包地备份失效链路的数据传输。</p>
+<p>静态ECMP最大的特点是实现了等值情况下，多路径负载均衡和链路备份的目的。</p>
+<p><img src="IMAGE/1.1.png" alt="Alt text"></p>
+<p>配置完成后，<code>PC_1</code> <code>PC_2</code> 互相 <code>ping</code> 通。</p>
 <ul>
 <li>
-<p><a href="">概述</a></p>
+<p>配置 <code>PC_1</code> <code>PC_2</code></p>
 </li>
 <li>
-<p>网络接口层</p>
-<ul>
-<li><a href="">物理层</a></li>
-<li><a href="">数据链路层</a></li>
-</ul>
-</li>
-<li>
-<p>网际层</p>
-<ul>
-<li><a href="">网络层</a> IPV4, IPV6</li>
-</ul>
-</li>
-<li>
-<p>传输层</p>
-<ul>
-<li><a href="">运输层</a> TCP, UDP</li>
-</ul>
-</li>
-<li>
-<p>应用层</p>
-<ul>
-<li><a href="">会话层</a> SMB, DNS</li>
-<li><a href="">表示层</a> telnet, ftp</li>
-<li><a href="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%BA%94%E7%94%A8%E5%B1%82.html">应用层</a> HTTP, DNS</li>
-</ul>
-</li>
-<li>
-<p>实验 H3C</p>
-<ul>
-<li><a href="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%AE%9E%E9%AA%8C1%EF%BC%9A%E9%9D%99%E6%80%81ECMP%E5%92%8C%E6%B5%AE%E5%8A%A8%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C.html">实验1：静态ECMP和浮动路由配置实验</a></li>
-</ul>
+<p>配置 <code>MSR36-20_1</code> 各个接口IP</p>
 </li>
 </ul>
-<hr>
-<h2 class="crossnote-header" id="%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</h2>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token comment"># 进入接口配置模式</span>
+<span class="token punctuation">[</span>MSR36-20_1<span class="token punctuation">]</span> interface g0/0 
+<span class="token comment"># 配置接口 IP 地址</span>
+<span class="token punctuation">[</span>MSR36-20_1-GigabitEthernet0/0<span class="token punctuation">]</span> <span class="token function">ip</span> address <span class="token number">192.168</span>.0.1 <span class="token number">24</span>
+<span class="token comment"># 退出接口 </span>
+<span class="token punctuation">[</span>MSR36-20_1-GigabitEthernet0/0<span class="token punctuation">]</span> quit
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token punctuation">[</span>MSR36<span class="token operator">-</span><span class="token number">20</span>_1<span class="token punctuation">]</span> interface g0<span class="token operator">/</span><span class="token number">1</span>
+<span class="token punctuation">[</span>MSR36<span class="token operator">-</span><span class="token number">20</span>_1<span class="token operator">-</span>GigabitEthernet0<span class="token operator">/</span><span class="token number">1</span><span class="token punctuation">]</span> ip address <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">1.1</span> <span class="token number">30</span>
+<span class="token punctuation">[</span>MSR36<span class="token operator">-</span><span class="token number">20</span>_1<span class="token operator">-</span>GigabitEthernet0<span class="token operator">/</span><span class="token number">1</span><span class="token punctuation">]</span> quit
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token punctuation">[</span>MSR36<span class="token operator">-</span><span class="token number">20</span>_1<span class="token punctuation">]</span> interface s4<span class="token operator">/</span><span class="token number">0</span>
+<span class="token punctuation">[</span>MSR36<span class="token operator">-</span><span class="token number">20</span>_1<span class="token operator">-</span>Serial4<span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">]</span> ip address <span class="token number">192.168</span><span class="token punctuation">.</span><span class="token number">1.5</span> <span class="token number">30</span>
+<span class="token punctuation">[</span>MSR36<span class="token operator">-</span><span class="token number">20</span>_1<span class="token operator">-</span>Serial4<span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">]</span> quit
+</code></pre><ul>
+<li>配置 <code>MSR36-20_1</code> 静态路由</li>
+</ul>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token comment"># 进入静态路由配置模式</span>
+<span class="token comment"># 目的网段：192.168.2.0/24，下一跳：192.168.1.2</span>
+<span class="token punctuation">[</span>MSR36-20_1<span class="token punctuation">]</span> <span class="token function">ip</span> route-static <span class="token number">192.168</span>.2.0 <span class="token number">24</span> <span class="token number">192.168</span>.1.2
+<span class="token punctuation">[</span>MSR36-20_1<span class="token punctuation">]</span> <span class="token function">ip</span> route-static <span class="token number">192.168</span>.2.0 <span class="token number">24</span> <span class="token number">192.168</span>.1.6
+</code></pre><details><summary> 配置 MSR36-20_2 各个接口 IP</summary>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>MSR36-20_2<span class="token punctuation">]</span> interface g0/0
+<span class="token punctuation">[</span>MSR36-20_2-GigabitEthernet0/0<span class="token punctuation">]</span> <span class="token function">ip</span> address <span class="token number">192.168</span>.2.1 <span class="token number">24</span>
+<span class="token punctuation">[</span>MSR36-20_2-GigabitEthernet0/0<span class="token punctuation">]</span> quit
+</code></pre><pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>MSR36-20_2<span class="token punctuation">]</span> interface g0/1
+<span class="token punctuation">[</span>MSR36-20_2-GigabitEthernet0/1<span class="token punctuation">]</span> <span class="token function">ip</span> address <span class="token number">192.168</span>.1.2 <span class="token number">30</span>
+<span class="token punctuation">[</span>MSR36-20_2-GigabitEthernet0/1<span class="token punctuation">]</span> quit
+</code></pre><pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>MSR36-20_2<span class="token punctuation">]</span> interface s4/0
+<span class="token punctuation">[</span>MSR36-20_2-Serial4/0<span class="token punctuation">]</span> <span class="token function">ip</span> address <span class="token number">192.168</span>.1.6 <span class="token number">30</span>
+<span class="token punctuation">[</span>MSR36-20_2-Serial4/0<span class="token punctuation">]</span> quit
+</code></pre></details>
+<details><summary> 配置 MSR36-20_2 静态路由</summary>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>MSR36-20_2<span class="token punctuation">]</span> <span class="token function">ip</span> route-static <span class="token number">192.168</span>.0.0 <span class="token number">24</span> <span class="token number">192.168</span>.1.1
+<span class="token punctuation">[</span>MSR36-20_2<span class="token punctuation">]</span> <span class="token function">ip</span> route-static <span class="token number">192.168</span>.0.0 <span class="token number">24</span> <span class="token number">192.168</span>.1.5
+</code></pre></details>
+<h1 class="crossnote-header" id="%E6%B5%AE%E5%8A%A8%E8%B7%AF%E7%94%B1">浮动路由</h1>
 
-<ol>
-<li>[操作系统引论]</li>
-<li><a href="">进程的描述与控制</a></li>
-<li>[处理机调度与死锁]</li>
-<li>[存储器管理]</li>
-<li>[虚拟存储器]</li>
-<li>[输入输出系统]</li>
-<li>[文件管理]</li>
-<li>[磁盘存储器的管理]</li>
-<li>[操作系统接口]</li>
-<li>[多处理机操作系统]</li>
-<li>[多媒体操作系统]</li>
-<li>[保护和安全]</li>
-</ol>
-<hr>
-<h2 class="crossnote-header" id="%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86">计算机组成原理</h2>
-
-<hr>
-<h2 class="crossnote-header" id="%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86">数据库原理</h2>
-
-<ol start="0">
-<li><a href="./%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/%E5%AE%89%E8%A3%85%E6%95%B0%E6%8D%AE%E5%BA%93.html">安装数据库</a></li>
-</ol>
-<hr>
-<h2 class="crossnote-header" id="%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</h2>
-
-<ul>
-<li><a href="">UML类图和时序图</a></li>
-<li><a href="./%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F.html">创建型模式 ( 总结 )</a>
-<ol>
-<li><a href="./%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html">简单工厂模式 ( Simple Factory Pattern )</a></li>
-<li><a href="./%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.html">工厂方法模式 ( Factory Method Pattern )</a></li>
-<li><a href="./%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html">抽象工厂模式 ( Abstract Factory Pattern )</a></li>
-<li>[建造者模式()]</li>
-<li>[单例模式()]</li>
-</ol>
-</li>
-<li>结构型模式
-<ol>
-<li><a href="./%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F.html">适配器模式</a></li>
-<li>[桥接模式]</li>
-<li>[装饰模式]</li>
-<li>[外观模式]</li>
-<li>[享元模式]</li>
-<li>[代理模式]</li>
-</ol>
-</li>
-<li>行为型模式
-<ol>
-<li>[命令模式]</li>
-<li>[中介者模式]</li>
-<li>[观察者模式]</li>
-<li>[状态模式]</li>
-<li>[策略模式]</li>
-</ol>
-</li>
-</ul>
 
       </div>
       
