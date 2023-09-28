@@ -1,16 +1,9 @@
 ---
 html:
-    toc: true           # 打开侧边目录
-    toc_depth: 6        # 打开的目录层级
-    toc_float: true     # 侧边悬停
-    collapsed: true     # 只显示高级别标题(2)
-    smooth_scroll: true # 页面滚动,标题变化
-    number_sections: false  # 显示标题编号
-    theme: united
---- 
-
-
-
+    toc: true   # 打开侧边目录
+export_on_save:
+    html: true  # 自动保存
+---
 
 
 
@@ -155,9 +148,9 @@ int main(){
 ```
 </details>
 
-<details><summary><a href="https://www.acwing.com/problem/content/4823/" target="_blank"> AcWing 4820. 逆向工程</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/4823/" target="_blank"> AcWing 4820. 逆向工程</a> 跳过</summary><br>
 
-> 枚举可能的第一个分支代码，筛选出剩余的行，继续枚举第二个分支
+枚举可能的第一个分支代码，筛选出剩余的行，继续枚举第二个分支
 
 
 </details>
@@ -664,14 +657,10 @@ int main(){
 </details>
 
 
-<details><summary><a href="" target="_blank">AcWing </a> code</summary> 
+<details><summary><a href="https://www.acwing.com/problem/content/description/4334/" target="_blank">AcWing 4331. 大旱</a> 跳过</summary><br>
 
->
->
+差分
 
-```cpp
-
-```
 
 </details>
 

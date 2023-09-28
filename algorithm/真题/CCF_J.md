@@ -1,15 +1,10 @@
 ---
 html:
-    toc: true           # 打开侧边目录
-    toc_depth: 6        # 打开的目录层级
-    toc_float: true     # 侧边悬停
-    collapsed: true     # 只显示高级别标题(2)
-    smooth_scroll: true # 页面滚动,标题变化
-    number_sections: false  # 显示标题编号
-    theme: united
+    toc: true   # 打开侧边目录
 export_on_save:
     html: true  # 自动保存
---- 
+---
+
 # 2022
 
 
@@ -1233,7 +1228,23 @@ int main(){
 </details>
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/456/" target="_blank">Acwing 454. 表达式求值</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/456/" target="_blank">Acwing 454. 表达式求值</a> code</summary><br>
+
+**大意**
+
+给定一个只含 `[0, 2^31-1]` `+` `*` 的表达式，求出它的值。
+
+**思路**
+
+如果表达式中有多种运算符，显然用栈来做是最好的。但此题只有 `+` `*` 两种运算符。
+
+1. 我们从第一个数开始考虑，首先接受一个数 `tmp`，然后循环接受一个运算符 `ch`，和数 `num`。
+    * 如果 `ch` 为 `+`，那么左边的数 `tmp` 就可以加到答案上了，因为 `tmp` 不会影响后面的运算。
+      将 `num` 赋值给 `tmp`，继续循环。
+    * 如果 `ch` 为 `*`，那么 `tmp` 就要乘上 `num`，将 `tmp*num` 看作一个整体。
+      将 `tmp*num` 赋值给 `tmp`，继续循环。 
+
+
 
 ```cpp
 #include <iostream>
@@ -1261,51 +1272,86 @@ int main(){
 </details>
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/description/457/" target="_blank">AcWing 455. 小朋友的数字</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/description/457/" target="_blank">AcWing 455. 小朋友的数字</a> code</summary><br>
+
+**大意**
+
+给定一个数组 $a[n]$，通过这个数组可以得到一个数组 $b[n]$，
+$b[i]$ 表示 $a[1] \sim a[i]$ 中最大的子序列和。
+
+* 样例
+    $a[n]$ = `1` `2` `3` `4` `5`
+    $b[n]$ = `1` `3` `6` `10` `15`
+
+* 更具有一般性的样例
+    $a[n]$ = `1` `-2` `3` `-4` `5`
+    $b[n]$ = `1` `-1` `3` `-1` `5`
+
+* 更具有一般性的样例
+    $a[n]$ = `9` `-2` `3` `-4` `2`
+    $b[n]$ = `9` `7` `10` `6` `8`
+
+通过 $b[n]$ 可以得到特征值数组，$b[i] = max(b[j])$，其中 $j ∈ [1, i]$。
+
+通过 $a[n]$ 和 $b[n]$ 可以得到一个新的数组 $c[n]$，
+$c[i] = max(c[j]+b[j])$，其中 $j ∈ [1, i)$，
+特别的，$c[1] = b[1]$。
+
+求最大的 $c[i]$。
+
+**思路**
+
+1. 求出 $b[n]$。就是在 $a[n]$ 中求最大子序列和。
+   $i=1$ 时，$b[1] = a[1]$
+    $i>1$ 时，$b[i] = max(b[i-1]+a[i], a[i])$
+
+2. 求出 特征数组 $b[n]$，即
+    $b[i] = max(b[j])$，其中 $j ∈ [1, i]$。
+
+3. 求出 $c[n]$，即
+    $c[i] = max(c[j]+b[j])$，其中 $j ∈ [1, i)$，
+    特别的，$c[1] = b[1]$。
+
+4. 求出最大的 $c[i]$。
 
 ```cpp
 #include <iostream>
 using namespace std;
 
 typedef long long LL;
+
 const int N=1e6+10;
 
 LL n, p;
-LL a[N], b[N], t[N];
-__int128 c[N];  // T为特征值
+LL a[N], b[N];
+__int128 c[N];
 
 int main(){
     cin>>n>>p;
-    for(int i=1; i<=n; i++){
-        scanf("%lld", a+i); // 原始数字
-        b[i] = a[i];        // 最大子序和
-    }
+    for(int i=1; i<=n; i++) scanf("%lld", &a[i]);
     
-    *b = -0x3f3f3f3f;
-    for(int i=1; i<=n; i++){
-        b[i] = max(b[i-1]+a[i], a[i]);
-        *b = max(*b, b[i]);
-        t[i] = *b; // 1-i 的最大子序和
-    }
-    c[1]=t[1];
+    b[1]=a[1];
+    for(int i=2; i<=n; i++) b[i] = max(b[i-1]+a[i], a[i]);
+    for(int i=2; i<=n; i++) b[i] = max(b[i-1], b[i]);
     
-    __int128 mmax = a[1]+t[1];    // 维护这个最大
+    c[1]=b[1];
+    __int128 mmax = c[1]+b[1];
     for(int i=2; i<=n; i++){
         c[i] = mmax;
-        mmax = max(mmax, __int128(c[i]+t[i]));
+        mmax = max(mmax, c[i] + b[i]);
     }
     
-    *c = c[1];
-    for(int i=2; i<=n; i++)
-        *c = max(*c, c[i]);
+    mmax = c[1];
+    for(int i=2; i<=n; i++) mmax=max(mmax, c[i]);
+
+    printf("%lld", mmax%p);
     
-    //for(int i=1; i<=n; i++) printf("%12d", a[i]); cout<<"\n";
-    //for(int i=1; i<=n; i++) printf("%12d", t[i]); cout<<"\n";
-    //for(int i=1; i<=n; i++) printf("%12d", c[i]); cout<<"\n";
-    
-    (*c)%=p;
-    
-    printf("%d", *c);
+    /* 
+    cout<<"\n";
+    for(int i=1; i<=n; i++) printf("%12lld", a[i]); cout<<"\n";
+    for(int i=1; i<=n; i++) printf("%12lld", b[i]); cout<<"\n";
+    for(int i=1; i<=n; i++) printf("%12lld", c[i]); cout<<"\n";
+    */
     
     return 0;
 }
