@@ -7,6 +7,8 @@ export_on_save:
 
 ## 数学基础
 
+[画图工具](https://www.geogebra.org/graphing?lang=zh_CN)
+
 **高等数学**
 
 1. [极限与连续](./math/高数/极限与连续.html)
