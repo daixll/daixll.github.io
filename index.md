@@ -12,7 +12,7 @@
 
 <center>
 
-&nbsp; dxlcq@outlook.com &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://github.com/daixll">Github</a> &nbsp;&nbsp; | &nbsp;&nbsp; 后端工程师 &nbsp;&nbsp; | &nbsp;&nbsp; 算法竞赛教练 &nbsp;&nbsp;
+&nbsp; dxlcq@outlook.com &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://github.com/daixll">Github</a> &nbsp;&nbsp; | &nbsp;&nbsp; 开发工程师 &nbsp;&nbsp; | &nbsp;&nbsp; 算法竞赛教练 &nbsp;&nbsp;
 
 </center>
 
@@ -25,8 +25,7 @@
 * 字节跳动青训营项目，实现抖音的核心功能（视频流，用户登录，评论区等，后续考虑加入商城）。
 * 目前采用单体架构，Gin + JWT 实现业务，Gorm + MySQL 提供数据库服务。
 * 正在重新设计为微服务架构，完成后会重新上线。
-
-
+* 正在学习K8s
 
 <strong> 🌏 <a href="HTTPServer/README.html"><font size="4">HTTPserver</a></font></strong> &nbsp; | &nbsp; [Github](https://github.com/daixll/HTTPserver)
 
@@ -41,12 +40,20 @@
 
 # 🥢 技能
 
-#### 后端开发
+#### 基础技能
 
 * 了解数据结构与 [算法](algorithm/index.html)
 * 了解计算机 [基础](408/index.html) 知识：网络、操作系统、数据库、组成原理等
 * 了解 [Linux](Linux/index.html) 及其环境下的开发工具：git，docker，
 * 了解常用后端开发 [语言](language/index.html)：Golang，C/C++，python
+
+#### 具体技能
+
+* 了解服务器架构，能进行简单的后端开发。
+* 了解图形化界面开发，C++/Qt，Python/PyQt
+* 了解人工智能，Python/TensorFlow，图像识别方向。
+* 学有余力，学习微信小程序开发
+* 学有余力，学习前端开发，Vue
 
 #### 算法竞赛
 
@@ -71,7 +78,7 @@
 
 | 国家级奖项 🥇 | 省部级奖项 🥈 | 技能证书 🥉 | 奖学金 💰 | 
 |:-:|:-:|:-:|:-:|
-| 5 | 9 | 4 | 9 | 
+| 5 | 10 | 4 | 9 | 
 
 </div>
 
@@ -82,6 +89,18 @@
 </p> 
 
 ## 2023
+
+### 省二 百度之星
+
+- `2023-12` `第十九届百度之星程序设计大赛` `重庆市银奖` [公示 / 排名](https://astar.baidu.com/#/news-info?tab=3&id=B09A6D9FC10CC8DE394BA5DD2E32DE00)
+
+<div class="center">
+    <img src="/joker/（省2）百度之星.jpg" width="300">
+</div>
+
+<div class="center">
+    <img src="/joker/排名/（省2）百度之星.jpg" width="300">
+</div>
 
 ### 国一 睿抗
 
@@ -400,37 +419,3 @@
     <img src="joker/（金综合21b）400.jpg" width="300">
 </div>
 
-
-<details><summary></a> </summary>
-
-* **主线任务**
-    * 英语（101开始学点简单语法，需要看到产出）
-    * 数学（101开始，一个月一章）
-    * 408
-        1. 计算机网络（925开始搞新华三，需要看到产出）
-        2. 操作系统
-        3. 数据结构
-        4. 计算机组成原理
-    * 政治（最后几个月再说）
-
-* **支线任务 （主线累了就玩玩支线）**
-    * HTTPserver
-        1. 完善 Channel 与 HTTP请求，尽快上线
-        2. 重新设计线程池与内存池
-        3. 完成 webbench 压测
-    * tiktok
-        1. 先暂停，貌似 k8s 很牛逼，后面了解一下。
-    * 微信小程序
-        1. 了解一下
-
-* **比赛 （图一乐，打着玩，不要太上心了）**
-    * 09.24 百度之星  
-    * 10.14 新华三杯
-    * 11.04 码题杯
-    * 11.26 传智杯
-    ——————
-    * 24 年 2 月 CCF PTA
-    * 24 年 11 月 软考
-
-
-</details>
