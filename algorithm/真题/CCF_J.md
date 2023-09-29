@@ -7,6 +7,7 @@ export_on_save:
 
 # 2022
 
+<!-->
 
 
 J-1
@@ -62,6 +63,8 @@ x=4，y=4：`x | y << 1 = 4 | 4 << 1 = 4 | 8 = 12`
 <br>
 
 J-2
+
+<!-->
 
 <details><summary><a href="https://www.acwing.com/problem/content/description/4731/" target="_blank">AcWing 4728. 乘方</a> code</summary>
 
@@ -1129,7 +1132,20 @@ int main(){
 </details>
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/460/" target="_blank">Acwing 458. 比例简化</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/460/" target="_blank">Acwing 458. 比例简化</a> code</summary><br>
+
+**大意**
+
+给定 $1$ 个分数 $A/B$ 和 $L$，求出一个分数 $A_1/B_1$，使得 $A1_/B_1$ 是一个最简分数，满足：
+* $A_1 <= L$ 且 $B_1 <= L$。
+* $A_1/B_1 >= A/B$。
+* $A_1/B_1 - A/B$ 尽可能小。 
+
+
+**思路**
+
+1. 由于 $L$ 很小，我们可以枚举 $A_1$ 和 $B_1$，然后再判断是否满足条件。
+
 
 ```cpp
 #include <iostream>
@@ -1158,7 +1174,27 @@ int main(){
 </details>
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/description/461/" target="_blank">AcWing 459. 螺旋矩阵</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/description/461/" target="_blank">AcWing 459. 螺旋矩阵</a> code</summary><br>
+
+**大意**
+
+给定一个螺旋矩阵，求出某个位置的值。
+
+**思路**
+
+1. 可以发现螺旋矩阵以下几个特点：
+    1. 每一圈数的个数都是 $n*4-4$，$n$ 是当前圈的边长。
+        这意味着每一圈，数字减少 $8$ 个。
+    2. 每一圈的左上角的数字都是最小的。
+
+2. 故，我们可以先求出这个位置在第几圈，然后再求出这个位置具体的值。
+
+假设，左上角数字 $v$，边长 $n$，左上角点 `i,i`，右下角点 `j,j`，寻找点 `x,y`
+* 若 `x,y` 在上边，那么 `v + y-i` 就是答案。`y-i` 是横向的距离。
+* 若 `x,y` 在右边，那么 `v + n-1 + x-i` 就是答案。`n-1` 是上边的长度，`x-i` 是纵向的距离。
+* 若 `x,y` 在下边，那么 `v + n*2-2 + j-y` 就是答案。`n*2-2` 是上边和右边的长度，`j-y` 是横向的距离。
+* 若 `x,y` 在左边，那么 `v + n*3-3 + j-x` 就是答案。`n*3-3` 是上边、右边和下边的长度，`j-x` 是纵向的距离。
+
 
 ```cpp
 #include <iostream>
@@ -1170,21 +1206,23 @@ int n, x, y, ans=1;
 
 int main(){
     cin>>n>>x>>y;
-    
+    // ans 是左上角的数字，n 是当前圈的边长
+    // i 是左上角的横纵坐标
+    // j 是右下角的横纵坐标
     for(int i=1, j=n; i<=j; i++, j--, ans+=n*4-4, n-=2)
-        if(i==x){      // 上
+        if(x==i){      // 上
             cout<<ans+(y-i);
             break;
         }
-        else if(j==x){ // 下
+        else if(x==j){ // 下
             cout<<ans+(j-y)+n*2-2;
             break;
         }
-        else if(i==y){ // 左
+        else if(y==i){ // 左
             cout<<ans+(j-x)+n*3-3;
             break;
         }
-        else if(j==y){ // 右
+        else if(y==j){ // 右
             cout<<ans+(x-i)+n-1;
             break;
         } 
