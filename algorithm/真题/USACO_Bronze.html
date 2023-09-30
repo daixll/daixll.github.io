@@ -941,76 +941,104 @@ set<span class="token operator">&lt;</span>pair<span class="token operator">&lt;
 </code></pre></details>
 <h2 class="crossnote-header" id="2021-feb">2021 Feb</h2>
 
-<p>&lt;1details&gt;</p><summary><a href="https://www.acwing.com/problem/content/description/3373/" target="_blank">AcWing 3370. 牛年</a> code</summary><p></p>
+<details><summary><a href="https://www.acwing.com/problem/content/description/3373/" target="_blank">AcWing 3370. 牛年</a> code</summary><br>
+<p><strong>大意</strong></p>
+<p>给定 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn></mrow><annotation encoding="application/x-tex">12</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">12</span></span></span></span> 个生肖，每次给出一条信息：</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span> 是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> 左边（previous）的第一个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span> 年</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span> 是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span> 右边（next）的第一个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span> 年</li>
+</ul>
+<p>通过若干条信息，求出 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>e</mi><mi>s</mi><mi>s</mi><mi>i</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Bessie</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord mathnormal">ess</span><span class="mord mathnormal">i</span><span class="mord mathnormal">e</span></span></span></span> 与 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mi>l</mi><mi>s</mi><mi>i</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Elsie</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">El</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal">e</span></span></span></span> 的年份差。</p>
+<p><strong>思路</strong></p>
+<ol>
+<li>
+<p>我们需要确定每头牛与 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>e</mi><mi>s</mi><mi>s</mi><mi>i</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Bessie</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord mathnormal">ess</span><span class="mord mathnormal">i</span><span class="mord mathnormal">e</span></span></span></span> 的年份差。<br>
+显然，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>e</mi><mi>s</mi><mi>s</mi><mi>i</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Bessie</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord mathnormal">ess</span><span class="mord mathnormal">i</span><span class="mord mathnormal">e</span></span></span></span> 与 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>e</mi><mi>s</mi><mi>s</mi><mi>i</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Bessie</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord mathnormal">ess</span><span class="mord mathnormal">i</span><span class="mord mathnormal">e</span></span></span></span> 的年份差为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>e</mi><mi>s</mi><mi>s</mi><mi>i</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Bessie</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord mathnormal">ess</span><span class="mord mathnormal">i</span><span class="mord mathnormal">e</span></span></span></span> 的生肖是牛。</p>
+</li>
+<li>
+<p>对于每条信息，我们先计算生肖的差值，再计算年份的差值。<br>
+为了方便计算生肖的差值，我们可以直接将生肖复制成三份，<br>
+然后从中间开始向前向后找。</p>
+</li>
+</ol>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unordered_map&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;map&gt;</span></span>
 <span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
 
-<span class="token comment">// 用来计算</span>
-unordered_map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> u<span class="token punctuation">;</span>
-<span class="token comment">// 本来的</span>
-unordered_map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> hhash<span class="token operator">=</span><span class="token punctuation">{</span>
-    <span class="token punctuation">{</span><span class="token string">"Ox"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span><span class="token string">"Tiger"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span><span class="token string">"Rabbit"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span><span class="token string">"Dragon"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span><span class="token string">"Snake"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span><span class="token string">"Horse"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span><span class="token string">"Goat"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span><span class="token string">"Monkey"</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span><span class="token string">"Rooster"</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span><span class="token string">"Dog"</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span><span class="token string">"Pig"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">{</span><span class="token string">"Rat"</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">}</span>
+map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> ans<span class="token punctuation">;</span>
+map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> string<span class="token operator">&gt;</span> u<span class="token punctuation">;</span>    <span class="token comment">// 每头牛的生肖</span>
+
+string sx<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span>
+    <span class="token string">"Ox"</span><span class="token punctuation">,</span> <span class="token string">"Tiger"</span><span class="token punctuation">,</span> <span class="token string">"Rabbit"</span><span class="token punctuation">,</span> <span class="token string">"Dragon"</span><span class="token punctuation">,</span> <span class="token string">"Snake"</span><span class="token punctuation">,</span> <span class="token string">"Horse"</span><span class="token punctuation">,</span> <span class="token string">"Goat"</span><span class="token punctuation">,</span> <span class="token string">"Monkey"</span><span class="token punctuation">,</span> <span class="token string">"Rooster"</span><span class="token punctuation">,</span> <span class="token string">"Dog"</span><span class="token punctuation">,</span> <span class="token string">"Pig"</span><span class="token punctuation">,</span> <span class="token string">"Rat"</span><span class="token punctuation">,</span>
+    <span class="token string">"Ox"</span><span class="token punctuation">,</span> <span class="token string">"Tiger"</span><span class="token punctuation">,</span> <span class="token string">"Rabbit"</span><span class="token punctuation">,</span> <span class="token string">"Dragon"</span><span class="token punctuation">,</span> <span class="token string">"Snake"</span><span class="token punctuation">,</span> <span class="token string">"Horse"</span><span class="token punctuation">,</span> <span class="token string">"Goat"</span><span class="token punctuation">,</span> <span class="token string">"Monkey"</span><span class="token punctuation">,</span> <span class="token string">"Rooster"</span><span class="token punctuation">,</span> <span class="token string">"Dog"</span><span class="token punctuation">,</span> <span class="token string">"Pig"</span><span class="token punctuation">,</span> <span class="token string">"Rat"</span><span class="token punctuation">,</span>
+    <span class="token string">"Ox"</span><span class="token punctuation">,</span> <span class="token string">"Tiger"</span><span class="token punctuation">,</span> <span class="token string">"Rabbit"</span><span class="token punctuation">,</span> <span class="token string">"Dragon"</span><span class="token punctuation">,</span> <span class="token string">"Snake"</span><span class="token punctuation">,</span> <span class="token string">"Horse"</span><span class="token punctuation">,</span> <span class="token string">"Goat"</span><span class="token punctuation">,</span> <span class="token string">"Monkey"</span><span class="token punctuation">,</span> <span class="token string">"Rooster"</span><span class="token punctuation">,</span> <span class="token string">"Dog"</span><span class="token punctuation">,</span> <span class="token string">"Pig"</span><span class="token punctuation">,</span> <span class="token string">"Rat"</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> Q<span class="token punctuation">;</span> cin<span class="token operator">&gt;&gt;</span>Q<span class="token punctuation">;</span>
     
-    <span class="token comment">// 以这玩意儿为基准</span>
-    u<span class="token punctuation">[</span><span class="token string">"Bessie"</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    ans<span class="token punctuation">[</span><span class="token string">"Bessie"</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    u<span class="token punctuation">[</span><span class="token string">"Bessie"</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"Ox"</span><span class="token punctuation">;</span>
     
-    <span class="token keyword keyword-int">int</span> _<span class="token punctuation">;</span> cin<span class="token operator">&gt;&gt;</span>_<span class="token punctuation">;</span>
-    <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>_<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>Q<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        string s<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">8</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> cin<span class="token operator">&gt;&gt;</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        string A<span class="token operator">=</span>s<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> B<span class="token operator">=</span>s<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        u<span class="token punctuation">[</span>A<span class="token punctuation">]</span> <span class="token operator">=</span> s<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>    <span class="token comment">// 可以直接确定 A 的生肖</span>
         
-        string str<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">8</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> cin<span class="token operator">&gt;&gt;</span>str<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment">// 先找到 B 的位置</span>
+        <span class="token keyword keyword-int">int</span> idxA<span class="token punctuation">,</span> idxB<span class="token punctuation">;</span>
+        <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">12</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">23</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>sx<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>u<span class="token punctuation">[</span>B<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                idxB<span class="token operator">=</span>i<span class="token punctuation">;</span>
+                <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
         
-        <span class="token comment">// 之前，str[1]在str[8]的左边</span>
-        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>str<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">"previous"</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token comment">// 后生的差值</span>
-            <span class="token keyword keyword-int">int</span> x<span class="token operator">=</span>u<span class="token punctuation">[</span> str<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token comment">// 先生的生肖代码</span>
-            <span class="token keyword keyword-int">int</span> y<span class="token operator">=</span>hhash<span class="token punctuation">[</span> str<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
-    
-            <span class="token comment">// 计算差</span>
-            <span class="token keyword keyword-int">int</span> r<span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token operator">-</span>y<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span><span class="token operator">+</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span><span class="token punctuation">;</span>
-            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>r<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> r<span class="token operator">=</span><span class="token number">12</span><span class="token punctuation">;</span>
-            
-            u<span class="token punctuation">[</span> str<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token punctuation">]</span> <span class="token operator">=</span> x<span class="token operator">-</span>r<span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">"previous"</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment">// 再找到 A 的位置，A &lt; B</span>
+            idxA <span class="token operator">=</span> idxB <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>sx<span class="token punctuation">[</span>idxA<span class="token punctuation">]</span> <span class="token operator">!=</span> u<span class="token punctuation">[</span>A<span class="token punctuation">]</span><span class="token punctuation">)</span> idxA<span class="token operator">--</span><span class="token punctuation">;</span>
+            ans<span class="token punctuation">[</span>A<span class="token punctuation">]</span> <span class="token operator">=</span> ans<span class="token punctuation">[</span>B<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token punctuation">(</span>idxB<span class="token operator">-</span>idxA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword keyword-else">else</span><span class="token punctuation">{</span>
+            <span class="token comment">// 同上，不过是向右找，A &gt; B</span>
+            idxA <span class="token operator">=</span> idxB <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>sx<span class="token punctuation">[</span>idxA<span class="token punctuation">]</span> <span class="token operator">!=</span> u<span class="token punctuation">[</span>A<span class="token punctuation">]</span><span class="token punctuation">)</span> idxA<span class="token operator">++</span><span class="token punctuation">;</span>
+            ans<span class="token punctuation">[</span>A<span class="token punctuation">]</span> <span class="token operator">=</span> ans<span class="token punctuation">[</span>B<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token punctuation">(</span>idxA<span class="token operator">-</span>idxB<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        <span class="token comment">// 之后，str[1]在str[8]的右边</span>
-        <span class="token keyword keyword-else">else</span><span class="token punctuation">{</span>
-            <span class="token comment">// 先生的差值</span>
-            <span class="token keyword keyword-int">int</span> x<span class="token operator">=</span>u<span class="token punctuation">[</span> str<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> 
-            <span class="token comment">// 后生的生肖代码</span>
-            <span class="token keyword keyword-int">int</span> y<span class="token operator">=</span>hhash<span class="token punctuation">[</span> str<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
-            
-            <span class="token comment">// 计算差</span>
-            <span class="token keyword keyword-int">int</span> r<span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y<span class="token operator">-</span>x<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span><span class="token operator">+</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span><span class="token punctuation">;</span>
-            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>r<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> r<span class="token operator">=</span><span class="token number">12</span><span class="token punctuation">;</span>
-            
-            u<span class="token punctuation">[</span> str<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token punctuation">]</span> <span class="token operator">=</span> x<span class="token operator">+</span>r<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        
     <span class="token punctuation">}</span>
     
-    cout<span class="token operator">&lt;&lt;</span><span class="token function">abs</span><span class="token punctuation">(</span>u<span class="token punctuation">[</span><span class="token string">"Elsie"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token function">abs</span><span class="token punctuation">(</span>ans<span class="token punctuation">[</span><span class="token string">"Elsie"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     
     <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<details><summary><a href="https://www.acwing.com/problem/content/3374/" target="_blank">AcWing 3371. 舒适的奶牛</a> code</summary>
+</code></pre></details>
+<details><summary><a href="https://www.acwing.com/problem/content/3374/" target="_blank">AcWing 3371. 舒适的奶牛</a> code</summary><br>
+<p><strong>大意</strong></p>
+<p>给定一个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">n \times n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 的矩阵，每个位置有两种状态：有牛，没牛。<br>
+每次加入一头牛，如果这头牛的上下左右四个位置有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 头牛，那么这头牛舒服。<br>
+求每次加入一头牛后，舒服的牛的数量。</p>
+<p><strong>思路</strong></p>
+<ol>
+<li>
+<p>每次加入一头牛，只会影响上下左右四个位置的舒服情况。<br>
+因此，我们只需要检查这四个位置的舒服情况即可。</p>
+</li>
+<li>
+<p>检查这头牛的舒服情况：</p>
+<ul>
+<li>如果这头牛的上下左右四个位置有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> 头牛，那么这头牛舒服。</li>
+<li>否则，这头牛不舒服。</li>
+</ul>
+</li>
+<li>
+<p>检查周围四头牛的舒服情况：</p>
+<ul>
+<li>如果这头牛之前不舒服，但是现在舒服了，那么答案 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">1</span></span></span></span>。</li>
+<li>如果这头牛之前是舒服的，但是现在不舒服了，那么答案 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>。</li>
+</ul>
+</li>
+</ol>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">GCC <span class="token function">optimize</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> </span><span class="token string">"inline"</span><span class="token expression"><span class="token punctuation">,</span> </span><span class="token string">"Ofast"</span><span class="token expression"><span class="token punctuation">)</span></span></span>
 
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
@@ -1081,7 +1109,21 @@ unordered_map<span class="token operator">&lt;</span>string<span class="token pu
     <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre></details>
-<details><summary><a href="https://www.acwing.com/problem/content/3375/" target="_blank">AcWing 3372. 顺时针围栏</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/3375/" target="_blank">AcWing 3372. 顺时针围栏</a> code</summary><br>
+<p><strong>大意</strong></p>
+<p>给定一个字符串，仅包含 <code>N</code> <code>E</code> <code>S</code> <code>W</code>，代表向北、向东、向南、向西行进一格。</p>
+<p>求行进完毕后，被围起来的路径是否是顺时针的。</p>
+<p><strong>思路</strong></p>
+<ol>
+<li>
+<p>我们不能通过一次移动方向，判断是否顺时针。于是有了：<br>
+<code>NE</code> <code>ES</code> <code>SW</code> <code>WN</code><br>
+而其他组合，都是逆时针（两个字符不相等）。</p>
+</li>
+<li>
+<p>因此，我们只需要遍历一遍字符串，判断顺时针组合出现的数量即可。</p>
+</li>
+</ol>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
 <span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
@@ -1110,7 +1152,7 @@ string <span class="token function">solve</span><span class="token punctuation">
 </code></pre></details>
 <h2 class="crossnote-header" id="2021-jan">2021 Jan</h2>
 
-<details><summary><a href="https://www.acwing.com/problem/content/description/3361/" target="_blank">AcWing 3358. 放养但没有完全放养</a> code</summary>
+<p>&lt;1details&gt;</p><summary><a href="https://www.acwing.com/problem/content/description/3361/" target="_blank">AcWing 3358. 放养但没有完全放养</a> code</summary><p></p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
 <span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
@@ -1138,7 +1180,7 @@ string str<span class="token punctuation">,</span> sub<span class="token punctua
     
     <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre></details>
+</code></pre>
 <details><summary><a href="https://www.acwing.com/problem/content/3362/" target="_blank">AcWing 3359. 更多奇怪的照片</a> code</summary>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm&gt;</span></span>

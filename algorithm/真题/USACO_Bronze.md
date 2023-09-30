@@ -1084,80 +1084,100 @@ int main(){
 
 ## 2021 Feb
 
-<1details><summary><a href="https://www.acwing.com/problem/content/description/3373/" target="_blank">AcWing 3370. 牛年</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/description/3373/" target="_blank">AcWing 3370. 牛年</a> code</summary><br>
+
+**大意**
+
+给定 $12$ 个生肖，每次给出一条信息：
+* $A$ 是 $B$ 左边（previous）的第一个 $C$ 年
+* $A$ 是 $B$ 右边（next）的第一个 $C$ 年
+
+通过若干条信息，求出 $Bessie$ 与 $Elsie$ 的年份差。
+
+**思路**
+
+1. 我们需要确定每头牛与 $Bessie$ 的年份差。
+   显然，$Bessie$ 与 $Bessie$ 的年份差为 $0$，$Bessie$ 的生肖是牛。
+
+2. 对于每条信息，我们先计算生肖的差值，再计算年份的差值。
+   为了方便计算生肖的差值，我们可以直接将生肖复制成三份，
+   然后从中间开始向前向后找。
 
 ```cpp
 #include <iostream>
 #include <cstring>
-#include <unordered_map>
+#include <map>
 using namespace std;
 
-// 用来计算
-unordered_map<string, int> u;
-// 本来的
-unordered_map<string, int> hhash={
-    {"Ox", 0},
-    {"Tiger", 1},
-    {"Rabbit", 2},
-    {"Dragon", 3},
-    {"Snake", 4},
-    {"Horse", 5},
-    {"Goat", 6},
-    {"Monkey", 7},
-    {"Rooster", 8},
-    {"Dog", 9},
-    {"Pig", 10},
-    {"Rat", 11}
+map<string, int> ans;
+map<string, string> u;    // 每头牛的生肖
+
+string sx[]={
+    "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig", "Rat",
+    "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig", "Rat",
+    "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig", "Rat"
 };
 
 int main(){
+    int Q; cin>>Q;
     
-    // 以这玩意儿为基准
-    u["Bessie"]=0;
+    ans["Bessie"]=0;
+    u["Bessie"]="Ox";
     
-    int _; cin>>_;
-    while(_--){
+    while(Q--){
+        string s[10];
+        for(int i=1; i<=8; i++) cin>>s[i];
+        string A=s[1], B=s[8];
+        u[A] = s[5];    // 可以直接确定 A 的生肖
         
-        string str[10];
-        for(int i=1; i<=8; i++) cin>>str[i];
+        // 先找到 B 的位置
+        int idxA, idxB;
+        for(int i=12; i<=23; i++) 
+            if(sx[i]==u[B]){
+                idxB=i;
+                break;
+            }
         
-        // 之前，str[1]在str[8]的左边
-        if(str[4]=="previous"){
-            // 后生的差值
-            int x=u[ str[8] ];
-            // 先生的生肖代码
-            int y=hhash[ str[5] ];
-    
-            // 计算差
-            int r=((x-y)%12+12)%12;
-            if(r==0) r=12;
-            
-            u[ str[1] ] = x-r;
+        if(s[4]=="previous"){
+            // 再找到 A 的位置，A < B
+            idxA = idxB - 1;
+            while(sx[idxA] != u[A]) idxA--;
+            ans[A] = ans[B] - (idxB-idxA);
+        }else{
+            // 同上，不过是向右找，A > B
+            idxA = idxB + 1;
+            while(sx[idxA] != u[A]) idxA++;
+            ans[A] = ans[B] + (idxA-idxB);
         }
-        // 之后，str[1]在str[8]的右边
-        else{
-            // 先生的差值
-            int x=u[ str[8] ]; 
-            // 后生的生肖代码
-            int y=hhash[ str[5] ];
-            
-            // 计算差
-            int r=((y-x)%12+12)%12;
-            if(r==0) r=12;
-            
-            u[ str[1] ] = x+r;
-        }
-        
     }
     
-    cout<<abs(u["Elsie"]);
+    cout<<abs(ans["Elsie"]);
     
     return 0;
 }
 ```
 </details>
 
-<details><summary><a href="https://www.acwing.com/problem/content/3374/" target="_blank">AcWing 3371. 舒适的奶牛</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/3374/" target="_blank">AcWing 3371. 舒适的奶牛</a> code</summary><br>
+
+**大意**
+
+给定一个 $n \times n$ 的矩阵，每个位置有两种状态：有牛，没牛。
+每次加入一头牛，如果这头牛的上下左右四个位置有 $3$ 头牛，那么这头牛舒服。
+求每次加入一头牛后，舒服的牛的数量。
+
+**思路**
+
+1.  每次加入一头牛，只会影响上下左右四个位置的舒服情况。
+    因此，我们只需要检查这四个位置的舒服情况即可。
+
+2.  检查这头牛的舒服情况：
+    * 如果这头牛的上下左右四个位置有 $3$ 头牛，那么这头牛舒服。
+    * 否则，这头牛不舒服。
+
+3.  检查周围四头牛的舒服情况：
+    * 如果这头牛之前不舒服，但是现在舒服了，那么答案 $+1$。
+    * 如果这头牛之前是舒服的，但是现在不舒服了，那么答案 $-1$。
 
 ```cpp
 #pragma GCC optimize(3, "inline", "Ofast")
@@ -1233,7 +1253,21 @@ int main(){
 </details>
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/3375/" target="_blank">AcWing 3372. 顺时针围栏</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/3375/" target="_blank">AcWing 3372. 顺时针围栏</a> code</summary><br>
+
+**大意**
+
+给定一个字符串，仅包含 `N` `E` `S` `W`，代表向北、向东、向南、向西行进一格。
+
+求行进完毕后，被围起来的路径是否是顺时针的。
+
+**思路**
+
+1.  我们不能通过一次移动方向，判断是否顺时针。于是有了：
+    `NE` `ES` `SW` `WN`
+    而其他组合，都是逆时针（两个字符不相等）。
+
+2. 因此，我们只需要遍历一遍字符串，判断顺时针组合出现的数量即可。
 
 ```cpp
 #include <iostream>
@@ -1266,7 +1300,7 @@ int main(){
 
 ## 2021 Jan
 
-<details><summary><a href="https://www.acwing.com/problem/content/description/3361/" target="_blank">AcWing 3358. 放养但没有完全放养</a> code</summary>
+<1details><summary><a href="https://www.acwing.com/problem/content/description/3361/" target="_blank">AcWing 3358. 放养但没有完全放养</a> code</summary>
 
 ```cpp
 #include <iostream>
