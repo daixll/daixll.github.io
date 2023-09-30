@@ -76,6 +76,8 @@ export_on_save:
 * 实验 H3C
   * [实验1：静态ECMP和浮动路由配置实验](./计算机网络/实验1：静态ECMP和浮动路由配置实验.html)
 
+* [华为 OSPF 的错误](./计算机网络/huaweiOSPF.html)
+
 ---
 ## 操作系统
 
