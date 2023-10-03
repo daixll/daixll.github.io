@@ -53,7 +53,7 @@
 
 <div class="center">
 
-| [English](/language/english.html) |
+| [English](/language/ENGLISH/index.html) |
 |:-:|
 
 </div>
@@ -73,7 +73,7 @@
 
 <div class="center">
 
-|微积分|线性代数|离散数学|概率论与数理统计|
+|[微积分](/408/微积分/index.html)|线性代数|离散数学|概率论与数理统计|
 |:-:|:-:|:-:|:-:|
 
 </div>
@@ -155,7 +155,7 @@
 * 正在重新设计为微服务架构，完成后会重新上线。
 * 正在学习K8s
 
-<strong> 🌏 <a href="HTTPServer/README.html"><font size="4">HTTPserver</a></font></strong> &nbsp; | &nbsp; [Github](https://github.com/daixll/HTTPserver)
+<strong> 🌏 <a href="for_you/HTTPServer/README.html"><font size="4">HTTPserver</a></font></strong> &nbsp; | &nbsp; [Github](https://github.com/daixll/HTTPserver)
 
 * 旧项目地址：[WebServer](https://github.com/daixll/WebServer)，功能已经完善，但是代码质量不高，故有了本项目。
 * 基于 Socket 实现的一个 HTTP 服务器，主从 Reactor 模型 + 非阻塞 Socket + Epoll（ET） + 线程池 + 内存池。

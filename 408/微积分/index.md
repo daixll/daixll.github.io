@@ -5,6 +5,15 @@ export_on_save:
     html: true  # 自动保存
 ---
 
+
+
+
+
+
+
+
+# 第一节 函数与极限
+
 要多近有多近（柯西 cauchy 说的）
 
 * 数列极限
@@ -19,20 +28,23 @@ export_on_save:
     4. 导数定义（导数是变换率的极限，牛顿研究加速度）
     5. 拉格朗日中值定理（导数的几何意义，切线斜率）
 
-# 第一节 映射与函数
 
-## 单调性
 
-## 有界性
 
-## 奇偶性
 
-## 周期性
+## 函数
 
+单调性
+
+有界性
+
+奇偶性
+
+周期性
 
 ---
 
-# 第二节 数列极限
+##  数列极限
 
 
 **数列极限概念** 
@@ -68,7 +80,7 @@ $\lim_{n \to \infty} a_n = a <=> \lim_{n \to \infty} a_{3n} = \lim_{n \to \infty
 
 ---
 
-## 第三节 函数极限
+## 函数极限
 
 
 
@@ -127,7 +139,7 @@ $\lim_{x \to \infty} f(x) = A <=> \lim_{x \to \infty^+} f(x) = \lim_{x \to \inft
 
 ---
 
-# 第四节 无穷小与无穷大
+## 无穷小
 
 **无穷小概念**
 
@@ -175,8 +187,7 @@ $ \lim_{x \to x_0} f(x) = 0$，$ \lim_{x \to x_0} g(x) = 0$，则：
 
 4. $\frac{o(x^m)}{x^n} = o(x^{m-n}) \ \ 条件：(m>n)$
 
-</br>
-</br>
+## 无穷大
 
 **无穷大的概念**
 
@@ -213,6 +224,29 @@ $ \lim_{x \to x_0} f(x) = 0$，$ \lim_{x \to x_0} g(x) = 0$，则：
    > $\lim_{n \to \infty} \frac{a^n}{n!} = 0$
 
 
+## 洛必达法则
+
+若：
+
+1. $\lim_{x \to x_0} \frac{f(x)}{g(x)} = \frac{0}{0}$ 或 $ = \frac{\infty}{\infty}$
+2. $f(x), g(x) 可导$
+3. $\lim_{x \to x_0} \frac{f^{'}(x)}{g^{'}(x)}$ 存在 或 无穷
+
+则可洛必达：
+
+$ \lim_{x \to x_0} \frac{f(x)}{g(x)} = \lim_{x \to x_0} \frac{f^{'}(x)}{g^{'}(x)}$
+
+
+> $ \lim_{x \to \infty} \frac{x+sinx}{x} \overset{\frac{\infty}{\infty}} = \lim_{x \to \infty}(1+cosx)$ 震荡。（不存在了，不能使用洛必达）
+
+
+> $\lim_{x \to 0} \frac{ \sqrt{1+x} + \sqrt{1-x} - 2}{x^2} $
+=$ \lim_{x \to 0} \frac{ \frac{1}{2 \sqrt{1+x}} - \frac{1}{2 \sqrt{1-x}}}{2x} $
+=$ \frac{1}{4} \lim_{x \to 0} \frac{\sqrt{1-x} - \sqrt{1+x}}{x \sqrt{1+x} \sqrt{1-x}}$
+
+
+
+## 等价代换
 
 
 
