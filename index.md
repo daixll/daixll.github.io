@@ -1,3 +1,10 @@
+---
+# html:
+    # toc: true   # 打开侧边目录
+export_on_save:
+    html: true  # 自动保存
+---
+
 <style>
     .center
     {
@@ -31,7 +38,7 @@
 
 <div class="center">
 
-| [C]() / [C++]() | C++ Socket | C++ QT | C++ 并发 | 
+| [C]() / [C++](/language/CPP/C++/index.html) | C++ Socket | C++ QT | [C++ 并发](/language/CPP/C++%20Concurrency/index.html) | 
 |:-:|:-:|:-:|:-:|
 
 </div>

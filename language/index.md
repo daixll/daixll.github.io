@@ -28,12 +28,7 @@ export_on_save:
 命名空间、类、继承、多态、引用、函数、rtti、其他类型、常量、inline、异常、动态内存管理、
 
 0. STL
-    * 迭代器](CPP/iterator.html)
-    * [序列式容器](CPP/sequence.html)
-    * [关联式容器](CPP/associative.html)
-    * 容器适配器](CPP/adapter.html)
-    * 算法](CPP/algorithm.html)
-    * 函数对象](CPP/functor.html)
+
 
 1. [string](CPP/string.html)
 2. [template](CPP/template.html)
