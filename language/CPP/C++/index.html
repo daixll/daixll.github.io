@@ -23,206 +23,7 @@
     
     
       <div class="crossnote markdown-preview  ">
-      <h1 class="crossnote-header" id="string">string</h1>
-
-<p>在 c++ 中，字符串常常会有这几个头文件：</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
-</code></pre><p>对于 <code>string.h</code> 和 <code>cstring</code>，本质上都是 C 语言中的头文件。<code>cstring</code> 是 C++ 中对 <code>string.h</code> 的封装，所以在 C++ 中，<code>string.h</code> 和 <code>cstring</code> 是等价的。</p>
-<h2 class="crossnote-header" id="cstring">cstring</h2>
-
-<p><code>cstring</code> 操作的是 C 风格的字符串，也就是以 <code>\0</code> 结尾的字符串。</p>
-<p>C 风格的字符串有三种写法：</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword keyword-char">char</span> str1<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-char">char</span> str2<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>str3 <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre><ul>
-<li>
-<p>str1<br>
-此写法会在 str1[5] 的位置插入 <code>\0</code>。<br>
-数据保存在栈中。</p>
-</li>
-<li>
-<p>str2<br>
-编译器会自动将 str2 的长度设置为 6，且在 str2[5] 的位置插入 <code>\0</code>。<br>
-数据保存在栈中。</p>
-</li>
-<li>
-<p>str3<br>
-此写法会在常量区（常量区不可更改）创建一个字符串，然后将 str3 指向该字符串的首地址。<br>
-数据保存在常量区，<strong>str3 本身</strong> 保存在栈中。</p>
-</li>
-</ul>
-<p>显然，str1 和 str2 是等价的。我们都知道，数组名其实是一个指针，<br>
-所以 str1 和 str2 都是指向栈中的一个字符串。而 str3 则是指向常量区的一个字符串。</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 输出地址</span>
-<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">6</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%x %x\n"</span><span class="token punctuation">,</span> str1 <span class="token operator">+</span> i<span class="token punctuation">,</span> <span class="token operator">&amp;</span>str1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">// 输出内容</span>
-<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">6</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c %c\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">(</span>str1 <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">,</span> str1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><pre data-role="codeBlock" data-info="" class="language-text text"><code>19d5f2ec 19d5f2ec
-19d5f2ed 19d5f2ed
-19d5f2ee 19d5f2ee
-19d5f2ef 19d5f2ef
-19d5f2f0 19d5f2f0
-19d5f2f1 19d5f2f1
-h h
-e e
-l l
-l l
-o o
-NUL NUL
-</code></pre><p>如果把 str3 指向 str1 <code>str3 = str1</code>，那么 str3 就指向了栈中的一个字符串。<br>
-紧接着，将上面的代码复制，换成 <code>str3</code>，输出结果一毛一样。</p>
-<p><strong>这就是 C 风格的字符串。本质上都是指针，指向一个连续的内存空间。</strong></p>
-<p><a href="https://www.runoob.com/cprogramming/c-standard-library-string-h.html">菜鸟教程</a> 详细介绍了 <code>cstring</code> 的用法，下面是一些常用的函数：</p>
-<ul>
-<li>strlen - 获取字符串长度 <code>size_t strlen(const char *s);</code></li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-int">int</span> len <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p><code>strlen</code> 计算从 str 开始，到 <code>\0</code> 结束的长度。<br>
-所以，如果 str 中间有 <code>\0</code>，那么 <code>strlen</code> 只会返回到 <code>\0</code> 的长度。</p>
-<p>容易混淆的是，<code>sizeof</code> 的功能是计算一个数据类型的大小，这个类型可以是数组、函数、指针、对象等，单位为字节。</p>
-<ul>
-<li>memset - 设置字符串内容 <code>void *memset(void *s, int c, size_t n);</code></li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">memset</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token char">'a'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> str<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p><code>memset</code> 按字节对 <code>str</code> 进行初始化，<code>sizeof str</code> 为 <code>str</code> 的大小，单位为字节。<br>
-值得一提的是，<code>memset</code> 的第二个参数是 <code>int</code> 类型，但是实际上只会取 <code>char</code> 的低 8 位。</p>
-<p>在算法竞赛中，我们常常会使用 <code>memset(g, 0x3f, sizeof g)</code> 来初始化一个数组。<br>
-实际上，<code>0x3f</code> 的二进制为 <code>0011 1111</code>。<code>memset</code> 会将 <code>g</code> 的每个字节都设置为 <code>0011 1111</code>。<br>
-假设 <code>g</code> 的类型为 <code>int</code>，一个 <code>int</code>，4 个字节，那么 <code>g</code> 中每个元素</p>
-<ul>
-<li>二进制为 <code>0011 1111 0011 1111 0011 1111 0011 1111</code>。</li>
-<li>十进制为 <code>1061109567</code>。</li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token function">strcpy</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>src<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token function">strcat</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>src<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword keyword-int">int</span> <span class="token function">strcmp</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>s1<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>s2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token function">strchr</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>s<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token function">strstr</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>haystack<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>needle<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword keyword-void">void</span> <span class="token operator">*</span><span class="token function">memcpy</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-void">void</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> size_t n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><h2 class="crossnote-header" id="string-1">string</h2>
-
-<p><code>string</code> 操作的是 C++ 中的字符串，也就是 <code>std::string</code>。</p>
-<p><code>string</code> 是一个类，所以它有构造函数、析构函数、拷贝构造函数、赋值运算符等等。</p>
-<ul>
-<li>构造函数</li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s1<span class="token punctuation">;</span>          <span class="token comment">// 默认构造函数，s1 为空字符串</span>
-string <span class="token function">s2</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 拷贝构造函数，s2 为 s1 的拷贝</span>
-string <span class="token function">s3</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 用字符串初始化 s3</span>
-string <span class="token function">s4</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token char">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 用 10 个 'a' 初始化 s4</span>
-</code></pre><ul>
-<li>赋值运算符</li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s1<span class="token punctuation">,</span> s2<span class="token punctuation">;</span>
-s1 <span class="token operator">=</span> s2<span class="token punctuation">;</span>            <span class="token comment">// s1 为 s2 的拷贝</span>
-string s3 <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
-s1 <span class="token operator">=</span> s3<span class="token punctuation">;</span>            <span class="token comment">// s1 为 s3 的拷贝</span>
-</code></pre><ul>
-<li>比较运算符</li>
-</ul>
-<p>先按字典序比较，如果相等，再比较长度。</p>
-<ul>
-<li>插入元素</li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
-s<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"6"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
-<span class="token comment">// 将 6 插入到 s 的第二个字符的位置</span>
-<span class="token comment">// 输出 h6ello</span>
-</code></pre><ul>
-<li>删除元素</li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
-s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      
-<span class="token comment">// 将 s 下标为 0 的字符开始的 2 个字符删除</span>
-<span class="token comment">// 输出 llo</span>
-</code></pre><ul>
-<li>替换元素</li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
-s<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"6"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
-<span class="token comment">// 将 s 的第一个字符替换为 'H'</span>
-<span class="token comment">// 输出 6ello</span>
-</code></pre><ul>
-<li>查找元素</li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
-<span class="token keyword keyword-int">int</span> idx <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"ll"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-<span class="token comment">// 查找 s 中第一个 "ll" 的位置，返回目标字符串的第一个字符的下标</span>
-<span class="token comment">// 输出 2</span>
-</code></pre><ul>
-<li>获取子串</li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
-s<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
-<span class="token comment">// 获取 s 中下标为 2 的字符开始的 2 个字符</span>
-<span class="token comment">// 输出 ll</span>
-</code></pre><ul>
-<li>获取长度</li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
-s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           
-<span class="token comment">// 获取 s 的长度</span>
-<span class="token comment">// 输出 5</span>
-</code></pre><ul>
-<li>转换为 C 风格字符串</li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
-s<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          
-<span class="token comment">// 将 s 转换为 C 风格字符串</span>
-</code></pre><ul>
-<li>转换为整数</li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"123"</span><span class="token punctuation">;</span>
-<span class="token function">stoi</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 将 s 转换为整数</span>
-<span class="token function">stoll</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 将 s 转换为长整数</span>
-</code></pre><ul>
-<li>转换为双精度浮点数</li>
-</ul>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"123.456"</span><span class="token punctuation">;</span>
-<span class="token function">stod</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 将 s 转换为双精度浮点数</span>
-</code></pre><h1 class="crossnote-header" id="template">template</h1>
-
-<p>template：变参数模板。是一种编译器的特性，用于生成一系列的函数或类。</p>
-<h2 class="crossnote-header" id="%E5%9C%A8%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8-template">在函数中使用 template</h2>
-
-<p>可以让函数接受任意类型的参数，而不是固定的类型。</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">T</span><span class="token operator">&gt;</span>
-<span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-void">void</span> <span class="token function">Tswap</span><span class="token punctuation">(</span>T <span class="token operator">*</span>a<span class="token punctuation">,</span> T <span class="token operator">*</span>b<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    T temp <span class="token operator">=</span> <span class="token operator">*</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>a <span class="token operator">=</span> <span class="token operator">*</span>b<span class="token punctuation">;</span>
-    <span class="token operator">*</span>b <span class="token operator">=</span> temp<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre><h2 class="crossnote-header" id="%E5%9C%A8%E7%B1%BB%E4%B8%AD%E4%BD%BF%E7%94%A8-templat">在类中使用 templat</h2>
-
-<p>可以让类接受任意类型的参数，而不是固定的类型。</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">T</span><span class="token operator">&gt;</span>
-<span class="token keyword keyword-class">class</span> <span class="token class-name">queue</span> <span class="token punctuation">{</span>
-<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
-    <span class="token keyword keyword-void">void</span> <span class="token function">push</span><span class="token punctuation">(</span>T x<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        q<span class="token punctuation">[</span>tail<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> x<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-void">void</span> <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        head<span class="token operator">++</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    T <span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword keyword-return">return</span> q<span class="token punctuation">[</span>head<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-int">int</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-this">this</span><span class="token operator">-&gt;</span>tail<span class="token operator">-</span><span class="token keyword keyword-this">this</span><span class="token operator">-&gt;</span>head<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
-    T q<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-int">int</span> head <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-int">int</span> tail <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre><h1 class="crossnote-header" id="stl">STL</h1>
+      <h1 class="crossnote-header" id="stl">STL</h1>
 
 <h2 class="crossnote-header" id="%E5%BA%8F%E5%88%97%E5%BC%8F%E5%AE%B9%E5%99%A8">序列式容器</h2>
 
@@ -676,6 +477,217 @@ s<span class="token punctuation">.</span><span class="token function">equal_rang
 <h2 class="crossnote-header" id="%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1-functor">函数对象 functor</h2>
 
 <hr>
+<h1 class="crossnote-header" id="string">string</h1>
+
+<p>在 c++ 中，字符串常常会有这几个头文件：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
+</code></pre><p>对于 <code>string.h</code> 和 <code>cstring</code>，本质上都是 C 语言中的头文件。<code>cstring</code> 是 C++ 中对 <code>string.h</code> 的封装，所以在 C++ 中，<code>string.h</code> 和 <code>cstring</code> 是等价的。</p>
+<h2 class="crossnote-header" id="cstring">cstring</h2>
+
+<p><code>cstring</code> 操作的是 C 风格的字符串，也就是以 <code>\0</code> 结尾的字符串。</p>
+<p>C 风格的字符串有三种写法：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-char">char</span> str1<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-char">char</span> str2<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>str3 <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li>
+<p>str1<br>
+此写法会在 str1[5] 的位置插入 <code>\0</code>。<br>
+数据保存在栈中。</p>
+</li>
+<li>
+<p>str2<br>
+编译器会自动将 str2 的长度设置为 6，且在 str2[5] 的位置插入 <code>\0</code>。<br>
+数据保存在栈中。</p>
+</li>
+<li>
+<p>str3<br>
+此写法会在常量区（常量区不可更改）创建一个字符串，然后将 str3 指向该字符串的首地址。<br>
+数据保存在常量区，<strong>str3 本身</strong> 保存在栈中。</p>
+</li>
+</ul>
+<p>显然，str1 和 str2 是等价的。我们都知道，数组名其实是一个指针，<br>
+所以 str1 和 str2 都是指向栈中的一个字符串。而 str3 则是指向常量区的一个字符串。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 输出地址</span>
+<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">6</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%x %x\n"</span><span class="token punctuation">,</span> str1 <span class="token operator">+</span> i<span class="token punctuation">,</span> <span class="token operator">&amp;</span>str1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 输出内容</span>
+<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">6</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c %c\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">(</span>str1 <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">,</span> str1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="" class="language-text text"><code>19d5f2ec 19d5f2ec
+19d5f2ed 19d5f2ed
+19d5f2ee 19d5f2ee
+19d5f2ef 19d5f2ef
+19d5f2f0 19d5f2f0
+19d5f2f1 19d5f2f1
+h h
+e e
+l l
+l l
+o o
+NUL NUL
+</code></pre><p>如果把 str3 指向 str1 <code>str3 = str1</code>，那么 str3 就指向了栈中的一个字符串。<br>
+紧接着，将上面的代码复制，换成 <code>str3</code>，输出结果一毛一样。</p>
+<p><strong>这就是 C 风格的字符串。本质上都是指针，指向一个连续的内存空间。</strong></p>
+<p><a href="https://www.runoob.com/cprogramming/c-standard-library-string-h.html">菜鸟教程</a> 详细介绍了 <code>cstring</code> 的用法，下面是一些常用的函数：</p>
+<ul>
+<li>strlen - 获取字符串长度 <code>size_t strlen(const char *s);</code></li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-int">int</span> len <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p><code>strlen</code> 计算从 str 开始，到 <code>\0</code> 结束的长度。<br>
+所以，如果 str 中间有 <code>\0</code>，那么 <code>strlen</code> 只会返回到 <code>\0</code> 的长度。</p>
+<p>容易混淆的是，<code>sizeof</code> 的功能是计算一个数据类型的大小，这个类型可以是数组、函数、指针、对象等，单位为字节。</p>
+<ul>
+<li>memset - 设置字符串内容 <code>void *memset(void *s, int c, size_t n);</code></li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">memset</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token char">'a'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p><code>memset</code> 按字节对 <code>str</code> 进行初始化，<code>sizeof str</code> 为 <code>str</code> 的大小，单位为字节。<br>
+值得一提的是，<code>memset</code> 的第二个参数是 <code>int</code> 类型，但是实际上只会取 <code>char</code> 的低 8 位。</p>
+<p>在算法竞赛中，我们常常会使用 <code>memset(g, 0x3f, sizeof g)</code> 来初始化一个数组。<br>
+实际上，<code>0x3f</code> 的二进制为 <code>0011 1111</code>。<code>memset</code> 会将 <code>g</code> 的每个字节都设置为 <code>0011 1111</code>。<br>
+假设 <code>g</code> 的类型为 <code>int</code>，一个 <code>int</code>，4 个字节，那么 <code>g</code> 中每个元素</p>
+<ul>
+<li>二进制为 <code>0011 1111 0011 1111 0011 1111 0011 1111</code>。</li>
+<li>十进制为 <code>1061109567</code>。</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token function">strcpy</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>src<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token function">strcat</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>src<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">strcmp</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>s1<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>s2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token function">strchr</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>s<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token function">strstr</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>haystack<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>needle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-void">void</span> <span class="token operator">*</span><span class="token function">memcpy</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-void">void</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> size_t n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h2 class="crossnote-header" id="string-1">string</h2>
+
+<p><code>string</code> 操作的是 C++ 中的字符串，也就是 <code>std::string</code>。</p>
+<p><code>string</code> 是一个类，所以它有构造函数、析构函数、拷贝构造函数、赋值运算符等等。</p>
+<ul>
+<li>构造函数</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s1<span class="token punctuation">;</span>          <span class="token comment">// 默认构造函数，s1 为空字符串</span>
+string <span class="token function">s2</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 拷贝构造函数，s2 为 s1 的拷贝</span>
+string <span class="token function">s3</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 用字符串初始化 s3</span>
+string <span class="token function">s4</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token char">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 用 10 个 'a' 初始化 s4</span>
+</code></pre><ul>
+<li>赋值运算符</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s1<span class="token punctuation">,</span> s2<span class="token punctuation">;</span>
+s1 <span class="token operator">=</span> s2<span class="token punctuation">;</span>            <span class="token comment">// s1 为 s2 的拷贝</span>
+string s3 <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+s1 <span class="token operator">=</span> s3<span class="token punctuation">;</span>            <span class="token comment">// s1 为 s3 的拷贝</span>
+</code></pre><ul>
+<li>比较运算符</li>
+</ul>
+<p>先按字典序比较，如果相等，再比较长度。</p>
+<ul>
+<li>插入元素</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+s<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"6"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+<span class="token comment">// 将 6 插入到 s 的第二个字符的位置</span>
+<span class="token comment">// 输出 h6ello</span>
+</code></pre><ul>
+<li>删除元素</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      
+<span class="token comment">// 将 s 下标为 0 的字符开始的 2 个字符删除</span>
+<span class="token comment">// 输出 llo</span>
+</code></pre><ul>
+<li>替换元素</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+s<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"6"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+<span class="token comment">// 将 s 的第一个字符替换为 'H'</span>
+<span class="token comment">// 输出 6ello</span>
+</code></pre><ul>
+<li>查找元素</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> idx <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"ll"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment">// 查找 s 中第一个 "ll" 的位置，返回目标字符串的第一个字符的下标</span>
+<span class="token comment">// 输出 2</span>
+</code></pre><ul>
+<li>获取子串</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+s<span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     
+<span class="token comment">// 获取 s 中下标为 2 的字符开始的 2 个字符</span>
+<span class="token comment">// 输出 ll</span>
+</code></pre><ul>
+<li>获取长度</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           
+<span class="token comment">// 获取 s 的长度</span>
+<span class="token comment">// 输出 5</span>
+</code></pre><ul>
+<li>转换为 C 风格字符串</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+s<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          
+<span class="token comment">// 将 s 转换为 C 风格字符串</span>
+</code></pre><ul>
+<li>转换为整数</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"123"</span><span class="token punctuation">;</span>
+<span class="token function">stoi</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 将 s 转换为整数</span>
+<span class="token function">stoll</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 将 s 转换为长整数</span>
+</code></pre><ul>
+<li>转换为双精度浮点数</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"123.456"</span><span class="token punctuation">;</span>
+<span class="token function">stod</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 将 s 转换为双精度浮点数</span>
+</code></pre><h1 class="crossnote-header" id="union">union</h1>
+
+<p>union：联合体。是一种特殊的数据类型，允许在相同的内存位置存储不同的数据类型。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-union">union</span> MyUnion<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> a<span class="token punctuation">;</span>
+    <span class="token keyword keyword-double">double</span> b<span class="token punctuation">;</span>
+    <span class="token keyword keyword-char">char</span> c<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre><h1 class="crossnote-header" id="template">template</h1>
+
+<p>template：变参数模板。</p>
+<h2 class="crossnote-header" id="%E5%9C%A8%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8-template">在函数中使用 template</h2>
+
+<p>可以让函数接受任意类型的参数，而不是固定的类型。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">T</span><span class="token operator">&gt;</span>
+<span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-void">void</span> <span class="token function">Tswap</span><span class="token punctuation">(</span>T <span class="token operator">*</span>a<span class="token punctuation">,</span> T <span class="token operator">*</span>b<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    T temp <span class="token operator">=</span> <span class="token operator">*</span>a<span class="token punctuation">;</span>
+    <span class="token operator">*</span>a <span class="token operator">=</span> <span class="token operator">*</span>b<span class="token punctuation">;</span>
+    <span class="token operator">*</span>b <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 class="crossnote-header" id="%E5%9C%A8%E7%B1%BB%E4%B8%AD%E4%BD%BF%E7%94%A8-templat">在类中使用 templat</h2>
+
+<p>可以让类接受任意类型的参数，而不是固定的类型。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">T</span><span class="token operator">&gt;</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">queue</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">push</span><span class="token punctuation">(</span>T x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        q<span class="token punctuation">[</span>tail<span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> x<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        head<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    T <span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> q<span class="token punctuation">[</span>head<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-this">this</span><span class="token operator">-&gt;</span>tail<span class="token operator">-</span><span class="token keyword keyword-this">this</span><span class="token operator">-&gt;</span>head<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    T q<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> head <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> tail <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><h1 class="crossnote-header" id="function">function</h1>
+
+<p>function：函数对象。是一种编译器的特性，用于生成一系列的函数。</p>
 <h1 class="crossnote-header" id="%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88">智能指针</h1>
 
 <p>为了解决内存泄漏、野（wild）指针、悬空（dangling）指针的问题，引入了智能指针。</p>
@@ -727,40 +739,6 @@ ptr <span class="token operator">=</span> <span class="token keyword keyword-nul
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#string" class="md-toc-link"><p>string</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#cstring" class="md-toc-link">
-            <p>cstring</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#string-1" class="md-toc-link">
-            <p>string</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#template" class="md-toc-link"><p>template</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#在函数中使用-template" class="md-toc-link">
-            <p>在函数中使用 template</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#在类中使用-templat" class="md-toc-link">
-            <p>在类中使用 templat</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#stl" class="md-toc-link"><p>STL</p>
 </a>
@@ -864,6 +842,48 @@ ptr <span class="token operator">=</span> <span class="token keyword keyword-nul
         </div>
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#string" class="md-toc-link"><p>string</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#cstring" class="md-toc-link">
+            <p>cstring</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#string-1" class="md-toc-link">
+            <p>string</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#union" class="md-toc-link">
+            <p>union</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#template" class="md-toc-link"><p>template</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#在函数中使用-template" class="md-toc-link">
+            <p>在函数中使用 template</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#在类中使用-templat" class="md-toc-link">
+            <p>在类中使用 templat</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#function" class="md-toc-link">
+            <p>function</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#智能指针" class="md-toc-link"><p>智能指针</p>
 </a>
