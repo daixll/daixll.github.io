@@ -6,10 +6,8 @@ export_on_save:
 ---
 
 
-
-
-
-
+$\lim_{x \to 0} \frac{tanx - sinx}{x^2ln(1+2x)}$
+=$\lim_{x \to 0} \frac{tanx - sinx}{2x^3}$
 
 
 # 第一节 函数与极限
@@ -240,15 +238,136 @@ $ \lim_{x \to x_0} \frac{f(x)}{g(x)} = \lim_{x \to x_0} \frac{f^{'}(x)}{g^{'}(x)
 > $ \lim_{x \to \infty} \frac{x+sinx}{x} \overset{\frac{\infty}{\infty}} = \lim_{x \to \infty}(1+cosx)$ 震荡。（不存在了，不能使用洛必达）
 
 
-> $\lim_{x \to 0} \frac{ \sqrt{1+x} + \sqrt{1-x} - 2}{x^2} $
+> $\lim_{x \to 0} \frac{ \sqrt{1+x} + \sqrt{1-x} - 2}{x^2}$
 =$ \lim_{x \to 0} \frac{ \frac{1}{2 \sqrt{1+x}} - \frac{1}{2 \sqrt{1-x}}}{2x} $
 =$ \frac{1}{4} \lim_{x \to 0} \frac{\sqrt{1-x} - \sqrt{1+x}}{x \sqrt{1+x} \sqrt{1-x}}$
 
 
+## 等价代换 x->0
 
-## 等价代换
+1. $x \sim sinx \sim tanx$
+    $\sim arcsinx \sim arctanx$
+    $\sim ln(1+x) \sim e^x-1$
+
+2. $(1+x)^2-1 \sim 2x$
+    特别的，$\sqrt{1+x}-1 \sim \frac{x}{2}$
+    所以有，$\sqrt[n]{1+x}-1 \sim \frac{x}{n}$
+
+    $a^x-1 \sim xlna$
+
+    $x-ln(1+x) \sim 1-cosx \sim \frac{x^2}{2}$
+    
+3. $x-sinx \sim arcsinx-x \sim \frac{x^3}{6}$ 弦
+    $tanx-x \sim x-arctanx \sim \frac{x^3}{3}$ 切
+    $tanx-sinx \sim arcsinx-arctanx \sim \frac{x^3}{2}$ 弦+切
+
+* 等价代换求极限
+    1. 乘除可以代换，加减最简形式 $(x, x^2...)$ 不抵消时可以代换
+    > $ln(1+x) - sinx$ 
+    > 经典错误：
+    > $\sim x-x=0$
+    > $\sim x-sinx \sim \frac{x^3}{6}$
+    > 法1：Taylor
+    > $= x - \frac{x^2}{2} + o(x^2) - [x-\frac{x^3}{3!} + o(x^3)]$
+    > $= -\frac{x^2}{2} + o(x^2) \sim -\frac{x^2}{2}$
+    > 法2：拆项等价
+    > $ln(1+x) - x + x -sinx$
+    > $-\frac{x^2}{2} + \frac{x^3}{3!} \sim -\frac{x^2}{2}$
+
+    > $1-cosx+x^2 \sim \frac{x^2}{2}+x^2 = \frac{3x^2}{2}$
+
+    2. $x \to 0$ 可以推广为 $ ▢ \to 0$
+    
+    > $▢ = x^2$ 随便装，不过要趋于0
+    > $ln(1+▢) \sim ▢, ▢ \to 0$
+
+    > $▢ - sin▢ \sim \frac{x^3}{6}, ▢ \to 0$
+    
+    > $\lim_{x \to 0} \frac{(sinx - sinsinx)sinx}{x^4}$
+    > $= \lim_{x \to 0} \frac{ \frac{sin^3x}{6} sinx}{x^4}$
+    > $= \lim_{x \to 0} \frac{ \frac{sin^4x}{6}}{x^4}$
+    > $= \frac{1}{6}$
+
+    > $\lim_{x \to 0} \frac{arctanx - x}{ln(1+2x^3)}$
+    > $= \lim_{x \to 0} \frac{- \frac{x^3}{3}}{2x^3}$ 
+    > $= - \frac{1}{6}$
+
+    > $\lim_{x \to 0} \frac{arctanx -sinx}{x^3}$
+    > $= \lim_{x \to 0} \frac{arctanx - x + x - sinx}{x^3}$
+    > $= \lim_{x \to 0} \frac{- \frac{x^3}{3} + \frac{x^3}{6} }{x^3}$ 
+    > $= - \frac{1}{6}$
+
+
+## 泰勒公式 Taylor
+
+**泰勒公式**：$f(x)$ 在 $x=x_0$ 的某邻域内 $n+1$ 阶可导，则有：
+
+$f(x) = f(x_0) + f'(x_0)(x - x_0) + \frac{f''(x_0)}{2!}(x - x_0)^2 + \ldots + \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n + R_n(x)$ 
+
+$R_n(x)$ 有两种：
+
+* 拉格朗日（Lagrange）余项：$ \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$，$ \xi $ 在 $x_0$ 与 $x$ 之间
+
+* 佩亚诺（Peano）余项：$ o((x-x_0)^n)$
+
+
+麦克劳林公式 Maclaurin：$f(x)$ 在 $x=0$ 的某邻域内 $n+1$ 阶可导，则有：
+
+$f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \ldots + \frac{f^{(n)}(0)}{n!}x^n + R_n(x)$
 
 
 
+**八个常见函数的泰勒公式**
+
+1. $e^x = 1 + x + \frac{x^2}{2!} + o(x^2)$
+
+2. $\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} + o(x^3)$
+
+3. $(1+x)^\alpha = 1 + \alpha x + \frac{\alpha(\alpha-1)}{2!} x^2 + o(x^2)$
+    特别地：$\sqrt{1+x} = 1 + \frac{x}{2} - \frac{x^2}{8} + o(x^2)$
+
+4. $ cosx = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + o(x^4)$
+    $ cosx = 1 - \frac{x^2}{2!} + o(x^2)$
+
+<br>
+
+5. $ sinx = x - \frac{x^3}{3!} + o(x^3)$
+
+6. $ arcsinx = x + \frac{x^3}{3!} + o(x^3)$ *（正负互换）*
+
+7. $ tanx = x + \frac{x^3}{3} + o(x^3)$ *（去掉阶乘）*
+
+8. $ arctanx = x - \frac{x^3}{3} + o(x^3)$ *（正负互换）*
+
+
+
+**泰勒公式求极限**
+
+1. $x \to 0$ 可以推广为 $▢ \to 0$
+
+> $e^{x^2} = 1 + x^2 + \frac{(x^2)^2}{2!} + o((x^2)^2)$
+
+> $\lim_{x \to 0} \frac{ \sqrt{1+x} + \sqrt{1-x} - 2}{x^2}$
+> $= \lim_{x \to 0} \frac{1+ \frac{x}{2} - \frac{x^2}{8} + o(x^2) + 1 - \frac{x}{2} - \frac{x^2}{8} + o(x^2) - 2}{x^2}$
+> $= \lim_{x \to 0} \frac{- \frac{x^2}{4} + o(x^2)}{x^2}$
+> $= - \frac{1}{4}$
+
+
+2. 分子分母同阶原则，加减不抵消原则
+
+> $\lim_{x \to 0} \frac{cosx - e^{- \frac{x^2}{2}}}{x^4}$
+> $= \lim_{x \to 0} \frac{1 - \frac{x^2}{2} + \frac{x^4}{4!} + o(x^4) - (1 - \frac{x^2}{2} + \frac{x^4}{2!} + o(x^4))}{x^4}$
+
+
+> $\lim_{x \to 0} \frac{cosx - e^{-\frac{x^2}{2}}}{x^4}$
+> $= \lim_{x \to 0} \frac{1 - \frac{x^2}{2} + \frac{x^4}{4!} + o(x^4) - (1 - \frac{x^2}{2} + \frac{x^4}{2!*4} + o(x^4))}{x^4}$
+> $= \lim_{x \to 0} \frac{ \frac{x^4}{4!} - \frac{x^4}{2!*4} + o(x^4)}{x^4}$
+> $= \frac{1}{12}$
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br>

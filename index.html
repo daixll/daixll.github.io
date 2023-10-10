@@ -3,14 +3,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
       
       
       
       
       
       <style>
-      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px/2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 
@@ -34,18 +34,17 @@
 </style>
 <h1><center> 戴兴龙 </center></h1>
 <center>
-<p>&nbsp; <a href="mailto:dxlcq@outlook.com">dxlcq@outlook.com</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://github.com/daixll">Github</a> &nbsp;&nbsp; | &nbsp;&nbsp; 开发工程师 &nbsp;&nbsp; | &nbsp;&nbsp; 算法竞赛教练 &nbsp;&nbsp;</p>
+<p data-source-line="22">&nbsp; <a href="mailto:dxlcq@outlook.com">dxlcq@outlook.com</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://github.com/daixll">Github</a> &nbsp;&nbsp; | &nbsp;&nbsp; 开发工程师 &nbsp;&nbsp; | &nbsp;&nbsp; 算法竞赛教练 &nbsp;&nbsp;</p>
 </center>
 <hr>
-<h1 class="crossnote-header" id="-%E7%AC%94%E8%AE%B0--%E6%8A%80%E6%9C%AF%E6%A0%88">🥢 笔记 &amp; 技术栈</h1>
-
+<h1 id="-笔记--技术栈" data-source-line="30">🥢 笔记 &amp; 技术栈 </h1>
 <center>
-<p>-- -- -- -- -- -- -- -- 语言 -- -- -- -- -- -- -- --</p>
+<p data-source-line="35">-- -- -- -- -- -- -- -- 语言 -- -- -- -- -- -- -- --</p>
 </center>
 <div class="center">
-<table>
-<thead>
-<tr>
+<table data-source-line="41">
+<thead data-source-line="41">
+<tr data-source-line="41">
 <th style="text-align:center"><a href="">C</a> / <a href="language\CPP\C++\index.html">C++</a></th>
 <th style="text-align:center">C++ Socket</th>
 <th style="text-align:center">C++ QT</th>
@@ -55,9 +54,9 @@
 </table>
 </div>
 <div class="center">
-<table>
-<thead>
-<tr>
+<table data-source-line="48">
+<thead data-source-line="48">
+<tr data-source-line="48">
 <th style="text-align:center">Golang</th>
 <th style="text-align:center">CRUD</th>
 </tr>
@@ -65,9 +64,9 @@
 </table>
 </div>
 <div class="center">
-<table>
-<thead>
-<tr>
+<table data-source-line="55">
+<thead data-source-line="55">
+<tr data-source-line="55">
 <th style="text-align:center">Python</th>
 <th style="text-align:center">数据分析</th>
 <th style="text-align:center">TensorFlow</th>
@@ -76,21 +75,21 @@
 </table>
 </div>
 <div class="center">
-<table>
-<thead>
-<tr>
+<table data-source-line="63">
+<thead data-source-line="63">
+<tr data-source-line="63">
 <th style="text-align:center"><a href="language\ENGLISH\index.html">English</a></th>
 </tr>
 </thead>
 </table>
 </div>
 <center>
-<p>-- -- -- -- -- -- -- -- 基础 -- -- -- -- -- -- -- --</p>
+<p data-source-line="70">-- -- -- -- -- -- -- -- 基础 -- -- -- -- -- -- -- --</p>
 </center>
 <div class="center">
-<table>
-<thead>
-<tr>
+<table data-source-line="76">
+<thead data-source-line="76">
+<tr data-source-line="76">
 <th style="text-align:center">数据结构与算法</th>
 <th style="text-align:center">操作系统</th>
 <th style="text-align:center">计算机网络</th>
@@ -103,24 +102,27 @@
 </table>
 </div>
 <div class="center">
-<table>
-<thead>
-<tr>
+<table data-source-line="83">
+<thead data-source-line="83">
+<tr data-source-line="83">
 <th style="text-align:center"><a href="408\%E5%BE%AE%E7%A7%AF%E5%88%86\index.html">微积分</a></th>
-<th style="text-align:center">线性代数</th>
+<th style="text-align:center">空间几何</th>
+<th style="text-align:center">级数</th>
+<th style="text-align:center"><a href="408\%E7%BA%BF%E4%BB%A3\index.md">线性代数</a></th>
 <th style="text-align:center">离散数学</th>
 <th style="text-align:center">概率论与数理统计</th>
+<th style="text-align:center">数论</th>
 </tr>
 </thead>
 </table>
 </div>
 <center>
-<p>-- -- -- -- -- -- -- -- 后端 -- -- -- -- -- -- -- --</p>
+<p data-source-line="91">-- -- -- -- -- -- -- -- 后端 -- -- -- -- -- -- -- --</p>
 </center>
 <div class="center">
-<table>
-<thead>
-<tr>
+<table data-source-line="97">
+<thead data-source-line="97">
+<tr data-source-line="97">
 <th style="text-align:center">Linux</th>
 <th style="text-align:center">Git</th>
 <th style="text-align:center">Docker</th>
@@ -128,9 +130,9 @@
 </thead>
 </table>
 </div><div class="center">
-<table>
-<thead>
-<tr>
+<table data-source-line="102">
+<thead data-source-line="102">
+<tr data-source-line="102">
 <th style="text-align:center">MySQL</th>
 <th style="text-align:center">Redis</th>
 <th style="text-align:center">MongoDB</th>
@@ -139,12 +141,12 @@
 </table>
 </div>
 <center>
-<p>-- -- -- -- -- -- -- -- 前端 -- -- -- -- -- -- -- --</p>
+<p data-source-line="110">-- -- -- -- -- -- -- -- 前端 -- -- -- -- -- -- -- --</p>
 </center>
 <div class="center">
-<table>
-<thead>
-<tr>
+<table data-source-line="117">
+<thead data-source-line="117">
+<tr data-source-line="117">
 <th style="text-align:center">HTML+CSS+JS</th>
 <th style="text-align:center">Vue</th>
 <th style="text-align:center">微信小程序</th>
@@ -153,81 +155,79 @@
 </table>
 </div>
 <center>
-<p>-- -- -- -- -- -- -- -- 竞赛 -- -- -- -- -- -- -- --</p>
+<p data-source-line="124">-- -- -- -- -- -- -- -- 竞赛 -- -- -- -- -- -- -- --</p>
 </center>
 <div class="center">
-<table>
-<thead>
-<tr>
+<table data-source-line="130">
+<thead data-source-line="130">
+<tr data-source-line="130">
 <th style="text-align:center"><a href="./algorithm/index.html">算法竞赛</a></th>
+<th style="text-align:center">CMC</th>
 <th style="text-align:center">CTF</th>
 </tr>
 </thead>
 </table>
 </div>
 <center>
-<p>-- -- -- -- -- -- -- -- 未来 -- -- -- -- -- -- -- --</p>
+<p data-source-line="137">-- -- -- -- -- -- -- -- 未来 -- -- -- -- -- -- -- --</p>
 </center>
 <div class="center">
-<table>
-<thead>
-<tr>
+<table data-source-line="143">
+<thead data-source-line="143">
+<tr data-source-line="143">
 <th style="text-align:center">资本论</th>
 </tr>
 </thead>
 </table>
 </div>
-<p>有空了重新移动以下目录结构</p>
-<ul>
-<li>了解计算机 <a href="408/index.html">基础</a> 知识：网络、操作系统、数据库、组成原理等</li>
-<li>了解 <a href="Linux/index.html">Linux</a> 及其环境下的开发工具：git，docker，</li>
-<li>了解常用后端开发 <a href="language/index.html">语言</a>：Golang，C/C++，python</li>
+<p data-source-line="149">有空了重新移动以下目录结构</p>
+<ul data-source-line="151">
+<li data-source-line="151">了解计算机 <a href="408/index.html">基础</a> 知识：网络、操作系统、数据库、组成原理等</li>
+<li data-source-line="152">了解 <a href="Linux/index.html">Linux</a> 及其环境下的开发工具：git，docker，</li>
+<li data-source-line="153">了解常用后端开发 <a href="language/index.html">语言</a>：Golang，C/C++，python</li>
 </ul>
 <hr>
-<h1 class="crossnote-header" id="-%E9%A1%B9%E7%9B%AE">🪓 项目</h1>
-
-<p><strong> 🎵 <a href=""><font size="4">tiktok</font></a></strong> &nbsp; | &nbsp; <a href="https://github.com/daixll/tiktok">Github</a></p>
-<ul>
-<li>字节跳动青训营项目，实现抖音的核心功能（视频流，用户登录，评论区等，后续考虑加入商城）。</li>
-<li>目前采用单体架构，Gin + JWT 实现业务，Gorm + MySQL 提供数据库服务。</li>
-<li>正在重新设计为微服务架构，完成后会重新上线。</li>
-<li>正在学习K8s</li>
+<h1 id="-项目" data-source-line="157">🪓 项目 </h1>
+<p data-source-line="159"><strong> 🎵 <a href=""><font size="4">tiktok</font></a></strong> &nbsp; | &nbsp; <a href="https://github.com/daixll/tiktok">Github</a></p>
+<ul data-source-line="161">
+<li data-source-line="161">字节跳动青训营项目，实现抖音的核心功能（视频流，用户登录，评论区等，后续考虑加入商城）。</li>
+<li data-source-line="162">目前采用单体架构，Gin + JWT 实现业务，Gorm + MySQL 提供数据库服务。</li>
+<li data-source-line="163">正在重新设计为微服务架构，完成后会重新上线。</li>
+<li data-source-line="164">正在学习K8s</li>
 </ul>
-<p><strong> 🌏 <a href="for_you/HTTPServer/README.html"><font size="4">HTTPserver</font></a></strong> &nbsp; | &nbsp; <a href="https://github.com/daixll/HTTPserver">Github</a></p>
-<ul>
-<li>旧项目地址：<a href="https://github.com/daixll/WebServer">WebServer</a>，功能已经完善，但是代码质量不高，故有了本项目。</li>
-<li>基于 Socket 实现的一个 HTTP 服务器，主从 Reactor 模型 + 非阻塞 Socket + Epoll（ET） + 线程池 + 内存池。</li>
-<li>正在重新考虑线程通信，计划实现一个 Channel。</li>
-<li>目前已经支持 IPV4/6 部署上线，待项目成熟后，本页面将由它驱动。</li>
+<p data-source-line="166"><strong> 🌏 <a href="for_you/HTTPServer/README.html"><font size="4">HTTPserver</font></a></strong> &nbsp; | &nbsp; <a href="https://github.com/daixll/HTTPserver">Github</a></p>
+<ul data-source-line="168">
+<li data-source-line="168">旧项目地址：<a href="https://github.com/daixll/WebServer">WebServer</a>，功能已经完善，但是代码质量不高，故有了本项目。</li>
+<li data-source-line="169">基于 Socket 实现的一个 HTTP 服务器，主从 Reactor 模型 + 非阻塞 Socket + Epoll（ET） + 线程池 + 内存池。</li>
+<li data-source-line="170">正在重新考虑线程通信，计划实现一个 Channel。</li>
+<li data-source-line="171">目前已经支持 IPV4/6 部署上线，待项目成熟后，本页面将由它驱动。</li>
 </ul>
 <hr>
-<h1 class="crossnote-header" id="-%E6%B1%82%E5%AD%A6">📚 求学</h1>
-
-<ul>
-<li>本科 重庆科技学院，计算机科学与技术，2023 ~ 2025</li>
-<li>专科 重庆工业职业技术学院，计算机网络技术，2020 ~ 2023</li>
+<h1 id="-求学" data-source-line="177">📚 求学 </h1>
+<ul data-source-line="179">
+<li data-source-line="179">本科 重庆科技学院，计算机科学与技术，2023 ~ 2025</li>
+<li data-source-line="180">专科 重庆工业职业技术学院，计算机网络技术，2020 ~ 2023</li>
 </ul>
 <br>
-<ul>
-<li><strong>奇灵云教育</strong> 竞赛教练，主要负责 CSP-J 赛事</li>
-<li><strong>蓝桥杯OJ</strong> <a href="#%E8%93%9D%E6%A1%A5%E4%BA%91%E8%AF%BE">出题小组成员</a>，2023年暑期参与平台命题工作</li>
-<li><strong>清华大学出版社</strong> <a href="#%E5%BF%97%E6%84%BF%E8%80%85-%E7%A0%81%E9%A2%98%E9%9B%86">TIPCC志愿者</a>，参与算法竞赛书籍《**算法》内容校对工作，“码题集”题库建设工作</li>
+<ul data-source-line="184">
+<li data-source-line="184"><strong>奇灵云教育</strong> 竞赛教练，主要负责 CSP-J 赛事</li>
+<li data-source-line="185"><strong>蓝桥杯OJ</strong> <a href="#%E8%93%9D%E6%A1%A5%E4%BA%91%E8%AF%BE">出题小组成员</a>，2023年暑期参与平台命题工作</li>
+<li data-source-line="186"><strong>清华大学出版社</strong> <a href="#%E5%BF%97%E6%84%BF%E8%80%85-%E7%A0%81%E9%A2%98%E9%9B%86">TIPCC志愿者</a>，参与算法竞赛书籍《**算法》内容校对工作，“码题集”题库建设工作</li>
 </ul>
 <hr>
-<h1 class="crossnote-header" id="-%E8%AF%81%E4%B9%A6">🏆 证书</h1>
-
+<h1 id="-证书" data-source-line="191">🏆 证书 </h1>
 <div class="center">
-<table>
-<thead>
-<tr>
+<table data-source-line="195">
+<thead data-source-line="195">
+<tr data-source-line="195">
 <th style="text-align:center">国家级奖项 🥇</th>
 <th style="text-align:center">省部级奖项 🥈</th>
 <th style="text-align:center">技能证书 🥉</th>
 <th style="text-align:center">奖学金 💰</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody data-source-line="197">
+<tr data-source-line="197">
 <td style="text-align:center">5</td>
 <td style="text-align:center">10</td>
 <td style="text-align:center">4</td>
@@ -241,12 +241,10 @@
 然内心感悟其温暖光辉，鼓舞前行<br>
 如此微薄，唯愿勉己，追求卓越
 </p> 
-<h2 class="crossnote-header" id="2023">2023</h2>
-
-<h3 class="crossnote-header" id="%E7%9C%81%E4%BA%8C-%E7%99%BE%E5%BA%A6%E4%B9%8B%E6%98%9F">省二 百度之星</h3>
-
-<ul>
-<li><code>2023-12</code> <code>第十九届百度之星程序设计大赛</code> <code>重庆市银奖</code> <a href="https://astar.baidu.com/#/news-info?tab=3&amp;id=B09A6D9FC10CC8DE394BA5DD2E32DE00">公示 / 排名</a></li>
+<h2 id="2023" data-source-line="207">2023 </h2>
+<h3 id="省二-百度之星" data-source-line="209">省二 百度之星 </h3>
+<ul data-source-line="211">
+<li data-source-line="211"><code>2023-12</code> <code>第十九届百度之星程序设计大赛</code> <code>重庆市银奖</code> <a href="https://astar.baidu.com/#/news-info?tab=3&amp;id=B09A6D9FC10CC8DE394BA5DD2E32DE00">公示 / 排名</a></li>
 </ul>
 <div class="center">
     <img src="joker\（省2）百度之星.jpg" width="300">
@@ -254,10 +252,9 @@
 <div class="center">
     <img src="joker\排名\（省2）百度之星.jpg" width="300">
 </div>
-<h3 class="crossnote-header" id="%E5%9B%BD%E4%B8%80-%E7%9D%BF%E6%8A%97">国一 睿抗</h3>
-
-<ul>
-<li><code>2023-8</code> <code>睿抗机器人开发者大赛（RAICOM）全国总决赛 编程技能竞赛项目</code> <code>国赛一等奖</code> <a href="https://www.ncie.org.cn/Category_1397/Index.aspx">公示 / 排名</a></li>
+<h3 id="国一-睿抗" data-source-line="221">国一 睿抗 </h3>
+<ul data-source-line="223">
+<li data-source-line="223"><code>2023-8</code> <code>睿抗机器人开发者大赛（RAICOM）全国总决赛 编程技能竞赛项目</code> <code>国赛一等奖</code> <a href="https://www.ncie.org.cn/Category_1397/Index.aspx">公示 / 排名</a></li>
 </ul>
 <div class="center">
     <img src="joker\（国1）睿抗.jpg" width="300">
@@ -265,10 +262,9 @@
 <div class="center">
     <img src="joker\排名\（国1）睿抗.png" width="300">
 </div>
-<h3 class="crossnote-header" id="%E8%93%9D%E6%A1%A5%E4%BA%91%E8%AF%BE">蓝桥云课</h3>
-
-<ul>
-<li><code>2023-7</code> <code>蓝桥云课OJ出题小组成员</code></li>
+<h3 id="蓝桥云课" data-source-line="234">蓝桥云课 </h3>
+<ul data-source-line="236">
+<li data-source-line="236"><code>2023-7</code> <code>蓝桥云课OJ出题小组成员</code></li>
 </ul>
 <div class="center">
     <img src="joker\协议\蓝桥：业务合作协议（戴兴龙）.png" width="300">
@@ -276,18 +272,16 @@
 <div class="center">
     <img src="joker\协议\蓝桥：50.png" width="300">
 </div>
-<h3 class="crossnote-header" id="%E5%B7%A5%E4%BF%A1%E4%BA%BA%E6%89%8D%E8%AF%81%E4%B9%A6">工信人才证书</h3>
-
-<ul>
-<li><code>2023-7</code> <code>工业和信息化人才岗位能力评价证书（中级）</code></li>
+<h3 id="工信人才证书" data-source-line="245">工信人才证书 </h3>
+<ul data-source-line="247">
+<li data-source-line="247"><code>2023-7</code> <code>工业和信息化人才岗位能力评价证书（中级）</code></li>
 </ul>
 <div class="center">
     <img src="joker\（证）工信部人才（中级）.png" width="300">
 </div>
-<h3 class="crossnote-header" id="%E7%9C%81%E4%BA%8C-%E7%9D%BF%E6%8A%97">省二 睿抗</h3>
-
-<ul>
-<li><code>2023-7</code> <code>睿抗机器人开发者大赛（RAICOM）重庆赛区 编程技能竞赛项目</code> <code>重庆市二等奖</code> <a href="https://www.robocom.com.cn/certificate.html">公示/排名</a></li>
+<h3 id="省二-睿抗" data-source-line="254">省二 睿抗 </h3>
+<ul data-source-line="256">
+<li data-source-line="256"><code>2023-7</code> <code>睿抗机器人开发者大赛（RAICOM）重庆赛区 编程技能竞赛项目</code> <code>重庆市二等奖</code> <a href="https://www.robocom.com.cn/certificate.html">公示/排名</a></li>
 </ul>
 <div class="center">
     <img src="joker\（省2）睿抗.png" width="300">
@@ -295,18 +289,16 @@
 <div class="center">
     <img src="joker\排名\（省2）睿抗.png" width="300">
 </div>
-<h3 class="crossnote-header" id="%E7%9C%81%E7%BA%A7%E5%85%88%E8%BF%9B%E4%B8%AA%E4%BA%BA">省级先进个人</h3>
-
-<ul>
-<li><code>2023-7</code> <code>重庆市创新能力提升先进个人</code> <a href="https://jw.cq.gov.cn/zwxx_209/gggs/202306/t20230615_12069241_wap.html">公示 / 排名</a></li>
+<h3 id="省级先进个人" data-source-line="266">省级先进个人 </h3>
+<ul data-source-line="268">
+<li data-source-line="268"><code>2023-7</code> <code>重庆市创新能力提升先进个人</code> <a href="https://jw.cq.gov.cn/zwxx_209/gggs/202306/t20230615_12069241_wap.html">公示 / 排名</a></li>
 </ul>
 <div class="center">
     <img src="joker/（省0）重庆市先进个人.jpg" width="300">
 </div>
-<h3 class="crossnote-header" id="%E5%9B%BD%E4%BA%8C-%E8%93%9D%E6%A1%A5%E6%9D%AF">国二 蓝桥杯</h3>
-
-<ul>
-<li><code>2023-6</code> <code>第十四届“蓝桥杯”C/C++程序设计本科B组</code> <code>国赛二等奖</code> <a href="https://dasai.lanqiao.cn/notices/1481/">公示/排名</a></li>
+<h3 id="国二-蓝桥杯" data-source-line="274">国二 蓝桥杯 </h3>
+<ul data-source-line="276">
+<li data-source-line="276"><code>2023-6</code> <code>第十四届“蓝桥杯”C/C++程序设计本科B组</code> <code>国赛二等奖</code> <a href="https://dasai.lanqiao.cn/notices/1481/">公示/排名</a></li>
 </ul>
 <div class="center">
     <img src="joker/（国2）蓝桥杯23.jpg" width="300"> 
@@ -314,10 +306,9 @@
 <div class="center">
     <img src="joker/排名/（国2）蓝桥杯23.jpg" width="300">
 </div>
-<h3 class="crossnote-header" id="%E5%9B%BD%E4%BA%8C-%E4%BC%A0%E6%99%BA%E6%9D%AF">国二 传智杯</h3>
-
-<ul>
-<li><code>2023-4</code> <code>第五届“传智杯”程序设计挑战赛本科B组</code> <code>决赛二等奖</code> <a href="https://docs.qq.com/sheet/DZkRWTWZtdG1wU0pF?tab=BB08J2">公示 / 排名</a></li>
+<h3 id="国二-传智杯" data-source-line="285">国二 传智杯 </h3>
+<ul data-source-line="287">
+<li data-source-line="287"><code>2023-4</code> <code>第五届“传智杯”程序设计挑战赛本科B组</code> <code>决赛二等奖</code> <a href="https://docs.qq.com/sheet/DZkRWTWZtdG1wU0pF?tab=BB08J2">公示 / 排名</a></li>
 </ul>
 <div class="center">
     <img src="joker/（国2）传智杯.jpg" width="300"> 
@@ -325,10 +316,9 @@
 <div class="center">
     <img src="joker/排名/（国2）传智杯.png" width="300">
 </div>
-<h3 class="crossnote-header" id="%E7%9C%81%E4%B8%80-%E8%93%9D%E6%A1%A5%E6%9D%AF">省一 蓝桥杯</h3>
-
-<ul>
-<li><code>2023-4</code> <code>第十四届“蓝桥杯”C/C++程序设计本科B组</code> <code>重庆市一等奖</code> <a href="https://dasai.lanqiao.cn/notices/1447/">公示 / 排名</a></li>
+<h3 id="省一-蓝桥杯" data-source-line="296">省一 蓝桥杯 </h3>
+<ul data-source-line="298">
+<li data-source-line="298"><code>2023-4</code> <code>第十四届“蓝桥杯”C/C++程序设计本科B组</code> <code>重庆市一等奖</code> <a href="https://dasai.lanqiao.cn/notices/1447/">公示 / 排名</a></li>
 </ul>
 <div class="center">
     <img src="joker/（省1）蓝桥杯23.jpg" width="300"> 
@@ -336,10 +326,9 @@
 <div class="center">
     <img src="joker/排名/（省1）蓝桥杯23.png" width="300">
 </div>
-<h3 class="crossnote-header" id="%E6%A0%A1%E7%BA%A7%E5%85%88%E8%BF%9B%E4%B8%AA%E4%BA%BA-2">校级先进个人 (2)</h3>
-
-<ul>
-<li><code>2023-1</code> <code>重庆工业职业技术学院优秀毕业生</code> <code>科技创新先进个人</code></li>
+<h3 id="校级先进个人-2" data-source-line="308">校级先进个人 (2) </h3>
+<ul data-source-line="310">
+<li data-source-line="310"><code>2023-1</code> <code>重庆工业职业技术学院优秀毕业生</code> <code>科技创新先进个人</code></li>
 </ul>
 <div class="center">
     <img src="joker/（证）科技创新先进个人.jpg" width="300">
@@ -348,12 +337,10 @@
     <img src="joker/（证）优秀毕业生.jpg" width="300">
 </div>
 <hr>
-<h2 class="crossnote-header" id="2022">2022</h2>
-
-<h3 class="crossnote-header" id="%E7%9C%81%E4%BA%8C-%E4%BC%A0%E6%99%BA%E6%9D%AF">省二 传智杯</h3>
-
-<ul>
-<li><code>2022-12</code> <code>第五届“传智杯”程序设计挑战赛本科B组</code> <code>初赛二等奖</code> <a href="https://docs.qq.com/sheet/DZlpxVFVjY1FXSWl2?tab=BB08J2">排名 \ 公示</a></li>
+<h2 id="2022" data-source-line="320">2022 </h2>
+<h3 id="省二-传智杯" data-source-line="322">省二 传智杯 </h3>
+<ul data-source-line="323">
+<li data-source-line="323"><code>2022-12</code> <code>第五届“传智杯”程序设计挑战赛本科B组</code> <code>初赛二等奖</code> <a href="https://docs.qq.com/sheet/DZlpxVFVjY1FXSWl2?tab=BB08J2">排名 \ 公示</a></li>
 </ul>
 <div class="center">
     <img src="joker/（省2）传智杯.png" width="300">
@@ -361,10 +348,9 @@
 <div class="center">
     <img src="joker/排名/（省2）传智杯.png" width="300">
 </div>
-<h3 class="crossnote-header" id="%E5%9B%BD%E4%B8%89-%E7%A0%81%E9%A2%98%E6%9D%AF">国三 码题杯</h3>
-
-<ul>
-<li><code>2022-10</code> <code>第四届“码题杯”全国职业院校程序设计大赛</code> <code>决赛铜奖</code> <a href="https://mp.weixin.qq.com/s/pbwGtLsuM2l_8ftM-ir4Cg">排名 \ 公示</a></li>
+<h3 id="国三-码题杯" data-source-line="332">国三 码题杯 </h3>
+<ul data-source-line="334">
+<li data-source-line="334"><code>2022-10</code> <code>第四届“码题杯”全国职业院校程序设计大赛</code> <code>决赛铜奖</code> <a href="https://mp.weixin.qq.com/s/pbwGtLsuM2l_8ftM-ir4Cg">排名 \ 公示</a></li>
 </ul>
 <div class="center">
     <img src="joker/排名/（奖杯）码题集.jpg" width="300"> 
@@ -375,10 +361,9 @@
 <div class="center">
     <img src="joker/排名/（国3）码题杯.jpg" width="300">
 </div>
-<h3 class="crossnote-header" id="%E5%BF%97%E6%84%BF%E8%80%85-%E7%A0%81%E9%A2%98%E9%9B%86">志愿者 码题集</h3>
-
-<ul>
-<li><code>2022-9</code> <code>全国高等学校计算机教学与产业实践资源建设专家委员会（TIPCC）志愿者</code></li>
+<h3 id="志愿者-码题集" data-source-line="346">志愿者 码题集 </h3>
+<ul data-source-line="348">
+<li data-source-line="348"><code>2022-9</code> <code>全国高等学校计算机教学与产业实践资源建设专家委员会（TIPCC）志愿者</code></li>
 </ul>
 <div class="center">
     <img src="joker/（证）码题集.jpg" width="300">
@@ -389,10 +374,9 @@
 <div class="center">
     <img src="joker/协议/清华：800.jpg" width="300">
 </div>
-<h3 class="crossnote-header" id="%E7%9C%81%E4%B8%80-%E4%BA%92%E8%81%94%E7%BD%91">省一 互联网+</h3>
-
-<ul>
-<li><code>2022-8</code> <code>第八届“互联网+”大学生创新创业大赛</code> <code>重庆市金奖</code></li>
+<h3 id="省一-互联网" data-source-line="360">省一 互联网+ </h3>
+<ul data-source-line="362">
+<li data-source-line="362"><code>2022-8</code> <code>第八届“互联网+”大学生创新创业大赛</code> <code>重庆市金奖</code></li>
 </ul>
 <div class="center">
     <img src="joker/（省1）互联网+.jpg" width="300"> 
@@ -400,10 +384,9 @@
 <div class="center">
     <img src="joker/排名/（省1）互联网+.png" width="300">
 </div>
-<h3 class="crossnote-header" id="%E7%9C%81%E4%B8%89-%E6%8C%91%E6%88%98%E6%9D%AF">省三 挑战杯</h3>
-
-<ul>
-<li><code>2022-8</code> <code>第十三届“挑战杯”中国大学生创业计划竞赛</code> <code>重庆市铜奖</code></li>
+<h3 id="省三-挑战杯" data-source-line="371">省三 挑战杯 </h3>
+<ul data-source-line="373">
+<li data-source-line="373"><code>2022-8</code> <code>第十三届“挑战杯”中国大学生创业计划竞赛</code> <code>重庆市铜奖</code></li>
 </ul>
 <div class="center">
     <img src="joker/（省3）挑战杯.jpg" width="300">
@@ -411,10 +394,9 @@
 <div class="center">
     <img src="joker/排名/（省3）挑战杯.png" width="300">
 </div>
-<h3 class="crossnote-header" id="%E5%9B%BD%E4%BC%98-%E8%93%9D%E6%A1%A5%E6%9D%AF">国优 蓝桥杯</h3>
-
-<ul>
-<li><code>2022-5</code> <code>第十三届“蓝桥杯”C/C++程序设计本科B组</code> <code>国赛优秀奖</code> <a href="https://dasai.lanqiao.cn/notices/1341">公示 / 排名</a></li>
+<h3 id="国优-蓝桥杯" data-source-line="382">国优 蓝桥杯 </h3>
+<ul data-source-line="384">
+<li data-source-line="384"><code>2022-5</code> <code>第十三届“蓝桥杯”C/C++程序设计本科B组</code> <code>国赛优秀奖</code> <a href="https://dasai.lanqiao.cn/notices/1341">公示 / 排名</a></li>
 </ul>
 <div class="center">
     <img src="joker/（国优）蓝桥杯22.jpg" width="300">
@@ -422,10 +404,9 @@
 <div class="center">
     <img src="joker/排名/（国优）蓝桥杯22.png" width="300">
 </div>
-<h3 class="crossnote-header" id="%E7%9C%81%E4%B8%80-%E8%93%9D%E6%A1%A5%E6%9D%AF-1">省一 蓝桥杯</h3>
-
-<ul>
-<li><code>2022-4</code> <code>第十三届“蓝桥杯”C/C++程序设计本科B组</code> <code>重庆市一等奖</code> <a href="https://dasai.lanqiao.cn/notices/1305">公示 / 排名</a></li>
+<h3 id="省一-蓝桥杯-1" data-source-line="393">省一 蓝桥杯 </h3>
+<ul data-source-line="395">
+<li data-source-line="395"><code>2022-4</code> <code>第十三届“蓝桥杯”C/C++程序设计本科B组</code> <code>重庆市一等奖</code> <a href="https://dasai.lanqiao.cn/notices/1305">公示 / 排名</a></li>
 </ul>
 <div class="center">
     <img src="joker/（省1）蓝桥杯22.jpg" width="300">
@@ -434,12 +415,10 @@
     <img src="joker/排名/（省1）蓝桥杯22.png" width="300">
 </div>
 <hr>
-<h2 class="crossnote-header" id="2021">2021</h2>
-
-<h3 class="crossnote-header" id="%E7%9C%81%E4%BA%8C-%E5%B7%A5%E4%B8%9A%E5%A4%A7%E6%95%B0%E6%8D%AE">省二 工业大数据</h3>
-
-<ul>
-<li><code>2021-12</code> <code>全国工业和信息化技术技能大赛-工业大数据算法</code> <code>重庆市第3名</code></li>
+<h2 id="2021" data-source-line="406">2021 </h2>
+<h3 id="省二-工业大数据" data-source-line="409">省二 工业大数据 </h3>
+<ul data-source-line="411">
+<li data-source-line="411"><code>2021-12</code> <code>全国工业和信息化技术技能大赛-工业大数据算法</code> <code>重庆市第3名</code></li>
 </ul>
 <div class="center">
     <img src="joker/（省2）工业大数据算法.jpg" width="300">
@@ -447,26 +426,23 @@
 <div class="center">
     <img src="joker/排名/（省2）工业大数据算法.jpg" width="300">
 </div>
-<h3 class="crossnote-header" id="%E6%95%B0%E6%8D%AE%E6%A0%87%E6%B3%A8">数据标注</h3>
-
-<ul>
-<li><code>2021-10</code> <code>全国行业职业技能竞赛-数据智能标注分析与应用</code> <code>重庆市第八名</code></li>
+<h3 id="数据标注" data-source-line="420">数据标注 </h3>
+<ul data-source-line="422">
+<li data-source-line="422"><code>2021-10</code> <code>全国行业职业技能竞赛-数据智能标注分析与应用</code> <code>重庆市第八名</code></li>
 </ul>
 <div class="center">
     <img src="joker/排名/数据标注.jpg" width="300">
 </div>
-<h3 class="crossnote-header" id="%E8%8B%B1%E8%AF%ADb%E7%BA%A7">英语B级</h3>
-
-<ul>
-<li><code>2021-9</code> <code>高等学校英语应用能力考试</code> <code>B级</code></li>
+<h3 id="英语b级" data-source-line="428">英语B级 </h3>
+<ul data-source-line="430">
+<li data-source-line="430"><code>2021-9</code> <code>高等学校英语应用能力考试</code> <code>B级</code></li>
 </ul>
 <div class="center">
     <img src="joker/（证）英语B级.jpg" width="300">
 </div>
-<h3 class="crossnote-header" id="%E7%9C%81%E4%BA%8C-%E5%BF%83%E7%90%86%E8%AE%BA%E5%9D%9B">省二 心理论坛</h3>
-
-<ul>
-<li><code>2021-7</code> <code>重庆市第十二届大学生心理成长论坛心理成长微课比赛</code> <code>重庆市二等奖</code></li>
+<h3 id="省二-心理论坛" data-source-line="436">省二 心理论坛 </h3>
+<ul data-source-line="438">
+<li data-source-line="438"><code>2021-7</code> <code>重庆市第十二届大学生心理成长论坛心理成长微课比赛</code> <code>重庆市二等奖</code></li>
 </ul>
 <div class="center">
     <img src="joker/（省2）心理.jpg" width="300">
@@ -474,28 +450,24 @@
 <div class="center">
     <img src="joker/排名/（省2）心理.png" width="300">
 </div>
-<h3 class="crossnote-header" id="%E6%99%AE%E9%80%9A%E8%AF%9D%E4%BA%8C%E4%B9%99">普通话二乙</h3>
-
-<ul>
-<li><code>2021-3</code> <code>普通话水平测试</code> <code>二级乙等</code></li>
+<h3 id="普通话二乙" data-source-line="448">普通话二乙 </h3>
+<ul data-source-line="450">
+<li data-source-line="450"><code>2021-3</code> <code>普通话水平测试</code> <code>二级乙等</code></li>
 </ul>
 <div class="center">
     <img src="joker/（证）普通话二乙.png" width="300">
 </div>
-<h3 class="crossnote-header" id="%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BA%8C%E7%BA%A7">计算机二级</h3>
-
-<ul>
-<li><code>2021-3</code> <code>计算机等级考试二级C语言程序设计</code> <code>良好</code></li>
+<h3 id="计算机二级" data-source-line="456">计算机二级 </h3>
+<ul data-source-line="458">
+<li data-source-line="458"><code>2021-3</code> <code>计算机等级考试二级C语言程序设计</code> <code>良好</code></li>
 </ul>
 <div class="center">
     <img src="joker/（证）计算机二级.png" width="300">
 </div>
-<h2 class="crossnote-header" id="%E5%A5%96%E5%AD%A6%E9%87%91-17600">奖学金 ￥17600</h2>
-
-<h3 class="crossnote-header" id="%E5%8D%95%E9%A1%B9%E5%A5%96%E5%AD%A6%E9%87%91-2">单项奖学金 (2)</h3>
-
-<ul>
-<li><code>2023-7</code> <code>重庆工业职业技术学院单项奖学金</code></li>
+<h2 id="奖学金-17600" data-source-line="464">奖学金 ￥17600 </h2>
+<h3 id="单项奖学金-2" data-source-line="486">单项奖学金 (2) </h3>
+<ul data-source-line="488">
+<li data-source-line="488"><code>2023-7</code> <code>重庆工业职业技术学院单项奖学金</code></li>
 </ul>
 <div class="center">
     <img src="joker/（金单项）150（23）.jpg" width="300"> 
@@ -503,10 +475,9 @@
 <div class="center">
     <img src="joker/（金单项）100（23）.jpg" width="300">
 </div>
-<h3 class="crossnote-header" id="%E7%BB%BC%E5%90%88%E5%A5%96%E5%AD%A6%E9%87%91-2">综合奖学金 (2)</h3>
-
-<ul>
-<li><code>2023-4</code> <code>重庆工业职业技术学院综合奖学金</code></li>
+<h3 id="综合奖学金-2" data-source-line="497">综合奖学金 (2) </h3>
+<ul data-source-line="499">
+<li data-source-line="499"><code>2023-4</code> <code>重庆工业职业技术学院综合奖学金</code></li>
 </ul>
 <div class="center">
     <img src="joker/（金综合22b）400.png" width="300">
@@ -514,10 +485,9 @@
 <div class="center">
     <img src="joker/（金综合22a）400.png" width="300">
 </div>
-<h3 class="crossnote-header" id="%E5%8D%95%E9%A1%B9%E5%A5%96%E5%AD%A6%E9%87%91-2-1">单项奖学金 (2)</h3>
-
-<ul>
-<li><code>2023-3</code> <code>重庆工业职业技术学院单项奖学金</code></li>
+<h3 id="单项奖学金-2-1" data-source-line="508">单项奖学金 (2) </h3>
+<ul data-source-line="510">
+<li data-source-line="510"><code>2023-3</code> <code>重庆工业职业技术学院单项奖学金</code></li>
 </ul>
 <div class="center">
     <img src="joker/（金单项）12000.jpg" width="300"> 
@@ -525,10 +495,9 @@
 <div class="center">
     <img src="joker/（金单项）1000.jpg" width="300">
 </div>
-<h3 class="crossnote-header" id="%E5%8D%95%E9%A1%B9%E5%A5%96%E5%AD%A6%E9%87%91-2-2">单项奖学金 (2)</h3>
-
-<ul>
-<li><code>2022-7</code> <code>重庆工业职业技术学院单项奖学金</code></li>
+<h3 id="单项奖学金-2-2" data-source-line="519">单项奖学金 (2) </h3>
+<ul data-source-line="521">
+<li data-source-line="521"><code>2022-7</code> <code>重庆工业职业技术学院单项奖学金</code></li>
 </ul>
 <div class="center">
     <img src="joker/（金单项）3000.jpg" width="300">
@@ -536,10 +505,9 @@
 <div class="center">
     <img src="joker/（金单项）150.jpg" width="300">
 </div>
-<h3 class="crossnote-header" id="%E7%BB%BC%E5%90%88%E5%A5%96%E5%AD%A6%E9%87%91">综合奖学金</h3>
-
-<ul>
-<li><code>2022-4</code> <code>重庆工业职业技术学院综合奖学金</code></li>
+<h3 id="综合奖学金" data-source-line="530">综合奖学金 </h3>
+<ul data-source-line="532">
+<li data-source-line="532"><code>2022-4</code> <code>重庆工业职业技术学院综合奖学金</code></li>
 </ul>
 <div class="center">
     <img src="joker/（金综合21b）400.jpg" width="300">
@@ -550,166 +518,166 @@
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#-笔记--技术栈" class="md-toc-link">
-            <p>🥢 笔记 &amp; 技术栈</p>
+            <p data-source-line="1">🥢 笔记 &amp; 技术栈</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#-项目" class="md-toc-link">
-            <p>🪓 项目</p>
+            <p data-source-line="1">🪓 项目</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#-求学" class="md-toc-link">
-            <p>📚 求学</p>
+            <p data-source-line="1">📚 求学</p>
 
           </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#-证书" class="md-toc-link"><p>🏆 证书</p>
+          <a href="#-证书" class="md-toc-link"><p data-source-line="1">🏆 证书</p>
 </a>
           </summary>
         <div>
           <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#2023" class="md-toc-link"><p>2023</p>
+          <a href="#2023" class="md-toc-link"><p data-source-line="1">2023</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#省二-百度之星" class="md-toc-link">
-            <p>省二 百度之星</p>
+            <p data-source-line="1">省二 百度之星</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#国一-睿抗" class="md-toc-link">
-            <p>国一 睿抗</p>
+            <p data-source-line="1">国一 睿抗</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#蓝桥云课" class="md-toc-link">
-            <p>蓝桥云课</p>
+            <p data-source-line="1">蓝桥云课</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#工信人才证书" class="md-toc-link">
-            <p>工信人才证书</p>
+            <p data-source-line="1">工信人才证书</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#省二-睿抗" class="md-toc-link">
-            <p>省二 睿抗</p>
+            <p data-source-line="1">省二 睿抗</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#省级先进个人" class="md-toc-link">
-            <p>省级先进个人</p>
+            <p data-source-line="1">省级先进个人</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#国二-蓝桥杯" class="md-toc-link">
-            <p>国二 蓝桥杯</p>
+            <p data-source-line="1">国二 蓝桥杯</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#国二-传智杯" class="md-toc-link">
-            <p>国二 传智杯</p>
+            <p data-source-line="1">国二 传智杯</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#省一-蓝桥杯" class="md-toc-link">
-            <p>省一 蓝桥杯</p>
+            <p data-source-line="1">省一 蓝桥杯</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#校级先进个人-2" class="md-toc-link">
-            <p>校级先进个人 (2)</p>
+            <p data-source-line="1">校级先进个人 (2)</p>
 
           </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#2022" class="md-toc-link"><p>2022</p>
+          <a href="#2022" class="md-toc-link"><p data-source-line="1">2022</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#省二-传智杯" class="md-toc-link">
-            <p>省二 传智杯</p>
+            <p data-source-line="1">省二 传智杯</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#国三-码题杯" class="md-toc-link">
-            <p>国三 码题杯</p>
+            <p data-source-line="1">国三 码题杯</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#志愿者-码题集" class="md-toc-link">
-            <p>志愿者 码题集</p>
+            <p data-source-line="1">志愿者 码题集</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#省一-互联网" class="md-toc-link">
-            <p>省一 互联网+</p>
+            <p data-source-line="1">省一 互联网+</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#省三-挑战杯" class="md-toc-link">
-            <p>省三 挑战杯</p>
+            <p data-source-line="1">省三 挑战杯</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#国优-蓝桥杯" class="md-toc-link">
-            <p>国优 蓝桥杯</p>
+            <p data-source-line="1">国优 蓝桥杯</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#省一-蓝桥杯-1" class="md-toc-link">
-            <p>省一 蓝桥杯</p>
+            <p data-source-line="1">省一 蓝桥杯</p>
 
           </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#2021" class="md-toc-link"><p>2021</p>
+          <a href="#2021" class="md-toc-link"><p data-source-line="1">2021</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#省二-工业大数据" class="md-toc-link">
-            <p>省二 工业大数据</p>
+            <p data-source-line="1">省二 工业大数据</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#数据标注" class="md-toc-link">
-            <p>数据标注</p>
+            <p data-source-line="1">数据标注</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#英语b级" class="md-toc-link">
-            <p>英语B级</p>
+            <p data-source-line="1">英语B级</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#省二-心理论坛" class="md-toc-link">
-            <p>省二 心理论坛</p>
+            <p data-source-line="1">省二 心理论坛</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#普通话二乙" class="md-toc-link">
-            <p>普通话二乙</p>
+            <p data-source-line="1">普通话二乙</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#计算机二级" class="md-toc-link">
-            <p>计算机二级</p>
+            <p data-source-line="1">计算机二级</p>
 
           </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#奖学金-17600" class="md-toc-link"><p>奖学金 ￥17600</p>
+          <a href="#奖学金-17600" class="md-toc-link"><p data-source-line="1">奖学金 ￥17600</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#单项奖学金-2" class="md-toc-link">
-            <p>单项奖学金 (2)</p>
+            <p data-source-line="1">单项奖学金 (2)</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#综合奖学金-2" class="md-toc-link">
-            <p>综合奖学金 (2)</p>
+            <p data-source-line="1">综合奖学金 (2)</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#单项奖学金-2-1" class="md-toc-link">
-            <p>单项奖学金 (2)</p>
+            <p data-source-line="1">单项奖学金 (2)</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#单项奖学金-2-2" class="md-toc-link">
-            <p>单项奖学金 (2)</p>
+            <p data-source-line="1">单项奖学金 (2)</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#综合奖学金" class="md-toc-link">
-            <p>综合奖学金</p>
+            <p data-source-line="1">综合奖学金</p>
 
           </a></div>
         </div>

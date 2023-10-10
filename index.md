@@ -80,8 +80,9 @@ export_on_save:
 
 <div class="center">
 
-|[微积分](/408/微积分/index.html)|线性代数|离散数学|概率论与数理统计|
-|:-:|:-:|:-:|:-:|
+|[微积分](/408/微积分/index.html)|空间几何|级数|[线性代数](/408/线代/index.md)|离散数学|概率论与数理统计|数论|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+
 
 </div>
 
@@ -126,8 +127,8 @@ export_on_save:
 
 <div class="center">
 
-| [算法竞赛](./algorithm/index.html) | CTF |
-|:-:|:-:|
+| [算法竞赛](./algorithm/index.html) | CMC | CTF | 
+|:-:|:-:|:-:|
 
 </div>
 
