@@ -852,18 +852,20 @@ stod(s);            // 将 s 转换为双精度浮点数
 ```
 
 
-# union
+# variant
 
-union：联合体。是一种特殊的数据类型，允许在相同的内存位置存储不同的数据类型。
+## variant
+
+## union
+
+联合体是一种特殊的数据类型，允许在相同的内存位置存储不同的数据类型。
 
 ```cpp
-
 union MyUnion{
     int a;
     double b;
     char c;
 };
-
 ```
 
 
@@ -885,7 +887,7 @@ inline void Tswap(T *a, T *b){
 }
 ```
 
-## 在类中使用 templat
+## 在类中使用 template
 
 可以让类接受任意类型的参数，而不是固定的类型。
 
@@ -915,8 +917,110 @@ private:
 
 # function
 
-function：函数对象。是一种编译器的特性，用于生成一系列的函数。
+function：用来包装任何可以被调用的对象，包括函数指针、函数对象、Lambda 表达式、成员函数指针等，从而提供了一种统一的方式来处理各种可调用对象。
 
+```cpp
+#include <functional>
+std::function<return_type(parameter_types)> function_name;
+```
+
+* return_type：返回值类型。
+* parameter_types：参数类型。
+* function_name：函数名。
+
+**使用成员函数指针**
+
+```cpp
+#include <iostream>
+#include <functional>
+
+class MyClass {
+public:
+    int multiply(int a, int b) {
+        return a * b;
+    }
+};
+
+int main() {
+    MyClass obj;
+    std::function<int(MyClass&, int, int)> func = &MyClass::multiply;
+    std::cout << func(obj, 3, 4) << std::endl;  // 输出 12
+    
+    return 0;
+}
+```
+
+**使用函数指针**
+
+```cpp
+#include <iostream>
+#include <functional>
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    std::function<int(int, int)> func = add;
+    std::cout << func(3, 4) << std::endl;  // 输出 7
+    
+    return 0;
+}
+```
+
+
+# lambda
+
+lambda：匿名函数 / 闭包。
+
+允许在需要函数对象（比如传递给算法、STL 容器等）的地方，以一种更为简洁的方式定义匿名函数。
+
+```cpp
+[capture](parameters) -> return_type { body_of_lambda }
+```
+
+* capture：捕获列表，捕获外部变量。
+* parameters：参数列表。
+* return_type：返回值类型。
+* body_of_lambda：函数体。
+
+```cpp
+#include <iostream>
+
+int main() {
+    int x=1;
+    int y=2;
+     
+    // 使用Lambda表达式直接定义并调用
+    // Lambda捕获x, y变量，并传递参数x+y, y*y
+    int result = 
+        [x, y](int a, int b) -> int {
+            return x + y + a + b;
+        }(x+y, y*y); 
+    
+    std::cout << "Result: " << result << std::endl; // 输出 10
+    
+    return 0;
+}
+```
+
+```cpp
+#include <iostream>
+#include <functional>
+
+int main() {
+    int x=1;
+    int y=2;
+    
+    std::function<int(int, int)> f = [x, y](int a, int b) -> int{
+        return x + y + a + b;
+    };
+
+    std::cout << f(x*x, y+y) << std::endl;
+
+    return 0;
+}
+```
 
 # 智能指针
 

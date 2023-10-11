@@ -3,14 +3,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
       
       
       
       
       
       <style>
-      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px/2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
 /* Please visit the URL below for more information: */
 /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 
@@ -23,24 +23,20 @@
     
     
       <div class="crossnote markdown-preview  ">
-      <h1 class="crossnote-header" id="stl">STL</h1>
-
-<h2 class="crossnote-header" id="%E5%BA%8F%E5%88%97%E5%BC%8F%E5%AE%B9%E5%99%A8">序列式容器</h2>
-
+      
+<h1 id="stl">STL </h1>
+<h2 id="序列式容器">序列式容器 </h2>
 <p>所谓序列式容器，其中的元素 <strong>可序</strong>，但未必 <strong>有序</strong>。</p>
 <hr>
-<h3 class="crossnote-header" id="list">list</h3>
-
+<h3 id="list">list </h3>
 <p>链表</p>
-<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA">创建</h4>
-
+<h4 id="创建">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> l1<span class="token punctuation">;</span>       <span class="token comment">// 空链表</span>
 list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l2</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 10个元素，每个元素都是0</span>
 list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l3</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 10个元素，每个元素都是6</span>
 list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l4</span><span class="token punctuation">(</span>l3<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 拷贝构造函数]</span>
 list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l5</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 初始化列表</span>
-</code></pre><h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0">增加</h4>
-
+</code></pre><h4 id="增加">增加 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>l1<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 尾部插入</span>
 l1<span class="token punctuation">.</span><span class="token function">push_front</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 头部插入</span>
 l1<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>l1<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 插在 l1.begin() 之前，即头部插入</span>
@@ -48,8 +44,7 @@ l1<span class="token punctuation">.</span><span class="token function">insert</s
 l1<span class="token punctuation">.</span><span class="token function">emplace_back</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 尾部插入</span>
 l1<span class="token punctuation">.</span><span class="token function">emplace_front</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// 头部插入</span>
 l1<span class="token punctuation">.</span><span class="token function">emplace</span><span class="token punctuation">(</span>l1<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 插在 l1.end() 之前，即尾部插入</span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4">删除</h4>
-
+</code></pre><h4 id="删除">删除 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>l1<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 清空链表</span>
 l1<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 尾部删除</span>
 l1<span class="token punctuation">.</span><span class="token function">pop_front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 头部删除</span>
@@ -58,8 +53,7 @@ l1<span class="token punctuation">.</span><span class="token function">erase</sp
 
 l1<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token number">666</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 删除所有值为 6 的元素</span>
 l1<span class="token punctuation">.</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// 删除所有相邻重复的元素：6 6 7 7 6 6 -&gt; 6 7 6</span>
-</code></pre><h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9">修改</h4>
-
+</code></pre><h4 id="修改">修改 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>l1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 链表大小改为10，所有元素都是6</span>
 l1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>l2<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> l2<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 拷贝 l2 的所有元素</span>
 l1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 拷贝初始化列表</span>
@@ -68,8 +62,7 @@ l1<span class="token punctuation">.</span><span class="token function">resize</s
 l1<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 链表大小改为10，多余的元素被删除，不足的元素被补 6</span>
 
 l1<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 反转链表</span>
-</code></pre><h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE">查找</h4>
-
+</code></pre><h4 id="查找">查找 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 使用迭代器</span>
 list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it <span class="token operator">=</span> l<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>it <span class="token operator">!=</span> l<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -85,23 +78,19 @@ l1<span class="token punctuation">.</span><span class="token function">max_size<
 
 l1<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 返回头部元素</span>
 l1<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 返回尾部元素</span>
-</code></pre><h4 class="crossnote-header" id="%E5%85%B6%E4%BB%96">其他</h4>
-
+</code></pre><h4 id="其他">其他 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>l1<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 排序</span>
 l1<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token generic-function"><span class="token function">greater</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 降序排序</span>
 </code></pre><hr>
-<h3 class="crossnote-header" id="vector">vector</h3>
-
+<h3 id="vector">vector </h3>
 <p>动态数组</p>
-<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-1">创建</h4>
-
+<h4 id="创建-1">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> v1<span class="token punctuation">;</span>             <span class="token comment">// 空数组</span>
 vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">v2</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 10个元素，每个元素都是0</span>
 vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">v3</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 10个元素，每个元素都是1</span>
 vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">v4</span><span class="token punctuation">(</span>v3<span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 拷贝构造函数</span>
 vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">v5</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 初始化列表</span>
-</code></pre><h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-1">增加</h4>
-
+</code></pre><h4 id="增加-1">增加 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>v1<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 尾部插入</span>
 v1<span class="token punctuation">.</span><span class="token function">emplace_back</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 尾部插入</span>
 
@@ -116,23 +105,20 @@ v1<span class="token punctuation">.</span><span class="token function">emplace</
 v1<span class="token punctuation">.</span><span class="token function">emplace</span><span class="token punctuation">(</span>v1<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 插入初始化列表</span>
 
 v1<span class="token punctuation">.</span><span class="token function">reserve</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 预留 10 个元素的空间</span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-1">删除</h4>
-
+</code></pre><h4 id="删除-1">删除 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>v1<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 清空数组</span>
 
 v1<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 尾部删除</span>
 v1<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>v1<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// 删除 v1.begin() 位置的元素</span>
 v1<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>v1<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> v1<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 删除 [v1.begin(), v1.end()) 之间的元素</span>
-</code></pre><h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-1">修改</h4>
-
+</code></pre><h4 id="修改-1">修改 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>v1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 数组大小改为10，所有元素都是6</span>
 v1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>v2<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> v2<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 拷贝 v2 的所有元素</span>
 v1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 拷贝初始化列表</span>
 
 v1<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 数组大小改为10，多余的元素被删除，不足的元素被补 0</span>
 v1<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 数组大小改为10，多余的元素被删除，不足的元素被补 6</span>
-</code></pre><h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-1">查找</h4>
-
+</code></pre><h4 id="查找-1">查找 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 通过迭代器遍历</span>
 <span class="token keyword keyword-auto">auto</span> it <span class="token operator">=</span> v<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>it <span class="token operator">!=</span> v<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -153,30 +139,23 @@ v1<span class="token punctuation">[</span><span class="token number">0</span><sp
 v1<span class="token punctuation">.</span><span class="token function">at</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                   <span class="token comment">// 返回下标为 0 的元素 (越界会抛出异常)</span>
 
 v1<span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 返回第一个元素的指针</span>
-</code></pre><h4 class="crossnote-header" id="%E5%85%B6%E4%BB%96-1">其他</h4>
-
+</code></pre><h4 id="其他-1">其他 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>v1<span class="token punctuation">.</span><span class="token function">capacity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 返回数组容量</span>
 v1<span class="token punctuation">.</span><span class="token function">shrink_to_fit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 释放多余的空间</span>
 </code></pre><hr>
-<h3 class="crossnote-header" id="stack">stack</h3>
-
+<h3 id="stack">stack </h3>
 <p>栈</p>
-<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-2">创建</h4>
-
+<h4 id="创建-2">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>stack<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> s1<span class="token punctuation">;</span>              <span class="token comment">// 空栈</span>
 stack<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">s2</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// 拷贝构造函数</span>
 stack<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">s3</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 初始化列表，1为栈底，3为栈顶</span>
-</code></pre><h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-2">增加</h4>
-
+</code></pre><h4 id="增加-2">增加 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>s1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 入栈</span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-2">删除</h4>
-
+</code></pre><h4 id="删除-2">删除 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>s1<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                   <span class="token comment">// 出栈</span>
-</code></pre><h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-2">修改</h4>
-
+</code></pre><h4 id="修改-2">修改 </h4>
 <p>只能通过入栈和出栈来修改栈。</p>
-<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-2">查找</h4>
-
+<h4 id="查找-2">查找 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 遍历栈 会清空栈</span>
 <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span><span class="token operator">!</span>s1<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     cout<span class="token operator">&lt;&lt;</span>s1<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
@@ -187,25 +166,19 @@ s1<span class="token punctuation">.</span><span class="token function">empty</sp
 s1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 返回栈大小</span>
 s1<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                   <span class="token comment">// 返回栈顶元素</span>
 </code></pre><hr>
-<h3 class="crossnote-header" id="queue">queue</h3>
-
+<h3 id="queue">queue </h3>
 <p>队列</p>
-<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-3">创建</h4>
-
+<h4 id="创建-3">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>queue<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> q1<span class="token punctuation">;</span>              <span class="token comment">// 空队列</span>
 queue<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">q2</span><span class="token punctuation">(</span>q1<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// 拷贝构造函数</span>
 queue<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">q3</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 初始化列表，1为队头，3为队尾</span>
-</code></pre><h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-3">增加</h4>
-
+</code></pre><h4 id="增加-3">增加 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>q1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 入队</span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-3">删除</h4>
-
+</code></pre><h4 id="删除-3">删除 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>q1<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                   <span class="token comment">// 出队</span>
-</code></pre><h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-3">修改</h4>
-
+</code></pre><h4 id="修改-3">修改 </h4>
 <p>只能通过入队和出队来修改队列。</p>
-<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-3">查找</h4>
-
+<h4 id="查找-3">查找 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 遍历队列 会清空队列</span>
 <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span><span class="token operator">!</span>q1<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     cout<span class="token operator">&lt;&lt;</span>q1<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
@@ -217,30 +190,24 @@ q1<span class="token punctuation">.</span><span class="token function">size</spa
 q1<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 返回队头元素</span>
 q1<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 返回队尾元素</span>
 </code></pre><hr>
-<h3 class="crossnote-header" id="deque">deque</h3>
-
+<h3 id="deque">deque </h3>
 <p>双端队列</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;queue&gt;</span>   <span class="token comment">// deque 包含在 queue 中</span></span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-4">创建</h4>
-
+</code></pre><h4 id="创建-4">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>deque<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> d1<span class="token punctuation">;</span>              <span class="token comment">// 空双端队列</span>
 deque<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">d2</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// 10个元素，每个元素都是0</span>
 deque<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">d3</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// 10个元素，每个元素都是1</span>
 deque<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">d4</span><span class="token punctuation">(</span>d3<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// 拷贝构造函数</span>
 deque<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">d5</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 初始化列表 1为队头，5为队尾</span>
-</code></pre><h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-4">增加</h4>
-
+</code></pre><h4 id="增加-4">增加 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>d1<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 尾部入队</span>
 d1<span class="token punctuation">.</span><span class="token function">push_front</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 头部入队</span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-4">删除</h4>
-
+</code></pre><h4 id="删除-4">删除 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>d1<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 尾部出队</span>
 d1<span class="token punctuation">.</span><span class="token function">pop_front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 头部出队</span>
-</code></pre><h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-4">修改</h4>
-
+</code></pre><h4 id="修改-4">修改 </h4>
 <p>当有修改需求时，建议使用 <a href="#vector-%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84">vector</a> 代替。</p>
-<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-4">查找</h4>
-
+<h4 id="查找-4">查找 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 从队头开始 遍历双端队列 会清空双端队列</span>
 <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span><span class="token operator">!</span>d1<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     cout<span class="token operator">&lt;&lt;</span>d1<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
@@ -258,25 +225,19 @@ d1<span class="token punctuation">.</span><span class="token function">size</spa
 d1<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 返回队头元素</span>
 d1<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 返回队尾元素</span>
 </code></pre><hr>
-<h3 class="crossnote-header" id="priority_queue">priority_queue</h3>
-
+<h3 id="priority_queue">priority_queue </h3>
 <p>优先队列 (堆)</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;queue&gt;</span>   <span class="token comment">// priority_queue 包含在 queue 中</span></span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-5">创建</h4>
-
+</code></pre><h4 id="创建-5">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>priority_queue<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> p1<span class="token punctuation">;</span>     <span class="token comment">// 空优先队列，默认大顶堆</span>
 priority_queue<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> greater<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> a<span class="token punctuation">;</span>   <span class="token comment">// 小顶堆</span>
-</code></pre><h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-5">增加</h4>
-
+</code></pre><h4 id="增加-5">增加 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>p1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 入队</span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-5">删除</h4>
-
+</code></pre><h4 id="删除-5">删除 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>p1<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                   <span class="token comment">// 出队</span>
-</code></pre><h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-5">修改</h4>
-
+</code></pre><h4 id="修改-5">修改 </h4>
 <p>改不了一点。</p>
-<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-5">查找</h4>
-
+<h4 id="查找-5">查找 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 遍历优先队列 会清空优先队列</span>
 <span class="token comment">// 如果是大顶堆，遍历出来的是降序序列</span>
 <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span><span class="token operator">!</span>p1<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
@@ -287,49 +248,37 @@ priority_queue<span class="token operator">&lt;</span><span class="token keyword
 p1<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 判断优先队列是否为空</span>
 p1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 返回优先队列大小</span>
 p1<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                   <span class="token comment">// 返回队头元素</span>
-</code></pre><h2 class="crossnote-header" id="%E5%85%B3%E8%81%94%E5%BC%8F%E5%AE%B9%E5%99%A8">关联式容器</h2>
-
+</code></pre><h2 id="关联式容器">关联式容器 </h2>
 <p>所谓关联式容器，就是将数据元素组织成键值对的容器。</p>
 <ul>
 <li>元素按照一定的排序规则组织的，而不是像顺序容器那样按照元素的插入顺序组织的。</li>
 <li>关联容器的元素类型是pair类型，pair类型的第一个元素是键值，第二个元素是实值。</li>
 </ul>
-<h3 class="crossnote-header" id="%E6%A0%91">树</h3>
-
-<h4 class="crossnote-header" id="%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91-bst">二叉搜索树 BST</h4>
-
-<h4 class="crossnote-header" id="%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91-avlt">平衡二叉树 AVLT</h4>
-
-<h4 class="crossnote-header" id="%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91-bbst">平衡二叉搜索树 BBST</h4>
-
-<h4 class="crossnote-header" id="%E7%BA%A2%E9%BB%91%E6%A0%91-rbt">红黑树 RBT</h4>
-
-<h3 class="crossnote-header" id="set">set</h3>
-
+<h3 id="树">树 </h3>
+<h4 id="二叉搜索树-bst">二叉搜索树 BST </h4>
+<h4 id="平衡二叉树-avlt">平衡二叉树 AVLT </h4>
+<h4 id="平衡二叉搜索树-bbst">平衡二叉搜索树 BBST </h4>
+<h4 id="红黑树-rbt">红黑树 RBT </h4>
+<h3 id="set">set </h3>
 <p>集合</p>
 <p>set 的元素是唯一的，不能重复。</p>
 <p>set 的底层实现是红黑树，所以 set 的元素是有序的。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;set&gt;</span></span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-6">创建</h4>
-
+</code></pre><h4 id="创建-6">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>set<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> s1<span class="token punctuation">;</span>                <span class="token comment">// 元素类型是 int</span>
 set<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> s2<span class="token punctuation">;</span>  <span class="token comment">// 元素类型是 pair 类型</span>
-</code></pre><h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-6">增加</h4>
-
+</code></pre><h4 id="增加-6">增加 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>s<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// 插入元素 6</span>
 s2<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 插入元素 {"hello", 6}</span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-6">删除</h4>
-
+</code></pre><h4 id="删除-6">删除 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>s<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// 清空所有元素</span>
 s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 删除元素 6</span>
 s2<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 删除元素 {"hello", 6}</span>
 s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 删除第一个元素</span>
 s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> s<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 删除所有元素</span>
-</code></pre><h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-6">修改</h4>
-
+</code></pre><h4 id="修改-6">修改 </h4>
 <p>改不了。</p>
-<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-6">查找</h4>
-
+<h4 id="查找-6">查找 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>s<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// 查找元素 6 返回迭代器</span>
 s<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 查找元素 6 的个数</span>
 s<span class="token punctuation">.</span><span class="token function">lower_bound</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 查找第一个大于等于 6 的元素 返回迭代器</span>
@@ -341,60 +290,48 @@ cout<span class="token operator">&lt;&lt;</span><span class="token punctuation">
 <span class="token comment">// 遍历</span>
 <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> it <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> s<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span><span class="token punctuation">(</span><span class="token operator">*</span>it<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> i<span class="token operator">:</span> s<span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span>i<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
-</code></pre><h3 class="crossnote-header" id="unordered_set">unordered_set</h3>
-
+</code></pre><h3 id="unordered_set">unordered_set </h3>
 <p>无序集合</p>
 <p>unordered_set 的元素是唯一的，不能重复。</p>
 <p>unordered_set 的底层实现是哈希表，所以 unordered_set 的元素是无序的。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unordered_set&gt;</span></span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-7">创建</h4>
-
+</code></pre><h4 id="创建-7">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>unordered_set<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> s1<span class="token punctuation">;</span>                <span class="token comment">// 元素类型是 int</span>
 unordered_set<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> s2<span class="token punctuation">;</span>  <span class="token comment">// 元素类型是 pair 类型</span>
-</code></pre><h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-7">增加</h4>
-
+</code></pre><h4 id="增加-7">增加 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>s<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// 插入元素 6</span>
 s2<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 插入元素 {"hello", 6}</span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-7">删除</h4>
-
+</code></pre><h4 id="删除-7">删除 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>s<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// 清空所有元素</span>
 s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 删除元素 6</span>
 s2<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 删除元素 {"hello", 6}</span>
 s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 删除第一个元素</span>
 s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> s<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 删除所有元素</span>
-</code></pre><h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-7">修改</h4>
-
+</code></pre><h4 id="修改-7">修改 </h4>
 <p>改不了。</p>
-<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-7">查找</h4>
-
+<h4 id="查找-7">查找 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>s<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// 查找元素 6 返回迭代器</span>
 s<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 查找元素 6 的个数</span>
-</code></pre><h3 class="crossnote-header" id="multiset">multiset</h3>
-
+</code></pre><h3 id="multiset">multiset </h3>
 <p>可重集合</p>
 <p>multiset 的元素是可以重复的。</p>
 <p>multiset 的底层实现是红黑树，所以 multiset 的元素是有序的。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;set&gt;</span></span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-8">创建</h4>
-
+</code></pre><h4 id="创建-8">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>multiset<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> s1<span class="token punctuation">;</span>                <span class="token comment">// 元素类型是 int</span>
 multiset<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> s2<span class="token punctuation">;</span>  <span class="token comment">// 元素类型是 pair 类型</span>
-</code></pre><h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-8">增加</h4>
-
+</code></pre><h4 id="增加-8">增加 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>s<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// 插入元素 6</span>
 s2<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 插入元素 {"hello", 6}</span>
-</code></pre><h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-8">删除</h4>
-
+</code></pre><h4 id="删除-8">删除 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>s<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// 清空所有元素</span>
 s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 删除元素 6</span>
 s2<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"hello"</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 删除元素 {"hello", 6}</span>
 s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 删除第一个元素</span>
 s<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> s<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 删除所有元素</span>
-</code></pre><h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-8">修改</h4>
-
+</code></pre><h4 id="修改-8">修改 </h4>
 <p>改不了。</p>
-<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-8">查找</h4>
-
+<h4 id="查找-8">查找 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>s<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// 查找元素 6 返回迭代器</span>
 s<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 查找元素 6 的个数</span>
 s<span class="token punctuation">.</span><span class="token function">lower_bound</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 查找第一个大于等于 6 的元素 返回迭代器</span>
@@ -402,90 +339,54 @@ s<span class="token punctuation">.</span><span class="token function">upper_boun
 
 s<span class="token punctuation">.</span><span class="token function">equal_range</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 查找第一个大于等于 6 和 第一个大于 6 的元素 返回迭代器</span>
 <span class="token comment">// 如果没有大于等于 6 的元素，那么第一个迭代器指向第一个大于 6 的元素，返回的两个迭代器相等</span>
-</code></pre><h3 class="crossnote-header" id="unordered_multiset">unordered_multiset</h3>
-
+</code></pre><h3 id="unordered_multiset">unordered_multiset </h3>
 <p>无序可重集合</p>
-<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-9">创建</h4>
-
-<h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-9">增加</h4>
-
-<h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-9">删除</h4>
-
-<h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-9">修改</h4>
-
-<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-9">查找</h4>
-
+<h4 id="创建-9">创建 </h4>
+<h4 id="增加-9">增加 </h4>
+<h4 id="删除-9">删除 </h4>
+<h4 id="修改-9">修改 </h4>
+<h4 id="查找-9">查找 </h4>
 <hr>
-<h3 class="crossnote-header" id="map">map</h3>
-
+<h3 id="map">map </h3>
 <p>映射</p>
-<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-10">创建</h4>
-
-<h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-10">增加</h4>
-
-<h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-10">删除</h4>
-
-<h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-10">修改</h4>
-
-<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-10">查找</h4>
-
-<h3 class="crossnote-header" id="unordered_map">unordered_map</h3>
-
+<h4 id="创建-10">创建 </h4>
+<h4 id="增加-10">增加 </h4>
+<h4 id="删除-10">删除 </h4>
+<h4 id="修改-10">修改 </h4>
+<h4 id="查找-10">查找 </h4>
+<h3 id="unordered_map">unordered_map </h3>
 <p>无序映射</p>
-<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-11">创建</h4>
-
-<h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-11">增加</h4>
-
-<h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-11">删除</h4>
-
-<h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-11">修改</h4>
-
-<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-11">查找</h4>
-
-<h3 class="crossnote-header" id="multimap">multimap</h3>
-
+<h4 id="创建-11">创建 </h4>
+<h4 id="增加-11">增加 </h4>
+<h4 id="删除-11">删除 </h4>
+<h4 id="修改-11">修改 </h4>
+<h4 id="查找-11">查找 </h4>
+<h3 id="multimap">multimap </h3>
 <p>可重映射</p>
-<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-12">创建</h4>
-
-<h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-12">增加</h4>
-
-<h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-12">删除</h4>
-
-<h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-12">修改</h4>
-
-<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-12">查找</h4>
-
-<h3 class="crossnote-header" id="unordered_multimap">unordered_multimap</h3>
-
+<h4 id="创建-12">创建 </h4>
+<h4 id="增加-12">增加 </h4>
+<h4 id="删除-12">删除 </h4>
+<h4 id="修改-12">修改 </h4>
+<h4 id="查找-12">查找 </h4>
+<h3 id="unordered_multimap">unordered_multimap </h3>
 <p>无序可重映射</p>
-<h4 class="crossnote-header" id="%E5%88%9B%E5%BB%BA-13">创建</h4>
-
-<h4 class="crossnote-header" id="%E5%A2%9E%E5%8A%A0-13">增加</h4>
-
-<h4 class="crossnote-header" id="%E5%88%A0%E9%99%A4-13">删除</h4>
-
-<h4 class="crossnote-header" id="%E4%BF%AE%E6%94%B9-13">修改</h4>
-
-<h4 class="crossnote-header" id="%E6%9F%A5%E6%89%BE-13">查找</h4>
-
-<h2 class="crossnote-header" id="%E8%BF%AD%E4%BB%A3%E5%99%A8-iterator">迭代器 iterator</h2>
-
-<h2 class="crossnote-header" id="%E5%AE%B9%E5%99%A8%E9%80%82%E9%85%8D%E5%99%A8-adapter">容器适配器 adapter</h2>
-
-<h2 class="crossnote-header" id="%E7%AE%97%E6%B3%95-algorithm">算法 algorithm</h2>
-
-<h2 class="crossnote-header" id="%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1-functor">函数对象 functor</h2>
-
+<h4 id="创建-13">创建 </h4>
+<h4 id="增加-13">增加 </h4>
+<h4 id="删除-13">删除 </h4>
+<h4 id="修改-13">修改 </h4>
+<h4 id="查找-13">查找 </h4>
+<h2 id="迭代器-iterator">迭代器 iterator </h2>
+<h2 id="容器适配器-adapter">容器适配器 adapter </h2>
+<h2 id="算法-algorithm">算法 algorithm </h2>
+<h2 id="函数对象-functor">函数对象 functor </h2>
 <hr>
-<h1 class="crossnote-header" id="string">string</h1>
-
+<h1 id="string">string </h1>
 <p>在 c++ 中，字符串常常会有这几个头文件：</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
 </code></pre><p>对于 <code>string.h</code> 和 <code>cstring</code>，本质上都是 C 语言中的头文件。<code>cstring</code> 是 C++ 中对 <code>string.h</code> 的封装，所以在 C++ 中，<code>string.h</code> 和 <code>cstring</code> 是等价的。</p>
-<h2 class="crossnote-header" id="cstring">cstring</h2>
-
+<h2 id="cstring">cstring </h2>
 <p><code>cstring</code> 操作的是 C 风格的字符串，也就是以 <code>\0</code> 结尾的字符串。</p>
 <p>C 风格的字符串有三种写法：</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -560,8 +461,7 @@ NUL NUL
 <span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token function">strchr</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>s<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token function">strstr</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>haystack<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>needle<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-void">void</span> <span class="token operator">*</span><span class="token function">memcpy</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-void">void</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> size_t n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><h2 class="crossnote-header" id="string-1">string</h2>
-
+</code></pre><h2 id="string-1">string </h2>
 <p><code>string</code> 操作的是 C++ 中的字符串，也就是 <code>std::string</code>。</p>
 <p><code>string</code> 是一个类，所以它有构造函数、析构函数、拷贝构造函数、赋值运算符等等。</p>
 <ul>
@@ -641,20 +541,18 @@ s<span class="token punctuation">.</span><span class="token function">c_str</spa
 </ul>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string s <span class="token operator">=</span> <span class="token string">"123.456"</span><span class="token punctuation">;</span>
 <span class="token function">stod</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 将 s 转换为双精度浮点数</span>
-</code></pre><h1 class="crossnote-header" id="union">union</h1>
-
-<p>union：联合体。是一种特殊的数据类型，允许在相同的内存位置存储不同的数据类型。</p>
+</code></pre><h1 id="variant">variant </h1>
+<h2 id="variant-1">variant </h2>
+<h2 id="union">union </h2>
+<p>联合体是一种特殊的数据类型，允许在相同的内存位置存储不同的数据类型。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-union">union</span> MyUnion<span class="token punctuation">{</span>
     <span class="token keyword keyword-int">int</span> a<span class="token punctuation">;</span>
     <span class="token keyword keyword-double">double</span> b<span class="token punctuation">;</span>
     <span class="token keyword keyword-char">char</span> c<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-</code></pre><h1 class="crossnote-header" id="template">template</h1>
-
+</code></pre><h1 id="template">template </h1>
 <p>template：变参数模板。</p>
-<h2 class="crossnote-header" id="%E5%9C%A8%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8-template">在函数中使用 template</h2>
-
+<h2 id="在函数中使用-template">在函数中使用 template </h2>
 <p>可以让函数接受任意类型的参数，而不是固定的类型。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">T</span><span class="token operator">&gt;</span>
 <span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-void">void</span> <span class="token function">Tswap</span><span class="token punctuation">(</span>T <span class="token operator">*</span>a<span class="token punctuation">,</span> T <span class="token operator">*</span>b<span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -662,8 +560,7 @@ s<span class="token punctuation">.</span><span class="token function">c_str</spa
     <span class="token operator">*</span>a <span class="token operator">=</span> <span class="token operator">*</span>b<span class="token punctuation">;</span>
     <span class="token operator">*</span>b <span class="token operator">=</span> temp<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><h2 class="crossnote-header" id="%E5%9C%A8%E7%B1%BB%E4%B8%AD%E4%BD%BF%E7%94%A8-templat">在类中使用 templat</h2>
-
+</code></pre><h2 id="在类中使用-template">在类中使用 template </h2>
 <p>可以让类接受任意类型的参数，而不是固定的类型。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">T</span><span class="token operator">&gt;</span>
 <span class="token keyword keyword-class">class</span> <span class="token class-name">queue</span> <span class="token punctuation">{</span>
@@ -685,11 +582,90 @@ s<span class="token punctuation">.</span><span class="token function">c_str</spa
     <span class="token keyword keyword-int">int</span> head <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword keyword-int">int</span> tail <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre><h1 class="crossnote-header" id="function">function</h1>
+</code></pre><h1 id="function">function </h1>
+<p>function：用来包装任何可以被调用的对象，包括函数指针、函数对象、Lambda 表达式、成员函数指针等，从而提供了一种统一的方式来处理各种可调用对象。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;functional&gt;</span></span>
+std<span class="token double-colon punctuation">::</span>function<span class="token operator">&lt;</span><span class="token function">return_type</span><span class="token punctuation">(</span>parameter_types<span class="token punctuation">)</span><span class="token operator">&gt;</span> function_name<span class="token punctuation">;</span>
+</code></pre><ul>
+<li>return_type：返回值类型。</li>
+<li>parameter_types：参数类型。</li>
+<li>function_name：函数名。</li>
+</ul>
+<p><strong>使用成员函数指针</strong></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;functional&gt;</span></span>
 
-<p>function：函数对象。是一种编译器的特性，用于生成一系列的函数。</p>
-<h1 class="crossnote-header" id="%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88">智能指针</h1>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MyClass</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token keyword keyword-int">int</span> <span class="token function">multiply</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> a <span class="token operator">*</span> b<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    MyClass obj<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>function<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">(</span>MyClass<span class="token operator">&amp;</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> func <span class="token operator">=</span> <span class="token operator">&amp;</span>MyClass<span class="token double-colon punctuation">::</span>multiply<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">func</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>  <span class="token comment">// 输出 12</span>
+    
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p><strong>使用函数指针</strong></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;functional&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>function<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> func <span class="token operator">=</span> add<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>  <span class="token comment">// 输出 7</span>
+    
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h1 id="lambda">lambda </h1>
+<p>lambda：匿名函数 / 闭包。</p>
+<p>允许在需要函数对象（比如传递给算法、STL 容器等）的地方，以一种更为简洁的方式定义匿名函数。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token punctuation">[</span>capture<span class="token punctuation">]</span><span class="token punctuation">(</span>parameters<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> return_type <span class="token punctuation">{</span> body_of_lambda <span class="token punctuation">}</span>
+</code></pre><ul>
+<li>capture：捕获列表，捕获外部变量。</li>
+<li>parameters：参数列表。</li>
+<li>return_type：返回值类型。</li>
+<li>body_of_lambda：函数体。</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> x<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> y<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>
+     
+    <span class="token comment">// 使用Lambda表达式直接定义并调用</span>
+    <span class="token comment">// Lambda捕获x, y变量，并传递参数x+y, y*y</span>
+    <span class="token keyword keyword-int">int</span> result <span class="token operator">=</span> 
+        <span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token keyword keyword-int">int</span> <span class="token punctuation">{</span>
+            <span class="token keyword keyword-return">return</span> x <span class="token operator">+</span> y <span class="token operator">+</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">(</span>x<span class="token operator">+</span>y<span class="token punctuation">,</span> y<span class="token operator">*</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Result: "</span> <span class="token operator">&lt;&lt;</span> result <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span> <span class="token comment">// 输出 10</span>
+    
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;functional&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> x<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> y<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span>
+    
+    std<span class="token double-colon punctuation">::</span>function<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> f <span class="token operator">=</span> <span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> x <span class="token operator">+</span> y <span class="token operator">+</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">f</span><span class="token punctuation">(</span>x<span class="token operator">*</span>x<span class="token punctuation">,</span> y<span class="token operator">+</span>y<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h1 id="智能指针">智能指针 </h1>
 <p>为了解决内存泄漏、野（wild）指针、悬空（dangling）指针的问题，引入了智能指针。</p>
 <p><strong>内存泄漏</strong></p>
 <p>导致内存占用过多，程序崩溃。</p>
@@ -728,12 +704,9 @@ ptr <span class="token operator">=</span> <span class="token keyword keyword-nul
 <span class="token keyword keyword-delete">delete</span> ptr<span class="token punctuation">;</span>             <span class="token comment">// 释放内存</span>
 <span class="token comment">// ptr 已经悬空</span>
 ptr <span class="token operator">=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">;</span>          <span class="token comment">// 将 ptr 置为 nullptr, ptr 成空指针</span>
-</code></pre><h2 class="crossnote-header" id="unique_ptr">unique_ptr</h2>
-
-<h2 class="crossnote-header" id="shared_ptr">shared_ptr</h2>
-
-<h2 class="crossnote-header" id="weak_ptr">weak_ptr</h2>
-
+</code></pre><h2 id="unique_ptr">unique_ptr </h2>
+<h2 id="shared_ptr">shared_ptr </h2>
+<h2 id="weak_ptr">weak_ptr </h2>
 
       </div>
       <div class="md-sidebar-toc">
@@ -858,11 +831,24 @@ ptr <span class="token operator">=</span> <span class="token keyword keyword-nul
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#variant" class="md-toc-link"><p>variant</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#variant-1" class="md-toc-link">
+            <p>variant</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#union" class="md-toc-link">
             <p>union</p>
 
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#template" class="md-toc-link"><p>template</p>
 </a>
@@ -873,8 +859,8 @@ ptr <span class="token operator">=</span> <span class="token keyword keyword-nul
             <p>在函数中使用 template</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#在类中使用-templat" class="md-toc-link">
-            <p>在类中使用 templat</p>
+          <a href="#在类中使用-template" class="md-toc-link">
+            <p>在类中使用 template</p>
 
           </a></div>
         </div>
@@ -882,6 +868,10 @@ ptr <span class="token operator">=</span> <span class="token keyword keyword-nul
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#function" class="md-toc-link">
             <p>function</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#lambda" class="md-toc-link">
+            <p>lambda</p>
 
           </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
