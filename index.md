@@ -94,8 +94,8 @@ export_on_save:
 
 <div class="center">
 
-| Linux | Git | Docker | 
-|:-:|:-:|:-:|
+| [Linux](/Linux/Linux/index.html) | [Git](/Linux/Git/index.html) | [Docker](/Linux/Docker/index.html) | [Regex](/Linux/Regex/index.html) | [Nginx](/Linux/Nginx/index.html) |
+|:-:|:-:|:-:|:-:|:-:|
 
 </div><div class="center">
 
@@ -127,49 +127,41 @@ export_on_save:
 
 <div class="center">
 
-| [算法竞赛](./algorithm/index.html) | CMC | CTF | 
+| CMC | [算法竞赛](./algorithm/index.html) | CTF | 
 |:-:|:-:|:-:|
 
 </div>
 
 <center>
 
--- -- -- -- -- -- -- -- 未来 -- -- -- -- -- -- -- --
+-- -- -- -- -- -- -- -- 希望 -- -- -- -- -- -- -- --
 
 </center>
 
 <div class="center">
 
-|资本论|
-|:-:|
+| 马克思主义 | 列宁主义 | 毛泽东思想 |
+|:-:|:-:|:-:|
 
 </div>
 
+<div class="center">
 
-有空了重新移动以下目录结构
+|资本论|共产党宣言|
+|:-:|:-:|
 
-* 了解计算机 [基础](408/index.html) 知识：网络、操作系统、数据库、组成原理等
-* 了解 [Linux](Linux/index.html) 及其环境下的开发工具：git，docker，
-* 了解常用后端开发 [语言](language/index.html)：Golang，C/C++，python
+</div>
+
+<div class="center">
+
+|[中国近代史纲要](./communism/中国近代史/index.html)|[（世界）近代史纲要]()|
+|:-:|:-:|
+
+</div>
 
 ---
 
 # 🪓 项目
-
-<strong> 🎵 <a href=""><font size="4">tiktok</a></font></strong> &nbsp; | &nbsp; [Github](https://github.com/daixll/tiktok)
-
-* 字节跳动青训营项目，实现抖音的核心功能（视频流，用户登录，评论区等，后续考虑加入商城）。
-* 目前采用单体架构，Gin + JWT 实现业务，Gorm + MySQL 提供数据库服务。
-* 正在重新设计为微服务架构，完成后会重新上线。
-* 正在学习K8s
-
-<strong> 🌏 <a href="for_you/HTTPServer/README.html"><font size="4">HTTPserver</a></font></strong> &nbsp; | &nbsp; [Github](https://github.com/daixll/HTTPserver)
-
-* 旧项目地址：[WebServer](https://github.com/daixll/WebServer)，功能已经完善，但是代码质量不高，故有了本项目。
-* 基于 Socket 实现的一个 HTTP 服务器，主从 Reactor 模型 + 非阻塞 Socket + Epoll（ET） + 线程池 + 内存池。
-* 正在重新考虑线程通信，计划实现一个 Channel。
-* 目前已经支持 IPV4/6 部署上线，待项目成熟后，本页面将由它驱动。
-
 
 
 ---

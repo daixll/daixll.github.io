@@ -21,27 +21,35 @@ export_on_save:
 
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/4821/" target="_blank">AcWing 4818. 奶牛大学</a> code</summary> 
+<details><summary><a href="https://www.acwing.com/problem/content/4821/" target="_blank">AcWing 4818. 奶牛大学</a> code</summary><br>
 
-> 求赚到的钱`res`及收取的学费`fees`
-> 
-> 我们需要找到一个数`fees`, 使得我们可以获得尽可能多的收益`res`
-> 
-> 收益`res` = `fees` * 上学的奶牛数量 
-> 
-> 一个限制条件是, 如果`fees` > 第i头奶牛愿意支付的最大金额`c[i]`, 第i头奶牛会放弃上学
->
-> 简而言之: 学费高, 奶牛少; 学费低, 奶牛多(此限制条件也使得答案不具有单调性,故不能二分)
->
-> 因此, 我们可以尝试枚举`fees`, 找到最大的`res`
->
-> 对于上学的奶牛的数量, 如果对于每个`fees`, 都去原数组中检查一下, 时间复杂度过大
->
-> 因此, 我们可以对原数组进行一次从大到小的排序
-> 
-> 此时枚举的`fees`, 就是`c[i]`, 而上学的奶牛的数量就是`i`
->
-> 答案要求学费尽可能小, 因此枚举时, `res`可以被 `>=res` 更新, 而不是`>res`
+**大意**
+
+给定 $n$ 头奶牛，每头奶牛愿意支付的最高学费为 $c_i$。
+
+我们可以设置一个学费 $x$，所有愿意支付 $x$ 及以上学费的奶牛都可以上学。
+
+求我们能收取的最大学费，即 $x * 奶牛数量$。
+
+如果存在多个解，$x$ 应该尽可能小。
+
+**思路**
+
+1. 显然，学费和愿意支付的奶牛数量之间存在
+    * 学费高，支付的奶牛少
+    * 学费低，支付的奶牛多
+
+因此，我们不能单一的认为，学费越高越好，或者奶牛越多越好。
+
+2. 那么，我们可以尝试枚举学费 $x$，
+    然后统计一下，有多少奶牛愿意支付 $x$ 及以上的学费。
+    此方法的时间复杂度为 $O(n^2)$。
+
+3. 我们可以对原数组进行一次从大到小的排序。
+    此时，我们枚举的学费 $x$，就是 $c_i$。
+    而愿意支付 $x$ 及以上学费的奶牛数量，就是 $i$。
+
+
 
 ```cpp
 #include <iostream>
@@ -73,34 +81,22 @@ int main(){
 ```
 </details>
 
-<details><summary><a href="https://www.acwing.com/problem/content/4822/" target="_blank">AcWing 4819. 喂饱奶牛</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/4822/" target="_blank">AcWing 4819. 喂饱奶牛</a> code</summary><br>
 
-> 求种植的方案 `res`
->
-> 对于第 i 头奶牛, 其可以移动的区间为 `[i-k, i+k]`, 其中`i-k>=1`, `i+k<=n`
->
-> 对于第 i 颗草, 其可以满足的奶牛区间为 `[i-k, i+k]`, 其中`i-k>=1`, `i+k<=n`
->
-> 我们先考虑第一种牛:
->
-> 为了使得种植的草最少, 当在 `i` 找到牛, 便在 `i+k` 种草, 其影响区间`[i+k -k, i+k +k]`
->
-> 如此往复, 下一次从 `i+k+k +1` 位置找牛
->
-> 此题边界判断比较简单, `min(i+k, n)` 即种草位置
->
-> 接下来考虑第二种牛:
->
-> 总体思想和考虑第一头牛的时候一致, 唯一的变数是, 种第二种草的位置可能已经被第一种草给占据了
->
-> 显然, 此时我们只能将种草位置左移动, 因为向右移动, 第i头牛没得草吃
->
-> `while(res[j] == '草一') --j;` 如果被种草了, 就不断前移
->
-> 但实际上, 只需要移动到 j-1, `if(res[j] == '草一') --j;`
->
-> 对于学有余力的小朋友,可以尝试用反证法证明其正确性:
-> notice: 第 i 位和 i-1 位置都被 G 占用( 当且仅当 k==0 )
+**大意**
+
+给定一个序列，序列中有两种牛，`G` 和 `H`，`G` 吃 `G` 草，`H` 吃 `H` 草。
+
+再给定一个数 $k$，表示每头牛可以移动的范围为 $[i-k, i+k]$。
+
+现需要在选择一些位置，种植草，使得每头牛都能吃到草。
+
+**思路**
+
+1. 我们从左到右枚举每头牛，在每头牛可以到达的最右边种草。
+
+2. 如果此位置已经被种草了，我们就不断的向左移动，直到找到一个没有被种草的位置。
+
 
 ```cpp
 #include <iostream>
@@ -129,7 +125,7 @@ void solve(){
     for(int i=1; i<=n; i++)
     if( g[i] == 'H' ){
         int j=min(n, i+k);  // 种植 H 的位置
-        if( res[j] == 'G' ) --j; // 思考:为什么--j的位置一定不会冲突?
+        while( res[j] == 'G' ) --j; // 思考:为什么--j的位置一定不会冲突?
         res[j] = 'H'; cnt++;
         i=j+k;
     }
@@ -173,7 +169,7 @@ int main(){
 
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/4443/" target="_blank">AcWing 4440. 照相</a> code</summary>
+<1details><summary><a href="https://www.acwing.com/problem/content/4443/" target="_blank">AcWing 4440. 照相</a> code</summary>
 
 > 求最小的翻转的次数 `ans`
 >

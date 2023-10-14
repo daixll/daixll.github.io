@@ -852,6 +852,48 @@ stod(s);            // 将 s 转换为双精度浮点数
 ```
 
 
+# regex
+
+正则表达式
+
+**创建正则表达式**
+
+```cpp
+std::regex r("^([0-9]{1,3}\\.){3}[0-9]{1,3}$");
+```
+
+此正则表达式用于匹配 IPv4 地址。
+
+**判断字符串是否匹配正则表达式**
+
+```cpp
+std::regex_match("127.0.0.1", r);   // true
+```
+
+**查找字符串中匹配正则表达式的子串**
+
+```cpp
+#include <iostream>
+#include <regex>
+
+int main() {
+    std::regex r("\\b([0-9]{1,3}\\.){3}[0-9]{1,3}\\b");
+    // 匹配IPv4地址的正则表达式
+    // \b 是单词边界，确保匹配的是完整的IPv4地址
+    std::smatch m;  // 存放匹配结果
+    std::string s = "127.0.0.1 192.168.31.1";
+
+    while (std::regex_search(s, m, r)) {
+        std::cout << "Found match: " << m[0] << std::endl;
+        s = m.suffix(); // 获取当前匹配子串之后的子串
+    }
+
+    return 0;
+}
+
+```
+
+
 # variant
 
 ## variant

@@ -5,10 +5,20 @@ export_on_save:
     html: true  # 自动保存
 ---
 
+微积分之前先 **化简** $\left\{
+\begin{aligned}
+    拆项、提项、同乘、同除 \\
+    对数公式 \\
+    三角公式 \\
+\end{aligned}
+\right.$
 
-$\lim_{x \to 0} \frac{tanx - sinx}{x^2ln(1+2x)}$
-=$\lim_{x \to 0} \frac{tanx - sinx}{2x^3}$
 
+**对数公式**
+1. $▢ = e^{\ln ▢} = \ln e^▢$
+2. $\ln ab = \ln a + \ln b$
+3. $\ln \frac{a}{b} = \ln a - \ln b$
+4. $\log _a ^b = \frac{\ln b}{\ln a}$
 
 # 第一节 函数与极限
 
@@ -298,7 +308,9 @@ $ \lim_{x \to x_0} \frac{f(x)}{g(x)} = \lim_{x \to x_0} \frac{f^{'}(x)}{g^{'}(x)
     > $= - \frac{1}{6}$
 
 
-## 泰勒公式 Taylor
+## 泰勒公式
+
+Taylor
 
 **泰勒公式**：$f(x)$ 在 $x=x_0$ 的某邻域内 $n+1$ 阶可导，则有：
 
@@ -363,6 +375,36 @@ $f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \ldots + \frac{f^{(n)}(0)}{n!}x^n
 > $= \lim_{x \to 0} \frac{1 - \frac{x^2}{2} + \frac{x^4}{4!} + o(x^4) - (1 - \frac{x^2}{2} + \frac{x^4}{2!*4} + o(x^4))}{x^4}$
 > $= \lim_{x \to 0} \frac{ \frac{x^4}{4!} - \frac{x^4}{2!*4} + o(x^4)}{x^4}$
 > $= \frac{1}{12}$
+
+
+## 七类不定式
+
+1. **$\frac{0}{0}$**
+
+    * 洛必达 -> 等价 -> 泰勒
+
+2. **$\frac{\infty}{\infty}$**
+
+    * 洛必达 -> 同除（最高次幂） -> 抓大头（每个因式保留高阶无穷大）
+
+3. **$0 \cdot \infty$**
+
+    * 同除简单因式（转换为 $\frac{0}{0} \frac{\infty}{\infty}$） -> 拆项等价 -> 洛必达
+
+4. **$\infty - \infty$**
+
+    * 通分（有分数） -> 有理化（有根式） -> 倒带换（令 $x = \frac{1}{t}$ ）
+
+5. **$0^0$**
+6. **$\infty^0$**
+
+    * 1
+    
+
+
+7. **$1^\infty$**
+
+    * 1
 
 
 
