@@ -874,7 +874,22 @@ int main(){
 ```
 </details>
 
-<details><summary><a href="https://www.acwing.com/problem/content/468/" target="_blank">AcWing 466. 回文日期</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/468/" target="_blank">AcWing 466. 回文日期</a> code</summary><br>
+
+**大意**
+
+给定一个起始日期和一个终止日期，求这两个日期之间有多少个回文日期。
+即满足：
+* `YYYYMMDD` 是合法的日期
+* `YYYYMMDD` 是回文的
+
+**思路**
+
+对于回文类型的题目，我们首先考虑列举出所有的回文，然后再判断是否合法。
+而不是列举出所有的合法日期，然后再判断是否回文。
+
+1. 通过 `YYYY` 直接生成 `YYYYMMDD` 的回文
+2. 判断 `YYYYMMDD` 是否合法
 
 ```cpp
 #include <iostream>
@@ -907,53 +922,70 @@ int main(){
 </details>
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/469/" target="_blank">AcWing 467. 海港</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/469/" target="_blank">AcWing 467. 海港</a> code</summary><br>
+
+**大意**
+
+给定 $n$ 条信息，每条信息：
+
+$t, k, x_1, x_2, ... , x_k$ 
+
+$t$ 时间，$k$ 个人，第 $i$ 个人的国籍为 $x_i$。
+
+对于每条信息，输出在 $(vt, t+86400]$ 时间内，有多少种国籍。
+
+**思路**
+
+1. 将所有的信息保存下来，按照时间排序（也就是题目给的顺序）
+
+2. 对于每条信息，该条船上的人的国籍肯定需要考虑
+
+3. 对于每条信息，回望过去，是否有船超过了时间范围
+    * 没有超过，那么就不用考虑
+    * 超过了，那么就需要将这条船上的人干掉
 
 ```cpp
-#pragma G++ optimize(3, "Ofast")
+#define pb push_back
 #include <iostream>
 #include <vector>
-#include <unordered_map>
 #include <queue>
+#include <map>
 using namespace std;
 
-const int N=1e5+10;
-int n;
-int T[N];   // 每艘船到达的时间
-int K[N];   // 船上乘客的数量
-vector<int> X[N];   // x[i]上每个乘客的信息
+const int N = 1e5+10;
 
-unordered_map<int, int> ans;  // 每个国籍的人的数量
+vector<int> a[N];   // 每条船上人的国籍
+int T[N];           // 每条船到达的时间
+int n;
+map<int, int> ans;
 
 int main(){
-    cin>>n;
+    int n; cin>>n;
     for(int i=1; i<=n; i++){
-        scanf("%d%d", T+i, K+i);
-        for(int j=1; j<=K[i]; j++){
-            int t; scanf("%d", &t);
-            X[i].push_back(t);
+        int m;
+        cin>>T[i]>>m;
+        for(int j=1; j<=m; j++){
+            int x; cin>>x;
+            a[i].pb(x);
         }
     }
-    
-    queue<int> q;
-    for(int i=1; i<=n; i++){
-        q.push(i);   // 第i秒的人
-        
-        for(int j=0; j<K[i]; j++) 
-            ans[ X[i][j] ]++;
-        
-        while(T[q.front()]+86400 <= T[i]){
-            for(int j=0; j<K[q.front()]; j++) {
-                ans[ X[q.front()][j] ]--;
-                if( ans[ X[q.front()][j] ] == 0 ) ans.erase(X[q.front()][j]);
+
+    queue<int> q;               // 每条信息
+    for(int i=1; i<=n; i++){    // 遍历每条信息
+        q.push(i);              // 对于第 i 条船，肯定要考虑
+        for(auto &j: a[i]) ans[j]++;    // 国籍数量
+
+        // 如果队头的船，不在时间范围内内，干掉
+        while( T[i] - T[q.front()] >= 86400){
+            for(auto &k: a[q.front()]){
+                ans[k]--;
+                if(ans[k] == 0) ans.erase(k);
             }
             q.pop();
         }
-        
-        printf("%d\n", ans.size());
+        cout<<ans.size()<<"\n";
     }
-    
-    
+
     return 0;
 }
 ```
@@ -988,7 +1020,22 @@ int main(){
 ```
 </details>
 
-<details><summary><a href="https://www.acwing.com/problem/content/464/" target="_blank">AcWing 462. 扫雷游戏</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/464/" target="_blank">AcWing 462. 扫雷游戏</a> code</summary><br>
+
+**大意**
+
+给定一个 $n*m$ 的矩阵，每个点只有两种状态
+* 地雷 `*`
+* 未知 `?`
+
+求每个 `?` 周围（上下左右，左上左下右上右下）的地雷数量
+
+**思路**
+
+1. 遍历每个点，如果是地雷，输出 `*`，否则输出周围的地雷数量
+
+2. 对于每个未知的点，遍历其周围的8个点，如果是地雷，那么这个点的地雷数量加一
+
 
 ```cpp
 #include <iostream>
@@ -1025,37 +1072,81 @@ int main(){
 </details>
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/465/" target="_blank">AcWing 463. 求和</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/465/" target="_blank">AcWing 463. 求和</a> code</summary><br>
+
+**大意**
+
+给定一个长度为 $n$ 的数组，数组中每个元素有两个值，一个编号
+
+* 数字。为方便，叫做 $num$
+* 颜色。为方便，叫做 $cor$
+* 编号。从 $1$ 开始单调递增
+
+数字与颜色都是 $1$ 到 $1e5$ 的整数，
+换言之，我们有颜色1，颜色2，颜色3...
+
+定义一个三元组 $(x, y, z)$，满足
+
+* $x < y < z$
+* $y - x = z - y$ 即 $x + z = 2y$
+* $cor[x] = cor[z]$
+
+此三元组的分数为
+
+* $(x+z) * (num[x] + num[z])$
+
+求所有合法三元组的分数和
+
+**思路**
+
+1. 由于 $x+z = 2y$，可知 $x$ 与 $z$ 奇偶性相同，
+因此，对于所有的 $x < z$，$y$ 肯定存在
+
+2. 由于都与 $y$ 无关，问题转换为：
+    * $x < z$，其中 $x$ 与 $z$ 奇偶性相同
+    * $cor[x] = cor[z]$
+
+3. 因为需要颜色相同，我们不妨将颜色相同的拉出来单独考虑。样例：
+    蓝色（颜色 2）：$num[1]=5,num[2]=5,num[5]=2$
+    * 奇数 $1,5$，分数为 $(1+5)*(5+2) = 42$
+    * 偶数 无
+
+    红色（颜色 3）：$num[3]=3,num[4]=2,num[6]=2$
+    * 奇数 无
+    * 偶数 $4,6$，分数为 $(4+6)*(2+2) = 40$
+    
+4. **重点**
+    1. 假设，同奇偶性存在下面三个数：$num[a], num[b], num[c]$，其中 $a < b < c$
+       那么，此颜色，此奇偶性下，分数为
+        $(a+b)*(num[a]+num[b]) +$
+        $(a+c)*(num[a]+num[c]) +$
+        $(b+c)*(num[b]+num[c]) $
+
+        化简：
+
+        **$(a*num[a] + b*num[b] + c*num[c]) * 1 + $**
+        **$(a+b+c)*(num[a]+num[b]+num[c])$**
+
+
+    2. 假设，同奇偶性存在下面四个数：$num[a], num[b], num[c], num[d]$，其中 $a < b < c < d$
+       那么，此颜色，此奇偶性下，分数为
+        $(a+b)*(num[a]+num[b]) +$
+        $(a+c)*(num[a]+num[c]) +$
+        $(a+d)*(num[a]+num[d]) +$
+        $(b+c)*(num[b]+num[c]) +$
+        $(b+d)*(num[b]+num[d]) +$
+        $(c+d)*(num[c]+num[d]) $
+        化简：
+        **$(a*num[a] + b*num[b] + c*num[c] + d*num[d]) * 2 + $**
+        **$(a+b+c+d)*(num[a]+num[b]+num[c]+num[d])$**
+
+5. 因此，对于同颜色，同奇偶性，有：
+    
+
+**$sum = (n-2) * \sum_{i=1}^{n} (i*num[i]) + \sum_{i=1}^{n} i * \sum_{i=1}^{n} num[i]$**
+
 
 ```cpp
-/*
-x+z == 2y, 说明这俩奇偶同性, 那么当x<z时, 必定存在x<y<z. 
-
-分数与y其实是无关的, 所以我们需要找到相同颜色的一对 x,z
-
-在样例中, 
-对于颜色2(蓝), 是(1,5) = 6*7  = 42
-对于颜色1(红), 是(4,6) = 10*4 = 40
-
-显然,与分数无关
-我们只需要在同一个颜色中,将奇偶性质相同的提取出来
-比如,红色的奇数的, 此时会出现(类似于):(1,5), (1,9), (5, 9)这样的玩意儿
-大家肯定也不想非常朴素的去一个一个计算吧
-
-分析一下, 把1,5,9看作a,b,c,对应的数字是na,nb,nc
-(a+b)*(na+nb) =[a*na]+ a*nb + b*na +[b*nb]
-(a+c)*(na+nc) = a*na + a*nc + c*na +[c*nc]
-(b+c)*(nb+nc) = b*nb + b*nc + c*nb + c*nc
-
-求一下和
-= a*na + b*nb + c*nc + ( a*na + a*nb + a*nc ) + ( b*na + b*nb + b*nc ) + ( c*na + c*nb + c*nc )
-= a*na + b*nb + c*nc + ( a*(na+nb+nc) + b*(na+nb+nc) + c*(na+nb+nc) )
-= a*na + b*nb + c*nc + (a+b+c)*(na+nb+nc)
-
-对于a*na + b*nb + c*nc的数量,应该是是n-2的,n是格子数量,而这个是如何推出来的嘞,以后推
-公式就出来了
-ans = (n-2) Σ(i*ni) + Σ(i)Σ(ni)
-*/
 #include <iostream>
 #include <vector>
 using namespace std;
