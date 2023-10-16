@@ -169,47 +169,59 @@ int main(){
 
 
 
-<1details><summary><a href="https://www.acwing.com/problem/content/4443/" target="_blank">AcWing 4440. 照相</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/4443/" target="_blank">AcWing 4440. 照相</a> code</summary><br>
 
-> 求最小的翻转的次数 `ans`
->
-> 观察题目, 题目保证字符串是偶数, 且每次翻转也是偶数, 因此我们将字符串看为
->
-> `GG`, `HH`, `GH`, `HG` 组成的, 显然, `GG`和`HH`无论怎么翻转都不会让`ans`增加
-> 
-> 而只有翻转`GH`, 才会使得答案更好, 不如模拟一下:
-> 
-> `GHGH HGHG GHGH` 原串
-> `HGHG HGHG GHGH` 翻转 4
-> `GHGH GHGH GHGH` 翻转 8
-> `HGHG HGHG HGHG` 翻转 12
->
-> 因为每次翻转是`1-n`的, 我们发现, `HG` 也需要翻转
->
-> 因此答案其实就是连续的 `GH` 和 `HG` 的段数
->
-> 值得注意, 如果以 `HG` 结尾, 我们将会多统计一次
+**大意**
+
+给定一个长度为 $n$ 的字符串，字符串从 `1` 开始编号，且只有 `G` 和 `H`。
+
+我们可以对字符串进行翻转，每次翻转的范围为 $[1, 2 i]$。
+
+最终希望字符串中的 `G` 尽可能多的出现在偶数位。
+
+**思路**
+
+1. 翻转是偶数，字符串的长度也是偶数，我们可以将字符串看作 
+   `GG`, `HH`, `GH`, `HG` 组成的。
+
+2. 显然，`GG` 和 `HH` 翻转后，答案不会变化。
+    我们可以进一步将题目抽象，将 `GH` 看作 0，`HG` 看作 1。
+    题目转换为将一个 01 字符串变为全 1 字符串的最小步数。
+
+3. 我们考虑以下这个样例：`HG GH HG GH HG`
+    1. `GH GH HG GH HG`
+    2. `HG HG HG GH HG`
+    3. `GH GH GH GH HG`
+    4. `HG HG HG HG HG`
+
+4. 再考虑一个样例：`GH HG GH HG GH`
+    1. `HG HG GH HG GH`
+    2. `GH GH GH HG GH`
+    3. `HG HG HG HG GH`
+    4. `GH GH GH GH GH`
+    5. `HG HG HG HG HG`
+
 ```cpp
 #include <iostream>
-#include <cstring>
+#include <string>
 using namespace std;
 
 int n, ans;
-string s;
-
+string s, st;
 int main(){
     cin>>n>>s;
-    s=" "+s;
+    for(int i=0;i<n;i+=2){
+        if(s[i]=='G' && s[i+1]=='H') st+='0';
+        else if(s[i]=='H' && s[i+1]=='G') st+='1';
+    }
 
-    bool gh = 0, hg = 0;
-    for(int i=1; i<=n; i+=2)
-        if(s[i]=='G' && s[i+1]=='H' && !gh)
-            ans++, gh=1, hg=0;
-        else 
-        if(s[i]=='H' && s[i+1]=='G' && !hg)
-            ans++, gh=0, hg=1;
-    
-    cout<< ans - hg;
+    for(int i=0; i<st.size()-1; i++)//将一个 01 字符串变为全 1 字符串的最小步数
+        if(st[i]!=st[i+1]) ans++;
+
+    if(st[st.size()-1]=='0') ans++;//特判：如果最后一个是 0 ，那么还需要将整个字符串翻转 1 次
+
+    cout<<ans<<endl;
+
     return 0;
 }
 ```
@@ -217,23 +229,61 @@ int main(){
 </details>
 
 
+<details><summary><a href="https://www.acwing.com/problem/content/4444/" target="_blank">AcWing 4441. 谎牛计数</a> code</summary><br>
 
-<details><summary><a href="https://www.acwing.com/problem/content/4444/" target="_blank">AcWing 4441. 谎牛计数</a> code</summary>
+**大意**
 
-> 求撒谎的奶牛的最小数量 `ans`
-> 
-> 我们可以直接画图
-> 
-> 如图所示, 我们假设 牛 在 `i` 这个位置
->
-> 对于 `r` 轴, `i` 右边的牛在撒谎
-> 对于 `l` 轴, `j` 左边的牛在撒谎
->
-> 所有撒谎的牛的数量就是 `(r_len - i) + j`
->
-> 因此, 我们可以枚举 `r` 轴上每一个位置
->
-> 找到 `l` 轴上 `<r[i]` 的最后一个位置 `j` 
+给定 $n$ 条信息，每条信息有两种形式：
+* 目标值 $>= x$
+* 目标值 $<= x$
+
+不是所有信息都是真的，我们需要求出最少有多少条信息是假的。
+
+即找到一个目标值，使得信息为真的信息数量最多。
+
+**思路**
+
+1. 我们可以枚举目标值，然后统计一下，有多少条信息是真的。
+    而这个目标值，显然是信息中的 $x$。
+
+```cpp
+#define pb push_back
+#include <iostream>
+#include <vector>
+#include <cstring>
+using namespace std;
+
+vector<int>G, L, a;
+int n;
+
+int main(){
+    cin>>n;
+    while(n--){
+        string s;
+        int x;
+        cin>>s>>x;
+        if(s=="G") G.pb(x);
+        else L.pb(x);
+        
+        a.pb(x);
+    }
+    
+    int ans=0x3f3f3f3f;
+    for(auto &x: a){        // 假设目标在 x 这个位置
+        int res = 0;
+        for(auto &j: G)
+            if(j > x) res++;// 假话
+        for(auto &j: L)
+            if(j < x) res++;// 假话
+        ans = min(ans, res);
+    }
+    cout<<ans;
+    
+    return 0;
+}
+```
+
+2. 可以通过排序优化
 
 ```cpp
 #include <iostream>
@@ -273,33 +323,34 @@ int main(){
 
 </details>
 
-<details><summary><a href="https://www.acwing.com/problem/content/4445/" target="_blank">AcWing 4442. 炼金术</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/4445/" target="_blank">AcWing 4442. 炼金术</a> code</summary><br>
 
-> 求金属 `n` 的最大数量
->
-> 观察样例, 可以很容易发现
-> 
->           5 
->          / \
->         3   4
->        /   
->       2
->      /
->     1
->
-> 因为树形的依赖关系(例, 若图中 4 可以通过 1, 2 合成)
->  
-> 我们不能用贪心的思想(例, 将 2 全部用来合成 3 或 4)
->
-> 因此, 只能一步一步的尝试, `n` 号结点合成 `cnt` 个是否可以
->
-> 而在询问 `n` 号结点的同时, 需要考虑其是否可以合成 `cnt` 个
->
-> 因此, 我们可以很容易的想到, 用 `dfs` 来实现这个查询
->
-> 而答案显然是具有单调性, 因此我们可以用二分来尝试 `cnt`
->
-> 二分模板即 `满足条件中最大的一个`, 即 `在单调递增序列中找 <=x 的数中最大的一个`
+**大意**
+
+给定一个树形的合成关系，且保证一定是 较小的数 合成 较大的数。
+并不保证 较小的数 只能合成 一种 较大的数。
+
+```
+      5 
+     / \
+    3   4
+   /   
+  2
+ /
+1
+```
+
+求，最大的数 $n$，最多可以合成多少个。
+
+**思路**
+
+1. 显然，我们不能用贪心的思想。
+   某一个数全部用于合成 $x$，结果在合成 $y$ 的时候不够了。
+
+2. 换个角度思考，如果我们知道了 $n$ 的数量，我们可以反推儿子们的数量，
+   检查是否有足够的儿子，可以合成 $n$。
+
+3. 显然，答案是具有单调性的，左半边合法，即找 $<=x$ 中，最大的一个
 
 ```cpp
 #include <iostream>

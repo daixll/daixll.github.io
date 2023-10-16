@@ -398,14 +398,16 @@ $f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \ldots + \frac{f^{(n)}(0)}{n!}x^n
 5. **$0^0$**
 6. **$\infty^0$**
 
-    * 1
-    
+    * $\lim_{x \to ▢}u^v = \lim_{x \to ▢} e ^ {v \ln u} \overset{ 极限交换, e^x连续 }{=} e ^{\lim_{x \to ▢}v \ln u}$
+
+> $\lim_{x \to 0^+} x^\alpha \ln ^ \beta x = 0 (\alpha, \beta > 0)$
 
 
 7. **$1^\infty$**
 
-    * 1
+    * $\lim_{x \to ▢}(1 + u)^v = e ^ {\lim_{x \to ▢} v \ln (1+u)} = e^{\lim_{x \to ▢} u v} (u \to 0, v \to \infty)$
 
+    * $\lim_{x \to ▢}u^v = \lim_{x \to ▢}(1 + (u-1))^v = e^{\lim_{x \to ▢} (u-1) v} (u \to 1, v \to \infty)$
 
 
 

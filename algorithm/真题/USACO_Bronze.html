@@ -148,54 +148,116 @@ LL res<span class="token punctuation">;</span>     <span class="token comment">/
 <hr>
 <h1 id="center2021-2022-seasoncenter"><center>2021-2022 Season</center> </h1>
 <h2 id="2022-us-open">2022 US Open </h2>
-<p>&lt;1details&gt;</p><summary><a href="https://www.acwing.com/problem/content/4443/" target="_blank">AcWing 4440. 照相</a> code</summary><p></p>
-<blockquote>
-<p>求最小的翻转的次数 <code>ans</code></p>
-<p>观察题目, 题目保证字符串是偶数, 且每次翻转也是偶数, 因此我们将字符串看为</p>
-<p><code>GG</code>, <code>HH</code>, <code>GH</code>, <code>HG</code> 组成的, 显然, <code>GG</code>和<code>HH</code>无论怎么翻转都不会让<code>ans</code>增加</p>
-<p>而只有翻转<code>GH</code>, 才会使得答案更好, 不如模拟一下:</p>
-<p><code>GHGH HGHG GHGH</code> 原串<br>
-<code>HGHG HGHG GHGH</code> 翻转 4<br>
-<code>GHGH GHGH GHGH</code> 翻转 8<br>
-<code>HGHG HGHG HGHG</code> 翻转 12</p>
-<p>因为每次翻转是<code>1-n</code>的, 我们发现, <code>HG</code> 也需要翻转</p>
-<p>因此答案其实就是连续的 <code>GH</code> 和 <code>HG</code> 的段数</p>
-<p>值得注意, 如果以 <code>HG</code> 结尾, 我们将会多统计一次</p>
-</blockquote>
+<details><summary><a href="https://www.acwing.com/problem/content/4443/" target="_blank">AcWing 4440. 照相</a> code</summary><br>
+<p><strong>大意</strong></p>
+<p>给定一个长度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 的字符串，字符串从 <code>1</code> 开始编号，且只有 <code>G</code> 和 <code>H</code>。</p>
+<p>我们可以对字符串进行翻转，每次翻转的范围为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mi>i</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[1, 2 i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mord mathnormal">i</span><span class="mclose">]</span></span></span></span>。</p>
+<p>最终希望字符串中的 <code>G</code> 尽可能多的出现在偶数位。</p>
+<p><strong>思路</strong></p>
+<ol>
+<li>
+<p>翻转是偶数，字符串的长度也是偶数，我们可以将字符串看作<br>
+<code>GG</code>, <code>HH</code>, <code>GH</code>, <code>HG</code> 组成的。</p>
+</li>
+<li>
+<p>显然，<code>GG</code> 和 <code>HH</code> 翻转后，答案不会变化。<br>
+我们可以进一步将题目抽象，将 <code>GH</code> 看作 0，<code>HG</code> 看作 1。<br>
+题目转换为将一个 01 字符串变为全 1 字符串的最小步数。</p>
+</li>
+<li>
+<p>我们考虑以下这个样例：<code>HG GH HG GH HG</code></p>
+<ol>
+<li><code>GH GH HG GH HG</code></li>
+<li><code>HG HG HG GH HG</code></li>
+<li><code>GH GH GH GH HG</code></li>
+<li><code>HG HG HG HG HG</code></li>
+</ol>
+</li>
+<li>
+<p>再考虑一个样例：<code>GH HG GH HG GH</code></p>
+<ol>
+<li><code>HG HG GH HG GH</code></li>
+<li><code>GH GH GH HG GH</code></li>
+<li><code>HG HG HG HG GH</code></li>
+<li><code>GH GH GH GH GH</code></li>
+<li><code>HG HG HG HG HG</code></li>
+</ol>
+</li>
+</ol>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
 <span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
 
 <span class="token keyword keyword-int">int</span> n<span class="token punctuation">,</span> ans<span class="token punctuation">;</span>
-string s<span class="token punctuation">;</span>
-
+string s<span class="token punctuation">,</span> st<span class="token punctuation">;</span>
 <span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     cin<span class="token operator">&gt;&gt;</span>n<span class="token operator">&gt;&gt;</span>s<span class="token punctuation">;</span>
-    s<span class="token operator">=</span><span class="token string">" "</span><span class="token operator">+</span>s<span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">+=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token char">'G'</span> <span class="token operator">&amp;&amp;</span> s<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token char">'H'</span><span class="token punctuation">)</span> st<span class="token operator">+=</span><span class="token char">'0'</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token char">'H'</span> <span class="token operator">&amp;&amp;</span> s<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token char">'G'</span><span class="token punctuation">)</span> st<span class="token operator">+=</span><span class="token char">'1'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    <span class="token keyword keyword-bool">bool</span> gh <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> hg <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span> i<span class="token operator">+=</span><span class="token number">2</span><span class="token punctuation">)</span>
-        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token char">'G'</span> <span class="token operator">&amp;&amp;</span> s<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token char">'H'</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>gh<span class="token punctuation">)</span>
-            ans<span class="token operator">++</span><span class="token punctuation">,</span> gh<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> hg<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword keyword-else">else</span> 
-        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token char">'H'</span> <span class="token operator">&amp;&amp;</span> s<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token char">'G'</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>hg<span class="token punctuation">)</span>
-            ans<span class="token operator">++</span><span class="token punctuation">,</span> gh<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> hg<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-    
-    cout<span class="token operator">&lt;&lt;</span> ans <span class="token operator">-</span> hg<span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>st<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token comment">//将一个 01 字符串变为全 1 字符串的最小步数</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>st<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span>st<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> ans<span class="token operator">++</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>st<span class="token punctuation">[</span>st<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token char">'0'</span><span class="token punctuation">)</span> ans<span class="token operator">++</span><span class="token punctuation">;</span><span class="token comment">//特判：如果最后一个是 0 ，那么还需要将整个字符串翻转 1 次</span>
+
+    cout<span class="token operator">&lt;&lt;</span>ans<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+
     <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre>
-<details><summary><a href="https://www.acwing.com/problem/content/4444/" target="_blank">AcWing 4441. 谎牛计数</a> code</summary>
-<blockquote>
-<p>求撒谎的奶牛的最小数量 <code>ans</code></p>
-<p>我们可以直接画图</p>
-<p>如图所示, 我们假设 牛 在 <code>i</code> 这个位置</p>
-<p>对于 <code>r</code> 轴, <code>i</code> 右边的牛在撒谎<br>
-对于 <code>l</code> 轴, <code>j</code> 左边的牛在撒谎</p>
-<p>所有撒谎的牛的数量就是 <code>(r_len - i) + j</code></p>
-<p>因此, 我们可以枚举 <code>r</code> 轴上每一个位置</p>
-<p>找到 <code>l</code> 轴上 <code>&lt;r[i]</code> 的最后一个位置 <code>j</code></p>
-</blockquote>
+</code></pre></details>
+<details><summary><a href="https://www.acwing.com/problem/content/4444/" target="_blank">AcWing 4441. 谎牛计数</a> code</summary><br>
+<p><strong>大意</strong></p>
+<p>给定 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 条信息，每条信息有两种形式：</p>
+<ul>
+<li>目标值 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">&gt;= x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></li>
+<li>目标值 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">&lt;= x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></li>
+</ul>
+<p>不是所有信息都是真的，我们需要求出最少有多少条信息是假的。</p>
+<p>即找到一个目标值，使得信息为真的信息数量最多。</p>
+<p><strong>思路</strong></p>
+<ol>
+<li>我们可以枚举目标值，然后统计一下，有多少条信息是真的。<br>
+而这个目标值，显然是信息中的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>。</li>
+</ol>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">pb</span> <span class="token expression">push_back</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+
+vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span>G<span class="token punctuation">,</span> L<span class="token punctuation">,</span> a<span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> n<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    cin<span class="token operator">&gt;&gt;</span>n<span class="token punctuation">;</span>
+    <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>n<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        string s<span class="token punctuation">;</span>
+        <span class="token keyword keyword-int">int</span> x<span class="token punctuation">;</span>
+        cin<span class="token operator">&gt;&gt;</span>s<span class="token operator">&gt;&gt;</span>x<span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span><span class="token string">"G"</span><span class="token punctuation">)</span> G<span class="token punctuation">.</span><span class="token function">pb</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-else">else</span> L<span class="token punctuation">.</span><span class="token function">pb</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        a<span class="token punctuation">.</span><span class="token function">pb</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword keyword-int">int</span> ans<span class="token operator">=</span><span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> <span class="token operator">&amp;</span>x<span class="token operator">:</span> a<span class="token punctuation">)</span><span class="token punctuation">{</span>        <span class="token comment">// 假设目标在 x 这个位置</span>
+        <span class="token keyword keyword-int">int</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> <span class="token operator">&amp;</span>j<span class="token operator">:</span> G<span class="token punctuation">)</span>
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>j <span class="token operator">&gt;</span> x<span class="token punctuation">)</span> res<span class="token operator">++</span><span class="token punctuation">;</span><span class="token comment">// 假话</span>
+        <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> <span class="token operator">&amp;</span>j<span class="token operator">:</span> L<span class="token punctuation">)</span>
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>j <span class="token operator">&lt;</span> x<span class="token punctuation">)</span> res<span class="token operator">++</span><span class="token punctuation">;</span><span class="token comment">// 假话</span>
+        ans <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout<span class="token operator">&lt;&lt;</span>ans<span class="token punctuation">;</span>
+    
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><ol start="2">
+<li>可以通过排序优化</li>
+</ol>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm&gt;</span></span>
 <span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
@@ -230,26 +292,32 @@ string s<span class="token punctuation">;</span>
     <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre></details>
-<details><summary><a href="https://www.acwing.com/problem/content/4445/" target="_blank">AcWing 4442. 炼金术</a> code</summary>
-<blockquote>
-<p>求金属 <code>n</code> 的最大数量</p>
-<p>观察样例, 可以很容易发现</p>
-<pre class="language-text">      5 
+<details><summary><a href="https://www.acwing.com/problem/content/4445/" target="_blank">AcWing 4442. 炼金术</a> code</summary><br>
+<p><strong>大意</strong></p>
+<p>给定一个树形的合成关系，且保证一定是 较小的数 合成 较大的数。<br>
+并不保证 较小的数 只能合成 一种 较大的数。</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>      5 
      / \
     3   4
    /   
   2
  /
 1
-</pre>
-<p>因为树形的依赖关系(例, 若图中 4 可以通过 1, 2 合成)</p>
-<p>我们不能用贪心的思想(例, 将 2 全部用来合成 3 或 4)</p>
-<p>因此, 只能一步一步的尝试, <code>n</code> 号结点合成 <code>cnt</code> 个是否可以</p>
-<p>而在询问 <code>n</code> 号结点的同时, 需要考虑其是否可以合成 <code>cnt</code> 个</p>
-<p>因此, 我们可以很容易的想到, 用 <code>dfs</code> 来实现这个查询</p>
-<p>而答案显然是具有单调性, 因此我们可以用二分来尝试 <code>cnt</code></p>
-<p>二分模板即 <code>满足条件中最大的一个</code>, 即 <code>在单调递增序列中找 &lt;=x 的数中最大的一个</code></p>
-</blockquote>
+</code></pre><p>求，最大的数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>，最多可以合成多少个。</p>
+<p><strong>思路</strong></p>
+<ol>
+<li>
+<p>显然，我们不能用贪心的思想。<br>
+某一个数全部用于合成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>，结果在合成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span> 的时候不够了。</p>
+</li>
+<li>
+<p>换个角度思考，如果我们知道了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 的数量，我们可以反推儿子们的数量，<br>
+检查是否有足够的儿子，可以合成 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>。</p>
+</li>
+<li>
+<p>显然，答案是具有单调性的，左半边合法，即找 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mo>=</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">&lt;=x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> 中，最大的一个</p>
+</li>
+</ol>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span></span>
