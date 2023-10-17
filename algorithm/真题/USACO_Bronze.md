@@ -1444,6 +1444,51 @@ int main(){
 ```
 </details>
 
+<details><summary><a href="https://www.acwing.com/problem/content/3363/" target="_blank">AcWing 3360. 牛棚</a> code</summary><br>
+
+**大意**
+
+给定两个数组 $a, b$
+将 $a$ 排列，使得 $a$ 中的每个元素都不大于 $b$ 中的对应元素。
+
+**思路**
+
+1. 我们可以将 $a$ 从大到小排序，然后看他能放入 $b$ 的那几个位置。
+
+2. 对于第 $i$ 位，前面的 $i$ 个位置都已经被放置，所以能放的位置 $res - i + 1$。
+
+```cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+typedef long long LL;
+const int N = 30;
+
+LL a[N], b[N];
+LL ans=1;
+int n;
+
+int main(){
+    cin>>n;
+    for(int i=1; i<=n; i++) cin>>a[i];
+    for(int i=1; i<=n; i++) cin>>b[i];
+    
+    sort(a+1, a+1+n, greater());    // 将 a 从大到小排序
+    for(int i=1; i<=n; i++){        // 看每一位能放到多少个位置去
+        int res=0;
+        for(int j=1; j<=n; j++)
+            if(a[i] <= b[j]) res++; // 可以放到 res 个 b 里面去
+        ans *= res - i + 1;
+    }
+
+    cout<<ans;
+
+    return 0;
+}
+```
+</details>
+
 ## 2020 Dec
 
 <details><summary><a href="https://www.acwing.com/problem/content/description/3349/" target="_blank">AcWing 3346. 你知道你的ABC吗</a> code</summary>
