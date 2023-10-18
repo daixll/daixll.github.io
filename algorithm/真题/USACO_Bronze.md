@@ -414,15 +414,22 @@ int main(){
 
 ## 2022 Feb
 
-<details><summary><a href="https://www.acwing.com/problem/content/4369/" target="_blank">AcWing 4366. 上课睡觉</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/4369/" target="_blank">AcWing 4366. 上课睡觉</a> code</summary><br>
 
-> 合并实际上只有一种方案, 逆向思考
->
+
+**大意**
+
+给定一个数组 $a$，将其划分为 $k$ 个区间，使得每个区间和相等，求最少的操作次数。
+
+**思路**
+
+1. 显然，合并实际上只有一种方案，就是相邻合并。
+
+2. 我们可以通过合并成 $1,2,3,4...$ 堆，计算出每堆的大小 $sum, \frac{sum}{2}, \frac{sum}{3}, \frac{sum}{4}...$。
+
+3. 通过计算前缀和，就可以非常方便的计算出，每堆的大小。
 
 ```cpp
-// 假设合并后每堆大小 m
-// 合并次数 = n - sum/mid
-// 合并次数越小, mid就应该更小
 #include <iostream>
 using namespace std;
 
@@ -468,10 +475,26 @@ int main(){
 </details>
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/4370/" target="_blank">AcWing 4367. 拍照2</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/4370/" target="_blank">AcWing 4367. 拍照2</a> code</summary><br>
 
-> 贪心+双指针, 顺着样例模拟一下就明白
->
+**大意**
+
+给定一个序列 $a$，一个目标序列 $b$，允许一种操作：
+* 将 $a$ 中的元素向左移动任意个位置
+
+求最少的操作次数，使得 $a$ 变为 $b$。
+
+**思路**
+
+1. 样例2：
+    * 将 4 向前移动
+    * 将 2 向前移动
+
+2. 很容易想到用双指针来解决这个问题，$i$ 指向 $a$，$j$ 指向 $b$：
+    * 如果 $a_i$ 与 $b_j$ 相等，$i++, j++$
+    * 如果 $a_i$ 与 $b_j$ 不相等，$j++$，并且记录一下 $b_j$，表示需要从后面移动一个
+    * 如果 $a_i$ 是被记录过的数，$i++$（此数是被前移的数）。
+
 
 ```cpp
 #include <iostream>
@@ -482,7 +505,7 @@ const int N=1e5+10;
 
 int a[N], b[N];
 unordered_set<int> cnt;
-int n, ans;
+int n;
 
 int main(){
     cin>>n;
@@ -493,24 +516,22 @@ int main(){
     
     int i=1, j=1;
     
-        while(i<=n && j<=n){
-            if(cnt.count(a[i])){
-                i++;
-                continue;
-            }
-            if(a[i]==b[j]){
-                i++, j++;
-                continue;
-            }
-        
-            if(a[i]!=b[j]){
-                cnt.insert(b[j]);
-                j++;    
-                ans++;  // 需要从后面移动一个
-            }
+    while(i<=n && j<=n){
+        if(cnt.count(a[i])){
+            i++;
+            continue;
         }
-    cout<<ans;
+        if(a[i]==b[j]){
+            i++, j++;
+            continue;
+        }
+        if(a[i]!=b[j]){
+            cnt.insert(b[j]);
+            j++;
+        }
+    }
     
+    cout<<cnt.size();
     return 0;
 }
 ```
@@ -518,10 +539,22 @@ int main(){
 </details>
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/4371/" target="_blank">AcWing 4368. 积木</a> code</summary>
+<details><summary><a href="https://www.acwing.com/problem/content/4371/" target="_blank">AcWing 4368. 积木</a> code</summary><br>
 
-> 递归求组合型枚举
->
+**大意**
+
+4 个骰子，每个骰子有 6 个字母，
+给出一个 1-4 长度的字符串，判断是否可以由这 4 个骰子中的 1-4 个组成。
+
+**思路**
+
+对于字符串的第一个位置，有 4 个骰子可以选择，第二个位置有 3 个骰子可以选择，以此类推。
+
+如果第一个位置选择了骰子 1（如果可以选择），那么第二个位置就只能选择 2,3,4 中的一个。
+
+以此类推，去第二个位置，选择骰子。
+
+参考：[递归实现组合型枚举](http://dxll.love:2023/algorithm/1%20%E5%9F%BA%E7%A1%80/%E9%80%92%E5%BD%92.html#%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E7%BB%84%E5%90%88%E5%9E%8B%E6%9E%9A%E4%B8%BE)
 
 ```cpp
 #include <iostream>
@@ -592,11 +625,40 @@ int main(){
 ## 2022 Jan
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/description/4332/" target="_blank">AcWing 4329. Herdle</a> code</summary> 
+<details><summary><a href="https://www.acwing.com/problem/content/description/4332/" target="_blank">AcWing 4329. Herdle</a> code</summary><br> 
 
-> 统计两个方阵中, 各个颜色的数量
-> 先算绿的(同一位置同一颜色), 再算黄的(两个方块中, 减去绿色的数量, 取两个方块中的最小值)
-> 
+**大意**
+
+给定两个 $3$ X $3$ 的方阵 $a$ 和 $b$ ，每个方阵中每个位置由 $A-Z$ 组成，
+
+* 绿色：对于 $i$ 行 $j$ 列，$a$ 方阵中的字母与 $b$ 方阵中的字母相同
+* 黄色：不考虑被判定为绿色的格子，如果该字母在 $a$ 方阵中出现的次数大于 $b$ 方阵中出现的次数，那么该格子为黄色
+
+**思路**
+
+```
+a:          b:  
+    DD          AA
+    BB          BD
+
+res：
+    空空
+    绿黄
+```
+
+特别的：
+
+```
+a:          b:  
+    DA         CD
+    AA         DD
+
+res：       或          或
+    空空        空黄        空空
+    空黄        空空        黄空
+```
+
+
 
 ```cpp
 #include <iostream>
@@ -639,10 +701,20 @@ int main(){
 </details>
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/description/4333/" target="_blank">AcWing 4330. 非传递骰子</a> code</summary> 
+<details><summary><a href="https://www.acwing.com/problem/content/description/4333/" target="_blank">AcWing 4330. 非传递骰子</a> code</summary><br>
 
->
->
+**大意**
+
+给定长为 $4$ 的数组 $a$ 和 $b$，每个数组中的元素为 $1-10$。
+求一长为 $4$ 的数组 $c$，满足：
+* $a > b > c > a$
+
+其中 $ > $ 的定义是：数组中所有元素两两比较，
+如果 $a_i > b_i$ 的数量比 $b_i > a_i$ 的数量多，那么 $a$ 大于 $b$。
+
+**思路**
+
+1. 枚举 $c$ 的每个元素，然后检查一下是否满足条件。
 
 ```cpp
 #include <iostream>
@@ -714,17 +786,28 @@ int main(){
 ## 2021 Dec
 
 
-<details><summary><a href="https://www.acwing.com/problem/content/description/4264/" target="_blank">AcWing 4261. 孤独的照片</a> code</summary> 
+<details><summary><a href="https://www.acwing.com/problem/content/description/4264/" target="_blank">AcWing 4261. 孤独的照片</a> code</summary><br>
 
-> 孤独的牛: 长度>=3, 有且仅有 1 头牛与其他的牛不一样
-> 显然, 只有三种情况
-> ```
-> 1. ___HGH____    孤独数：左边H*右边H
-> 2. __HHG         孤独数：左边H-1
-> 3.     GHH___    孤独数：右边H-1
-> ```
-> 因此，只需要统计每个点，左/右两边不一样的牛的数量
->
+**大意**
+
+给定一个只包含 $H$ 和 $G$ 序列，找出满足以下条件的子序列的数量
+
+* 长度 >= 3
+* 有且仅有一个 $H$ 或 $G$
+
+**思路**
+
+1. 我们假设第 $i$ 个位置的牛是孤独的，孤独就有下面三种情况：
+    1. `_HGH_`，等价于 `_GHG_`
+    2. `__HHG`，等价于 `__GGH`
+    3. `GHH__`，等价于 `HGG__`
+
+2. 用左边三种举例：
+    1. 孤独的子序列数量为：左边 $H$ 的数量 * 右边 $H$ 的数量
+    2. 孤独的子序列数量为：左边 $H$ 的数量 - 1
+    3. 孤独的子序列数量为：右边 $H$ 的数量 - 1
+
+3. 因此，我们只需要统计每个位置，左右两边不同的牛的数量即可。
 
 ```cpp
 #include <iostream>
