@@ -38,8 +38,8 @@ export_on_save:
 
 <div class="center">
 
-| [C]() / [C++](/language/CPP/C++/index.html) | C++ Socket | C++ QT | [C++ 并发](/language/CPP/C++%20Concurrency/index.html) | 
-|:-:|:-:|:-:|:-:|
+| [C]() / [C++](/language/CPP/C++/index.html) | [Tools](/language/CPP/Tools/index.html) | [C++ 并发](/language/CPP/C++%20Concurrency/index.html) | C++ Socket | [C++ QT](/language/CPP/C++%20QT/index.html) |
+|:-:|:-:|:-:|:-:|:-:|
 
 </div>
 
@@ -52,7 +52,7 @@ export_on_save:
 
 <div class="center">
 
-| Python | 数据分析 | TensorFlow | 
+| [Python](/language/PY/index.html) | 数据分析 | TensorFlow | 
 |:-:|:-:|:-:|
 
 </div>
