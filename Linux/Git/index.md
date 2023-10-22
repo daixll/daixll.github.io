@@ -5,17 +5,6 @@ export_on_save:
     html: true  # 自动保存
 ---
 
----
-html:
-    toc: true           # 打开侧边目录
-    toc_depth: 6        # 打开的目录层级
-    toc_float: true     # 侧边悬停
-    collapsed: true     # 只显示高级别标题(2)
-    smooth_scroll: true # 页面滚动,标题变化
-    number_sections: false  # 显示标题编号
-    theme: united
----
-
 [廖雪峰的git教程](https://www.liaoxuefeng.com/wiki/896043488029600)
 
 # 设置名字和邮箱
