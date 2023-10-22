@@ -5,8 +5,6 @@ export_on_save:
     html: true  # 自动保存
 ---
 
-1
-
 <style>
     .center
     {
