@@ -85,14 +85,125 @@ GCC（GNU Compiler Collection）：GNU编译器集合是GNU项目的核心部分
 
 ## GDB
 
-## Make
+GDB（GNU Debugger）：GNU调试器是一个功能强大的调试器，可以用于调试C、C++、Objective-C、Fortran、Java、Go等程序。
 
-## Cmake
+在上面生成调试信息中，我们生成了一个可调试的程序，现在我们可以使用GDB调试这个程序。
 
-## Makefile
+1. **启动GDB：**
+    ```sh
+    gdb ac
+    ```
+    * `ac` 是需要调试的程序。
 
-## CmakeLists.txt
+2. **设置断点：**
+    ```sh
+    break ac.cpp:main
+    break ac.cpp:10
+    ```
+    * `break` 命令用于设置断点，可以简写为 `b`。
+    * `ac.cpp:main` 是断点的位置，这里是 `ac.cpp` 文件的 `main` 函数。
+    * `ac.cpp:10` 是断点的位置，这里是 `ac.cpp` 文件的第 `10` 行。
+    * 如果不指定文件名，那么默认是当前文件。
 
+3. **运行程序：**
+    ```sh
+    run
+    ```
+    * `run` 命令用于运行程序，可以简写为 `r`。
+
+4. **单步执行：**
+    ```sh
+    step
+    ```
+    * `step` 命令用于单步执行程序，可以简写为 `s`。
+
+5. **继续执行：**
+    ```sh
+    continue
+    ```
+    * `continue` 命令用于继续执行程序，直到遇到下一个断点，可以简写为 `c`。
+
+6. **查看变量：**
+    ```sh
+    print a
+    ```
+    * `print` 命令用于查看变量，可以简写为 `p`。
+
+7. **查看堆栈：**
+    ```sh
+    backtrace
+    ```
+    * `backtrace` 命令用于查看堆栈，可以简写为 `bt`。
+
+5. **退出GDB：**
+    ```sh
+    quit
+    ```
+    * `quit` 命令用于退出GDB，可以简写为 `q`。
+
+## Make & Makefile
+
+Make 是一个构建工具，依赖 Makefile 文件来描述构建规则，然后通过 make 命令来执行构建。
+
+我们考虑一下这样一个场景：
+* `ac` 程序依赖 `ac.cpp` 文件。
+* `bc` 程序依赖 `bc.cpp` 文件和 `ac` 程序。
+
+我们需要确保在构建 `bc` 程序之前，`ac` 程序已经构建完成。
+
+
+```cpp
+// ac.cpp
+#include <fstream>
+
+int main(){
+    std::ofstream("ac.txt") << "Hello_World!";
+    return 0;
+}
+```
+
+```cpp
+// bc.cpp
+#include <iostream>
+#include <fstream>
+#include <string>
+
+int main(){
+    std::string s;
+    std::ifstream("ac.txt") >> s;
+    std::cout << "This is from AC: " << s;
+    return 0;
+}
+```
+
+```makefile
+# Makefile
+CC = g++                # 指定编译器
+CFLAGS = -g -std=c++23  # 指定编译选项
+
+all: ac bc
+
+ac: ac.cpp
+	$(CC) $(CFLAGS) -o ac ac.cpp
+	./ac
+
+bc: bc.cpp 
+	$(CC) $(CFLAGS) -o bc bc.cpp
+
+clean:
+	rm -f ac bc ac.txt
+```
+
+* `CC` 变量指定了编译器，这里是 `g++`。
+* `CFLAGS` 变量指定了编译选项，这里是 `-g -std=c++23`。
+* `all` 是一个伪目标，一个约定俗成，通过 `make all` 命令，依次构建 `all` 所依赖的目标。
+* `ac` 是一个目标，依赖 `ac.cpp` 文件，通过 `make ac` 命令，依次构建 `ac` 所依赖的目标。
+* `bc` 是一个目标，依赖 `bc.cpp` 文件，通过 `make bc` 命令，依次构建 `bc` 所依赖的目标。
+* `clean` 是一个目标，通过 `make clean` 命令，清理构建过程中产生的文件。
+
+## Cmake & CmakeLists.txt
+
+Cmake 是一个跨平台的构建工具，依赖 CmakeLists.txt 文件来描述构建规则，然后通过 cmake 命令来执行构建。
 
 ---
 

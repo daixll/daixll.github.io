@@ -37,9 +37,6 @@ export_on_save:
     5. 拉格朗日中值定理（导数的几何意义，切线斜率）
 
 
-
-
-
 ## 函数
 
 单调性
@@ -408,6 +405,20 @@ $f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \ldots + \frac{f^{(n)}(0)}{n!}x^n
     * $\lim_{x \to ▢}(1 + u)^v = e ^ {\lim_{x \to ▢} v \ln (1+u)} = e^{\lim_{x \to ▢} u v} (u \to 0, v \to \infty)$
 
     * $\lim_{x \to ▢}u^v = \lim_{x \to ▢}(1 + (u-1))^v = e^{\lim_{x \to ▢} (u-1) v} (u \to 1, v \to \infty)$
+
+
+
+## 单调有界定理
+
+
+$\{x_n\} \uparrow$ 有上界或 $\{x_n\} \downarrow$ 有下界，则 $\lim_{n \to \infty} x_n$ 存在。
+注：上界或下界不唯一
+
+
+
+## 夹逼定理
+
+## 定积分定义
 
 
 

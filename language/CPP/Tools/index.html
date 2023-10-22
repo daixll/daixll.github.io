@@ -123,10 +123,121 @@
 </li>
 </ol>
 <h2 id="gdb">GDB </h2>
-<h2 id="make">Make </h2>
-<h2 id="cmake">Cmake </h2>
-<h2 id="makefile">Makefile </h2>
-<h2 id="cmakeliststxt">CmakeLists.txt </h2>
+<p>GDB（GNU Debugger）：GNU调试器是一个功能强大的调试器，可以用于调试C、C++、Objective-C、Fortran、Java、Go等程序。</p>
+<p>在上面生成调试信息中，我们生成了一个可调试的程序，现在我们可以使用GDB调试这个程序。</p>
+<ol>
+<li>
+<p><strong>启动GDB：</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>gdb ac
+</code></pre><ul>
+<li><code>ac</code> 是需要调试的程序。</li>
+</ul>
+</li>
+<li>
+<p><strong>设置断点：</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token builtin class-name">break</span> ac.cpp:main
+<span class="token builtin class-name">break</span> ac.cpp:10
+</code></pre><ul>
+<li><code>break</code> 命令用于设置断点，可以简写为 <code>b</code>。</li>
+<li><code>ac.cpp:main</code> 是断点的位置，这里是 <code>ac.cpp</code> 文件的 <code>main</code> 函数。</li>
+<li><code>ac.cpp:10</code> 是断点的位置，这里是 <code>ac.cpp</code> 文件的第 <code>10</code> 行。</li>
+<li>如果不指定文件名，那么默认是当前文件。</li>
+</ul>
+</li>
+<li>
+<p><strong>运行程序：</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>run
+</code></pre><ul>
+<li><code>run</code> 命令用于运行程序，可以简写为 <code>r</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>单步执行：</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>step
+</code></pre><ul>
+<li><code>step</code> 命令用于单步执行程序，可以简写为 <code>s</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>继续执行：</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token builtin class-name">continue</span>
+</code></pre><ul>
+<li><code>continue</code> 命令用于继续执行程序，直到遇到下一个断点，可以简写为 <code>c</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>查看变量：</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>print a
+</code></pre><ul>
+<li><code>print</code> 命令用于查看变量，可以简写为 <code>p</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>查看堆栈：</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>backtrace
+</code></pre><ul>
+<li><code>backtrace</code> 命令用于查看堆栈，可以简写为 <code>bt</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>退出GDB：</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>quit
+</code></pre><ul>
+<li><code>quit</code> 命令用于退出GDB，可以简写为 <code>q</code>。</li>
+</ul>
+</li>
+</ol>
+<h2 id="make--makefile">Make &amp; Makefile </h2>
+<p>Make 是一个构建工具，依赖 Makefile 文件来描述构建规则，然后通过 make 命令来执行构建。</p>
+<p>我们考虑一下这样一个场景：</p>
+<ul>
+<li><code>ac</code> 程序依赖 <code>ac.cpp</code> 文件。</li>
+<li><code>bc</code> 程序依赖 <code>bc.cpp</code> 文件和 <code>ac</code> 程序。</li>
+</ul>
+<p>我们需要确保在构建 <code>bc</code> 程序之前，<code>ac</code> 程序已经构建完成。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// ac.cpp</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fstream&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span><span class="token function">ofstream</span><span class="token punctuation">(</span><span class="token string">"ac.txt"</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"Hello_World!"</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// bc.cpp</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fstream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>string s<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span><span class="token function">ifstream</span><span class="token punctuation">(</span><span class="token string">"ac.txt"</span><span class="token punctuation">)</span> <span class="token operator">&gt;&gt;</span> s<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"This is from AC: "</span> <span class="token operator">&lt;&lt;</span> s<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="makefile" class="language-makefile makefile"><code><span class="token comment"># Makefile</span>
+CC <span class="token operator">=</span> g++                <span class="token comment"># 指定编译器</span>
+CFLAGS <span class="token operator">=</span> -g -std<span class="token operator">=</span>c++23  <span class="token comment"># 指定编译选项</span>
+
+<span class="token target symbol">all</span><span class="token punctuation">:</span> ac bc
+
+<span class="token target symbol">ac</span><span class="token punctuation">:</span> ac.cpp
+	<span class="token variable">$</span><span class="token punctuation">(</span>CC<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>CFLAGS<span class="token punctuation">)</span> -o ac ac.cpp
+	./ac
+
+<span class="token target symbol">bc</span><span class="token punctuation">:</span> bc.cpp 
+	<span class="token variable">$</span><span class="token punctuation">(</span>CC<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>CFLAGS<span class="token punctuation">)</span> -o bc bc.cpp
+
+<span class="token target symbol">clean</span><span class="token punctuation">:</span>
+	rm -f ac bc ac.txt
+</code></pre><ul>
+<li><code>CC</code> 变量指定了编译器，这里是 <code>g++</code>。</li>
+<li><code>CFLAGS</code> 变量指定了编译选项，这里是 <code>-g -std=c++23</code>。</li>
+<li><code>all</code> 是一个伪目标，一个约定俗成，通过 <code>make all</code> 命令，依次构建 <code>all</code> 所依赖的目标。</li>
+<li><code>ac</code> 是一个目标，依赖 <code>ac.cpp</code> 文件，通过 <code>make ac</code> 命令，依次构建 <code>ac</code> 所依赖的目标。</li>
+<li><code>bc</code> 是一个目标，依赖 <code>bc.cpp</code> 文件，通过 <code>make bc</code> 命令，依次构建 <code>bc</code> 所依赖的目标。</li>
+<li><code>clean</code> 是一个目标，通过 <code>make clean</code> 命令，清理构建过程中产生的文件。</li>
+</ul>
+<h2 id="cmake--cmakeliststxt">Cmake &amp; CmakeLists.txt </h2>
+<p>Cmake 是一个跨平台的构建工具，依赖 CmakeLists.txt 文件来描述构建规则，然后通过 cmake 命令来执行构建。</p>
 <hr>
 <h1 id="windows">Windows </h1>
 
@@ -156,20 +267,12 @@
             <p>GDB</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#make" class="md-toc-link">
-            <p>Make</p>
+          <a href="#make--makefile" class="md-toc-link">
+            <p>Make &amp; Makefile</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#cmake" class="md-toc-link">
-            <p>Cmake</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#makefile" class="md-toc-link">
-            <p>Makefile</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#cmakeliststxt" class="md-toc-link">
-            <p>CmakeLists.txt</p>
+          <a href="#cmake--cmakeliststxt" class="md-toc-link">
+            <p>Cmake &amp; CmakeLists.txt</p>
 
           </a></div>
         </div>
