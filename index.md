@@ -38,7 +38,7 @@ export_on_save:
 
 <div class="center">
 
-| [C](/language/CPP/C/index.html) / [C++](/language/CPP/C++/index.html) | [Tools](/language/CPP/Tools/index.html) | [C++ 并发](/language/CPP/C++%20Concurrency/index.html) | C++ Socket | [C++ QT](/language/CPP/C++%20QT/index.html) |
+| [C](/language/CPP/C/index.html) / [C++](/language/CPP/C++/index.html) | [Tools](/language/CPP/Tools/index.html) | [C++ Concurrency](/language/CPP/C++%20Concurrency/index.html) | C++ Socket | [C++ QT](/language/CPP/C++%20QT/index.html) |
 |:-:|:-:|:-:|:-:|:-:|
 
 </div>
