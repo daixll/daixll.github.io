@@ -1,11 +1,13 @@
----
+<br>---
 html:
     toc: true   # 打开侧边目录
 export_on_save:
     html: true  # 自动保存
----
+<br>---
 
 # Linux
+
+**值得一提**，我们可以通过 `build-essential` 包来安装 GCC 等一系列编译工具。
 
 ## GNU
 
@@ -20,6 +22,10 @@ GNU（GNU's Not Unix）是一个自由软件运动的项目，提供了许多重
 
 当人们谈论“Linux操作系统”时，通常指的是一个由Linux内核和GNU项目提供的工具和应用程序组成的系统
 
+<br>
+
+---
+
 ## GCC
 
 GCC（GNU Compiler Collection）：GNU编译器集合是GNU项目的核心部分，支持多种编程语言的编译：
@@ -33,6 +39,10 @@ GCC（GNU Compiler Collection）：GNU编译器集合是GNU项目的核心部分
 * **Rust（通过Rust-GCC插件）：** 在Rust编程语言的生态系统中，也有Rust-GCC插件，使得可以使用GCC来编译Rust程序。
 
 `gcc` 命令，是GCC的默认命令，它可以编译C、C++、Objective-C、Objective-C++程序。
+
+<br>
+
+---
 
 ## G++
 
@@ -82,6 +92,10 @@ GCC（GNU Compiler Collection）：GNU编译器集合是GNU项目的核心部分
     g++ -g ac.cpp -o ac
     ```
     * `-g` 选项指定生成调试信息，这样可以使用调试器调试程序。
+
+<br>
+
+---
 
 ## GDB
 
@@ -140,6 +154,10 @@ GDB（GNU Debugger）：GNU调试器是一个功能强大的调试器，可以�
     quit
     ```
     * `quit` 命令用于退出GDB，可以简写为 `q`。
+
+<br>
+
+---
 
 ## Make & Makefile
 
@@ -201,10 +219,78 @@ clean:
 * `bc` 是一个目标，依赖 `bc.cpp` 文件，通过 `make bc` 命令，依次构建 `bc` 所依赖的目标。
 * `clean` 是一个目标，通过 `make clean` 命令，清理构建过程中产生的文件。
 
+<br>
+
+---
+
 ## Cmake & CmakeLists.txt
 
-Cmake 是一个跨平台的构建工具，依赖 CmakeLists.txt 文件来描述构建规则，然后通过 cmake 命令来执行构建。
+Cmake 是一个跨平台的构建工具，依赖 CmakeLists.txt 文件来描述构建规则，可以自动生成各种操作系统和开发环境下的构建脚本，然后通过 cmake 命令来执行构建。
+
+1. **一个基础的CmakeLists.txt：**
+    ```cmake
+    # 指定CMake的最低版本要求
+    cmake_minimum_required(VERSION 3.0)
+
+    # 设置项目的版本号
+    set(PROJECT_VERSION_MAJOR 1)
+    set(PROJECT_VERSION_MINOR 0)
+    set(PROJECT_VERSION_PATCH 0)
+
+    # 指定项目名称和支持的编程语言
+    project(JiaoProject VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH} LANGUAGES CXX)
+
+    # 添加可执行文件
+    add_executable(JiaoProject main.cpp help.cpp)
+    ```
+    * `cmake_minimum_required` 指定了Cmake的最低版本。
+    * `project` 指定了项目名称和版本，这里是 `JiaoProject` 项目，版本号是 `1.0.0`，支持的语言是 C++。
+        * `PROJECT_VERSION_MAJOR` 是主版本号。
+        * `PROJECT_VERSION_MINOR` 是次版本号。
+        * `PROJECT_VERSION_PATCH` 是修订号。
+        * `LANGUAGES` 指定了支持的编程语言。
+    * `add_executable` 指定了可执行文件的名称和源文件：将 `main.cpp` 和 `help.cpp` 编译并链接到 `JiaoProject` 可执行文件中。
+
+
+<br>
 
 ---
 
 # Windows
+
+## mingw-w64
+
+[下载地址](https://github.com/niXman/mingw-builds-binaries/releases)
+
+mingw-w64 是一个跨平台的编译器，可以在 Windows 上编译出 Linux 下可执行文件。
+
+| 系统架构 | 位数 |
+|:-:|:-:
+| **i686** | 32位 |
+| **x86-64**| 64位 | 
+
+| 接口标准 | 跨平台性 | 主要特点 |
+|:-------:|:-------:|:-------:|
+| **POSIX**  | 跨UNIX和类UNIX系统   | 标准化的UNIX系统API，跨平台 |
+| **MCF**    | 仅限于Windows平台    | Windows API集成，提供高级功能 |
+| **Win32**  | 仅限于Windows平台    | 提供Windows操作系统的各种功能 |
+
+| 异常处理与调试 | 用途 | 应用范围 | 使用场景 | 
+|:-:|:-:|:-:|:-:|
+| **SEH** | 仅限于Windows平台，处理Windows特定的异常 | 处理程序运行时的异常，提供结构化的异常处理           | 应用程序中处理可能出现的异常情况，如文件读取失败或内存访问错误    |
+| **DWARF** | 用于多种操作系统，包括Linux、Unix、macOS等             | 提供编译后程序的调试信息给调试器                  | 由编译器生成，提供源代码级别的调试信息给开发者，用于程序调试和分析    |
+
+| 运行时库   | 版本兼容性和兼容性 | 提供的函数和特性 |
+|:-:|:-:|:-:|
+| **ucrt**   | 较新的Windows版本 | 标准C库函数，包括C11和POSIX标准的扩展函数 |
+| **msvcrt** | 早期和某些Windows版本 | 早期的C库函数和一些扩展函数         |
+
+值得一提，虽然 POSIX 接口标准是跨平台的，但是 Windows 并不支持 POSIX 标准，如果使用 POSIX 标准，那么程序会
+
+<br>
+
+---
+
+## MSVC
+
+MSVC（Microsoft Visual C++）是微软的 C++ 编译器，通常与 Visual Studio 集成使用。

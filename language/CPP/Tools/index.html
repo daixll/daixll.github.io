@@ -25,6 +25,7 @@
       <div class="crossnote markdown-preview  ">
       
 <h1 id="linux">Linux </h1>
+<p><strong>值得一提</strong>，我们可以通过 <code>build-essential</code> 包来安装 GCC 等一系列编译工具。</p>
 <h2 id="gnu">GNU </h2>
 <p>GNU（GNU's Not Unix）是一个自由软件运动的项目，提供了许多重要的系统工具和应用程序：</p>
 <ul>
@@ -35,6 +36,7 @@
 </ul>
 <p>这些工具的自由软件许可证（通常是GNU通用公共许可证，GPL）确保了用户对这些软件的自由使用权。</p>
 <p>当人们谈论“Linux操作系统”时，通常指的是一个由Linux内核和GNU项目提供的工具和应用程序组成的系统</p>
+<hr>
 <h2 id="gcc">GCC </h2>
 <p>GCC（GNU Compiler Collection）：GNU编译器集合是GNU项目的核心部分，支持多种编程语言的编译：</p>
 <ul>
@@ -55,6 +57,7 @@
 </li>
 </ul>
 <p><code>gcc</code> 命令，是GCC的默认命令，它可以编译C、C++、Objective-C、Objective-C++程序。</p>
+<hr>
 <h2 id="g">G++ </h2>
 <p><code>g++</code> 命令，是GCC中的C++编译器命令，专门用于编译C++程序。</p>
 <ol>
@@ -122,6 +125,7 @@
 </ul>
 </li>
 </ol>
+<hr>
 <h2 id="gdb">GDB </h2>
 <p>GDB（GNU Debugger）：GNU调试器是一个功能强大的调试器，可以用于调试C、C++、Objective-C、Fortran、Java、Go等程序。</p>
 <p>在上面生成调试信息中，我们生成了一个可调试的程序，现在我们可以使用GDB调试这个程序。</p>
@@ -187,6 +191,7 @@
 </ul>
 </li>
 </ol>
+<hr>
 <h2 id="make--makefile">Make &amp; Makefile </h2>
 <p>Make 是一个构建工具，依赖 Makefile 文件来描述构建规则，然后通过 make 命令来执行构建。</p>
 <p>我们考虑一下这样一个场景：</p>
@@ -236,8 +241,21 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
 <li><code>bc</code> 是一个目标，依赖 <code>bc.cpp</code> 文件，通过 <code>make bc</code> 命令，依次构建 <code>bc</code> 所依赖的目标。</li>
 <li><code>clean</code> 是一个目标，通过 <code>make clean</code> 命令，清理构建过程中产生的文件。</li>
 </ul>
+<hr>
 <h2 id="cmake--cmakeliststxt">Cmake &amp; CmakeLists.txt </h2>
-<p>Cmake 是一个跨平台的构建工具，依赖 CmakeLists.txt 文件来描述构建规则，然后通过 cmake 命令来执行构建。</p>
+<p>Cmake 是一个跨平台的构建工具，依赖 CmakeLists.txt 文件来描述构建规则，可以自动生成各种操作系统和开发环境下的构建脚本，然后通过 cmake 命令来执行构建。</p>
+<ol>
+<li><strong>一个简单的CmakeLists.txt：</strong><pre data-role="codeBlock" data-info="cmake" class="language-cmake cmake"><code><span class="token keyword keyword-cmake_minimum_required">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.0.0</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-project">project</span><span class="token punctuation">(</span>ac <span class="token property">VERSION</span> <span class="token number">0.1.0</span><span class="token punctuation">)</span>
+
+<span class="token keyword keyword-add_executable">add_executable</span><span class="token punctuation">(</span>ac ac.cpp<span class="token punctuation">)</span>
+</code></pre><ul>
+<li><code>cmake_minimum_required</code> 指定了Cmake的最低版本。</li>
+<li><code>project</code> 指定了项目名称和版本。</li>
+<li><code>add_executable</code> 指定了可执行文件的名称和源文件。</li>
+</ul>
+</li>
+</ol>
 <hr>
 <h1 id="windows">Windows </h1>
 
