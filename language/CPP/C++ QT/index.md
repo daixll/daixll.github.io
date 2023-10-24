@@ -5,7 +5,7 @@ export_on_save:
     html: true  # 自动保存
 ---
 
-# QT SETUP
+# SETUP
 
 ## LINUX
 
@@ -75,3 +75,77 @@ export_on_save:
 
 3. 创建项目：文件 -> 新建 -> 项目 -> Qt Widgets Application
     F5 一键运行，弹出窗口即成功
+
+
+
+<br>
+
+---
+
+# QT设计师
+
+## Buttons
+
+### Push Button
+
+**按钮**
+
+按下按钮时，会发出 `pressed()` 信号。
+释放按钮时，会发出 `released()` 信号。
+
+```cpp
+// 槽函数
+void QT2::press() { // 按下事件的槽函数
+	qDebug() << "press";
+}
+
+void QT2::release() { // 松开事件的槽函数
+	qDebug() << "release";
+}
+
+// 连接信号和槽
+// 将 QPushButton 的 pressed() 信号连接到 QT2 的 press() 槽
+QObject::connect(ui.pushButton, &QPushButton::pressed, this, &QT2::press);
+// 将 QPushButton 的 released() 信号连接到 QT2 的 release() 槽
+QObject::connect(ui.pushButton, &QPushButton::released, this, &QT2::release);
+```
+
+
+单击（按下+释放）按钮时，会发出 `clicked()` 信号。
+可以使用 Lambda 表达式来连接信号和槽。
+
+```cpp
+// 信号与槽的连接
+QObject::connect(ui.pushButton, &QPushButton::clicked, [&]() {
+    qDebug() << "click";
+    });
+```
+
+<br>
+
+### Tool Button
+
+**工具按钮**
+
+单击（按下+释放）工具按钮时，会发出 `clicked()` 信号。
+
+```cpp
+QObject::connect(ui.toolButton, &QToolButton::clicked, [&]() {
+	qDebug() << "toolButton click";
+	});
+```
+
+<br>
+
+### Check Box
+
+**复选框**
+
+单击（按下+释放）复选框时，会发出 `clicked()` 信号。
+
+```cpp
+QObject::connect(ui.checkBox, &QCheckBox::clicked, [&]() {
+    qDebug() << "checkBox click";
+    });
+```
+
