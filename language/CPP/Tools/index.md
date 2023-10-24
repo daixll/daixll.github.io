@@ -1,9 +1,9 @@
-<br>---
+---
 html:
     toc: true   # 打开侧边目录
 export_on_save:
     html: true  # 自动保存
-<br>---
+---
 
 # Linux
 
@@ -194,6 +194,8 @@ int main(){
 }
 ```
 
+编写 Makefile 文件：
+
 ```makefile
 # Makefile
 CC = g++                # 指定编译器
@@ -218,6 +220,16 @@ clean:
 * `ac` 是一个目标，依赖 `ac.cpp` 文件，通过 `make ac` 命令，依次构建 `ac` 所依赖的目标。
 * `bc` 是一个目标，依赖 `bc.cpp` 文件，通过 `make bc` 命令，依次构建 `bc` 所依赖的目标。
 * `clean` 是一个目标，通过 `make clean` 命令，清理构建过程中产生的文件。
+
+在此目录下，我们可以使用以下几种命令：
+* `make`：构建 `all` 目标。
+* `make all`：构建 `all` 目标。
+* `make ac`：构建 `ac` 目标。
+* `make bc`：构建 `bc` 目标。
+* `make clean`：清理构建过程中产生的文件。
+
+综上，其实可以发现，Makefile 文件就是一系列的目标和依赖关系，通过 `make` 命令来执行构建，
+其本身并不具备编译的能力，而是通过调用编译器来实现编译。
 
 <br>
 

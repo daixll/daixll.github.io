@@ -36,6 +36,7 @@
 </ul>
 <p>这些工具的自由软件许可证（通常是GNU通用公共许可证，GPL）确保了用户对这些软件的自由使用权。</p>
 <p>当人们谈论“Linux操作系统”时，通常指的是一个由Linux内核和GNU项目提供的工具和应用程序组成的系统</p>
+<br>
 <hr>
 <h2 id="gcc">GCC </h2>
 <p>GCC（GNU Compiler Collection）：GNU编译器集合是GNU项目的核心部分，支持多种编程语言的编译：</p>
@@ -57,6 +58,7 @@
 </li>
 </ul>
 <p><code>gcc</code> 命令，是GCC的默认命令，它可以编译C、C++、Objective-C、Objective-C++程序。</p>
+<br>
 <hr>
 <h2 id="g">G++ </h2>
 <p><code>g++</code> 命令，是GCC中的C++编译器命令，专门用于编译C++程序。</p>
@@ -125,6 +127,7 @@
 </ul>
 </li>
 </ol>
+<br>
 <hr>
 <h2 id="gdb">GDB </h2>
 <p>GDB（GNU Debugger）：GNU调试器是一个功能强大的调试器，可以用于调试C、C++、Objective-C、Fortran、Java、Go等程序。</p>
@@ -191,6 +194,7 @@
 </ul>
 </li>
 </ol>
+<br>
 <hr>
 <h2 id="make--makefile">Make &amp; Makefile </h2>
 <p>Make 是一个构建工具，依赖 Makefile 文件来描述构建规则，然后通过 make 命令来执行构建。</p>
@@ -218,7 +222,8 @@
     std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"This is from AC: "</span> <span class="token operator">&lt;&lt;</span> s<span class="token punctuation">;</span>
     <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-</code></pre><pre data-role="codeBlock" data-info="makefile" class="language-makefile makefile"><code><span class="token comment"># Makefile</span>
+</code></pre><p>编写 Makefile 文件：</p>
+<pre data-role="codeBlock" data-info="makefile" class="language-makefile makefile"><code><span class="token comment"># Makefile</span>
 CC <span class="token operator">=</span> g++                <span class="token comment"># 指定编译器</span>
 CFLAGS <span class="token operator">=</span> -g -std<span class="token operator">=</span>c++23  <span class="token comment"># 指定编译选项</span>
 
@@ -241,23 +246,148 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
 <li><code>bc</code> 是一个目标，依赖 <code>bc.cpp</code> 文件，通过 <code>make bc</code> 命令，依次构建 <code>bc</code> 所依赖的目标。</li>
 <li><code>clean</code> 是一个目标，通过 <code>make clean</code> 命令，清理构建过程中产生的文件。</li>
 </ul>
+<p>在此目录下，我们可以使用以下几种命令：</p>
+<ul>
+<li><code>make</code>：构建 <code>all</code> 目标。</li>
+<li><code>make all</code>：构建 <code>all</code> 目标。</li>
+<li><code>make ac</code>：构建 <code>ac</code> 目标。</li>
+<li><code>make bc</code>：构建 <code>bc</code> 目标。</li>
+<li><code>make clean</code>：清理构建过程中产生的文件。</li>
+</ul>
+<p>综上，其实可以发现，Makefile 文件就是一系列的目标和依赖关系，通过 <code>make</code> 命令来执行构建，<br>
+其本身并不具备编译的能力，而是通过调用编译器来实现编译。</p>
+<br>
 <hr>
 <h2 id="cmake--cmakeliststxt">Cmake &amp; CmakeLists.txt </h2>
 <p>Cmake 是一个跨平台的构建工具，依赖 CmakeLists.txt 文件来描述构建规则，可以自动生成各种操作系统和开发环境下的构建脚本，然后通过 cmake 命令来执行构建。</p>
 <ol>
-<li><strong>一个简单的CmakeLists.txt：</strong><pre data-role="codeBlock" data-info="cmake" class="language-cmake cmake"><code><span class="token keyword keyword-cmake_minimum_required">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.0.0</span><span class="token punctuation">)</span>
-<span class="token keyword keyword-project">project</span><span class="token punctuation">(</span>ac <span class="token property">VERSION</span> <span class="token number">0.1.0</span><span class="token punctuation">)</span>
+<li><strong>一个基础的CmakeLists.txt：</strong><pre data-role="codeBlock" data-info="cmake" class="language-cmake cmake"><code><span class="token comment"># 指定CMake的最低版本要求</span>
+<span class="token keyword keyword-cmake_minimum_required">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.0</span><span class="token punctuation">)</span>
 
-<span class="token keyword keyword-add_executable">add_executable</span><span class="token punctuation">(</span>ac ac.cpp<span class="token punctuation">)</span>
+<span class="token comment"># 设置项目的版本号</span>
+<span class="token keyword keyword-set">set</span><span class="token punctuation">(</span><span class="token variable">PROJECT_VERSION_MAJOR</span> <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-set">set</span><span class="token punctuation">(</span><span class="token variable">PROJECT_VERSION_MINOR</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-set">set</span><span class="token punctuation">(</span><span class="token variable">PROJECT_VERSION_PATCH</span> <span class="token number">0</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 指定项目名称和支持的编程语言</span>
+<span class="token keyword keyword-project">project</span><span class="token punctuation">(</span>JiaoProject <span class="token property">VERSION</span> <span class="token punctuation">${</span><span class="token variable">PROJECT_VERSION_MAJOR</span><span class="token punctuation">}</span>.<span class="token punctuation">${</span><span class="token variable">PROJECT_VERSION_MINOR</span><span class="token punctuation">}</span>.<span class="token punctuation">${</span><span class="token variable">PROJECT_VERSION_PATCH</span><span class="token punctuation">}</span> LANGUAGES CXX<span class="token punctuation">)</span>
+
+<span class="token comment"># 添加可执行文件</span>
+<span class="token keyword keyword-add_executable">add_executable</span><span class="token punctuation">(</span>JiaoProject main.cpp help.cpp<span class="token punctuation">)</span>
 </code></pre><ul>
 <li><code>cmake_minimum_required</code> 指定了Cmake的最低版本。</li>
-<li><code>project</code> 指定了项目名称和版本。</li>
-<li><code>add_executable</code> 指定了可执行文件的名称和源文件。</li>
+<li><code>project</code> 指定了项目名称和版本，这里是 <code>JiaoProject</code> 项目，版本号是 <code>1.0.0</code>，支持的语言是 C++。
+<ul>
+<li><code>PROJECT_VERSION_MAJOR</code> 是主版本号。</li>
+<li><code>PROJECT_VERSION_MINOR</code> 是次版本号。</li>
+<li><code>PROJECT_VERSION_PATCH</code> 是修订号。</li>
+<li><code>LANGUAGES</code> 指定了支持的编程语言。</li>
+</ul>
+</li>
+<li><code>add_executable</code> 指定了可执行文件的名称和源文件：将 <code>main.cpp</code> 和 <code>help.cpp</code> 编译并链接到 <code>JiaoProject</code> 可执行文件中。</li>
 </ul>
 </li>
 </ol>
+<br>
 <hr>
 <h1 id="windows">Windows </h1>
+<h2 id="mingw-w64">mingw-w64 </h2>
+<p><a href="https://github.com/niXman/mingw-builds-binaries/releases">下载地址</a></p>
+<p>mingw-w64 是一个跨平台的编译器，可以在 Windows 上编译出 Linux 下可执行文件。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">系统架构</th>
+<th style="text-align:center">位数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>i686</strong></td>
+<td style="text-align:center">32位</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>x86-64</strong></td>
+<td style="text-align:center">64位</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">接口标准</th>
+<th style="text-align:center">跨平台性</th>
+<th style="text-align:center">主要特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>POSIX</strong></td>
+<td style="text-align:center">跨UNIX和类UNIX系统</td>
+<td style="text-align:center">标准化的UNIX系统API，跨平台</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>MCF</strong></td>
+<td style="text-align:center">仅限于Windows平台</td>
+<td style="text-align:center">Windows API集成，提供高级功能</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Win32</strong></td>
+<td style="text-align:center">仅限于Windows平台</td>
+<td style="text-align:center">提供Windows操作系统的各种功能</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">异常处理与调试</th>
+<th style="text-align:center">用途</th>
+<th style="text-align:center">应用范围</th>
+<th style="text-align:center">使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>SEH</strong></td>
+<td style="text-align:center">仅限于Windows平台，处理Windows特定的异常</td>
+<td style="text-align:center">处理程序运行时的异常，提供结构化的异常处理</td>
+<td style="text-align:center">应用程序中处理可能出现的异常情况，如文件读取失败或内存访问错误</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>DWARF</strong></td>
+<td style="text-align:center">用于多种操作系统，包括Linux、Unix、macOS等</td>
+<td style="text-align:center">提供编译后程序的调试信息给调试器</td>
+<td style="text-align:center">由编译器生成，提供源代码级别的调试信息给开发者，用于程序调试和分析</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">运行时库</th>
+<th style="text-align:center">版本兼容性和兼容性</th>
+<th style="text-align:center">提供的函数和特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>ucrt</strong></td>
+<td style="text-align:center">较新的Windows版本</td>
+<td style="text-align:center">标准C库函数，包括C11和POSIX标准的扩展函数</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>msvcrt</strong></td>
+<td style="text-align:center">早期和某些Windows版本</td>
+<td style="text-align:center">早期的C库函数和一些扩展函数</td>
+</tr>
+</tbody>
+</table>
+<p>值得一提，虽然 POSIX 接口标准是跨平台的，但是 Windows 并不支持 POSIX 标准，如果使用 POSIX 标准，那么程序会</p>
+<br>
+<hr>
+<h2 id="msvc">MSVC </h2>
+<p>MSVC（Microsoft Visual C++）是微软的 C++ 编译器，通常与 Visual Studio 集成使用。</p>
 
       </div>
       <div class="md-sidebar-toc">
@@ -295,11 +425,24 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#windows" class="md-toc-link">
-            <p>Windows</p>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#windows" class="md-toc-link"><p>Windows</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mingw-w64" class="md-toc-link">
+            <p>mingw-w64</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#msvc" class="md-toc-link">
+            <p>MSVC</p>
 
           </a></div>
+        </div>
+      </details>
+    
 </div>
 </div>
       <a id="sidebar-toc-btn">≡</a>
