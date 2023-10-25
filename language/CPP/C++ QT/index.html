@@ -166,7 +166,7 @@ SOURCES <span class="token operator">+=</span> main.cpp
             <span class="token comment">// 可执行文件路径为当前打开文件的路径和文件名（不带扩展名）</span>
             <span class="token property">"program"</span><span class="token operator">:</span> <span class="token string">"${fileDirname}/${fileBasenameNoExtension}"</span><span class="token punctuation">,</span>
             <span class="token comment">// 是否在程序入口处停止</span>
-            <span class="token property">"stopAtEntry"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+            <span class="token property">"stopAtEntry"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
             <span class="token comment">// 当前工作目录为VS Code的工作区目录</span>
             <span class="token property">"cwd"</span><span class="token operator">:</span> <span class="token string">"${workspaceFolder}"</span><span class="token punctuation">,</span>
             <span class="token comment">// 调试器类型为gdb</span>
@@ -206,47 +206,52 @@ F5 一键运行，弹出窗口即成功</p>
 </ol>
 <br>
 <hr>
-<h1 id="qt设计师">QT设计师 </h1>
-<h2 id="buttons">Buttons </h2>
-<h3 id="push-button">Push Button </h3>
-<p><strong>按钮</strong></p>
-<p>按下按钮时，会发出 <code>pressed()</code> 信号。<br>
-释放按钮时，会发出 <code>released()</code> 信号。</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 槽函数</span>
-<span class="token keyword keyword-void">void</span> <span class="token class-name">QT2</span><span class="token double-colon punctuation">::</span><span class="token function">press</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 按下事件的槽函数</span>
-	<span class="token function">qDebug</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"press"</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<h1 id="信号与槽">信号与槽 </h1>
+<p>简单理解，当你在页面点击一个按钮，这个点击就是 <strong>信号</strong>，而后端的处理函数就是 <strong>槽</strong>。<br>
+同理，当你在页面输入一个字符，这个输入就是 <strong>信号</strong>，而后端的处理函数就是 <strong>槽</strong>。</p>
+<p>QT 官方对信号与槽的描述如下：</p>
+<blockquote>
+<p>Qt 的核心思想是信号与槽机制。信号与槽是一种机制，用于在对象间进行通信。信号在特定事件发生时被发射，槽是在信号被发射时被调用的函数。Qt 中，任何 Qt 对象都能发送信号和处理信号。信号与槽是一种非常灵活和松耦合的通信机制，它允许对象间的通信完全独立于彼此的实现。</p>
+</blockquote>
+<p><strong>值得一提</strong> 的是，信号与槽的连接是 <strong>动态</strong> 的，也就是说，你可以在程序运行的过程中，动态的连接信号与槽，也可以动态的断开信号与槽的连接。</p>
+<p><strong>信号与槽的新语法</strong></p>
+<ul>
+<li>
+<p>之前 信号与槽连接的方式：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">connect</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> <span class="token function">SIGNAL</span><span class="token punctuation">(</span><span class="token function">valueChanged</span><span class="token punctuation">(</span>QString<span class="token punctuation">,</span> QString<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        receiver<span class="token punctuation">,</span> <span class="token function">SLOT</span><span class="token punctuation">(</span><span class="token function">updateValue</span><span class="token punctuation">(</span>QString<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword keyword-void">void</span> <span class="token class-name">QT2</span><span class="token double-colon punctuation">::</span><span class="token function">release</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 松开事件的槽函数</span>
-	<span class="token function">qDebug</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"release"</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<span class="token comment">// 具体的</span>
+<span class="token function">connect</span><span class="token punctuation">(</span>button<span class="token punctuation">,</span> <span class="token function">SIGNAL</span><span class="token punctuation">(</span><span class="token function">clicked</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token function">SLOT</span><span class="token punctuation">(</span><span class="token function">showMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>官网对这种方式的弊端进行了详细的说明：<a href="https://www.qt.io/zh-cn/blog/2012/08/07/new-signals-slots-syntax-in-qt5">Qt 5中信号和槽的新语法</a></p>
+  <br>
+</li>
+<li>
+<p>目前 信号与槽连接的方式：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">connect</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> <span class="token operator">&amp;</span>Sender<span class="token double-colon punctuation">::</span>valueChanged<span class="token punctuation">,</span> receiver<span class="token punctuation">,</span> <span class="token operator">&amp;</span>Receiver<span class="token double-colon punctuation">::</span>updateValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token comment">// 连接信号和槽</span>
-<span class="token comment">// 将 QPushButton 的 pressed() 信号连接到 QT2 的 press() 槽</span>
-<span class="token class-name">QObject</span><span class="token double-colon punctuation">::</span><span class="token function">connect</span><span class="token punctuation">(</span>ui<span class="token punctuation">.</span>pushButton<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QPushButton<span class="token double-colon punctuation">::</span>pressed<span class="token punctuation">,</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>QT2<span class="token double-colon punctuation">::</span>press<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">// 将 QPushButton 的 released() 信号连接到 QT2 的 release() 槽</span>
-<span class="token class-name">QObject</span><span class="token double-colon punctuation">::</span><span class="token function">connect</span><span class="token punctuation">(</span>ui<span class="token punctuation">.</span>pushButton<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QPushButton<span class="token double-colon punctuation">::</span>released<span class="token punctuation">,</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>QT2<span class="token double-colon punctuation">::</span>release<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p>单击（按下+释放）按钮时，会发出 <code>clicked()</code> 信号。<br>
-可以使用 Lambda 表达式来连接信号和槽。</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 信号与槽的连接</span>
-<span class="token class-name">QObject</span><span class="token double-colon punctuation">::</span><span class="token function">connect</span><span class="token punctuation">(</span>ui<span class="token punctuation">.</span>pushButton<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QPushButton<span class="token double-colon punctuation">::</span>clicked<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">qDebug</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"click"</span><span class="token punctuation">;</span>
+<span class="token comment">// 具体的</span>
+<span class="token function">connect</span><span class="token punctuation">(</span>button<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QPushButton<span class="token double-colon punctuation">::</span>clicked<span class="token punctuation">,</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>MyWidget<span class="token double-colon punctuation">::</span>showMessage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 使用 lambda 表达式</span>
+<span class="token function">connect</span><span class="token punctuation">(</span>button<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QPushButton<span class="token double-colon punctuation">::</span>clicked<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+    <span class="token class-name">QMessageBox</span><span class="token double-colon punctuation">::</span><span class="token function">information</span><span class="token punctuation">(</span><span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">,</span> <span class="token string">"消息"</span><span class="token punctuation">,</span> <span class="token string">"按钮被点击了！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><br>
-<h3 id="tool-button">Tool Button </h3>
-<p><strong>工具按钮</strong></p>
-<p>单击（按下+释放）工具按钮时，会发出 <code>clicked()</code> 信号。</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token class-name">QObject</span><span class="token double-colon punctuation">::</span><span class="token function">connect</span><span class="token punctuation">(</span>ui<span class="token punctuation">.</span>toolButton<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QToolButton<span class="token double-colon punctuation">::</span>clicked<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token function">qDebug</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"toolButton click"</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><br>
-<h3 id="check-box">Check Box </h3>
-<p><strong>复选框</strong></p>
-<p>单击（按下+释放）复选框时，会发出 <code>clicked()</code> 信号。</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token class-name">QObject</span><span class="token double-colon punctuation">::</span><span class="token function">connect</span><span class="token punctuation">(</span>ui<span class="token punctuation">.</span>checkBox<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QCheckBox<span class="token double-colon punctuation">::</span>clicked<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">qDebug</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"checkBox click"</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+</code></pre></li>
+</ul>
+<h1 id="简单窗口和基本控件">简单窗口和基本控件 </h1>
+<h2 id="hello-qt">Hello Qt </h2>
+<h2 id="文本输入和显示">文本输入和显示 </h2>
+<h2 id="布局管理器">布局管理器 </h2>
+<h2 id="-计算器">🧮 计算器 </h2>
+<h2 id="菜单和工具栏">菜单和工具栏 </h2>
+<h2 id="选择和显示日期时间">选择和显示日期/时间 </h2>
+<h2 id="表格和滚动区域">表格和滚动区域 </h2>
+<h2 id="按钮和标签">按钮和标签 </h2>
+<h1 id="布局管理器-1">布局管理器 </h1>
+<h1 id="列表和组合控件">列表和组合控件 </h1>
+<h1 id="文件和图像操作">文件和图像操作 </h1>
+
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
@@ -267,37 +272,64 @@ F5 一键运行，弹出窗口即成功</p>
           </a></div>
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open="">
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#信号与槽" class="md-toc-link">
+            <p>信号与槽</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#qt设计师" class="md-toc-link"><p>QT设计师</p>
-</a>
-          </summary>
-        <div>
-          <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#buttons" class="md-toc-link"><p>Buttons</p>
+          <a href="#简单窗口和基本控件" class="md-toc-link"><p>简单窗口和基本控件</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#push-button" class="md-toc-link">
-            <p>Push Button</p>
+          <a href="#hello-qt" class="md-toc-link">
+            <p>Hello Qt</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#tool-button" class="md-toc-link">
-            <p>Tool Button</p>
+          <a href="#文本输入和显示" class="md-toc-link">
+            <p>文本输入和显示</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#check-box" class="md-toc-link">
-            <p>Check Box</p>
+          <a href="#布局管理器" class="md-toc-link">
+            <p>布局管理器</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#-计算器" class="md-toc-link">
+            <p>🧮 计算器</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#菜单和工具栏" class="md-toc-link">
+            <p>菜单和工具栏</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#选择和显示日期时间" class="md-toc-link">
+            <p>选择和显示日期/时间</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#表格和滚动区域" class="md-toc-link">
+            <p>表格和滚动区域</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#按钮和标签" class="md-toc-link">
+            <p>按钮和标签</p>
 
           </a></div>
         </div>
       </details>
-    
-        </div>
-      </details>
-    
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#布局管理器-1" class="md-toc-link">
+            <p>布局管理器</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#列表和组合控件" class="md-toc-link">
+            <p>列表和组合控件</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#文件和图像操作" class="md-toc-link">
+            <p>文件和图像操作</p>
+
+          </a></div>
 </div>
 </div>
       <a id="sidebar-toc-btn">≡</a>

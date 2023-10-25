@@ -154,7 +154,7 @@ export_on_save:
                     // 可执行文件路径为当前打开文件的路径和文件名（不带扩展名）
                     "program": "${fileDirname}/${fileBasenameNoExtension}",
                     // 是否在程序入口处停止
-                    "stopAtEntry": false,
+                    "stopAtEntry": true,
                     // 当前工作目录为VS Code的工作区目录
                     "cwd": "${workspaceFolder}",
                     // 调试器类型为gdb
@@ -192,70 +192,70 @@ export_on_save:
 
 ---
 
-# QT设计师
+# 信号与槽
 
-## Buttons
+简单理解，当你在页面点击一个按钮，这个点击就是 **信号**，而后端的处理函数就是 **槽**。
+同理，当你在页面输入一个字符，这个输入就是 **信号**，而后端的处理函数就是 **槽**。
 
-### Push Button
+QT 官方对信号与槽的描述如下：
+>Qt 的核心思想是信号与槽机制。信号与槽是一种机制，用于在对象间进行通信。信号在特定事件发生时被发射，槽是在信号被发射时被调用的函数。Qt 中，任何 Qt 对象都能发送信号和处理信号。信号与槽是一种非常灵活和松耦合的通信机制，它允许对象间的通信完全独立于彼此的实现。
 
-**按钮**
+**值得一提** 的是，信号与槽的连接是 **动态** 的，也就是说，你可以在程序运行的过程中，动态的连接信号与槽，也可以动态的断开信号与槽的连接。
 
-按下按钮时，会发出 `pressed()` 信号。
-释放按钮时，会发出 `released()` 信号。
+**信号与槽的新语法** 
 
-```cpp
-// 槽函数
-void QT2::press() { // 按下事件的槽函数
-	qDebug() << "press";
-}
+* 之前 信号与槽连接的方式：
 
-void QT2::release() { // 松开事件的槽函数
-	qDebug() << "release";
-}
+    ```cpp
+    connect(sender, SIGNAL(valueChanged(QString, QString)),
+            receiver, SLOT(updateValue(QString)));
 
-// 连接信号和槽
-// 将 QPushButton 的 pressed() 信号连接到 QT2 的 press() 槽
-QObject::connect(ui.pushButton, &QPushButton::pressed, this, &QT2::press);
-// 将 QPushButton 的 released() 信号连接到 QT2 的 release() 槽
-QObject::connect(ui.pushButton, &QPushButton::released, this, &QT2::release);
-```
+    // 具体的
+    connect(button, SIGNAL(clicked()), this, SLOT(showMessage()));
+    ```
+
+    官网对这种方式的弊端进行了详细的说明：[Qt 5中信号和槽的新语法](https://www.qt.io/zh-cn/blog/2012/08/07/new-signals-slots-syntax-in-qt5)
+
+    <br>
+
+* 目前 信号与槽连接的方式：
+
+    ```cpp
+    connect(sender, &Sender::valueChanged, receiver, &Receiver::updateValue);
+
+    // 具体的
+    connect(button, &QPushButton::clicked, this, &MyWidget::showMessage);
+
+    // 使用 lambda 表达式
+    connect(button, &QPushButton::clicked, [=](){ 
+        QMessageBox::information(nullptr, "消息", "按钮被点击了！"); 
+        });
+    ```
+
+# 简单窗口和基本控件
+
+## Hello Qt
+
+## 文本输入和显示
+
+## 布局管理器
+
+## 🧮 计算器
 
 
-单击（按下+释放）按钮时，会发出 `clicked()` 信号。
-可以使用 Lambda 表达式来连接信号和槽。
 
-```cpp
-// 信号与槽的连接
-QObject::connect(ui.pushButton, &QPushButton::clicked, [&]() {
-    qDebug() << "click";
-    });
-```
+## 菜单和工具栏
 
-<br>
+## 选择和显示日期/时间
 
-### Tool Button
+## 表格和滚动区域
 
-**工具按钮**
+## 按钮和标签
 
-单击（按下+释放）工具按钮时，会发出 `clicked()` 信号。
 
-```cpp
-QObject::connect(ui.toolButton, &QToolButton::clicked, [&]() {
-	qDebug() << "toolButton click";
-	});
-```
 
-<br>
+# 布局管理器
 
-### Check Box
+# 列表和组合控件
 
-**复选框**
-
-单击（按下+释放）复选框时，会发出 `clicked()` 信号。
-
-```cpp
-QObject::connect(ui.checkBox, &QCheckBox::clicked, [&]() {
-    qDebug() << "checkBox click";
-    });
-```
-
+# 文件和图像操作
