@@ -382,34 +382,37 @@ NUL NUL
 <h1 id="regex">regex </h1>
 <p><a href="..\..\..\Linux\Regex\index.html">正则表达式</a> 的本质，就是某种 <strong>字符组合</strong>。</p>
 <h2 id="定义正则表达式">定义正则表达式 </h2>
-<h2 id="判断串">判断串 </h2>
-<h2 id="查找匹配子串">查找匹配子串 </h2>
-<h2 id="取出匹配子串">取出匹配子串 </h2>
-<h2 id="替换匹配子串">替换匹配子串 </h2>
-<p><strong>创建正则表达式</strong></p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>regex <span class="token function">r</span><span class="token punctuation">(</span><span class="token string">"^([0-9]{1,3}\\.){3}[0-9]{1,3}$"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p>此正则表达式用于匹配 IPv4 地址。</p>
-<p><strong>判断字符串是否匹配正则表达式</strong></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>regex <span class="token function">r</span><span class="token punctuation">(</span><span class="token raw-string string">R"((\d{1,3}\.){3}\d{1,3})"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h2 id="判断串">判断串 </h2>
+<p>用于判断整个字符串是否匹配正则表达式。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span><span class="token function">regex_match</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// true</span>
-</code></pre><p><strong>查找字符串中匹配正则表达式的子串</strong></p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;regex&gt;</span></span>
-
-<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    std<span class="token double-colon punctuation">::</span>regex <span class="token function">r</span><span class="token punctuation">(</span><span class="token string">"\\b([0-9]{1,3}\\.){3}[0-9]{1,3}\\b"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 匹配IPv4地址的正则表达式</span>
-    <span class="token comment">// \b 是单词边界，确保匹配的是完整的IPv4地址</span>
-    std<span class="token double-colon punctuation">::</span>smatch m<span class="token punctuation">;</span>  <span class="token comment">// 存放匹配结果</span>
-    std<span class="token double-colon punctuation">::</span>string s <span class="token operator">=</span> <span class="token string">"127.0.0.1 192.168.31.1"</span><span class="token punctuation">;</span>
-
-    <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span><span class="token function">regex_search</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> m<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Found match: "</span> <span class="token operator">&lt;&lt;</span> m<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-        s <span class="token operator">=</span> m<span class="token punctuation">.</span><span class="token function">suffix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 获取当前匹配子串之后的子串</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span><span class="token function">regex_match</span><span class="token punctuation">(</span><span class="token string">"a127.0.0.1"</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// false</span>
+</code></pre><h2 id="查找--取出匹配子串">查找 / 取出匹配子串 </h2>
+<p>用于查找字符串中匹配正则表达式的子串。</p>
+<ol>
+<li>使用 <code>std::sregex_iterator</code></li>
+</ol>
+<p>C++ 中用于处理正则表达式匹配结果的迭代器类。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> i<span class="token operator">=</span>std<span class="token double-colon punctuation">::</span><span class="token function">sregex_iterator</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> s<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">!=</span>std<span class="token double-colon punctuation">::</span><span class="token function">sregex_iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span><span class="token operator">*</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">str</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+</code></pre><ol start="2">
+<li>使用 <code>std::regex_search</code></li>
+</ol>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>smatch matches<span class="token punctuation">;</span>
+<span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span><span class="token function">regex_search</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> matches<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> matches<span class="token punctuation">.</span><span class="token function">str</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    s <span class="token operator">=</span> matches<span class="token punctuation">.</span><span class="token function">suffix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 获取当前匹配子串之后的子串</span>
 <span class="token punctuation">}</span>
-</code></pre><h1 id="template">template </h1>
+</code></pre><h2 id="替换匹配子串">替换匹配子串 </h2>
+<p>替换所有匹配子串：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 将 s 中所有匹配 r 的子串替换为 "666"，保存到 ss 中</span>
+std<span class="token double-colon punctuation">::</span>string ss <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">regex_replace</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> r<span class="token punctuation">,</span> <span class="token string">"sss"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>替换第一个匹配子串：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 将 s 中第一个匹配 r 的子串替换为 "666"，保存到 ss 中</span>
+std<span class="token double-colon punctuation">::</span>string ss <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">regex_replace</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> r<span class="token punctuation">,</span> <span class="token string">"666"</span><span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>regex_constants<span class="token double-colon punctuation">::</span>format_first_only<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><br>
+<hr>
+<h1 id="template">template </h1>
 <p>template：变参数模板。</p>
 <h2 id="在函数中使用-template">在函数中使用 template </h2>
 <p>可以让函数接受任意类型的参数，而不是固定的类型。</p>
@@ -1028,12 +1031,8 @@ s<span class="token punctuation">.</span><span class="token function">equal_rang
             <p>判断串</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#查找匹配子串" class="md-toc-link">
-            <p>查找匹配子串</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#取出匹配子串" class="md-toc-link">
-            <p>取出匹配子串</p>
+          <a href="#查找--取出匹配子串" class="md-toc-link">
+            <p>查找 / 取出匹配子串</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#替换匹配子串" class="md-toc-link">

@@ -461,49 +461,62 @@ void *memcpy(void *dest, const void *src, size_t n);
 
 ## 定义正则表达式
 
-## 判断串
-
-## 查找匹配子串
-
-## 取出匹配子串
-
-## 替换匹配子串
-
-**创建正则表达式**
-
 ```cpp
-std::regex r("^([0-9]{1,3}\\.){3}[0-9]{1,3}$");
+std::regex r(R"((\d{1,3}\.){3}\d{1,3})");
 ```
 
-此正则表达式用于匹配 IPv4 地址。
+## 判断串
 
-**判断字符串是否匹配正则表达式**
+用于判断整个字符串是否匹配正则表达式。
 
 ```cpp
 std::regex_match("127.0.0.1", r);   // true
+std::regex_match("a127.0.0.1", r);  // false
 ```
 
-**查找字符串中匹配正则表达式的子串**
+## 查找 / 取出匹配子串
+
+用于查找字符串中匹配正则表达式的子串。
+
+1. 使用 `std::sregex_iterator`
+
+C++ 中用于处理正则表达式匹配结果的迭代器类。
 
 ```cpp
-#include <iostream>
-#include <regex>
+for(auto i=std::sregex_iterator(s.begin(), s.end(), r); i!=std::sregex_iterator(); i++)
+    std::cout << (*i).str() << std::endl;
+```
 
-int main() {
-    std::regex r("\\b([0-9]{1,3}\\.){3}[0-9]{1,3}\\b");
-    // 匹配IPv4地址的正则表达式
-    // \b 是单词边界，确保匹配的是完整的IPv4地址
-    std::smatch m;  // 存放匹配结果
-    std::string s = "127.0.0.1 192.168.31.1";
+2. 使用 `std::regex_search`
 
-    while (std::regex_search(s, m, r)) {
-        std::cout << "Found match: " << m[0] << std::endl;
-        s = m.suffix(); // 获取当前匹配子串之后的子串
-    }
-
-    return 0;
+```cpp
+std::smatch matches;
+while (std::regex_search(s, matches, r)) {
+    std::cout << matches.str() << std::endl;
+    s = matches.suffix().str(); // 获取当前匹配子串之后的子串
 }
 ```
+
+## 替换匹配子串
+
+替换所有匹配子串：
+
+```cpp
+// 将 s 中所有匹配 r 的子串替换为 "666"，保存到 ss 中
+std::string ss = std::regex_replace(s, r, "sss");
+```
+
+替换第一个匹配子串：
+
+```cpp
+// 将 s 中第一个匹配 r 的子串替换为 "666"，保存到 ss 中
+std::string ss = std::regex_replace(s, r, "666", std::regex_constants::format_first_only);
+```
+
+
+<br>
+
+---
 
 # template
 
