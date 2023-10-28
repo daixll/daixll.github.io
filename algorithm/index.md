@@ -1,27 +1,27 @@
 ---
 html:
-   toc: false  # 打开侧边目录
+   toc: false   # 打开侧边目录
 export_on_save:
    html: true  # 自动保存
 ---
 
 # 参考
 
-[AcWing 算法基础课 / 提高课 / 进阶课](https://www.acwing.com/)
-[kuangbin 专题](https://www.acwing.com/activity/content/90/)
-[USACO 题单](https://www.luogu.com.cn/training/list?keyword=USACO%20Section&type=select&page=1)
-[洛谷官方题单](https://www.luogu.com.cn/training/list)
-[信息学奥赛一本通](http://ybt.ssoier.cn:8088/index.php)
-[力扣](https://leetcode.cn)
-《算法竞赛进阶指南》- 李熠东 
-《算法训练营》- 陈小玉
-《算法竞赛》- 罗勇军 
+**书籍：**  [阿里云盘](https://www.aliyundrive.com/s/PZFRUW4CgRP)
+
+**题单：**
+
+* [信息学奥赛一本通](http://ybt.ssoier.cn:8088/index.php)
+* [noi oj](http://noi.openjudge.cn/)
+* [洛谷官方题单](https://www.luogu.com.cn/training/list)
+* [USACO Training](https://www.luogu.com.cn/training/list?keyword=USACO%20Section&type=select&page=1) / [个人整理](todo/USACOTraining.html)
+* [AcWing 算法基础课 / 提高课 / 进阶课](https://www.acwing.com/)
+* [kuangbin 专题](https://www.acwing.com/activity/content/90/)
 
 ---
 
 * 教学大纲 & 训练计划
    1. [暑期集训](summer.html)
-   2. [USACO Training](USACOTraining.html)
 
 ---
 0. 入门
@@ -109,7 +109,7 @@ export_on_save:
 
 ---
 
-* 真题训练
+* 五年算竞三年模拟
    1. [USACO-Bronze](真题/USACO_Bronze.html)
    2. [CCF-J](真题/CCF_J.html)
    3. [CIE](真题/CIE.html)
