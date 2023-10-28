@@ -19,7 +19,7 @@ export_on_save:
 
 <center>
 
-&nbsp; dxlcq@outlook.com &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://github.com/daixll">Github</a> &nbsp;&nbsp; | &nbsp;&nbsp; 开发工程师 &nbsp;&nbsp; | &nbsp;&nbsp; 算法竞赛教练 &nbsp;&nbsp;
+&nbsp; dxlcq@outlook.com &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://github.com/daixll">Github</a> &nbsp;&nbsp; | &nbsp;&nbsp; 个人开发者 &nbsp;&nbsp; | &nbsp;&nbsp; 算法竞赛爱好者 &nbsp;&nbsp;
 
 </center>
 
@@ -38,7 +38,7 @@ export_on_save:
 
 <div class="center">
 
-| [C](/language/CPP/C/index.html) / [C++](/language/CPP/C++/index.html) | [Tools](/language/CPP/Tools/index.html) | [C++ Concurrency](/language/CPP/C++%20Concurrency/index.html) | C++ Socket | [C++ QT](/language/CPP/C++%20QT/index.html) |
+| [C](/language/CPP/C/index.html) / [C++](/language/CPP/C++/index.html) | [Tools](/language/CPP/Tools/index.html) | [C++ Concurrency](/language/CPP/C++%20Concurrency/index.html) | [C++ Socket](/language/CPP/C++%20Socket/index.html) | [C++ QT](/language/CPP/C++%20QT/index.html) |
 |:-:|:-:|:-:|:-:|:-:|
 
 </div>
@@ -57,38 +57,9 @@ export_on_save:
 
 </div>
 
-
-<div class="center">
-
-| [English](/language/ENGLISH/index.html) |
-|:-:|
-
-</div>
-
 <center>
 
--- -- -- -- -- -- -- -- 基础 -- -- -- -- -- -- -- --
-
-</center>
-
-<div class="center">
-
-| 数据结构与算法 | 操作系统 | 计算机网络 | 计算机组成原理 | 数据库原理 | 设计模式 | 编译原理 | 
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-
-</div>
-
-<div class="center">
-
-|[微积分](/408/微积分/index.html)|空间几何|级数|[线性代数](/408/线代/index.md)|离散数学|概率论与数理统计|数论|
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-
-
-</div>
-
-<center>
-
--- -- -- -- -- -- -- -- 后端 -- -- -- -- -- -- -- --
+-- -- -- -- -- -- -- -- 工具 -- -- -- -- -- -- -- --
 
 </center>
 
@@ -107,20 +78,6 @@ export_on_save:
 
 <center>
 
--- -- -- -- -- -- -- -- 前端 -- -- -- -- -- -- -- --
-
-</center>
-
-
-<div class="center">
-
-| HTML+CSS+JS | Vue | 微信小程序 |
-|:-:|:-:|:-:| 
-
-</div>
-
-<center>
-
 -- -- -- -- -- -- -- -- 竞赛 -- -- -- -- -- -- -- --
 
 </center>
@@ -134,7 +91,28 @@ export_on_save:
 
 <center>
 
--- -- -- -- -- -- -- -- 希望 -- -- -- -- -- -- -- --
+-- -- -- -- -- -- -- -- 基础 -- -- -- -- -- -- -- --
+
+</center>
+
+<div class="center">
+
+| 数据结构与算法 | 操作系统 | 计算机网络 | 计算机组成原理 | 数据库原理 | 设计模式 | 编译原理 | 
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+
+</div>
+
+<div class="center">
+
+|[微积分](/408/微积分/index.html)|空间几何|级数|[线性代数](/408/线代/index.md)|离散数学|[概率论]() | [数理统计]()|数论| [English](/language/ENGLISH/index.html) |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+
+
+</div>
+
+<center>
+
+-- -- -- -- -- -- -- -- <span style="color:red;">☭</span> -- -- -- -- -- -- -- --
 
 </center>
 
@@ -176,8 +154,6 @@ export_on_save:
 
 * **清华大学出版社** [TIPCC志愿者](#志愿者-码蹄集)，参与算法竞赛书籍《**算法》内容校对工作，“码蹄集”题库建设工作
 * **蓝桥杯OJ** [出题小组成员](#蓝桥云课)，2023年暑期参与平台命题工作
-* **奇灵云教育** 竞赛教练，主要负责 CSP-J 赛事
-
 
 ---
 

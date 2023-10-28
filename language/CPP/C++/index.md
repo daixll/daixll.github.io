@@ -13,7 +13,7 @@ export_on_save:
 
 **视频：**
 
-* 123
+* [【Youtube】 The Cherno](https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb) / [【bilibili】 The Cherno(搬运)](https://www.bilibili.com/video/BV1oD4y1h7S3)
 
 **网站：**
 
