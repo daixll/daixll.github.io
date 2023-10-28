@@ -24,6 +24,152 @@
     
       <div class="crossnote markdown-preview  ">
       
+<h1 id="c是如何工作的">C是如何工作的 </h1>
+<p>对于这个问题，</p>
+<ul>
+<li>通俗的，计算机是如何看懂我给它下达的指令。</li>
+<li>具体的，如何把 <code>.c</code> （文本文件） -&gt; <code>.exe</code> （可执行文件）</li>
+</ul>
+<p><strong>源文件 -&gt; 预处理 -&gt; 编译 -&gt; 汇编 -&gt; 链接 -&gt; 可执行文件</strong></p>
+<br>
+<h2 id="预处理">预处理 </h2>
+<ul>
+<li>
+<p>一个文本替换工具罢了，它会根据源文件中的预处理指令，修改源文件。</p>
+</li>
+<li>
+<p>预处理指令以 <code>#</code> 开头，如 <code>#include</code>、<code>#define</code> 等。</p>
+<ul>
+<li>
+<p><code>#include</code> 会把指定的文件内容插入到当前文件中。</p>
+</li>
+<li>
+<p><code>#define</code> （宏定义）会把指定的内容替换到当前文件中。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MAX</span> <span class="token expression"><span class="token number">100</span></span></span>
+
+<span class="token keyword keyword-int">int</span> a<span class="token punctuation">[</span>MAX<span class="token punctuation">]</span><span class="token punctuation">;</span>             <span class="token comment">// int a[100]; 定义一个大小为 100 的数组</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> MAX<span class="token operator">*</span>MAX<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// printf("%d", 100*100); 输出 10000</span>
+</code></pre><p><strong>值得注意的是，宏定义只是简单的文本替换</strong></p>
+<p>C语言自带一些宏定义：<code>__TIME__</code>，<code>__FILE__</code> 等等</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> <span class="token constant">__TIME__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 输出当前（预处理器替换时候的）时间</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> <span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 输出当前文件名</span>
+</code></pre></li>
+</ul>
+<p>更多内容可以参考：<a href="https://www.runoob.com/cprogramming/c-preprocessors.html">C语言预处理器</a></p>
+  <br>
+</li>
+<li>
+<p>预处理后的文件，以 <code>.i</code> 为后缀名，如 <code>main.i</code>。</p>
+<ol>
+<li>
+<p>源文件 <code>main.c</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MAX</span> <span class="token expression"><span class="token number">100</span></span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> a<span class="token punctuation">[</span>MAX<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> MAX<span class="token operator">*</span>MAX<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li>
+<p>使用 gcc 生成预处理后的文件 <code>main.i</code></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc <span class="token parameter variable">-E</span> main.c <span class="token parameter variable">-o</span> main.i
+</code></pre></li>
+</ol>
+</li>
+</ul>
+<br>
+<h2 id="编译">编译 </h2>
+<ul>
+<li>编译器会把预处理后的文件，翻译成汇编语言。
+<ul>
+<li>一种低级语言，它使用助记符（mnemonic）代替二进制指令。</li>
+<li>汇编语言是与硬件相关的，不同的硬件有不同的汇编语言。</li>
+</ul>
+</li>
+<li>汇编语言以 <code>.s</code> 为后缀名，如 <code>main.s</code>。
+<ol>
+<li>使用 gcc 生成汇编文件 <code>main.s</code><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc <span class="token parameter variable">-S</span> main.i <span class="token parameter variable">-o</span> main.s
+</code></pre></li>
+</ol>
+</li>
+</ul>
+<br>
+<h2 id="汇编">汇编 </h2>
+<ul>
+<li>
+<p>汇编器会把汇编语言翻译成机器语言。</p>
+<ul>
+<li>机器语言，使用二进制指令。</li>
+</ul>
+</li>
+<li>
+<p>机器语言以 <code>.o</code> 为后缀名，如 <code>main.o</code>。</p>
+<ol>
+<li>使用 gcc 生成目标文件 <code>main.o</code><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc <span class="token parameter variable">-c</span> main.s <span class="token parameter variable">-o</span> main.o
+</code></pre></li>
+</ol>
+</li>
+</ul>
+<br>
+<h2 id="链接">链接 </h2>
+<ul>
+<li>
+<p>链接器将多个汇编文件链接成一个可执行文件。</p>
+</li>
+<li>
+<p>在 linux 中，可执行文件以 <code>.out</code> 为后缀名，如 <code>main.out</code>。</p>
+<ol>
+<li>使用 gcc 生成可执行文件 <code>main.out</code><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc main.o <span class="token parameter variable">-o</span> main.out
+</code></pre></li>
+</ol>
+</li>
+<li>
+<p>现在有 <code>a.c</code> 文件和 <code>b.c</code> 文件</p>
+<ul>
+<li><code>a.c</code><pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token function">ADD</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li><code>b.c</code><pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">ADD</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+</ul>
+<ol>
+<li>
+<p>使用 gcc 生成 <code>.o</code> 文件</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc <span class="token parameter variable">-c</span> a.c <span class="token parameter variable">-o</span> a.o
+</code></pre><p>此时，<code>a.o</code> 中的 <code>main</code> 函数调用了 <code>ADD</code> 函数，但是 <code>ADD</code> 函数的定义并没有找到。弹出了一个警告。<br>
+<strong>注意，<code>gcc</code> 只检查语法，不检查函数的定义。</strong><br>
+<strong>注意，<code>g++</code> 会检查函数的定义，它会在这里弹出错误。</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc <span class="token parameter variable">-c</span> b.c <span class="token parameter variable">-o</span> b.o
+</code></pre></li>
+<li>
+<p>使用 gcc 生成可执行文件</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc a.o b.o <span class="token parameter variable">-o</span> main.out
+</code></pre><p><strong>注意，链接器会检查函数的定义，如果找不到定义，就会报错。</strong></p>
+</li>
+</ol>
+</li>
+</ul>
+<br>
+<p>至此，我们不仅知道 C 工作的原理，还在一定程度上了解 <code>.h</code>，<code>.c</code> 文件的关系</p>
+<br>
+<hr>
+<h1 id="编译器是如何工作的">编译器是如何工作的 </h1>
+<h2 id="todo">todo </h2>
+<br>
+<hr>
+<h1 id="链接器是如何工作的">链接器是如何工作的 </h1>
+<h2 id="todo-1">todo </h2>
+<br>
+<hr>
 <h1 id="基本数据类型">基本数据类型 </h1>
 <p>在 C 中，有以下几种基本数据类型：</p>
 <h2 id="整型">整型 </h2>
@@ -258,6 +404,57 @@ p <span class="token operator">=</span> p <span class="token operator">+</span> 
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#c是如何工作的" class="md-toc-link"><p>C是如何工作的</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#预处理" class="md-toc-link">
+            <p>预处理</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#编译" class="md-toc-link">
+            <p>编译</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#汇编" class="md-toc-link">
+            <p>汇编</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#链接" class="md-toc-link">
+            <p>链接</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#编译器是如何工作的" class="md-toc-link"><p>编译器是如何工作的</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#todo" class="md-toc-link">
+            <p>todo</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#链接器是如何工作的" class="md-toc-link"><p>链接器是如何工作的</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#todo-1" class="md-toc-link">
+            <p>todo</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#基本数据类型" class="md-toc-link"><p>基本数据类型</p>
 </a>
