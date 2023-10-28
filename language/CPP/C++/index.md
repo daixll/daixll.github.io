@@ -7,11 +7,24 @@ export_on_save:
     html: true  # 自动保存
 ---
 
-# 推荐阅读
+# 参考
 
-[现代 C++ 教程](https://changkun.de/modern-cpp/)
+**书籍：** [阿里云盘](https://www.aliyundrive.com/s/N3uJKMZFdzF)
 
-[微软 VS中的C++](https://learn.microsoft.com/zh-cn/cpp/cpp/welcome-back-to-cpp-modern-cpp?view=msvc-170)
+**视频：**
+
+* 123
+
+**网站：**
+
+* [现代 C++ 教程](https://changkun.de/modern-cpp/)
+
+* [微软 VS中的C++](https://learn.microsoft.com/zh-cn/cpp/cpp/welcome-back-to-cpp-modern-cpp?view=msvc-170)
+
+<br>
+
+---
+
 
 
 # class

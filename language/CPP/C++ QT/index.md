@@ -5,6 +5,22 @@ export_on_save:
     html: true  # 自动保存
 ---
 
+# 参考
+
+**书籍：** [阿里云盘](https://www.aliyundrive.com/s/N3uJKMZFdzF)
+
+**视频：**
+
+* 123
+
+**网站：**
+
+* 123
+
+<br>
+
+---
+
 # SETUP
 
 首先注册一个 QT 账号：[官网](https://www.qt.io/zh-cn/)
