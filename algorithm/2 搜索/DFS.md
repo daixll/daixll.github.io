@@ -1,19 +1,15 @@
 ---
 html:
-    toc: true           # 打开侧边目录
-    toc_depth: 6        # 打开的目录层级
-    toc_float: true     # 侧边悬停
-    collapsed: true     # 只显示高级别标题(2)
-    smooth_scroll: true # 页面滚动,标题变化
-    number_sections: false  # 显示标题编号
-    theme: united
---- 
+    toc: true   # 打开侧边目录
+export_on_save:
+    html: true  # 自动保存
+---
 
-> 先讲二叉树
-> 再拓展到矩阵上
-> 最后抽象到一个序列上
 
-## 矩阵上的DFS
+如果你对树的遍历有了一定的了解，那么你就可以开始学习深度优先搜索了。
+
+
+#### 如何表示，从上一层到下一层的多条路径？
 
 <details><summary><a href="https://www.acwing.com/problem/content/3505/" target="_blank">AcWing 3502. 不同路径数</a> code</summary>
 
