@@ -24,351 +24,174 @@
     
       <div class="crossnote markdown-preview  ">
       
+<p><a href="https://nmap.org/man/zh/index.html">官方中文文档</a></p>
+<p><code>nmap [ &lt;扫描类型&gt; ...] [ &lt;选项&gt; ] { &lt;扫描目标说明&gt; }</code></p>
+<h1 id="nmap-端口状态">nmap 端口状态 </h1>
+<h2 id="open开放的">open（开放的） </h2>
+<p>应用程序正在监听端口，或者响应一个请求来自已连接的客户端。接收TCP连接或者UDP报文。</p>
+<h2 id="closed关闭的">closed（关闭的） </h2>
+<p>没有应用程序监听端口。但是此端口可以被探测到，因为没有应用程序监听，所以会返回一个 RST 包或者 ICMP 端口不可达消息。</p>
+<h2 id="filtered屏蔽的">filtered（屏蔽的） </h2>
+<p>防火墙或者 ACL 屏蔽了端口，所以无法确定端口是否开放。目标端口可能有以下几种情况：</p>
+<ul>
+<li>未响应，屏蔽器丢弃了探测包，此举会让 nmap 误认为探测包丢失，导致扫描时间变长。</li>
+<li>丢弃了探测包，但是返回了 ICMP 错误消息。</li>
+</ul>
+<h2 id="unfiltered未屏蔽的">unfiltered（未屏蔽的） </h2>
+<p>防火墙或者 ACL 没有屏蔽端口，但是 nmap 无法确定端口开放或者关闭。用其它类型的扫描，如窗口扫描，SYN 扫描，或者 FIN 扫描可以帮助确定端口是否开放。</p>
+<h2 id="openfiltered开放或者屏蔽的">open|filtered（开放或者屏蔽的） </h2>
+<p>开放的端口不响应探测包，屏蔽的端口也不响应探测包。所以无法确定端口是否开放。</p>
+<h2 id="closedfiltered关闭或者屏蔽的">closed|filtered（关闭或者屏蔽的） </h2>
+<p>只可能出现在 IPID Idle 扫描中，因为此扫描类型需要发送两个探测包，如果两个探测包都没有响应，那么就无法确定端口是否开放。</p>
 <hr>
-<h2>html:<br>
-toc: true   # 打开侧边目录<br>
-export_on_save:<br>
-html: true  # 自动保存</h2>
-<h2 id="wsl2自启动">WSL2自启动 </h2>
-<ol>
-<li>win + r 输入  <code>shell:startup</code></li>
-<li>新建 <code>.</code> 文件</li>
-</ol>
-<h1 id="c-for-algorithm">C++ for Algorithm </h1>
-<blockquote>
-<p>win10 22H2 使用 wsl 下的 gcc 编译器，配置竞赛友好的环境</p>
-</blockquote>
-<ol>
-<li>
-<p>微软商店下载 <code>ubuntu</code>，vscode 下载拓展 <code>WSL</code></p>
-</li>
-<li>
-<p><code>控制面板\程序\启用或关闭 Windows 功能</code>：</p>
-<ul>
-<li><code>虚拟机平台</code></li>
-<li><code>适用于 Linux 的 Windows 子系统</code></li>
-</ul>
-</li>
-<li>
-<p>vscode 连接到 WSL，下载拓展 <code>C++</code></p>
-<ul>
-<li>我们仅需 <code>C++</code> 的代码提示（IntelliSense）功能</li>
-<li>如果你不需要代码提示也可以不下</li>
-</ul>
-</li>
-<li>
-<p>进入 ubuntu 环境，下载 <code>gcc</code></p>
-<ul>
-<li><code>sudo apt install gcc</code></li>
-</ul>
-</li>
-<li>
-<p>创建配置文件 <code>.vscode/tasks.json</code></p>
-</li>
-</ol>
-<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
-  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"2.0.0"</span><span class="token punctuation">,</span>
-  <span class="token property">"tasks"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token punctuation">{</span>
-      <span class="token property">"label"</span><span class="token operator">:</span> <span class="token string">"AC"</span><span class="token punctuation">,</span>    <span class="token comment">// 任务名</span>
-      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"shell"</span><span class="token punctuation">,</span>  <span class="token comment">// 此任务在 shell 下执行；（command）执行命令</span>
-      <span class="token property">"command"</span><span class="token operator">:</span> <span class="token string">"g++ -std=c++17 '${file}' -o '${fileDirname}/exes/${fileBasenameNoExtension}' &amp;&amp; cat '${fileDirname}/exes/in' | '${fileDirname}/exes/${fileBasenameNoExtension}' &gt; '${fileDirname}/exes/out' &amp;&amp; sync"</span><span class="token punctuation">,</span>
-      <span class="token property">"problemMatcher"</span><span class="token operator">:</span> <span class="token punctuation">[</span>   <span class="token comment">// 捕捉错误</span>
-        <span class="token string">"$gcc"</span>
-      <span class="token punctuation">]</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">]</span>
-<span class="token punctuation">}</span>
-</code></pre><p>文件结构如此：</p>
-<pre data-role="codeBlock" data-info="" class="language-text text"><code>├── .vscode/
-|   ├── tasks.json   
-|
-└── exes/
-|   ├── ac
-|   ├── in
-|   ├── out
-|
-├── ac.cpp
-</code></pre><p>使用 <code>g++</code> 编译源文件 <code>ac.cpp</code>，生成可执行文件 <code>ac</code>，<br>
-将 <code>in</code> 的数据输入到 <code>ac</code>，<code>ac</code> 再输出到 <code>out</code>。</p>
-<ol start="6">
-<li>配置快捷方式，f5一键执行命令</li>
-</ol>
-<p>修改 <code>C:\Users\用户名\AppData\Roaming\Code\User\keybindings.json</code> 文件。</p>
-<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token comment">// 将键绑定放在此文件中以覆盖默认值auto[]</span>
-<span class="token punctuation">[</span>
-<span class="token punctuation">{</span>
-  <span class="token property">"key"</span><span class="token operator">:</span> <span class="token string">"f5"</span><span class="token punctuation">,</span>
-  <span class="token property">"command"</span><span class="token operator">:</span> <span class="token string">"workbench.action.tasks.runTask"</span><span class="token punctuation">,</span>
-  <span class="token property">"args"</span><span class="token operator">:</span> <span class="token string">"AC"</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">]</span>
-</code></pre><p>在 <code>ac.cpp</code> 文件中，即可 <code>f5</code> 一键执行。</p>
-<hr>
-<h1 id="go">GO </h1>
-<blockquote>
-<p>win10 22H2 在 Goland 中依赖 wsl 开发 GO</p>
-</blockquote>
-<ol>
-<li>
-<p><a href="https://golang.google.cn/dl/">官网</a>康康最新版本，下载</p>
-<ul>
-<li><code>wget https://golang.google.cn/dl/go1.21.0.linux-amd64.tar.gz</code></li>
-</ul>
-</li>
-<li>
-<p>解压缩至 <code>/usr/local/</code></p>
-<ul>
-<li><code>tar -zxvf go1.21.0.linux-amd64.tar.gz -C /usr/local/</code></li>
-</ul>
-</li>
-<li>
-<p>配置环境变量 （WSL下的建议方案）</p>
-<ul>
-<li>
-<p><code>vim ~/.bashrc</code></p>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token builtin class-name">export</span> <span class="token assign-left variable">GOROOT</span><span class="token operator">=</span>/usr/local/go
-<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">$GOROOT</span>/bin
-</code></pre></li>
-<li>
-<p>刷新<br>
-<code>source ~/.bashrc</code></p>
-</li>
-</ul>
-</li>
-<li>
-<p>测试 <code>go version</code></p>
-</li>
-<li>
-<p>GoLand 新建项目</p>
-<ul>
-<li>Location：<code>\\ubuntu\home\工作目录</code></li>
-<li>GOROOT：<code>\usr\local\go</code></li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>ssh / ufw / vim /<br>
-curl / wget / tar /<br>
-rsync / mount / samba /<br>
-远程桌面（xrdp）</li>
-</ul>
-<h2 id="制作启动盘">制作启动盘 </h2>
-<ol>
-<li><a href="https://cn.ubuntu.com/download/server/step1">ubuntu iso</a> 镜像下载</li>
-<li><a href="https://rufus.ie/zh/">rufus</a> 制作启动盘</li>
-</ol>
-<h2 id="定时启动">定时启动 </h2>
-<blockquote>
-<p>bios 电源管理</p>
-</blockquote>
-<ol>
-<li>AC power loss 来电自启</li>
-<li>RTC 定时启动</li>
-</ol>
-<h2 id="开机默认进入命令行--图形界面">开机默认进入命令行 / 图形界面 </h2>
-<blockquote>
-<p>默认命令行</p>
-</blockquote>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>systemctl set-default multi-user.target
-</code></pre><blockquote>
-<p>命令行进入图形</p>
-</blockquote>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>startx
-</code></pre><blockquote>
-<p>默认图形</p>
-</blockquote>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>systemctl set-default graphical.target
-</code></pre><h2 id="开机运行">开机运行 </h2>
-<ol>
-<li>创建 <code>rc-local.service</code> 文件</li>
-</ol>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">cp</span> /lib/systemd/system/rc-local.service /etc/systemd/system
-</code></pre><ol start="2">
-<li>修改 <code>/etc/systemd/system/rc-local.service</code> 文件, 添加如下内容</li>
-</ol>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token punctuation">[</span>Install<span class="token punctuation">]</span>   
-<span class="token assign-left variable">WantedBy</span><span class="token operator">=</span>multi-user.target   
-<span class="token assign-left variable">Alias</span><span class="token operator">=</span>rc-local.service
-</code></pre><ol start="3">
-<li>创建 <code>/etc/rc.local</code> 文件, 输入执行的脚本</li>
-</ol>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token shebang important">#!/bin/sh</span>
-noip-duc <span class="token parameter variable">--username</span> xx <span class="token parameter variable">--password</span> xx <span class="token parameter variable">-g</span> xx --ip-method http://ip1.dynupdate6.no-ip.com/ <span class="token operator">&amp;</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">PASSWORD</span><span class="token operator">=</span><span class="token string">"xx"</span> <span class="token operator">&amp;&amp;</span> code-server <span class="token parameter variable">--host</span> <span class="token punctuation">[</span>::<span class="token punctuation">]</span> <span class="token parameter variable">--port</span> <span class="token number">9070</span> <span class="token operator">&amp;</span>
-<span class="token function">shutdown</span> <span class="token parameter variable">-h</span> <span class="token number">23</span>:55
-</code></pre><ol start="4">
-<li>给文件 <code>/etc/rc.local</code> 可执行权限</li>
-</ol>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">chmod</span> +x /etc/rc.local
-</code></pre><h2 id="基础软件">基础软件 </h2>
-<ul>
-<li>更新软件源、软件、系统更新（非升级）<br>
-<code>apt update &amp;&amp; apt upgrade &amp;&amp; apt dist-upgrade</code></li>
-</ul>
-<h3 id="build-essential">build-essential </h3>
-<p>GNU编辑器合辑</p>
-<p><code>apt install build-essential</code></p>
-<h3 id="ssh">ssh </h3>
-<p><code>apt install ssh</code></p>
-<h3 id="ufw">ufw </h3>
-<p><code>apt install ufw</code></p>
-<ol>
-<li>启动防火墙 <code>ufw enable</code></li>
-<li>关闭防火墙 <code>ufw disenable</code></li>
-<li>打开端口 <code>ufw allow 22</code></li>
-<li>关闭端口 <code>ufw delete allow 22</code></li>
-<li>防火墙状态 <code>ufw status</code></li>
-</ol>
-<h3 id="vim">vim </h3>
-<p><code>apt install vim</code></p>
-<ol>
-<li>编辑文件 <code>vim a.txt</code></li>
-<li>默认进入文件的 normal 模式
-<ul>
-<li><code>i</code> 进入 编辑 模式</li>
-<li><code>esc</code> 切换回 normal 模式</li>
-</ul>
-</li>
-<li>大部分操作需要在 normal 模式下进行
-<ul>
-<li>退出 <code>q</code>，强制退出 <code>q!</code></li>
-<li>保存 <code>wq</code>，强制保存 <code>wq!</code></li>
-<li>选择
-<ul>
-<li>全选</li>
-<li>部分选择</li>
-</ul>
-</li>
-<li>复制</li>
-<li>粘贴</li>
-<li>查找</li>
-<li>替换</li>
-</ul>
-</li>
-</ol>
-<h3 id="curl">curl </h3>
-<p><code>apt install curl</code></p>
-<ul>
-<li>get 请求<br>
-<code>curl https://www.baidu.com</code></li>
-<li>get 请求，返回 http 标头<br>
-<code>curl -i https://www.baidu.com</code></li>
-</ul>
-<h3 id="tar">tar </h3>
-<p><code>apt install tar</code></p>
-<ul>
-<li>解压文件<br>
-<code>tar -zxvf *.tar.gz</code>
-<ul>
-<li>-z 解压缩（gz）</li>
-<li>-x 解包（tar）</li>
-<li>-v 显示详细的解压过程信息</li>
-<li>-f 指定名称</li>
-</ul>
-</li>
-<li>压缩文件<br>
-<code>tar -zcvf *.tar.gz *</code></li>
-</ul>
-<h3 id="远程桌面">远程桌面 </h3>
-<ol>
-<li>下载微软的远程桌面协议（RDP）<br>
-<code>apt install xrdp</code></li>
-</ol>
-<h3 id="samba">samba </h3>
-<blockquote>
-<p>文件分享</p>
-</blockquote>
-<ol>
-<li>下载 <code>apt install samba</code></li>
-<li>配置分享文件夹 <code>chmod 777 /home/share/ -R</code></li>
-<li>添加samba用户 <code>smbpasswd -a 用户名</code></li>
-<li>提示输入密码 x2</li>
-<li>配置samba <code>vim /etc/samba/smb.conf</code></li>
-</ol>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token punctuation">[</span>share<span class="token punctuation">]</span>                 <span class="token comment"># 共享名</span>
-    comment <span class="token operator">=</span> share     <span class="token comment"># 共享备注</span>
-    path <span class="token operator">=</span> /home/share/ <span class="token comment"># 共享路径</span>
-    browseable <span class="token operator">=</span> <span class="token function">yes</span>    <span class="token comment"># 所有人可见</span>
-    public <span class="token operator">=</span> no         <span class="token comment"># 不允许匿名访问</span>
-    writable <span class="token operator">=</span> <span class="token function">yes</span>      <span class="token comment"># 可写</span>
-    valid <span class="token function">users</span> <span class="token operator">=</span> 用户名 <span class="token comment"># 设置访问用户</span>
-</code></pre><ol start="6">
-<li>重启samba <code>samba restart</code></li>
-<li>开启端口 <code>ufw allow 445</code></li>
-</ol>
+<h1 id="nmap-扫描技术">nmap 扫描技术 </h1>
+<h2 id="1-默认扫描">1 默认扫描 </h2>
+<p><code>nmap dxll.love</code></p>
+<p>默认扫描是 nmap 的最基本的扫描方式，它会扫描 1000 个最常用的端口，扫描方式是 SYN 扫描。</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>nmap <span class="token parameter variable">-T0</span> dxll.love
+nmap <span class="token parameter variable">-T1</span> dxll.love
+nmap <span class="token parameter variable">-T2</span> dxll.love
+nmap <span class="token parameter variable">-T3</span> dxll.love
+nmap <span class="token parameter variable">-T4</span> dxll.love
+nmap <span class="token parameter variable">-T5</span> dxll.love
+</code></pre><p><code>-T0</code> 是最慢的扫描方式，<code>-T5</code> 是最快的扫描方式，<code>-T3</code> 是默认的扫描方式，<code>-T4</code> 是常用的扫描方式。</p>
+<p><code>nmap -6 dxll.love</code></p>
+<p>开启 IPv6 扫描。</p>
+<p><code>nmap -v dxll.love</code></p>
+<p>开启详细模式，显示扫描过程。</p>
+<p><code>nmap -A dxll.love</code></p>
+<p>全面扫描，包括 1-10000 端口扫描，服务版本探测，操作系统探测，脚本扫描等。</p>
+<h2 id="2-扫描多个-ip">2 扫描多个 IP </h2>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>nmap spacex.com dxll.love   <span class="token comment"># 扫描多个域名</span>
+nmap <span class="token number">192.168</span>.31.100,101,102 <span class="token comment"># 扫描同一网段的多个 IP，可以用逗号分隔</span>
+nmap <span class="token number">192.168</span>.31.*           <span class="token comment"># 扫描同一网段的多个 IP，可以用通配符</span>
+nmap <span class="token number">192.168</span>.31.1/24        <span class="token comment"># 扫描同一网段的多个 IP，可以用 CIDR 表示法</span>
+</code></pre><h2 id="3-扫描指定端口">3 扫描指定端口 </h2>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>nmap <span class="token parameter variable">-p</span> <span class="token number">80</span> dxll.love        <span class="token comment"># 扫描单个端口</span>
+nmap <span class="token parameter variable">-p</span> <span class="token number">80,443</span> dxll.love    <span class="token comment"># 扫描多个端口</span>
+nmap <span class="token parameter variable">-p</span> <span class="token number">1</span>-100 dxll.love     <span class="token comment"># 扫描端口范围</span>
+nmap -p-                    <span class="token comment"># 扫描所有端口 等价于 nmap -p 1-65535</span>
+</code></pre><h2 id="4-tcp扫描">4 TCP扫描 </h2>
+<h3 id="tcp-syn-扫描">TCP SYN 扫描 </h3>
+<p><code>nmap -sS dxll.love</code></p>
+<p>此方式不完成 TCP 三次握手，而是发送一个 SYN 包，如果目标端口开放，那么会返回一个 SYN/ACK 包，如果端口关闭，那么会返回一个 RST 包。</p>
+<h3 id="tcp-connect-扫描">TCP Connect 扫描 </h3>
+<p><code>nmap -sT dxll.love</code></p>
+<p>此方式完成 TCP 三次握手，如果目标端口开放，那么会返回一个 SYN/ACK 包，如果端口关闭，那么会返回一个 RST 包。<br>
+目标主机可能会记录下连接，所以此方式不太隐蔽。</p>
+<h3 id="tcp-隐秘扫描">TCP 隐秘扫描 </h3>
+<p>如果收到 RST 响应，则端口关闭，否则判定端口开放或被屏蔽。</p>
+<p><code>nmap -sN dxll.love</code></p>
+<p>不设置任何标志位。</p>
+<p><code>nmap -sF dxll.love</code></p>
+<p>只设置TCP FIN标志位。</p>
+<p><code>nmap -sX dxll.love</code></p>
+<p>flags的FIN、URG、PUSH都为1的包。</p>
+<h3 id="tcp-ping-扫描">TCP ping 扫描 </h3>
+<p><code>nmap -sP dxll.love</code></p>
+<p>通过发送ICMP Echo请求（也称为Ping请求）到目标主机，命令将检测主机是否响应了请求并返回IP地址。如果主机响应，则表示主机是在线的。在这个扫描中，Nmap只检查是否有响应，而不扫描主机的任何端口。</p>
+<h2 id="5-udp-扫描">5 UDP 扫描 </h2>
+<p><code>namp -sU dxll.love</code></p>
+<p>UDP 扫描需要发送 UDP 包，如果目标端口开放，那么会返回一个 ICMP 端口不可达消息，如果端口关闭，那么会返回一个 ICMP 端口不可达消息或者没有响应。</p>
+<h2 id="6-路由跟踪">6 路由跟踪 </h2>
+<p><code>nmap --traceroute dxll.love</code></p>
+<p>查出从本地计算机到目标之间所经过的网络节点，并可以看到通过各个节点的时间。</p>
+<h2 id="7-操作系统探测">7 操作系统探测 </h2>
+<p><code>nmap -O dxll.love</code></p>
+<p>nmap 会发送一系列的 TCP 和 UDP 包，然后分析返回的包，从而判断目标主机的操作系统。</p>
 
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#c-for-algorithm" class="md-toc-link">
-            <p>C++ for Algorithm</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+<details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#go" class="md-toc-link"><p>GO</p>
+          <a href="#nmap-端口状态" class="md-toc-link"><p>nmap 端口状态</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#制作启动盘" class="md-toc-link">
-            <p>制作启动盘</p>
+          <a href="#open开放的" class="md-toc-link">
+            <p>open（开放的）</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#定时启动" class="md-toc-link">
-            <p>定时启动</p>
+          <a href="#closed关闭的" class="md-toc-link">
+            <p>closed（关闭的）</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#开机默认进入命令行--图形界面" class="md-toc-link">
-            <p>开机默认进入命令行 / 图形界面</p>
+          <a href="#filtered屏蔽的" class="md-toc-link">
+            <p>filtered（屏蔽的）</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#开机运行" class="md-toc-link">
-            <p>开机运行</p>
-
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#基础软件" class="md-toc-link"><p>基础软件</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#build-essential" class="md-toc-link">
-            <p>build-essential</p>
+          <a href="#unfiltered未屏蔽的" class="md-toc-link">
+            <p>unfiltered（未屏蔽的）</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ssh" class="md-toc-link">
-            <p>ssh</p>
+          <a href="#openfiltered开放或者屏蔽的" class="md-toc-link">
+            <p>open|filtered（开放或者屏蔽的）</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ufw" class="md-toc-link">
-            <p>ufw</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#vim" class="md-toc-link">
-            <p>vim</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#curl" class="md-toc-link">
-            <p>curl</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#tar" class="md-toc-link">
-            <p>tar</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#远程桌面" class="md-toc-link">
-            <p>远程桌面</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#samba" class="md-toc-link">
-            <p>samba</p>
+          <a href="#closedfiltered关闭或者屏蔽的" class="md-toc-link">
+            <p>closed|filtered（关闭或者屏蔽的）</p>
 
           </a></div>
         </div>
       </details>
-    
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#nmap-扫描技术" class="md-toc-link"><p>nmap 扫描技术</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#1-默认扫描" class="md-toc-link">
+            <p>1 默认扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#2-扫描多个-ip" class="md-toc-link">
+            <p>2 扫描多个 IP</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#3-扫描指定端口" class="md-toc-link">
+            <p>3 扫描指定端口</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#4-tcp扫描" class="md-toc-link"><p>4 TCP扫描</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-syn-扫描" class="md-toc-link">
+            <p>TCP SYN 扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-connect-扫描" class="md-toc-link">
+            <p>TCP Connect 扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-隐秘扫描" class="md-toc-link">
+            <p>TCP 隐秘扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-ping-扫描" class="md-toc-link">
+            <p>TCP ping 扫描</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5-udp-扫描" class="md-toc-link">
+            <p>5 UDP 扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#6-路由跟踪" class="md-toc-link">
+            <p>6 路由跟踪</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#7-操作系统探测" class="md-toc-link">
+            <p>7 操作系统探测</p>
+
+          </a></div>
         </div>
       </details>
     

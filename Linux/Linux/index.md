@@ -114,6 +114,14 @@ export_on_save:
     * Location：`\\ubuntu\home\工作目录`
     * GOROOT：`\usr\local\go`
 
+
+
+
+* ssh / ufw / vim /
+    curl / wget / tar /
+    rsync / mount / samba / 
+    远程桌面（xrdp）
+
 ## 制作启动盘
 
 1. [ubuntu iso](https://cn.ubuntu.com/download/server/step1) 镜像下载

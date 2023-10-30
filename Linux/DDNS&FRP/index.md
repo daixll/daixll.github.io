@@ -1,3 +1,11 @@
+---
+html:
+    toc: true   # 打开侧边目录
+export_on_save:
+    html: true  # 自动保存
+---
+
+
 ### DDNS 及 内网穿透
 
 * NO-IP [管理面板](https://my.noip.com/dynamic-dns) [官方文档](https://www.noip.com/support/knowledgebase/install-linux-3-x-dynamic-update-client-duc/) [Linux ipv6](https://www.noip.com/support/knowledgebase/automatic-ipv6-updates-linux-duc/)
