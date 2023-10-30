@@ -45,8 +45,8 @@ export_on_save:
 
 <div class="center">
 
-| Golang | CRUD |
-|:-:|:-:|
+| Golang | gin | gorm |
+|:-:|:-:|:-:|
 
 </div>
 
@@ -65,12 +65,12 @@ export_on_save:
 
 <div class="center">
 
-| [Linux](/Linux/Linux/index.html) | [Git](/Linux/Git/index.html) | [Docker](/Linux/Docker/index.html) | [Regex](/Linux/Regex/index.html) | [Nginx](/Linux/Nginx/index.html) |
-|:-:|:-:|:-:|:-:|:-:|
+| [Linux](/Linux/Linux/index.html) | [Git](/Linux/Git/index.html) | [Docker](/Linux/Docker/index.html) | Clash | [Regex](/Linux/Regex/index.html) | [Nginx](/Linux/Nginx/index.html) |
+|:-:|:-:|:-:|:-:|:-:|:-:|
 
 </div><div class="center">
 
-| MySQL | Redis | MongoDB | 
+| [MySQL](/Linux/MySQL/index.html) | Redis | MongoDB | 
 |:-:|:-:|:-:|
 
 </div>
@@ -97,8 +97,8 @@ export_on_save:
 
 <div class="center">
 
-| 数据结构与算法 | 操作系统 | 计算机网络 | 计算机组成原理 | 数据库原理 | 设计模式 | 编译原理 | 
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 架构设计 | [设计模式](/408/设计模式/index.html) | 数据结构与算法 | [网络](/408/计算机网络/index.html) | OS | 组成原理 | 编译原理 | 数据库原理| 
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 
 </div>
 

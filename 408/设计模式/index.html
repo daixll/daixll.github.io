@@ -1,0 +1,545 @@
+<!DOCTYPE html><html><head>
+      <title>index</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h2 id="设计模式">设计模式 </h2>
+<ul>
+<li><a href="">UML类图和时序图</a></li>
+<li><a href="./%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F.html">创建型模式 ( 总结 )</a>
+<ol>
+<li><a href="./%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html">简单工厂模式 ( Simple Factory Pattern )</a></li>
+<li><a href="./%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.html">工厂方法模式 ( Factory Method Pattern )</a></li>
+<li><a href="./%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.html">抽象工厂模式 ( Abstract Factory Pattern )</a></li>
+<li>[建造者模式()]</li>
+<li>[单例模式()]</li>
+</ol>
+</li>
+<li>结构型模式
+<ol>
+<li><a href="./%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F.html">适配器模式</a></li>
+<li>[桥接模式]</li>
+<li>[装饰模式]</li>
+<li>[外观模式]</li>
+<li>[享元模式]</li>
+<li>[代理模式]</li>
+</ol>
+</li>
+<li>行为型模式
+<ol>
+<li>[命令模式]</li>
+<li>[中介者模式]</li>
+<li>[观察者模式]</li>
+<li>[状态模式]</li>
+<li>[策略模式]</li>
+</ol>
+</li>
+</ul>
+<p>简单工厂：唯一工厂类，一个产品抽象类，工厂类的创建方法依据入参判断并创建具体产品对象。</p>
+<p>工厂方法：多个工厂类，一个产品抽象类，利用多态创建不同的产品对象，避免了大量的if-else判断。</p>
+<p>抽象工厂：多个工厂类，多个产品抽象类，产品子类分组，同一个工厂实现类创建同组中的不同产品，减少了工厂子类的数量</p>
+<h2 id="含义">含义 </h2>
+<ul>
+<li>简单工厂模式(Simple Factory Pattern): 又称为静态工厂方法(Static Factory Method)模式, 它属于类创建型模式</li>
+<li>在简单工厂模式中, 可以根据参数的不同返回不同类的实例</li>
+<li>简单工厂模式专门定义一个类来负责创建其他类的实例, 被创建的实例通常都具有共同的父类</li>
+</ul>
+<h2 id="解决的问题">解决的问题 </h2>
+<p>将“类实例化的操作”与“使用对象的操作”分开, 让使用者不用知道创建逻辑就可以实例化出所需要的“产品”类, 从而避免了在客户端代码中显式指定, 实现了解耦</p>
+<h2 id="uml类图及时序图">UML类图及时序图 </h2>
+<p><img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/daixll/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/11.png" alt=""></p>
+<h2 id="代码实例">代码实例 </h2>
+<p>抽象产品</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> 产品
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	<span class="token comment">// 提供接口框架的纯虚函数</span>
+	<span class="token keyword keyword-virtual">virtual</span> std<span class="token double-colon punctuation">::</span>string 产品名字<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	产品<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>产品<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>具体产品</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 三个实际产品</span>
+<span class="token keyword keyword-class">class</span> 电脑 <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> 产品 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	电脑<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>电脑<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	std<span class="token double-colon punctuation">::</span>string 产品名字<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token string">"电脑"</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> 手机 <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> 产品 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	手机<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>手机<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	std<span class="token double-colon punctuation">::</span>string 产品名字<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token string">"手机"</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> 平板 <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> 产品 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	平板<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>平板<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	std<span class="token double-colon punctuation">::</span>string 产品名字<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token string">"平板"</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>具体工厂</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> 工厂
+<span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	工厂<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>工厂<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	产品<span class="token operator">*</span> 制造产品<span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>string 产品名<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>产品名 <span class="token operator">==</span> <span class="token string">"电脑"</span><span class="token punctuation">)</span>
+			<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> 电脑<span class="token punctuation">;</span>
+		<span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>产品名 <span class="token operator">==</span> <span class="token string">"手机"</span><span class="token punctuation">)</span>
+			<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> 手机<span class="token punctuation">;</span>
+		<span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>产品名 <span class="token operator">==</span> <span class="token string">"平板"</span><span class="token punctuation">)</span>
+			<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> 平板<span class="token punctuation">;</span>
+		<span class="token keyword keyword-return">return</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	工厂<span class="token operator">*</span> 龙龙的血汗工厂 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> 工厂<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	产品<span class="token operator">*</span> 佳佳的电脑 <span class="token operator">=</span> 龙龙的血汗工厂<span class="token operator">-&gt;</span>制造产品<span class="token punctuation">(</span><span class="token string">"电脑"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> 佳佳的电脑<span class="token operator">-&gt;</span>产品名字<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="优点">优点 </h2>
+<ul>
+<li>
+<p>工厂类含有必要的判断逻辑, 可以决定在什么时候创建哪一个产品类的实例, 客户端可以免除直接创建产品对象的责任, 而仅仅“消费”产品; 简单工厂模式通过这种做法实现了对责任的分割, 它提供了专门的工厂类用于创建对象</p>
+</li>
+<li>
+<p>客户端无须知道所创建的具体产品类的<code>类名</code>, 只需要知道具体产品类所对应的参数即可, 对于一些复杂的类名, 通过简单工厂模式可以减少使用者的记忆量</p>
+</li>
+<li>
+<p>通过引入配置文件, 可以在不修改任何客户端代码的情况下更换和增加新的具体产品类, 在一定程度上提高了系统的灵活性</p>
+</li>
+</ul>
+<h2 id="缺点">缺点 </h2>
+<ul>
+<li>
+<p>由于工厂类集中了所有产品创建逻辑，一旦不能正常工作，整个系统都要受到影响</p>
+</li>
+<li>
+<p>使用简单工厂模式将会增加系统中类的个数, 在一定程序上增加了系统的复杂度和理解难度</p>
+</li>
+<li>
+<p>系统扩展困难, 一旦添加新产品就不得不修改工厂逻辑, 在产品类型较多时, 有可能造成工厂逻辑过于复杂, 不利于系统的扩展和维护</p>
+</li>
+<li>
+<p>简单工厂模式由于使用了静态工厂方法, 造成工厂角色无法形成基于继承的等级结构</p>
+</li>
+</ul>
+<h2 id="典型应用">典型应用 </h2>
+<h2 id="含义-1">含义 </h2>
+<ul>
+<li>
+<p>工厂方法模式(Factory Method Pattern)又称为工厂模式, 也叫虚拟构造器(Virtual Constructor)模式或者多态工厂(Polymorphic Factory)模式, 它属于类创建型模式</p>
+</li>
+<li>
+<p>在工厂方法模式中, 工厂父类负责定义创建产品对象的公共接口, 而工厂子类则负责生成具体的产品对象</p>
+</li>
+<li>
+<p>目的是将产品类的实例化操作<code>延迟</code>到工厂子类中完成, 即通过工厂子类来确定究竟应该实例化哪一个具体产品类</p>
+</li>
+</ul>
+<h2 id="解决的问题-1">解决的问题 </h2>
+<p>这种抽象化的结果使这种结构可以在不修改具体工厂类的情况下引进新的产品; 当有新产品加入时, 新建具体工厂继承抽象工厂, 而不用修改任何一个类 <code>有效避免简单工厂在工厂类中又臭又长的if...else</code></p>
+<h2 id="uml类图及时序图-1">UML类图及时序图 </h2>
+<p><img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/daixll/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/12.png" alt=""></p>
+<h2 id="代码实例-1">代码实例 </h2>
+<p>抽象产品</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> 产品 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	<span class="token keyword keyword-virtual">virtual</span> std<span class="token double-colon punctuation">::</span>string 产品名字<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	产品<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>产品<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>具体产品</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> 手机 <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> 产品 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	std<span class="token double-colon punctuation">::</span>string 产品名字<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token string">"手机"</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	手机<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>手机<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>抽象工厂</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> 工厂 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	<span class="token keyword keyword-virtual">virtual</span> 产品<span class="token operator">*</span> 制造产品<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	工厂<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>工厂<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>具体工厂</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> 手机厂 <span class="token operator">:</span><span class="token keyword keyword-public">public</span> 工厂 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	手机<span class="token operator">*</span> 制造产品<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> 手机<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	手机厂<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>手机厂<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	工厂<span class="token operator">*</span> 龙龙的手机工厂 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> 手机厂<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	产品<span class="token operator">*</span> 佳佳的小手机 <span class="token operator">=</span> 龙龙的手机工厂<span class="token operator">-&gt;</span>制造产品<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> 佳佳的小手机<span class="token operator">-&gt;</span>产品名字<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword keyword-delete">delete</span> 龙龙的手机工厂<span class="token punctuation">;</span>
+	<span class="token keyword keyword-delete">delete</span> 佳佳的小手机<span class="token punctuation">;</span>
+	<span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="优点-1">优点 </h2>
+<ul>
+<li>只需要关心工厂, 无需关心创建细节</li>
+</ul>
+<h2 id="缺点-1">缺点 </h2>
+<ul>
+<li>
+<p>增加了类的数量, 增加了系统复杂度</p>
+</li>
+<li>
+<p>引入了抽象层, 增加了系统的抽象性和理解难度</p>
+</li>
+</ul>
+<h2 id="典型应用-1">典型应用 </h2>
+<p>日志记录器</p>
+<p>支持文件记录、数据库记录等不同记录方式</p>
+<h2 id="含义-2">含义 </h2>
+<p>提供一个创建一系列相关或相互依赖对象的接口, 而无须指定它们具体的类</p>
+<h2 id="解决的问题-2">解决的问题 </h2>
+<p>当需要一个工厂提供多种产品, 而不是单一的产品对象(相较于工厂方法模式)</p>
+<blockquote>
+<ul>
+<li>产品等级结构: 如 <code>电视</code> 和 <code>电视的子类</code>(小米电视, 三星电视, 索尼电视)</li>
+<li>产品族: 同一个工厂生成的 <code>小米电视</code>, <code>小米手机</code>, <code>小米电脑</code></li>
+</ul>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/daixll/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/13_1.png" alt=""></p>
+<h2 id="uml类图及时序图-2">UML类图及时序图 </h2>
+<p><img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/daixll/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/13.png" alt=""></p>
+<h2 id="代码实例-2">代码实例 </h2>
+<p>产品等级结构 <code>电视</code> 和 <code>各个品牌的电视</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 抽象类</span>
+<span class="token keyword keyword-class">class</span> 电视 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	<span class="token keyword keyword-virtual">virtual</span> std<span class="token double-colon punctuation">::</span>string 尺寸<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	电视<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>电视<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 具体类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">oppo</span>电视 <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> 电视 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	std<span class="token double-colon punctuation">::</span>string 尺寸<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token string">"88寸"</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	oppo电视<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>oppo电视<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> 三星电视 <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> 电视 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	std<span class="token double-colon punctuation">::</span>string 尺寸<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token string">"32寸"</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	三星电视<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>三星电视<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>产品等级结构 <code>手机</code> 和 <code>各个品牌的手机</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 抽象类</span>
+<span class="token keyword keyword-class">class</span> 手机 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	<span class="token keyword keyword-virtual">virtual</span> std<span class="token double-colon punctuation">::</span>string 芯片<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	手机<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>手机<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 具体类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">oppo</span>手机 <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> 手机 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	std<span class="token double-colon punctuation">::</span>string 芯片<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token string">"马里亚纳海沟"</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	oppo手机<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>oppo手机<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-class">class</span> 三星手机 <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> 手机 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	std<span class="token double-colon punctuation">::</span>string 芯片<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token string">"猎户座"</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	三星手机<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>三星手机<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>产品族 同一个工厂生产的</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 抽象类</span>
+<span class="token keyword keyword-class">class</span> 品牌 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	<span class="token keyword keyword-virtual">virtual</span> 电视<span class="token operator">*</span> 制造电视<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword keyword-virtual">virtual</span> 手机<span class="token operator">*</span> 制造手机<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	品牌<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>品牌<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 具体类</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">oppo</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> 品牌</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	电视<span class="token operator">*</span> 制造电视<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> oppo电视<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	手机<span class="token operator">*</span> 制造手机<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> oppo手机<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token function">oppo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span><span class="token function">oppo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-class">class</span> 三星 <span class="token operator">:</span> <span class="token keyword keyword-public">public</span> 品牌 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	电视<span class="token operator">*</span> 制造电视<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> 三星电视<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	手机<span class="token operator">*</span> 制造手机<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> 三星手机<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	三星<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>三星<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	三星<span class="token operator">*</span> 三星重庆分厂 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> 三星<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	oppo<span class="token operator">*</span> oppo重庆分厂 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">oppo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	手机<span class="token operator">*</span> 小精灵的小手机 <span class="token operator">=</span> oppo重庆分厂<span class="token operator">-&gt;</span>制造手机<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	电视<span class="token operator">*</span> 佳佳的大电视 <span class="token operator">=</span> 三星重庆分厂<span class="token operator">-&gt;</span>制造电视<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> 小精灵的小手机<span class="token operator">-&gt;</span>芯片<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
+	std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> 佳佳的大电视<span class="token operator">-&gt;</span>尺寸<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="优点-2">优点 </h2>
+<p>当一个产品族中的多个对象被设计成一起工作时, 它能保证客户端始终只使用同一个产品族中的对象</p>
+<h2 id="缺点-2">缺点 </h2>
+<p>产品族扩展非常困难, 要增加一个系列的某一产品, 既要在抽象类里加代码, 又要在具体的类里加代码</p>
+<h2 id="典型应用-2">典型应用 </h2>
+<h2 id="含义-3">含义 </h2>
+<ul>
+<li>适配器模式(Adapter Pattern): 将一个接口转换成客户希望的另一个接口, 适配器模式使接口不兼容的那些类可以一起工作, 其别名为包装器(Wrapper)</li>
+<li>适配器模式既可以作为类结构型模式, 也可以作为对象结构型模式</li>
+</ul>
+<h2 id="解决的问题-3">解决的问题 </h2>
+<ul>
+<li>系统需要使用现有的类, 而这些类的接口不符合系统的需要</li>
+<li>想要建立一个可以重复使用的类, 用于与一些 ( 彼此之间没有太大关联的一些类,可能在将来引进的类 ) 一起工作</li>
+</ul>
+<h2 id="uml类图及时序图-3">UML类图及时序图 </h2>
+<p><img src="https://raw.githubusercontent.com/kiddxl/dxlkid/main/daixll/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/21.png" alt=""></p>
+<h2 id="代码实例-3">代码实例 </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+
+<span class="token keyword keyword-class">class</span> 不兼容类 <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	不兼容类<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>不兼容类<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	std<span class="token double-colon punctuation">::</span>string 功能<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> <span class="token string">"一个接口不兼容的功能"</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> 适配器 <span class="token punctuation">{</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+	不兼容类<span class="token operator">*</span> 旧<span class="token punctuation">;</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+	适配器<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token operator">~</span>适配器<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+	std<span class="token double-colon punctuation">::</span>string 统一接口<span class="token punctuation">(</span>不兼容类<span class="token operator">*</span> 旧<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword keyword-return">return</span> 旧<span class="token operator">-&gt;</span>功能<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	不兼容类<span class="token operator">*</span> 旧 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> 不兼容类<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	适配器<span class="token operator">*</span> 目标 <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> 适配器<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> 目标<span class="token operator">-&gt;</span>统一接口<span class="token punctuation">(</span>旧<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+	<span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="优点-3">优点 </h2>
+<h2 id="缺点-3">缺点 </h2>
+<h2 id="典型应用-3">典型应用 </h2>
+
+      </div>
+      <div class="md-sidebar-toc">
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#设计模式" class="md-toc-link">
+            <p>设计模式</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#含义" class="md-toc-link">
+            <p>含义</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#解决的问题" class="md-toc-link">
+            <p>解决的问题</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#uml类图及时序图" class="md-toc-link">
+            <p>UML类图及时序图</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#代码实例" class="md-toc-link">
+            <p>代码实例</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#优点" class="md-toc-link">
+            <p>优点</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#缺点" class="md-toc-link">
+            <p>缺点</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#典型应用" class="md-toc-link">
+            <p>典型应用</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#含义-1" class="md-toc-link">
+            <p>含义</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#解决的问题-1" class="md-toc-link">
+            <p>解决的问题</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#uml类图及时序图-1" class="md-toc-link">
+            <p>UML类图及时序图</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#代码实例-1" class="md-toc-link">
+            <p>代码实例</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#优点-1" class="md-toc-link">
+            <p>优点</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#缺点-1" class="md-toc-link">
+            <p>缺点</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#典型应用-1" class="md-toc-link">
+            <p>典型应用</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#含义-2" class="md-toc-link">
+            <p>含义</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#解决的问题-2" class="md-toc-link">
+            <p>解决的问题</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#uml类图及时序图-2" class="md-toc-link">
+            <p>UML类图及时序图</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#代码实例-2" class="md-toc-link">
+            <p>代码实例</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#优点-2" class="md-toc-link">
+            <p>优点</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#缺点-2" class="md-toc-link">
+            <p>缺点</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#典型应用-2" class="md-toc-link">
+            <p>典型应用</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#含义-3" class="md-toc-link">
+            <p>含义</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#解决的问题-3" class="md-toc-link">
+            <p>解决的问题</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#uml类图及时序图-3" class="md-toc-link">
+            <p>UML类图及时序图</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#代码实例-3" class="md-toc-link">
+            <p>代码实例</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#优点-3" class="md-toc-link">
+            <p>优点</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#缺点-3" class="md-toc-link">
+            <p>缺点</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#典型应用-3" class="md-toc-link">
+            <p>典型应用</p>
+
+          </a></div>
+</div>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    
+    
+    
+    
+    
+    
+<script>
+document.body.setAttribute('html-show-sidebar-toc', true)
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  
+    </body></html>

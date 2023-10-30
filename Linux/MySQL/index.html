@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-      <title>huaweiOSPF</title>
+      <title>index</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -24,87 +24,52 @@
     
       <div class="crossnote markdown-preview  ">
       
-<p>文本写作日期：2023-9-30</p>
-<p>相关网站：</p>
 <ul>
-<li><a href="https://datatracker.ietf.org/doc/html/rfc2328">RFC2328</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Open_Shortest_Path_First">wiki</a></li>
-<li><a href="https://www.cisco.com/c/en/us/support/docs/ip/open-shortest-path-first-ospf/7039-1.html#toc-hId--84793321">cisio OSPF</a></li>
-<li><a href="https://info.support.huawei.com/info-finder/encyclopedia/en/OSPF.html">华为 OSPF EN</a></li>
-<li><a href="https://info.support.huawei.com/info-finder/encyclopedia/zh/OSPF.html">华为 OSPF ZH</a></li>
-<li><a href="https://www.h3c.com/cn/d_200805/605874_30003_0.htm">新华三 OSPF CN</a></li>
+<li>ubuntu</li>
 </ul>
-<hr>
-<p>几个概念：</p>
-<h3 id="ospfopen-shortest-path-first">OSPF：Open Shortest Path First </h3>
-<p>在路由中，感知网络拓扑，计算最短路径，建立路由表</p>
-<h3 id="spfshortest-path-first">SPF：Shortest Path First </h3>
-<p>通过此算法计算最短路径，此算法也被称为 Dijkstra 算法</p>
-<h3 id="sptshortest-path-tree-最短路径树">SPT：Shortest Path Tree 最短路径树 </h3>
-<p>在所有生成树中，最短路径树满足根节点到其他所有点的 <strong>距离之和</strong> 最短</p>
-<h3 id="mstminimum-spanning-tree-最小生成树">MST：Minimum Spanning Tree 最小生成树 </h3>
-<p>在所有生成树中，最小生成树满足 <strong>边权之和</strong> 最小</p>
-<hr>
-<p>一个样例：</p>
-<p><img src="./IMAGE/huaweiospf.png" alt="Alt text"></p>
-<p>由左边的图，以 A 为根结点，可以得到两颗树</p>
-<ul>
+<ol>
 <li>
-<p>生成树 1：</p>
+<p>下载安装</p>
 <ul>
-<li>距离之和：（由 A 到其他所有点的距离之和为 5）<br>
-A-&gt;B：2<br>
-A-&gt;C：3</li>
-<li>边权之和：（边权之和为 5）<br>
-A-&gt;B：2<br>
-A-&gt;C：3</li>
+<li><code>apt install mysql-server</code></li>
+<li><code>apt install mysql-client</code></li>
 </ul>
 </li>
 <li>
-<p>生成树 2：</p>
+<p>初始化</p>
 <ul>
-<li>距离之和：（由 A 到其他所有点的距离之和为 6）<br>
-A-&gt;B：2<br>
-A-&gt;C：4</li>
-<li>边权之和：（边权之和为 4）<br>
-A-&gt;B：2<br>
-B-&gt;C：2</li>
+<li><code>mysql_secure_installation</code></li>
 </ul>
 </li>
+<li>
+<p>启动服务</p>
+<ul>
+<li><code>service mysql start</code></li>
 </ul>
-<p>显然，生成树 1 的距离之和最小，所以生成树 1 是最短路径树<br>
-而，生成树 2 的边权之和最小，所以生成树 2 是最小生成树</p>
-<hr>
-<p>在华为对 OSPF 的中文介绍中，有这样一句话：</p>
-<p><img src="./IMAGE/huaweiospf1.png" alt="Alt text"></p>
-<p>这个配图的文字（最小生成树）显然是错的，应当是最短路径树。</p>
-<p>值得一提的是，华为对 OSPF 的英文介绍中，却又是对的：</p>
-<p><img src="./IMAGE/huaweiospf2.png" alt="Alt text"></p>
-<hr>
-<p><img src="./IMAGE/huaweiospf3.png" alt="Alt text"></p>
+</li>
+<li>
+<p>登录</p>
+<ul>
+<li><code>mysql -u root -p</code></li>
+</ul>
+</li>
+<li>
+<p>设置密码</p>
+<ul>
+<li><code>use mysql;</code></li>
+<li><code>ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '12345678';</code></li>
+</ul>
+</li>
+<li>
+<p>退出</p>
+<ul>
+<li><code>quit</code></li>
+</ul>
+</li>
+</ol>
 
       </div>
-      <div class="md-sidebar-toc">
-<div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#ospfopen-shortest-path-first" class="md-toc-link">
-            <p data-source-line="1">OSPF：Open Shortest Path First</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#spfshortest-path-first" class="md-toc-link">
-            <p data-source-line="1">SPF：Shortest Path First</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#sptshortest-path-tree-最短路径树" class="md-toc-link">
-            <p data-source-line="1">SPT：Shortest Path Tree 最短路径树</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#mstminimum-spanning-tree-最小生成树" class="md-toc-link">
-            <p data-source-line="1">MST：Minimum Spanning Tree 最小生成树</p>
-
-          </a></div>
-</div>
-</div>
+      <div class="md-sidebar-toc"></div>
       <a id="sidebar-toc-btn">≡</a>
     
     

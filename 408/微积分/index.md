@@ -5,6 +5,10 @@ export_on_save:
     html: true  # 自动保存
 ---
 
+[画图工具](https://www.geogebra.org/graphing?lang=zh_CN)
+
+---
+
 微积分之前先 **化简** $\left\{
 \begin{aligned}
     拆项、提项、同乘、同除 \\
