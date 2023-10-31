@@ -209,7 +209,7 @@ SOURCES <span class="token operator">+=</span> main.cpp
 </li>
 <li>
 <p>拓展 -&gt; Qt VS Tools -&gt; Qt Versions -&gt; Add -&gt; 选择 QT 安装路径<br>
-例如：<code>C:\Qt\6.x.x\msvc2019_64\bin\qmake.exe</code></p>
+例如：<code>C:\Qt\6.5.3\msvc2019_64\bin\qmake.exe</code></p>
 </li>
 <li>
 <p>创建项目：文件 -&gt; 新建 -&gt; 项目 -&gt; Qt Widgets Application<br>
@@ -251,17 +251,23 @@ F5 一键运行，弹出窗口即成功</p>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre></li>
 </ul>
+<br>
+<hr>
 <h1 id="简单窗口和基本控件">简单窗口和基本控件 </h1>
 <h2 id="hello-qt">Hello Qt </h2>
+<h2 id="按钮和标签">按钮和标签 </h2>
 <h2 id="文本输入和显示">文本输入和显示 </h2>
 <h2 id="布局管理器">布局管理器 </h2>
 <h2 id="-计算器">🧮 计算器 </h2>
 <h2 id="菜单和工具栏">菜单和工具栏 </h2>
-<h2 id="选择和显示日期时间">选择和显示日期/时间 </h2>
-<h2 id="表格和滚动区域">表格和滚动区域 </h2>
-<h2 id="按钮和标签">按钮和标签 </h2>
-<h1 id="布局管理器-1">布局管理器 </h1>
 <h1 id="列表和组合控件">列表和组合控件 </h1>
+<h2 id="选择和显示日期时间">选择和显示日期/时间 </h2>
+<h2 id="-图片显示">⛺ 图片显示 </h2>
+<h2 id="-画图">🎨 画图 </h2>
+<h2 id="进度条和滑块">进度条和滑块 </h2>
+<h2 id="表格和滚动区域">表格和滚动区域 </h2>
+<h2 id="多媒体">多媒体 </h2>
+<h1 id="布局管理器-1">布局管理器 </h1>
 <h1 id="文件和图像操作">文件和图像操作 </h1>
 
       </div>
@@ -303,6 +309,10 @@ F5 一键运行，弹出窗口即成功</p>
             <p>Hello Qt</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#按钮和标签" class="md-toc-link">
+            <p>按钮和标签</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#文本输入和显示" class="md-toc-link">
             <p>文本输入和显示</p>
 
@@ -318,17 +328,38 @@ F5 一键运行，弹出窗口即成功</p>
           <a href="#菜单和工具栏" class="md-toc-link">
             <p>菜单和工具栏</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#列表和组合控件" class="md-toc-link"><p>列表和组合控件</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#选择和显示日期时间" class="md-toc-link">
             <p>选择和显示日期/时间</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#-图片显示" class="md-toc-link">
+            <p>⛺ 图片显示</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#-画图" class="md-toc-link">
+            <p>🎨 画图</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#进度条和滑块" class="md-toc-link">
+            <p>进度条和滑块</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#表格和滚动区域" class="md-toc-link">
             <p>表格和滚动区域</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#按钮和标签" class="md-toc-link">
-            <p>按钮和标签</p>
+          <a href="#多媒体" class="md-toc-link">
+            <p>多媒体</p>
 
           </a></div>
         </div>
@@ -336,10 +367,6 @@ F5 一键运行，弹出窗口即成功</p>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#布局管理器-1" class="md-toc-link">
             <p>布局管理器</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#列表和组合控件" class="md-toc-link">
-            <p>列表和组合控件</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#文件和图像操作" class="md-toc-link">

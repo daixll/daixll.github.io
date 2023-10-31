@@ -242,7 +242,7 @@ export_on_save:
 
 ### 国二 蓝桥杯
 
-- `2023-6` `第十四届“蓝桥杯”C/C++程序设计本科B组` `国赛二等奖` [公示/排名](https://dasai.lanqiao.cn/notices/1481/)
+- `2023-6` `第十四届“蓝桥杯”C/C++程序设计本科B组` `国赛二等奖` [公示/排名](https://dasai.lanqiao.cn/notices/1481/) / [报道](https://www.cqipc.edu.cn/info/1228/18228.htm)
 <div class="center">
     <img src="joker/（国2）蓝桥杯23.jpg" width="300"> 
 </div>
