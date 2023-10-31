@@ -218,7 +218,39 @@ F5 一键运行，弹出窗口即成功</p>
 </ol>
 <br>
 <hr>
-<h1 id="信号与槽">信号与槽 </h1>
+<p>当涉及到Qt框架中常用的一些类时，下面是一个简单的结构图：</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>QObject
+  └── QWidget
+      ├── QMainWindow
+      ├── QLabel
+      ├── QPushButton
+      ├── QLineEdit
+      ├── QComboBox
+      ├── QCheckBox
+      ├── QRadioButton
+      ├── QSlider
+      ├── QProgressBar
+      └── ...
+
+QLayout
+  ├── QHBoxLayout
+  └── QVBoxLayout
+
+QEvent
+  ├── QMouseEvent
+  ├── QKeyEvent
+  ├── QResizeEvent
+  ├── QCloseEvent
+  └── ...
+  
+QPainter
+QPixmap
+QImage
+QPen
+QBrush
+QColor
+...
+</code></pre><h1 id="信号与槽">信号与槽 </h1>
 <p>简单理解，当你在页面点击一个按钮，这个点击就是 <strong>信号</strong>，而后端的处理函数就是 <strong>槽</strong>。<br>
 同理，当你在页面输入一个字符，这个输入就是 <strong>信号</strong>，而后端的处理函数就是 <strong>槽</strong>。</p>
 <p>QT 官方对信号与槽的描述如下：</p>
@@ -255,6 +287,87 @@ F5 一键运行，弹出窗口即成功</p>
 <hr>
 <h1 id="简单窗口和基本控件">简单窗口和基本控件 </h1>
 <h2 id="hello-qt">Hello Qt </h2>
+<p>Qt 创建一个窗口非常简单，只需要创建一个 <code>QWidget</code> 对象，然后调用 <code>QWidget</code> 的 <code>show()</code> 方法即可。</p>
+<p>不过在这之前，我们先了解一下 <code>QApplication</code> 类，它是 Qt 程序的入口，也是 Qt 程序的核心对象，每个 Qt 程序都必须 <strong>有且仅有一个</strong> <code>QApplication</code> 对象。</p>
+<ol>
+<li>
+<p>应用程序的初始化。</p>
+<ul>
+<li>命令行参数的解析。</li>
+<li>资源文件的加载：例如应用图标，各种按钮的图片等。</li>
+<li>初始化第三方库和服务：例如数据库服务。</li>
+</ul>
+</li>
+<li>
+<p>事件循环。</p>
+<ul>
+<li>通过调用 <code>exec()</code> 方法进入事件循环。</li>
+</ul>
+</li>
+<li>
+<p>处理系统事件。</p>
+<ul>
+<li>确保事件（鼠标点击、键盘输入）被传递给适当的窗口部件进行处理。</li>
+</ul>
+</li>
+<li>
+<p>退出应用程序。</p>
+<ul>
+<li>用户关闭主窗口，它负责安全地关闭所有窗口并释放所有资源。</li>
+<li>或调用 <code>quit()</code> 方法安全地退出事件循环。</li>
+</ul>
+</li>
+<li>
+<p>跟踪应用程序的状态。</p>
+<ul>
+<li>例如，<code>QApplication</code> 类提供了 <code>applicationStateChanged()</code> 信号，当应用程序的状态发生变化时，就会发射这个信号。</li>
+</ul>
+</li>
+</ol>
+<p>因此，我们的程序应该是这样的：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QApplication&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> argc<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    QApplication <span class="token function">app</span><span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 创建一个应用程序对象</span>
+    <span class="token keyword keyword-return">return</span> app<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 进入事件循环</span>
+<span class="token punctuation">}</span>
+</code></pre><p>程序有了，但是没有窗口，我们需要创建一个窗口，然后显示出来，<br>
+很有必要，创建一个主窗口类：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMainWindow&gt;</span></span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MainWindow</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QMainWindow</span>   <span class="token comment">// 创建一个主窗口类</span></span>
+<span class="token punctuation">{</span>                                       <span class="token comment">// 继承自QMainWindow</span>
+    Q_OBJECT                            <span class="token comment">// 使用Qt的信号与槽机制需要这个宏</span>
+
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent <span class="token operator">=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    <span class="token comment">// 在这里声明私有成员变量和私有方法</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p><code>Q_OBJECT</code> 宏是使用 Qt 的信号与槽机制必须的，它会在编译阶段自动将 <code>moc</code> 文件（元对象编译器）插入到源文件中，这个文件中包含了信号与槽的实现。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.cpp</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"include/MainWindow.h"</span></span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span> <span class="token comment">// 这里的parent是可选的</span>
+    <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>               <span class="token comment">// 构造函数的初始化列表</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 在这里进行主窗口的初始化操作</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setWindowTitle</span><span class="token punctuation">(</span><span class="token string">"Hello Qt!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 设置窗口标题</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// 在这里进行资源的清理工作（如果需要）</span>
+<span class="token punctuation">}</span>
+</code></pre><p>在 <code>main.cpp</code> 中，我们需要创建一个 <code>MainWindow</code> 对象，然后显示出来：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>MainWindow <span class="token operator">*</span>w <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 创建一个主窗口对象</span>
+w<span class="token operator">-&gt;</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                          <span class="token comment">// 显示主窗口</span>
+</code></pre><p>源代码及 <code>.pro</code> 参见：<a href="https://github.com/daixll/A_Tour_of_Qt/tree/main/Leg1">Leg1</a></p>
 <h2 id="按钮和标签">按钮和标签 </h2>
 <h2 id="文本输入和显示">文本输入和显示 </h2>
 <h2 id="布局管理器">布局管理器 </h2>

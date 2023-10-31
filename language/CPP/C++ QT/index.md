@@ -208,6 +208,44 @@ export_on_save:
 
 ---
 
+当涉及到Qt框架中常用的一些类时，下面是一个简单的结构图：
+
+```
+QObject
+  └── QWidget
+      ├── QMainWindow
+      ├── QLabel
+      ├── QPushButton
+      ├── QLineEdit
+      ├── QComboBox
+      ├── QCheckBox
+      ├── QRadioButton
+      ├── QSlider
+      ├── QProgressBar
+      └── ...
+
+QLayout
+  ├── QHBoxLayout
+  └── QVBoxLayout
+
+QEvent
+  ├── QMouseEvent
+  ├── QKeyEvent
+  ├── QResizeEvent
+  ├── QCloseEvent
+  └── ...
+  
+QPainter
+QPixmap
+QImage
+QPen
+QBrush
+QColor
+...
+```
+
+
+
 # 信号与槽
 
 简单理解，当你在页面点击一个按钮，这个点击就是 **信号**，而后端的处理函数就是 **槽**。
@@ -255,6 +293,90 @@ QT 官方对信号与槽的描述如下：
 # 简单窗口和基本控件
 
 ## Hello Qt
+
+Qt 创建一个窗口非常简单，只需要创建一个 `QWidget` 对象，然后调用 `QWidget` 的 `show()` 方法即可。
+
+不过在这之前，我们先了解一下 `QApplication` 类，它是 Qt 程序的入口，也是 Qt 程序的核心对象，每个 Qt 程序都必须 **有且仅有一个** `QApplication` 对象。
+
+1. 应用程序的初始化。
+    * 命令行参数的解析。
+    * 资源文件的加载：例如应用图标，各种按钮的图片等。
+    * 初始化第三方库和服务：例如数据库服务。
+
+2. 事件循环。
+    * 通过调用 `exec()` 方法进入事件循环。
+
+3. 处理系统事件。
+    * 确保事件（鼠标点击、键盘输入）被传递给适当的窗口部件进行处理。
+
+4. 退出应用程序。
+    * 用户关闭主窗口，它负责安全地关闭所有窗口并释放所有资源。
+    * 或调用 `quit()` 方法安全地退出事件循环。
+
+5. 跟踪应用程序的状态。
+    * 例如，`QApplication` 类提供了 `applicationStateChanged()` 信号，当应用程序的状态发生变化时，就会发射这个信号。
+
+因此，我们的程序应该是这样的：
+
+```cpp
+#include <QApplication>
+
+int main(int argc, char *argv[]){
+    QApplication app(argc, argv);   // 创建一个应用程序对象
+    return app.exec();              // 进入事件循环
+}
+```
+
+程序有了，但是没有窗口，我们需要创建一个窗口，然后显示出来，
+很有必要，创建一个主窗口类：
+
+```cpp
+// MainWindow.h
+#pragma once
+
+#include <QMainWindow>
+
+class MainWindow : public QMainWindow   // 创建一个主窗口类
+{                                       // 继承自QMainWindow
+    Q_OBJECT                            // 使用Qt的信号与槽机制需要这个宏
+
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+
+private:
+    // 在这里声明私有成员变量和私有方法
+};
+```
+
+`Q_OBJECT` 宏是使用 Qt 的信号与槽机制必须的，它会在编译阶段自动将 `moc` 文件（元对象编译器）插入到源文件中，这个文件中包含了信号与槽的实现。
+
+```cpp
+// MainWindow.cpp
+#include "include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent) // 这里的parent是可选的
+    : QMainWindow(parent)               // 构造函数的初始化列表
+{
+    // 在这里进行主窗口的初始化操作
+    this -> setWindowTitle("Hello Qt!");// 设置窗口标题
+}
+
+MainWindow::~MainWindow()
+{
+    // 在这里进行资源的清理工作（如果需要）
+}
+```
+
+在 `main.cpp` 中，我们需要创建一个 `MainWindow` 对象，然后显示出来：
+
+```cpp
+MainWindow *w = new MainWindow();   // 创建一个主窗口对象
+w->show();                          // 显示主窗口
+```
+
+源代码及 `.pro` 参见：[Leg1](https://github.com/daixll/A_Tour_of_Qt/tree/main/Leg1)
+
 
 ## 按钮和标签
 
