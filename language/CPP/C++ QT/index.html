@@ -218,39 +218,49 @@ F5 一键运行，弹出窗口即成功</p>
 </ol>
 <br>
 <hr>
-<p>当涉及到Qt框架中常用的一些类时，下面是一个简单的结构图：</p>
-<pre data-role="codeBlock" data-info="" class="language-text text"><code>QObject
-  └── QWidget
-      ├── QMainWindow
-      ├── QLabel
-      ├── QPushButton
-      ├── QLineEdit
-      ├── QComboBox
-      ├── QCheckBox
-      ├── QRadioButton
-      ├── QSlider
-      ├── QProgressBar
-      └── ...
-
-QLayout
-  ├── QHBoxLayout
-  └── QVBoxLayout
-
-QEvent
-  ├── QMouseEvent
-  ├── QKeyEvent
-  ├── QResizeEvent
-  ├── QCloseEvent
-  └── ...
-  
-QPainter
-QPixmap
-QImage
-QPen
-QBrush
-QColor
-...
-</code></pre><h1 id="信号与槽">信号与槽 </h1>
+<h1 id="一次编写到处编译">一次编写，到处编译 </h1>
+<p>一般而言，一个Qt项目有如下文件：</p>
+<ul>
+<li><code>main.pro</code>：工程管理文件</li>
+<li><code>main.cpp</code>：源文件</li>
+</ul>
+<p>将其 <strong>完整复制</strong> 到其他平台，然后 <strong>重新编译</strong> 即可运行。</p>
+<h2 id="linux-1">LINUX </h2>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>qmake main.pro  <span class="token comment"># 生成 Makefile</span>
+<span class="token function">make</span>            <span class="token comment"># 编译</span>
+./main          <span class="token comment"># 运行</span>
+</code></pre><h2 id="windows-1">WINDOWS </h2>
+<p>打开终端 <code>Qt 6.x.x (MinGW)</code>，到项目目录，执行：</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>qmake main.pro  <span class="token comment"># 生成 Makefile</span>
+mingw32-make    <span class="token comment"># 编译</span>
+debug<span class="token punctuation">\</span>main.exe  <span class="token comment"># 运行</span>
+</code></pre><br>
+<hr>
+<h1 id="打包分享给-">打包！分享给 👧 </h1>
+<h2 id="linux-2">LINUX </h2>
+<h2 id="windows-2">WINDOWS </h2>
+<ol>
+<li>将你的 <code>main.exe</code> 文件单独复制到一个干净的文件夹中；</li>
+<li>打开终端 <code>Qt 6.x.x (MinGW)</code>，到新建的文件夹，执行：<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>windeployqt main.exe
+</code></pre><ul>
+<li>它会自动分析你的应用程序，找出它所依赖的Qt模块和其他依赖项，并将这些文件复制到应用程序的目录中。</li>
+<li>此时，软件已经可以在其他（同一平台）电脑上运行了。</li>
+<li>为了更好的用户体验，我们可以将其打包成一个绿色版的软件，👧 可以点击 <code>main.exe</code> 直接运行！</li>
+</ul>
+</li>
+<li>下载安装 <a href="https://www.enigmaprotector.com/cn/downloads.html">Enigma Virtual Box</a>；</li>
+<li>使用 Enigma Virtual Box 将 <code>main.exe</code> 打包：
+<ol>
+<li>在 <code>Enter input File Name:</code> 中打开 <code>main.exe</code>，会自动填写 <code>output</code>；</li>
+<li>点击 <code>Add</code> -&gt; <code>Add Folder Recursive</code>，选择 <code>main.exe</code> 所在的文件夹，默认就好；</li>
+<li>点击 <code>Files Options</code>，勾选 <code>Files Virtualization</code> 和 <code>Compress Files</code>；</li>
+<li>点击 <code>Process</code>，等待打包完成；</li>
+</ol>
+</li>
+</ol>
+<br>
+<hr>
+<h1 id="信号与槽">信号与槽 </h1>
 <p>简单理解，当你在页面点击一个按钮，这个点击就是 <strong>信号</strong>，而后端的处理函数就是 <strong>槽</strong>。<br>
 同理，当你在页面输入一个字符，这个输入就是 <strong>信号</strong>，而后端的处理函数就是 <strong>槽</strong>。</p>
 <p>QT 官方对信号与槽的描述如下：</p>
@@ -286,7 +296,40 @@ QColor
 <br>
 <hr>
 <h1 id="简单窗口和基本控件">简单窗口和基本控件 </h1>
-<h2 id="hello-qt">Hello Qt </h2>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>QObject                 # 所有类的基类，提供了对象的基本功能（属性、信号与槽...）
+  └── QWidget           # 所有窗口部件的基类，提供了窗口部件的基本功能（尺寸、位置、标题...）
+      ├── QMainWindow   # 主窗口类，提供了主窗口的基本功能（菜单栏、工具栏、状态栏...）
+      ├── QLabel        # 标签类，用于显示文本或图像
+      ├── QPushButton   # 按钮类，用于响应用户的点击
+      ├── QLineEdit     # 单行文本输入框类，用于接收用户的输入
+      ├── QComboBox     # 下拉列表类，用于从列表中选择一个选项
+      ├── QCheckBox     # 复选框类，用于从多个选项中选择一个或多个
+      ├── QRadioButton  # 单选按钮类，用于从多个选项中选择一个
+      ├── QSlider       # 滑块类，用于从一个范围中选择一个值
+      ├── QProgressBar  # 进度条类，用于显示任务的进度
+      └── ...
+
+QLayout             # 所有布局管理器的基类，提供了布局管理器的基本功能
+  ├── QHBoxLayout   # 水平布局
+  ├── QVBoxLayout   # 垂直布局
+  ├── QGridLayout   # 网格布局
+  └── ...
+
+QEvent              # 所有事件的基类，提供了事件的基本功能
+  ├── QMouseEvent   # 鼠标事件
+  ├── QKeyEvent     # 键盘事件
+  ├── QResizeEvent  # 窗口大小改变事件
+  ├── QCloseEvent   # 窗口关闭事件
+  └── ...
+  
+QPainter    # 绘图设备，用于绘制各种图形
+QPixmap     # 图片设备，用于显示图片
+QImage      # 图片设备，用于显示图片
+QPen        # 画笔，用于绘制各种图形的轮廓
+QBrush      # 画刷，用于绘制各种图形的背景
+QColor      # 颜色，用于设置画笔和画刷的颜色
+...
+</code></pre><h2 id="hello-qt">Hello Qt </h2>
 <p>Qt 创建一个窗口非常简单，只需要创建一个 <code>QWidget</code> 对象，然后调用 <code>QWidget</code> 的 <code>show()</code> 方法即可。</p>
 <p>不过在这之前，我们先了解一下 <code>QApplication</code> 类，它是 Qt 程序的入口，也是 Qt 程序的核心对象，每个 Qt 程序都必须 <strong>有且仅有一个</strong> <code>QApplication</code> 对象。</p>
 <ol>
@@ -368,6 +411,99 @@ QColor
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>MainWindow <span class="token operator">*</span>w <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 创建一个主窗口对象</span>
 w<span class="token operator">-&gt;</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                          <span class="token comment">// 显示主窗口</span>
 </code></pre><p>源代码及 <code>.pro</code> 参见：<a href="https://github.com/daixll/A_Tour_of_Qt/tree/main/Leg1">Leg1</a></p>
+<br>
+<hr>
+<h2 id="布局管理与标签">布局管理与标签 </h2>
+<p>我们已经能够创建窗口了，但是窗口是空的，我们想要在窗口中显示一些东西，例如文字或者图片，这就需要用到标签了。</p>
+<p>显然，标签属于主窗口，所以我们需要在主窗口类中声明一个标签对象：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    QLabel <span class="token operator">*</span>_label<span class="token punctuation">;</span>  <span class="token comment">// 声明一个标签</span>
+</code></pre><p>约定俗成的，我们将类的私有成员变量前面加上下划线 <code>_</code>，这样可以方便的区分成员变量和局部变量。</p>
+<p>然后在构造函数中初始化标签：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.cpp</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"include/MainWindow.h"</span></span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span>
+    <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setWindowTitle</span><span class="token punctuation">(</span><span class="token string">"Hello Qt!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> _label <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QLabel</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 为其分配内存</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> _label <span class="token operator">-&gt;</span> <span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"666"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 设置标签文本</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-delete">delete</span> <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> _label<span class="token punctuation">;</span>              <span class="token comment">// 释放内存</span>
+<span class="token punctuation">}</span>
+</code></pre><p>为了能够控制标签的位置，我们需要使用布局管理器，布局管理器是 Qt 提供的一种自动布局机制，它能够根据窗口的大小自动调整窗口部件的位置和大小。</p>
+<p>Qt 常见的三种布局管理器：水平布局、垂直布局和网格布局。我们这里使用垂直布局：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMainWindow&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLayout&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLabel&gt;</span></span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MainWindow</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QMainWindow</span></span>
+<span class="token punctuation">{</span>
+    Q_OBJECT
+
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent <span class="token operator">=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    QVBoxLayout <span class="token operator">*</span>_layout<span class="token punctuation">;</span>       <span class="token comment">// 声明一个布局管理器</span>
+    QWidget     <span class="token operator">*</span>_centralWidget<span class="token punctuation">;</span><span class="token comment">// 中央部件</span>
+    QLabel      <span class="token operator">*</span>_labeltext<span class="token punctuation">;</span>    <span class="token comment">// 声明一个文本标签</span>
+    QLabel      <span class="token operator">*</span>_labelimg<span class="token punctuation">;</span>     <span class="token comment">// 声明一个图片标签</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>布局管理器通常需要附着在一个特定的窗口部件上，这个窗口部件被称为中央部件（central widget）。</p>
+<p>通过调用 <code>setCentralWidget(centralWidget)</code>，将整个布局应用到主窗口。</p>
+<blockquote>
+<p>Q：为什么要使用中央部件？而不是直接将布局应用到主窗口？</p>
+<ul>
+<li>当你将布局管理器设置为主窗口时，它会直接影响主窗口的整体布局，包括菜单栏、工具栏等。而将布局管理器设置为中央部件的布局管理器，只会影响中央部件内部的子部件，不会影响其他部分的布局，这样更加灵活。</li>
+<li>主窗口是一个顶级窗口，可以包含多个子部件，而中央部件是主窗口的一个特殊子部件，它会自动占据主窗口的中央区域。</li>
+</ul>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.cpp</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"include/MainWindow.h"</span></span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span>
+    <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">setWindowTitle</span><span class="token punctuation">(</span><span class="token string">"Hello Qt!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    _layout         <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QVBoxLayout</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _centralWidget  <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QWidget</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _labeltext      <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QLabel</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _labelimg       <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QLabel</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    _layout <span class="token operator">-&gt;</span> <span class="token function">addWidget</span><span class="token punctuation">(</span>_labeltext<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 将文本标签添加到布局管理器</span>
+    _layout <span class="token operator">-&gt;</span> <span class="token function">addWidget</span><span class="token punctuation">(</span>_labelimg<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 将图片标签添加到布局管理器</span>
+
+    _labeltext <span class="token operator">-&gt;</span> <span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"666"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 设置文本标签</span>
+    _labelimg  <span class="token operator">-&gt;</span> <span class="token function">setPixmap</span><span class="token punctuation">(</span><span class="token function">QPixmap</span><span class="token punctuation">(</span><span class="token string">"img/cqvie.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 设置图片标签</span>
+
+    <span class="token comment">// 设置标签的对齐方式为居中</span>
+    _labeltext <span class="token operator">-&gt;</span> <span class="token function">setAlignment</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>AlignCenter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _labelimg  <span class="token operator">-&gt;</span> <span class="token function">setAlignment</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>AlignCenter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    _centralWidget <span class="token operator">-&gt;</span> <span class="token function">setLayout</span><span class="token punctuation">(</span>_layout<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 设置中央部件的布局管理器</span>
+    <span class="token function">setCentralWidget</span><span class="token punctuation">(</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 设置中央部件</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-delete">delete</span> _labelimg<span class="token punctuation">;</span>
+    <span class="token keyword keyword-delete">delete</span> _labeltext<span class="token punctuation">;</span>
+    <span class="token keyword keyword-delete">delete</span> _centralWidget<span class="token punctuation">;</span>
+    <span class="token keyword keyword-delete">delete</span> _layout<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h1 id="待整理">待整理 </h1>
 <h2 id="按钮和标签">按钮和标签 </h2>
 <h2 id="文本输入和显示">文本输入和显示 </h2>
 <h2 id="布局管理器">布局管理器 </h2>
@@ -407,6 +543,40 @@ w<span class="token operator">-&gt;</span><span class="token function">show</spa
           </a></div>
         </div>
       </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#一次编写到处编译" class="md-toc-link"><p>一次编写，到处编译</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-1" class="md-toc-link">
+            <p>LINUX</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#windows-1" class="md-toc-link">
+            <p>WINDOWS</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#打包分享给-" class="md-toc-link"><p>打包！分享给 👧</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-2" class="md-toc-link">
+            <p>LINUX</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#windows-2" class="md-toc-link">
+            <p>WINDOWS</p>
+
+          </a></div>
+        </div>
+      </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#信号与槽" class="md-toc-link">
             <p>信号与槽</p>
@@ -422,6 +592,19 @@ w<span class="token operator">-&gt;</span><span class="token function">show</spa
             <p>Hello Qt</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#布局管理与标签" class="md-toc-link">
+            <p>布局管理与标签</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#待整理" class="md-toc-link"><p>待整理</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#按钮和标签" class="md-toc-link">
             <p>按钮和标签</p>
 
