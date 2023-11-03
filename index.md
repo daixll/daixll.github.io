@@ -109,7 +109,7 @@ export_on_save:
 
 <div class="center">
 
-|[微积分](/408/微积分/index.html)|空间几何|级数|[线性代数](/408/线代/index.md)|离散数学|[概率论]() | [数理统计]()|数论| [English](/408/ENGLISH/index.html) |
+|[微积分](/408/微积分/index.html)|空间几何|级数|[线性代数](/408/线代/index.md)|离散数学|[概率论](/408/概率论/index.html) | [数理统计]()|数论| [English](/408/ENGLISH/index.html) |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 
 
