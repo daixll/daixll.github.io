@@ -34,21 +34,284 @@ export_on_save:
 
 <br>
 
-4. 学习 **面向对象**：用C++之父 本贾尼 的话说，C++是支持面向对象，而不是，C++是面向对象的语言。“面向对象不是 C++ 的所有，而仅仅是其支持的多种编程范式（面向过程、面向对象、泛型编程、函数式编程）中的一种”。
-    * 面向对象编程：封装、抽象、继承、多态。
+4. 学习 **面向对象**：用C++之父 本贾尼 的话说，C++是支持面向对象，而不是，C++是面向对象的语言。*“面向对象不是 C++ 的所有，而仅仅是其支持的多种编程范式（面向过程、面向对象、泛型编程、函数式编程）中的一种”*。
+    * 面向对象编程：封装、继承、多态。
     * 既然面向对象是一种思想，我们应该跳脱出语言的限制，去思考如何设计一个面向对象的系统。
     * [书籍参考]()：《设计模式的艺术——软件开发人员内功修炼之道》、《head first设计模式》。
     * 架构为道、设计为术。设计模式是确定架构下的最佳实践。
 
 
 
+<br>
 
 ---
 
-
-
 # class
 
+> 假设，我们需要接受一个不确定的输入，
+> 如果这个输入是一个整数，那么我们就输出这个整数的平方，
+> 否则，不输出。
+
+以，**面向过程** 的思想，我们可以这样写：
+
+```cpp
+// 定义一个字符串，接受输入
+std::string s;
+cin>>s;
+// 判断输入是否为整数
+bool isInt = true;
+for(int i = 0; i < s.size(); i++)
+    if(s[i] < '0' || s[i] > '9'){
+        isInt = false;
+        break;
+    }
+// 判断输入是否超过 int 的范围
+if(isInt)
+    if(s.size() > 10 || (s.size() == 10 && s > "2147483647"))
+        isInt = false;
+// 输出
+if(isInt)
+    cout<<s;
+else
+    cout<<"不是整数";
+```
+
+以，**面向对象** 的思想，我们可以这样写：
+
+```cpp
+Input *userInput = new Input(); // 定义一个输入类
+userInput->getNum();            // 接受输入
+userInput->printNum();          // 输出
+delete input;                   // 释放内存
+```
+
+可以发现，**面向对象** 的思想，使得代码更加简洁、易读、易维护。
+
+但这并不意味着，**面向对象** 思想就是最好的，只是在某些场景下，**面向对象** 思想更加适用。
+
+于是 C++ 引入了 **类** 的概念，使得我们可以更加方便地使用 **面向对象** 思想。
+
+<br>
+
+类的基本思想是 **数据抽象** 和 **封装**。
+**数据抽象** 是一种依赖于 **接口** 和 **实现** 分离的编程（设计）技术。
+
+> 例如，我们需要实现一个功能，此功能需要
+> * 若干个变量
+> * 若干个变量需要进行若干个操作（函数）
+> 
+> 于是，我们可以将这些变量和函数封装在一个类中，这样就实现了 **数据抽象** 和 **封装**。
+
+> 更加具体的，我们要设计一个水杯类
+> * 水杯有水量
+> * 水杯可以加水
+> * 水杯可以倒水
+> 
+> 于是，我们可以将 **水量** 和 **加水倒水** 封装在一个类中，这样就是可以非常方便的使用这个水杯了。
+> 
+> 对于使用类的我们而言，只需要知道水杯有水量，可以加水倒水即可，加水倒水就是 **接口**。
+>
+> 至于，这个水能不能加，能加多少，能倒多少，这些都是 **实现**，我们不需要知道。
+
+<br>
+
+---
+
+## 封装：定义一个抽象数据类型
+
+>封装是指将 **数据** 和 **操作数据的函数** 绑定在一起，数据被保护在内部，外部程序只能通过已定义的接口访问数据，这样就确保了数据的完整性、安全性。
+
+在这里，抽象数据类型，就是 **类**。
+
+
+
+```cpp
+// Cup.h
+#pragma once
+
+class Cup
+{
+public:
+	Cup(const int w=99);// 构造函数
+	~Cup();				// 析构函数
+
+	int getWater() const;		// 取得水量
+	void addWater(const int w);	// 加水
+	void pourWater(const int w);// 倒水
+private:
+	int* _water;	// 水量
+	int* _volume;	// 容量
+};
+```
+
+* `Cup(const int w=99);`
+    * `int w`，此函数需要传入一个 `int` 类型的参数。
+    * `const`，此函数不会修改传入的参数。
+    * `=99`，此函数的默认参数为 `99`，如果不传入参数，那么就会使用默认参数。
+
+* `int getWater() const;`
+    * `int`，此函数返回一个 `int` 类型的值。
+    * `const`，此函数不会修改类的成员变量。
+
+```cpp
+// Cup.cpp
+#include "Cup.h"
+
+Cup::Cup(const int w) {
+	this -> _water = new int;	
+	_volume = new int;
+
+	*_water = 0;		// 初始水量为0
+	*_volume = w;		// 容量为w
+}
+
+Cup::~Cup() {
+	delete _water;		// 释放水量
+	delete _volume;		// 释放容量
+}
+
+int Cup::getWater() const {
+	return *_water;
+}
+
+void Cup::addWater(const int w) {
+	// 加水加到最大容量
+	if (*_water + w > *_volume) {
+		*_water = *_volume;
+		return;
+	}
+	*_water += w;
+}
+
+void Cup::pourWater(const int w) {
+	// 倒水倒到最少容量
+	if (*_water - w < 0) {
+		*_water = 0;
+		return;
+	}
+	*_water -= w;
+}
+```
+
+* `this -> _water = new int;`
+    * `this` 指向当前对象，`this -> _water` 指向当前对象的 `_water` 成员变量。
+    * 当我们调用 `_water` 时，实际上是调用 `this -> _water`。
+    * 任何一个成员都有一个隐含的 `this` 指针，指向调用它的对象。
+
+```cpp
+// main.cpp
+#include "Cup.h"
+#include <iostream>
+
+int main() {
+	Cup* cup = new Cup(100);
+	std::cout<<cup->getWater()<<std::endl;
+	// 输出 0
+	cup->addWater(150);
+	std::cout<<cup->getWater()<<std::endl;
+	// 输出 100
+	cup->pourWater(50);
+	std::cout<<cup->getWater()<<std::endl;
+    // 输出 50
+	delete cup;
+	return 0;
+}
+```
+
+## 继承：定义一个基类的派生类
+
+我们更想，来一杯 **蜜雪冰冰**🥤！
+
+我们简单考虑一下：
+| 水杯 | 蜜雪冰冰 |
+|:-:|:-:|
+| 水量 | 水量 |
+| 加水 | 加水 |
+| 倒水 | 倒水 |
+| - | 加波波脆 |
+| - | 加芋圆 |
+| - | 小料表 | 
+
+可以发现，蜜雪冰冰是水杯的一种，蜜雪冰冰继承了水杯的所有东西，同时，蜜雪冰冰还有自己的东西。
+
+因此，我们就没有必要重新定义一个蜜雪冰冰类，只需要创建一个水杯类的派生类，即可。
+
+```cpp
+// mxbb.h
+#pragma once
+#include "Cup.h"
+#include <iostream>
+
+class Mxbb : public Cup {
+
+public:
+	Mxbb(const int s = 0);
+	~Mxbb();
+	void addX();		// 加啵啵脆
+	void addY();		// 加芋圆
+	void query() const;	// 查询小料添加情况
+
+private:
+	bool* _x;	// 啵啵脆
+	bool* _y;	// 芋圆
+
+	int calc(const int s);	// 根据中大超杯计算容量
+};
+```
+
+`class Mxbb : public Cup`
+* `Mxbb` 类继承了 `Cup` 类。
+* `public`，继承方式为公有继承。此话题暂不讨论。
+
+```cpp
+#include "Mxbb.h"
+
+int Mxbb::calc(const int s) {
+    int res = 500;              // 中杯容量为500
+    if (s == 2) res = 700;      // 大杯容量为700
+    else if (s == 3) res = 1000;// 超大杯容量为1000
+    return res;
+}
+
+Mxbb::Mxbb(const int s) : Cup(calc(s)), _x(nullptr), _y(nullptr){
+	// 子类 构造函数 的初始化工作
+    // 需要显式调用基类的构造函数
+
+    _x = new bool;
+    _y = new bool;
+    *_x = false;    // 初始无啵啵脆
+    *_y = false;    // 初始无芋圆
+}
+
+Mxbb::~Mxbb() {
+    // 子类 析构函数 的清理工作
+    // 不需要显式调用基类的析构函数，它会自动被调用
+
+    delete _x;
+    delete _y;
+}
+
+void Mxbb::addX() {
+	*_x = true;
+}
+
+void Mxbb::addY() {
+	*_y = true;
+}
+
+void Mxbb::query() const{
+	std::cout << "芋圆奶茶的小料有";
+	if (*_x) std::cout << " 啵啵脆";
+	if (*_y) std::cout << " 芋圆";
+	std::cout << std::endl;
+}
+```
+
+## 公有、私有、保护
+
+
+## 多态：定义一个基类的虚函数
+ 
 
 ---
 
@@ -246,6 +509,8 @@ int main(){
     return 0;
 }
 ```
+
+<br>
 
 ---
 
@@ -612,6 +877,9 @@ union MyUnion{
 };
 ```
 
+<br>
+
+---
 
 # function
 
@@ -666,6 +934,9 @@ int main() {
 }
 ```
 
+<br>
+
+---
 
 # lambda
 
@@ -719,6 +990,10 @@ int main() {
     return 0;
 }
 ```
+
+<br>
+
+---
 
 # 智能指针
 
@@ -786,7 +1061,7 @@ ptr = nullptr;          // 将 ptr 置为 nullptr, ptr 成空指针
 
 # 类型推导
 
-
+<br>
 
 ---
 
