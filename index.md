@@ -163,7 +163,7 @@ export_on_save:
 
 | 国家级奖项 🥇 | 省部级奖项 🥈 | 技能证书 🥉 | 奖学金 💰 | 
 |:-:|:-:|:-:|:-:|
-| 5 | 10 | 4 | 9 | 
+| 5 | 11 | 4 | 9 | 
 
 </div>
 
@@ -174,6 +174,34 @@ export_on_save:
 </p> 
 
 ## 2023
+
+### 国一 码蹄杯
+
+- `2023-12`
+
+### 省一 CCF-CAT
+
+- `2023-12`
+
+### 省一 传智杯
+
+- `2023-11`
+
+### 国一 ACCA
+
+- `2023-11`
+
+### 省一 码蹄杯
+
+- `2023-11` `第五届“码蹄杯”全国职业院校程序设计大赛` `初赛一等奖` [排名 \ 公示]
+
+<div class="center">
+    <img src="joker/（省1）码蹄杯.jpg " width="300"> 
+</div>
+<div class="center">
+    <img src="joker/排名/（省1）码蹄杯.jpg" width="300">
+</div>
+
 
 ### 省二 百度之星
 
@@ -298,9 +326,9 @@ export_on_save:
     <img src="joker/排名/（省2）传智杯.png" width="300">
 </div>
 
-### 国三 码题杯
+### 国三 码蹄杯
 
-- `2022-10` `第四届“码题杯”全国职业院校程序设计大赛` `决赛铜奖` [排名 \ 公示](https://mp.weixin.qq.com/s/pbwGtLsuM2l_8ftM-ir4Cg)
+- `2022-10` `第四届“码蹄杯”全国职业院校程序设计大赛` `决赛铜奖` [排名 \ 公示](https://mp.weixin.qq.com/s/pbwGtLsuM2l_8ftM-ir4Cg)
 
 <div class="center">
     <img src="joker/排名/（奖杯）码题集.jpg" width="300"> 
