@@ -23,7 +23,6 @@ export_on_save:
 
 </center>
 
-
 ---
 
 
@@ -38,7 +37,7 @@ export_on_save:
 
 <div class="center">
 
-| [C](/language/CPP/C/index.html) / [C++](/language/CPP/C++/index.html) | [Tools](/language/CPP/Tools/index.html) | [C++ Concurrency](/language/CPP/C++%20Concurrency/index.html) | [C++ Socket](/language/CPP/C++%20Socket/index.html) | [C++ QT](/language/CPP/C++%20QT/index.html) |
+| [C](/language/CPP/C/index.html) / [C++](/language/CPP/C++/index.html) | [Tools](/language/CPP/Tools/index.html) | [C++ Conc.](/language/CPP/C++%20Concurrency/index.html) | [C++ Socket](/language/CPP/C++%20Socket/index.html) | [C++ QT](/language/CPP/C++%20QT/index.html) |
 |:-:|:-:|:-:|:-:|:-:|
 
 </div>
@@ -65,8 +64,14 @@ export_on_save:
 
 <div class="center">
 
-| [Linux](/Linux/Linux/index.html) | [Git](/Linux/Git/index.html) | [Docker](/Linux/Docker/index.html) | [Nginx](/Linux/Nginx/index.html) | Clash | [Regex](/Linux/Regex/index.html) | [Nmap](/Linux/Nmap/index.html)
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+
+| [Windows](/Linux/Windows/index.html) | [Linux](/Linux/Linux/index.html) | [all in one](/Linux/all%20in%20one/index.html) |
+|:-:|:-:|:-:|
+
+</div><div class="center">
+
+| [Git](/Linux/Git/index.html) | [Docker](/Linux/Docker/index.html) | [Nginx](/Linux/Nginx/index.html) | Clash | [Regex](/Linux/Regex/index.html) | [Nmap](/Linux/Nmap/index.html)
+|:-:|:-:|:-:|:-:|:-:|:-:|
 
 </div><div class="center">
 
@@ -102,15 +107,36 @@ export_on_save:
 
 <div class="center">
 
-| [系统架构](/408/系统架构/index.html) | [设计模式](/408/设计模式/index.html) | 数据结构与算法 | [网络](/408/计算机网络/index.html) | OS | 组成原理 | 编译原理 | 数据库原理| 
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 数据结构 | [网络](/408/计算机网络/index.html) | 操作系统 | 组成原理 |
+|:-:|:-:|:-:|:-:|
+
+</div><div class="center">
+
+| [系统架构](/408/系统架构/index.html) | [设计模式](/408/设计模式/index.html) 
+|:-:|:-:|
 
 </div>
 
+<center>
+
+-- -- -- -- -- -- -- -- **1 + 1** -- -- -- -- -- -- -- --
+
+</center>
+
 <div class="center">
 
-|[微积分](/408/微积分/index.html)|空间几何|级数|[线性代数](/408/线代/index.md)|离散数学|[概率论](/408/概率论/index.html) | [数理统计]()|数论| [English](/408/ENGLISH/index.html) |
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|[微积分](/408/微积分/index.html)|空间几何|级数|
+|:-:|:-:|:-:|
+
+</div><div class="center">
+
+|[线性代数](/408/线代/index.md)|离散数学|[概率论](/408/概率论/index.html) | [数理统计]()|
+|:-:|:-:|:-:|:-:|
+
+</div><div class="center">
+
+|数论| [English](/408/ENGLISH/index.html) |
+|:-:|:-:|
 
 
 </div>

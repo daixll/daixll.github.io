@@ -24,52 +24,79 @@
     
       <div class="crossnote markdown-preview  ">
       
-<h3 id="ddns-及-内网穿透">DDNS 及 内网穿透 </h3>
-<ul>
-<li>NO-IP <a href="https://my.noip.com/dynamic-dns">管理面板</a> <a href="https://www.noip.com/support/knowledgebase/install-linux-3-x-dynamic-update-client-duc/">官方文档</a> <a href="https://www.noip.com/support/knowledgebase/automatic-ipv6-updates-linux-duc/">Linux ipv6</a>
+<p>一台 <strong>all in one</strong> 的 <a href="https://cn.ubuntu.com/download/desktop">Ubuntu</a> 小服务器</p>
+<h1 id="bios">BIOS </h1>
+<ol>
+<li><code>AC power loss</code> 来电自启</li>
+<li><code>RTC</code> 定时启动</li>
+</ol>
+<br>
+<hr>
+<h1 id="上网">上网 </h1>
+<h2 id="访问到自己">访问到自己 </h2>
+<h3 id="公网-ipv4">公网 IPv4 </h3>
 <blockquote>
-<p>只能搞一个域名</p>
+<p>一般而言，运营商都不会给固定的公网IP</p>
 </blockquote>
 <ol>
-<li>下载 <a href="https://my.noip.com/dynamic-dns/duc">下载地址</a></li>
-<li>解压 <code>tar -xf noip*.tar.gz</code></li>
+<li>
+<p>光猫设置为桥接模式</p>
+</li>
+<li>
+<p>路由器设置为拨号上网</p>
+</li>
+<li>
+<p>路由器上有两种方法，可以在使你访问到内网设备</p>
+<ol>
+<li>DMZ（将内网某一个设备的IP映射到外网，方便从外网访问到该设备）</li>
+<li>端口转发（通过 <strong>外网IP+端口</strong> 访问 <strong>内网IP+端口</strong>）</li>
+</ol>
+<p><em>推荐使用端口转发的方式</em></p>
+</li>
+</ol>
+<blockquote>
+<p>如果路由器上有 DDNS 功能，可以直接使用路由器的 DDNS 功能。</p>
+</blockquote>
+<p><strong>更个性化</strong> 买个自己喜欢的域名 [阿里]</p>
+<ol>
+<li>ggg</li>
+<li>ggg</li>
+</ol>
+<br>
+<h3 id="公网-ipv6--ddns">公网 IPv6 + DDNS </h3>
+<blockquote>
+<p>DDNS 用于动态更新域名解析，使域名指向动态公网IP，这里以 <strong>noip</strong> 为例<br>
+一般而言，每台设备都有 公网IPv6，所以直接在设备上配置 DDNS 即可<br>
+在 Linux 上运行 DDNS 客户端，使域名指向该设备的公网IPv6：</p>
+</blockquote>
+<p><a href="https://my.noip.com/dynamic-dns">NO-IP 管理面板</a> / <a href="https://www.noip.com/support/knowledgebase/install-linux-3-x-dynamic-update-client-duc/">官方文档</a> / <a href="https://www.noip.com/support/knowledgebase/automatic-ipv6-updates-linux-duc/">Linux IPv6 使用方法</a></p>
+<ol>
+<li>下载 <a href="https://my.noip.com/dynamic-dns/duc">地址</a></li>
+<li>解压 <code>tar -zxvf noip*.tar.gz</code></li>
 <li>安装 <code>cd binaries &amp;&amp; apt install ./noip-duc_3.0.0-beta.5_amd64.deb</code></li>
 <li><code>noip-duc --username 账号 --password 密码 -g 域名 --ip-method http://ip1.dynupdate6.no-ip.com/</code></li>
 </ol>
-</li>
-</ul>
-<details><summary>内网穿透(有备无患, 无奈之举)</summary>
-<ul>
-<li>
-<p>小鸡穿透 <a href="https://console.chickfrp.com/#/penManage/tunnel">管理面板</a> <a href="http://help.chickfrp.com/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">官方文档</a></p>
+<br>
+<h3 id="内网-ipv4--frp">内网 IPv4 + frp </h3>
 <blockquote>
-<p>固定ip, 高带宽(1.25MB/s), 高流量(5GB)</p>
+<p>一般，内网穿透 和 内网IPv4 一起使用</p>
 </blockquote>
+<p><strong>小鸡穿透</strong> <a href="https://console.chickfrp.com/#/penManage/tunnel">管理面板</a> <a href="http://help.chickfrp.com/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">官方文档</a> 固定ip，高带宽（1.25MB/s），高流量（5GB）</p>
 <ol>
 <li>下载 <code>wget https://chickfrp.com/download/frp045/linux/frp_0.45.0_linux_amd64.tar.gz</code></li>
 <li>解压 <code>tar -zxvf frp*.tar.gz</code></li>
-<li>复制管理面板中的配置文件代码</li>
-<li>替换 frpc.ini</li>
+<li>复制 管理面板中的配置文件代码</li>
+<li>替换 <code>frpc.ini</code> 文件</li>
 <li>穿透 <code>./frpc</code></li>
 </ol>
-</li>
-<li>
-<p>cpolar <a href="https://dashboard.cpolar.com/status">管理面板</a> <a href="https://www.cpolar.com/docs">官方文档</a></p>
-<blockquote>
-<p>cpolar不能固定ip, 但流量无限</p>
-</blockquote>
+<p><strong>cpolar</strong> <a href="https://dashboard.cpolar.com/status">管理面板</a> <a href="https://www.cpolar.com/docs">官方文档</a> 无固定ip，低带宽（128K/s），流量无限</p>
 <ol>
 <li>安装 <code>curl -sL https://git.io/cpolar | sudo bash</code></li>
-<li>查看 <code>token</code>在管理面板</li>
+<li>查看 <code>token</code> 在管理面板</li>
 <li>认证 <code>cpolar authtoken 你的token</code></li>
-<li>穿透 <code>cpolar http 9070</code></li>
+<li>穿透 <code>cpolar http 端口</code></li>
 </ol>
-</li>
-<li>
-<p>花生壳 <a href="https://console.hsk.oray.com/forward">管理面板</a> <a href="https://service.oray.com/question/11630.html">官方文档</a></p>
-<blockquote>
-<p>花生壳可以配置两个固定ip</p>
-</blockquote>
+<p><strong>花生壳</strong> <a href="https://console.hsk.oray.com/forward">管理面板</a> <a href="https://service.oray.com/question/11630.html">官方文档</a> 两个固定ip</p>
 <ol>
 <li>安装 <code>dpkg -i phddns-5.0.0-amd64.deb</code></li>
 <li>运行 <code>phddns start</code></li>
@@ -77,16 +104,161 @@
 <li>登录 <code>sn码</code> + <code>admin</code> 登录管理面板</li>
 <li>穿透 管理面板添加映射</li>
 </ol>
-</li>
+<br>
+<h2 id="访问到外面">访问到外面 </h2>
+<h3 id="clash">Clash </h3>
+<blockquote>
+<p><strong><a href="https://github.com/Fndroid">R.I.P.</a></strong> <code>2023-11-2</code> <code>Clash for Windows</code> 已删库。</p>
+</blockquote>
+<ol>
+<li>在 <a href="https://archive.org/download/clash_for_windows_pkg">archive.org</a> 中下载</li>
+</ol>
+<br>
+<hr>
+<h1 id="code-server">code-server </h1>
+<ol>
+<li>下载 <a href="https://github.com/coder/code-server/releases">地址</a></li>
+<li>安装 <code>apt install ./code-server*.deb</code></li>
+<li>启动 <code>export PASSWORD="密码" &amp;&amp; ./code-server* --host 0.0.0.0 --port 端口 &amp;</code></li>
+</ol>
+<blockquote>
+<ul>
+<li>此方法非常不安全，建议使用 <code>docker</code> 部署</li>
+<li><code>--host</code> 后面的 IP地址，只有是 <code>0.0.0.0</code> 时，外网才可访问到。</li>
 </ul>
-</details>
+</blockquote>
+<br>
+<hr>
+<h1 id="远程桌面">远程桌面 </h1>
+<blockquote>
+<p>直接使用微软的远程桌面协议（RDP）</p>
+</blockquote>
+<ol>
+<li>下载 <code>apt install xrdp</code></li>
+<li>打开端口 <code>ufw allow 3389</code></li>
+</ol>
+<br>
+<hr>
+<h1 id="文件">文件 </h1>
+<h2 id="本地">本地 </h2>
+<blockquote>
+<p>使用 <code>samba</code> 服务</p>
+</blockquote>
+<ol>
+<li>下载 <code>apt install samba</code></li>
+<li>配置分享文件夹 <code>chmod 777 /home/user/Public/ -R</code></li>
+<li>添加samba用户 <code>smbpasswd -a 用户名</code></li>
+<li>提示输入密码 x2</li>
+<li>配置samba <code>vim /etc/samba/smb.conf</code><pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token punctuation">[</span>share name<span class="token punctuation">]</span>            <span class="token comment"># 共享名</span>
+    path <span class="token operator">=</span> /home/user/Public/<span class="token comment"># 共享路径</span>
+    writable <span class="token operator">=</span> <span class="token function">yes</span>      <span class="token comment"># 可写</span>
+</code></pre></li>
+<li>重启samba <code>samba restart</code>
+<ul>
+<li>可能还需要重启一下电脑</li>
+</ul>
+</li>
+<li>开启端口 <code>ufw allow 445</code></li>
+</ol>
+<h2 id="远程">远程 </h2>
+<blockquote>
+<p>使用 <code>docker</code> + <code>nginx</code> 搭建文件服务器</p>
+</blockquote>
+<br>
+<hr>
+<h1 id="网站">网站 </h1>
+<blockquote>
+<p>使用 <code>docker</code> + <code>nginx</code> 搭建静态网站服务</p>
+</blockquote>
+<br>
+<hr>
+<h1 id="影音">影音 </h1>
+<blockquote>
+<p>使用 <code>docker</code> + <code>emby</code> 搭建影音服务</p>
+</blockquote>
 
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#ddns-及-内网穿透" class="md-toc-link">
-            <p>DDNS 及 内网穿透</p>
+          <a href="#bios" class="md-toc-link">
+            <p>BIOS</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#上网" class="md-toc-link"><p>上网</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#访问到自己" class="md-toc-link"><p>访问到自己</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#公网-ipv4" class="md-toc-link">
+            <p>公网 IPv4</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#公网-ipv6--ddns" class="md-toc-link">
+            <p>公网 IPv6 + DDNS</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#内网-ipv4--frp" class="md-toc-link">
+            <p>内网 IPv4 + frp</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#访问到外面" class="md-toc-link"><p>访问到外面</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#clash" class="md-toc-link">
+            <p>Clash</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#code-server" class="md-toc-link">
+            <p>code-server</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#远程桌面" class="md-toc-link">
+            <p>远程桌面</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#文件" class="md-toc-link"><p>文件</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#本地" class="md-toc-link">
+            <p>本地</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#远程" class="md-toc-link">
+            <p>远程</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#网站" class="md-toc-link">
+            <p>网站</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#影音" class="md-toc-link">
+            <p>影音</p>
 
           </a></div>
 </div>

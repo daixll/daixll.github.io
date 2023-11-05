@@ -24,129 +24,6 @@
     
       <div class="crossnote markdown-preview  ">
       
-<hr>
-<h2>html:<br>
-toc: true   # 打开侧边目录<br>
-export_on_save:<br>
-html: true  # 自动保存</h2>
-<h2 id="wsl2自启动">WSL2自启动 </h2>
-<ol>
-<li>win + r 输入  <code>shell:startup</code></li>
-<li>新建 <code>.</code> 文件</li>
-</ol>
-<h1 id="c-for-algorithm">C++ for Algorithm </h1>
-<blockquote>
-<p>win10 22H2 使用 wsl 下的 gcc 编译器，配置竞赛友好的环境</p>
-</blockquote>
-<ol>
-<li>
-<p>微软商店下载 <code>ubuntu</code>，vscode 下载拓展 <code>WSL</code></p>
-</li>
-<li>
-<p><code>控制面板\程序\启用或关闭 Windows 功能</code>：</p>
-<ul>
-<li><code>虚拟机平台</code></li>
-<li><code>适用于 Linux 的 Windows 子系统</code></li>
-</ul>
-</li>
-<li>
-<p>vscode 连接到 WSL，下载拓展 <code>C++</code></p>
-<ul>
-<li>我们仅需 <code>C++</code> 的代码提示（IntelliSense）功能</li>
-<li>如果你不需要代码提示也可以不下</li>
-</ul>
-</li>
-<li>
-<p>进入 ubuntu 环境，下载 <code>gcc</code></p>
-<ul>
-<li><code>sudo apt install gcc</code></li>
-</ul>
-</li>
-<li>
-<p>创建配置文件 <code>.vscode/tasks.json</code></p>
-</li>
-</ol>
-<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
-  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"2.0.0"</span><span class="token punctuation">,</span>
-  <span class="token property">"tasks"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token punctuation">{</span>
-      <span class="token property">"label"</span><span class="token operator">:</span> <span class="token string">"AC"</span><span class="token punctuation">,</span>    <span class="token comment">// 任务名</span>
-      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"shell"</span><span class="token punctuation">,</span>  <span class="token comment">// 此任务在 shell 下执行；（command）执行命令</span>
-      <span class="token property">"command"</span><span class="token operator">:</span> <span class="token string">"g++ -std=c++17 '${file}' -o '${fileDirname}/exes/${fileBasenameNoExtension}' &amp;&amp; cat '${fileDirname}/exes/in' | '${fileDirname}/exes/${fileBasenameNoExtension}' &gt; '${fileDirname}/exes/out' &amp;&amp; sync"</span><span class="token punctuation">,</span>
-      <span class="token property">"problemMatcher"</span><span class="token operator">:</span> <span class="token punctuation">[</span>   <span class="token comment">// 捕捉错误</span>
-        <span class="token string">"$gcc"</span>
-      <span class="token punctuation">]</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">]</span>
-<span class="token punctuation">}</span>
-</code></pre><p>文件结构如此：</p>
-<pre data-role="codeBlock" data-info="" class="language-text text"><code>├── .vscode/
-|   ├── tasks.json   
-|
-└── exes/
-|   ├── ac
-|   ├── in
-|   ├── out
-|
-├── ac.cpp
-</code></pre><p>使用 <code>g++</code> 编译源文件 <code>ac.cpp</code>，生成可执行文件 <code>ac</code>，<br>
-将 <code>in</code> 的数据输入到 <code>ac</code>，<code>ac</code> 再输出到 <code>out</code>。</p>
-<ol start="6">
-<li>配置快捷方式，f5一键执行命令</li>
-</ol>
-<p>修改 <code>C:\Users\用户名\AppData\Roaming\Code\User\keybindings.json</code> 文件。</p>
-<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token comment">// 将键绑定放在此文件中以覆盖默认值auto[]</span>
-<span class="token punctuation">[</span>
-<span class="token punctuation">{</span>
-  <span class="token property">"key"</span><span class="token operator">:</span> <span class="token string">"f5"</span><span class="token punctuation">,</span>
-  <span class="token property">"command"</span><span class="token operator">:</span> <span class="token string">"workbench.action.tasks.runTask"</span><span class="token punctuation">,</span>
-  <span class="token property">"args"</span><span class="token operator">:</span> <span class="token string">"AC"</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">]</span>
-</code></pre><p>在 <code>ac.cpp</code> 文件中，即可 <code>f5</code> 一键执行。</p>
-<hr>
-<h1 id="go">GO </h1>
-<blockquote>
-<p>win10 22H2 在 Goland 中依赖 wsl 开发 GO</p>
-</blockquote>
-<ol>
-<li>
-<p><a href="https://golang.google.cn/dl/">官网</a>康康最新版本，下载</p>
-<ul>
-<li><code>wget https://golang.google.cn/dl/go1.21.0.linux-amd64.tar.gz</code></li>
-</ul>
-</li>
-<li>
-<p>解压缩至 <code>/usr/local/</code></p>
-<ul>
-<li><code>tar -zxvf go1.21.0.linux-amd64.tar.gz -C /usr/local/</code></li>
-</ul>
-</li>
-<li>
-<p>配置环境变量 （WSL下的建议方案）</p>
-<ul>
-<li>
-<p><code>vim ~/.bashrc</code></p>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token builtin class-name">export</span> <span class="token assign-left variable">GOROOT</span><span class="token operator">=</span>/usr/local/go
-<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">$GOROOT</span>/bin
-</code></pre></li>
-<li>
-<p>刷新<br>
-<code>source ~/.bashrc</code></p>
-</li>
-</ul>
-</li>
-<li>
-<p>测试 <code>go version</code></p>
-</li>
-<li>
-<p>GoLand 新建项目</p>
-<ul>
-<li>Location：<code>\\ubuntu\home\工作目录</code></li>
-<li>GOROOT：<code>\usr\local\go</code></li>
-</ul>
-</li>
-</ol>
 <ul>
 <li>ssh / ufw / vim /<br>
 curl / wget / tar /<br>
@@ -157,14 +34,6 @@ rsync / mount / samba /<br>
 <ol>
 <li><a href="https://cn.ubuntu.com/download/server/step1">ubuntu iso</a> 镜像下载</li>
 <li><a href="https://rufus.ie/zh/">rufus</a> 制作启动盘</li>
-</ol>
-<h2 id="定时启动">定时启动 </h2>
-<blockquote>
-<p>bios 电源管理</p>
-</blockquote>
-<ol>
-<li>AC power loss 来电自启</li>
-<li>RTC 定时启动</li>
 </ol>
 <h2 id="开机默认进入命令行--图形界面">开机默认进入命令行 / 图形界面 </h2>
 <blockquote>
@@ -274,64 +143,23 @@ noip-duc <span class="token parameter variable">--username</span> xx <span class
 </ul>
 </li>
 </ul>
-<h3 id="远程桌面">远程桌面 </h3>
-<ol>
-<li>下载微软的远程桌面协议（RDP）<br>
-<code>apt install xrdp</code></li>
-</ol>
-<h3 id="samba">samba </h3>
-<blockquote>
-<p>文件分享</p>
-</blockquote>
-<ol>
-<li>下载 <code>apt install samba</code></li>
-<li>配置分享文件夹 <code>chmod 777 /home/share/ -R</code></li>
-<li>添加samba用户 <code>smbpasswd -a 用户名</code></li>
-<li>提示输入密码 x2</li>
-<li>配置samba <code>vim /etc/samba/smb.conf</code></li>
-</ol>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token punctuation">[</span>share<span class="token punctuation">]</span>                 <span class="token comment"># 共享名</span>
-    comment <span class="token operator">=</span> share     <span class="token comment"># 共享备注</span>
-    path <span class="token operator">=</span> /home/share/ <span class="token comment"># 共享路径</span>
-    browseable <span class="token operator">=</span> <span class="token function">yes</span>    <span class="token comment"># 所有人可见</span>
-    public <span class="token operator">=</span> no         <span class="token comment"># 不允许匿名访问</span>
-    writable <span class="token operator">=</span> <span class="token function">yes</span>      <span class="token comment"># 可写</span>
-    valid <span class="token function">users</span> <span class="token operator">=</span> 用户名 <span class="token comment"># 设置访问用户</span>
-</code></pre><ol start="6">
-<li>重启samba <code>samba restart</code></li>
-<li>开启端口 <code>ufw allow 445</code></li>
-</ol>
 
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#c-for-algorithm" class="md-toc-link">
-            <p>C++ for Algorithm</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#go" class="md-toc-link"><p>GO</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#制作启动盘" class="md-toc-link">
             <p>制作启动盘</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#定时启动" class="md-toc-link">
-            <p>定时启动</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#开机默认进入命令行--图形界面" class="md-toc-link">
             <p>开机默认进入命令行 / 图形界面</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#开机运行" class="md-toc-link">
             <p>开机运行</p>
 
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#基础软件" class="md-toc-link"><p>基础软件</p>
 </a>
@@ -361,18 +189,7 @@ noip-duc <span class="token parameter variable">--username</span> xx <span class
           <a href="#tar" class="md-toc-link">
             <p>tar</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#远程桌面" class="md-toc-link">
-            <p>远程桌面</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#samba" class="md-toc-link">
-            <p>samba</p>
-
           </a></div>
-        </div>
-      </details>
-    
         </div>
       </details>
     

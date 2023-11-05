@@ -24,21 +24,168 @@
     
       <div class="crossnote markdown-preview  ">
       
-<ul>
-<li>code-server
-<blockquote>
-<p>vscode 服务器版</p>
-</blockquote>
+<p>WSL2 的开发环境配置</p>
+<h1 id="wsl2-安装">WSL2 安装 </h1>
 <ol>
-<li>下载 <a href="https://github.com/coder/code-server/releases">下载地址</a></li>
-<li>安装 <code>apt install ./code-server*.deb</code></li>
-<li>带参启动 <code>export PASSWORD="hh" &amp;&amp; ./code-server --host 127.0.0.1 --port 8080</code></li>
+<li>
+<p>启用或关闭 Windows 功能</p>
+<ul>
+<li>开启 <code>适用于 Linux 的 Windows 子系统</code></li>
+<li>开启 <code>虚拟机平台</code></li>
+</ul>
+</li>
+<li>
+<p>微软商店下载 <code>Ubuntu</code></p>
+</li>
 </ol>
+<blockquote>
+<p>WSL2 支持 GUI</p>
+</blockquote>
+<ol start="3">
+<li>安装 <code>GNOME Files</code>
+<ul>
+<li><code>apt install nautilus -y</code></li>
+</ul>
+</li>
+</ol>
+<br>
+<hr>
+<h1 id="wsl2-开机启动脚本">WSL2 开机启动脚本 </h1>
+<ol>
+<li>win + r 输入  <code>shell:startup</code></li>
+<li>新建 <code>*.vbs</code> 文件<pre data-role="codeBlock" data-info="vbs" class="language-vbs vbs"><code>Set ws = WScript.CreateObject("WScript.Shell")        
+ws.run "wsl -d Ubuntu-22.04 -u user /home/user/startup.sh", 0
+</code></pre></li>
+</ol>
+<br>
+<hr>
+<h1 id="c-for-algorithm">C++ for Algorithm </h1>
+<ol>
+<li>
+<p>vscode 下载拓展 <code>WSL</code></p>
+</li>
+<li>
+<p>vscode 连接到 WSL，下载拓展 <code>C++</code></p>
+<ul>
+<li>我们仅需 <code>C++</code> 的代码提示（IntelliSense）功能</li>
+<li>如果你不需要代码提示也可以不下</li>
+</ul>
+</li>
+<li>
+<p>进入 ubuntu 环境，下载 <code>gcc</code></p>
+<ul>
+<li><code>apt install gcc</code></li>
+</ul>
+</li>
+<li>
+<p>在项目目录下创建配置文件 <code>.vscode/tasks.json</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token punctuation">{</span>
+    <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"2.0.0"</span><span class="token punctuation">,</span>
+    <span class="token property">"tasks"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+        <span class="token property">"label"</span><span class="token operator">:</span> <span class="token string">"AC"</span><span class="token punctuation">,</span>    <span class="token comment">// 任务名</span>
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"shell"</span><span class="token punctuation">,</span>  <span class="token comment">// 此任务在 shell 下执行；（command）执行命令</span>
+        <span class="token property">"command"</span><span class="token operator">:</span> <span class="token string">"g++ -std=c++23 '${file}' -o '${fileDirname}/exes/${fileBasenameNoExtension}' &amp;&amp; cat '${fileDirname}/exes/in' | '${fileDirname}/exes/${fileBasenameNoExtension}' &gt; '${fileDirname}/exes/out' &amp;&amp; sync"</span><span class="token punctuation">,</span>
+        <span class="token property">"problemMatcher"</span><span class="token operator">:</span> <span class="token punctuation">[</span>   <span class="token comment">// 捕捉错误</span>
+            <span class="token string">"$gcc"</span>
+        <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li>文件结构如此：</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>├── .vscode/
+|   ├── tasks.json   
+|
+├── exes/
+|   ├── ac
+|   ├── in
+|   ├── out
+|
+├── ac.cpp
+</code></pre><ul>
+<li>使用 <code>g++</code> 编译源文件 <code>ac.cpp</code>，生成可执行文件 <code>ac</code>，将 <code>in</code> 的数据输入到 <code>ac</code>，<code>ac</code> 再输出到 <code>out</code></li>
+</ul>
+</li>
+<li>
+<p>配置快捷方式，f5一键执行命令</p>
+<p>修改 <code>C:\Users\用户名\AppData\Roaming\Code\User\keybindings.json</code> 文件</p>
+<pre data-role="codeBlock" data-info="json" class="language-json json"><code><span class="token comment">// 将键绑定放在此文件中以覆盖默认值auto[]</span>
+<span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        <span class="token property">"key"</span><span class="token operator">:</span> <span class="token string">"f5"</span><span class="token punctuation">,</span>
+        <span class="token property">"command"</span><span class="token operator">:</span> <span class="token string">"workbench.action.tasks.runTask"</span><span class="token punctuation">,</span>
+        <span class="token property">"args"</span><span class="token operator">:</span> <span class="token string">"AC"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre><p>在 <code>ac.cpp</code> 文件中，即可 <code>f5</code> 一键执行。</p>
+</li>
+</ol>
+<br>
+<hr>
+<h1 id="go">GO </h1>
+<ol>
+<li>
+<p><a href="https://golang.google.cn/dl/">官网</a> 康康最新版本，下载</p>
+<ul>
+<li><code>wget https://golang.google.cn/dl/go1.21.3.linux-amd64.tar.gz</code></li>
+</ul>
+</li>
+<li>
+<p>解压缩至 <code>/usr/local/</code></p>
+<ul>
+<li><code>tar -zxvf go1.21.0.linux-amd64.tar.gz -C /usr/local/</code></li>
+</ul>
+</li>
+<li>
+<p>配置环境变量 （WSL下的建议方案）</p>
+<ul>
+<li>
+<p><code>vim ~/.bashrc</code></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token builtin class-name">export</span> <span class="token assign-left variable">GOROOT</span><span class="token operator">=</span>/usr/local/go
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">$GOROOT</span>/bin
+</code></pre></li>
+<li>
+<p>刷新<br>
+<code>source ~/.bashrc</code></p>
 </li>
 </ul>
+</li>
+<li>
+<p>测试 <code>go version</code></p>
+</li>
+<li>
+<p>GoLand 新建项目</p>
+<ul>
+<li>Location：<code>\\ubuntu\home\工作目录</code></li>
+<li>GOROOT：<code>\usr\local\go</code></li>
+</ul>
+</li>
+</ol>
 
       </div>
-      <div class="md-sidebar-toc"></div>
+      <div class="md-sidebar-toc">
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#wsl2-安装" class="md-toc-link">
+            <p>WSL2 安装</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#wsl2-开机启动脚本" class="md-toc-link">
+            <p>WSL2 开机启动脚本</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#c-for-algorithm" class="md-toc-link">
+            <p>C++ for Algorithm</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#go" class="md-toc-link">
+            <p>GO</p>
+
+          </a></div>
+</div>
+</div>
       <a id="sidebar-toc-btn">≡</a>
     
     
