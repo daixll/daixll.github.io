@@ -51,6 +51,25 @@
 </ul>
 </li>
 </ul>
+<h2 id="网络层">网络层 </h2>
+<h3 id="ipv4">IPv4 </h3>
+<p>IPv4地址通常分为网络地址和主机地址两部分，再加一个子网掩码。</p>
+<ul>
+<li><strong>网络地址</strong> 用于标识特定网络</li>
+<li><strong>主机地址</strong> 用于标识该网络上的特定设备。</li>
+<li><strong>子网掩码</strong> 用于区分网络地址和主机地址</li>
+</ul>
+<blockquote>
+<p>例如：<code>192.168.1.1 255.255.255.0</code>（<code>192.168.1.1/24</code>）<br>
+网络号为 <code>192.168.1.0</code>，主机号为 <code>1</code><br>
+有效主机地址为 <code>192.168.1.1</code> ~ <code>192.168.1.254</code><br>
+广播地址为 <code>192.168.1.255</code></p>
+</blockquote>
+<blockquote>
+<p>Q：不太明白？<br>
+A：假设有一个地址 <code>中国.四川.成都.金牛</code>，子网掩码为 <code>255.255.255.0</code><br>
+网络号为 <code>中国.四川.成都.0</code>，主机号为 <code>金牛</code></p>
+</blockquote>
 <br>
 <hr>
 <h1 id="高级路由交换实验">高级路由交换实验 </h1>
@@ -188,7 +207,39 @@
 </ul>
 <br>
 <hr>
-<h1 id="杂项">杂项 </h1>
+<h2 id="ospf单区域配置">OSPF单区域配置 </h2>
+<p><img src="./IMAGE/%E5%AE%9E%E9%AA%8C3_OSPF%E5%8D%95%E5%8C%BA%E5%9F%9F%E9%85%8D%E7%BD%AE.png" alt=""></p>
+<ol>
+<li>
+<p>配置 接口</p>
+</li>
+<li>
+<p>配置 OSPF</p>
+</li>
+</ol>
+<ul>
+<li>路由甲<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token comment"># 进入 OSPF 配置模式，指定进程号为 1</span>
+<span class="token punctuation">[</span>路由甲<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token comment"># 创建一个区域，区域 ID 为 0</span>
+<span class="token punctuation">[</span>路由甲-ospf-1<span class="token punctuation">]</span> area <span class="token number">0</span>
+<span class="token comment"># 在 g0/0 接口上启用 OSPF</span>
+<span class="token punctuation">[</span>路由甲-ospf-1<span class="token punctuation">]</span> network 
+
+
+
+
+
+
+
+
+
+
+
+</code></pre></li>
+</ul>
+<br>
+<hr>
+<h1>杂项</h1>
 <p><strong>华为 OSPF 的错误之处</strong></p>
 <p>文本写作日期：2023-9-30</p>
 <p>相关网站：</p>
@@ -202,13 +253,13 @@
 </ul>
 <hr>
 <p>几个概念：</p>
-<h3 id="ospfopen-shortest-path-first">OSPF：Open Shortest Path First </h3>
+<h3>OSPF：Open Shortest Path First</h3>
 <p>在路由中，感知网络拓扑，计算最短路径，建立路由表</p>
-<h3 id="spfshortest-path-first">SPF：Shortest Path First </h3>
+<h3>SPF：Shortest Path First</h3>
 <p>通过此算法计算最短路径，此算法也被称为 Dijkstra 算法</p>
-<h3 id="sptshortest-path-tree-最短路径树">SPT：Shortest Path Tree 最短路径树 </h3>
+<h3>SPT：Shortest Path Tree 最短路径树</h3>
 <p>在所有生成树中，最短路径树满足根节点到其他所有点的 <strong>距离之和</strong> 最短</p>
-<h3 id="mstminimum-spanning-tree-最小生成树">MST：Minimum Spanning Tree 最小生成树 </h3>
+<h3>MST：Minimum Spanning Tree 最小生成树</h3>
 <p>在所有生成树中，最小生成树满足 <strong>边权之和</strong> 最小</p>
 <hr>
 <p>一个样例：</p>
@@ -252,11 +303,29 @@ B-&gt;C：2</li>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#计算机网络" class="md-toc-link">
-            <p>计算机网络</p>
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#计算机网络" class="md-toc-link"><p>计算机网络</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#网络层" class="md-toc-link"><p>网络层</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ipv4" class="md-toc-link">
+            <p>IPv4</p>
 
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#高级路由交换实验" class="md-toc-link"><p>高级路由交换实验</p>
 </a>
@@ -270,14 +339,14 @@ B-&gt;C：2</li>
           <a href="#浮动静态路由" class="md-toc-link">
             <p>浮动静态路由</p>
 
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ospf单区域配置" class="md-toc-link">
+            <p>OSPF单区域配置</p>
+
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#杂项" class="md-toc-link">
-            <p>杂项</p>
-
-          </a></div>
+    
 </div>
 </div>
       <a id="sidebar-toc-btn">≡</a>
