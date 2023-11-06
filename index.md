@@ -203,11 +203,7 @@ export_on_save:
 
 ### 国一 码蹄杯
 
-- `2023-12`
-
-### 省一 CCF-CAT
-
-- `2023-12`
+- `2023-12` `第五届“码蹄杯”全国职业院校程序设计大赛` `国赛一等奖` [公示 / 排名]
 
 ### 省一 传智杯
 
@@ -219,13 +215,13 @@ export_on_save:
 
 ### 省一 码蹄杯
 
-- `2023-11` `第五届“码蹄杯”全国职业院校程序设计大赛` `初赛一等奖` [排名 \ 公示]
+- `2023-11` `第五届“码蹄杯”全国职业院校程序设计大赛` `省赛一等奖` [公示 / 排名](https://mp.weixin.qq.com/s/f6su6Ppcbt-zSKxy7MLnQw)
 
 <div class="center">
     <img src="joker/（省1）码蹄杯.jpg " width="300"> 
 </div>
 <div class="center">
-    <img src="joker/排名/（省1）码蹄杯.jpg" width="300">
+    <img src="joker/排名/（省1）码蹄杯.png" width="300">
 </div>
 
 
@@ -276,7 +272,7 @@ export_on_save:
 
 ### 省二 睿抗
 
-- `2023-7` `睿抗机器人开发者大赛（RAICOM）重庆赛区 编程技能竞赛项目` `重庆市二等奖` [公示/排名](https://www.robocom.com.cn/certificate.html)
+- `2023-7` `睿抗机器人开发者大赛（RAICOM）重庆赛区 编程技能竞赛项目` `重庆市二等奖` [公示 / 排名](https://www.robocom.com.cn/certificate.html)
 
 <div class="center">
     <img src="/joker/（省2）睿抗.png" width="300">
@@ -296,7 +292,7 @@ export_on_save:
 
 ### 国二 蓝桥杯
 
-- `2023-6` `第十四届“蓝桥杯”C/C++程序设计本科B组` `国赛二等奖` [公示/排名](https://dasai.lanqiao.cn/notices/1481/) / [报道](https://www.cqipc.edu.cn/info/1228/18228.htm)
+- `2023-6` `第十四届“蓝桥杯”C/C++程序设计本科B组` `国赛二等奖` [公示 / 排名](https://dasai.lanqiao.cn/notices/1481/) / [报道](https://www.cqipc.edu.cn/info/1228/18228.htm)
 <div class="center">
     <img src="joker/（国2）蓝桥杯23.jpg" width="300"> 
 </div>
@@ -343,7 +339,7 @@ export_on_save:
 ## 2022
 
 ### 省二 传智杯
-- `2022-12` `第五届“传智杯”程序设计挑战赛本科B组` `初赛二等奖` [排名 \ 公示](https://docs.qq.com/sheet/DZlpxVFVjY1FXSWl2?tab=BB08J2)
+- `2022-12` `第五届“传智杯”程序设计挑战赛本科B组` `初赛二等奖` [公示 / 排名](https://docs.qq.com/sheet/DZlpxVFVjY1FXSWl2?tab=BB08J2)
 
 <div class="center">
     <img src="joker/（省2）传智杯.png" width="300">
@@ -354,7 +350,7 @@ export_on_save:
 
 ### 国三 码蹄杯
 
-- `2022-10` `第四届“码蹄杯”全国职业院校程序设计大赛` `决赛铜奖` [排名 \ 公示](https://mp.weixin.qq.com/s/pbwGtLsuM2l_8ftM-ir4Cg)
+- `2022-10` `第四届“码蹄杯”全国职业院校程序设计大赛` `决赛铜奖` [公示 / 排名](https://mp.weixin.qq.com/s/pbwGtLsuM2l_8ftM-ir4Cg)
 
 <div class="center">
     <img src="joker/排名/（奖杯）码题集.jpg" width="300"> 
