@@ -377,16 +377,23 @@ p <span class="token operator">=</span> p <span class="token operator">+</span> 
     <span class="token comment">// 指针 p 的值</span>
     <span class="token comment">// 指针 p 的地址</span>
     <span class="token comment">// 通过指针 p 访问变量 c 的值</span>
+	<span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"c的地址 和 p的值，都是一样的 | *p 就是 c的值"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\nc                &amp;c               p                &amp;p               *p\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%-16c %-16p %-16p %-16p %-16c\n\n"</span><span class="token punctuation">,</span> c<span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token punctuation">,</span> p<span class="token punctuation">,</span> <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n                 &amp;c+1             p+1              &amp;p+1             *(p+1)\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%-16c %-16p %-16p %-16p %-16c\n\n"</span><span class="token punctuation">,</span> <span class="token char">' '</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"c+1的地址 和 p+1的值，都是一样的 | *p+1 就是 t的值"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\nc                &amp;c+1             p+1              &amp;p+1             *(p+1)\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%-16c %-16p %-16p %-16p %-16c\n\n"</span><span class="token punctuation">,</span> c<span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"输入一个数，到 p+1 的值里面去："</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%c"</span><span class="token punctuation">,</span> p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"c+1的地址 和 p+1的值，都是一样的 | *p+1 就是 t的值"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n                 &amp;c+1             p+1              &amp;p+1             *(p+1)\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%-16c %-16p %-16p %-16p %-16c\n\n"</span><span class="token punctuation">,</span> <span class="token char">' '</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\nc                &amp;c+1             p+1              &amp;p+1             *(p+1)\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%-16c %-16p %-16p %-16p %-16c\n\n"</span><span class="token punctuation">,</span> c<span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"输出t的值："</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c"</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
@@ -394,11 +401,62 @@ p <span class="token operator">=</span> p <span class="token operator">+</span> 
 <p>聚合类型是由多个基本类型组成的数据类型。</p>
 <p><strong>数组</strong></p>
 <p>数组的本质是一段连续的内存空间，数组名是数组首元素的地址。</p>
-<p><strong>结构体</strong></p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-int">int</span> a<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>         <span class="token comment">// 定义一个大小为 100 的数组</span>
+<span class="token keyword keyword-int">int</span> b<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment">// 定义一个大小为 4 的数组，元素为 1,2,3,4</span>
+<span class="token keyword keyword-int">int</span> c<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>   <span class="token comment">// 定义一个大小为 100 的数组，第一个元素为 1，其他元素为 0</span>
+</code></pre><p><strong>结构体</strong></p>
 <ul>
 <li>数组：多个 <strong>相同</strong> 元素的集合</li>
 <li>结构体：多个 <strong>不同</strong> 的元素的集合</li>
 </ul>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-struct">struct</span> <span class="token class-name">PII</span><span class="token punctuation">{</span>
+	<span class="token keyword keyword-int">int</span> fst<span class="token punctuation">;</span>
+	<span class="token keyword keyword-int">int</span> sed<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+PII a<span class="token punctuation">;</span>              <span class="token comment">// 定义一个结构体变量</span>
+PII b<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>          <span class="token comment">// 定义一个结构体数组      </span>
+</code></pre><pre data-role="codeBlock" data-info="c" class="language-c c"><code>a<span class="token punctuation">.</span>fst <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>          <span class="token comment">// 访问结构体变量的成员</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">.</span>fst<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 输入结构体变量的成员</span>
+</code></pre><p><strong>联合体</strong></p>
+<hr>
+<h1 id="memory-areas">Memory Areas </h1>
+<p>C 在程序执行时，将内存大致分为 <strong>代码区</strong>，<strong>全局区</strong>，<strong>栈区</strong>，<strong>堆区</strong> 四个区域。<br>
+不同的区域存储不同的数据，赋予不同的生命周期，能够更灵活地进行编程。</p>
+<h2 id="code-segment">Code Segment </h2>
+<p>代码区，简单来说，就是存放 <strong>执行指令</strong> 的地方。<br>
+代码区是只读的，不允许修改。<br>
+当一个 <code>.c</code> 文件，开始运行时，从 <code>ROM</code> 加载到 <code>RAM</code>，成为代码区。</p>
+<h2 id="data-segment">Data Segment </h2>
+<p>数据区（常量区），用来存储 <strong>静态变量</strong>、<strong>全局变量</strong>、<strong>静态数据</strong>。<br>
+在这个区域中，数据的大小和结构在程序编译时就已经确定。</p>
+<ol>
+<li>
+<p><strong>全局变量：</strong> 如果你在程序中定义了一个全局变量，它会被存储在数据段中。例如：</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-int">int</span> globalVar <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+</code></pre><p>在这个例子中，<code>globalVar</code>是一个全局变量，它的初始值为10，会被存储在数据段中。</p>
+</li>
+<li>
+<p><strong>静态变量：</strong> 静态变量（包括静态全局变量和静态局部变量）也会被存储在数据段中。例如：</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-void">void</span> <span class="token function">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-int">int</span> staticVar <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>在这个例子中，<code>staticVar</code>是一个静态局部变量，它的值在函数调用之间保持不变，存储在数据段中。</p>
+</li>
+<li>
+<p><strong>常量：</strong> 字符串常量和其他常量数据也被存储在数据段中。例如：</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> hello<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello, World!"</span><span class="token punctuation">;</span>
+</code></pre><p>在这个例子中，字符串常量"Hello, World!"会被存储在数据段中，而<code>hello</code>数组则会在栈或堆上分配内存，存储在数据段中的地址。</p>
+</li>
+<li>
+<p><strong>静态数组：</strong> 如果你在程序中定义一个静态数组，并且它的大小在编译时已知，那么该数组会被存储在数据段中。例如：</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-int">int</span> staticArray<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre><p>在这个例子中，<code>staticArray</code>是一个具有100个整数元素的静态数组，它会被存储在数据段中。</p>
+</li>
+</ol>
+<p>这些数据在程序运行期间保持不变，它们的内存空间在程序加载时就被分配好，并且在整个程序执行期间保持不变。</p>
+<h2 id="stack">Stack </h2>
+<h2 id="heap">Heap </h2>
 
       </div>
       <div class="md-sidebar-toc">
@@ -479,6 +537,31 @@ p <span class="token operator">=</span> p <span class="token operator">+</span> 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#聚合类型" class="md-toc-link">
             <p>聚合类型</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#memory-areas" class="md-toc-link"><p>Memory Areas</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#code-segment" class="md-toc-link">
+            <p>Code Segment</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#data-segment" class="md-toc-link">
+            <p>Data Segment</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#stack" class="md-toc-link">
+            <p>Stack</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#heap" class="md-toc-link">
+            <p>Heap</p>
 
           </a></div>
         </div>

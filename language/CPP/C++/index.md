@@ -313,17 +313,7 @@ void Mxbb::query() const{
 ## 多态：定义一个基类的虚函数
  
 
----
 
-# Memory Areas
-
-## Stack
-
-## Heap
-
-## Data Segment
-
-## Code Segment
 
 
 ---
