@@ -68,7 +68,18 @@
 <blockquote>
 <p>Q：不太明白？<br>
 A：假设有一个地址 <code>中国.四川.成都.金牛</code>，子网掩码为 <code>255.255.255.0</code><br>
-网络号为 <code>中国.四川.成都.0</code>，主机号为 <code>金牛</code></p>
+网络号为 <code>中国.四川.成都.0</code>，主机号为 <code>金牛</code>，<code>金牛</code> 属于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mn>254</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[1,254]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">254</span><span class="mclose">]</span></span></span></span><br>
+有效主机地址为 <code>中国.四川.成都.1</code> ~ <code>中国.四川.成都.254</code><br>
+广播地址为 <code>中国.四川.成都.255</code></p>
+</blockquote>
+<blockquote>
+<p>Q：为什么要有子网掩码？</p>
+<ul>
+<li>节省IP地址</li>
+<li>实现网络的层次化</li>
+<li>路由器的路由表更小、转发速度更快</li>
+<li>广播范围更小</li>
+</ul>
 </blockquote>
 <br>
 <hr>
@@ -78,6 +89,7 @@ A：假设有一个地址 <code>中国.四川.成都.金牛</code>，子网掩�
 <li><code>display ip interface brief</code>：查看接口信息</li>
 <li><code>display ip routing-table</code>：查看路由表</li>
 <li><code>display fast-forward statistics</code>：查看快速转发表</li>
+<li><code>display ospf peer</code>：查看 OSPF 邻居信息</li>
 </ul>
 <br>
 <hr>
@@ -215,31 +227,76 @@ A：假设有一个地址 <code>中国.四川.成都.金牛</code>，子网掩�
 </li>
 <li>
 <p>配置 OSPF</p>
-</li>
-</ol>
 <ul>
-<li>路由甲<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token comment"># 进入 OSPF 配置模式，指定进程号为 1</span>
+<li>
+<p>路由甲</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token comment"># 进入 OSPF 配置模式，指定进程号为 1</span>
 <span class="token punctuation">[</span>路由甲<span class="token punctuation">]</span> ospf <span class="token number">1</span>
 <span class="token comment"># 创建一个区域，区域 ID 为 0</span>
 <span class="token punctuation">[</span>路由甲-ospf-1<span class="token punctuation">]</span> area <span class="token number">0</span>
-<span class="token comment"># 在 g0/0 接口上启用 OSPF</span>
-<span class="token punctuation">[</span>路由甲-ospf-1<span class="token punctuation">]</span> network 
-
-
-
-
-
-
-
-
-
-
-
+<span class="token comment"># 将 1.1.1.1 加入到区域 0</span>
+<span class="token punctuation">[</span>路由甲-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">1.1</span>.1.1 <span class="token number">0.0</span>.0.0
+<span class="token comment"># 将 10.0.0.0 加入到区域 0；0.0.0.255 是反掩码</span>
+<span class="token punctuation">[</span>路由甲-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">10.0</span>.0.0 <span class="token number">0.0</span>.0.255
+</code></pre></li>
+<li>
+<p>路由乙</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由乙<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由乙-ospf-1<span class="token punctuation">]</span> area <span class="token number">0</span>
+<span class="token punctuation">[</span>路由乙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">2.2</span>.2.2 <span class="token number">0.0</span>.0.0
+<span class="token punctuation">[</span>路由乙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">10.0</span>.0.0 <span class="token number">0.0</span>.0.255
+<span class="token punctuation">[</span>路由乙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">20.0</span>.0.0 <span class="token number">0.0</span>.0.255
+</code></pre></li>
+<li>
+<p>路由丙</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由丙<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由丙-ospf-1<span class="token punctuation">]</span> area <span class="token number">0</span>
+<span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">3.3</span>.3.3 <span class="token number">0.0</span>.0.0
+<span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">20.0</span>.0.0 <span class="token number">0.0</span>.0.255
 </code></pre></li>
 </ul>
+</li>
+</ol>
 <br>
 <hr>
-<h1>杂项</h1>
+<h2 id="ospf多区域配置">OSPF多区域配置 </h2>
+<p><img src="./IMAGE/%E5%AE%9E%E9%AA%8C3_OSPF%E5%8D%95%E5%8C%BA%E5%9F%9F%E9%85%8D%E7%BD%AE.png" alt=""></p>
+<ol>
+<li>
+<p>配置 接口</p>
+</li>
+<li>
+<p>配置 OSPF</p>
+<ul>
+<li>
+<p>路由甲</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由甲<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由甲-ospf-1<span class="token punctuation">]</span> area <span class="token number">0</span>
+<span class="token punctuation">[</span>路由甲-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">1.1</span>.1.1 <span class="token number">0.0</span>.0.0
+<span class="token punctuation">[</span>路由甲-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">10.0</span>.0.0 <span class="token number">0.0</span>.0.255
+</code></pre></li>
+<li>
+<p>路由乙</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由乙<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由乙-ospf-1<span class="token punctuation">]</span> area <span class="token number">0</span>
+<span class="token punctuation">[</span>路由乙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">10.0</span>.0.0 <span class="token number">0.0</span>.0.255
+<span class="token punctuation">[</span>路由乙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> area <span class="token number">1</span>
+<span class="token punctuation">[</span>路由乙-ospf-1-area-0.0.0.1<span class="token punctuation">]</span> network <span class="token number">2.2</span>.2.2 <span class="token number">0.0</span>.0.0
+<span class="token punctuation">[</span>路由乙-ospf-1-area-0.0.0.1<span class="token punctuation">]</span> network <span class="token number">20.0</span>.0.0 <span class="token number">0.0</span>.0.255
+</code></pre></li>
+<li>
+<p>路由丙</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由丙<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由丙-ospf-1<span class="token punctuation">]</span> area <span class="token number">1</span>
+<span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.1<span class="token punctuation">]</span> network <span class="token number">3.3</span>.3.3 <span class="token number">0.0</span>.0.0
+<span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.1<span class="token punctuation">]</span> network <span class="token number">20.0</span>.0.0 <span class="token number">0.0</span>.0.255
+</code></pre></li>
+</ul>
+</li>
+</ol>
+<br>
+<hr>
+<h1 id="杂项">杂项 </h1>
 <p><strong>华为 OSPF 的错误之处</strong></p>
 <p>文本写作日期：2023-9-30</p>
 <p>相关网站：</p>
@@ -253,13 +310,13 @@ A：假设有一个地址 <code>中国.四川.成都.金牛</code>，子网掩�
 </ul>
 <hr>
 <p>几个概念：</p>
-<h3>OSPF：Open Shortest Path First</h3>
+<h3 id="ospfopen-shortest-path-first">OSPF：Open Shortest Path First </h3>
 <p>在路由中，感知网络拓扑，计算最短路径，建立路由表</p>
-<h3>SPF：Shortest Path First</h3>
+<h3 id="spfshortest-path-first">SPF：Shortest Path First </h3>
 <p>通过此算法计算最短路径，此算法也被称为 Dijkstra 算法</p>
-<h3>SPT：Shortest Path Tree 最短路径树</h3>
+<h3 id="sptshortest-path-tree-最短路径树">SPT：Shortest Path Tree 最短路径树 </h3>
 <p>在所有生成树中，最短路径树满足根节点到其他所有点的 <strong>距离之和</strong> 最短</p>
-<h3>MST：Minimum Spanning Tree 最小生成树</h3>
+<h3 id="mstminimum-spanning-tree-最小生成树">MST：Minimum Spanning Tree 最小生成树 </h3>
 <p>在所有生成树中，最小生成树满足 <strong>边权之和</strong> 最小</p>
 <hr>
 <p>一个样例：</p>
@@ -343,10 +400,18 @@ B-&gt;C：2</li>
           <a href="#ospf单区域配置" class="md-toc-link">
             <p>OSPF单区域配置</p>
 
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ospf多区域配置" class="md-toc-link">
+            <p>OSPF多区域配置</p>
+
           </a></div>
         </div>
       </details>
-    
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#杂项" class="md-toc-link">
+            <p>杂项</p>
+
+          </a></div>
 </div>
 </div>
       <a id="sidebar-toc-btn">≡</a>
