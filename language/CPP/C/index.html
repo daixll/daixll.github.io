@@ -215,6 +215,15 @@
 <br>
 <hr>
 <h1 id="基本数据类型">基本数据类型 </h1>
+<blockquote>
+<p><strong>预习</strong>：<br>
+<a href="https://www.runoob.com/cprogramming/c-data-types.html">C 数据类型</a><br>
+<a href="https://www.runoob.com/cprogramming/c-variables.html">C 变量</a><br>
+<a href="https://www.runoob.com/cprogramming/c-constants.html">C 常量</a><br>
+<strong>练习</strong>：<br>
+<a href="http://noi.openjudge.cn/ch0101/">NOI 1.1 编程基础之输入输出</a><br>
+<a href="http://noi.openjudge.cn/ch0102/">NOI 1.2 编程基础之变量定义、赋值及转换</a></p>
+</blockquote>
 <p>在 C 中，有以下几种基本数据类型：</p>
 <h2 id="整型">整型 </h2>
 <table>
@@ -463,7 +472,87 @@ PII b<span class="token punctuation">[</span><span class="token number">10</span
 </code></pre><pre data-role="codeBlock" data-info="c" class="language-c c"><code>a<span class="token punctuation">.</span>fst <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>          <span class="token comment">// 访问结构体变量的成员</span>
 <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">.</span>fst<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 输入结构体变量的成员</span>
 </code></pre><p><strong>联合体</strong></p>
+<p>联合体是一种特殊的结构体，它的所有成员共用一段内存空间。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code></code></pre><br>
 <hr>
+<h1 id="基本数据运算">基本数据运算 </h1>
+<blockquote>
+<p><strong>预习</strong>：<br>
+<a href="https://www.runoob.com/cprogramming/c-operators.html">C 运算符</a><br>
+<strong>练习</strong>：<br>
+<a href="http://noi.openjudge.cn/ch0103/">NOI 1.3 编程基础之算术表达式与顺序执行</a></p>
+</blockquote>
+<blockquote>
+<p>选择最合适的数据类型参与运算</p>
+</blockquote>
+<p><strong>注意！</strong></p>
+<ul>
+<li>小数在参与运算时，会存在 <strong>浮点误差</strong>，导致结果不准确。<br>
+例如，<code>1.0</code> 被保存为 <code>1.0000000000000002</code>。<br>
+在 <code>float</code> 类型中，尤为明显。追求精确的计算，尽量使用 <code>double</code> 类型。</li>
+</ul>
+<h2 id="算术运算">算术运算 </h2>
+<p><strong><code>+</code></strong> <strong><code>-</code></strong> <strong><code>*</code></strong> <strong><code>/</code></strong> <strong><code>%</code></strong></p>
+<ul>
+<li>注意操作数的数据范围，防止溢出。</li>
+<li>注意除数为 0 的情况。</li>
+<li>注意字符型和整型的转换。</li>
+</ul>
+<p><strong><code>++</code></strong></p>
+<ul>
+<li><code>a++</code> / <code>a--</code>，先使用 <code>a</code> 的值，再对 <code>a</code> 进行自增/自减。</li>
+<li><code>++a</code> / <code>--a</code>，先对 <code>a</code> 进行自增/自减，再使用 <code>a</code> 的值。</li>
+</ul>
+<h2 id="关系运算">关系运算 </h2>
+<p><strong><code>&gt;</code></strong> <strong><code>&lt;</code></strong> <strong><code>&gt;=</code></strong> <strong><code>&lt;=</code></strong> <strong><code>==</code></strong> <strong><code>!=</code></strong></p>
+<ul>
+<li>小数在进行比较时，需要限定精度进行比较</li>
+<li>字符型和整型的比较，会先将字符型转换为整型，再进行比较。</li>
+</ul>
+<h2 id="逻辑运算">逻辑运算 </h2>
+<p><strong><code>&amp;&amp;</code></strong> <strong><code>||</code></strong> <strong><code>!</code></strong></p>
+<ul>
+<li>逻辑运算的结果是 <code>0</code> 或 <code>1</code>，可以和整型进行运算。</li>
+<li>逻辑运算的短路特性。</li>
+</ul>
+<h2 id="位运算">位运算 </h2>
+<ul>
+<li>位运算的操作数必须是整型。</li>
+</ul>
+<p><strong><code>&lt;&lt;</code></strong></p>
+<ul>
+<li><code>a &lt;&lt; b</code>，将 <code>a</code> 的二进制表示左移 <code>b</code> 位，右边空出的位用 <code>0</code> 填充。</li>
+<li><code>a &lt;&lt; b</code>，相当于 <code>a * 2^b</code>。</li>
+</ul>
+<p><strong><code>&gt;&gt;</code></strong></p>
+<ul>
+<li><strong>值得注意！</strong><br>
+<code>-5 &gt;&gt; 1</code> 的结果是 <code>-3</code>，而不是 <code>-2</code>。<br>
+因为 <code>-5</code> 的二进制表示为 <code>1111 1111 1111 1111 1111 1111 1111 1011</code><br>
+右移一位后，变成了 <code>1111 1111 1111 1111 1111 1111 1111 1101</code>，即 <code>-3</code>。<br>
+因此，并不是简单的除以 <code>2</code>。</li>
+</ul>
+<h2 id="赋值运算">赋值运算 </h2>
+<p><strong><code>+=</code></strong> <strong><code>-=</code></strong> <strong><code>*=</code></strong> <strong><code>/=</code></strong> <strong><code>%=</code></strong> <strong><code>&lt;&lt;=</code></strong> <strong><code>&gt;&gt;=</code></strong></p>
+<p>简单写法罢了。</p>
+<br>
+<hr>
+<h1 id="分支结构">分支结构 </h1>
+<blockquote>
+<p><strong>预习</strong>：<br>
+<a href="https://www.runoob.com/cprogramming/c-decision.html">C 判断</a><br>
+<strong>练习</strong>：<br>
+<a href="https://www.luogu.com.cn/training/101#problems">luogu 分支结构</a><br>
+<a href="http://noi.openjudge.cn/ch0104/">NOI 1.4 编程基础之逻辑表达式与条件分支</a></p>
+</blockquote>
+<h1 id="循环结构">循环结构 </h1>
+<blockquote>
+<p><strong>预习</strong>：<br>
+<a href="https://www.runoob.com/cprogramming/c-loops.html">C 循环</a><br>
+<strong>练习</strong>：<br>
+<a href="https://www.luogu.com.cn/training/102#problems">luogu 循环结构</a><br>
+<a href="http://noi.openjudge.cn/ch0105/">NOI 1.5 编程基础之循环结构</a></p>
+</blockquote>
 <h1 id="memory-areas">Memory Areas </h1>
 <p>C 在程序执行时，将内存大致分为 <strong>代码区</strong>，<strong>全局区</strong>，<strong>栈区</strong>，<strong>堆区</strong> 四个区域。<br>
 不同的区域存储不同的数据，赋予不同的生命周期，能够更灵活地进行编程。</p>
@@ -584,6 +673,43 @@ PII b<span class="token punctuation">[</span><span class="token number">10</span
         </div>
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#基本数据运算" class="md-toc-link"><p>基本数据运算</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#算术运算" class="md-toc-link">
+            <p>算术运算</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#关系运算" class="md-toc-link">
+            <p>关系运算</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#逻辑运算" class="md-toc-link">
+            <p>逻辑运算</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#位运算" class="md-toc-link">
+            <p>位运算</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#赋值运算" class="md-toc-link">
+            <p>赋值运算</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#分支结构" class="md-toc-link">
+            <p>分支结构</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#循环结构" class="md-toc-link">
+            <p>循环结构</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#memory-areas" class="md-toc-link"><p>Memory Areas</p>
 </a>
