@@ -472,8 +472,40 @@ PII b<span class="token punctuation">[</span><span class="token number">10</span
 </code></pre><pre data-role="codeBlock" data-info="c" class="language-c c"><code>a<span class="token punctuation">.</span>fst <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>          <span class="token comment">// 访问结构体变量的成员</span>
 <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">.</span>fst<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 输入结构体变量的成员</span>
 </code></pre><p><strong>联合体</strong></p>
-<p>联合体是一种特殊的结构体，它的所有成员共用一段内存空间。</p>
-<pre data-role="codeBlock" data-info="c" class="language-c c"><code></code></pre><br>
+<p>联合体是一种特殊的结构体，它的所有成员共用一段内存空间。<br>
+内存空间的大小为最大成员的大小。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-union">union</span> UIC<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> x<span class="token punctuation">;</span>
+    <span class="token keyword keyword-char">char</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+UIC a<span class="token punctuation">;</span>               <span class="token comment">// 定义一个联合体变量</span>
+UIC b<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>           <span class="token comment">// 定义一个联合体数组</span>
+</code></pre><p>在 <code>UIC</code> 中，<code>x</code> 和 <code>y</code> 共用一段内存空间，它们的地址是一样的。<br>
+内存空间的大小为 <code>sizeof(int)</code></p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code>a<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>             <span class="token comment">// 访问联合体变量的成员</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 输入联合体变量的成员</span>
+</code></pre><p>C，就是一个玩地址的语言。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword keyword-union">union</span> UIC <span class="token punctuation">{</span>
+	<span class="token keyword keyword-int">int</span> x<span class="token punctuation">;</span>
+	<span class="token keyword keyword-char">char</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	UIC a<span class="token punctuation">;</span>              <span class="token comment">// 定义一个联合体变量，开辟 4 个字节的内存空间</span>
+	<span class="token keyword keyword-char">char</span><span class="token operator">*</span> p <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 指针 p 指向联合体变量的第一个字节</span>
+
+	p<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'A'</span><span class="token punctuation">;</span>	<span class="token comment">// 0100 0001</span>
+	p<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'A'</span><span class="token punctuation">;</span>
+	p<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'A'</span><span class="token punctuation">;</span>
+	p<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'A'</span><span class="token punctuation">;</span>
+
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> a<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 1094795585</span>
+	<span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><br>
 <hr>
 <h1 id="基本数据运算">基本数据运算 </h1>
 <blockquote>
