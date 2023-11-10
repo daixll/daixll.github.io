@@ -7,8 +7,6 @@ export_on_save:
 
 # 参考
 
-**书籍：** [阿里云盘](https://www.aliyundrive.com/s/atgiHRDQWQL)
-
 **视频：**
 
 * 123
