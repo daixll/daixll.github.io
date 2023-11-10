@@ -492,13 +492,7 @@ PII b<span class="token punctuation">[</span><span class="token number">10</span
 <pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> hello<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello, World!"</span><span class="token punctuation">;</span>
 </code></pre><p>在这个例子中，字符串常量"Hello, World!"会被存储在数据段中，而<code>hello</code>数组则会在栈或堆上分配内存，存储在数据段中的地址。</p>
 </li>
-<li>
-<p><strong>静态数组：</strong> 如果你在程序中定义一个静态数组，并且它的大小在编译时已知，那么该数组会被存储在数据段中。例如：</p>
-<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-int">int</span> staticArray<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-</code></pre><p>在这个例子中，<code>staticArray</code>是一个具有100个整数元素的静态数组，它会被存储在数据段中。</p>
-</li>
 </ol>
-<p>这些数据在程序运行期间保持不变，它们的内存空间在程序加载时就被分配好，并且在整个程序执行期间保持不变。</p>
 <h2 id="stack">Stack </h2>
 <h2 id="heap">Heap </h2>
 

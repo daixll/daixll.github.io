@@ -25,13 +25,48 @@
       <div class="crossnote markdown-preview  ">
       
 <p><a href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰的git教程</a></p>
-<h1 id="设置名字和邮箱">设置名字和邮箱 </h1>
+<h1 id="分支">分支 </h1>
+<p>分支 <code>branch</code> 是 git 的一个重要概念。</p>
+<p>git的分支管理非常强大，可以在不同的分支上进行不同的开发，最后再合并到主分支上。</p>
+<br>
+<hr>
+<h1 id="安装">安装 </h1>
+<h2 id="linux">Linux </h2>
+<ol>
+<li>安装 git<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">apt</span> <span class="token function">install</span> <span class="token function">git</span>
+</code></pre></li>
+<li>验证 git 安装成功<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> <span class="token parameter variable">--version</span>
+</code></pre></li>
+</ol>
+<h2 id="windows">Windows </h2>
+<ol>
+<li>下载 git 安装包
+<ul>
+<li><a href="https://git-scm.com/downloads">git 官网</a></li>
+</ul>
+</li>
+</ol>
+<br>
+<hr>
+<h1 id="首次使用">首次使用 </h1>
+<h2 id="初始化仓库">初始化仓库 </h2>
+<blockquote>
+<p>将目标目录初始化成 git 可以管理的仓库，会生成一个 <code>.git</code> 目录。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> init
+</code></pre><h2 id="设置名字和邮箱">设置名字和邮箱 </h2>
 <p>此操作的目的，是为了追踪每次操作，究竟是谁做的。我们一般将其存储在 <code>config</code> 中，也就是配置文件。</p>
 <p>配置文件有三个级别。权重从高到底，依次是仓库 <code>local</code>、全局 <code>global</code>、系统 <code>system</code>。</p>
 <ol>
 <li>仓库级配置文件路径：当前仓库下 <code>.git/config</code>。此配置文件只对 <strong>当前仓库</strong> 有效。</li>
 <li>全局级配置文件路径：<code>C:\Users\用户名字\.gitconfig</code>。此配置文件对 <strong>当前用户</strong> 有效。</li>
 <li>系统级配置文件路径：<code>C:\Program Files\Git\etc\gitconfig</code>。此配置文件对 <strong>全局</strong> 有效。</li>
+</ol>
+<p><strong>Linux</strong> 下：</p>
+<ol>
+<li><code>local</code>：<code>.git/config</code></li>
+<li><code>global</code>：<code>~/.gitconfig</code></li>
+<li><code>system</code>：<code>/etc/gitconfig</code></li>
 </ol>
 <blockquote>
 <p>设置名字和邮箱；后续修改也直接使用此命令。</p>
@@ -42,24 +77,22 @@
 <p>设置好之后查看；其中 <code>--级别</code> 可以省略，会显示最终三个配置文件计算后的配置信息。</p>
 </blockquote>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> config --级别 <span class="token parameter variable">-l</span>
-</code></pre><h1 id="初始化仓库">初始化仓库 </h1>
-<blockquote>
-<p>将目标目录初始化成 git 可以管理的仓库，会生成一个 <code>.git</code> 目录。</p>
-</blockquote>
-<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> init
-</code></pre><h1 id="将目标文件移动到暂存区">将目标文件移动到暂存区 </h1>
+</code></pre><h2 id="将目标文件移动到暂存区">将目标文件移动到暂存区 </h2>
 <blockquote>
 <p>将目标文件移动到暂存区</p>
 </blockquote>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> <span class="token function">add</span> 目标文件
-</code></pre><h1 id="将目标文件提交更改提交到当前分支">将目标文件提交更改（提交到当前分支） </h1>
+</code></pre><h2 id="将目标文件提交更改提交到当前分支">将目标文件提交更改（提交到当前分支） </h2>
 <blockquote>
 <p>将目标文件提交更改（提交到当前分支）</p>
 </blockquote>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"提交说明"</span>
-</code></pre><h1 id="将目标文件提交到远程仓库">将目标文件提交到远程仓库 </h1>
+</code></pre><h2 id="将目标文件提交到远程仓库">将目标文件提交到远程仓库 </h2>
 <blockquote>
 <p>创建SSH Key；会在目录 <code>C:\Users\用户名\.ssh</code> 中生成 <code>id_rsa.pub</code> 文件。</p>
+</blockquote>
+<blockquote>
+<p>Linux 下，会在目录 <code>~/.ssh</code> 中生成 <code>id_rsa.pub</code> 文件。</p>
 </blockquote>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>ssh-keygen <span class="token parameter variable">-t</span> rsa <span class="token parameter variable">-C</span> <span class="token string">"邮箱"</span>
 </code></pre><blockquote>
@@ -73,35 +106,105 @@
 <p>推送；-u是推送并关联的意思，仅在首次提交使用</p>
 </blockquote>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> push <span class="token parameter variable">-u</span> origin master
-</code></pre><h1 id="将远程仓库克隆到本地">将远程仓库克隆到本地 </h1>
+</code></pre><h2 id="将远程仓库克隆到本地">将远程仓库克隆到本地 </h2>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> clone 目标地址
-</code></pre>
+</code></pre><br>
+<hr>
+<h1 id="查看状态">查看状态 </h1>
+<ul>
+<li>
+<p>查看当前仓库的状态</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> status
+</code></pre><blockquote>
+<p>显示工作目录和暂存区的状态。<br>
+使用此命令能看到那些修改被暂存，哪些没有，哪些文件没有被Git tracked到。</p>
+</blockquote>
+</li>
+<li>
+<p>查看提交历史</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> log
+</code></pre><blockquote>
+<p>显示从最近到最远的提交日志。<br>
+简化输出：<code>git log --pretty=oneline</code>。</p>
+</blockquote>
+</li>
+<li>
+<p>查看命令历史</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> reflog
+</code></pre><blockquote>
+<p>显示从最近到最远的命令日志。<br>
+可以看到每一次命令的 <code>commit id</code>。</p>
+</blockquote>
+</li>
+<li>
+<p>查看远程仓库</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> remote <span class="token parameter variable">-v</span>
+</code></pre><blockquote>
+<p>查看远程仓库的详细信息。</p>
+</blockquote>
+</li>
+</ul>
+
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#设置名字和邮箱" class="md-toc-link">
-            <p>设置名字和邮箱</p>
+          <a href="#分支" class="md-toc-link">
+            <p>分支</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#安装" class="md-toc-link"><p>安装</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux" class="md-toc-link">
+            <p>Linux</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#windows" class="md-toc-link">
+            <p>Windows</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#首次使用" class="md-toc-link"><p>首次使用</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#初始化仓库" class="md-toc-link">
             <p>初始化仓库</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#设置名字和邮箱" class="md-toc-link">
+            <p>设置名字和邮箱</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#将目标文件移动到暂存区" class="md-toc-link">
             <p>将目标文件移动到暂存区</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#将目标文件提交更改提交到当前分支" class="md-toc-link">
             <p>将目标文件提交更改（提交到当前分支）</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#将目标文件提交到远程仓库" class="md-toc-link">
             <p>将目标文件提交到远程仓库</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#将远程仓库克隆到本地" class="md-toc-link">
             <p>将远程仓库克隆到本地</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#查看状态" class="md-toc-link">
+            <p>查看状态</p>
 
           </a></div>
 </div>

@@ -7,7 +7,50 @@ export_on_save:
 
 [廖雪峰的git教程](https://www.liaoxuefeng.com/wiki/896043488029600)
 
-# 设置名字和邮箱
+# 分支
+
+分支 `branch` 是 git 的一个重要概念。
+
+git的分支管理非常强大，可以在不同的分支上进行不同的开发，最后再合并到主分支上。
+
+
+<br>
+
+---
+
+# 安装
+
+## Linux
+
+1. 安装 git
+    ```shell
+    apt install git
+    ```
+2. 验证 git 安装成功
+    ```shell
+    git --version
+    ```
+
+## Windows
+
+1. 下载 git 安装包
+    * [git 官网](https://git-scm.com/downloads)
+
+<br>
+
+---
+
+# 首次使用
+
+## 初始化仓库
+
+> 将目标目录初始化成 git 可以管理的仓库，会生成一个 `.git` 目录。
+```shell
+git init
+```
+
+
+## 设置名字和邮箱
 
 此操作的目的，是为了追踪每次操作，究竟是谁做的。我们一般将其存储在 `config` 中，也就是配置文件。
 
@@ -16,6 +59,12 @@ export_on_save:
 1. 仓库级配置文件路径：当前仓库下 `.git/config`。此配置文件只对 **当前仓库** 有效。
 2. 全局级配置文件路径：`C:\Users\用户名字\.gitconfig`。此配置文件对 **当前用户** 有效。
 3. 系统级配置文件路径：`C:\Program Files\Git\etc\gitconfig`。此配置文件对 **全局** 有效。
+
+
+**Linux** 下：
+1. `local`：`.git/config` 
+2. `global`：`~/.gitconfig`
+3. `system`：`/etc/gitconfig`
 
 > 设置名字和邮箱；后续修改也直接使用此命令。
 ```shell
@@ -27,30 +76,26 @@ git config --级别 user.email "邮箱"
 git config --级别 -l
 ```
 
-# 初始化仓库
-
-> 将目标目录初始化成 git 可以管理的仓库，会生成一个 `.git` 目录。
-```shell
-git init
-```
-
-# 将目标文件移动到暂存区
+## 将目标文件移动到暂存区
 
 > 将目标文件移动到暂存区
 ```shell
 git add 目标文件
 ```
 
-# 将目标文件提交更改（提交到当前分支）
+## 将目标文件提交更改（提交到当前分支）
 
 > 将目标文件提交更改（提交到当前分支）
 ```shell
 git commit -m "提交说明"
 ```
 
-# 将目标文件提交到远程仓库
+## 将目标文件提交到远程仓库
 
 > 创建SSH Key；会在目录 `C:\Users\用户名\.ssh` 中生成 `id_rsa.pub` 文件。
+
+> Linux 下，会在目录 `~/.ssh` 中生成 `id_rsa.pub` 文件。
+
 ```shell
 ssh-keygen -t rsa -C "邮箱"
 ```
@@ -67,8 +112,42 @@ git remote add origin 远程仓库地址
 git push -u origin master
 ```
 
-# 将远程仓库克隆到本地
+## 将远程仓库克隆到本地
 
 ```shell
 git clone 目标地址
 ```
+
+
+<br>
+
+---
+
+# 查看状态
+
+* 查看当前仓库的状态
+    ```shell
+    git status
+    ```
+    > 显示工作目录和暂存区的状态。
+    > 使用此命令能看到那些修改被暂存，哪些没有，哪些文件没有被Git tracked到。
+
+* 查看提交历史
+    ```shell
+    git log
+    ```
+    > 显示从最近到最远的提交日志。
+    > 简化输出：`git log --pretty=oneline`。
+
+* 查看命令历史
+    ```shell
+    git reflog
+    ```
+    > 显示从最近到最远的命令日志。
+    > 可以看到每一次命令的 `commit id`。
+
+* 查看远程仓库
+    ```shell
+    git remote -v
+    ```
+    > 查看远程仓库的详细信息。
