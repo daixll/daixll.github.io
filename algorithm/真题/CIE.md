@@ -174,12 +174,16 @@ int main(){
 生成括号（202109）
 广义格雷码（202109）
 
+<br>
 
 ---
 
 # 五级
 
 ## 搜索
+
+[基本算法之搜索](http://noi.openjudge.cn/ch0205/)
+[算法之搜索](http://noi.openjudge.cn/ch0407/)
 
 <details><summary><a href="" target="_blank"></a>漫漫回国路（202009） code</summary>
 
@@ -336,6 +340,9 @@ int main(){
 
 ## 贪心
 
+[基本算法之贪心](http://noi.openjudge.cn/ch0206/)
+[算法之贪心](http://noi.openjudge.cn/ch0406/)
+
 <details><summary><a href="" target="_blank"></a>装箱问题（202009） code</summary>
 
 <br>
@@ -422,3 +429,13 @@ int main(){
 </details>
 
 ## 分治
+
+[基本算法之分治](http://noi.openjudge.cn/ch0204/)
+[算法之分治](http://noi.openjudge.cn/ch0404/)
+
+
+
+
+<br>
+
+---
