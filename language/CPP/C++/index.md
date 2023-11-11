@@ -780,7 +780,7 @@ template：变参数模板。
 
 ```cpp
 template<typename T>
-inline void Tswap(T *a, T *b){
+void Tswap(T *a, T *b){
     T temp = *a;
     *a = *b;
     *b = temp;
@@ -816,19 +816,19 @@ private:
 
 ## variant
 
-### variant
-
-### union
-
-联合体是一种特殊的数据类型，允许在相同的内存位置存储不同的数据类型。
+基于模板的类型安全联合。
 
 ```cpp
-union MyUnion{
-    int a;
-    double b;
-    char c;
-};
+#include <variant>
 ```
+
+```cpp
+std::variant<int, double, std::string> v;
+```
+
+
+
+
 
 <br>
 

@@ -674,7 +674,7 @@ std<span class="token double-colon punctuation">::</span>string ss <span class="
 <h2 id="在函数中使用-template">在函数中使用 template </h2>
 <p>可以让函数接受任意类型的参数，而不是固定的类型。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span><span class="token operator">&lt;</span><span class="token keyword keyword-typename">typename</span> <span class="token class-name">T</span><span class="token operator">&gt;</span>
-<span class="token keyword keyword-inline">inline</span> <span class="token keyword keyword-void">void</span> <span class="token function">Tswap</span><span class="token punctuation">(</span>T <span class="token operator">*</span>a<span class="token punctuation">,</span> T <span class="token operator">*</span>b<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">Tswap</span><span class="token punctuation">(</span>T <span class="token operator">*</span>a<span class="token punctuation">,</span> T <span class="token operator">*</span>b<span class="token punctuation">)</span><span class="token punctuation">{</span>
     T temp <span class="token operator">=</span> <span class="token operator">*</span>a<span class="token punctuation">;</span>
     <span class="token operator">*</span>a <span class="token operator">=</span> <span class="token operator">*</span>b<span class="token punctuation">;</span>
     <span class="token operator">*</span>b <span class="token operator">=</span> temp<span class="token punctuation">;</span>
@@ -702,14 +702,9 @@ std<span class="token double-colon punctuation">::</span>string ss <span class="
     <span class="token keyword keyword-int">int</span> tail <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre><h2 id="variant">variant </h2>
-<h3 id="variant-1">variant </h3>
-<h3 id="union">union </h3>
-<p>联合体是一种特殊的数据类型，允许在相同的内存位置存储不同的数据类型。</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-union">union</span> MyUnion<span class="token punctuation">{</span>
-    <span class="token keyword keyword-int">int</span> a<span class="token punctuation">;</span>
-    <span class="token keyword keyword-double">double</span> b<span class="token punctuation">;</span>
-    <span class="token keyword keyword-char">char</span> c<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<p>基于模板的类型安全联合。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;variant&gt;</span></span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>variant<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>string<span class="token operator">&gt;</span> v<span class="token punctuation">;</span>
 </code></pre><br>
 <hr>
 <h1 id="function">function </h1>
@@ -1311,24 +1306,11 @@ s<span class="token punctuation">.</span><span class="token function">equal_rang
           <a href="#在类中使用-template" class="md-toc-link">
             <p>在类中使用 template</p>
 
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#variant" class="md-toc-link"><p>variant</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#variant-1" class="md-toc-link">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#variant" class="md-toc-link">
             <p>variant</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#union" class="md-toc-link">
-            <p>union</p>
-
           </a></div>
-        </div>
-      </details>
-    
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
