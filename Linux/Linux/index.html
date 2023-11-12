@@ -24,64 +24,19 @@
     
       <div class="crossnote markdown-preview  ">
       
-<ul>
-<li>ssh / ufw / vim /<br>
-curl / wget / tar /<br>
-rsync / mount / samba /<br>
-远程桌面（xrdp）</li>
-</ul>
-<h2 id="制作启动盘">制作启动盘 </h2>
-<ol>
-<li><a href="https://cn.ubuntu.com/download/server/step1">ubuntu iso</a> 镜像下载</li>
-<li><a href="https://rufus.ie/zh/">rufus</a> 制作启动盘</li>
-</ol>
-<h2 id="开机默认进入命令行--图形界面">开机默认进入命令行 / 图形界面 </h2>
-<blockquote>
-<p>默认命令行</p>
-</blockquote>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>systemctl set-default multi-user.target
-</code></pre><blockquote>
-<p>命令行进入图形</p>
-</blockquote>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>startx
-</code></pre><blockquote>
-<p>默认图形</p>
-</blockquote>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>systemctl set-default graphical.target
-</code></pre><h2 id="开机运行">开机运行 </h2>
-<ol>
-<li>创建 <code>rc-local.service</code> 文件</li>
-</ol>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">cp</span> /lib/systemd/system/rc-local.service /etc/systemd/system
-</code></pre><ol start="2">
-<li>修改 <code>/etc/systemd/system/rc-local.service</code> 文件, 添加如下内容</li>
-</ol>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token punctuation">[</span>Install<span class="token punctuation">]</span>   
-<span class="token assign-left variable">WantedBy</span><span class="token operator">=</span>multi-user.target   
-<span class="token assign-left variable">Alias</span><span class="token operator">=</span>rc-local.service
-</code></pre><ol start="3">
-<li>创建 <code>/etc/rc.local</code> 文件, 输入执行的脚本</li>
-</ol>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token shebang important">#!/bin/sh</span>
-noip-duc <span class="token parameter variable">--username</span> xx <span class="token parameter variable">--password</span> xx <span class="token parameter variable">-g</span> xx --ip-method http://ip1.dynupdate6.no-ip.com/ <span class="token operator">&amp;</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">PASSWORD</span><span class="token operator">=</span><span class="token string">"xx"</span> <span class="token operator">&amp;&amp;</span> code-server <span class="token parameter variable">--host</span> <span class="token punctuation">[</span>::<span class="token punctuation">]</span> <span class="token parameter variable">--port</span> <span class="token number">9070</span> <span class="token operator">&amp;</span>
-<span class="token function">shutdown</span> <span class="token parameter variable">-h</span> <span class="token number">23</span>:55
-</code></pre><ol start="4">
-<li>给文件 <code>/etc/rc.local</code> 可执行权限</li>
-</ol>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">chmod</span> +x /etc/rc.local
-</code></pre><h2 id="基础软件">基础软件 </h2>
+<h1 id="基础命令">基础命令 </h1>
+<h2 id="文件权限管理">文件权限管理 </h2>
+<h2 id="文件管理">文件管理 </h2>
+<h2 id="磁盘管理">磁盘管理 </h2>
+<h1 id="基础软件">基础软件 </h1>
 <ul>
 <li>更新软件源、软件、系统更新（非升级）<br>
 <code>apt update &amp;&amp; apt upgrade &amp;&amp; apt dist-upgrade</code></li>
 </ul>
-<h3 id="build-essential">build-essential </h3>
+<h2 id="build-essential">build-essential </h2>
 <p>GNU编辑器合辑</p>
-<p><code>apt install build-essential</code></p>
-<h3 id="ssh">ssh </h3>
-<p><code>apt install ssh</code></p>
-<h3 id="ufw">ufw </h3>
-<p><code>apt install ufw</code></p>
+<h2 id="ssh">ssh </h2>
+<h2 id="ufw">ufw </h2>
 <ol>
 <li>启动防火墙 <code>ufw enable</code></li>
 <li>关闭防火墙 <code>ufw disenable</code></li>
@@ -89,8 +44,7 @@ noip-duc <span class="token parameter variable">--username</span> xx <span class
 <li>关闭端口 <code>ufw delete allow 22</code></li>
 <li>防火墙状态 <code>ufw status</code></li>
 </ol>
-<h3 id="vim">vim </h3>
-<p><code>apt install vim</code></p>
+<h2 id="vim">vim </h2>
 <ol>
 <li>编辑文件 <code>vim a.txt</code></li>
 <li>默认进入文件的 normal 模式
@@ -116,16 +70,15 @@ noip-duc <span class="token parameter variable">--username</span> xx <span class
 </ul>
 </li>
 </ol>
-<h3 id="curl">curl </h3>
-<p><code>apt install curl</code></p>
+<h2 id="curl">curl </h2>
 <ul>
 <li>get 请求<br>
-<code>curl https://www.baidu.com</code></li>
+<code>curl https://www.bing.com</code></li>
 <li>get 请求，返回 http 标头<br>
-<code>curl -i https://www.baidu.com</code></li>
+<code>curl -i https://www.bing.com</code></li>
 </ul>
-<h3 id="tar">tar </h3>
-<p><code>apt install tar</code></p>
+<h2 id="wget">wget </h2>
+<h2 id="tar">tar </h2>
 <ul>
 <li>解压文件<br>
 <code>tar -zxvf *.tar.gz</code>
@@ -143,23 +96,33 @@ noip-duc <span class="token parameter variable">--username</span> xx <span class
 </ul>
 </li>
 </ul>
+<h2 id="rsync">rsync </h2>
 
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#制作启动盘" class="md-toc-link">
-            <p>制作启动盘</p>
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#基础命令" class="md-toc-link"><p>基础命令</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#文件权限管理" class="md-toc-link">
+            <p>文件权限管理</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#开机默认进入命令行--图形界面" class="md-toc-link">
-            <p>开机默认进入命令行 / 图形界面</p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#文件管理" class="md-toc-link">
+            <p>文件管理</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#开机运行" class="md-toc-link">
-            <p>开机运行</p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#磁盘管理" class="md-toc-link">
+            <p>磁盘管理</p>
 
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#基础软件" class="md-toc-link"><p>基础软件</p>
 </a>
@@ -186,8 +149,16 @@ noip-duc <span class="token parameter variable">--username</span> xx <span class
             <p>curl</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#wget" class="md-toc-link">
+            <p>wget</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#tar" class="md-toc-link">
             <p>tar</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#rsync" class="md-toc-link">
+            <p>rsync</p>
 
           </a></div>
         </div>
