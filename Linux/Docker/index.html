@@ -24,33 +24,172 @@
     
       <div class="crossnote markdown-preview  ">
       
-<h1 id="安装docker">安装docker </h1>
-<p>使用官方安装脚本</p>
+<p><strong>Docker</strong></p>
+<ul>
+<li><strong>轻量化</strong>：在操作系统层面上实现虚拟化</li>
+<li><strong>分布式</strong>：可以在同一台机器上运行多个容器，每个容器之间相互隔离</li>
+<li><strong>无状态</strong>：容器每次创建都是全新的，容器内的进程也是全新的，容器内的内容不可持久化</li>
+</ul>
+<p><strong>Virtual Machines</strong></p>
+<ul>
+<li><strong>更强的隔离性</strong>：在硬件层面上实现虚拟化</li>
+<li><strong>文件特性</strong>：硬盘文件、快照都是文件，可以持久化</li>
+</ul>
+<h1 id="安装-docker">安装 Docker </h1>
+<p>使用官方安装脚本（<a href="https://docs.docker.com/engine/install/ubuntu/">参考文档</a>）：</p>
 <pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code> <span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://test.docker.com <span class="token parameter variable">-o</span> test-docker.sh
  <span class="token function">sudo</span> <span class="token function">sh</span> test-docker.sh
-</code></pre><h1 id="镜像">镜像 </h1>
-<p>下载镜像</p>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> pull nginx
-</code></pre><p>查看镜像</p>
+</code></pre><h1 id="镜像-image">镜像 IMAGE </h1>
+<p>是一个只读模板，用来创建容器，类似于：</p>
+<ul>
+<li>面向对象中的类，容器是对象</li>
+<li>虚拟机中的 <code>.iso</code>，容器是虚拟机</li>
+</ul>
+<h2 id="docker-hub-下载镜像">Docker Hub 下载镜像 </h2>
+<p><a href="https://hub.docker.com/search?q=">Docker Hub</a></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> pull IMAGE_NAME<span class="token punctuation">[</span>:TAG<span class="token punctuation">]</span>
+</code></pre><ul>
+<li><code>IMAGE_NAME</code> 镜像名称</li>
+<li><code>TAG</code> 可选，镜像版本或标签，默认为 <code>latest</code></li>
+</ul>
+<h2 id="dockerfile-构建镜像">Dockerfile 构建镜像 </h2>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> build <span class="token parameter variable">-t</span> IMAGE_NAME<span class="token punctuation">[</span>:TAG<span class="token punctuation">]</span> PATH_TO_DOCKERFILE
+</code></pre><ul>
+<li><code>IMAGE_NAME</code> 镜像名称</li>
+<li><code>TAG</code> 可选，镜像版本或标签</li>
+<li><code>PATH_TO_DOCKERFILE</code> Dockerfile 所在路径</li>
+</ul>
+<h2 id="查看镜像">查看镜像 </h2>
 <pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> images
-</code></pre><h1 id="容器">容器 </h1>
-<p>运行容器</p>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> run <span class="token parameter variable">--name</span> nginx_proxy  
-</code></pre>
+</code></pre><ul>
+<li><code>REPOSITORY</code> 镜像名称</li>
+<li><code>TAG</code> 镜像版本或标签</li>
+<li><code>IMAGE ID</code> 镜像 ID：<strong>唯一标识</strong></li>
+<li><code>CREATED</code> 创建时间</li>
+<li><code>SIZE</code> 镜像大小</li>
+</ul>
+<h2 id="删除镜像">删除镜像 </h2>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> rmi IMAGE_NAME<span class="token punctuation">[</span>:TAG<span class="token punctuation">]</span>
+</code></pre><h1 id="容器-container">容器 CONTAINER </h1>
+<h2 id="查看容器">查看容器 </h2>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> <span class="token function">ps</span> <span class="token punctuation">[</span>-a<span class="token punctuation">]</span>
+</code></pre><h2 id="创建--删除容器">创建 / 删除容器 </h2>
+<p><strong>删除容器</strong></p>
+<blockquote>
+<p>删除容器前需要先停止容器</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> <span class="token function">rm</span> CONTAINER_ID
+</code></pre><p><strong>创建容器</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> run <span class="token punctuation">\</span>
+    <span class="token punctuation">[</span>OPTIONS<span class="token punctuation">]</span> <span class="token punctuation">\</span>
+    IMAGE_NAME<span class="token punctuation">[</span>:TAG<span class="token punctuation">]</span> <span class="token punctuation">\</span>
+    <span class="token punctuation">[</span>COMMAND<span class="token punctuation">]</span> <span class="token punctuation">\</span>
+    <span class="token punctuation">[</span>ARG<span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+</code></pre><ol>
+<li><strong>OPTIONS</strong> 命令选项
+<ul>
+<li><code>-it</code> 进入容器终端，通常与 <code>/bin/bash</code> 一起使用</li>
+<li><code>-d</code> 后台运行容器，通常与 <code>sleep infinity</code> 一起使用</li>
+<li><code>--name</code> 容器名称</li>
+<li><code>--restart</code> 容器停止后自动重启
+<ul>
+<li><code>no</code>（默认），不重启</li>
+<li><code>on-failure</code>，非 0 退出时重启</li>
+<li><code>always</code>，总是重启</li>
+</ul>
+</li>
+<li><code>--net</code> 网络模式
+<ul>
+<li><code>bridge</code>（默认），需要端口映射</li>
+<li><code>host</code>，直接使用宿主机端口</li>
+<li><code>none</code>，无网络</li>
+</ul>
+</li>
+<li><code>--rm</code> 容器停止后自动删除</li>
+<li><code>-p</code> 端口映射，<code>HOST_PORT:CONTAINER_PORT</code>，<code>外:内</code></li>
+<li><code>-v</code> 挂载目录，<code>HOST_DIR:CONTAINER_DIR</code>，<code>外:内</code></li>
+<li><code>-e</code> 环境变量，<code>KEY=VALUE</code></li>
+<li><code>-w</code> 工作目录，<code>WORK_DIR</code>，指定容器内的工作目录</li>
+</ul>
+</li>
+</ol>
+<h1 id="进入--退出容器">进入 / 退出容器 </h1>
+<p><strong>进入容器</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> CONTAINER_ID /bin/bash
+</code></pre><p><strong>退出容器</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token builtin class-name">exit</span>
+</code></pre><h2 id="启动--停止容器">启动 / 停止容器 </h2>
+<p><strong>启动容器</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> start CONTAINER_ID
+</code></pre><p><strong>停止容器</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> stop CONTAINER_ID
+</code></pre><h1 id="dockerfile">Dockerfile </h1>
+
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#安装docker" class="md-toc-link">
-            <p>安装docker</p>
+          <a href="#安装-docker" class="md-toc-link">
+            <p>安装 Docker</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#镜像" class="md-toc-link">
-            <p>镜像</p>
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#镜像-image" class="md-toc-link"><p>镜像 IMAGE</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#docker-hub-下载镜像" class="md-toc-link">
+            <p>Docker Hub 下载镜像</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#容器" class="md-toc-link">
-            <p>容器</p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#dockerfile-构建镜像" class="md-toc-link">
+            <p>Dockerfile 构建镜像</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#查看镜像" class="md-toc-link">
+            <p>查看镜像</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#删除镜像" class="md-toc-link">
+            <p>删除镜像</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#容器-container" class="md-toc-link"><p>容器 CONTAINER</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#查看容器" class="md-toc-link">
+            <p>查看容器</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#创建--删除容器" class="md-toc-link">
+            <p>创建 / 删除容器</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#进入--退出容器" class="md-toc-link"><p>进入 / 退出容器</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#启动--停止容器" class="md-toc-link">
+            <p>启动 / 停止容器</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#dockerfile" class="md-toc-link">
+            <p>Dockerfile</p>
 
           </a></div>
 </div>
