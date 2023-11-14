@@ -93,7 +93,7 @@ A：假设有一个地址 <code>中国.四川.成都.金牛</code>，子网掩�
 </ul>
 <br>
 <hr>
-<h2 id="静态ecmp">静态ECMP </h2>
+<h2 id="静态-ecmp">静态 ECMP </h2>
 <p>静态ECMP（Equal-CostMultipathRouting）是一种在网络环境中使用的等值多路径路由协议，可以同时使用多条链路，不仅增加了传输带宽，并且可以无时延无丢包地备份失效链路的数据传输。</p>
 <p><strong>优点：</strong></p>
 <ul>
@@ -219,7 +219,7 @@ A：假设有一个地址 <code>中国.四川.成都.金牛</code>，子网掩�
 </ul>
 <br>
 <hr>
-<h2 id="ospf单区域配置">OSPF单区域配置 </h2>
+<h2 id="ospf-单区域配置">OSPF 单区域配置 </h2>
 <p><img src="./IMAGE/%E5%AE%9E%E9%AA%8C3_OSPF%E5%8D%95%E5%8C%BA%E5%9F%9F%E9%85%8D%E7%BD%AE.png" alt=""></p>
 <ol>
 <li>
@@ -259,7 +259,7 @@ A：假设有一个地址 <code>中国.四川.成都.金牛</code>，子网掩�
 </ol>
 <br>
 <hr>
-<h2 id="ospf多区域配置">OSPF多区域配置 </h2>
+<h2 id="ospf-多区域配置">OSPF 多区域配置 </h2>
 <p><img src="./IMAGE/%E5%AE%9E%E9%AA%8C3_OSPF%E5%8D%95%E5%8C%BA%E5%9F%9F%E9%85%8D%E7%BD%AE.png" alt=""></p>
 <ol>
 <li>
@@ -290,6 +290,75 @@ A：假设有一个地址 <code>中国.四川.成都.金牛</code>，子网掩�
 <span class="token punctuation">[</span>路由丙-ospf-1<span class="token punctuation">]</span> area <span class="token number">1</span>
 <span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.1<span class="token punctuation">]</span> network <span class="token number">3.3</span>.3.3 <span class="token number">0.0</span>.0.0
 <span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.1<span class="token punctuation">]</span> network <span class="token number">20.0</span>.0.0 <span class="token number">0.0</span>.0.255
+</code></pre></li>
+</ul>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="ospf-stub-区域配置">OSPF Stub 区域配置 </h2>
+<p>OSPF stub 区域是指在一个 OSPF 区域内，有一些区域被配置为 “stub”（存根）区域。</p>
+<p>Stub 区域 <strong>不会转发外部路由</strong>，只会转发来自本区域的路由。</p>
+<p><img src="./IMAGE/%E5%AE%9E%E9%AA%8C5_OSPFStub%E5%8C%BA%E5%9F%9F%E9%85%8D%E7%BD%AE.png" alt=""></p>
+<ol>
+<li>
+<p>配置 接口</p>
+</li>
+<li>
+<p>配置 OSPF</p>
+<ul>
+<li>路由甲<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由甲<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由甲-ospf-1<span class="token punctuation">]</span> area <span class="token number">1</span>
+<span class="token punctuation">[</span>路由甲-ospf-1-area-0.0.0.1<span class="token punctuation">]</span> network <span class="token number">1.1</span>.1.1 <span class="token number">0.0</span>.0.0
+<span class="token punctuation">[</span>路由甲-ospf-1-area-0.0.0.1<span class="token punctuation">]</span> network <span class="token number">10.0</span>.0.0 <span class="token number">0.0</span>.0.255
+<span class="token punctuation">[</span>路由甲-ospf-1-area-0.0.0.1<span class="token punctuation">]</span> quit
+<span class="token comment"># 导入外部路由</span>
+<span class="token punctuation">[</span>路由甲-ospf-1<span class="token punctuation">]</span> import-route direct
+</code></pre></li>
+<li>路由乙<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由乙<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由乙-ospf-1<span class="token punctuation">]</span> area <span class="token number">1</span>
+<span class="token punctuation">[</span>路由乙-ospf-1-area-0.0.0.1<span class="token punctuation">]</span> network <span class="token number">10.0</span>.0.0 <span class="token number">0.0</span>.0.255
+<span class="token punctuation">[</span>路由乙-ospf-1-area-0.0.0.1<span class="token punctuation">]</span> area <span class="token number">0</span>
+<span class="token punctuation">[</span>路由乙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">2.2</span>.2.2 <span class="token number">0.0</span>.0.0
+<span class="token punctuation">[</span>路由乙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">20.0</span>.0.0 <span class="token number">0.0</span>.0.255
+</code></pre></li>
+<li>路由丙<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由丙<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由丙-ospf-1<span class="token punctuation">]</span> area <span class="token number">0</span>
+<span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">3.3</span>.3.3 <span class="token number">0.0</span>.0.0
+<span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">20.0</span>.0.0 <span class="token number">0.0</span>.0.255
+<span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> area <span class="token number">2</span>
+<span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.2<span class="token punctuation">]</span> network <span class="token number">30.0</span>.0.0 <span class="token number">0.0</span>.0.255
+</code></pre></li>
+<li>路由丁<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由丁<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由丁-ospf-1<span class="token punctuation">]</span> area <span class="token number">2</span>
+<span class="token punctuation">[</span>路由丁-ospf-1-area-0.0.0.2<span class="token punctuation">]</span> network <span class="token number">4.4</span>.4.4 <span class="token number">0.0</span>.0.0
+<span class="token punctuation">[</span>路由丁-ospf-1-area-0.0.0.2<span class="token punctuation">]</span> network <span class="token number">30.0</span>.0.0 <span class="token number">0.0</span>.0.255
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>配置 Stub 区域</p>
+<ul>
+<li>
+<p>路由丙</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由丙<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由丙-ospf-1<span class="token punctuation">]</span> area <span class="token number">2</span>
+<span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.2<span class="token punctuation">]</span> stub
+</code></pre></li>
+<li>
+<p>路由丁</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由丁<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由丁-ospf-1<span class="token punctuation">]</span> area <span class="token number">2</span>
+<span class="token punctuation">[</span>路由丁-ospf-1-area-0.0.0.2<span class="token punctuation">]</span> stub
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>配置 Totally Stub 区域</p>
+<ul>
+<li>路由丙<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由丙<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由丙-ospf-1<span class="token punctuation">]</span> area <span class="token number">2</span>
+<span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.2<span class="token punctuation">]</span> stub no-summary
 </code></pre></li>
 </ul>
 </li>
@@ -389,20 +458,24 @@ B-&gt;C：2</li>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#静态ecmp" class="md-toc-link">
-            <p>静态ECMP</p>
+          <a href="#静态-ecmp" class="md-toc-link">
+            <p>静态 ECMP</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#浮动静态路由" class="md-toc-link">
             <p>浮动静态路由</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ospf单区域配置" class="md-toc-link">
-            <p>OSPF单区域配置</p>
+          <a href="#ospf-单区域配置" class="md-toc-link">
+            <p>OSPF 单区域配置</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ospf多区域配置" class="md-toc-link">
-            <p>OSPF多区域配置</p>
+          <a href="#ospf-多区域配置" class="md-toc-link">
+            <p>OSPF 多区域配置</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ospf-stub-区域配置" class="md-toc-link">
+            <p>OSPF Stub 区域配置</p>
 
           </a></div>
         </div>

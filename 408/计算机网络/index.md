@@ -66,7 +66,7 @@ IPv4地址通常分为网络地址和主机地址两部分，再加一个子网�
 
 ---
 
-## 静态ECMP
+## 静态 ECMP
 
 静态ECMP（Equal-CostMultipathRouting）是一种在网络环境中使用的等值多路径路由协议，可以同时使用多条链路，不仅增加了传输带宽，并且可以无时延无丢包地备份失效链路的数据传输。
 
@@ -196,7 +196,7 @@ IPv4地址通常分为网络地址和主机地址两部分，再加一个子网�
 
 ---
 
-## OSPF单区域配置
+## OSPF 单区域配置
 
 ![](./IMAGE/实验3_OSPF单区域配置.png)
 
@@ -237,7 +237,7 @@ IPv4地址通常分为网络地址和主机地址两部分，再加一个子网�
 
 ---
 
-## OSPF多区域配置
+## OSPF 多区域配置
 
 ![](./IMAGE/实验3_OSPF单区域配置.png)
 
@@ -270,6 +270,84 @@ IPv4地址通常分为网络地址和主机地址两部分，再加一个子网�
       [路由丙-ospf-1-area-0.0.0.1] network 3.3.3.3 0.0.0.0
       [路由丙-ospf-1-area-0.0.0.1] network 20.0.0.0 0.0.0.255
       ```
+
+
+<br>
+
+---
+
+## OSPF Stub 区域配置
+
+OSPF stub 区域是指在一个 OSPF 区域内，有一些区域被配置为 “stub”（存根）区域。
+
+Stub 区域 **不会转发外部路由**，只会转发来自本区域的路由。
+
+
+![](./IMAGE/实验5_OSPFStub区域配置.png)
+
+
+1. 配置 接口
+
+2. 配置 OSPF
+    * 路由甲
+      ```shell
+      [路由甲] ospf 1
+      [路由甲-ospf-1] area 1
+      [路由甲-ospf-1-area-0.0.0.1] network 1.1.1.1 0.0.0.0
+      [路由甲-ospf-1-area-0.0.0.1] network 10.0.0.0 0.0.0.255
+      [路由甲-ospf-1-area-0.0.0.1] quit
+      # 导入外部路由
+      [路由甲-ospf-1] import-route direct
+      ```
+    * 路由乙
+      ```shell
+      [路由乙] ospf 1
+      [路由乙-ospf-1] area 1
+      [路由乙-ospf-1-area-0.0.0.1] network 10.0.0.0 0.0.0.255
+      [路由乙-ospf-1-area-0.0.0.1] area 0
+      [路由乙-ospf-1-area-0.0.0.0] network 2.2.2.2 0.0.0.0
+      [路由乙-ospf-1-area-0.0.0.0] network 20.0.0.0 0.0.0.255
+      ```
+    * 路由丙
+      ```shell
+      [路由丙] ospf 1
+      [路由丙-ospf-1] area 0
+      [路由丙-ospf-1-area-0.0.0.0] network 3.3.3.3 0.0.0.0
+      [路由丙-ospf-1-area-0.0.0.0] network 20.0.0.0 0.0.0.255
+      [路由丙-ospf-1-area-0.0.0.0] area 2
+      [路由丙-ospf-1-area-0.0.0.2] network 30.0.0.0 0.0.0.255
+      ```
+    * 路由丁
+      ```shell
+      [路由丁] ospf 1
+      [路由丁-ospf-1] area 2
+      [路由丁-ospf-1-area-0.0.0.2] network 4.4.4.4 0.0.0.0
+      [路由丁-ospf-1-area-0.0.0.2] network 30.0.0.0 0.0.0.255
+      ```
+
+3. 配置 Stub 区域
+    * 路由丙
+      ```shell
+      [路由丙] ospf 1
+      [路由丙-ospf-1] area 2
+      [路由丙-ospf-1-area-0.0.0.2] stub
+      ```
+    
+    * 路由丁
+      ```shell
+      [路由丁] ospf 1
+      [路由丁-ospf-1] area 2
+      [路由丁-ospf-1-area-0.0.0.2] stub
+      ```
+
+4. 配置 Totally Stub 区域
+    * 路由丙
+      ```shell
+      [路由丙] ospf 1
+      [路由丙-ospf-1] area 2
+      [路由丙-ospf-1-area-0.0.0.2] stub no-summary
+      ```
+
 
 
 <br>
