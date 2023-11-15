@@ -124,7 +124,7 @@ git commit -m "提交说明"
 
 5. 推送到远程仓库
     ```shell
-    git push origin
+    git push origin master
     ```
 
 > 注意，以上操作只是将本地仓库推送到远程仓库，但是远程仓库并不会自动创建分支
