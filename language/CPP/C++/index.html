@@ -637,7 +637,7 @@ NUL NUL
 <span class="token keyword keyword-void">void</span> <span class="token operator">*</span><span class="token function">memcpy</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-void">void</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> size_t n<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><hr>
 <h1 id="regex">regex </h1>
-<p><a href="..\..\..\Linux\Regex\index.html">正则表达式</a> 的本质，就是某种 <strong>字符组合</strong>。</p>
+<p><a href="../../../Linux/Regex/index.html">正则表达式</a> 的本质，就是某种 <strong>字符组合</strong>。</p>
 <h2 id="定义正则表达式">定义正则表达式 </h2>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>regex <span class="token function">r</span><span class="token punctuation">(</span><span class="token raw-string string">R"((\d{1,3}\.){3}\d{1,3})"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><h2 id="判断串">判断串 </h2>
@@ -851,7 +851,7 @@ ptr <span class="token operator">=</span> <span class="token keyword keyword-nul
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> l1<span class="token punctuation">;</span>       <span class="token comment">// 空链表</span>
 list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l2</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 10个元素，每个元素都是0</span>
 list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l3</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 10个元素，每个元素都是6</span>
-list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l4</span><span class="token punctuation">(</span>l3<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 拷贝构造函数]</span>
+list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l4</span><span class="token punctuation">(</span>l3<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 拷贝构造函数</span>
 list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l5</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 初始化列表</span>
 </code></pre><h4 id="增加">增加 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>l1<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 尾部插入</span>
@@ -1076,6 +1076,52 @@ p1<span class="token punctuation">.</span><span class="token function">top</span
 <h4 id="平衡二叉树-avlt">平衡二叉树 AVLT </h4>
 <h4 id="平衡二叉搜索树-bbst">平衡二叉搜索树 BBST </h4>
 <h4 id="红黑树-rbt">红黑树 RBT </h4>
+<h3 id="有序">有序 </h3>
+<p>map 和 set 底层实现是 <strong>红黑树</strong>，所以其元素是有序的。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">map</th>
+<th style="text-align:center">set</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>唯一</strong></td>
+<td style="text-align:center">map</td>
+<td style="text-align:center">set</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>可重</strong></td>
+<td style="text-align:center">multimap</td>
+<td style="text-align:center">multiset</td>
+</tr>
+</tbody>
+</table>
+<h3 id="无序">无序 </h3>
+<p>unordered_map 和 unordered_set 底层实现是 <strong>哈希表</strong>，所以其元素是无序的。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">unordered_map</th>
+<th style="text-align:center">unordered_set</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>唯一</strong></td>
+<td style="text-align:center">unordered_map</td>
+<td style="text-align:center">unordered_set</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>可重</strong></td>
+<td style="text-align:center">unordered_multimap</td>
+<td style="text-align:center">unordered_multiset</td>
+</tr>
+</tbody>
+</table>
 <h3 id="set">set </h3>
 <p>集合</p>
 <p>set 的元素是唯一的，不能重复。</p>
@@ -1157,9 +1203,14 @@ s<span class="token punctuation">.</span><span class="token function">upper_boun
 s<span class="token punctuation">.</span><span class="token function">equal_range</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 查找第一个大于等于 6 和 第一个大于 6 的元素 返回迭代器</span>
 <span class="token comment">// 如果没有大于等于 6 的元素，那么第一个迭代器指向第一个大于 6 的元素，返回的两个迭代器相等</span>
 </code></pre><h3 id="unordered_multiset">unordered_multiset </h3>
-<p>无序可重集合</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unordered_set&gt;</span></span>
+</code></pre><p>无序可重集合</p>
+<p>unordered_multiset 的元素是可以重复的。</p>
+<p>unordered_multiset 的底层实现是哈希表，所以 unordered_multiset 的元素是无序的。</p>
 <h4 id="创建-9">创建 </h4>
-<h4 id="增加-9">增加 </h4>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>multiset<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> s1<span class="token punctuation">;</span>                <span class="token comment">// 元素类型是 int</span>
+multiset<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> s2<span class="token punctuation">;</span>  <span class="token comment">// 元素类型是 pair 类型</span>
+</code></pre><h4 id="增加-9">增加 </h4>
 <h4 id="删除-9">删除 </h4>
 <h4 id="修改-9">修改 </h4>
 <h4 id="查找-9">查找 </h4>
@@ -1193,296 +1244,61 @@ s<span class="token punctuation">.</span><span class="token function">equal_rang
 <h4 id="修改-13">修改 </h4>
 <h4 id="查找-13">查找 </h4>
 <h2 id="迭代器-iterator">迭代器 iterator </h2>
-<h2 id="容器适配器-adapter">容器适配器 adapter </h2>
-<h2 id="算法-algorithm">算法 algorithm </h2>
-<h2 id="函数对象-functor">函数对象 functor </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iterator&gt;</span></span>
+</code></pre><p>迭代器是一种泛型指针，它可以指向容器中的元素。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>容器<span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 具体的</span>
+vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span>
+unordered_multimap<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span>
+</code></pre><p><strong>迭代器的类型</strong></p>
+<ul>
+<li><code>iterator</code>：普通迭代器。</li>
+<li><code>const_iterator</code>：常量迭代器，只能读取，不能修改。</li>
+<li><code>reverse_iterator</code>：反向迭代器，从后往前遍历。</li>
+<li><code>const_reverse_iterator</code>：常量反向迭代器，从后往前遍历，只能读取，不能修改。</li>
+</ul>
+<p><strong>获取迭代器</strong></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 获取容器的迭代器</span>
+vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> v<span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it <span class="token operator">=</span> v<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it <span class="token operator">=</span> v<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+
+常见的迭代器操作有：
+
+<span class="token operator">*</span><span class="token operator">*</span>
+
+<span class="token operator">*</span> `<span class="token operator">*</span>it`：返回迭代器指向的元素。
+<span class="token operator">*</span> `it<span class="token operator">-&gt;</span>first`：返回迭代器指向的元素的第一个元素。
+<span class="token operator">*</span> `it<span class="token operator">-&gt;</span>second`：返回迭代器指向的元素的第二个元素。
+<span class="token operator">*</span> `it<span class="token operator">++</span>`：迭代器后移。
+<span class="token operator">*</span> `it<span class="token operator">--</span>`：迭代器前移。
+<span class="token operator">*</span> `it<span class="token operator">+</span>n`：迭代器后移 n 个位置。
+<span class="token operator">*</span> `it<span class="token operator">-</span>n`：迭代器前移 n 个位置。
+<span class="token operator">*</span> `it1<span class="token operator">-</span>it2`：返回两个迭代器之间的距离。
+<span class="token operator">*</span> `it1<span class="token operator">&lt;</span>it2`：比较两个迭代器的大小。
+<span class="token operator">*</span> `it1<span class="token operator">==</span>it2`：比较两个迭代器是否相等。
+<span class="token operator">*</span> `it1<span class="token operator">!=</span>it2`：比较两个迭代器是否不相等。
+
+<span class="token operator">*</span> `std<span class="token double-colon punctuation">::</span><span class="token function">next</span><span class="token punctuation">(</span>it<span class="token punctuation">,</span> n<span class="token punctuation">)</span>`：返回迭代器后移 n 个位置后的迭代器。
+<span class="token operator">*</span> `std<span class="token double-colon punctuation">::</span><span class="token function">prev</span><span class="token punctuation">(</span>it<span class="token punctuation">,</span> n<span class="token punctuation">)</span>`：返回迭代器前移 n 个位置后的迭代器。
+<span class="token operator">*</span> `std<span class="token double-colon punctuation">::</span><span class="token function">advance</span><span class="token punctuation">(</span>it<span class="token punctuation">,</span> n<span class="token punctuation">)</span>`：迭代器后移 n 个位置。
+<span class="token operator">*</span> `std<span class="token double-colon punctuation">::</span><span class="token function">distance</span><span class="token punctuation">(</span>it1<span class="token punctuation">,</span> it2<span class="token punctuation">)</span>`：返回两个迭代器之间的距离。
+
+## 容器适配器 adapter
+
+## 算法 algorithm
+
+## 函数对象 functor
+</code></pre>
       </div>
-      <div class="md-sidebar-toc">
-<div class="md-toc">
-<details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#class" class="md-toc-link"><p>class</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#封装定义一个抽象数据类型" class="md-toc-link">
-            <p>封装：定义一个抽象数据类型</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#继承定义一个基类的派生类" class="md-toc-link">
-            <p>继承：定义一个基类的派生类</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#公有-私有-保护" class="md-toc-link">
-            <p>公有、私有、保护</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#多态定义一个基类的虚函数" class="md-toc-link">
-            <p>多态：定义一个基类的虚函数</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#namespace" class="md-toc-link"><p>namespace</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#命名空间的使用" class="md-toc-link">
-            <p>命名空间的使用</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#命名空间的嵌套" class="md-toc-link">
-            <p>命名空间的嵌套</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#命名空间和类的区别" class="md-toc-link">
-            <p>命名空间和类的区别</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#关于-cstdio-和-stdioh" class="md-toc-link">
-            <p>关于 cstdio 和 stdio.h</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#string" class="md-toc-link"><p>string</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#string-1" class="md-toc-link">
-            <p>string</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#cstring" class="md-toc-link">
-            <p>cstring</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#regex" class="md-toc-link"><p>regex</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#定义正则表达式" class="md-toc-link">
-            <p>定义正则表达式</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#判断串" class="md-toc-link">
-            <p>判断串</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#查找--取出匹配子串" class="md-toc-link">
-            <p>查找 / 取出匹配子串</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#替换匹配子串" class="md-toc-link">
-            <p>替换匹配子串</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#template" class="md-toc-link"><p>template</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#在函数中使用-template" class="md-toc-link">
-            <p>在函数中使用 template</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#在类中使用-template" class="md-toc-link">
-            <p>在类中使用 template</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#variant" class="md-toc-link">
-            <p>variant</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#function" class="md-toc-link">
-            <p>function</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#lambda" class="md-toc-link">
-            <p>lambda</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#智能指针" class="md-toc-link"><p>智能指针</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unique_ptr" class="md-toc-link">
-            <p>unique_ptr</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#shared_ptr" class="md-toc-link">
-            <p>shared_ptr</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#weak_ptr" class="md-toc-link">
-            <p>weak_ptr</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#移动语义和右值引用" class="md-toc-link">
-            <p>移动语义和右值引用</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#范围-for-循环" class="md-toc-link">
-            <p>范围 for 循环</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#异常处理" class="md-toc-link">
-            <p>异常处理</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#类型推导" class="md-toc-link">
-            <p>类型推导</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#stl" class="md-toc-link"><p>STL</p>
-</a>
-          </summary>
-        <div>
-          <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#序列式容器" class="md-toc-link"><p>序列式容器</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#list" class="md-toc-link">
-            <p>list</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#vector" class="md-toc-link">
-            <p>vector</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#stack" class="md-toc-link">
-            <p>stack</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#queue" class="md-toc-link">
-            <p>queue</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#deque" class="md-toc-link">
-            <p>deque</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#priority_queue" class="md-toc-link">
-            <p>priority_queue</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#关联式容器" class="md-toc-link"><p>关联式容器</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#树" class="md-toc-link">
-            <p>树</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#set" class="md-toc-link">
-            <p>set</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_set" class="md-toc-link">
-            <p>unordered_set</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#multiset" class="md-toc-link">
-            <p>multiset</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_multiset" class="md-toc-link">
-            <p>unordered_multiset</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#map" class="md-toc-link">
-            <p>map</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_map" class="md-toc-link">
-            <p>unordered_map</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#multimap" class="md-toc-link">
-            <p>multimap</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_multimap" class="md-toc-link">
-            <p>unordered_multimap</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#迭代器-iterator" class="md-toc-link">
-            <p>迭代器 iterator</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#容器适配器-adapter" class="md-toc-link">
-            <p>容器适配器 adapter</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#算法-algorithm" class="md-toc-link">
-            <p>算法 algorithm</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#函数对象-functor" class="md-toc-link">
-            <p>函数对象 functor</p>
-
-          </a></div>
-        </div>
-      </details>
-    
-</div>
-</div>
-      <a id="sidebar-toc-btn">≡</a>
-    
-    
-    
-    
-    
-    
-<script>
-document.body.setAttribute('html-show-sidebar-toc', true)
-var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
-sidebarTOCBtn.addEventListener('click', function(event) {
-  event.stopPropagation()
-  if (document.body.hasAttribute('html-show-sidebar-toc')) {
-    document.body.removeAttribute('html-show-sidebar-toc')
-  } else {
-    document.body.setAttribute('html-show-sidebar-toc', true)
-  }
-})
-</script>
       
+      
+    
+    
+    
+    
+    
+    
   
     </body></html>
