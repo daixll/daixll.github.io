@@ -1020,9 +1020,173 @@ ptr = nullptr;          // 将 ptr 置为 nullptr, ptr 成空指针
 
 # STL
 
+STL（standard template library），泛型库。
+提供了一系列的模板类和模板函数，支持常用的数据结构和算法。
+
+## 迭代器 iterator
+
+迭代器是一种泛型指针，它可以指向容器中的元素。
+
+```cpp
+容器::iterator it;
+```
+
+具体的：
+
+```cpp
+vector<int>::iterator it;
+unordered_multimap<int, int>::iterator it;
+```
+
+### 迭代器的类型
+
+* `iterator`：普通迭代器。
+* `const_iterator`：常量迭代器，只能读取，不能修改。
+* `reverse_iterator`：反向迭代器，从后往前遍历。
+* `const_reverse_iterator`：常量反向迭代器，从后往前遍历，只能读取，不能修改。
+
+> 反向迭代器只能用于支持双向迭代器的容器，`unordered` 系列容器不支持反向迭代器。
+
+### 获取迭代器
+
+容器拥有 `begin` 和 `end` 成员函数，用于获取迭代器：
+
+* `begin()`：指向容器第一个元素，正向迭代。
+* `cbegin()`：指向容器第一个元素，且只能读取，不能修改。
+* `rbegin()`：指向容器最后一个元素，反向迭代。
+* `crbegin()`：指向容器最后一个元素，且只能读取，不能修改。
+
+<br>
+
+* `end()`：指向容器最后一个元素的 **下一个** 位置，正向迭代。
+* `cend()`：指向容器最后一个元素的 **下一个** 位置，且只能读取，不能修改。
+* `rend()`：指向容器第一个元素的 **前一个** 位置，反向迭代。
+* `crend()`：指向容器第一个元素的 **前一个** 位置，且只能读取，不能修改。
+
+### 操作迭代器
+
+* `*it`：获取迭代器指向的元素。
+* `it->`：获取迭代器指向的元素的成员。
+* `it++`：迭代器后移。
+* `it--`：迭代器前移。
+
+
 ## 序列式容器
 
 所谓序列式容器，其中的元素 **可序**，但未必 **有序**。
+
+
+### 【随机】vector
+
+动态数组，支持自动扩容。
+内存空间是连续的，所以支持随机访问，
+故其迭代器是随机访问迭代器。
+
+#### 创建
+
+```cpp
+vector<int> v1;             // 空数组
+vector<int> v2(10);         // 10个元素，每个元素都是0
+vector<int> v3(10, 1);      // 10个元素，每个元素都是1
+vector<int> v4(v3);         // 拷贝构造函数
+vector<int> v5({1, 2, 3, 4, 5}); // 初始化列表
+```
+
+#### 增加
+
+```cpp
+v1.push_back(6);            // 尾部插入
+v1.emplace_back(6);         // 尾部插入
+
+v1.insert(v1.begin(), 6);                   // 插在 v1.begin() 之前，即头部插入
+v1.insert(v1.begin(), 10, 6);               // 插在 v1.begin() 之前，即头部插入10个6
+v1.insert(v1.begin(), v2.begin(), v2.end());// 插入 v2 的所有元素
+v1.insert(v1.begin(), {1, 2, 3, 4, 5});     // 插入初始化列表
+
+v1.emplace(v1.end(), 6);                    // 插在 v1.end() 之前，即尾部插入
+v1.emplace(v1.end(), 10, 6);                // 插在 v1.end() 之前，即尾部插入10个6
+v1.emplace(v1.end(), v2.begin(), v2.end()); // 插入 v2 的所有元素
+v1.emplace(v1.end(), {1, 2, 3, 4, 5});      // 插入初始化列表
+```
+
+> `emplace` 函数的参数是构造函数的参数，而 `insert` 函数的参数是元素的值。
+>   ```cpp
+>   v1.push_back(10)
+>   v1.emplace_back(10)
+>   ```
+>  上面两行代码的效果是一样的，都是在 `v1` 的尾部插入一个值为 `10` 的元素。
+>   * `push_back`：先在内存中构造一个 `10`，然后将其拷贝到 `v1` 的尾部。
+>   * `emplace_back`：直接在 `v1` 的尾部构造一个 `10`。
+
+#### 删除
+
+```cpp
+v1.clear();                 // 清空数组
+
+v1.pop_back();              // 尾部删除
+v1.erase(v1.begin());       // 删除 v1.begin() 位置的元素
+v1.erase(v1.begin(), v1.end()); // 删除 [v1.begin(), v1.end()) 之间的元素
+```
+
+#### 修改
+
+```cpp
+v1.assign(10, 6);            // 数组大小改为10，所有元素都是6
+v1.assign(v2.begin(), v2.end()); // 拷贝 v2 的所有元素
+v1.assign({1, 2, 3, 4, 5});  // 拷贝初始化列表
+
+v1.resize(10);              // 数组大小改为10，多余的元素被删除，不足的元素被补 0
+v1.resize(10, 6);           // 数组大小改为10，多余的元素被删除，不足的元素被补 6
+```
+
+#### 查找
+
+```cpp
+// 通过迭代器遍历
+auto it = v.begin();
+while(it != v.end()){
+    cout<<*it<<" ";
+    it++;
+}
+// 通过 for 循环遍历
+for(auto i: v) cout<<i<<" ";
+
+v1.empty();                 // 判断数组是否为空
+v1.size();                  // 返回数组大小
+v1.max_size();              // 返回数组最大容量
+
+v1.front();                 // 返回头部元素
+v1.back();                  // 返回尾部元素
+
+v1[0];                      // 返回下标为 0 的元素
+v1.at(0);                   // 返回下标为 0 的元素 (越界会抛出异常)
+
+v1.data();                  // 返回第一个元素的指针
+```
+
+#### 其他
+
+```cpp
+v1.capacity();              // 返回数组容量
+v1.shrink_to_fit();         // 释放多余的空间
+v1.reserve(10);             // 预留 10 个元素的空间
+```
+
+---
+
+### 【随机】deque
+
+### array
+
+### list
+
+### 【-】stack
+
+### 【-】queue
+
+### 【-】priority_queue
+
+##
 
 ### list
 
@@ -1104,92 +1268,7 @@ l1.sort(greater<int>());    // 降序排序
 ```
 
 
----
-### vector
 
-动态数组
-
-#### 创建
-
-```cpp
-vector<int> v1;             // 空数组
-vector<int> v2(10);         // 10个元素，每个元素都是0
-vector<int> v3(10, 1);      // 10个元素，每个元素都是1
-vector<int> v4(v3);         // 拷贝构造函数
-vector<int> v5({1, 2, 3, 4, 5}); // 初始化列表
-```
-
-#### 增加
-
-```cpp
-v1.push_back(6);            // 尾部插入
-v1.emplace_back(6);         // 尾部插入
-
-v1.insert(v1.begin(), 6);                   // 插在 v1.begin() 之前，即头部插入
-v1.insert(v1.begin(), 10, 6);               // 插在 v1.begin() 之前，即头部插入10个6
-v1.insert(v1.begin(), v2.begin(), v2.end());// 插入 v2 的所有元素
-v1.insert(v1.begin(), {1, 2, 3, 4, 5});     // 插入初始化列表
-
-v1.emplace(v1.end(), 6);                    // 插在 v1.end() 之前，即尾部插入
-v1.emplace(v1.end(), 10, 6);                // 插在 v1.end() 之前，即尾部插入10个6
-v1.emplace(v1.end(), v2.begin(), v2.end()); // 插入 v2 的所有元素
-v1.emplace(v1.end(), {1, 2, 3, 4, 5});      // 插入初始化列表
-
-v1.reserve(10);             // 预留 10 个元素的空间
-```
-
-#### 删除
-
-```cpp
-v1.clear();                 // 清空数组
-
-v1.pop_back();              // 尾部删除
-v1.erase(v1.begin());       // 删除 v1.begin() 位置的元素
-v1.erase(v1.begin(), v1.end()); // 删除 [v1.begin(), v1.end()) 之间的元素
-```
-
-#### 修改
-
-```cpp
-v1.assign(10, 6);            // 数组大小改为10，所有元素都是6
-v1.assign(v2.begin(), v2.end()); // 拷贝 v2 的所有元素
-v1.assign({1, 2, 3, 4, 5});  // 拷贝初始化列表
-
-v1.resize(10);              // 数组大小改为10，多余的元素被删除，不足的元素被补 0
-v1.resize(10, 6);           // 数组大小改为10，多余的元素被删除，不足的元素被补 6
-```
-
-#### 查找
-
-```cpp
-// 通过迭代器遍历
-auto it = v.begin();
-while(it != v.end()){
-    cout<<*it<<" ";
-    it++;
-}
-// 通过 for 循环遍历
-for(auto i: v) cout<<i<<" ";
-
-v1.empty();                 // 判断数组是否为空
-v1.size();                  // 返回数组大小
-v1.max_size();              // 返回数组最大容量
-
-v1.front();                 // 返回头部元素
-v1.back();                  // 返回尾部元素
-
-v1[0];                      // 返回下标为 0 的元素
-v1.at(0);                   // 返回下标为 0 的元素 (越界会抛出异常)
-
-v1.data();                  // 返回第一个元素的指针
-```
-
-#### 其他
-
-```cpp
-v1.capacity();              // 返回数组容量
-v1.shrink_to_fit();         // 释放多余的空间
-```
 
 ---
 ### stack
@@ -1411,6 +1490,15 @@ map 和 set 底层实现是 **红黑树**，所以其元素是有序的。
 | **可重** | multimap | multiset |
 
 
+### set
+
+### multiset
+
+### map
+
+### multimap
+
+
 ### 无序
 
 unordered_map 和 unordered_set 底层实现是 **哈希表**，所以其元素是无序的。
@@ -1419,6 +1507,18 @@ unordered_map 和 unordered_set 底层实现是 **哈希表**，所以其元素�
 |:-:|:-:|:-:|
 | **唯一** | unordered_map | unordered_set |
 | **可重** | unordered_multimap | unordered_multiset |
+
+
+### unordered_set
+
+### unordered_multiset
+
+### unordered_map
+
+### unordered_multimap
+
+
+##
 
 ### set
 
@@ -1659,60 +1759,9 @@ multiset<pair<string, int>> s2;  // 元素类型是 pair 类型
 
 #### 查找
 
-## 迭代器 iterator
-
-```cpp
-#include <iterator>
-```
-
-迭代器是一种泛型指针，它可以指向容器中的元素。
-
-```cpp
-容器::iterator it;
-```
-
-```cpp
-// 具体的
-vector<int>::iterator it;
-unordered_multimap<int, int>::iterator it;
-```
-
-**迭代器的类型**
-
-* `iterator`：普通迭代器。
-* `const_iterator`：常量迭代器，只能读取，不能修改。
-* `reverse_iterator`：反向迭代器，从后往前遍历。
-* `const_reverse_iterator`：常量反向迭代器，从后往前遍历，只能读取，不能修改。
-
-**获取迭代器**
-
-```cpp
-// 获取容器的迭代器
-vector<int> v;
-vector<int>::iterator it = v.begin();
-vector<int>::iterator it = v.end();
 
 
-常见的迭代器操作有：
 
-**
-
-* `*it`：返回迭代器指向的元素。
-* `it->first`：返回迭代器指向的元素的第一个元素。
-* `it->second`：返回迭代器指向的元素的第二个元素。
-* `it++`：迭代器后移。
-* `it--`：迭代器前移。
-* `it+n`：迭代器后移 n 个位置。
-* `it-n`：迭代器前移 n 个位置。
-* `it1-it2`：返回两个迭代器之间的距离。
-* `it1<it2`：比较两个迭代器的大小。
-* `it1==it2`：比较两个迭代器是否相等。
-* `it1!=it2`：比较两个迭代器是否不相等。
-
-* `std::next(it, n)`：返回迭代器后移 n 个位置后的迭代器。
-* `std::prev(it, n)`：返回迭代器前移 n 个位置后的迭代器。
-* `std::advance(it, n)`：迭代器后移 n 个位置。
-* `std::distance(it1, it2)`：返回两个迭代器之间的距离。
 
 ## 容器适配器 adapter
 

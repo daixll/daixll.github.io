@@ -637,7 +637,7 @@ NUL NUL
 <span class="token keyword keyword-void">void</span> <span class="token operator">*</span><span class="token function">memcpy</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-void">void</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> size_t n<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><hr>
 <h1 id="regex">regex </h1>
-<p><a href="../../../Linux/Regex/index.html">正则表达式</a> 的本质，就是某种 <strong>字符组合</strong>。</p>
+<p><a href="..\..\..\Linux\Regex\index.html">正则表达式</a> 的本质，就是某种 <strong>字符组合</strong>。</p>
 <h2 id="定义正则表达式">定义正则表达式 </h2>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>regex <span class="token function">r</span><span class="token punctuation">(</span><span class="token raw-string string">R"((\d{1,3}\.){3}\d{1,3})"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><h2 id="判断串">判断串 </h2>
@@ -843,71 +843,59 @@ ptr <span class="token operator">=</span> <span class="token keyword keyword-nul
 <br>
 <hr>
 <h1 id="stl">STL </h1>
+<p>STL（standard template library），泛型库。<br>
+提供了一系列的模板类和模板函数，支持常用的数据结构和算法。</p>
+<h2 id="迭代器-iterator">迭代器 iterator </h2>
+<p>迭代器是一种泛型指针，它可以指向容器中的元素。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>容器<span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span>
+</code></pre><p>具体的：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span>
+unordered_multimap<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span>
+</code></pre><h3 id="迭代器的类型">迭代器的类型 </h3>
+<ul>
+<li><code>iterator</code>：普通迭代器。</li>
+<li><code>const_iterator</code>：常量迭代器，只能读取，不能修改。</li>
+<li><code>reverse_iterator</code>：反向迭代器，从后往前遍历。</li>
+<li><code>const_reverse_iterator</code>：常量反向迭代器，从后往前遍历，只能读取，不能修改。</li>
+</ul>
+<blockquote>
+<p>反向迭代器只能用于支持双向迭代器的容器，<code>unordered</code> 系列容器不支持反向迭代器。</p>
+</blockquote>
+<h3 id="获取迭代器">获取迭代器 </h3>
+<p>容器拥有 <code>begin</code> 和 <code>end</code> 成员函数，用于获取迭代器：</p>
+<ul>
+<li><code>begin()</code>：指向容器第一个元素，正向迭代。</li>
+<li><code>cbegin()</code>：指向容器第一个元素，且只能读取，不能修改。</li>
+<li><code>rbegin()</code>：指向容器最后一个元素，反向迭代。</li>
+<li><code>crbegin()</code>：指向容器最后一个元素，且只能读取，不能修改。</li>
+</ul>
+<br>
+<ul>
+<li><code>end()</code>：指向容器最后一个元素的 <strong>下一个</strong> 位置，正向迭代。</li>
+<li><code>cend()</code>：指向容器最后一个元素的 <strong>下一个</strong> 位置，且只能读取，不能修改。</li>
+<li><code>rend()</code>：指向容器第一个元素的 <strong>前一个</strong> 位置，反向迭代。</li>
+<li><code>crend()</code>：指向容器第一个元素的 <strong>前一个</strong> 位置，且只能读取，不能修改。</li>
+</ul>
+<h3 id="操作迭代器">操作迭代器 </h3>
+<ul>
+<li><code>*it</code>：获取迭代器指向的元素。</li>
+<li><code>it-&gt;</code>：获取迭代器指向的元素的成员。</li>
+<li><code>it++</code>：迭代器后移。</li>
+<li><code>it--</code>：迭代器前移。</li>
+</ul>
 <h2 id="序列式容器">序列式容器 </h2>
 <p>所谓序列式容器，其中的元素 <strong>可序</strong>，但未必 <strong>有序</strong>。</p>
-<h3 id="list">list </h3>
-<p>链表</p>
+<h3 id="随机vector">【随机】vector </h3>
+<p>动态数组，支持自动扩容。<br>
+内存空间是连续的，所以支持随机访问，<br>
+故其迭代器是随机访问迭代器。</p>
 <h4 id="创建">创建 </h4>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> l1<span class="token punctuation">;</span>       <span class="token comment">// 空链表</span>
-list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l2</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 10个元素，每个元素都是0</span>
-list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l3</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 10个元素，每个元素都是6</span>
-list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l4</span><span class="token punctuation">(</span>l3<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 拷贝构造函数</span>
-list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l5</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 初始化列表</span>
-</code></pre><h4 id="增加">增加 </h4>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>l1<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 尾部插入</span>
-l1<span class="token punctuation">.</span><span class="token function">push_front</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 头部插入</span>
-l1<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>l1<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 插在 l1.begin() 之前，即头部插入</span>
-
-l1<span class="token punctuation">.</span><span class="token function">emplace_back</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 尾部插入</span>
-l1<span class="token punctuation">.</span><span class="token function">emplace_front</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// 头部插入</span>
-l1<span class="token punctuation">.</span><span class="token function">emplace</span><span class="token punctuation">(</span>l1<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 插在 l1.end() 之前，即尾部插入</span>
-</code></pre><h4 id="删除">删除 </h4>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>l1<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 清空链表</span>
-l1<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 尾部删除</span>
-l1<span class="token punctuation">.</span><span class="token function">pop_front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 头部删除</span>
-l1<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>l1<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// 删除 l1.begin() 位置的元素</span>
-l1<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>l1<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> l1<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 删除 [l1.begin(), l1.end()) 之间的元素</span>
-
-l1<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token number">666</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 删除所有值为 6 的元素</span>
-l1<span class="token punctuation">.</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// 删除所有相邻重复的元素：6 6 7 7 6 6 -&gt; 6 7 6</span>
-</code></pre><h4 id="修改">修改 </h4>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>l1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 链表大小改为10，所有元素都是6</span>
-l1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>l2<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> l2<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 拷贝 l2 的所有元素</span>
-l1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 拷贝初始化列表</span>
-
-l1<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 链表大小改为10，多余的元素被删除，不足的元素被补 0</span>
-l1<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 链表大小改为10，多余的元素被删除，不足的元素被补 6</span>
-
-l1<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 反转链表</span>
-</code></pre><h4 id="查找">查找 </h4>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 使用迭代器</span>
-list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it <span class="token operator">=</span> l<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>it <span class="token operator">!=</span> l<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    cout<span class="token operator">&lt;&lt;</span><span class="token operator">*</span>it<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
-    it<span class="token operator">++</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment">// 使用 for 循环</span>
-<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> i<span class="token operator">:</span> l<span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span>i<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
-
-l1<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 判断链表是否为空</span>
-l1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 返回链表大小</span>
-l1<span class="token punctuation">.</span><span class="token function">max_size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 返回链表最大容量</span>
-
-l1<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 返回头部元素</span>
-l1<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 返回尾部元素</span>
-</code></pre><h4 id="其他">其他 </h4>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>l1<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 排序</span>
-l1<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token generic-function"><span class="token function">greater</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 降序排序</span>
-</code></pre><hr>
-<h3 id="vector">vector </h3>
-<p>动态数组</p>
-<h4 id="创建-1">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> v1<span class="token punctuation">;</span>             <span class="token comment">// 空数组</span>
 vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">v2</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 10个元素，每个元素都是0</span>
 vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">v3</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 10个元素，每个元素都是1</span>
 vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">v4</span><span class="token punctuation">(</span>v3<span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 拷贝构造函数</span>
 vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">v5</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 初始化列表</span>
-</code></pre><h4 id="增加-1">增加 </h4>
+</code></pre><h4 id="增加">增加 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>v1<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 尾部插入</span>
 v1<span class="token punctuation">.</span><span class="token function">emplace_back</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 尾部插入</span>
 
@@ -920,22 +908,30 @@ v1<span class="token punctuation">.</span><span class="token function">emplace</
 v1<span class="token punctuation">.</span><span class="token function">emplace</span><span class="token punctuation">(</span>v1<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// 插在 v1.end() 之前，即尾部插入10个6</span>
 v1<span class="token punctuation">.</span><span class="token function">emplace</span><span class="token punctuation">(</span>v1<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> v2<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> v2<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 插入 v2 的所有元素</span>
 v1<span class="token punctuation">.</span><span class="token function">emplace</span><span class="token punctuation">(</span>v1<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 插入初始化列表</span>
-
-v1<span class="token punctuation">.</span><span class="token function">reserve</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 预留 10 个元素的空间</span>
-</code></pre><h4 id="删除-1">删除 </h4>
+</code></pre><blockquote>
+<p><code>emplace</code> 函数的参数是构造函数的参数，而 <code>insert</code> 函数的参数是元素的值。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>v1<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+v1<span class="token punctuation">.</span><span class="token function">emplace_back</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+</code></pre><p>上面两行代码的效果是一样的，都是在 <code>v1</code> 的尾部插入一个值为 <code>10</code> 的元素。</p>
+<ul>
+<li><code>push_back</code>：先在内存中构造一个 <code>10</code>，然后将其拷贝到 <code>v1</code> 的尾部。</li>
+<li><code>emplace_back</code>：直接在 <code>v1</code> 的尾部构造一个 <code>10</code>。</li>
+</ul>
+</blockquote>
+<h4 id="删除">删除 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>v1<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 清空数组</span>
 
 v1<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 尾部删除</span>
 v1<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>v1<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// 删除 v1.begin() 位置的元素</span>
 v1<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>v1<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> v1<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 删除 [v1.begin(), v1.end()) 之间的元素</span>
-</code></pre><h4 id="修改-1">修改 </h4>
+</code></pre><h4 id="修改">修改 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>v1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 数组大小改为10，所有元素都是6</span>
 v1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>v2<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> v2<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 拷贝 v2 的所有元素</span>
 v1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 拷贝初始化列表</span>
 
 v1<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 数组大小改为10，多余的元素被删除，不足的元素被补 0</span>
 v1<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 数组大小改为10，多余的元素被删除，不足的元素被补 6</span>
-</code></pre><h4 id="查找-1">查找 </h4>
+</code></pre><h4 id="查找">查找 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 通过迭代器遍历</span>
 <span class="token keyword keyword-auto">auto</span> it <span class="token operator">=</span> v<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>it <span class="token operator">!=</span> v<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -956,9 +952,71 @@ v1<span class="token punctuation">[</span><span class="token number">0</span><sp
 v1<span class="token punctuation">.</span><span class="token function">at</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                   <span class="token comment">// 返回下标为 0 的元素 (越界会抛出异常)</span>
 
 v1<span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 返回第一个元素的指针</span>
-</code></pre><h4 id="其他-1">其他 </h4>
+</code></pre><h4 id="其他">其他 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>v1<span class="token punctuation">.</span><span class="token function">capacity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 返回数组容量</span>
 v1<span class="token punctuation">.</span><span class="token function">shrink_to_fit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 释放多余的空间</span>
+v1<span class="token punctuation">.</span><span class="token function">reserve</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 预留 10 个元素的空间</span>
+</code></pre><hr>
+<h3 id="随机deque">【随机】deque </h3>
+<h3 id="array">array </h3>
+<h3 id="list">list </h3>
+<h3 id="-stack">【-】stack </h3>
+<h3 id="-queue">【-】queue </h3>
+<h3 id="-priority_queue">【-】priority_queue </h3>
+<h2></h2>
+<h3 id="list-1">list </h3>
+<p>链表</p>
+<h4 id="创建-1">创建 </h4>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> l1<span class="token punctuation">;</span>       <span class="token comment">// 空链表</span>
+list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l2</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 10个元素，每个元素都是0</span>
+list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l3</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 10个元素，每个元素都是6</span>
+list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l4</span><span class="token punctuation">(</span>l3<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 拷贝构造函数</span>
+list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">l5</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 初始化列表</span>
+</code></pre><h4 id="增加-1">增加 </h4>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>l1<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 尾部插入</span>
+l1<span class="token punctuation">.</span><span class="token function">push_front</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 头部插入</span>
+l1<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>l1<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 插在 l1.begin() 之前，即头部插入</span>
+
+l1<span class="token punctuation">.</span><span class="token function">emplace_back</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 尾部插入</span>
+l1<span class="token punctuation">.</span><span class="token function">emplace_front</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// 头部插入</span>
+l1<span class="token punctuation">.</span><span class="token function">emplace</span><span class="token punctuation">(</span>l1<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 插在 l1.end() 之前，即尾部插入</span>
+</code></pre><h4 id="删除-1">删除 </h4>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>l1<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 清空链表</span>
+l1<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 尾部删除</span>
+l1<span class="token punctuation">.</span><span class="token function">pop_front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 头部删除</span>
+l1<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>l1<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// 删除 l1.begin() 位置的元素</span>
+l1<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>l1<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> l1<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 删除 [l1.begin(), l1.end()) 之间的元素</span>
+
+l1<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token number">666</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 删除所有值为 6 的元素</span>
+l1<span class="token punctuation">.</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// 删除所有相邻重复的元素：6 6 7 7 6 6 -&gt; 6 7 6</span>
+</code></pre><h4 id="修改-1">修改 </h4>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>l1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 链表大小改为10，所有元素都是6</span>
+l1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>l2<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> l2<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 拷贝 l2 的所有元素</span>
+l1<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 拷贝初始化列表</span>
+
+l1<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 链表大小改为10，多余的元素被删除，不足的元素被补 0</span>
+l1<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 链表大小改为10，多余的元素被删除，不足的元素被补 6</span>
+
+l1<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 反转链表</span>
+</code></pre><h4 id="查找-1">查找 </h4>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 使用迭代器</span>
+list<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it <span class="token operator">=</span> l<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>it <span class="token operator">!=</span> l<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token operator">*</span>it<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
+    it<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 使用 for 循环</span>
+<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> i<span class="token operator">:</span> l<span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span>i<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
+
+l1<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 判断链表是否为空</span>
+l1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 返回链表大小</span>
+l1<span class="token punctuation">.</span><span class="token function">max_size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 返回链表最大容量</span>
+
+l1<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// 返回头部元素</span>
+l1<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 返回尾部元素</span>
+</code></pre><h4 id="其他-1">其他 </h4>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>l1<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                  <span class="token comment">// 排序</span>
+l1<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token generic-function"><span class="token function">greater</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 降序排序</span>
 </code></pre><hr>
 <h3 id="stack">stack </h3>
 <p>栈</p>
@@ -1099,6 +1157,10 @@ p1<span class="token punctuation">.</span><span class="token function">top</span
 </tr>
 </tbody>
 </table>
+<h3 id="set">set </h3>
+<h3 id="multiset">multiset </h3>
+<h3 id="map">map </h3>
+<h3 id="multimap">multimap </h3>
 <h3 id="无序">无序 </h3>
 <p>unordered_map 和 unordered_set 底层实现是 <strong>哈希表</strong>，所以其元素是无序的。</p>
 <table>
@@ -1122,7 +1184,12 @@ p1<span class="token punctuation">.</span><span class="token function">top</span
 </tr>
 </tbody>
 </table>
-<h3 id="set">set </h3>
+<h3 id="unordered_set">unordered_set </h3>
+<h3 id="unordered_multiset">unordered_multiset </h3>
+<h3 id="unordered_map">unordered_map </h3>
+<h3 id="unordered_multimap">unordered_multimap </h3>
+<h2 id="-1"></h2>
+<h3 id="set-1">set </h3>
 <p>集合</p>
 <p>set 的元素是唯一的，不能重复。</p>
 <p>set 的底层实现是红黑树，所以 set 的元素是有序的。</p>
@@ -1153,7 +1220,7 @@ cout<span class="token operator">&lt;&lt;</span><span class="token punctuation">
 <span class="token comment">// 遍历</span>
 <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> it <span class="token operator">=</span> s<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> s<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token operator">++</span><span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span><span class="token punctuation">(</span><span class="token operator">*</span>it<span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> i<span class="token operator">:</span> s<span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span>i<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
-</code></pre><h3 id="unordered_set">unordered_set </h3>
+</code></pre><h3 id="unordered_set-1">unordered_set </h3>
 <p>无序集合</p>
 <p>unordered_set 的元素是唯一的，不能重复。</p>
 <p>unordered_set 的底层实现是哈希表，所以 unordered_set 的元素是无序的。</p>
@@ -1175,7 +1242,7 @@ s<span class="token punctuation">.</span><span class="token function">erase</spa
 <h4 id="查找-7">查找 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>s<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// 查找元素 6 返回迭代器</span>
 s<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// 查找元素 6 的个数</span>
-</code></pre><h3 id="multiset">multiset </h3>
+</code></pre><h3 id="multiset-1">multiset </h3>
 <p>可重集合</p>
 <p>multiset 的元素是可以重复的。</p>
 <p>multiset 的底层实现是红黑树，所以 multiset 的元素是有序的。</p>
@@ -1202,7 +1269,7 @@ s<span class="token punctuation">.</span><span class="token function">upper_boun
 
 s<span class="token punctuation">.</span><span class="token function">equal_range</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 查找第一个大于等于 6 和 第一个大于 6 的元素 返回迭代器</span>
 <span class="token comment">// 如果没有大于等于 6 的元素，那么第一个迭代器指向第一个大于 6 的元素，返回的两个迭代器相等</span>
-</code></pre><h3 id="unordered_multiset">unordered_multiset </h3>
+</code></pre><h3 id="unordered_multiset-1">unordered_multiset </h3>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unordered_set&gt;</span></span>
 </code></pre><p>无序可重集合</p>
 <p>unordered_multiset 的元素是可以重复的。</p>
@@ -1215,90 +1282,421 @@ multiset<span class="token operator">&lt;</span>pair<span class="token operator"
 <h4 id="修改-9">修改 </h4>
 <h4 id="查找-9">查找 </h4>
 <hr>
-<h3 id="map">map </h3>
+<h3 id="map-1">map </h3>
 <p>映射</p>
 <h4 id="创建-10">创建 </h4>
 <h4 id="增加-10">增加 </h4>
 <h4 id="删除-10">删除 </h4>
 <h4 id="修改-10">修改 </h4>
 <h4 id="查找-10">查找 </h4>
-<h3 id="unordered_map">unordered_map </h3>
+<h3 id="unordered_map-1">unordered_map </h3>
 <p>无序映射</p>
 <h4 id="创建-11">创建 </h4>
 <h4 id="增加-11">增加 </h4>
 <h4 id="删除-11">删除 </h4>
 <h4 id="修改-11">修改 </h4>
 <h4 id="查找-11">查找 </h4>
-<h3 id="multimap">multimap </h3>
+<h3 id="multimap-1">multimap </h3>
 <p>可重映射</p>
 <h4 id="创建-12">创建 </h4>
 <h4 id="增加-12">增加 </h4>
 <h4 id="删除-12">删除 </h4>
 <h4 id="修改-12">修改 </h4>
 <h4 id="查找-12">查找 </h4>
-<h3 id="unordered_multimap">unordered_multimap </h3>
+<h3 id="unordered_multimap-1">unordered_multimap </h3>
 <p>无序可重映射</p>
 <h4 id="创建-13">创建 </h4>
 <h4 id="增加-13">增加 </h4>
 <h4 id="删除-13">删除 </h4>
 <h4 id="修改-13">修改 </h4>
 <h4 id="查找-13">查找 </h4>
-<h2 id="迭代器-iterator">迭代器 iterator </h2>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iterator&gt;</span></span>
-</code></pre><p>迭代器是一种泛型指针，它可以指向容器中的元素。</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>容器<span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span>
-</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 具体的</span>
-vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span>
-unordered_multimap<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span>
-</code></pre><p><strong>迭代器的类型</strong></p>
-<ul>
-<li><code>iterator</code>：普通迭代器。</li>
-<li><code>const_iterator</code>：常量迭代器，只能读取，不能修改。</li>
-<li><code>reverse_iterator</code>：反向迭代器，从后往前遍历。</li>
-<li><code>const_reverse_iterator</code>：常量反向迭代器，从后往前遍历，只能读取，不能修改。</li>
-</ul>
-<p><strong>获取迭代器</strong></p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 获取容器的迭代器</span>
-vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> v<span class="token punctuation">;</span>
-vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it <span class="token operator">=</span> v<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it <span class="token operator">=</span> v<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h2 id="容器适配器-adapter">容器适配器 adapter </h2>
+<h2 id="算法-algorithm">算法 algorithm </h2>
+<h2 id="函数对象-functor">函数对象 functor </h2>
 
-
-常见的迭代器操作有：
-
-<span class="token operator">*</span><span class="token operator">*</span>
-
-<span class="token operator">*</span> `<span class="token operator">*</span>it`：返回迭代器指向的元素。
-<span class="token operator">*</span> `it<span class="token operator">-&gt;</span>first`：返回迭代器指向的元素的第一个元素。
-<span class="token operator">*</span> `it<span class="token operator">-&gt;</span>second`：返回迭代器指向的元素的第二个元素。
-<span class="token operator">*</span> `it<span class="token operator">++</span>`：迭代器后移。
-<span class="token operator">*</span> `it<span class="token operator">--</span>`：迭代器前移。
-<span class="token operator">*</span> `it<span class="token operator">+</span>n`：迭代器后移 n 个位置。
-<span class="token operator">*</span> `it<span class="token operator">-</span>n`：迭代器前移 n 个位置。
-<span class="token operator">*</span> `it1<span class="token operator">-</span>it2`：返回两个迭代器之间的距离。
-<span class="token operator">*</span> `it1<span class="token operator">&lt;</span>it2`：比较两个迭代器的大小。
-<span class="token operator">*</span> `it1<span class="token operator">==</span>it2`：比较两个迭代器是否相等。
-<span class="token operator">*</span> `it1<span class="token operator">!=</span>it2`：比较两个迭代器是否不相等。
-
-<span class="token operator">*</span> `std<span class="token double-colon punctuation">::</span><span class="token function">next</span><span class="token punctuation">(</span>it<span class="token punctuation">,</span> n<span class="token punctuation">)</span>`：返回迭代器后移 n 个位置后的迭代器。
-<span class="token operator">*</span> `std<span class="token double-colon punctuation">::</span><span class="token function">prev</span><span class="token punctuation">(</span>it<span class="token punctuation">,</span> n<span class="token punctuation">)</span>`：返回迭代器前移 n 个位置后的迭代器。
-<span class="token operator">*</span> `std<span class="token double-colon punctuation">::</span><span class="token function">advance</span><span class="token punctuation">(</span>it<span class="token punctuation">,</span> n<span class="token punctuation">)</span>`：迭代器后移 n 个位置。
-<span class="token operator">*</span> `std<span class="token double-colon punctuation">::</span><span class="token function">distance</span><span class="token punctuation">(</span>it1<span class="token punctuation">,</span> it2<span class="token punctuation">)</span>`：返回两个迭代器之间的距离。
-
-## 容器适配器 adapter
-
-## 算法 algorithm
-
-## 函数对象 functor
-</code></pre>
       </div>
+      <div class="md-sidebar-toc">
+<div class="md-toc">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#class" class="md-toc-link"><p>class</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#封装定义一个抽象数据类型" class="md-toc-link">
+            <p>封装：定义一个抽象数据类型</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#继承定义一个基类的派生类" class="md-toc-link">
+            <p>继承：定义一个基类的派生类</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#公有-私有-保护" class="md-toc-link">
+            <p>公有、私有、保护</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#多态定义一个基类的虚函数" class="md-toc-link">
+            <p>多态：定义一个基类的虚函数</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#namespace" class="md-toc-link"><p>namespace</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#命名空间的使用" class="md-toc-link">
+            <p>命名空间的使用</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#命名空间的嵌套" class="md-toc-link">
+            <p>命名空间的嵌套</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#命名空间和类的区别" class="md-toc-link">
+            <p>命名空间和类的区别</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#关于-cstdio-和-stdioh" class="md-toc-link">
+            <p>关于 cstdio 和 stdio.h</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#string" class="md-toc-link"><p>string</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#string-1" class="md-toc-link">
+            <p>string</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#cstring" class="md-toc-link">
+            <p>cstring</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#regex" class="md-toc-link"><p>regex</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#定义正则表达式" class="md-toc-link">
+            <p>定义正则表达式</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#判断串" class="md-toc-link">
+            <p>判断串</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#查找--取出匹配子串" class="md-toc-link">
+            <p>查找 / 取出匹配子串</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#替换匹配子串" class="md-toc-link">
+            <p>替换匹配子串</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#template" class="md-toc-link"><p>template</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#在函数中使用-template" class="md-toc-link">
+            <p>在函数中使用 template</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#在类中使用-template" class="md-toc-link">
+            <p>在类中使用 template</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#variant" class="md-toc-link">
+            <p>variant</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#function" class="md-toc-link">
+            <p>function</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#lambda" class="md-toc-link">
+            <p>lambda</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#智能指针" class="md-toc-link"><p>智能指针</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unique_ptr" class="md-toc-link">
+            <p>unique_ptr</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#shared_ptr" class="md-toc-link">
+            <p>shared_ptr</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#weak_ptr" class="md-toc-link">
+            <p>weak_ptr</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#移动语义和右值引用" class="md-toc-link">
+            <p>移动语义和右值引用</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#范围-for-循环" class="md-toc-link">
+            <p>范围 for 循环</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#异常处理" class="md-toc-link">
+            <p>异常处理</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#类型推导" class="md-toc-link">
+            <p>类型推导</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#stl" class="md-toc-link"><p>STL</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#迭代器-iterator" class="md-toc-link"><p>迭代器 iterator</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#迭代器的类型" class="md-toc-link">
+            <p>迭代器的类型</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#获取迭代器" class="md-toc-link">
+            <p>获取迭代器</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#操作迭代器" class="md-toc-link">
+            <p>操作迭代器</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#序列式容器" class="md-toc-link"><p>序列式容器</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#随机vector" class="md-toc-link">
+            <p>【随机】vector</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#随机deque" class="md-toc-link">
+            <p>【随机】deque</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#array" class="md-toc-link">
+            <p>array</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#list" class="md-toc-link">
+            <p>list</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#-stack" class="md-toc-link">
+            <p>【-】stack</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#-queue" class="md-toc-link">
+            <p>【-】queue</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#-priority_queue" class="md-toc-link">
+            <p>【-】priority_queue</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#" class="md-toc-link"></a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#list-1" class="md-toc-link">
+            <p>list</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#stack" class="md-toc-link">
+            <p>stack</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#queue" class="md-toc-link">
+            <p>queue</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#deque" class="md-toc-link">
+            <p>deque</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#priority_queue" class="md-toc-link">
+            <p>priority_queue</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#关联式容器" class="md-toc-link"><p>关联式容器</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#树" class="md-toc-link">
+            <p>树</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#有序" class="md-toc-link">
+            <p>有序</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#set" class="md-toc-link">
+            <p>set</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#multiset" class="md-toc-link">
+            <p>multiset</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#map" class="md-toc-link">
+            <p>map</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#multimap" class="md-toc-link">
+            <p>multimap</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#无序" class="md-toc-link">
+            <p>无序</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unordered_set" class="md-toc-link">
+            <p>unordered_set</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unordered_multiset" class="md-toc-link">
+            <p>unordered_multiset</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unordered_map" class="md-toc-link">
+            <p>unordered_map</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unordered_multimap" class="md-toc-link">
+            <p>unordered_multimap</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#-1" class="md-toc-link"></a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#set-1" class="md-toc-link">
+            <p>set</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unordered_set-1" class="md-toc-link">
+            <p>unordered_set</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#multiset-1" class="md-toc-link">
+            <p>multiset</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unordered_multiset-1" class="md-toc-link">
+            <p>unordered_multiset</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#map-1" class="md-toc-link">
+            <p>map</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unordered_map-1" class="md-toc-link">
+            <p>unordered_map</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#multimap-1" class="md-toc-link">
+            <p>multimap</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unordered_multimap-1" class="md-toc-link">
+            <p>unordered_multimap</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#容器适配器-adapter" class="md-toc-link">
+            <p>容器适配器 adapter</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#算法-algorithm" class="md-toc-link">
+            <p>算法 algorithm</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#函数对象-functor" class="md-toc-link">
+            <p>函数对象 functor</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+</div>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    
+    
+    
+    
+    
+    
+<script>
+document.body.setAttribute('html-show-sidebar-toc', true)
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
       
-      
-    
-    
-    
-    
-    
-    
   
     </body></html>
