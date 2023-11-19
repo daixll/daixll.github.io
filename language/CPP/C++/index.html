@@ -635,7 +635,64 @@ NUL NUL
 <span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token function">strchr</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>s<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> c<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token function">strstr</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>haystack<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>needle<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-void">void</span> <span class="token operator">*</span><span class="token function">memcpy</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-void">void</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> size_t n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><hr>
+</code></pre><br>
+<hr>
+<h1 id="bitset">bitset </h1>
+<p>处理二进制位的类，提供了一系列成员函数来执行位操作。<br>
+在 <code>bitset</code> 中，数据保存形如数组。</p>
+<h3 id="创建">创建 </h3>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>bitset<span class="token operator">&lt;</span><span class="token number">4</span><span class="token operator">&gt;</span> b1<span class="token punctuation">;</span>       <span class="token comment">// 长度为 4：0000</span>
+bitset<span class="token operator">&lt;</span><span class="token number">8</span><span class="token operator">&gt;</span> <span class="token function">b2</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 长度为 8：0000 0101</span>
+bitset<span class="token operator">&lt;</span><span class="token number">8</span><span class="token operator">&gt;</span> <span class="token function">b3</span><span class="token punctuation">(</span><span class="token string">"101"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 长度为 8：0000 0101</span>
+
+b1<span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 全部置 0</span>
+b1<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 全部置 1</span>
+b1<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// i 位置 1</span>
+b1<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// i 位置 0</span>
+</code></pre><h3 id="转换">转换 </h3>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string a <span class="token operator">=</span> b1<span class="token punctuation">.</span><span class="token function">to_string</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-long">long</span> <span class="token keyword keyword-long">long</span> b <span class="token operator">=</span> b1<span class="token punctuation">.</span><span class="token function">to_ullong</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h3 id="位操作">位操作 </h3>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>bitset<span class="token operator">&lt;</span><span class="token number">4</span><span class="token operator">&gt;</span> <span class="token function">b1</span><span class="token punctuation">(</span><span class="token string">"1100"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+bitset<span class="token operator">&lt;</span><span class="token number">4</span><span class="token operator">&gt;</span> <span class="token function">b2</span><span class="token punctuation">(</span><span class="token string">"1001"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 按位取反</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token operator">~</span>b1 <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>        <span class="token comment">// 0011</span>
+<span class="token comment">// 按位与</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>b1 <span class="token operator">&amp;</span> b2<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// 1000</span>
+<span class="token comment">// 按位或</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>b1 <span class="token operator">|</span> b2<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// 1101</span>
+<span class="token comment">// 按位异或</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>b1 <span class="token operator">^</span> b2<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// 0101</span>
+<span class="token comment">// 右移</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>b2 <span class="token operator">&gt;&gt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// 0010</span>
+<span class="token comment">// 左移</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span>b2 <span class="token operator">&lt;&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// 0100</span>
+
+<span class="token comment">// 某一位取反</span>
+b1<span class="token punctuation">.</span><span class="token function">flip</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h3 id="成员函数">成员函数 </h3>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>bitset<span class="token operator">&lt;</span><span class="token number">16</span><span class="token operator">&gt;</span> <span class="token function">b1</span><span class="token punctuation">(</span><span class="token number">6666</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 0001 1010 0000 1010</span>
+
+<span class="token comment">// 使用 [] 输出</span>
+<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span>b1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&gt;=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span>b1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+cout<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+
+<span class="token comment">// 统计二进制中 1 的个数</span>
+cout<span class="token operator">&lt;&lt;</span>b1<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span> <span class="token comment">// 5</span>
+<span class="token comment">// 求bitset的大小</span>
+cout<span class="token operator">&lt;&lt;</span>b1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>  <span class="token comment">// 16</span>
+<span class="token comment">// 判断某位（从右到左，下标从 0 开始）是否为 1</span>
+cout<span class="token operator">&lt;&lt;</span>b1<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span> <span class="token comment">// true</span>
+
+<span class="token comment">// 判断是否全为 0</span>
+cout<span class="token operator">&lt;&lt;</span>b1<span class="token punctuation">.</span><span class="token function">none</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>  <span class="token comment">// 0</span>
+<span class="token comment">// 判断是否全为 1</span>
+cout<span class="token operator">&lt;&lt;</span>b1<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>   <span class="token comment">// 0</span>
+<span class="token comment">// 判断是否有 1</span>
+cout<span class="token operator">&lt;&lt;</span>b1<span class="token punctuation">.</span><span class="token function">any</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>   <span class="token comment">// 1</span>
+</code></pre><br>
+<hr>
 <h1 id="regex">regex </h1>
 <p><a href="..\..\..\Linux\Regex\index.html">正则表达式</a> 的本质，就是某种 <strong>字符组合</strong>。</p>
 <h2 id="定义正则表达式">定义正则表达式 </h2>
@@ -891,7 +948,7 @@ unordered_multimap<span class="token operator">&lt;</span><span class="token key
 <p>动态数组，支持自动扩容。<br>
 内存空间是连续的，所以支持随机访问，<br>
 故其迭代器是随机访问迭代器。</p>
-<h4 id="创建">创建 </h4>
+<h4 id="创建-1">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> v1<span class="token punctuation">;</span>             <span class="token comment">// 空数组</span>
 vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">v2</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// 10个元素，每个元素都是0</span>
 vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">v3</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 10个元素，每个元素都是1</span>
@@ -984,7 +1041,7 @@ dq<span class="token punctuation">.</span><span class="token function">pop_front
 <h3 id="随机array">【随机】array </h3>
 <p>固定大小的数组，连续的内存空间，支持随机访问。<br>
 因为固定大小，所以不支持插入和删除操作，只能修改元素。</p>
-<h4 id="创建-1">创建 </h4>
+<h4 id="创建-2">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>array<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token operator">&gt;</span> a1<span class="token punctuation">;</span>                   <span class="token comment">// 5个元素，每个元素都是0</span>
 array<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token operator">&gt;</span> a3 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// 初始化列表</span>
 
@@ -1062,7 +1119,7 @@ fl1<span class="token punctuation">.</span><span class="token function">erase_af
 <hr>
 <h3 id="-stack">【-】stack </h3>
 <p>栈</p>
-<h4 id="创建-2">创建 </h4>
+<h4 id="创建-3">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>stack<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> s1<span class="token punctuation">;</span>              <span class="token comment">// 空栈</span>
 stack<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">s2</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// 拷贝构造函数</span>
 stack<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">s3</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 初始化列表，1为栈底，3为栈顶</span>
@@ -1086,7 +1143,7 @@ s1<span class="token punctuation">.</span><span class="token function">top</span
 <hr>
 <h3 id="-queue">【-】queue </h3>
 <p>队列</p>
-<h4 id="创建-3">创建 </h4>
+<h4 id="创建-4">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>queue<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> q1<span class="token punctuation">;</span>              <span class="token comment">// 空队列</span>
 queue<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">q2</span><span class="token punctuation">(</span>q1<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// 拷贝构造函数</span>
 queue<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">q3</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 初始化列表，1为队头，3为队尾</span>
@@ -1112,7 +1169,7 @@ q1<span class="token punctuation">.</span><span class="token function">back</spa
 <h3 id="-priority_queue">【-】priority_queue </h3>
 <p>优先队列 (堆)</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;queue&gt;</span>   <span class="token comment">// priority_queue 包含在 queue 中</span></span>
-</code></pre><h4 id="创建-4">创建 </h4>
+</code></pre><h4 id="创建-5">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>priority_queue<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> p1<span class="token punctuation">;</span>     <span class="token comment">// 空优先队列，默认大顶堆</span>
 priority_queue<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> greater<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> a<span class="token punctuation">;</span>   <span class="token comment">// 小顶堆</span>
 </code></pre><h4 id="增加-4">增加 </h4>
@@ -1205,7 +1262,7 @@ p1<span class="token punctuation">.</span><span class="token function">top</span
 <p>set 的元素是唯一的，不能重复。</p>
 <p>set 的底层实现是红黑树，所以 set 的元素是有序的。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;set&gt;</span></span>
-</code></pre><h4 id="创建-5">创建 </h4>
+</code></pre><h4 id="创建-6">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>set<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> s1<span class="token punctuation">;</span>                <span class="token comment">// 元素类型是 int</span>
 set<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> s2<span class="token punctuation">;</span>  <span class="token comment">// 元素类型是 pair 类型</span>
 </code></pre><h4 id="增加-5">增加 </h4>
@@ -1236,7 +1293,7 @@ cout<span class="token operator">&lt;&lt;</span><span class="token punctuation">
 <p>unordered_set 的元素是唯一的，不能重复。</p>
 <p>unordered_set 的底层实现是哈希表，所以 unordered_set 的元素是无序的。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unordered_set&gt;</span></span>
-</code></pre><h4 id="创建-6">创建 </h4>
+</code></pre><h4 id="创建-7">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>unordered_set<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> s1<span class="token punctuation">;</span>                <span class="token comment">// 元素类型是 int</span>
 unordered_set<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> s2<span class="token punctuation">;</span>  <span class="token comment">// 元素类型是 pair 类型</span>
 </code></pre><h4 id="增加-6">增加 </h4>
@@ -1258,7 +1315,7 @@ s<span class="token punctuation">.</span><span class="token function">count</spa
 <p>multiset 的元素是可以重复的。</p>
 <p>multiset 的底层实现是红黑树，所以 multiset 的元素是有序的。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;set&gt;</span></span>
-</code></pre><h4 id="创建-7">创建 </h4>
+</code></pre><h4 id="创建-8">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>multiset<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> s1<span class="token punctuation">;</span>                <span class="token comment">// 元素类型是 int</span>
 multiset<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> s2<span class="token punctuation">;</span>  <span class="token comment">// 元素类型是 pair 类型</span>
 </code></pre><h4 id="增加-7">增加 </h4>
@@ -1285,7 +1342,7 @@ s<span class="token punctuation">.</span><span class="token function">equal_rang
 </code></pre><p>无序可重集合</p>
 <p>unordered_multiset 的元素是可以重复的。</p>
 <p>unordered_multiset 的底层实现是哈希表，所以 unordered_multiset 的元素是无序的。</p>
-<h4 id="创建-8">创建 </h4>
+<h4 id="创建-9">创建 </h4>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>multiset<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> s1<span class="token punctuation">;</span>                <span class="token comment">// 元素类型是 int</span>
 multiset<span class="token operator">&lt;</span>pair<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> s2<span class="token punctuation">;</span>  <span class="token comment">// 元素类型是 pair 类型</span>
 </code></pre><h4 id="增加-8">增加 </h4>
@@ -1295,28 +1352,28 @@ multiset<span class="token operator">&lt;</span>pair<span class="token operator"
 <hr>
 <h3 id="map-1">map </h3>
 <p>映射</p>
-<h4 id="创建-9">创建 </h4>
+<h4 id="创建-10">创建 </h4>
 <h4 id="增加-9">增加 </h4>
 <h4 id="删除-8">删除 </h4>
 <h4 id="修改-8">修改 </h4>
 <h4 id="查找-8">查找 </h4>
 <h3 id="unordered_map-1">unordered_map </h3>
 <p>无序映射</p>
-<h4 id="创建-10">创建 </h4>
+<h4 id="创建-11">创建 </h4>
 <h4 id="增加-10">增加 </h4>
 <h4 id="删除-9">删除 </h4>
 <h4 id="修改-9">修改 </h4>
 <h4 id="查找-9">查找 </h4>
 <h3 id="multimap-1">multimap </h3>
 <p>可重映射</p>
-<h4 id="创建-11">创建 </h4>
+<h4 id="创建-12">创建 </h4>
 <h4 id="增加-11">增加 </h4>
 <h4 id="删除-10">删除 </h4>
 <h4 id="修改-10">修改 </h4>
 <h4 id="查找-10">查找 </h4>
 <h3 id="unordered_multimap-1">unordered_multimap </h3>
 <p>无序可重映射</p>
-<h4 id="创建-12">创建 </h4>
+<h4 id="创建-13">创建 </h4>
 <h4 id="增加-12">增加 </h4>
 <h4 id="删除-11">删除 </h4>
 <h4 id="修改-11">修改 </h4>
@@ -1395,7 +1452,11 @@ multiset<span class="token operator">&lt;</span>pair<span class="token operator"
           </a></div>
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open="">
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#bitset" class="md-toc-link">
+            <p>bitset</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#regex" class="md-toc-link"><p>regex</p>
 </a>

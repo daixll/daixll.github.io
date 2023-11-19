@@ -704,6 +704,88 @@ void *memcpy(void *dest, const void *src, size_t n);
 ```
 
 
+<br>
+
+---
+
+
+# bitset
+
+处理二进制位的类，提供了一系列成员函数来执行位操作。
+在 `bitset` 中，数据保存形如数组。
+
+### 创建
+
+```cpp
+bitset<4> b1;       // 长度为 4：0000
+bitset<8> b2(5);    // 长度为 8：0000 0101
+bitset<8> b3("101");// 长度为 8：0000 0101
+
+b1.reset();         // 全部置 0
+b1.set();           // 全部置 1
+b1.set(i);          // i 位置 1
+b1.set(i, 0);       // i 位置 0
+```
+
+### 转换
+
+```cpp
+string a = b1.to_string();
+unsigned long long b = b1.to_ullong();
+```
+
+### 位操作
+
+```cpp
+bitset<4> b1("1100");
+bitset<4> b2("1001");
+
+// 按位取反
+cout << ~b1 << endl;        // 0011
+// 按位与
+cout << (b1 & b2) << endl;  // 1000
+// 按位或
+cout << (b1 | b2) << endl;  // 1101
+// 按位异或
+cout << (b1 ^ b2) << endl;  // 0101
+// 右移
+cout << (b2 >> 2) << endl;  // 0010
+// 左移
+cout << (b2 << 2) << endl;  // 0100
+
+// 某一位取反
+b1.flip(i);
+```
+
+### 成员函数
+
+```cpp
+bitset<16> b1(6666);    // 0001 1010 0000 1010
+
+// 使用 [] 输出
+for(int i=b1.size()-1; i>=0; i--) cout<<b1[i];
+cout<<endl;
+
+// 统计二进制中 1 的个数
+cout<<b1.count()<<endl; // 5
+// 求bitset的大小
+cout<<b1.size()<<endl;  // 16
+// 判断某位（从右到左，下标从 0 开始）是否为 1
+cout<<b1.test(9)<<endl; // true
+
+// 判断是否全为 0
+cout<<b1.none()<<endl;  // 0
+// 判断是否全为 1
+cout<<b1.all()<<endl;   // 0
+// 判断是否有 1
+cout<<b1.any()<<endl;   // 1
+```
+
+
+
+
+<br>
+
 ---
 
 # regex
@@ -1017,6 +1099,8 @@ ptr = nullptr;          // 将 ptr 置为 nullptr, ptr 成空指针
 <br>
 
 ---
+
+
 
 # STL
 
