@@ -276,30 +276,3 @@ auto cc = ciphertext;
 for (int j = 1; j <= 64; ++j)
     ciphertext[j] = cc[rIP[j]];
 ```
-
-
----
-
-
-[验证](https://www.sojson.com/encrypt_des.html)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-原序列：
-
-**$$ a_1,a_2,a_3,a_4 $$**
-
-左移一位：
-
-**$$ a_2,a_3,a_4,a_1 $$**
