@@ -1066,7 +1066,7 @@ unordered_multimap<int, int>::iterator it;
 ### 操作迭代器
 
 * `*it`：获取迭代器指向的元素。
-* `it->`：获取迭代器指向的元素的成员。
+    特别的，访问元素的成员变量时 `(*it).first`，可以简写为 `it->first`。
 * `it++`：迭代器后移。
 * `it--`：迭代器前移。
 
@@ -1075,6 +1075,9 @@ unordered_multimap<int, int>::iterator it;
 
 所谓序列式容器，其中的元素 **可序**，但未必 **有序**。
 
+<br>
+
+---
 
 ### 【随机】vector
 
@@ -1131,10 +1134,20 @@ v1.erase(v1.begin(), v1.end()); // 删除 [v1.begin(), v1.end()) 之间的元素
 #### 修改
 
 ```cpp
+v1[1] = 6;                  // 将下标为 1 的元素改为 6
+v1.at(1) = 6;               // 将下标为 1 的元素改为 6 (越界会抛出异常)
+
+std::vector<int>::iterator it = v1.begin();
+*it = 6;                    // 将 it 指向的元素改为 6
+```
+
+```cpp
+// 重新分配元素
 v1.assign(10, 6);            // 数组大小改为10，所有元素都是6
 v1.assign(v2.begin(), v2.end()); // 拷贝 v2 的所有元素
 v1.assign({1, 2, 3, 4, 5});  // 拷贝初始化列表
 
+// 更改容器大小
 v1.resize(10);              // 数组大小改为10，多余的元素被删除，不足的元素被补 0
 v1.resize(10, 6);           // 数组大小改为10，多余的元素被删除，不足的元素被补 6
 ```
@@ -1142,6 +1155,11 @@ v1.resize(10, 6);           // 数组大小改为10，多余的元素被删除�
 #### 查找
 
 ```cpp
+// v1.find
+auto it = v1.find(6);       // 查找第一个值为 6 的元素，返回迭代器
+if(it != v1.end())          // 找不到时，it == v1.end()
+    cout<<*it<<endl;        // 输出 6
+
 // 通过迭代器遍历
 auto it = v.begin();
 while(it != v.end()){
@@ -1169,109 +1187,143 @@ v1.data();                  // 返回第一个元素的指针
 ```cpp
 v1.capacity();              // 返回数组容量
 v1.shrink_to_fit();         // 释放多余的空间
-v1.reserve(10);             // 预留 10 个元素的空间
+v1.reserve(10);             // 预留 10 个元素的空间，避免多次扩容
 ```
+
+<br>
 
 ---
 
 ### 【随机】deque
 
-### array
+```cpp
+#include <queue>            // deque 头文件
+```
 
-### list
+在 `vector` 的基础上，增加了在头部插入和删除元素的操作。
+然后，这个东西就叫做 **双端队列** 了。
 
-### 【-】stack
+```cpp
+dq.push_front(6);           // 头部插入
+dq.emplace_front(6);        // 头部插入
+dq.pop_front();             // 头部删除
+```
 
-### 【-】queue
+<br>
 
-### 【-】priority_queue
+---
 
-##
+### 【随机】array
 
-### list
-
-链表
+固定大小的数组，连续的内存空间，支持随机访问。
+因为固定大小，所以不支持插入和删除操作，只能修改元素。
 
 #### 创建
 
 ```cpp
-list<int> l1;       // 空链表
-list<int> l2(10);   // 10个元素，每个元素都是0
-list<int> l3(10, 6);// 10个元素，每个元素都是6
-list<int> l4(l3);   // 拷贝构造函数
-list<int> l5({1, 2, 3, 4, 5}); // 初始化列表
+array<int, 5> a1;                   // 5个元素，每个元素都是0
+array<int, 5> a3 = {1, 2, 3, 4, 5}; // 初始化列表
+
+// 使用迭代器
+array<int, 5>::iterator it = a1.begin();
 ```
+
+
+
+
+<br>
+
+---
+
+### list
+
+双向链表。
+内存空间不是连续的，所以不支持随机访问，故其迭代器是双向迭代器。
+因为不支持随机访问，若想要访问下标为 `i` 的元素，只能从头部开始遍历，直到遍历到下标为 `i` 的元素（或者从尾部开始遍历）。
+
+### forward_list
+
+单向链表。
+相较于 `list`，`forward_list` 只能从头部开始遍历，不能从尾部开始遍历。
+也不支持 `size()` 函数，所以不能获取链表的大小。
+也不支持 `push_back()` 函数，所以不能在尾部插入元素。
+支持头部插入元素，所以有 `push_front()` 函数。这也意味着，`forward_list` 是带有头结点的链表。
 
 #### 增加
 
 ```cpp
-l1.push_back(6);            // 尾部插入
-l1.push_front(6);           // 头部插入
-l1.insert(l1.begin(), 6);   // 插在 l1.begin() 之前，即头部插入
+fl1.push_front(0);					// 头部插入
+fl1.emplace_front(-1);				// 头部插入
+fl1.pop_front();					// 头部删除
 
-l1.emplace_back(6);         // 尾部插入
-l1.emplace_front(6);        // 头部插入
-l1.emplace(l1.end(), 6);    // 插在 l1.end() 之前，即尾部插入
+fl1.insert_after(fl1.begin(), 10);	// 在指定位置后插入
+fl1.emplace_after(fl1.begin(), 20); // 在指定位置后插入
+fl1.erase_after(fl1.begin());		// 在指定位置后删除
 ```
 
-#### 删除
+<details><summary>单链表（C实现）</summary>
 
 ```cpp
-l1.clear();                 // 清空链表
-l1.pop_back();              // 尾部删除
-l1.pop_front();             // 头部删除
-l1.erase(l1.begin());       // 删除 l1.begin() 位置的元素
-l1.erase(l1.begin(), l1.end()); // 删除 [l1.begin(), l1.end()) 之间的元素
+#include <stdio.h>
+#include <stdlib.h>
 
-l1.remove(666);             // 删除所有值为 6 的元素
-l1.unique();                // 删除所有相邻重复的元素：6 6 7 7 6 6 -> 6 7 6
-```
+struct node{
+	int data;
+	node *next;
 
-#### 修改
+	void insert_after(int x){
+		node *t = (node*)malloc(sizeof(node));	// 申请新的节点
+		t->data = x;	// 新节点的数据域存放 x
+		t->next = next;	// 新节点的 next 指向当前节点的 next
 
-```cpp
-l1.assign(10, 6);            // 链表大小改为10，所有元素都是6
-l1.assign(l2.begin(), l2.end()); // 拷贝 l2 的所有元素
-l1.assign({1, 2, 3, 4, 5});  // 拷贝初始化列表
+		next = t;		// 当前节点的 next 指向新节点
+	}
 
-l1.resize(10);              // 链表大小改为10，多余的元素被删除，不足的元素被补 0
-l1.resize(10, 6);           // 链表大小改为10，多余的元素被删除，不足的元素被补 6
+	void delete_after(){
+		node *t = next;	// t 指向当前节点的下一个节点
+		next = t->next;	// 当前节点的 next 指向 t 的下一个节点
+		free(t);		// 释放 t
+	}
+};
 
-l1.reverse();               // 反转链表
-```
+int main(){
+	node *head = (node*)malloc(sizeof(node));
+	head->data = 0;		// 头节点的数据域不存放数据，用来存放链表的长度
+	head->next = NULL;	// 头节点的 next 指向 NULL
 
-#### 查找
+	node *p = head;
+	for(int i = 1; i <= 10; i++){
+		p->insert_after(i);
+		p = p->next;
+	}
 
-```cpp
-// 使用迭代器
-list<int>::iterator it = l.begin();
-while(it != l.end()){
-    cout<<*it<<" ";
-    it++;
+	printf("链表：\n");
+	for(p = head->next; p != NULL; p = p->next) printf("%d ", p->data);
+	
+	p = head;
+	p = p->next; p = p->next;
+	p->delete_after();
+	p->delete_after();
+
+	printf("\n删除第3、4个元素后的链表：\n");
+	for(p = head->next; p != NULL; p = p->next) printf("%d ", p->data);
+	
+	return 0;
 }
-// 使用 for 循环
-for(auto i: l) cout<<i<<" ";
-
-l1.empty();                 // 判断链表是否为空
-l1.size();                  // 返回链表大小
-l1.max_size();              // 返回链表最大容量
-
-l1.front();                 // 返回头部元素
-l1.back();                  // 返回尾部元素
 ```
-
-#### 其他
-
-```cpp
-l1.sort();                  // 排序
-l1.sort(greater<int>());    // 降序排序
-```
+</details>
 
 
 
+
+<br>
 
 ---
-### stack
+
+
+
+
+### 【-】stack
 
 栈
 
@@ -1313,8 +1365,11 @@ s1.size();                  // 返回栈大小
 s1.top();                   // 返回栈顶元素
 ```
 
+<br>
+
 ---
-### queue
+
+### 【-】queue
 
 队列
 
@@ -1357,66 +1412,11 @@ q1.front();                 // 返回队头元素
 q1.back();                  // 返回队尾元素
 ```
 
----
-### deque
-
-双端队列
-
-```cpp
-#include <queue>   // deque 包含在 queue 中
-```
-
-#### 创建
-
-```cpp
-deque<int> d1;              // 空双端队列
-deque<int> d2(10);          // 10个元素，每个元素都是0
-deque<int> d3(10, 1);       // 10个元素，每个元素都是1
-deque<int> d4(d3);          // 拷贝构造函数
-deque<int> d5({1, 2, 3, 4, 5}); // 初始化列表 1为队头，5为队尾
-```
-
-#### 增加
-
-```cpp
-d1.push_back(6);            // 尾部入队
-d1.push_front(6);           // 头部入队
-```
-
-#### 删除
-
-```cpp
-d1.pop_back();              // 尾部出队
-d1.pop_front();             // 头部出队
-```
-
-#### 修改
-
-当有修改需求时，建议使用 [vector](#vector-动态数组) 代替。
-
-#### 查找
-
-```cpp
-// 从队头开始 遍历双端队列 会清空双端队列
-while(!d1.empty()){
-    cout<<d1.front()<<" ";
-    d1.pop_front();
-}
-
-// 从队尾开始 遍历双端队列 会清空双端队列
-while(!d1.empty()){
-    cout<<d1.back()<<" ";
-    d1.pop_back();
-}
-
-d1.empty();                 // 判断双端队列是否为空
-d1.size();                  // 返回双端队列大小
-d1.front();                 // 返回队头元素
-d1.back();                  // 返回队尾元素
-```
+<br>
 
 ---
-### priority_queue
+
+### 【-】priority_queue
 
 优先队列 (堆)
 
@@ -1461,6 +1461,11 @@ p1.empty();                 // 判断优先队列是否为空
 p1.size();                  // 返回优先队列大小
 p1.top();                   // 返回队头元素
 ```
+
+
+<br>
+
+---
 
 ## 关联式容器
 
