@@ -637,10 +637,30 @@ NUL NUL
 <span class="token keyword keyword-void">void</span> <span class="token operator">*</span><span class="token function">memcpy</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span> <span class="token operator">*</span>dest<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-void">void</span> <span class="token operator">*</span>src<span class="token punctuation">,</span> size_t n<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><br>
 <hr>
+<h1 id="stream">stream </h1>
+<ul>
+<li><strong>缓冲区</strong>：缓冲区是一个临时存储区域，用于存放输入输出的数据。<br>
+用于减少对输入输出设备的访问次数，从而提高效率。（缓冲区更快，输入输出设备更慢）</li>
+<li><strong>状态</strong>：流具有不同状态：
+<ul>
+<li><code>good()</code>：流正常。</li>
+<li><code>bad()</code>：流崩溃。</li>
+<li><code>fail()</code>：流操作失败。</li>
+<li><code>eof()</code>：流到达文件末尾。</li>
+</ul>
+</li>
+</ul>
+<h2 id="io-stream">io stream </h2>
+<h3 id="iomanip">iomanip </h3>
+<h2 id="f-stream">f stream </h2>
+<h2 id="s-stream">s stream </h2>
+<h2></h2>
+<br>
+<hr>
 <h1 id="bitset">bitset </h1>
 <p>处理二进制位的类，提供了一系列成员函数来执行位操作。<br>
 在 <code>bitset</code> 中，数据保存形如数组。</p>
-<h3 id="创建">创建 </h3>
+<h2 id="创建">创建 </h2>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>bitset<span class="token operator">&lt;</span><span class="token number">4</span><span class="token operator">&gt;</span> b1<span class="token punctuation">;</span>       <span class="token comment">// 长度为 4：0000</span>
 bitset<span class="token operator">&lt;</span><span class="token number">8</span><span class="token operator">&gt;</span> <span class="token function">b2</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 长度为 8：0000 0101</span>
 bitset<span class="token operator">&lt;</span><span class="token number">8</span><span class="token operator">&gt;</span> <span class="token function">b3</span><span class="token punctuation">(</span><span class="token string">"101"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 长度为 8：0000 0101</span>
@@ -649,10 +669,10 @@ b1<span class="token punctuation">.</span><span class="token function">reset</sp
 b1<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 全部置 1</span>
 b1<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// i 位置 1</span>
 b1<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// i 位置 0</span>
-</code></pre><h3 id="转换">转换 </h3>
+</code></pre><h2 id="转换">转换 </h2>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>string a <span class="token operator">=</span> b1<span class="token punctuation">.</span><span class="token function">to_string</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-long">long</span> <span class="token keyword keyword-long">long</span> b <span class="token operator">=</span> b1<span class="token punctuation">.</span><span class="token function">to_ullong</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><h3 id="位操作">位操作 </h3>
+</code></pre><h2 id="位操作">位操作 </h2>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>bitset<span class="token operator">&lt;</span><span class="token number">4</span><span class="token operator">&gt;</span> <span class="token function">b1</span><span class="token punctuation">(</span><span class="token string">"1100"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 bitset<span class="token operator">&lt;</span><span class="token number">4</span><span class="token operator">&gt;</span> <span class="token function">b2</span><span class="token punctuation">(</span><span class="token string">"1001"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -671,7 +691,7 @@ cout <span class="token operator">&lt;&lt;</span> <span class="token punctuation
 
 <span class="token comment">// 某一位取反</span>
 b1<span class="token punctuation">.</span><span class="token function">flip</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><h3 id="成员函数">成员函数 </h3>
+</code></pre><h2 id="成员函数">成员函数 </h2>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>bitset<span class="token operator">&lt;</span><span class="token number">16</span><span class="token operator">&gt;</span> <span class="token function">b1</span><span class="token punctuation">(</span><span class="token number">6666</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 0001 1010 0000 1010</span>
 
 <span class="token comment">// 使用 [] 输出</span>
@@ -1256,7 +1276,7 @@ p1<span class="token punctuation">.</span><span class="token function">top</span
 <h3 id="unordered_multiset">unordered_multiset </h3>
 <h3 id="unordered_map">unordered_map </h3>
 <h3 id="unordered_multimap">unordered_multimap </h3>
-<h2></h2>
+<h2 id="-1"></h2>
 <h3 id="set-1">set </h3>
 <p>集合</p>
 <p>set 的元素是唯一的，不能重复。</p>
@@ -1452,11 +1472,65 @@ multiset<span class="token operator">&lt;</span>pair<span class="token operator"
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#bitset" class="md-toc-link">
-            <p>bitset</p>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#stream" class="md-toc-link"><p>stream</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#io-stream" class="md-toc-link"><p>io stream</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#iomanip" class="md-toc-link">
+            <p>iomanip</p>
 
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#f-stream" class="md-toc-link">
+            <p>f stream</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#s-stream" class="md-toc-link">
+            <p>s stream</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#" class="md-toc-link">
+            
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#bitset" class="md-toc-link"><p>bitset</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#创建" class="md-toc-link">
+            <p>创建</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#转换" class="md-toc-link">
+            <p>转换</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#位操作" class="md-toc-link">
+            <p>位操作</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#成员函数" class="md-toc-link">
+            <p>成员函数</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#regex" class="md-toc-link"><p>regex</p>
 </a>
@@ -1670,7 +1744,7 @@ multiset<span class="token operator">&lt;</span>pair<span class="token operator"
       </details>
     <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#" class="md-toc-link"></a>
+          <a href="#-1" class="md-toc-link"></a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">

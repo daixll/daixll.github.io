@@ -39,36 +39,73 @@ WSL2 的开发环境配置
 
 # C++ for Algorithm
 
+[用户配置文件](./D.code-profile)
+
 1. vscode 下载拓展 `WSL`
 
 2. vscode 连接到 WSL，下载拓展 `C++`
     * 我们仅需 `C++` 的代码提示（IntelliSense）功能
     * 如果你不需要代码提示也可以不下
 
-4. 进入 ubuntu 环境，下载 `gcc`
+3. 进入 ubuntu 环境，下载 `gcc` `gdb`
     * `apt install gcc`
+    * `apt install gdb`
 
-5. 在项目目录下创建配置文件 `.vscode/tasks.json`
+4. 在项目目录下创建运行任务 `.vscode/tasks.json`
     ```json
     {
         "version": "2.0.0",
         "tasks": [
             {
-            "label": "AC",    // 任务名
-            "type": "shell",  // 此任务在 shell 下执行；（command）执行命令
-            "command": "g++ -std=c++23 '${file}' -o '${fileDirname}/exes/${fileBasenameNoExtension}' && cat '${fileDirname}/exes/in' | '${fileDirname}/exes/${fileBasenameNoExtension}' > '${fileDirname}/exes/out' && sync",
-            "problemMatcher": [   // 捕捉错误
-                "$gcc"
-            ]
+                "label": "AC",
+                "type": "shell",
+                "command": "echo -n '⏳' > '${fileDirname}/exes/out'  && g++ -g -std=c++23 '${file}' -o '${fileDirname}/exes/${fileBasenameNoExtension}' && cat '${fileDirname}/exes/in' | '${fileDirname}/exes/${fileBasenameNoExtension}' > '${fileDirname}/exes/out' && sync",
+                "problemMatcher": [
+                    "$gcc"
+                ]
             }
         ]
     }
     ```
 
-    * 文件结构如此：
+5. 在项目目录下创建调试任务 `.vscode/launch.json`
+    ```json
+    {
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "AC_debug",         // 配置名称
+            "type": "cppdbg",           // 调试器类型
+            "request": "launch",        // 请求类型
+            "program": "${fileDirname}/exes/${fileBasenameNoExtension}",
+            "stopAtEntry": false,       // 在程序入口处停止
+            "cwd": "${fileDirname}",    // 工作目录
+            "externalConsole": false,   // 使用外部控制台
+            "MIMode": "gdb",            // 使用 gdb
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "将反汇编风格设置为 Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+
+    ]
+    }
+    ```
+
+
+* 文件结构如此：
     ```
     ├── .vscode/
-    |   ├── tasks.json   
+    |   ├── launch.json
+    |   ├── tasks.json
     |
     ├── exes/
     |   ├── ac
@@ -82,7 +119,7 @@ WSL2 的开发环境配置
 
 5. 配置快捷方式，f5一键执行命令
 
-    修改 `C:\Users\用户名\AppData\Roaming\Code\User\keybindings.json` 文件
+    修改 `C:\Users\USERNAME\AppData\Roaming\Code\User\keybindings.json` 文件
 
     ```json
     // 将键绑定放在此文件中以覆盖默认值auto[]
@@ -95,8 +132,10 @@ WSL2 的开发环境配置
     ]
     ```
 
-
     在 `ac.cpp` 文件中，即可 `f5` 一键执行。
+
+6. 打断点 -> `运行` -> `启动调试`
+    * 需要先 `f5` 一次，再 `启动调试`
 
 <br>
 

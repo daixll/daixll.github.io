@@ -587,7 +587,7 @@ UIC b<span class="token punctuation">[</span><span class="token number">10</span
 </blockquote>
 <h1 id="memory-areas">Memory Areas </h1>
 <p>C 在程序执行时，将内存大致分为 <strong>代码区</strong>，<strong>全局区</strong>，<strong>栈区</strong>，<strong>堆区</strong> 四个区域。<br>
-不同的区域存储不同的数据，赋予不同的生命周期，能够更灵活地进行编程。</p>
+不同的区域存储不同的数据，赋予不同的 <strong>生命周期</strong>，能够更灵活地进行编程。</p>
 <h2 id="code-segment">Code Segment </h2>
 <p>代码区，简单来说，就是存放 <strong>执行指令</strong> 的地方。<br>
 代码区是只读的，不允许修改。<br>
@@ -615,8 +615,65 @@ UIC b<span class="token punctuation">[</span><span class="token number">10</span
 </li>
 </ol>
 <h2 id="stack">Stack </h2>
-<h2 id="heap">Heap </h2>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
 
+<span class="token keyword keyword-int">int</span> <span class="token operator">*</span>p<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> x <span class="token operator">=</span> <span class="token number">666</span><span class="token punctuation">;</span>
+
+    p <span class="token operator">=</span> <span class="token operator">&amp;</span>x<span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a函数 y:\n%d %p\n"</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> <span class="token operator">&amp;</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> y <span class="token operator">=</span> <span class="token number">888</span><span class="token punctuation">;</span> 
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"b函数 y:\n%d %p\n"</span><span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token operator">&amp;</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"主函数 p:\n%d %p\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>p<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"主函数 p:\n%d %p\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>p<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="heap">Heap </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token operator">*</span>p<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span><span class="token operator">*</span> x <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">(</span><span class="token number">666</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    p <span class="token operator">=</span> x<span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a函数 y:\n%d %p\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>x<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 手动释放内存</span>
+    <span class="token comment">// delete x;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span><span class="token operator">*</span> y <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">(</span><span class="token number">888</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"b函数 y:\n%d %p\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>y<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"主函数 p:\n%d %p\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>p<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"主函数 p:\n%d %p\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>p<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
