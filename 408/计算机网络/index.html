@@ -423,6 +423,76 @@ A：假设有一个地址 <code>中国.四川.成都.金牛</code>，子网掩�
 </ol>
 <br>
 <hr>
+<h2 id="路由引入及在-rip-中过滤路由">路由引入及在 RIP 中过滤路由 </h2>
+<p><img src="./IMAGE/%E5%AE%9E%E9%AA%8C6_%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%9C%A8RIP%E4%B8%AD%E8%BF%87%E6%BB%A4%E8%B7%AF%E7%94%B1.png" alt=""></p>
+<ol>
+<li>
+<p>配置接口</p>
+</li>
+<li>
+<p>RIPv2 路由配置</p>
+<ul>
+<li>
+<p>路由甲</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由甲<span class="token punctuation">]</span> rip <span class="token number">1</span>
+<span class="token punctuation">[</span>路由甲-rip-1<span class="token punctuation">]</span> network <span class="token number">10.0</span>.0.0
+<span class="token punctuation">[</span>路由甲-rip-1<span class="token punctuation">]</span> network <span class="token number">192.168</span>.1.0
+<span class="token punctuation">[</span>路由甲-rip-1<span class="token punctuation">]</span> version <span class="token number">2</span>
+<span class="token punctuation">[</span>路由甲-rip-1<span class="token punctuation">]</span> undo summary
+</code></pre></li>
+<li>
+<p>路由乙</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由乙<span class="token punctuation">]</span> rip <span class="token number">1</span>
+<span class="token punctuation">[</span>路由乙-rip-1<span class="token punctuation">]</span> network <span class="token number">192.168</span>.1.0
+<span class="token punctuation">[</span>路由乙-rip-1<span class="token punctuation">]</span> version <span class="token number">2</span>
+<span class="token punctuation">[</span>路由乙-rip-1<span class="token punctuation">]</span> undo summary
+<span class="token punctuation">[</span>路由乙-rip-1<span class="token punctuation">]</span> quit
+<span class="token punctuation">[</span>路由乙<span class="token punctuation">]</span> ospf
+<span class="token punctuation">[</span>路由乙-ospf-1<span class="token punctuation">]</span> area <span class="token number">0</span>
+<span class="token punctuation">[</span>路由乙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">192.168</span>.2.0 <span class="token number">0.0</span>.0.255
+</code></pre></li>
+<li>
+<p>路由丙</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由丙<span class="token punctuation">]</span> ospf 
+<span class="token punctuation">[</span>路由丙-ospf-1<span class="token punctuation">]</span> area <span class="token number">0</span>
+<span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">192.168</span>.2.0 <span class="token number">0.0</span>.0.255
+<span class="token punctuation">[</span>路由丙-ospf-1-area-0.0.0.0<span class="token punctuation">]</span> network <span class="token number">192.168</span>.3.0 <span class="token number">0.0</span>.0.255
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>配置路由引入</p>
+<ul>
+<li>路由乙<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由乙<span class="token punctuation">]</span> rip <span class="token number">1</span>
+<span class="token punctuation">[</span>路由乙-rip-1<span class="token punctuation">]</span> import-route ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由乙-rip-1<span class="token punctuation">]</span> quit
+<span class="token punctuation">[</span>路由乙<span class="token punctuation">]</span> ospf <span class="token number">1</span>
+<span class="token punctuation">[</span>路由乙-ospf-1<span class="token punctuation">]</span> import-route rip <span class="token number">1</span>
+</code></pre></li>
+</ul>
+</li>
+</ol>
+<h2 id="过滤路由">过滤路由 </h2>
+<ol>
+<li>
+<p>聚合端口</p>
+<ul>
+<li>路由甲<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由甲-S0/0/5<span class="token punctuation">]</span> rip summary-address <span class="token number">10.0</span>.0.0 <span class="token number">23</span>
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>过滤路由</p>
+<ul>
+<li>路由乙<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由乙<span class="token punctuation">]</span> <span class="token function">ip</span> prefix-list abc index <span class="token number">10</span> deny <span class="token number">10.0</span>.0.0 <span class="token number">23</span>
+<span class="token punctuation">[</span>路由乙<span class="token punctuation">]</span> <span class="token function">ip</span> prefix-list abc index <span class="token number">20</span> permit <span class="token number">0.0</span>.0.0 <span class="token number">0</span> less-equal <span class="token number">32</span>
+<span class="token punctuation">[</span>路由乙-rip-1<span class="token punctuation">]</span> <span class="token function">ip</span> prefix-list abc index <span class="token number">20</span> permit <span class="token number">0.0</span>.0.0 <span class="token number">0</span> less-equal <span class="token number">32</span>
+</code></pre></li>
+</ul>
+</li>
+</ol>
+<br>
+<hr>
 <h1 id="杂项">杂项 </h1>
 <p><strong>华为 OSPF 的错误之处</strong></p>
 <p>文本写作日期：2023-9-30</p>
@@ -538,6 +608,14 @@ B-&gt;C：2</li>
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#ospf-nssa-区域配置" class="md-toc-link">
             <p>OSPF NSSA 区域配置</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#路由引入及在-rip-中过滤路由" class="md-toc-link">
+            <p>路由引入及在 RIP 中过滤路由</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#过滤路由" class="md-toc-link">
+            <p>过滤路由</p>
 
           </a></div>
         </div>
