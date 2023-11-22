@@ -169,7 +169,7 @@ int main(){
 ```
 </details>
 
-### 递归
+## 递归
 
 生成括号（202109）
 广义格雷码（202109）
@@ -184,6 +184,19 @@ int main(){
 
 [基本算法之搜索](http://noi.openjudge.cn/ch0205/)
 [算法之搜索](http://noi.openjudge.cn/ch0407/)
+
+<1details><summary><a href="http://noi.openjudge.cn/ch0205/1789/" target="_blank">1789:算24</a> code</summary><br>
+
+**大意**
+
+
+
+
+```cpp
+
+```
+</details>
+
 
 <details><summary><a href="" target="_blank"></a>漫漫回国路（202009） code</summary>
 
