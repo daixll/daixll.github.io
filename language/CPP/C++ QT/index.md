@@ -7,13 +7,13 @@ export_on_save:
 
 # 参考
 
-**视频：**
+**书籍：**
 
-* 123
+* asd
 
 **网站：**
 
-* 123
+* [Qt 快速入门系列教程](http://shouce.jb51.net/qt-beginning/)
 
 <br>
 
@@ -348,7 +348,7 @@ QColor      # 颜色，用于设置画笔和画刷的颜色
 ...
 ```
 
-## Hello Qt
+## Leg 1 Hello Qt
 
 Qt 创建一个窗口非常简单，只需要创建一个 `QWidget` 对象，然后调用 `QWidget` 的 `show()` 方法即可。
 
@@ -431,51 +431,39 @@ MainWindow *w = new MainWindow();   // 创建一个主窗口对象
 w->show();                          // 显示主窗口
 ```
 
-源代码及 `.pro` 参见：[Leg1](https://github.com/daixll/A_Tour_of_Qt/tree/main/Leg1)
-
-
-<br>
-
----
-
-## 布局管理与标签
-
-我们已经能够创建窗口了，但是窗口是空的，我们想要在窗口中显示一些东西，例如文字或者图片，这就需要用到标签了。
-
-显然，标签属于主窗口，所以我们需要在主窗口类中声明一个标签对象：
+窗口中的内容是空的，我们可以尝试在窗口中显示一些文字：
 
 ```cpp
 // MainWindow.h
+#include <QLabel>   // 包含标签类的头文件
+// ...
 private:
-    QLabel *_label;  // 声明一个标签
+    QLabel *_label; // 声明一个标签
+// ...
 ```
-
-约定俗成的，我们将类的私有成员变量前面加上下划线 `_`，这样可以方便的区分成员变量和局部变量。
-
-然后在构造函数中初始化标签：
-
+    
 ```cpp
 // MainWindow.cpp
-#include "include/MainWindow.h"
-
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-{
-    this -> setWindowTitle("Hello Qt!");
-
-    this -> _label = new QLabel(this);  // 为其分配内存
-    this -> _label -> setText("666");   // 设置标签文本
-}
-
-MainWindow::~MainWindow()
-{
-    delete this -> _label;              // 释放内存
-}
+this -> _label = new QLabel(this);  // 为其分配内存
+this -> _label -> setText("Hello Qt!!!");   // 设置标签文本
 ```
+
+<br>
+
+源代码及参见：[Leg1](https://github.com/daixll/A_Tour_of_Qt/tree/main/Leg1)
+
+---
+
+## Leg 2 布局管理器
 
 为了能够控制标签的位置，我们需要使用布局管理器，布局管理器是 Qt 提供的一种自动布局机制，它能够根据窗口的大小自动调整窗口部件的位置和大小。
 
-Qt 常见的三种布局管理器：水平布局、垂直布局和网格布局。我们这里使用垂直布局：
+Qt 常见的三种布局管理器：
+* 水平布局：`QHBoxLayout`
+* 垂直布局：`QVBoxLayout`
+* 网格布局：`QGridLayout`
+
+我们这里使用垂直布局：
 
 ```cpp
 // MainWindow.h
@@ -494,8 +482,8 @@ public:
     ~MainWindow();
 
 private:
-    QVBoxLayout *_layout;       // 声明一个布局管理器
-    QWidget     *_centralWidget;// 中央部件
+    QWidget     *_centralWidget;// 声明一个中央部件
+    QVBoxLayout *_layout;       // 声明一个垂直布局管理器
     QLabel      *_labeltext;    // 声明一个文本标签
     QLabel      *_labelimg;     // 声明一个图片标签
 };
@@ -517,51 +505,225 @@ private:
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    setWindowTitle("Hello Qt!");
+    setWindowTitle("Leg 2 布局管理器");
 
-    _layout         = new QVBoxLayout(this);
-    _centralWidget  = new QWidget(this);
-    _labeltext      = new QLabel(this);
-    _labelimg       = new QLabel(this);
+    _centralWidget  = new QWidget();
+    _layout         = new QVBoxLayout();
+    _labeltext      = new QLabel();
+    _labelimg       = new QLabel();
 
+    setCentralWidget(_centralWidget);     // 设置中央部件
+    _centralWidget -> setLayout(_layout); // 设置中央部件的布局管理器
     _layout -> addWidget(_labeltext);   // 将文本标签添加到布局管理器
     _layout -> addWidget(_labelimg);    // 将图片标签添加到布局管理器
 
-    _labeltext -> setText("666");                     // 设置文本标签
+    // 设置标签的内容
+    _labeltext -> setText("Leg 2 布局管理器");         // 设置文本标签
     _labelimg  -> setPixmap(QPixmap("img/cqvie.jpg"));// 设置图片标签
-
     // 设置标签的对齐方式为居中
     _labeltext -> setAlignment(Qt::AlignCenter);
     _labelimg  -> setAlignment(Qt::AlignCenter);
-
-    _centralWidget -> setLayout(_layout); // 设置中央部件的布局管理器
-    setCentralWidget(_centralWidget);     // 设置中央部件
 }
 
 MainWindow::~MainWindow()
 {
     delete _labelimg;
     delete _labeltext;
-    delete _centralWidget;
     delete _layout;
+    delete _centralWidget;
 }
 ```
 
 
+显然，只有这几种布局是不够的，但如果布局可以嵌套，那么就可以实现更加复杂的布局。
+
+我们尝试在现在的基础上，在上层添加一个网格布局：
+
+```cpp
+// MainWindow.h
+// ...
+private:
+    QVBoxLayout *_vLayout;      // 声明一个垂直布局管理器
+    QGridLayout *_gLayout;      // 声明一个网格布局管理器
+    QLabel      _labeltext_1,   // 创建 6 个文本标签  
+                _labeltext_2,
+                _labeltext_3,
+                _labeltext_4,
+                _labeltext_5,
+                _labeltext_6;
+```
 
 
 
+```cpp
+// MainWindow.cpp
+_vLayout        = new QVBoxLayout();
+_gLayout        = new QGridLayout();
+_labelimg       = new QLabel();
+
+setCentralWidget(_centralWidget);       // 设置中央部件
+_centralWidget -> setLayout(_vLayout);  // 设置中央部件的布局管理器
+
+_vLayout -> addLayout(_gLayout);        // 将网格布局管理器添加到垂直布局管理器
+_vLayout -> addWidget(_labelimg);       // 将图片标签添加到垂直布局管理器
+
+// 将 6 个文本标签添加到网格布局管理器，并且设置内容
+_gLayout -> addWidget(&_labeltext_1, 0, 0);
+_gLayout -> addWidget(&_labeltext_2, 0, 1);
+_gLayout -> addWidget(&_labeltext_3, 0, 2);
+_gLayout -> addWidget(&_labeltext_4, 1, 0);
+_gLayout -> addWidget(&_labeltext_5, 1, 1);
+_gLayout -> addWidget(&_labeltext_6, 1, 2);
+_labeltext_1.setText("C"); _labeltext_1.setAlignment(Qt::AlignCenter);
+_labeltext_2.setText("Q"); _labeltext_2.setAlignment(Qt::AlignCenter);
+_labeltext_3.setText("V"); _labeltext_3.setAlignment(Qt::AlignCenter);
+_labeltext_4.setText("I"); _labeltext_4.setAlignment(Qt::AlignCenter);
+_labeltext_5.setText("E"); _labeltext_5.setAlignment(Qt::AlignCenter);
+_labeltext_6.setText("!"); _labeltext_6.setAlignment(Qt::AlignCenter);
+
+// 设置图片标签，并且设置为居中
+_labelimg  -> setPixmap(QPixmap("img/cqvie.jpg"));
+_labelimg  -> setAlignment(Qt::AlignCenter);
+```
+
+<br>
+
+源代码及参见：[Leg2](https://github.com/daixll/A_Tour_of_Qt/tree/main/Leg2)
+
+---
+
+## Leg 3 按钮与文本输入框
+
+现在的窗口，都只是单一的显示内容，没有任何交互，我们可以添加一些按钮，来实现一些交互。
+
+> 输入一串小写字母，点击按钮，将其转换为大写字母。
+
+* **左边**：文本输入框，用于输入小写字母；
+* **中间**：按钮，用于转换；
+* **右边**：文本显示框，用于显示大写字母。
+
+> * 单行文本输入框：`QLineEdit` 
+> * 多行文本输入框：`QTextEdit`
+
+我们在这里使用水平布局，单行文本输入框。
+
+```cpp
+// MainWindow.h
+#pragma once
+
+#include <QMainWindow>
+#include <QLayout>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QMessageBox>
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT                  
+
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+
+private:
+    QWidget     _centralWidget;
+    QHBoxLayout _hLayout;       // 水平布局
+    QLineEdit   _input, _output;// 文本框
+    QPushButton _button;        // 按钮
+
+    void _onButtonClicked();    // 按钮点击的槽函数
+};
+```
+
+1. 首先将界面写出来；
+2. 点击按钮时：
+    1. 获取输入文本框的内容；
+    2. 检测输入是否合法；
+        * 不合法则弹出警告框；
+    3. 将输入转换为大写；
+    4. 将转换后的内容设置到输出文本框中。
+
+```cpp
+#include "include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    setWindowTitle("Leg 3 按钮与文本框");
+    
+    setCentralWidget(&_centralWidget);  // 设置中心窗口
+    _centralWidget.setLayout(&_hLayout);// 设置中心窗口的布局
+
+    _hLayout.addWidget(&_input);    // 将文本框添加到布局中
+    _hLayout.addWidget(&_button);   // 将按钮添加到布局中
+    _hLayout.addWidget(&_output);   // 将文本框添加到布局中
+
+    _button.setText("转换");        // 设置按钮的文本
+    _output.setReadOnly(true);      // 设置输出文本框为只读
+
+    // 连接按钮的点击信号与槽函数
+    connect(&_button, &QPushButton::clicked, this, &MainWindow::_onButtonClicked);
+}
+
+void MainWindow::_onButtonClicked(){
+    QString input = _input.text();  // 获取输入文本框的内容
+    if (input.isEmpty()){           // 检测输入是否为空
+        QMessageBox::warning(this, "警告", "输入不能为空");
+        return;                     // 如果为空，弹出警告框
+    }
+
+    for (auto &c : input){          // 检测输入是否是小写字母
+        if (c < 'a' || c > 'z'){    // 如果不是小写字母，弹出警告框
+            QMessageBox::warning(this, "警告", "输入必须是小写字母");
+            return;
+        }
+    }
+
+    QString output = input.toUpper();   // 将输入转换为大写
+    _output.setText(output);            // 将转换后的内容设置到输出文本框中
+}
+
+MainWindow::~MainWindow(){}
+```
+
+<br>
+
+源代码及参见：[Leg3](https://github.com/daixll/A_Tour_of_Qt/tree/main/Leg3)
+
+---
+
+
+## Mission 1 计算器 🧮
+
+设计一个简单的计算器，要求：
+
+1. 输入框：用于输入数字和运算符；
+2. 输出框：用于显示结果；
+3. 操作符：`+`、`-`、`*`、`/`；
+4. 数字：`0`、`1`、`2`、`3`、`4`、`5`、`6`、`7`、`8`、`9`；
+5. 删除：`D`；
+6. 清空：`C`。
+
+<br>
+
+源代码及参见：[Mission1](https://github.com/daixll/A_Tour_of_Qt/tree/main/Mission1)
+
+> 此代码仅供参考，为使得代码更加简洁：
+> 1. 没有进行错误处理。
+> 2. 不支持高精度。
+> 3. 不支持小数。 
+> ...
+
+同学们可以自行对 `calc.h` 进行修改，使得其支持更多的运算符和更高的精度。
+
+<br>
+
+---
 
 
 # 待整理
 
-## 按钮和标签
 
-## 文本输入和显示
-
-## 布局管理器
-
-## 🧮 计算器
 
 ## 菜单和工具栏
 
@@ -580,12 +742,5 @@ MainWindow::~MainWindow()
 ## 表格和滚动区域
 
 ## 多媒体
-
-
-
-
-# 布局管理器
-
-
 
 # 文件和图像操作
