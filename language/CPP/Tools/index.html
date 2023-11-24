@@ -288,6 +288,8 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
 </ul>
 </li>
 </ol>
+<br>
+<hr>
 <h2 id="boost">Boost </h2>
 <p>Boost 是一个跨平台的C++库，提供了许多重要的系统工具和应用程序。</p>
 <ol>
@@ -326,11 +328,12 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
 <span class="token punctuation">}</span>
 </code></pre></li>
 </ol>
+<br>
 <h2 id="perf">Perf </h2>
 <p>Perf 是一个性能分析工具，可以用于分析程序的性能瓶颈。</p>
 <ol>
 <li>
-<p><strong>安装</strong></p>
+<p><strong>安装 perf</strong></p>
 <pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> linux-tools-common linux-tools-generic linux-tools-<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> <span class="token parameter variable">-r</span><span class="token variable">`</span></span>
 </code></pre><ul>
 <li><code>linux-tools-common</code>：Linux 性能分析工具的公共文件。</li>
@@ -344,7 +347,38 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
 <pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>perf <span class="token parameter variable">-v</span> <span class="token comment"># 验证是否安装成功</span>
 </code></pre></li>
 <li>
-<p>**下载</p>
+<p><strong>下载 FlameGraph</strong></p>
+<p>FlameGraph 是一个生成火焰图的工具。</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">git</span> clone https://github.com/brendangregg/FlameGraph.git
+</code></pre></li>
+<li>
+<p><strong>使用</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">sudo</span> perf record <span class="token parameter variable">-g</span> ./a.out <span class="token function">sleep</span> <span class="token number">10</span>
+</code></pre><ul>
+<li><code>perf record</code> 命令用于记录性能数据。</li>
+<li><code>-g</code> 选项用于记录调用图。</li>
+<li><code>./a.out</code> 需要记录性能的程序。</li>
+<li><code>sleep 10</code> 程序运行 10 秒。</li>
+</ul>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">sudo</span> perf script <span class="token parameter variable">-i</span> perf.data <span class="token operator">&amp;&gt;</span> perf.unfold 
+</code></pre><ul>
+<li><code>perf script</code> 命令用于将性能数据转换为可读的格式。</li>
+<li><code>-i</code> 选项用于指定输入文件。</li>
+<li><code>perf.data</code> 是性能数据文件。</li>
+<li><code>&amp;&gt; perf.unfold</code> 用于将输出重定向到 <code>perf.unfold</code> 文件。</li>
+</ul>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">sudo</span> FlameGraph/stackcollapse-perf.pl perf.unfold <span class="token operator">&amp;&gt;</span> perf.folded
+</code></pre><ul>
+<li><code>stackcollapse-perf.pl</code> 命令用于将性能数据转换为火焰图的输入格式。</li>
+<li><code>perf.unfold</code> 是性能数据文件。</li>
+<li><code>&amp;&gt; perf.folded</code> 用于将输出重定向到 <code>perf.folded</code> 文件。</li>
+</ul>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">sudo</span> FlameGraph/flamegraph.pl perf.folded <span class="token operator">&gt;</span> perf.svg
+</code></pre><ul>
+<li><code>flamegraph.pl</code> 命令用于生成火焰图。</li>
+<li><code>perf.folded</code> 是火焰图需要的性能数据文件。</li>
+<li><code>&gt; perf.svg</code> 用于将输出重定向到 <code>perf.svg</code> 文件。</li>
+</ul>
 </li>
 </ol>
 <br>

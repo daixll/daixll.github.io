@@ -263,6 +263,11 @@ Cmake 是一个跨平台的构建工具，依赖 CmakeLists.txt 文件来描述�
         * `LANGUAGES` 指定了支持的编程语言。
     * `add_executable` 指定了可执行文件的名称和源文件：将 `main.cpp` 和 `help.cpp` 编译并链接到 `JiaoProject` 可执行文件中。
 
+<br>
+
+---
+
+
 ## Boost
 
 Boost 是一个跨平台的C++库，提供了许多重要的系统工具和应用程序。
@@ -294,12 +299,13 @@ Boost 是一个跨平台的C++库，提供了许多重要的系统工具和应�
     }
     ```
 
+<br>
 
 ## Perf
 
 Perf 是一个性能分析工具，可以用于分析程序的性能瓶颈。
 
-1. **安装**
+1. **安装 perf**
     ```sh
     sudo apt install linux-tools-common linux-tools-generic linux-tools-`uname -r`
     ```
@@ -312,7 +318,51 @@ Perf 是一个性能分析工具，可以用于分析程序的性能瓶颈。
     perf -v # 验证是否安装成功
     ```
 
-2. **下载
+2. **下载 FlameGraph**
+    
+
+    FlameGraph 是一个生成火焰图的工具。
+
+    ```sh
+    git clone https://github.com/brendangregg/FlameGraph.git
+    ```
+
+3. **使用** 
+
+    ```sh
+    sudo perf record -g ./a.out sleep 10
+    ```
+
+    * `perf record` 命令用于记录性能数据。
+    * `-g` 选项用于记录调用图。
+    * `./a.out` 需要记录性能的程序。
+    * `sleep 10` 程序运行 10 秒。
+
+    ```sh
+    sudo perf script -i perf.data &> perf.unfold 
+    ```
+
+    * `perf script` 命令用于将性能数据转换为可读的格式。
+    * `-i` 选项用于指定输入文件。
+    * `perf.data` 是性能数据文件。
+    * `&> perf.unfold` 用于将输出重定向到 `perf.unfold` 文件。
+
+    ```sh
+    sudo FlameGraph/stackcollapse-perf.pl perf.unfold &> perf.folded
+    ```
+
+    * `stackcollapse-perf.pl` 命令用于将性能数据转换为火焰图的输入格式。
+    * `perf.unfold` 是性能数据文件。
+    * `&> perf.folded` 用于将输出重定向到 `perf.folded` 文件。
+
+    ```sh
+    sudo FlameGraph/flamegraph.pl perf.folded > perf.svg
+    ```
+
+    * `flamegraph.pl` 命令用于生成火焰图。
+    * `perf.folded` 是火焰图需要的性能数据文件。
+    * `> perf.svg` 用于将输出重定向到 `perf.svg` 文件。
+
 
 <br>
 
