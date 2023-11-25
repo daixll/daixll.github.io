@@ -27,39 +27,108 @@
 <h1 id="通过源码构建特定版本的-python">通过源码构建特定版本的 Python </h1>
 <p>以下是在 <code>Ubuntu 20.04</code> 上构建 <code>Python 3.12.0</code> 的步骤。</p>
 <ol>
-<li>下载源码包</li>
-</ol>
+<li>
+<p>下载源码包</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">wget</span> https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tar.xz
-</code></pre><ol start="2">
-<li>下载依赖包</li>
-</ol>
+</code></pre></li>
+<li>
+<p>下载依赖包</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">apt</span> <span class="token function">install</span> build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev <span class="token function">wget</span> libbz2-dev
-</code></pre><ol start="3">
-<li>解压源码包</li>
-</ol>
+</code></pre></li>
+<li>
+<p>解压源码包</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">tar</span> <span class="token parameter variable">-xvf</span> Python-3.12.0.tar.xz
-</code></pre><ol start="4">
-<li>运行配置脚本</li>
-</ol>
+</code></pre></li>
+<li>
+<p>运行配置脚本</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> Python-3.12.0
 ./configure --enable-optimizations
-</code></pre><ol start="5">
-<li>编译</li>
-</ol>
+</code></pre></li>
+<li>
+<p>编译</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">make</span> <span class="token parameter variable">-j</span> <span class="token number">8</span>   <span class="token comment"># 多线程编译</span>
-</code></pre><ol start="6">
-<li>安装</li>
-</ol>
+</code></pre></li>
+<li>
+<p>安装</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">make</span> altinstall
-</code></pre><ol start="7">
-<li>验证</li>
-</ol>
+</code></pre></li>
+<li>
+<p>验证</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>python3.12 <span class="token parameter variable">-V</span>
-</code></pre><h1 id="虚拟环境">虚拟环境 </h1>
+</code></pre></li>
+</ol>
+<h1 id="虚拟环境">虚拟环境 </h1>
 <p>虚拟环境在 Python 中是一个非常重要的概念，起到项目隔离的作用：</p>
 <ul>
 <li>项目 A 使用 Python 2.7，项目 B 使用 Python 3.6</li>
 <li>项目 A 使用 Django 1.11，项目 B 使用 Django 2.0</li>
+</ul>
+<h2 id="安装-miniconda">安装 miniconda </h2>
+<p><code>~/Desktop</code></p>
+<ol>
+<li>
+<p>下载安装脚本</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">wget</span> https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+</code></pre></li>
+<li>
+<p>执行安装脚本</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">bash</span> Miniconda3-latest-Linux-x86_64.sh <span class="token parameter variable">-b</span> <span class="token comment"># 默认安装</span>
+<span class="token function">rm</span> Miniconda3-latest-Linux-x86_64.sh      <span class="token comment"># 删除安装包</span>
+</code></pre></li>
+<li>
+<p>更新</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>~/miniconda3/bin/conda update <span class="token parameter variable">-n</span> base <span class="token parameter variable">-c</span> defaults conda
+<span class="token comment"># -n 指定环境为 base</span>
+<span class="token comment"># -c 指定源为 defaults</span>
+<span class="token comment"># conda 软件名</span>
+</code></pre></li>
+<li>
+<p>配置环境变量</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">echo</span> <span class="token string">'export PATH=$HOME/miniconda3/bin:$PATH'</span> <span class="token operator">&gt;&gt;</span> ~/.bashrc
+<span class="token builtin class-name">source</span> ~/.bashrc
+</code></pre></li>
+<li>
+<p>验证</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>conda <span class="token parameter variable">-V</span>
+</code></pre></li>
+</ol>
+<h2 id="常用命令">常用命令 </h2>
+<ul>
+<li>
+<p>查看所有环境</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>conda info <span class="token parameter variable">-e</span>
+</code></pre></li>
+<li>
+<p>创建环境</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>conda create <span class="token parameter variable">-n</span> py27 <span class="token assign-left variable">python</span><span class="token operator">=</span><span class="token number">2.7</span>
+<span class="token comment"># 创建名为 py27 的环境，使用 Python 2.7</span>
+conda create <span class="token parameter variable">-n</span> py36 <span class="token assign-left variable">python</span><span class="token operator">=</span><span class="token number">3.6</span> <span class="token assign-left variable">django</span><span class="token operator">=</span><span class="token number">1.11</span>
+<span class="token comment"># 创建名为 py36 的环境，使用 Python 3.6，安装 Django 1.11</span>
+</code></pre></li>
+<li>
+<p>激活环境</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>conda activate py27
+</code></pre></li>
+<li>
+<p>退出环境</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>conda deactivate
+</code></pre></li>
+<li>
+<p>删除环境</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>conda remove <span class="token parameter variable">-n</span> py27 <span class="token parameter variable">--all</span>
+</code></pre></li>
+<li>
+<p>查看环境中已安装的软件</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>conda list
+</code></pre></li>
+<li>
+<p>安装软件</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>conda <span class="token function">install</span> django
+</code></pre></li>
+<li>
+<p>卸载软件</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>conda remove django
+</code></pre></li>
 </ul>
 
       </div>
@@ -69,11 +138,24 @@
           <a href="#通过源码构建特定版本的-python" class="md-toc-link">
             <p>通过源码构建特定版本的 Python</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#虚拟环境" class="md-toc-link">
-            <p>虚拟环境</p>
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#虚拟环境" class="md-toc-link"><p>虚拟环境</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#安装-miniconda" class="md-toc-link">
+            <p>安装 miniconda</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#常用命令" class="md-toc-link">
+            <p>常用命令</p>
 
           </a></div>
+        </div>
+      </details>
+    
 </div>
 </div>
       <a id="sidebar-toc-btn">≡</a>
