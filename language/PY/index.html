@@ -24,7 +24,38 @@
     
       <div class="crossnote markdown-preview  ">
       
-<h1 id="虚拟环境">虚拟环境 </h1>
+<h1 id="通过源码构建特定版本的-python">通过源码构建特定版本的 Python </h1>
+<p>以下是在 <code>Ubuntu 20.04</code> 上构建 <code>Python 3.12.0</code> 的步骤。</p>
+<ol>
+<li>下载源码包</li>
+</ol>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">wget</span> https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tar.xz
+</code></pre><ol start="2">
+<li>下载依赖包</li>
+</ol>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">apt</span> <span class="token function">install</span> build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev <span class="token function">wget</span> libbz2-dev
+</code></pre><ol start="3">
+<li>解压源码包</li>
+</ol>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">tar</span> <span class="token parameter variable">-xvf</span> Python-3.12.0.tar.xz
+</code></pre><ol start="4">
+<li>运行配置脚本</li>
+</ol>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> Python-3.12.0
+./configure --enable-optimizations
+</code></pre><ol start="5">
+<li>编译</li>
+</ol>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">make</span> <span class="token parameter variable">-j</span> <span class="token number">8</span>   <span class="token comment"># 多线程编译</span>
+</code></pre><ol start="6">
+<li>安装</li>
+</ol>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">make</span> altinstall
+</code></pre><ol start="7">
+<li>验证</li>
+</ol>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>python3.12 <span class="token parameter variable">-V</span>
+</code></pre><h1 id="虚拟环境">虚拟环境 </h1>
 <p>虚拟环境在 Python 中是一个非常重要的概念，起到项目隔离的作用：</p>
 <ul>
 <li>项目 A 使用 Python 2.7，项目 B 使用 Python 3.6</li>
@@ -35,6 +66,10 @@
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#通过源码构建特定版本的-python" class="md-toc-link">
+            <p>通过源码构建特定版本的 Python</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#虚拟环境" class="md-toc-link">
             <p>虚拟环境</p>
 
