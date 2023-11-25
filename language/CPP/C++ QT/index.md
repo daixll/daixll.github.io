@@ -744,3 +744,32 @@ MainWindow::~MainWindow(){}
 ## 多媒体
 
 # 文件和图像操作
+
+
+# raylib
+
+raylib 是一个简单易用的游戏开发库，它提供了一系列的函数，用于处理窗口、图像、音频、输入、模型等。
+
+## 安装
+
+```sh
+sudo apt install libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
+```
+
+## 测试代码
+
+```cpp
+#include "raylib.h"
+
+
+## 编译
+
+```sh
+gcc main.c -o main -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+```
+
+## 运行
+
+```sh
+./main
+```

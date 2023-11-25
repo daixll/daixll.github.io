@@ -672,166 +672,29 @@ _labelimg  <span class="token operator">-&gt;</span> <span class="token function
 <h2 id="表格和滚动区域">表格和滚动区域 </h2>
 <h2 id="多媒体">多媒体 </h2>
 <h1 id="文件和图像操作">文件和图像操作 </h1>
+<h1 id="raylib">raylib </h1>
+<p>raylib 是一个简单易用的游戏开发库，它提供了一系列的函数，用于处理窗口、图像、音频、输入、模型等。</p>
+<h2 id="安装">安装 </h2>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
+</code></pre><h2 id="测试代码">测试代码 </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"raylib.h"</span></span>
 
+
+## 编译
+
+```sh
+gcc main<span class="token punctuation">.</span>c <span class="token operator">-</span>o main <span class="token operator">-</span>lraylib <span class="token operator">-</span>lGL <span class="token operator">-</span>lm <span class="token operator">-</span>lpthread <span class="token operator">-</span>ldl <span class="token operator">-</span>lrt <span class="token operator">-</span>lX11
+</code></pre><h2>运行</h2>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>./main
+</code></pre>
       </div>
-      <div class="md-sidebar-toc">
-<div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#参考" class="md-toc-link">
-            <p>参考</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#setup" class="md-toc-link"><p>SETUP</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux" class="md-toc-link">
-            <p>LINUX</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#windows" class="md-toc-link">
-            <p>WINDOWS</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#一次编写到处编译" class="md-toc-link"><p>一次编写，到处编译</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-1" class="md-toc-link">
-            <p>LINUX</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#windows-1" class="md-toc-link">
-            <p>WINDOWS</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#打包分享给-" class="md-toc-link"><p>打包！分享给 👧</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-2" class="md-toc-link">
-            <p>LINUX</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#windows-2" class="md-toc-link">
-            <p>WINDOWS</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#信号与槽" class="md-toc-link">
-            <p>信号与槽</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#简单窗口和基本控件" class="md-toc-link"><p>简单窗口和基本控件</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#leg-1-hello-qt" class="md-toc-link">
-            <p>Leg 1 Hello Qt</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#leg-2-布局管理器" class="md-toc-link">
-            <p>Leg 2 布局管理器</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#leg-3-按钮与文本输入框" class="md-toc-link">
-            <p>Leg 3 按钮与文本输入框</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#mission-1-计算器-" class="md-toc-link">
-            <p>Mission 1 计算器 🧮</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#待整理" class="md-toc-link"><p>待整理</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#菜单和工具栏" class="md-toc-link">
-            <p>菜单和工具栏</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#列表和组合控件" class="md-toc-link"><p>列表和组合控件</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#选择和显示日期时间" class="md-toc-link">
-            <p>选择和显示日期/时间</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-图片显示" class="md-toc-link">
-            <p>⛺ 图片显示</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-画图" class="md-toc-link">
-            <p>🎨 画图</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#进度条和滑块" class="md-toc-link">
-            <p>进度条和滑块</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#表格和滚动区域" class="md-toc-link">
-            <p>表格和滚动区域</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#多媒体" class="md-toc-link">
-            <p>多媒体</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#文件和图像操作" class="md-toc-link">
-            <p>文件和图像操作</p>
-
-          </a></div>
-</div>
-</div>
-      <a id="sidebar-toc-btn">≡</a>
-    
-    
-    
-    
-    
-    
-<script>
-document.body.setAttribute('html-show-sidebar-toc', true)
-var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
-sidebarTOCBtn.addEventListener('click', function(event) {
-  event.stopPropagation()
-  if (document.body.hasAttribute('html-show-sidebar-toc')) {
-    document.body.removeAttribute('html-show-sidebar-toc')
-  } else {
-    document.body.setAttribute('html-show-sidebar-toc', true)
-  }
-})
-</script>
       
+      
+    
+    
+    
+    
+    
+    
   
     </body></html>
