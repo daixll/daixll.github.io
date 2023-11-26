@@ -177,6 +177,10 @@ export_on_save:
 
 # 🪓 项目
 
+### XD 
+
+[链接](./for_you/XD/index.html)
+
 
 ---
 
