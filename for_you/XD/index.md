@@ -135,15 +135,65 @@ for i, s in enumerate(my_subopt):
         ./scons.py -j8 mode=release bin
         ```
 
+**farfar2**
 
-pymol:
+* 输入
+    * **序列** `AUCG...`
+    * **二级结构** `((...))`
 
-conda install -c conda-forge -c schrodinger pymol-bundle
-conda install -c schrodinger vtk=8.2.0
+* 输出
+    * 三级结构（`.pdb`）
+
+```sh
+/home/jiao/Desktop/'rosetta.binary.ubuntu.release-362'/main/source/bin/rna_denovo.linuxgccrelease -sequence "ucaggu aagcag" -secstruct "(....( )....)" -nstruct 2 -out:file:silent test.out -minimize_rna -dump
+```
 
 <br>
 
 ---
+
+## rDock
+
+**预测小分子与蛋白质或其他生物分子的结合方式和结合能力** [下载](https://rdock.github.io/download/) / [文档](https://rdock.github.io/documentation/html_docs/index.html)
+
+
+
+<br>
+
+* **安装**
+
+    1. 下载依赖
+        ```bash
+        sudo apt install -y make git libpopt0 libpopt-dev g++
+        ```
+    2. 下载 rDock 及构建
+        ```bash
+        git clone https://github.com/CBDD/rDock
+        cd rDock
+        make
+        ```
+    3. 验证
+        ```bash
+        cd bin
+        ./rbcavity -help
+        ```
+
+**输入**
+
+* 蛋白质结构（`.pdb`）
+* 小分子结构（`.mol2`）
+* 评分函数
+* ...
+
+**输出**
+
+* 分子对接结果
+* 评分信息
+
+<br>
+
+---
+
 
 ## PyRosetta4
 
@@ -179,18 +229,3 @@ conda install -c schrodinger vtk=8.2.0
 
 ---
 
-## rDock
-
-**预测小分子与蛋白质或其他生物分子的结合方式和结合能力** [下载](https://rdock.github.io/download/) / [文档](https://rdock.github.io/documentation/html_docs/index.html)
-
-**输入**
-
-* 蛋白质结构（`.pdb`）
-* 小分子结构（`.mol2`）
-* 评分函数
-* ...
-
-**输出**
-
-* 分子对接结果
-* 评分信息

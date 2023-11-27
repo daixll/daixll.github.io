@@ -149,9 +149,56 @@ python setup.py <span class="token function">install</span>
 </ol>
 </li>
 </ul>
-<p>pymol:</p>
-<p>conda install -c conda-forge -c schrodinger pymol-bundle<br>
-conda install -c schrodinger vtk=8.2.0</p>
+<p><strong>farfar2</strong></p>
+<ul>
+<li>
+<p>输入</p>
+<ul>
+<li><strong>序列</strong> <code>AUCG...</code></li>
+<li><strong>二级结构</strong> <code>((...))</code></li>
+</ul>
+</li>
+<li>
+<p>输出</p>
+<ul>
+<li>三级结构（<code>.pdb</code>）</li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>/home/jiao/Desktop/<span class="token string">'rosetta.binary.ubuntu.release-362'</span>/main/source/bin/rna_denovo.linuxgccrelease <span class="token parameter variable">-sequence</span> <span class="token string">"ucaggu aagcag"</span> <span class="token parameter variable">-secstruct</span> <span class="token string">"(....( )....)"</span> <span class="token parameter variable">-nstruct</span> <span class="token number">2</span> -out:file:silent test.out <span class="token parameter variable">-minimize_rna</span> <span class="token parameter variable">-dump</span>
+</code></pre><br>
+<hr>
+<h2 id="rdock">rDock </h2>
+<p><strong>预测小分子与蛋白质或其他生物分子的结合方式和结合能力</strong> <a href="https://rdock.github.io/download/">下载</a> / <a href="https://rdock.github.io/documentation/html_docs/index.html">文档</a></p>
+<br>
+<ul>
+<li>
+<p><strong>安装</strong></p>
+<ol>
+<li>下载依赖<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> <span class="token function">make</span> <span class="token function">git</span> libpopt0 libpopt-dev g++
+</code></pre></li>
+<li>下载 rDock 及构建<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">git</span> clone https://github.com/CBDD/rDock
+<span class="token builtin class-name">cd</span> rDock
+<span class="token function">make</span>
+</code></pre></li>
+<li>验证<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">cd</span> bin
+./rbcavity <span class="token parameter variable">-help</span>
+</code></pre></li>
+</ol>
+</li>
+</ul>
+<p><strong>输入</strong></p>
+<ul>
+<li>蛋白质结构（<code>.pdb</code>）</li>
+<li>小分子结构（<code>.mol2</code>）</li>
+<li>评分函数</li>
+<li>...</li>
+</ul>
+<p><strong>输出</strong></p>
+<ul>
+<li>分子对接结果</li>
+<li>评分信息</li>
+</ul>
 <br>
 <hr>
 <h2 id="pyrosetta4">PyRosetta4 </h2>
@@ -185,20 +232,6 @@ conda install -c schrodinger vtk=8.2.0</p>
 </ul>
 <br>
 <hr>
-<h2 id="rdock">rDock </h2>
-<p><strong>预测小分子与蛋白质或其他生物分子的结合方式和结合能力</strong> <a href="https://rdock.github.io/download/">下载</a> / <a href="https://rdock.github.io/documentation/html_docs/index.html">文档</a></p>
-<p><strong>输入</strong></p>
-<ul>
-<li>蛋白质结构（<code>.pdb</code>）</li>
-<li>小分子结构（<code>.mol2</code>）</li>
-<li>评分函数</li>
-<li>...</li>
-</ul>
-<p><strong>输出</strong></p>
-<ul>
-<li>分子对接结果</li>
-<li>评分信息</li>
-</ul>
 
       </div>
       <div class="md-sidebar-toc">
@@ -212,12 +245,12 @@ conda install -c schrodinger vtk=8.2.0</p>
             <p>Rosetta</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#pyrosetta4" class="md-toc-link">
-            <p>PyRosetta4</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#rdock" class="md-toc-link">
             <p>rDock</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#pyrosetta4" class="md-toc-link">
+            <p>PyRosetta4</p>
 
           </a></div>
 </div>
