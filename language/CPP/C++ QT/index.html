@@ -662,8 +662,156 @@ _labelimg  <span class="token operator">-&gt;</span> <span class="token function
 <p>同学们可以自行对 <code>calc.h</code> 进行修改，使得其支持更多的运算符和更高的精度。</p>
 <br>
 <hr>
+<h2 id="leg-4-选择控件">Leg 4 选择控件 </h2>
+<p>常用的控件还有选择控件，如下：</p>
+<h4 id="单选">单选 </h4>
+<p>在一组单选框中，只能选择一个。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    QButtonGroup    <span class="token operator">*</span>_one_group<span class="token punctuation">;</span>        <span class="token comment">// 单选按钮组</span>
+    QRadioButton    <span class="token operator">*</span>_one_A<span class="token punctuation">;</span>            <span class="token comment">// 单选按钮</span>
+    QRadioButton    <span class="token operator">*</span>_one_B<span class="token punctuation">;</span>
+    QRadioButton    <span class="token operator">*</span>_one_C<span class="token punctuation">;</span>
+
+    QLabel          <span class="token operator">*</span>_one_res<span class="token punctuation">;</span>          <span class="token comment">// 存放单选选择结果</span>
+    <span class="token keyword keyword-void">void</span>            <span class="token function">_one_clicked</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 单选按钮组的选择结果</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.cpp</span>
+    <span class="token comment">// 设置单选按钮的文本</span>
+    _one_A<span class="token operator">-&gt;</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"马克思"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _one_B<span class="token operator">-&gt;</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"列宁"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _one_C<span class="token operator">-&gt;</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"毛泽东"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 将单选按钮添加到垂直布局</span>
+    _vLayout<span class="token operator">-&gt;</span><span class="token function">addWidget</span><span class="token punctuation">(</span>_one_A<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _vLayout<span class="token operator">-&gt;</span><span class="token function">addWidget</span><span class="token punctuation">(</span>_one_B<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _vLayout<span class="token operator">-&gt;</span><span class="token function">addWidget</span><span class="token punctuation">(</span>_one_C<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 将单选按钮添加到单选按钮组</span>
+    _one_group<span class="token operator">-&gt;</span><span class="token function">addButton</span><span class="token punctuation">(</span>_one_A<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _one_group<span class="token operator">-&gt;</span><span class="token function">addButton</span><span class="token punctuation">(</span>_one_B<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _one_group<span class="token operator">-&gt;</span><span class="token function">addButton</span><span class="token punctuation">(</span>_one_C<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 设置单选按钮组的选择结果</span>
+    <span class="token function">connect</span><span class="token punctuation">(</span>_one_group<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QButtonGroup<span class="token double-colon punctuation">::</span>buttonClicked<span class="token punctuation">,</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>MainWindow<span class="token double-colon punctuation">::</span>_one_clicked<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.cpp</span>
+<span class="token keyword keyword-void">void</span> <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">_one_clicked</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>_one_A<span class="token operator">-&gt;</span><span class="token function">isChecked</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _one_res<span class="token operator">-&gt;</span><span class="token function">setPixmap</span><span class="token punctuation">(</span><span class="token function">QPixmap</span><span class="token punctuation">(</span><span class="token string">"./img/mks.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>_one_B<span class="token operator">-&gt;</span><span class="token function">isChecked</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _one_res<span class="token operator">-&gt;</span><span class="token function">setPixmap</span><span class="token punctuation">(</span><span class="token function">QPixmap</span><span class="token punctuation">(</span><span class="token string">"./img/ln.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>_one_C<span class="token operator">-&gt;</span><span class="token function">isChecked</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _one_res<span class="token operator">-&gt;</span><span class="token function">setPixmap</span><span class="token punctuation">(</span><span class="token function">QPixmap</span><span class="token punctuation">(</span><span class="token string">"./img/mzd.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><h4 id="多选">多选 </h4>
+<p>给定多个选项，可以选择多个。</p>
+<p>🍕🍔🍟🌭🍿</p>
+<h4 id="下拉列表">下拉列表 </h4>
+<h4 id="滑块">滑块 </h4>
+<br>
+<hr>
+<h2 id="leg-5-菜单栏与快捷键">Leg 5 菜单栏与快捷键 </h2>
+<p>菜单栏是主窗口的重要组成部分，它们是由 <code>QMainWindow</code> 类提供的。<br>
+在很多情况下，我们需要在菜单栏中添加一些菜单，然后在菜单中添加一些动作。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMainWindow&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLayout&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMenuBar&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMenu&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QAction&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMessageBox&gt;</span></span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MainWindow</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QMainWindow</span></span>
+<span class="token punctuation">{</span>
+    Q_OBJECT
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent <span class="token operator">=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    QWidget     <span class="token operator">*</span>_centralWidget<span class="token punctuation">;</span>
+    QMenuBar    <span class="token operator">*</span>_menuBar<span class="token punctuation">;</span>   <span class="token comment">// 菜单栏</span>
+
+    QMenu       <span class="token operator">*</span>_file<span class="token punctuation">;</span>      <span class="token comment">// 文件</span>
+        QAction     <span class="token operator">*</span>_new<span class="token punctuation">;</span>      <span class="token comment">// 新建</span>
+        QAction     <span class="token operator">*</span>_open<span class="token punctuation">;</span>     <span class="token comment">// 打开</span>
+
+    QMenu       <span class="token operator">*</span>_help<span class="token punctuation">;</span>      <span class="token comment">// 工具</span>
+        QAction     <span class="token operator">*</span>_about<span class="token punctuation">;</span>    <span class="token comment">// 关于</span>
+
+    <span class="token keyword keyword-void">void</span> <span class="token function">newFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">openFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">about</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.cpp</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"include/MainWindow.h"</span></span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span>
+    <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>   
+    _centralWidget  <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QWidget</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _menuBar        <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QMenuBar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _file           <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QMenu</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _new        <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _open       <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _help           <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QMenu</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _about      <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">setWindowTitle</span><span class="token punctuation">(</span><span class="token string">"Leg 4 菜单与快捷键"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">setCentralWidget</span><span class="token punctuation">(</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 设置中心窗口</span>
+    <span class="token function">setMenuBar</span><span class="token punctuation">(</span>_menuBar<span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 设置菜单栏</span>
+
+    _file <span class="token operator">=</span> _menuBar<span class="token operator">-&gt;</span><span class="token function">addMenu</span><span class="token punctuation">(</span><span class="token string">"文件"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 添加 "文件菜单" 到 "菜单栏" 中</span>
+    _new<span class="token operator">-&gt;</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"新建"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 设置 "new动作" 的文本</span>
+    _file<span class="token operator">-&gt;</span><span class="token function">addAction</span><span class="token punctuation">(</span>_new<span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment">// 将 "new动作" 添加到 "文件菜单" 中</span>
+    _open<span class="token operator">-&gt;</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"打开"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _file<span class="token operator">-&gt;</span><span class="token function">addAction</span><span class="token punctuation">(</span>_open<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    _help <span class="token operator">=</span> _menuBar<span class="token operator">-&gt;</span><span class="token function">addMenu</span><span class="token punctuation">(</span><span class="token string">"帮助"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _about<span class="token operator">-&gt;</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"关于"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _help<span class="token operator">-&gt;</span><span class="token function">addAction</span><span class="token punctuation">(</span>_about<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span>_new<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>MainWindow<span class="token double-colon punctuation">::</span>newFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">connect</span><span class="token punctuation">(</span>_open<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>MainWindow<span class="token double-colon punctuation">::</span>openFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">connect</span><span class="token punctuation">(</span>_about<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>MainWindow<span class="token double-colon punctuation">::</span>about<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">newFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token class-name">QMessageBox</span><span class="token double-colon punctuation">::</span><span class="token function">information</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token string">"新建"</span><span class="token punctuation">,</span> <span class="token string">"新建文件"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">openFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token class-name">QMessageBox</span><span class="token double-colon punctuation">::</span><span class="token function">information</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token string">"打开"</span><span class="token punctuation">,</span> <span class="token string">"打开文件"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">about</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token class-name">QMessageBox</span><span class="token double-colon punctuation">::</span><span class="token function">information</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token string">"关于"</span><span class="token punctuation">,</span> <span class="token string">"Leg 4 菜单与快捷键"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-delete">delete</span> _centralWidget<span class="token punctuation">;</span>
+    <span class="token keyword keyword-delete">delete</span> _menuBar<span class="token punctuation">;</span>
+    <span class="token keyword keyword-delete">delete</span> _file<span class="token punctuation">;</span>
+    <span class="token keyword keyword-delete">delete</span> _new<span class="token punctuation">;</span>
+    <span class="token keyword keyword-delete">delete</span> _open<span class="token punctuation">;</span>
+    <span class="token keyword keyword-delete">delete</span> _help<span class="token punctuation">;</span>
+    <span class="token keyword keyword-delete">delete</span> _about<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>一般的，我们会在菜单栏中添加一些快捷键，这样可以提高用户的使用效率。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
+<span class="token comment">// ...</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    QAction <span class="token operator">*</span>_new<span class="token punctuation">,</span> <span class="token operator">*</span>_open<span class="token punctuation">,</span> <span class="token operator">*</span>_about<span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.cpp</span>
+<span class="token comment">// ...</span>
+_new<span class="token operator">-&gt;</span><span class="token function">setShortcut</span><span class="token punctuation">(</span><span class="token function">QKeySequence</span><span class="token punctuation">(</span><span class="token string">"Ctrl+N"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+_open<span class="token operator">-&gt;</span><span class="token function">setShortcut</span><span class="token punctuation">(</span><span class="token function">QKeySequence</span><span class="token punctuation">(</span><span class="token string">"Ctrl+O"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+_about<span class="token operator">-&gt;</span><span class="token function">setShortcut</span><span class="token punctuation">(</span><span class="token function">QKeySequence</span><span class="token punctuation">(</span><span class="token string">"Ctrl+A"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>现在，就可以通过快捷键来触发菜单栏中的动作了。</p>
+<br>
+<hr>
 <h1 id="待整理">待整理 </h1>
-<h2 id="菜单和工具栏">菜单和工具栏 </h2>
 <h1 id="列表和组合控件">列表和组合控件 </h1>
 <h2 id="选择和显示日期时间">选择和显示日期/时间 </h2>
 <h2 id="-图片显示">⛺ 图片显示 </h2>
@@ -688,13 +836,180 @@ gcc main<span class="token punctuation">.</span>c <span class="token operator">-
 <pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>./main
 </code></pre>
       </div>
+      <div class="md-sidebar-toc">
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#参考" class="md-toc-link">
+            <p>参考</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#setup" class="md-toc-link"><p>SETUP</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux" class="md-toc-link">
+            <p>LINUX</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#windows" class="md-toc-link">
+            <p>WINDOWS</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#一次编写到处编译" class="md-toc-link"><p>一次编写，到处编译</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-1" class="md-toc-link">
+            <p>LINUX</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#windows-1" class="md-toc-link">
+            <p>WINDOWS</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#打包分享给-" class="md-toc-link"><p>打包！分享给 👧</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-2" class="md-toc-link">
+            <p>LINUX</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#windows-2" class="md-toc-link">
+            <p>WINDOWS</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#信号与槽" class="md-toc-link">
+            <p>信号与槽</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#简单窗口和基本控件" class="md-toc-link"><p>简单窗口和基本控件</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-1-hello-qt" class="md-toc-link">
+            <p>Leg 1 Hello Qt</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-2-布局管理器" class="md-toc-link">
+            <p>Leg 2 布局管理器</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-3-按钮与文本输入框" class="md-toc-link">
+            <p>Leg 3 按钮与文本输入框</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mission-1-计算器-" class="md-toc-link">
+            <p>Mission 1 计算器 🧮</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-4-选择控件" class="md-toc-link">
+            <p>Leg 4 选择控件</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-5-菜单栏与快捷键" class="md-toc-link">
+            <p>Leg 5 菜单栏与快捷键</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#待整理" class="md-toc-link">
+            <p>待整理</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#列表和组合控件" class="md-toc-link"><p>列表和组合控件</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#选择和显示日期时间" class="md-toc-link">
+            <p>选择和显示日期/时间</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#-图片显示" class="md-toc-link">
+            <p>⛺ 图片显示</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#-画图" class="md-toc-link">
+            <p>🎨 画图</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#进度条和滑块" class="md-toc-link">
+            <p>进度条和滑块</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#表格和滚动区域" class="md-toc-link">
+            <p>表格和滚动区域</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#多媒体" class="md-toc-link">
+            <p>多媒体</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#文件和图像操作" class="md-toc-link">
+            <p>文件和图像操作</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#raylib" class="md-toc-link"><p>raylib</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#安装" class="md-toc-link">
+            <p>安装</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#测试代码" class="md-toc-link">
+            <p>测试代码</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+</div>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    
+    
+    
+    
+    
+    
+<script>
+document.body.setAttribute('html-show-sidebar-toc', true)
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
       
-      
-    
-    
-    
-    
-    
-    
   
     </body></html>

@@ -720,12 +720,201 @@ MainWindow::~MainWindow(){}
 
 ---
 
+## Leg 4 选择控件
+
+常用的控件还有选择控件，如下：
+
+#### 单选
+
+在一组单选框中，只能选择一个。
+
+```cpp
+// MainWindow.h
+private:
+    QButtonGroup    *_one_group;        // 单选按钮组
+    QRadioButton    *_one_A;            // 单选按钮
+    QRadioButton    *_one_B;
+    QRadioButton    *_one_C;
+
+    QLabel          *_one_res;          // 存放单选选择结果
+    void            _one_clicked();     // 单选按钮组的选择结果
+```
+
+```cpp
+// MainWindow.cpp
+    // 设置单选按钮的文本
+    _one_A->setText("马克思");
+    _one_B->setText("列宁");
+    _one_C->setText("毛泽东");
+
+    // 将单选按钮添加到垂直布局
+    _vLayout->addWidget(_one_A);
+    _vLayout->addWidget(_one_B);
+    _vLayout->addWidget(_one_C);
+
+    // 将单选按钮添加到单选按钮组
+    _one_group->addButton(_one_A);
+    _one_group->addButton(_one_B);
+    _one_group->addButton(_one_C);
+
+    // 设置单选按钮组的选择结果
+    connect(_one_group, &QButtonGroup::buttonClicked, this, &MainWindow::_one_clicked);
+```
+
+```cpp
+// MainWindow.cpp
+void MainWindow::_one_clicked(){
+    if(_one_A->isChecked()){
+        _one_res->setPixmap(QPixmap("./img/mks.jpg"));
+    } else if(_one_B->isChecked()){
+        _one_res->setPixmap(QPixmap("./img/ln.jpg"));
+    } else if(_one_C->isChecked()){
+        _one_res->setPixmap(QPixmap("./img/mzd.jpg"));
+    }
+}
+```
+
+#### 多选
+
+给定多个选项，可以选择多个。
+
+🍕🍔🍟🌭🍿
+
+
+#### 下拉列表
+
+#### 滑块
+
+
+<br>
+
+---
+
+
+## Leg 5 菜单栏与快捷键
+
+菜单栏是主窗口的重要组成部分，它们是由 `QMainWindow` 类提供的。
+在很多情况下，我们需要在菜单栏中添加一些菜单，然后在菜单中添加一些动作。
+
+```cpp
+// MainWindow.h
+#pragma once
+
+#include <QMainWindow>
+#include <QLayout>
+#include <QMenuBar>
+#include <QMenu>
+#include <QAction>
+#include <QMessageBox>
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+private:
+    QWidget     *_centralWidget;
+    QMenuBar    *_menuBar;   // 菜单栏
+
+    QMenu       *_file;      // 文件
+        QAction     *_new;      // 新建
+        QAction     *_open;     // 打开
+
+    QMenu       *_help;      // 工具
+        QAction     *_about;    // 关于
+
+    void newFile();
+    void openFile();
+    void about();
+};
+```
+
+```cpp
+// MainWindow.cpp
+#include "include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{   
+    _centralWidget  = new QWidget();
+    _menuBar        = new QMenuBar();
+    _file           = new QMenu();
+        _new        = new QAction();
+        _open       = new QAction();
+    _help           = new QMenu();
+        _about      = new QAction();
+
+    setWindowTitle("Leg 4 菜单与快捷键");
+    setCentralWidget(_centralWidget);   // 设置中心窗口
+    setMenuBar(_menuBar);               // 设置菜单栏
+
+    _file = _menuBar->addMenu("文件");  // 添加 "文件菜单" 到 "菜单栏" 中
+    _new->setText("新建");              // 设置 "new动作" 的文本
+    _file->addAction(_new);             // 将 "new动作" 添加到 "文件菜单" 中
+    _open->setText("打开");
+    _file->addAction(_open);
+
+    _help = _menuBar->addMenu("帮助");
+    _about->setText("关于");
+    _help->addAction(_about);
+
+    connect(_new, &QAction::triggered, this, &MainWindow::newFile);
+    connect(_open, &QAction::triggered, this, &MainWindow::openFile);
+    connect(_about, &QAction::triggered, this, &MainWindow::about);
+}
+
+void MainWindow::newFile(){
+    QMessageBox::information(this, "新建", "新建文件");
+}
+
+void MainWindow::openFile(){
+    QMessageBox::information(this, "打开", "打开文件");
+}
+
+void MainWindow::about(){
+    QMessageBox::information(this, "关于", "Leg 4 菜单与快捷键");
+}
+
+MainWindow::~MainWindow(){
+    delete _centralWidget;
+    delete _menuBar;
+    delete _file;
+    delete _new;
+    delete _open;
+    delete _help;
+    delete _about;
+}
+```
+
+一般的，我们会在菜单栏中添加一些快捷键，这样可以提高用户的使用效率。
+
+```cpp
+// MainWindow.h
+// ...
+private:
+    QAction *_new, *_open, *_about;
+```
+
+```cpp
+// MainWindow.cpp
+// ...
+_new->setShortcut(QKeySequence("Ctrl+N"));
+_open->setShortcut(QKeySequence("Ctrl+O"));
+_about->setShortcut(QKeySequence("Ctrl+A"));
+```
+
+现在，就可以通过快捷键来触发菜单栏中的动作了。
+
+<br>
+
+---
+
+
+
+
 
 # 待整理
-
-
-
-## 菜单和工具栏
 
 # 列表和组合控件
 
