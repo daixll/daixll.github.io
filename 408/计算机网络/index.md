@@ -478,6 +478,117 @@ Stub 区域 **不会转发外部路由**，只会转发来自本区域的路由�
       ```
 
 
+## 使用 Route-policy 控制路由
+
+![](./IMAGE/实验7_使用Route-policy控制路由.png)
+
+
+1. 配置接口
+
+2. 引入静态路由到 RIP 协议
+    * 路由甲
+      ```shell
+      [路由甲] rip
+      [路由甲-rip-1] network 10.0.0.0
+      [路由甲-rip-1] network 192.168.1.0
+      [路由甲-rip-1] version 2
+      [路由甲-rip-1] undo summary
+      ```
+
+    * 路由乙
+      ```shell
+      [路由乙] rip
+      [路由乙-rip-1] network 192.168.1.0
+      [路由乙-rip-1] version 2
+      [路由乙-rip-1] undo summary
+      ```
+    
+    * 路由丙
+      ```shell
+      [路由丙] rip
+      [路由丙-rip-1] network 192.168.1.0
+      [路由丙-rip-1] version 2
+      [路由丙-rip-1] undo summary
+      ```
+    
+    * 路由甲
+      ```shell
+      [路由甲] ip route-static 10.1.0.0 24 10.0.1.2
+      [路由甲] ip route-static 10.1.1.0 24 10.0.1.2
+      [路由甲] rip
+      [路由甲-rip-1] import-route static
+      [路由甲-rip-1] default cost 2
+      ```
+
+3. 使用 Route-policy 对引入的路由过滤
+    * 路由甲
+    ```shell
+    [路由甲] ip prefix-list abc index 10 permit 10.1.0.0 24
+    [路由甲] route-policy abc permit node 10
+    [路由甲-route-policy-abc-10] if-match ip address prefix-list abc
+    [路由甲-route-policy-abc-10] quit
+    [路由甲] rip
+    [路由甲-rip-1] import-route static route-policy abc
+    ```
+
+4. OSPF 路由配置
+    * 路由乙
+      ```shell
+      [路由乙] ospf 1
+      [路由乙-ospf-1] area 0
+      [路由乙-ospf-1-area-0.0.0.0] network 192.168.2.0 0.0.0.3
+      ```
+    
+    * 路由丙
+      ```shell
+      [路由丙] ospf 1
+      [路由丙-ospf-1] area 0
+      [路由丙-ospf-1-area-0.0.0.0] network 192.168.2.4 0.0.0.3
+      ```
+
+    * 路由丁
+      ```shell
+      [路由丁] ospf 1
+      [路由丁-ospf-1] area 0
+      [路由丁-ospf-1-area-0.0.0.0] network 10.0.2.0 0.0.0.255
+      [路由丁-ospf-1-area-0.0.0.0] network 192.168.2.0 0.0.0.3
+      [路由丁-ospf-1-area-0.0.0.0] network 192.168.2.4 0.0.0.3
+      ```
+
+5. 配置双边引入
+    * 路由乙
+      ```shell
+      [路由乙] rip
+      [路由乙-rip-1] import-route ospf
+      ```
+    * 路由丙
+      ```shell
+      [路由丙] ospf
+      [路由丙-ospf-1] import-route rip
+      ```
+
+6. 路由环路的产生
+    * 路由乙
+      ```shell
+      [路由乙] rip
+      [路由乙-rip-1] preference 200
+      ```
+
+7. 使用TAG选择性引入路由
+    * 路由丙
+      ```shell
+      [路由丙] ospf
+      [路由丙-ospf-1] import-route rip tag 10
+      ```
+    * 路由乙
+      ```shell
+      [路由乙] route-policy abc deny node 10
+      [路由乙-route-policy-abc-10] if-match tag 10
+      [路由乙-route-policy-abc-10] quit
+      [路由乙] route-policy abc permit node 20
+      [路由乙] rip
+      [路由乙-route-policy-abc-20] import-route ospf route-policy abc
+      ```
 
 <br>
 
