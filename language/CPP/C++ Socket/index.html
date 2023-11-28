@@ -24,28 +24,479 @@
     
       <div class="crossnote markdown-preview  ">
       
-<h1 id="参考">参考 </h1>
-<p><strong>书籍：</strong> <a href="https://www.aliyundrive.com/s/DesYASZJKet">阿里云盘</a></p>
-<p><strong>视频：</strong></p>
-<ul>
-<li>123</li>
-</ul>
-<p><strong>网站：</strong></p>
-<ul>
-<li>123</li>
-</ul>
-<br>
+<p><strong>参考：<a href="https://github.com/chenshuo/muduo">muduo</a></strong></p>
 <hr>
-<h1 id="socket">Socket </h1>
+<p><code>系统</code> WSL: Ubuntu-22.04</p>
+<p><code>软件</code> gcc: gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)</p>
+<p>这是一个HTTP服务器，目的是通过此项目学习网络编程：</p>
+<ul>
+<li><a href="#tcp--ip-%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B">TCP / IP 分层模型</a> 及 <a href="#tcp-%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5">三握四挥</a></li>
+<li><a href="#socket-tcp-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket TCP 通信模型</a> 及 <a href="#socket-tcp-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">实例</a></li>
+<li><a href="#socket-udp-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket UDP 通信模型</a> 及 <a href="#socket-udp-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">实例</a></li>
+<li>网络IO接口复用：select、poll、<a href="#epoll">epoll</a></li>
+<li>阻塞、<a href="#%E9%9D%9E%E9%98%BB%E5%A1%9E-socket">非阻塞</a>、<a href="#socket-%E9%80%89%E9%A1%B9">Socket选项</a></li>
+<li>同步、异步</li>
+<li>HTTP协议</li>
+</ul>
+<h2 id="tcp--ip-分层模型">TCP / IP 分层模型 </h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">层</th>
+<th style="text-align:center">协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">应用层</td>
+<td style="text-align:center"><code>HTTP</code> <code>FTP</code> <code>...</code></td>
+</tr>
+<tr>
+<td style="text-align:center">传输层</td>
+<td style="text-align:center"><code>TCP</code> <code>UDP</code> <code>...</code></td>
+</tr>
+<tr>
+<td style="text-align:center">网络层</td>
+<td style="text-align:center"><code>IPV4</code> <code>IPV6</code> <code>...</code></td>
+</tr>
+<tr>
+<td style="text-align:center">物理层</td>
+<td style="text-align:center"><code>LAN</code> <code>WLAN</code> <code>...</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="socket-tcp-通信模型">socket TCP 通信模型 </h2>
+<p>socket是一个接口，而不是一种协议，其抽象在应用层与传输层之间</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">服务端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>socket()</code></td>
+<td style="text-align:center">创建 socket</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><code>bind()</code></td>
+<td style="text-align:center">绑定 ip + port 至该 socket 上</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center"><code>listen()</code></td>
+<td style="text-align:center">监听该 端口</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center"><code>accept()</code></td>
+<td style="text-align:center">接受来自客户端的连接请求</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center"><code>recv()</code></td>
+<td style="text-align:center">从 socket 中读取字符</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center"><code>close()</code></td>
+<td style="text-align:center">关闭 socket</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">客户端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>socket()</code></td>
+<td style="text-align:center">创建 socket</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><code>connect()</code></td>
+<td style="text-align:center">连接指定 ip + port</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center"><code>send()</code></td>
+<td style="text-align:center">发送消息</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center"><code>close()</code></td>
+<td style="text-align:center">关闭 socket</td>
+</tr>
+</tbody>
+</table>
+<h2 id="socket-tcp-通信简单实例">socket TCP 通信简单实例 </h2>
+<ul>
+<li>启动 <a href="%E6%A0%B7%E4%BE%8B/TCP%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E6%9C%8D%E5%8A%A1%E7%AB%AF.cpp">服务端</a>
+<ol>
+<li>编译 <code>g++ 服务端.cpp -o 服务端</code></li>
+<li>运行 <code>./服务端</code> 默认运行在本地 8080 端口</li>
+</ol>
+</li>
+<li>启动 <a href="%E6%A0%B7%E4%BE%8B/TCP%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E5%AE%A2%E6%88%B7%E7%AB%AF.cpp">客户端</a>
+<ol>
+<li>编译 <code>g++ 客户端.cpp -o 客户端</code></li>
+<li>运行 <code>./客户端</code></li>
+</ol>
+</li>
+</ul>
+<p>可以同时运行多个客户端，但服务端在同一时刻只允许一台客户端连接。连接之后：</p>
+<ol>
+<li>客户端发送消息，服务端接收消息</li>
+<li>服务端发送消息，客户端接收消息</li>
+<li>不断重复，直到客户端断开连接</li>
+</ol>
+<h2 id="tcp-三握四挥">TCP 三握四挥 </h2>
+<ul>
+<li>
+<p>连接</p>
+<ol>
+<li><code>客户端</code> 请求连接，<code>connect</code> 阻塞。</li>
+<li><code>服务端</code> 收到请求，<code>accept</code> 阻塞，同时向 <code>客户端</code> 发送确认信息。</li>
+<li><code>客户端</code> 确认。<code>connect</code> 返回。同时发送信息。<code>accept</code> 返回。</li>
+</ol>
+</li>
+<li>
+<p>断开</p>
+<ol>
+<li><code>客户端</code> 请求断开，<code>close</code> 阻塞。</li>
+<li><code>服务端</code> 发送确认信息（我已知晓）。</li>
+<li><code>服务端</code> 发送请求信息（请求断开），<code>close</code> 阻塞。</li>
+<li><code>客户端</code> 收到确认信息，发送确认信息，俩 <code>close</code> 先后返回。</li>
+</ol>
+</li>
+<li>
+<p>连接之后</p>
+<ol>
+<li><code>客户端</code> 发送信息，<code>send</code> 阻塞。</li>
+<li><code>服务端</code> 接收信息，<code>recv</code> 阻塞。</li>
+<li><code>服务端</code> 发送信息，<code>send</code> 阻塞。</li>
+<li><code>客户端</code> 接收信息，<code>recv</code> 阻塞。</li>
+<li>重复 1-4，直到 <code>客户端</code> 或 <code>服务端</code> 断开连接。</li>
+</ol>
+</li>
+</ul>
+<h2 id="socket-udp-通信模型">socket UDP 通信模型 </h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">服务端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>socket()</code></td>
+<td style="text-align:center">创建 socket</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><code>bind()</code></td>
+<td style="text-align:center">绑定 ip + port 至该 socket 上</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center"><code>recvfrom()</code></td>
+<td style="text-align:center">接收来自客户端的消息</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center"><code>close()</code></td>
+<td style="text-align:center">关闭 socket</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">客户端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>socket()</code></td>
+<td style="text-align:center">创建 socket</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><code>sendto()</code></td>
+<td style="text-align:center">发送消息</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center"><code>close()</code></td>
+<td style="text-align:center">关闭 socket</td>
+</tr>
+</tbody>
+</table>
+<h2 id="socket-udp-通信简单实例">socket UDP 通信简单实例 </h2>
+<ul>
+<li>启动 <a href="%E6%A0%B7%E4%BE%8B/UDP%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E6%9C%8D%E5%8A%A1%E7%AB%AF.cpp">服务端</a>
+<ol>
+<li>编译 <code>g++ 服务端.cpp -o 服务端</code></li>
+<li>运行 <code>./服务端</code> 默认运行在本地 8080 端口</li>
+</ol>
+</li>
+<li>启动 <a href="%E6%A0%B7%E4%BE%8B/UDP%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E5%AE%A2%E6%88%B7%E7%AB%AF.cpp">客户端</a>
+<ol>
+<li>编译 <code>g++ 客户端.cpp -o 客户端</code></li>
+<li>运行 <code>./客户端</code></li>
+</ol>
+</li>
+</ul>
+<p>可以同时运行多个客户端，服务端允许多台客户端连接。连接之后：</p>
+<ol>
+<li>客户端发送消息，服务端接收消息，回复单一消息。</li>
+<li>服务端发送消息，客户端接收消息，回复单一消息。</li>
+<li>不断重复，直到客户端断开连接</li>
+</ol>
+<h2 id="socket-选项">Socket 选项 </h2>
+<ul>
+<li>
+<p><code>int setsockopt(int sockfd, int level, int optname, const void *optval, socklen_t optlen);</code></p>
+<ul>
+<li><code>sockfd</code>：文件描述符</li>
+<li><code>level</code>：选项定义的层次
+<ul>
+<li><code>SOL_SOCKET</code>：通用套接字选项</li>
+<li><code>IPPROTO_IP</code>：IP选项</li>
+<li><code>IPPROTO_TCP</code>：TCP选项</li>
+<li><code>IPPROTO_IPV6</code>：IPv6选项</li>
+</ul>
+</li>
+<li><code>optname</code>：选项名称
+<ul>
+<li><code>SO_REUSEADDR</code>：允许重用本地地址和端口</li>
+<li><code>SO_REUSEPORT</code>：允许重用本地地址和端口</li>
+<li><code>SO_KEEPALIVE</code>：开启 TCP Keep-Alive</li>
+<li><code>SO_LINGER</code>：关闭 socket 时，底层会将发送缓冲区的数据发送给对端，然后等待一段时间，如果还没收到对端的确认信息，就强制关闭 socket。</li>
+<li><code>SO_RCVBUF</code>：设置接收缓冲区大小</li>
+<li><code>SO_SNDBUF</code>：设置发送缓冲区大小</li>
+<li><code>TCP_NODELAY</code>：禁用 Nagle 算法</li>
+<li><code>TCP_MAXSEG</code>：设置 TCP 最大分段大小</li>
+<li><code>TCP_CORK</code>：开启 TCP_CORK，关闭 Nagle 算法</li>
+<li><code>TCP_QUICKACK</code>：开启 TCP_QUICKACK，关闭延迟确认</li>
+</ul>
+</li>
+<li><code>optval</code>：选项值</li>
+<li><code>optlen</code>：选项值长度</li>
+</ul>
+</li>
+<li>
+<p><code>int getsockopt(int sockfd, int level, int optname, void *optval, socklen_t *optlen);</code></p>
+<ul>
+<li><code>sockfd</code>：文件描述符</li>
+<li><code>level</code>：选项定义的层次</li>
+<li><code>optname</code>：选项名称</li>
+<li><code>optval</code>：选项值</li>
+<li><code>optlen</code>：选项值长度</li>
+</ul>
+</li>
+</ul>
+<h2 id="非阻塞-socket">非阻塞 Socket </h2>
+<ul>
+<li><code>int fcntl(int fd, int cmd, ... /* arg */ );</code>
+<ul>
+<li><code>fd</code>：文件描述符</li>
+<li><code>cmd</code>：
+<ul>
+<li><code>F_GETFL</code>：获取文件描述符状态标志</li>
+<li><code>F_SETFL</code>：设置文件描述符状态标志</li>
+</ul>
+</li>
+<li><code>arg</code>：文件描述符状态标志
+<ul>
+<li><code>O_NONBLOCK</code>：非阻塞</li>
+<li><code>O_ASYNC</code>：异步</li>
+<li><code>O_SYNC</code>：同步</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>阻塞：调用函数时，如果数据没有准备好，那么函数将一直等待，直到数据准备好为止。</p>
+<p>非阻塞：调用函数时，如果数据没有准备好，那么函数将立即返回，不会等待数据准备好。</p>
+<ul>
+<li>
+<p><code>accept</code></p>
+<ul>
+<li>阻塞：没有新连接时，一直等待。</li>
+<li>非阻塞：没有新连接时，立即返回 <code>EWOULDBLOCK(11)</code> 或 <code>EAGAIN</code></li>
+</ul>
+</li>
+<li>
+<p><code>recv</code></p>
+<ul>
+<li>阻塞：没有数据时，一直等待。</li>
+<li>非阻塞：没有数据时，立即返回 <code>EWOULDBLOCK(11)</code> 或 <code>EAGAIN</code></li>
+</ul>
+</li>
+<li>
+<p><code>read</code></p>
+<ul>
+<li>阻塞：没有数据时，一直等待。</li>
+<li>非阻塞：没有数据时，立即返回 <code>EWOULDBLOCK(11)</code> 或 <code>EAGAIN</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="epoll">Epoll </h2>
+<p>eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）的一个实现。</p>
+<p>直观来说，I/O 复用的作用就是：让程序能够在单进程、单线程的模式下，同时处理 <strong>多个文件描述符</strong> 的 I/O 请求。</p>
+<ul>
+<li>
+<p><code>int epoll_create1()</code></p>
+<ul>
+<li>创建一个 epoll 文件描述符，事件轮询的实例，返回一个文件描述符，即事件树。</li>
+<li>底层创建一个 红黑树 和 就绪链表（双向链表）。</li>
+<li>红黑树 存储所监控的文件描述符的节点数据，就绪链表 存储就绪的文件描述符的节点数据。</li>
+</ul>
+</li>
+<li>
+<p><code>int epoll_ctl(事件树, 操作, 文件描述符, 事件)</code></p>
+<ul>
+<li>操作：
+<ul>
+<li><code>EPOLL_CTL_ADD</code>：注册新的事件到事件树。</li>
+<li><code>EPOLL_CTL_MOD</code>：修改已经注册的事件。</li>
+<li><code>EPOLL_CTL_DEL</code>：删除已经注册的事件。</li>
+</ul>
+</li>
+<li>事件：
+<ul>
+<li><code>EPOLLIN</code>：对应的文件描述符可以读 <code>read</code>（包括对端SOCKET正常关闭）。</li>
+<li><code>EPOLLPRI</code>：对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）。</li>
+<li><code>EPOLLOUT</code>：对应的文件描述符可以写 <code>recv</code>。</li>
+<li><code>EPOLLERR</code>：对应的文件描述符发生错误。</li>
+<li><code>EPOLLHUP</code>：对应的文件描述符被挂断。</li>
+<li><code>EPOLLET</code>：将 EPOLL 设为边缘触发(Edge Triggered)模式。</li>
+<li><code>EPOLLONESHOT</code>：只监听一次事件，当监听完这次事件之后，删除。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>int epoll_wait(事件树, 事件数组, 事件数组大小, 超时时间)</code></p>
+<ul>
+<li>事件数组：<code>epoll_event</code> 结构体数组</li>
+<li>超时时间：<code>-1</code> 阻塞，<code>0</code> 立即返回，<code>&gt;0</code> 等待指定时间</li>
+</ul>
+</li>
+</ul>
+<h2 id="epoll-通信实例">Epoll 通信实例 </h2>
+<ul>
+<li>启动 <a href="%E6%A0%B7%E4%BE%8B/%E4%BA%8B%E4%BB%B6%E8%BD%AE%E8%AF%A2%E6%A0%B7%E4%BE%8B/%E6%9C%8D%E5%8A%A1%E7%AB%AF.cpp">服务端</a>
+<ol>
+<li>编译 <code>g++ 服务端.cpp -o 服务端</code></li>
+<li>运行 <code>./服务端</code> 默认运行在本地 8080 端口</li>
+</ol>
+</li>
+<li>启动 <a href="%E6%A0%B7%E4%BE%8B/%E4%BA%8B%E4%BB%B6%E8%BD%AE%E8%AF%A2%E6%A0%B7%E4%BE%8B/%E5%AE%A2%E6%88%B7%E7%AB%AF.cpp">客户端</a>
+<ol>
+<li>编译 <code>g++ 客户端.cpp -o 客户端</code></li>
+<li>运行 <code>./客户端</code></li>
+</ol>
+</li>
+</ul>
+<p>可以同时运行多个客户端，服务端允许多台客户端连接。连接之后：</p>
+<ol>
+<li>客户端发送消息，服务端接收消息，回复单一消息。</li>
+</ol>
+<h2 id="面向对象">面向对象 </h2>
+<h2 id="channel">Channel </h2>
+<p><code>Channel</code> 是 <code>Epoll</code> 的事件处理类，<code>Epoll</code> 通过 <code>Channel</code> 处理事件。</p>
 
       </div>
+      <div class="md-sidebar-toc">
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#tcp--ip-分层模型" class="md-toc-link">
+            <p>TCP / IP 分层模型</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#socket-tcp-通信模型" class="md-toc-link">
+            <p>socket TCP 通信模型</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#socket-tcp-通信简单实例" class="md-toc-link">
+            <p>socket TCP 通信简单实例</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#tcp-三握四挥" class="md-toc-link">
+            <p>TCP 三握四挥</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#socket-udp-通信模型" class="md-toc-link">
+            <p>socket UDP 通信模型</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#socket-udp-通信简单实例" class="md-toc-link">
+            <p>socket UDP 通信简单实例</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#socket-选项" class="md-toc-link">
+            <p>Socket 选项</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#非阻塞-socket" class="md-toc-link">
+            <p>非阻塞 Socket</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#epoll" class="md-toc-link">
+            <p>Epoll</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#epoll-通信实例" class="md-toc-link">
+            <p>Epoll 通信实例</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#面向对象" class="md-toc-link">
+            <p>面向对象</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#channel" class="md-toc-link">
+            <p>Channel</p>
+
+          </a></div>
+</div>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    
+    
+    
+    
+    
+    
+<script>
+document.body.setAttribute('html-show-sidebar-toc', true)
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
       
-      
-    
-    
-    
-    
-    
-    
   
     </body></html>

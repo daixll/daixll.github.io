@@ -5,22 +5,227 @@ export_on_save:
     html: true  # 自动保存
 ---
 
-# 参考
 
-**书籍：** [阿里云盘](https://www.aliyundrive.com/s/DesYASZJKet)
-
-**视频：**
-
-* 123
-
-**网站：**
-
-* 123
-
-<br>
+**参考：[muduo](https://github.com/chenshuo/muduo)**
 
 ---
 
+`系统` WSL: Ubuntu-22.04
 
-# Socket
+`软件` gcc: gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)
 
+这是一个HTTP服务器，目的是通过此项目学习网络编程：
+
+* [TCP / IP 分层模型](#tcp--ip-分层模型) 及 [三握四挥](#tcp-三握四挥)
+* [socket TCP 通信模型](#socket-tcp-通信模型) 及 [实例](#socket-tcp-通信简单实例)
+* [socket UDP 通信模型](#socket-udp-通信模型) 及 [实例](#socket-udp-通信简单实例)
+* 网络IO接口复用：select、poll、[epoll](#epoll)
+* 阻塞、[非阻塞](#非阻塞-socket)、[Socket选项](#socket-选项)
+* 同步、异步
+* HTTP协议
+
+
+## TCP / IP 分层模型
+
+| 层     | 协议 |
+| :-:    | :-: |
+| 应用层 | `HTTP` `FTP` `...` |
+| 传输层 | `TCP` `UDP` `...` |
+| 网络层 | `IPV4` `IPV6` `...` |
+| 物理层 | `LAN` `WLAN` `...` |
+
+## socket TCP 通信模型
+socket是一个接口，而不是一种协议，其抽象在应用层与传输层之间
+
+|       |  函数  |  服务端  |                      
+| :---: |  :---:  | :---: | 
+| 1 | `socket()`| 创建 socket                   |  
+| 2 | `bind()`  | 绑定 ip + port 至该 socket 上 |  
+| 3 | `listen()`| 监听该 端口                   |
+| 4 | `accept()`| 接受来自客户端的连接请求        | 
+| 5 | `recv()`  | 从 socket 中读取字符          |  
+| 6 | `close()` | 关闭 socket                   |  
+
+|       |  函数  |  客户端		|   
+| :---: |  :---:  | :---: 		|
+| 1 | `socket()`  | 创建 socket	|
+| 2 | `connect()` | 连接指定 ip + port |
+| 3 | `send()` | 发送消息 |
+| 4 | `close()` | 关闭 socket |
+
+
+## socket TCP 通信简单实例
+    
+* 启动 [服务端](样例/TCP通信样例/服务端.cpp)
+    1. 编译 `g++ 服务端.cpp -o 服务端`
+    2. 运行 `./服务端` 默认运行在本地 8080 端口
+* 启动 [客户端](样例/TCP通信样例/客户端.cpp)
+    1. 编译 `g++ 客户端.cpp -o 客户端`
+    2. 运行 `./客户端`     
+   
+可以同时运行多个客户端，但服务端在同一时刻只允许一台客户端连接。连接之后：
+1. 客户端发送消息，服务端接收消息
+2. 服务端发送消息，客户端接收消息
+3. 不断重复，直到客户端断开连接
+
+## TCP 三握四挥
+
+* 连接
+    1. `客户端` 请求连接，`connect` 阻塞。
+    2. `服务端` 收到请求，`accept` 阻塞，同时向 `客户端` 发送确认信息。
+    3. `客户端` 确认。`connect` 返回。同时发送信息。`accept` 返回。
+
+* 断开
+    1. `客户端` 请求断开，`close` 阻塞。
+    2. `服务端` 发送确认信息（我已知晓）。
+    3. `服务端` 发送请求信息（请求断开），`close` 阻塞。
+    4. `客户端` 收到确认信息，发送确认信息，俩 `close` 先后返回。
+
+* 连接之后
+    1. `客户端` 发送信息，`send` 阻塞。
+    2. `服务端` 接收信息，`recv` 阻塞。
+    3. `服务端` 发送信息，`send` 阻塞。
+    4. `客户端` 接收信息，`recv` 阻塞。
+    5. 重复 1-4，直到 `客户端` 或 `服务端` 断开连接。
+
+## socket UDP 通信模型
+
+|       |  函数  |  服务端  |                      
+| :---: |  :---:  | :---: | 
+| 1 | `socket()`| 创建 socket                   |  
+| 2 | `bind()`  | 绑定 ip + port 至该 socket 上 |  
+| 3 | `recvfrom()`| 接收来自客户端的消息        |
+| 4 | `close()` | 关闭 socket                   |  
+
+|       |  函数  |  客户端		|   
+| :---: |  :---:  | :---: 		|
+| 1 | `socket()`  | 创建 socket	|
+| 2 | `sendto()` | 发送消息 |
+| 3 | `close()` | 关闭 socket |
+
+## socket UDP 通信简单实例
+
+* 启动 [服务端](样例/UDP通信样例/服务端.cpp)
+    1. 编译 `g++ 服务端.cpp -o 服务端`
+    2. 运行 `./服务端` 默认运行在本地 8080 端口
+* 启动 [客户端](样例/UDP通信样例/客户端.cpp)
+    1. 编译 `g++ 客户端.cpp -o 客户端`
+    2. 运行 `./客户端`     
+   
+可以同时运行多个客户端，服务端允许多台客户端连接。连接之后：
+
+1. 客户端发送消息，服务端接收消息，回复单一消息。
+2. 服务端发送消息，客户端接收消息，回复单一消息。
+3. 不断重复，直到客户端断开连接
+
+## Socket 选项
+
+* `int setsockopt(int sockfd, int level, int optname, const void *optval, socklen_t optlen);`
+    * `sockfd`：文件描述符
+    * `level`：选项定义的层次
+        * `SOL_SOCKET`：通用套接字选项
+        * `IPPROTO_IP`：IP选项
+        * `IPPROTO_TCP`：TCP选项
+        * `IPPROTO_IPV6`：IPv6选项
+    * `optname`：选项名称
+        * `SO_REUSEADDR`：允许重用本地地址和端口
+        * `SO_REUSEPORT`：允许重用本地地址和端口
+        * `SO_KEEPALIVE`：开启 TCP Keep-Alive
+        * `SO_LINGER`：关闭 socket 时，底层会将发送缓冲区的数据发送给对端，然后等待一段时间，如果还没收到对端的确认信息，就强制关闭 socket。
+        * `SO_RCVBUF`：设置接收缓冲区大小
+        * `SO_SNDBUF`：设置发送缓冲区大小
+        * `TCP_NODELAY`：禁用 Nagle 算法
+        * `TCP_MAXSEG`：设置 TCP 最大分段大小
+        * `TCP_CORK`：开启 TCP_CORK，关闭 Nagle 算法
+        * `TCP_QUICKACK`：开启 TCP_QUICKACK，关闭延迟确认
+    * `optval`：选项值
+    * `optlen`：选项值长度
+
+* `int getsockopt(int sockfd, int level, int optname, void *optval, socklen_t *optlen);`
+    * `sockfd`：文件描述符
+    * `level`：选项定义的层次
+    * `optname`：选项名称
+    * `optval`：选项值
+    * `optlen`：选项值长度
+
+
+## 非阻塞 Socket
+
+* `int fcntl(int fd, int cmd, ... /* arg */ );`
+    * `fd`：文件描述符
+    * `cmd`：
+        * `F_GETFL`：获取文件描述符状态标志
+        * `F_SETFL`：设置文件描述符状态标志
+    * `arg`：文件描述符状态标志
+        * `O_NONBLOCK`：非阻塞
+        * `O_ASYNC`：异步
+        * `O_SYNC`：同步
+
+
+阻塞：调用函数时，如果数据没有准备好，那么函数将一直等待，直到数据准备好为止。
+
+非阻塞：调用函数时，如果数据没有准备好，那么函数将立即返回，不会等待数据准备好。
+
+
+* `accept`
+    * 阻塞：没有新连接时，一直等待。
+    * 非阻塞：没有新连接时，立即返回 `EWOULDBLOCK(11)` 或 `EAGAIN`
+
+* `recv`
+    * 阻塞：没有数据时，一直等待。
+    * 非阻塞：没有数据时，立即返回 `EWOULDBLOCK(11)` 或 `EAGAIN`
+
+* `read`
+    * 阻塞：没有数据时，一直等待。
+    * 非阻塞：没有数据时，立即返回 `EWOULDBLOCK(11)` 或 `EAGAIN`
+
+
+## Epoll
+
+eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）的一个实现。
+
+直观来说，I/O 复用的作用就是：让程序能够在单进程、单线程的模式下，同时处理 **多个文件描述符** 的 I/O 请求。
+
+* `int epoll_create1()` 
+    * 创建一个 epoll 文件描述符，事件轮询的实例，返回一个文件描述符，即事件树。
+    * 底层创建一个 红黑树 和 就绪链表（双向链表）。
+    * 红黑树 存储所监控的文件描述符的节点数据，就绪链表 存储就绪的文件描述符的节点数据。
+
+* `int epoll_ctl(事件树, 操作, 文件描述符, 事件)`
+    * 操作：
+        * `EPOLL_CTL_ADD`：注册新的事件到事件树。
+        * `EPOLL_CTL_MOD`：修改已经注册的事件。
+        * `EPOLL_CTL_DEL`：删除已经注册的事件。
+    * 事件：
+        * `EPOLLIN`：对应的文件描述符可以读 `read`（包括对端SOCKET正常关闭）。
+        * `EPOLLPRI`：对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）。
+        * `EPOLLOUT`：对应的文件描述符可以写 `recv`。
+        * `EPOLLERR`：对应的文件描述符发生错误。
+        * `EPOLLHUP`：对应的文件描述符被挂断。
+        * `EPOLLET`：将 EPOLL 设为边缘触发(Edge Triggered)模式。
+        * `EPOLLONESHOT`：只监听一次事件，当监听完这次事件之后，删除。
+
+* `int epoll_wait(事件树, 事件数组, 事件数组大小, 超时时间)`
+    * 事件数组：`epoll_event` 结构体数组
+    * 超时时间：`-1` 阻塞，`0` 立即返回，`>0` 等待指定时间
+
+
+## Epoll 通信实例
+
+* 启动 [服务端](样例/事件轮询样例/服务端.cpp)
+    1. 编译 `g++ 服务端.cpp -o 服务端`
+    2. 运行 `./服务端` 默认运行在本地 8080 端口
+* 启动 [客户端](样例/事件轮询样例/客户端.cpp)
+    1. 编译 `g++ 客户端.cpp -o 客户端`
+    2. 运行 `./客户端`     
+   
+可以同时运行多个客户端，服务端允许多台客户端连接。连接之后：
+1. 客户端发送消息，服务端接收消息，回复单一消息。
+
+## 面向对象
+
+
+
+## Channel
+
+`Channel` 是 `Epoll` 的事件处理类，`Epoll` 通过 `Channel` 处理事件。
