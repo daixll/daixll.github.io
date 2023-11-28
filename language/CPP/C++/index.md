@@ -7,6 +7,18 @@ export_on_save:
     html: true  # 自动保存
 ---
 
+# 参考
+
+关于 C++ 的学习参考：
+
+* [cppreference](https://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5)：C++ 参考手册
+
+* [Microsoft Visual C++](https://learn.microsoft.com/zh-cn/cpp/cpp/cpp-language-reference?view=msvc-170)：微软官方 C++ 参考手册
+
+
+<br>
+
+---
 
 # class
 
@@ -468,6 +480,17 @@ int main(){
 
 # string 
 
+
+> **备忘**
+> ```cpp
+> // i2s
+> s = std::to_string(i);
+> ```
+> ```cpp
+> // s2i
+> i = std::stoll(s);
+> ```
+
 字符串常常会有这几个头文件：
 
 ```cpp
@@ -709,6 +732,8 @@ void *memcpy(void *dest, const void *src, size_t n);
 
 # stream
 
+流，C++ 中的一种抽象概念，用于表示数据在程序和外部设备（如文件、键盘、屏幕等）之间的流动。
+
 * **缓冲区**：缓冲区是一个临时存储区域，用于存放输入输出的数据。
     用于减少对输入输出设备的访问次数，从而提高效率。（缓冲区更快，输入输出设备更慢）
 * **状态**：流具有不同状态：
@@ -717,22 +742,243 @@ void *memcpy(void *dest, const void *src, size_t n);
     * `fail()`：流操作失败。
     * `eof()`：流到达文件末尾。
 
+    ```cpp
+    if(std::cin.good()) std::cout << "good" << std::endl;
+    ```
+
 ## io stream
 
+`iostream`：标准输入输出流，用于控制台输入输出。
 
+```cpp
+std::cin >> x;    // 从控制台输入
+std::cout << x ;  // 输出到控制台
+```
+
+
+* 读入
+    ```cpp
+    // 100 a
+    int a;
+    char c;
+    ```
+
+    * `cin`
+        ```cpp
+        std::cin >> a >> c;
+        ```
+        正确读入，`a = 100`，`c = 'a'`。
+    * `scanf`
+        ```cpp
+        scanf("%d%c", &a, &c);
+        ```
+        不符合预期，`a = 100`，`c = ' '`。
+
+* 输出
+    * `endl`
+        ```cpp
+        std::cout << a << std::endl;
+        ```
+        输出 `a` 并换行，同时刷新缓冲区。
+
+        ```cpp
+        #include <iostream>
+    
+        int main(){
+            // 立即输出
+            std::cout << "hello" << std::endl;
+            // 程序自动判断何时输出
+            std::cout << "world";
+
+            while(1);
+            return 0;
+        }
+        ```
+    
+    * `flush`
+        ```cpp
+        std::cout << a << std::flush;
+        std::flush(std::cout);
+        ```
+        输出 `a`，但不换行，同时刷新缓冲区。
+
+    * 关闭 C / C++ 的输入输出同步
+        ```cpp
+        std::ios::sync_with_stdio(false);        
+        ```
+        * 关闭之后，`cin` 和 `scanf` 的输入顺序不再保证一致。
+    
+    * 关闭缓冲区
+        ```cpp
+        std::cin.tie(nullptr); std::cout.tie(nullptr);
+        ```
+        * 理论上，关闭之后，`cin` 和 `cout` 不再绑定，`cin` 的输入不会刷新 `cout` 的输出。
+                
 
 ### iomanip
 
+* `setw` 设置字段宽度
+    ```cpp
+    std::cout << std::setw(5) << 123 << std::endl;
+    // "  123"
+    ```
+
+* `setfill` 设置填充字符
+    ```cpp
+    std::cout << std::setw(5) << std::setfill('G') << 123 << std::endl;
+    // "GG123"
+    ```
+
+* `fixed` `setprecision` 设置浮点数的小数精度
+    ```cpp
+    std::cout << std::setw(5) << std::fixed << std::setprecision(2) << 3.1415926 << std::endl;
+    // " 3.14"
+    ```
+
+* `left` `right` 控制字段中数据的对齐方式
+    ```cpp
+    std::cout << std::setw(5) << std::left << 123 << std::endl;
+    // "123  "
+    ```
+
+### cerr
+
+`cerr`：标准错误流，立即输出到控制台，不会缓冲。
+
+```cpp
+std::cerr << "error" << std::endl;
+```
 
 ## f stream
 
+`fstream`：文件输入输出流，用于文件输入输出。
+
+### ifstream
+
+从文件读入数据。
+    
+1. 打开文件
+```cpp
+std::ifstream ifs("in.txt");
+    
+if(!ifs.is_open()){
+    std::cerr << "打开文件失败" << std::endl;
+    return 1;
+}
+```
+
+2. 读取文件
+
+* 按 `\n` 读取
+    ```cpp
+    std::string s;
+    while(std::getline(ifs, s))
+        std::cout << s << std::endl;
+    ```
+
+* 按 ` ` 读取
+
+    ```cpp
+    std::string s;
+    while(ifs >> s)
+        std::cout << s << std::endl;
+    ```
+
+3. 移动文件指针
+
+    ```cpp
+    ifs.seekg(0, std::ios::beg);    // 移动到文件开头
+    ```
+
+    > 移动文件指针还有更多用法。详见 [cppreference](https://zh.cppreference.com/w/cpp/io/basic_istream/seekg)。
+
+
+3. 关闭文件
+
+    ```cpp
+    ifs.close();
+    ```
+
+### ofstream
+
+1. 打开文件
+    ```cpp
+    std::ofstream ofs("out.txt");
+    ```
+
+2. 写入文件
+
+    ```cpp
+    ofs << "hello" << std::endl;
+    ```
+
+3. 关闭文件
+
+    ```cpp
+    ofs.close();
+    ```
 
 ## s stream
 
+`sstream`：字符串输入输出流。提供一种灵活的方式，将字符串当作流来处理。
 
-## 
+* 初始化
 
+    ```cpp
+    std::stringstream ss;
+    ```
 
+* 写入
+
+    ```cpp
+    ss << "hello";
+    ss << 123;
+    ss << 3.14;
+    ```
+
+* 读取
+
+    ```cpp
+    std::string s;
+    int a;
+    double b;
+
+    ss >> s >> a >> b;
+    ```
+
+* 进制转换
+
+    * `dec` -> `oct` / `hex`
+        ```cpp
+        std::stringstream ss;
+        std::string s;
+        int num = 666;
+
+        // 将 num 以八进制形式写入 ss
+        ss << std::oct << num;
+        ss >> s;
+        std::cout << s << std::endl;// 1232
+
+        ss.clear();
+
+        // 将 num 以十六进制形式写入 ss
+        ss << std::hex << num;
+        ss >> s;
+        std::cout << s << std::endl;// 29a
+        ```
+    
+    * `oct` / `hex` -> `dec`
+        ```cpp
+        std::string a = "1232";
+        std::string b = "29a";
+        int num;
+
+        num = std::stoi(a, nullptr, 8);
+        std::cout << num << std::endl;  // 666
+        
+        num = std::stoi(b, nullptr, 16);
+        std::cout << num << std::endl;  // 666
+        ```
 
 <br>
 
@@ -1121,14 +1367,55 @@ ptr = nullptr;          // 将 ptr 置为 nullptr, ptr 成空指针
 
 # 范围 for 循环
 
-# 异常处理
 
-# 类型推导
 
 <br>
 
 ---
 
+# 异常处理
+
+异常指的是程序运行时发生的错误，比如除零错误、数组越界等。
+
+## try catch throw
+
+* `try`
+    将可能引发异常的一个或多个语句封闭起来。
+    
+    ```cpp
+    try{
+        // 可能引发异常的语句
+        throw;  // 抛出异常
+    }catch(...){
+        // 异常处理
+        throw;  // 重新抛出异常
+    }
+    ```
+
+
+* `catch`
+    捕获异常，处理异常。
+
+* `throw`
+    抛出异常。
+
+
+
+## RAII
+
+
+
+<br>
+
+---
+
+# 断言
+
+
+
+<br>
+
+---
 
 
 # STL

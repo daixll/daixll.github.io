@@ -24,6 +24,18 @@
     
       <div class="crossnote markdown-preview  ">
       
+<h1 id="参考">参考 </h1>
+<p>关于 C++ 的学习参考：</p>
+<ul>
+<li>
+<p><a href="https://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5">cppreference</a>：C++ 参考手册</p>
+</li>
+<li>
+<p><a href="https://learn.microsoft.com/zh-cn/cpp/cpp/cpp-language-reference?view=msvc-170">Microsoft Visual C++</a>：微软官方 C++ 参考手册</p>
+</li>
+</ul>
+<br>
+<hr>
 <h1 id="class">class </h1>
 <blockquote>
 <p>假设，我们需要接受一个不确定的输入，<br>
@@ -463,6 +475,13 @@ userInput<span class="token operator">-&gt;</span><span class="token function">p
 </code></pre><br>
 <hr>
 <h1 id="string">string </h1>
+<blockquote>
+<p><strong>备忘</strong></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// i2s</span>
+s <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">to_string</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// s2i</span>
+i <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">stoll</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></blockquote>
 <p>字符串常常会有这几个头文件：</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
@@ -638,23 +657,223 @@ NUL NUL
 </code></pre><br>
 <hr>
 <h1 id="stream">stream </h1>
+<p>流，C++ 中的一种抽象概念，用于表示数据在程序和外部设备（如文件、键盘、屏幕等）之间的流动。</p>
 <ul>
-<li><strong>缓冲区</strong>：缓冲区是一个临时存储区域，用于存放输入输出的数据。<br>
-用于减少对输入输出设备的访问次数，从而提高效率。（缓冲区更快，输入输出设备更慢）</li>
-<li><strong>状态</strong>：流具有不同状态：
+<li>
+<p><strong>缓冲区</strong>：缓冲区是一个临时存储区域，用于存放输入输出的数据。<br>
+用于减少对输入输出设备的访问次数，从而提高效率。（缓冲区更快，输入输出设备更慢）</p>
+</li>
+<li>
+<p><strong>状态</strong>：流具有不同状态：</p>
 <ul>
 <li><code>good()</code>：流正常。</li>
 <li><code>bad()</code>：流崩溃。</li>
 <li><code>fail()</code>：流操作失败。</li>
 <li><code>eof()</code>：流到达文件末尾。</li>
 </ul>
-</li>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>cin<span class="token punctuation">.</span><span class="token function">good</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"good"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+</code></pre></li>
 </ul>
 <h2 id="io-stream">io stream </h2>
+<p><code>iostream</code>：标准输入输出流，用于控制台输入输出。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>cin <span class="token operator">&gt;&gt;</span> x<span class="token punctuation">;</span>    <span class="token comment">// 从控制台输入</span>
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> x <span class="token punctuation">;</span>  <span class="token comment">// 输出到控制台</span>
+</code></pre><ul>
+<li>
+<p>读入</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 100 a</span>
+<span class="token keyword keyword-int">int</span> a<span class="token punctuation">;</span>
+<span class="token keyword keyword-char">char</span> c<span class="token punctuation">;</span>
+</code></pre><ul>
+<li><code>cin</code><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>cin <span class="token operator">&gt;&gt;</span> a <span class="token operator">&gt;&gt;</span> c<span class="token punctuation">;</span>
+</code></pre>正确读入，<code>a = 100</code>，<code>c = 'a'</code>。</li>
+<li><code>scanf</code><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%c"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>不符合预期，<code>a = 100</code>，<code>c = ' '</code>。</li>
+</ul>
+</li>
+<li>
+<p>输出</p>
+<ul>
+<li>
+<p><code>endl</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> a <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+</code></pre><p>输出 <code>a</code> 并换行，同时刷新缓冲区。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">// 立即输出</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"hello"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">// 程序自动判断何时输出</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"world"</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li>
+<p><code>flush</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> a <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>flush<span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span><span class="token function">flush</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>输出 <code>a</code>，但不换行，同时刷新缓冲区。</p>
+</li>
+<li>
+<p>关闭 C / C++ 的输入输出同步</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>ios<span class="token double-colon punctuation">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        
+</code></pre><ul>
+<li>关闭之后，<code>cin</code> 和 <code>scanf</code> 的输入顺序不再保证一致。</li>
+</ul>
+</li>
+<li>
+<p>关闭缓冲区</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>cin<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span> std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">.</span><span class="token function">tie</span><span class="token punctuation">(</span><span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li>理论上，关闭之后，<code>cin</code> 和 <code>cout</code> 不再绑定，<code>cin</code> 的输入不会刷新 <code>cout</code> 的输出。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="iomanip">iomanip </h3>
-<h2 id="f-stream">f stream </h2>
+<ul>
+<li>
+<p><code>setw</code> 设置字段宽度</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span><span class="token function">setw</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token number">123</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token comment">// "  123"</span>
+</code></pre></li>
+<li>
+<p><code>setfill</code> 设置填充字符</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span><span class="token function">setw</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span><span class="token function">setfill</span><span class="token punctuation">(</span><span class="token char">'G'</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token number">123</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token comment">// "GG123"</span>
+</code></pre></li>
+<li>
+<p><code>fixed</code> <code>setprecision</code> 设置浮点数的小数精度</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span><span class="token function">setw</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>fixed <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span><span class="token function">setprecision</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token number">3.1415926</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token comment">// " 3.14"</span>
+</code></pre></li>
+<li>
+<p><code>left</code> <code>right</code> 控制字段中数据的对齐方式</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span><span class="token function">setw</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>left <span class="token operator">&lt;&lt;</span> <span class="token number">123</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token comment">// "123  "</span>
+</code></pre></li>
+</ul>
+<h3 id="cerr">cerr </h3>
+<p><code>cerr</code>：标准错误流，立即输出到控制台，不会缓冲。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"error"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+</code></pre><h2 id="f-stream">f stream </h2>
+<p><code>fstream</code>：文件输入输出流，用于文件输入输出。</p>
+<h3 id="ifstream">ifstream </h3>
+<p>从文件读入数据。</p>
+<ol>
+<li>打开文件</li>
+</ol>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>ifstream <span class="token function">ifs</span><span class="token punctuation">(</span><span class="token string">"in.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token operator">!</span>ifs<span class="token punctuation">.</span><span class="token function">is_open</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"打开文件失败"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><ol start="2">
+<li>读取文件</li>
+</ol>
+<ul>
+<li>
+<p>按 <code>\n</code> 读取</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>string s<span class="token punctuation">;</span>
+<span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span><span class="token function">getline</span><span class="token punctuation">(</span>ifs<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>按 <code> </code> 读取</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>string s<span class="token punctuation">;</span>
+<span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>ifs <span class="token operator">&gt;&gt;</span> s<span class="token punctuation">)</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+</code></pre></li>
+</ul>
+<ol start="3">
+<li>
+<p>移动文件指针</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>ifs<span class="token punctuation">.</span><span class="token function">seekg</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>ios<span class="token double-colon punctuation">::</span>beg<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 移动到文件开头</span>
+</code></pre><blockquote>
+<p>移动文件指针还有更多用法。详见 <a href="https://zh.cppreference.com/w/cpp/io/basic_istream/seekg">cppreference</a>。</p>
+</blockquote>
+</li>
+<li>
+<p>关闭文件</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>ifs<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+</ol>
+<h3 id="ofstream">ofstream </h3>
+<ol>
+<li>
+<p>打开文件</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>ofstream <span class="token function">ofs</span><span class="token punctuation">(</span><span class="token string">"out.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>写入文件</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>ofs <span class="token operator">&lt;&lt;</span> <span class="token string">"hello"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>关闭文件</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>ofs<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+</ol>
 <h2 id="s-stream">s stream </h2>
-<h2></h2>
+<p><code>sstream</code>：字符串输入输出流。提供一种灵活的方式，将字符串当作流来处理。</p>
+<ul>
+<li>
+<p>初始化</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>stringstream ss<span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>写入</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>ss <span class="token operator">&lt;&lt;</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+ss <span class="token operator">&lt;&lt;</span> <span class="token number">123</span><span class="token punctuation">;</span>
+ss <span class="token operator">&lt;&lt;</span> <span class="token number">3.14</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>读取</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>string s<span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> a<span class="token punctuation">;</span>
+<span class="token keyword keyword-double">double</span> b<span class="token punctuation">;</span>
+
+ss <span class="token operator">&gt;&gt;</span> s <span class="token operator">&gt;&gt;</span> a <span class="token operator">&gt;&gt;</span> b<span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>进制转换</p>
+<ul>
+<li>
+<p><code>dec</code> -&gt; <code>oct</code> / <code>hex</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>stringstream ss<span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span>string s<span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> num <span class="token operator">=</span> <span class="token number">666</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 将 num 以八进制形式写入 ss</span>
+ss <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>oct <span class="token operator">&lt;&lt;</span> num<span class="token punctuation">;</span>
+ss <span class="token operator">&gt;&gt;</span> s<span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span><span class="token comment">// 1232</span>
+
+ss<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 将 num 以十六进制形式写入 ss</span>
+ss <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>hex <span class="token operator">&lt;&lt;</span> num<span class="token punctuation">;</span>
+ss <span class="token operator">&gt;&gt;</span> s<span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span><span class="token comment">// 29a</span>
+</code></pre></li>
+<li>
+<p><code>oct</code> / <code>hex</code> -&gt; <code>dec</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>string a <span class="token operator">=</span> <span class="token string">"1232"</span><span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span>string b <span class="token operator">=</span> <span class="token string">"29a"</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> num<span class="token punctuation">;</span>
+
+num <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">stoi</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> num <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>  <span class="token comment">// 666</span>
+
+num <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token function">stoi</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> num <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>  <span class="token comment">// 666</span>
+</code></pre></li>
+</ul>
+</li>
+</ul>
 <br>
 <hr>
 <h1 id="bitset">bitset </h1>
@@ -714,7 +933,7 @@ cout<span class="token operator">&lt;&lt;</span>b1<span class="token punctuation
 </code></pre><br>
 <hr>
 <h1 id="regex">regex </h1>
-<p><a href="..\..\..\Linux\Regex\index.html">正则表达式</a> 的本质，就是某种 <strong>字符组合</strong>。</p>
+<p><a href="../../../Linux/Regex/index.html">正则表达式</a> 的本质，就是某种 <strong>字符组合</strong>。</p>
 <h2 id="定义正则表达式">定义正则表达式 </h2>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>regex <span class="token function">r</span><span class="token punctuation">(</span><span class="token raw-string string">R"((\d{1,3}\.){3}\d{1,3})"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><h2 id="判断串">判断串 </h2>
@@ -915,8 +1134,36 @@ ptr <span class="token operator">=</span> <span class="token keyword keyword-nul
 <h2 id="weak_ptr">weak_ptr </h2>
 <h1 id="移动语义和右值引用">移动语义和右值引用 </h1>
 <h1 id="范围-for-循环">范围 for 循环 </h1>
+<br>
+<hr>
 <h1 id="异常处理">异常处理 </h1>
-<h1 id="类型推导">类型推导 </h1>
+<p>异常指的是程序运行时发生的错误，比如除零错误、数组越界等。</p>
+<h2 id="try-catch-throw">try catch throw </h2>
+<ul>
+<li>
+<p><code>try</code><br>
+将可能引发异常的一个或多个语句封闭起来。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-try">try</span><span class="token punctuation">{</span>
+    <span class="token comment">// 可能引发异常的语句</span>
+    <span class="token keyword keyword-throw">throw</span><span class="token punctuation">;</span>  <span class="token comment">// 抛出异常</span>
+<span class="token punctuation">}</span><span class="token keyword keyword-catch">catch</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">// 异常处理</span>
+    <span class="token keyword keyword-throw">throw</span><span class="token punctuation">;</span>  <span class="token comment">// 重新抛出异常</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li>
+<p><code>catch</code><br>
+捕获异常，处理异常。</p>
+</li>
+<li>
+<p><code>throw</code><br>
+抛出异常。</p>
+</li>
+</ul>
+<h2 id="raii">RAII </h2>
+<br>
+<hr>
+<h1 id="断言">断言 </h1>
 <br>
 <hr>
 <h1 id="stl">STL </h1>
@@ -1276,7 +1523,7 @@ p1<span class="token punctuation">.</span><span class="token function">top</span
 <h3 id="unordered_multiset">unordered_multiset </h3>
 <h3 id="unordered_map">unordered_map </h3>
 <h3 id="unordered_multimap">unordered_multimap </h3>
-<h2 id="-1"></h2>
+<h2></h2>
 <h3 id="set-1">set </h3>
 <p>集合</p>
 <p>set 的元素是唯一的，不能重复。</p>
@@ -1403,422 +1650,13 @@ multiset<span class="token operator">&lt;</span>pair<span class="token operator"
 <h2 id="函数对象-functor">函数对象 functor </h2>
 
       </div>
-      <div class="md-sidebar-toc">
-<div class="md-toc">
-<details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#class" class="md-toc-link"><p>class</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#封装定义一个抽象数据类型" class="md-toc-link">
-            <p>封装：定义一个抽象数据类型</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#继承定义一个基类的派生类" class="md-toc-link">
-            <p>继承：定义一个基类的派生类</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#公有-私有-保护" class="md-toc-link">
-            <p>公有、私有、保护</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#多态定义一个基类的虚函数" class="md-toc-link">
-            <p>多态：定义一个基类的虚函数</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#namespace" class="md-toc-link"><p>namespace</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#命名空间的使用" class="md-toc-link">
-            <p>命名空间的使用</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#命名空间的嵌套" class="md-toc-link">
-            <p>命名空间的嵌套</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#命名空间和类的区别" class="md-toc-link">
-            <p>命名空间和类的区别</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#关于-cstdio-和-stdioh" class="md-toc-link">
-            <p>关于 cstdio 和 stdio.h</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#string" class="md-toc-link"><p>string</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#string-1" class="md-toc-link">
-            <p>string</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#cstring" class="md-toc-link">
-            <p>cstring</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#stream" class="md-toc-link"><p>stream</p>
-</a>
-          </summary>
-        <div>
-          <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#io-stream" class="md-toc-link"><p>io stream</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#iomanip" class="md-toc-link">
-            <p>iomanip</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#f-stream" class="md-toc-link">
-            <p>f stream</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#s-stream" class="md-toc-link">
-            <p>s stream</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#" class="md-toc-link">
-            
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#bitset" class="md-toc-link"><p>bitset</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#创建" class="md-toc-link">
-            <p>创建</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#转换" class="md-toc-link">
-            <p>转换</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#位操作" class="md-toc-link">
-            <p>位操作</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#成员函数" class="md-toc-link">
-            <p>成员函数</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#regex" class="md-toc-link"><p>regex</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#定义正则表达式" class="md-toc-link">
-            <p>定义正则表达式</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#判断串" class="md-toc-link">
-            <p>判断串</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#查找--取出匹配子串" class="md-toc-link">
-            <p>查找 / 取出匹配子串</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#替换匹配子串" class="md-toc-link">
-            <p>替换匹配子串</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#template" class="md-toc-link"><p>template</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#在函数中使用-template" class="md-toc-link">
-            <p>在函数中使用 template</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#在类中使用-template" class="md-toc-link">
-            <p>在类中使用 template</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#variant" class="md-toc-link">
-            <p>variant</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#function" class="md-toc-link">
-            <p>function</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#lambda" class="md-toc-link">
-            <p>lambda</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#智能指针" class="md-toc-link"><p>智能指针</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unique_ptr" class="md-toc-link">
-            <p>unique_ptr</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#shared_ptr" class="md-toc-link">
-            <p>shared_ptr</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#weak_ptr" class="md-toc-link">
-            <p>weak_ptr</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#移动语义和右值引用" class="md-toc-link">
-            <p>移动语义和右值引用</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#范围-for-循环" class="md-toc-link">
-            <p>范围 for 循环</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#异常处理" class="md-toc-link">
-            <p>异常处理</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#类型推导" class="md-toc-link">
-            <p>类型推导</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#stl" class="md-toc-link"><p>STL</p>
-</a>
-          </summary>
-        <div>
-          <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#迭代器-iterator" class="md-toc-link"><p>迭代器 iterator</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#迭代器的类型" class="md-toc-link">
-            <p>迭代器的类型</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#获取迭代器" class="md-toc-link">
-            <p>获取迭代器</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#操作迭代器" class="md-toc-link">
-            <p>操作迭代器</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#序列式容器" class="md-toc-link"><p>序列式容器</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#随机vector" class="md-toc-link">
-            <p>【随机】vector</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#随机deque" class="md-toc-link">
-            <p>【随机】deque</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#随机array" class="md-toc-link">
-            <p>【随机】array</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#list" class="md-toc-link">
-            <p>list</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#forward_list" class="md-toc-link">
-            <p>forward_list</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-stack" class="md-toc-link">
-            <p>【-】stack</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-queue" class="md-toc-link">
-            <p>【-】queue</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-priority_queue" class="md-toc-link">
-            <p>【-】priority_queue</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#关联式容器" class="md-toc-link"><p>关联式容器</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#树" class="md-toc-link">
-            <p>树</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#有序" class="md-toc-link">
-            <p>有序</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#set" class="md-toc-link">
-            <p>set</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#multiset" class="md-toc-link">
-            <p>multiset</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#map" class="md-toc-link">
-            <p>map</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#multimap" class="md-toc-link">
-            <p>multimap</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#无序" class="md-toc-link">
-            <p>无序</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_set" class="md-toc-link">
-            <p>unordered_set</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_multiset" class="md-toc-link">
-            <p>unordered_multiset</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_map" class="md-toc-link">
-            <p>unordered_map</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_multimap" class="md-toc-link">
-            <p>unordered_multimap</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#-1" class="md-toc-link"></a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#set-1" class="md-toc-link">
-            <p>set</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_set-1" class="md-toc-link">
-            <p>unordered_set</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#multiset-1" class="md-toc-link">
-            <p>multiset</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_multiset-1" class="md-toc-link">
-            <p>unordered_multiset</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#map-1" class="md-toc-link">
-            <p>map</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_map-1" class="md-toc-link">
-            <p>unordered_map</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#multimap-1" class="md-toc-link">
-            <p>multimap</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_multimap-1" class="md-toc-link">
-            <p>unordered_multimap</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#容器适配器-adapter" class="md-toc-link">
-            <p>容器适配器 adapter</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#算法-algorithm" class="md-toc-link">
-            <p>算法 algorithm</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#函数对象-functor" class="md-toc-link">
-            <p>函数对象 functor</p>
-
-          </a></div>
-        </div>
-      </details>
-    
-</div>
-</div>
-      <a id="sidebar-toc-btn">≡</a>
-    
-    
-    
-    
-    
-    
-<script>
-document.body.setAttribute('html-show-sidebar-toc', true)
-var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
-sidebarTOCBtn.addEventListener('click', function(event) {
-  event.stopPropagation()
-  if (document.body.hasAttribute('html-show-sidebar-toc')) {
-    document.body.removeAttribute('html-show-sidebar-toc')
-  } else {
-    document.body.setAttribute('html-show-sidebar-toc', true)
-  }
-})
-</script>
       
+      
+    
+    
+    
+    
+    
+    
   
     </body></html>
