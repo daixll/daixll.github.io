@@ -73,9 +73,9 @@
 </li>
 <li>
 <p><strong>指定C++标准：</strong></p>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>g++ <span class="token parameter variable">-std</span><span class="token operator">=</span>c++11 ac.cpp <span class="token parameter variable">-o</span> ac
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>g++ <span class="token parameter variable">-std</span><span class="token operator">=</span>c++23 ac.cpp <span class="token parameter variable">-o</span> ac
 </code></pre><ul>
-<li><code>-std=c++23</code> 选项指定了C++标准，这里是C++23标准。</li>
+<li><code>-std=c++23</code> 选项指定了 C++ 标准，这里是 C++23 标准。</li>
 </ul>
 </li>
 <li>
@@ -261,30 +261,22 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
 <h2 id="cmake--cmakeliststxt">Cmake &amp; CmakeLists.txt </h2>
 <p>Cmake 是一个跨平台的构建工具，依赖 CmakeLists.txt 文件来描述构建规则，可以自动生成各种操作系统和开发环境下的构建脚本，然后通过 cmake 命令来执行构建。</p>
 <ol>
-<li><strong>一个基础的CmakeLists.txt：</strong><pre data-role="codeBlock" data-info="cmake" class="language-cmake cmake"><code><span class="token comment"># 指定CMake的最低版本要求</span>
+<li>
+<p><strong>一个基础的CmakeLists.txt：</strong></p>
+<pre data-role="codeBlock" data-info="cmake" class="language-cmake cmake"><code><span class="token comment"># 指定CMake的最低版本要求</span>
 <span class="token keyword keyword-cmake_minimum_required">cmake_minimum_required</span><span class="token punctuation">(</span><span class="token property">VERSION</span> <span class="token number">3.0</span><span class="token punctuation">)</span>
 
-<span class="token comment"># 设置项目的版本号</span>
-<span class="token keyword keyword-set">set</span><span class="token punctuation">(</span><span class="token variable">PROJECT_VERSION_MAJOR</span> <span class="token number">1</span><span class="token punctuation">)</span>
-<span class="token keyword keyword-set">set</span><span class="token punctuation">(</span><span class="token variable">PROJECT_VERSION_MINOR</span> <span class="token number">0</span><span class="token punctuation">)</span>
-<span class="token keyword keyword-set">set</span><span class="token punctuation">(</span><span class="token variable">PROJECT_VERSION_PATCH</span> <span class="token number">0</span><span class="token punctuation">)</span>
-
-<span class="token comment"># 指定项目名称和支持的编程语言</span>
-<span class="token keyword keyword-project">project</span><span class="token punctuation">(</span>JiaoProject <span class="token property">VERSION</span> <span class="token punctuation">${</span><span class="token variable">PROJECT_VERSION_MAJOR</span><span class="token punctuation">}</span>.<span class="token punctuation">${</span><span class="token variable">PROJECT_VERSION_MINOR</span><span class="token punctuation">}</span>.<span class="token punctuation">${</span><span class="token variable">PROJECT_VERSION_PATCH</span><span class="token punctuation">}</span> LANGUAGES CXX<span class="token punctuation">)</span>
+<span class="token comment"># 指定项目名称</span>
+<span class="token keyword keyword-project">project</span><span class="token punctuation">(</span>JiaoProject<span class="token punctuation">)</span>
 
 <span class="token comment"># 添加可执行文件</span>
-<span class="token keyword keyword-add_executable">add_executable</span><span class="token punctuation">(</span>JiaoProject main.cpp help.cpp<span class="token punctuation">)</span>
+<span class="token keyword keyword-add_executable">add_executable</span><span class="token punctuation">(</span>JiaoProject main.cpp<span class="token punctuation">)</span>
+</code></pre></li>
+<li>
+<p><strong>编译：</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>cmake <span class="token parameter variable">--build</span> build
 </code></pre><ul>
-<li><code>cmake_minimum_required</code> 指定了Cmake的最低版本。</li>
-<li><code>project</code> 指定了项目名称和版本，这里是 <code>JiaoProject</code> 项目，版本号是 <code>1.0.0</code>，支持的语言是 C++。
-<ul>
-<li><code>PROJECT_VERSION_MAJOR</code> 是主版本号。</li>
-<li><code>PROJECT_VERSION_MINOR</code> 是次版本号。</li>
-<li><code>PROJECT_VERSION_PATCH</code> 是修订号。</li>
-<li><code>LANGUAGES</code> 指定了支持的编程语言。</li>
-</ul>
-</li>
-<li><code>add_executable</code> 指定了可执行文件的名称和源文件：将 <code>main.cpp</code> 和 <code>help.cpp</code> 编译并链接到 <code>JiaoProject</code> 可执行文件中。</li>
+<li><code>--build</code> 选项指定构建目标，这里是 <code>build</code> 目录。</li>
 </ul>
 </li>
 </ol>
@@ -329,6 +321,7 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
 </code></pre></li>
 </ol>
 <br>
+<hr>
 <h2 id="perf">Perf </h2>
 <p>Perf 是一个性能分析工具，可以用于分析程序的性能瓶颈。</p>
 <ol>

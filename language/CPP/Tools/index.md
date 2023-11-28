@@ -57,9 +57,9 @@ GCC（GNU Compiler Collection）：GNU编译器集合是GNU项目的核心部分
 
 2. **指定C++标准：**
     ```sh
-    g++ -std=c++11 ac.cpp -o ac
+    g++ -std=c++23 ac.cpp -o ac
     ```
-    * `-std=c++23` 选项指定了C++标准，这里是C++23标准。
+    * `-std=c++23` 选项指定了 C++ 标准，这里是 C++23 标准。
 
 3. **指定编译器优化级别：**
     ```sh
@@ -244,24 +244,18 @@ Cmake 是一个跨平台的构建工具，依赖 CmakeLists.txt 文件来描述�
     # 指定CMake的最低版本要求
     cmake_minimum_required(VERSION 3.0)
 
-    # 设置项目的版本号
-    set(PROJECT_VERSION_MAJOR 1)
-    set(PROJECT_VERSION_MINOR 0)
-    set(PROJECT_VERSION_PATCH 0)
-
-    # 指定项目名称和支持的编程语言
-    project(JiaoProject VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH} LANGUAGES CXX)
+    # 指定项目名称
+    project(JiaoProject)
 
     # 添加可执行文件
-    add_executable(JiaoProject main.cpp help.cpp)
+    add_executable(JiaoProject main.cpp)
     ```
-    * `cmake_minimum_required` 指定了Cmake的最低版本。
-    * `project` 指定了项目名称和版本，这里是 `JiaoProject` 项目，版本号是 `1.0.0`，支持的语言是 C++。
-        * `PROJECT_VERSION_MAJOR` 是主版本号。
-        * `PROJECT_VERSION_MINOR` 是次版本号。
-        * `PROJECT_VERSION_PATCH` 是修订号。
-        * `LANGUAGES` 指定了支持的编程语言。
-    * `add_executable` 指定了可执行文件的名称和源文件：将 `main.cpp` 和 `help.cpp` 编译并链接到 `JiaoProject` 可执行文件中。
+
+2. **编译：**
+    ```sh
+    cmake --build build
+    ```
+    * `--build` 选项指定构建目标，这里是 `build` 目录。
 
 <br>
 
@@ -300,6 +294,8 @@ Boost 是一个跨平台的C++库，提供了许多重要的系统工具和应�
     ```
 
 <br>
+
+---
 
 ## Perf
 
