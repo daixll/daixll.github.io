@@ -1180,68 +1180,20 @@ private:
 ```
 
 ```cpp
-std::variant<int, double, std::string> v;
+std::variant<int, double, std::string> uids;
 ```
 
-
-
-
-
-<br>
-
----
-
-# function
-
-function：用来包装任何可以被调用的对象，包括函数指针、函数对象、Lambda 表达式、成员函数指针等，从而提供了一种统一的方式来处理各种可调用对象。
+输出之前，需要检查类型是否符合预期。
 
 ```cpp
-#include <functional>
-std::function<return_type(parameter_types)> function_name;
-```
+uids = 123;
+uids = 3.14;
+uids = "Hello_world!";
 
-* return_type：返回值类型。
-* parameter_types：参数类型。
-* function_name：函数名。
-
-**使用成员函数指针**
-
-```cpp
-#include <iostream>
-#include <functional>
-
-class MyClass {
-public:
-    int multiply(int a, int b) {
-        return a * b;
-    }
-};
-
-int main() {
-    MyClass obj;
-    std::function<int(MyClass&, int, int)> func = &MyClass::multiply;
-    std::cout << func(obj, 3, 4) << std::endl;  // 输出 12
-    
-    return 0;
-}
-```
-
-**使用函数指针**
-
-```cpp
-#include <iostream>
-#include <functional>
-
-int add(int a, int b) {
-    return a + b;
-}
-
-int main() {
-    std::function<int(int, int)> func = add;
-    std::cout << func(3, 4) << std::endl;  // 输出 7
-    
-    return 0;
-}
+if(std::holds_alternative<int>(uids))
+    std::cout << std::get<int>(uids) << std::endl;
+else
+    // 错误处理
 ```
 
 <br>
@@ -1305,9 +1257,74 @@ int main() {
 
 ---
 
+
+# function
+
+function：用来包装任何可以被调用的对象，包括函数指针、函数对象、Lambda 表达式、成员函数指针等，从而提供了一种统一的方式来处理各种可调用对象。
+
+```cpp
+#include <functional>
+std::function<return_type(parameter_types)> function_name;
+```
+
+* return_type：返回值类型。
+* parameter_types：参数类型。
+* function_name：函数名。
+
+**使用成员函数指针**
+
+```cpp
+#include <iostream>
+#include <functional>
+
+class MyClass {
+public:
+    int multiply(int a, int b) {
+        return a * b;
+    }
+};
+
+int main() {
+    MyClass obj;
+    std::function<int(MyClass&, int, int)> func = &MyClass::multiply;
+    std::cout << func(obj, 3, 4) << std::endl;  // 输出 12
+    
+    return 0;
+}
+```
+
+**使用函数指针**
+
+```cpp
+#include <iostream>
+#include <functional>
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    std::function<int(int, int)> func = add;
+    std::cout << func(3, 4) << std::endl;  // 输出 7
+    
+    return 0;
+}
+```
+
+<br>
+
+---
+
 # 智能指针
 
 为了解决内存泄漏、野（wild）指针、悬空（dangling）指针的问题，引入了智能指针。
+
+```cpp
+#include <memory>
+// unique_ptr
+// shared_ptr
+// weak_ptr
+```
 
 **内存泄漏**
 
@@ -1355,11 +1372,41 @@ delete ptr;             // 释放内存
 ptr = nullptr;          // 将 ptr 置为 nullptr, ptr 成空指针
 ```
 
+## RAII
+
+
+
 ## unique_ptr
+
+**独占所有权**：当 `unique_ptr` 被销毁时，它所指向的对象也被销毁。
+
+```cpp
+void func(){
+    std::unique_ptr<int> ptr;
+    int* a = new int;
+    ptr.reset(a);   // 将 ptr 指向 a
+}
+// 当函数结束时，ptr 被销毁，ptr 指向的内存也被销毁
+// 也可以手动销毁
+ptr.reset();        // 销毁 ptr 指向的内存
+ptr.reset(nullptr); // 销毁 ptr 指向的内存（等价）
+```
 
 ## shared_ptr
 
+**共享所有权**：多个 `shared_ptr` 可以指向同一个对象，当最后一个 `shared_ptr` 被销毁时，它所指向的对象也被销毁。
+
+
 ## weak_ptr
+
+
+
+
+
+<br>
+
+---
+
 
 
 
