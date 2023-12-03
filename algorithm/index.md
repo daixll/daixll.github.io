@@ -19,11 +19,6 @@ export_on_save:
 * [kuangbin 专题](https://www.acwing.com/activity/content/90/)
 
 ---
-
-* 教学大纲 & 训练计划
-   1. [暑期集训](summer.html)
-
----
 0. 入门
    1. [顺序结构](0%20入门/顺序结构.html)
    2. [分支结构](0%20入门/分支结构.html)
