@@ -592,8 +592,82 @@ Stub 区域 **不会转发外部路由**，只会转发来自本区域的路由�
 
 <br>
 
+---
+
+## EBGP对等体基本配置
+
+![](./IMAGE/实验8_BGP基本配置.png)
+
+1. 配置EBGP对等体
+    * 路由甲
+      ```shell
+      [路由甲] bgp 65000
+      [路由甲-bgp-default] peer 10.0.10.2 as-number 65300
+      [路由甲-bgp-default] peer 10.0.20.2 as-number 65300
+      [路由甲-bgp-default] address-family ipv4 unicast
+      [路由甲-bgp-default-ipv4] peer 10.10.20.2 enable
+      [路由甲-bgp-default-ipv4] peer 10.10.20.2 enable
+      ```
+    * 路由乙
+      ```shell
+      [路由乙] bgp 65300
+      [路由乙-bgp-default] peer 10.10.10.1 as-number 65000
+      [路由乙-bgp-default] address-family ipv4 unicast
+      [路由乙-bgp-default-ipv4] peer 10.10.10.1 enable
+      ```
+    * 路由丁
+      ```shell
+      [路由丁] bgp 65300
+      [路由丁-bgp-default] peer 10.10.20.1 as-number 65000
+      [路由丁-bgp-default] address-family ipv4 unicast
+      [路由丁-bgp-default-ipv4] peer 10.10.20.1 enable
+      ```
+
+2. 通过network命令发布路由
+    
+    * 路由甲
+      ```shell
+      [路由甲] bgp 65000
+      [路由甲-bgp-default] address-family ipv4 unicast
+      [路由甲-bgp-default-ipv4] network 1.1.1.1 255.255.255.255
+      ```
+    
+    * 路由乙
+      ```shell
+      [路由乙] bgp 65300
+      [路由乙-bgp-default] address-family ipv4 unicast
+      [路由乙-bgp-default-ipv4] network 2.2.2.2 255.255.255.255
+      ```
+
+    * 路由丁
+      ```shell
+      [路由丁] bgp 65300
+      [路由丁-bgp-default] address-family ipv4 unicast
+      [路由丁-bgp-default-ipv4] network 4.4.4.4 255.255.255.255
+      ```
+
+3. IBGP对等体基本配置
+    * 路由乙
+      ```shell
+      [路由乙] bgp 65300
+      [路由乙-bgp-default] peer 4.4.4.4 as-number 65300
+      [路由乙-bgp-default] peer 4.4.4.4 connect-interface LoopBack 0
+      ```
+    
+    * 路由丁
+      ```shell
+      [路由丁] bgp 65300
+      [路由丁-bgp-default] peer 2.2.2.2 as-number 65300
+      [路由丁-bgp-default] peer 2.2.2.2 connect-interface LoopBack 0
+      ```
+      
+
+
+
+<br>
 
 ---
+
 
 # 杂项
 

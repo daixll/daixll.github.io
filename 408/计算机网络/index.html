@@ -606,6 +606,74 @@ A：假设有一个地址 <code>中国.四川.成都.金牛</code>，子网掩�
 </ol>
 <br>
 <hr>
+<h2 id="ebgp对等体基本配置">EBGP对等体基本配置 </h2>
+<p><img src="./IMAGE/%E5%AE%9E%E9%AA%8C8_BGP%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE.png" alt=""></p>
+<ol>
+<li>
+<p>配置EBGP对等体</p>
+<ul>
+<li>路由甲<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由甲<span class="token punctuation">]</span> bgp <span class="token number">65000</span>
+<span class="token punctuation">[</span>路由甲-bgp-default<span class="token punctuation">]</span> peer <span class="token number">10.0</span>.10.2 as-number <span class="token number">65300</span>
+<span class="token punctuation">[</span>路由甲-bgp-default<span class="token punctuation">]</span> peer <span class="token number">10.0</span>.20.2 as-number <span class="token number">65300</span>
+<span class="token punctuation">[</span>路由甲-bgp-default<span class="token punctuation">]</span> address-family ipv4 unicast
+<span class="token punctuation">[</span>路由甲-bgp-default-ipv4<span class="token punctuation">]</span> peer <span class="token number">10.10</span>.20.2 <span class="token builtin class-name">enable</span>
+<span class="token punctuation">[</span>路由甲-bgp-default-ipv4<span class="token punctuation">]</span> peer <span class="token number">10.10</span>.20.2 <span class="token builtin class-name">enable</span>
+</code></pre></li>
+<li>路由乙<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由乙<span class="token punctuation">]</span> bgp <span class="token number">65300</span>
+<span class="token punctuation">[</span>路由乙-bgp-default<span class="token punctuation">]</span> peer <span class="token number">10.10</span>.10.1 as-number <span class="token number">65000</span>
+<span class="token punctuation">[</span>路由乙-bgp-default<span class="token punctuation">]</span> address-family ipv4 unicast
+<span class="token punctuation">[</span>路由乙-bgp-default-ipv4<span class="token punctuation">]</span> peer <span class="token number">10.10</span>.10.1 <span class="token builtin class-name">enable</span>
+</code></pre></li>
+<li>路由丁<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由丁<span class="token punctuation">]</span> bgp <span class="token number">65300</span>
+<span class="token punctuation">[</span>路由丁-bgp-default<span class="token punctuation">]</span> peer <span class="token number">10.10</span>.20.1 as-number <span class="token number">65000</span>
+<span class="token punctuation">[</span>路由丁-bgp-default<span class="token punctuation">]</span> address-family ipv4 unicast
+<span class="token punctuation">[</span>路由丁-bgp-default-ipv4<span class="token punctuation">]</span> peer <span class="token number">10.10</span>.20.1 <span class="token builtin class-name">enable</span>
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>通过network命令发布路由</p>
+<ul>
+<li>
+<p>路由甲</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由甲<span class="token punctuation">]</span> bgp <span class="token number">65000</span>
+<span class="token punctuation">[</span>路由甲-bgp-default<span class="token punctuation">]</span> address-family ipv4 unicast
+<span class="token punctuation">[</span>路由甲-bgp-default-ipv4<span class="token punctuation">]</span> network <span class="token number">1.1</span>.1.1 <span class="token number">255.255</span>.255.255
+</code></pre></li>
+<li>
+<p>路由乙</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由乙<span class="token punctuation">]</span> bgp <span class="token number">65300</span>
+<span class="token punctuation">[</span>路由乙-bgp-default<span class="token punctuation">]</span> address-family ipv4 unicast
+<span class="token punctuation">[</span>路由乙-bgp-default-ipv4<span class="token punctuation">]</span> network <span class="token number">2.2</span>.2.2 <span class="token number">255.255</span>.255.255
+</code></pre></li>
+<li>
+<p>路由丁</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由丁<span class="token punctuation">]</span> bgp <span class="token number">65300</span>
+<span class="token punctuation">[</span>路由丁-bgp-default<span class="token punctuation">]</span> address-family ipv4 unicast
+<span class="token punctuation">[</span>路由丁-bgp-default-ipv4<span class="token punctuation">]</span> network <span class="token number">4.4</span>.4.4 <span class="token number">255.255</span>.255.255
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>IBGP对等体基本配置</p>
+<ul>
+<li>
+<p>路由乙</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由乙<span class="token punctuation">]</span> bgp <span class="token number">65300</span>
+<span class="token punctuation">[</span>路由乙-bgp-default<span class="token punctuation">]</span> peer <span class="token number">4.4</span>.4.4 as-number <span class="token number">65300</span>
+<span class="token punctuation">[</span>路由乙-bgp-default<span class="token punctuation">]</span> peer <span class="token number">4.4</span>.4.4 connect-interface LoopBack <span class="token number">0</span>
+</code></pre></li>
+<li>
+<p>路由丁</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token punctuation">[</span>路由丁<span class="token punctuation">]</span> bgp <span class="token number">65300</span>
+<span class="token punctuation">[</span>路由丁-bgp-default<span class="token punctuation">]</span> peer <span class="token number">2.2</span>.2.2 as-number <span class="token number">65300</span>
+<span class="token punctuation">[</span>路由丁-bgp-default<span class="token punctuation">]</span> peer <span class="token number">2.2</span>.2.2 connect-interface LoopBack <span class="token number">0</span>
+</code></pre></li>
+</ul>
+</li>
+</ol>
+<br>
+<hr>
 <h1 id="杂项">杂项 </h1>
 <p><strong>华为 OSPF 的错误之处</strong></p>
 <p>文本写作日期：2023-9-30</p>
@@ -733,6 +801,10 @@ B-&gt;C：2</li>
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#使用-route-policy-控制路由" class="md-toc-link">
             <p>使用 Route-policy 控制路由</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ebgp对等体基本配置" class="md-toc-link">
+            <p>EBGP对等体基本配置</p>
 
           </a></div>
         </div>
