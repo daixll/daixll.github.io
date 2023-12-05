@@ -2306,13 +2306,3 @@ multiset<pair<string, int>> s2;  // 元素类型是 pair 类型
 #### 修改
 
 #### 查找
-
-
-
-
-
-## 容器适配器 adapter
-
-## 算法 algorithm
-
-## 函数对象 functor
