@@ -1440,11 +1440,6 @@ todo
 
 ---
 
-
-<br>
-
----
-
 # 异常处理
 
 异常指的是程序运行时发生的错误，比如除零错误、数组越界等。
@@ -1481,11 +1476,85 @@ RAII 的核心思想是，将资源的生命周期与对象的生命周期绑定
 
 RAII 是 C++ 中常用的一种资源管理方式，也是智能指针的基本原理。
 
+```cpp
+#include <iostream>
+#include <fstream>
+#include <memory>
 
+class File{
+public:
+    File(const std::string& filename): _filename(filename){
+        // 文件可读写可追加，不存在则创建
+        _fs = std::make_unique<std::fstream>(_filename, std::ios::in | std::ios::out | std::ios::app);
+        // 打开失败
+        if(!_fs->is_open())
+            throw std::runtime_error("文件" + _filename + "打开失败!");
+    };
+
+    // 析构函数
+    ~File(){};
+
+    // 读取文件
+    void read(){
+        _fs->seekg(0, std::ios::beg);   // 定位到文件头
+        std::string line;
+        while(getline(*_fs, line))
+            std::cout << line << std::endl;
+        
+        if(!_fs->eof())
+            throw std::runtime_error("读取" + _filename + "失败!");
+    }
+
+    // 写入文件
+    void write(const std::string& line){
+        *_fs << line;
+        
+        if(!_fs->good())
+            throw std::runtime_error("写入" + _filename + "失败!");
+    }
+
+private:
+    std::string _filename;
+    std::unique_ptr<std::fstream> _fs;
+};
+
+int main(){
+    try{
+        File f("t.txt");
+        f.write("hello world\n");
+        f.read();
+    }catch(const std::exception& e){
+        // 尝试修复
+        std::cerr << e.what() << std::endl;
+    }
+
+    return 0;
+}
+```
 
 
 ## 断言
 
+断言（Assertion）是在编程中用于检查程序运行时是否满足特定条件的一种方法。它是一种用于验证程序假设是否正确的声明，通常在开发和调试阶段使用。
+
+
+```cpp
+#include <cassert>
+#include <iostream>
+
+int main(){
+    int x = 10;
+    assert(x < 10); // 如果x >= 10，程序会终止
+    std::cout<<x<<std::endl;
+    return 0;
+}
+```
+
+如果在编译时定义了 `NDEBUG`，那么 `assert` 会被忽略。
+
+```cpp
+#define NDEBUG
+```
 
 <br>
 

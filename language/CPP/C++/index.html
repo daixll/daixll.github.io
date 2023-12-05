@@ -1188,8 +1188,6 @@ ptr<span class="token punctuation">.</span><span class="token function">reset</s
 <p>todo</p>
 <br>
 <hr>
-<br>
-<hr>
 <h1 id="异常处理">异常处理 </h1>
 <p>异常指的是程序运行时发生的错误，比如除零错误、数组越界等。</p>
 <h2 id="try-catch-throw">try catch throw </h2>
@@ -1218,8 +1216,73 @@ ptr<span class="token punctuation">.</span><span class="token function">reset</s
 <p>RAII（Resource Acquisition Is Initialization）：资源获取即初始化。</p>
 <p>RAII 的核心思想是，将资源的生命周期与对象的生命周期绑定，通过对象的析构函数来释放资源。</p>
 <p>RAII 是 C++ 中常用的一种资源管理方式，也是智能指针的基本原理。</p>
-<h2 id="断言">断言 </h2>
-<br>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fstream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;memory&gt;</span></span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">File</span><span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">File</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> std<span class="token double-colon punctuation">::</span>string<span class="token operator">&amp;</span> filename<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token function">_filename</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">// 文件可读写可追加，不存在则创建</span>
+        _fs <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">make_unique</span><span class="token generic class-name"><span class="token operator">&lt;</span>std<span class="token double-colon punctuation">::</span>fstream<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>_filename<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>ios<span class="token double-colon punctuation">::</span>in <span class="token operator">|</span> std<span class="token double-colon punctuation">::</span>ios<span class="token double-colon punctuation">::</span>out <span class="token operator">|</span> std<span class="token double-colon punctuation">::</span>ios<span class="token double-colon punctuation">::</span>app<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 打开失败</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token operator">!</span>_fs<span class="token operator">-&gt;</span><span class="token function">is_open</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword keyword-throw">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">runtime_error</span><span class="token punctuation">(</span><span class="token string">"文件"</span> <span class="token operator">+</span> _filename <span class="token operator">+</span> <span class="token string">"打开失败!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 析构函数</span>
+    <span class="token operator">~</span><span class="token function">File</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 读取文件</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _fs<span class="token operator">-&gt;</span><span class="token function">seekg</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>ios<span class="token double-colon punctuation">::</span>beg<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 定位到文件头</span>
+        std<span class="token double-colon punctuation">::</span>string line<span class="token punctuation">;</span>
+        <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span><span class="token function">getline</span><span class="token punctuation">(</span><span class="token operator">*</span>_fs<span class="token punctuation">,</span> line<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> line <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token operator">!</span>_fs<span class="token operator">-&gt;</span><span class="token function">eof</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword keyword-throw">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">runtime_error</span><span class="token punctuation">(</span><span class="token string">"读取"</span> <span class="token operator">+</span> _filename <span class="token operator">+</span> <span class="token string">"失败!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 写入文件</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> std<span class="token double-colon punctuation">::</span>string<span class="token operator">&amp;</span> line<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token operator">*</span>_fs <span class="token operator">&lt;&lt;</span> line<span class="token punctuation">;</span>
+        
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token operator">!</span>_fs<span class="token operator">-&gt;</span><span class="token function">good</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword keyword-throw">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">runtime_error</span><span class="token punctuation">(</span><span class="token string">"写入"</span> <span class="token operator">+</span> _filename <span class="token operator">+</span> <span class="token string">"失败!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    std<span class="token double-colon punctuation">::</span>string _filename<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>unique_ptr<span class="token operator">&lt;</span>std<span class="token double-colon punctuation">::</span>fstream<span class="token operator">&gt;</span> _fs<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-try">try</span><span class="token punctuation">{</span>
+        File <span class="token function">f</span><span class="token punctuation">(</span><span class="token string">"t.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        f<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"hello world\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        f<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword keyword-catch">catch</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> std<span class="token double-colon punctuation">::</span>exception<span class="token operator">&amp;</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">// 尝试修复</span>
+        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> e<span class="token punctuation">.</span><span class="token function">what</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="断言">断言 </h2>
+<p>断言（Assertion）是在编程中用于检查程序运行时是否满足特定条件的一种方法。它是一种用于验证程序假设是否正确的声明，通常在开发和调试阶段使用。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cassert&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> x <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token function">assert</span><span class="token punctuation">(</span>x <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 如果x &gt;= 10，程序会终止</span>
+    std<span class="token double-colon punctuation">::</span>cout<span class="token operator">&lt;&lt;</span>x<span class="token operator">&lt;&lt;</span>std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>如果在编译时定义了 <code>NDEBUG</code>，那么 <code>assert</code> 会被忽略。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">NDEBUG</span></span>
+</code></pre><br>
 <hr>
 <h1 id="stl">STL </h1>
 <p>STL（standard template library），泛型库。<br>
