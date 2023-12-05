@@ -1101,7 +1101,6 @@ std<span class="token double-colon punctuation">::</span>function<span class="to
 </code></pre><br>
 <hr>
 <h1 id="移动语义和右值引用">移动语义和右值引用 </h1>
-<h1 id="范围-for-循环">范围 for 循环 </h1>
 <br>
 <hr>
 <h1 id="智能指针">智能指针 </h1>
@@ -1325,6 +1324,16 @@ unordered_multimap<span class="token operator">&lt;</span><span class="token key
 <li><code>it++</code>：迭代器后移。</li>
 <li><code>it--</code>：迭代器前移。</li>
 </ul>
+<h3 id="范围-for-循环">范围 for 循环 </h3>
+<p>在 <code>for</code> 循环中，使用迭代器遍历容器。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">:</span> v<span class="token punctuation">)</span>
+    cout<span class="token operator">&lt;&lt;</span>i<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
+<span class="token comment">// i 为 v 中的每个元素</span>
+<span class="token comment">// 常常简写为</span>
+<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> i<span class="token operator">:</span> v<span class="token punctuation">)</span>
+    cout<span class="token operator">&lt;&lt;</span>i<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token punctuation">;</span>
+</code></pre><br>
+<hr>
 <h2 id="序列式容器">序列式容器 </h2>
 <p>所谓序列式容器，其中的元素 <strong>可序</strong>，但未必 <strong>有序</strong>。</p>
 <br>

@@ -1319,8 +1319,6 @@ int main() {
 
 # 移动语义和右值引用
 
-# 范围 for 循环
-
 <br>
 
 ---
@@ -1612,6 +1610,23 @@ unordered_multimap<int, int>::iterator it;
     特别的，访问元素的成员变量时 `(*it).first`，可以简写为 `it->first`。
 * `it++`：迭代器后移。
 * `it--`：迭代器前移。
+
+### 范围 for 循环
+
+在 `for` 循环中，使用迭代器遍历容器。
+
+```cpp
+for(int i: v)
+    cout<<i<<" ";
+// i 为 v 中的每个元素
+// 常常简写为
+for(auto i: v)
+    cout<<i<<" ";
+```
+
+<br>
+
+---
 
 
 ## 序列式容器
