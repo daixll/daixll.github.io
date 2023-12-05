@@ -1200,7 +1200,9 @@ else
 
 ---
 
-# lambda
+# functional
+
+## lambda
 
 lambda：匿名函数 / 闭包。
 
@@ -1258,7 +1260,7 @@ int main() {
 ---
 
 
-# function
+## function
 
 function：用来包装任何可以被调用的对象，包括函数指针、函数对象、Lambda 表达式、成员函数指针等，从而提供了一种统一的方式来处理各种可调用对象。
 
@@ -1310,6 +1312,14 @@ int main() {
     return 0;
 }
 ```
+
+<br>
+
+---
+
+# 移动语义和右值引用
+
+# 范围 for 循环
 
 <br>
 
@@ -1372,9 +1382,6 @@ delete ptr;             // 释放内存
 ptr = nullptr;          // 将 ptr 置为 nullptr, ptr 成空指针
 ```
 
-## RAII
-
-
 
 ## unique_ptr
 
@@ -1382,9 +1389,7 @@ ptr = nullptr;          // 将 ptr 置为 nullptr, ptr 成空指针
 
 ```cpp
 void func(){
-    std::unique_ptr<int> ptr;
-    int* a = new int;
-    ptr.reset(a);   // 将 ptr 指向 a
+    std::unique_ptr<int> ptr = std::make_unique<int>(666);
 }
 // 当函数结束时，ptr 被销毁，ptr 指向的内存也被销毁
 // 也可以手动销毁
@@ -1394,26 +1399,46 @@ ptr.reset(nullptr); // 销毁 ptr 指向的内存（等价）
 
 ## shared_ptr
 
-**共享所有权**：多个 `shared_ptr` 可以指向同一个对象，当最后一个 `shared_ptr` 被销毁时，它所指向的对象也被销毁。
+**共享所有权**：多个 `shared_ptr` 可以指向同一个对象，当最后一个 `shared_ptr` 被销毁时（引用记数为 0 的时候），它所指向的对象也被销毁。
+
+```cpp
+#include <iostream>
+#include <memory>
+
+// 通过引用传递智能指针
+// p1 和 p2 指向同一个对象，引用计数为2
+void f2(std::shared_ptr<int> &p1){
+    std::shared_ptr<int> p2 = std::make_shared<int>(666);
+    p1=p2;
+    // 此时p2和p1指向同一个对象，引用计数为2
+    std::cout<<p1.use_count()<<std::endl;
+}
+
+// 创建一个空的智能指针，通过引用传递给f2函数
+void f1(){
+    std::shared_ptr<int> p1;
+    f2(p1);
+    // 当f2函数执行完毕后，f2函数内部的p2指针被销毁，引用计数为1
+    std::cout<<p1.use_count()<<std::endl;
+    std::cout << *p1 << std::endl;
+}
+
+int main(){
+    f1();
+    return 0;
+}
+```
 
 
 ## weak_ptr
 
+为了避免 `shared_ptr` 的循环引用问题，引入了 `weak_ptr`。
 
-
-
+todo
 
 <br>
 
 ---
-
-
-
-
-# 移动语义和右值引用
-
-# 范围 for 循环
-
 
 
 <br>
@@ -1450,14 +1475,16 @@ ptr.reset(nullptr); // 销毁 ptr 指向的内存（等价）
 
 ## RAII
 
+RAII（Resource Acquisition Is Initialization）：资源获取即初始化。
+
+RAII 的核心思想是，将资源的生命周期与对象的生命周期绑定，通过对象的析构函数来释放资源。
+
+RAII 是 C++ 中常用的一种资源管理方式，也是智能指针的基本原理。
 
 
-<br>
 
----
 
-# 断言
-
+## 断言
 
 
 <br>

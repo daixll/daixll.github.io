@@ -933,7 +933,7 @@ cout<span class="token operator">&lt;&lt;</span>b1<span class="token punctuation
 </code></pre><br>
 <hr>
 <h1 id="regex">regex </h1>
-<p><a href="..\..\..\Linux\Regex\index.html">正则表达式</a> 的本质，就是某种 <strong>字符组合</strong>。</p>
+<p><a href="../../../Linux/Regex/index.html">正则表达式</a> 的本质，就是某种 <strong>字符组合</strong>。</p>
 <h2 id="定义正则表达式">定义正则表达式 </h2>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>std<span class="token double-colon punctuation">::</span>regex <span class="token function">r</span><span class="token punctuation">(</span><span class="token raw-string string">R"((\d{1,3}\.){3}\d{1,3})"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><h2 id="判断串">判断串 </h2>
@@ -1012,7 +1012,8 @@ uids <span class="token operator">=</span> <span class="token string">"Hello_wor
     <span class="token comment">// 错误处理</span>
 </code></pre><br>
 <hr>
-<h1 id="lambda">lambda </h1>
+<h1 id="functional">functional </h1>
+<h2 id="lambda">lambda </h2>
 <p>lambda：匿名函数 / 闭包。</p>
 <p>允许在需要函数对象（比如传递给算法、STL 容器等）的地方，以一种更为简洁的方式定义匿名函数。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token punctuation">[</span>capture<span class="token punctuation">]</span><span class="token punctuation">(</span>parameters<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> return_type <span class="token punctuation">{</span> body_of_lambda <span class="token punctuation">}</span>
@@ -1056,7 +1057,7 @@ uids <span class="token operator">=</span> <span class="token string">"Hello_wor
 <span class="token punctuation">}</span>
 </code></pre><br>
 <hr>
-<h1 id="function">function </h1>
+<h2 id="function">function </h2>
 <p>function：用来包装任何可以被调用的对象，包括函数指针、函数对象、Lambda 表达式、成员函数指针等，从而提供了一种统一的方式来处理各种可调用对象。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;functional&gt;</span></span>
 std<span class="token double-colon punctuation">::</span>function<span class="token operator">&lt;</span><span class="token function">return_type</span><span class="token punctuation">(</span>parameter_types<span class="token punctuation">)</span><span class="token operator">&gt;</span> function_name<span class="token punctuation">;</span>
@@ -1098,6 +1099,10 @@ std<span class="token double-colon punctuation">::</span>function<span class="to
     <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre><br>
+<hr>
+<h1 id="移动语义和右值引用">移动语义和右值引用 </h1>
+<h1 id="范围-for-循环">范围 for 循环 </h1>
+<br>
 <hr>
 <h1 id="智能指针">智能指针 </h1>
 <p>为了解决内存泄漏、野（wild）指针、悬空（dangling）指针的问题，引入了智能指针。</p>
@@ -1142,25 +1147,47 @@ ptr <span class="token operator">=</span> <span class="token keyword keyword-nul
 <span class="token keyword keyword-delete">delete</span> ptr<span class="token punctuation">;</span>             <span class="token comment">// 释放内存</span>
 <span class="token comment">// ptr 已经悬空</span>
 ptr <span class="token operator">=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">;</span>          <span class="token comment">// 将 ptr 置为 nullptr, ptr 成空指针</span>
-</code></pre><h2 id="raii">RAII </h2>
-<h2 id="unique_ptr">unique_ptr </h2>
+</code></pre><h2 id="unique_ptr">unique_ptr </h2>
 <p><strong>独占所有权</strong>：当 <code>unique_ptr</code> 被销毁时，它所指向的对象也被销毁。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    std<span class="token double-colon punctuation">::</span>unique_ptr<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> ptr<span class="token punctuation">;</span>
-    <span class="token keyword keyword-int">int</span><span class="token operator">*</span> a <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">;</span>
-    ptr<span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 将 ptr 指向 a</span>
+    std<span class="token double-colon punctuation">::</span>unique_ptr<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> ptr <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">make_unique</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token number">666</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <span class="token comment">// 当函数结束时，ptr 被销毁，ptr 指向的内存也被销毁</span>
 <span class="token comment">// 也可以手动销毁</span>
 ptr<span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// 销毁 ptr 指向的内存</span>
 ptr<span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 销毁 ptr 指向的内存（等价）</span>
 </code></pre><h2 id="shared_ptr">shared_ptr </h2>
-<p><strong>共享所有权</strong>：多个 <code>shared_ptr</code> 可以指向同一个对象，当最后一个 <code>shared_ptr</code> 被销毁时，它所指向的对象也被销毁。</p>
-<h2 id="weak_ptr">weak_ptr </h2>
+<p><strong>共享所有权</strong>：多个 <code>shared_ptr</code> 可以指向同一个对象，当最后一个 <code>shared_ptr</code> 被销毁时（引用记数为 0 的时候），它所指向的对象也被销毁。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;memory&gt;</span></span>
+
+<span class="token comment">// 通过引用传递智能指针</span>
+<span class="token comment">// p1 和 p2 指向同一个对象，引用计数为2</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">f2</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token operator">&amp;</span>p1<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> p2 <span class="token operator">=</span> std<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">make_shared</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token number">666</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    p1<span class="token operator">=</span>p2<span class="token punctuation">;</span>
+    <span class="token comment">// 此时p2和p1指向同一个对象，引用计数为2</span>
+    std<span class="token double-colon punctuation">::</span>cout<span class="token operator">&lt;&lt;</span>p1<span class="token punctuation">.</span><span class="token function">use_count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 创建一个空的智能指针，通过引用传递给f2函数</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> p1<span class="token punctuation">;</span>
+    <span class="token function">f2</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 当f2函数执行完毕后，f2函数内部的p2指针被销毁，引用计数为1</span>
+    std<span class="token double-colon punctuation">::</span>cout<span class="token operator">&lt;&lt;</span>p1<span class="token punctuation">.</span><span class="token function">use_count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>p1 <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="weak_ptr">weak_ptr </h2>
+<p>为了避免 <code>shared_ptr</code> 的循环引用问题，引入了 <code>weak_ptr</code>。</p>
+<p>todo</p>
 <br>
 <hr>
-<h1 id="移动语义和右值引用">移动语义和右值引用 </h1>
-<h1 id="范围-for-循环">范围 for 循环 </h1>
 <br>
 <hr>
 <h1 id="异常处理">异常处理 </h1>
@@ -1187,10 +1214,11 @@ ptr<span class="token punctuation">.</span><span class="token function">reset</s
 抛出异常。</p>
 </li>
 </ul>
-<h2 id="raii-1">RAII </h2>
-<br>
-<hr>
-<h1 id="断言">断言 </h1>
+<h2 id="raii">RAII </h2>
+<p>RAII（Resource Acquisition Is Initialization）：资源获取即初始化。</p>
+<p>RAII 的核心思想是，将资源的生命周期与对象的生命周期绑定，通过对象的析构函数来释放资源。</p>
+<p>RAII 是 C++ 中常用的一种资源管理方式，也是智能指针的基本原理。</p>
+<h2 id="断言">断言 </h2>
 <br>
 <hr>
 <h1 id="stl">STL </h1>
@@ -1677,457 +1705,13 @@ multiset<span class="token operator">&lt;</span>pair<span class="token operator"
 <h2 id="函数对象-functor">函数对象 functor </h2>
 
       </div>
-      <div class="md-sidebar-toc">
-<div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#参考" class="md-toc-link">
-            <p>参考</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#class" class="md-toc-link"><p>class</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#封装定义一个抽象数据类型" class="md-toc-link">
-            <p>封装：定义一个抽象数据类型</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#继承定义一个基类的派生类" class="md-toc-link">
-            <p>继承：定义一个基类的派生类</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#公有-私有-保护" class="md-toc-link">
-            <p>公有、私有、保护</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#多态定义一个基类的虚函数" class="md-toc-link">
-            <p>多态：定义一个基类的虚函数</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#namespace" class="md-toc-link"><p>namespace</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#命名空间的使用" class="md-toc-link">
-            <p>命名空间的使用</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#命名空间的嵌套" class="md-toc-link">
-            <p>命名空间的嵌套</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#命名空间和类的区别" class="md-toc-link">
-            <p>命名空间和类的区别</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#关于-cstdio-和-stdioh" class="md-toc-link">
-            <p>关于 cstdio 和 stdio.h</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#string" class="md-toc-link"><p>string</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#string-1" class="md-toc-link">
-            <p>string</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#cstring" class="md-toc-link">
-            <p>cstring</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#stream" class="md-toc-link"><p>stream</p>
-</a>
-          </summary>
-        <div>
-          <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#io-stream" class="md-toc-link"><p>io stream</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#iomanip" class="md-toc-link">
-            <p>iomanip</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#cerr" class="md-toc-link">
-            <p>cerr</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#f-stream" class="md-toc-link"><p>f stream</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ifstream" class="md-toc-link">
-            <p>ifstream</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ofstream" class="md-toc-link">
-            <p>ofstream</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#s-stream" class="md-toc-link">
-            <p>s stream</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#bitset" class="md-toc-link"><p>bitset</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#创建" class="md-toc-link">
-            <p>创建</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#转换" class="md-toc-link">
-            <p>转换</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#位操作" class="md-toc-link">
-            <p>位操作</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#成员函数" class="md-toc-link">
-            <p>成员函数</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#regex" class="md-toc-link"><p>regex</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#定义正则表达式" class="md-toc-link">
-            <p>定义正则表达式</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#判断串" class="md-toc-link">
-            <p>判断串</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#查找--取出匹配子串" class="md-toc-link">
-            <p>查找 / 取出匹配子串</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#替换匹配子串" class="md-toc-link">
-            <p>替换匹配子串</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#template" class="md-toc-link"><p>template</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#在函数中使用-template" class="md-toc-link">
-            <p>在函数中使用 template</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#在类中使用-template" class="md-toc-link">
-            <p>在类中使用 template</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#variant" class="md-toc-link">
-            <p>variant</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#lambda" class="md-toc-link">
-            <p>lambda</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#function" class="md-toc-link">
-            <p>function</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#智能指针" class="md-toc-link"><p>智能指针</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#raii" class="md-toc-link">
-            <p>RAII</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unique_ptr" class="md-toc-link">
-            <p>unique_ptr</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#shared_ptr" class="md-toc-link">
-            <p>shared_ptr</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#weak_ptr" class="md-toc-link">
-            <p>weak_ptr</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#移动语义和右值引用" class="md-toc-link">
-            <p>移动语义和右值引用</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#范围-for-循环" class="md-toc-link">
-            <p>范围 for 循环</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#异常处理" class="md-toc-link"><p>异常处理</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#try-catch-throw" class="md-toc-link">
-            <p>try catch throw</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#raii-1" class="md-toc-link">
-            <p>RAII</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#断言" class="md-toc-link">
-            <p>断言</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#stl" class="md-toc-link"><p>STL</p>
-</a>
-          </summary>
-        <div>
-          <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#迭代器-iterator" class="md-toc-link"><p>迭代器 iterator</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#迭代器的类型" class="md-toc-link">
-            <p>迭代器的类型</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#获取迭代器" class="md-toc-link">
-            <p>获取迭代器</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#操作迭代器" class="md-toc-link">
-            <p>操作迭代器</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#序列式容器" class="md-toc-link"><p>序列式容器</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#随机vector" class="md-toc-link">
-            <p>【随机】vector</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#随机deque" class="md-toc-link">
-            <p>【随机】deque</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#随机array" class="md-toc-link">
-            <p>【随机】array</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#list" class="md-toc-link">
-            <p>list</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#forward_list" class="md-toc-link">
-            <p>forward_list</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-stack" class="md-toc-link">
-            <p>【-】stack</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-queue" class="md-toc-link">
-            <p>【-】queue</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-priority_queue" class="md-toc-link">
-            <p>【-】priority_queue</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#关联式容器" class="md-toc-link"><p>关联式容器</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#树" class="md-toc-link">
-            <p>树</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#有序" class="md-toc-link">
-            <p>有序</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#set" class="md-toc-link">
-            <p>set</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#multiset" class="md-toc-link">
-            <p>multiset</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#map" class="md-toc-link">
-            <p>map</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#multimap" class="md-toc-link">
-            <p>multimap</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#无序" class="md-toc-link">
-            <p>无序</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_set" class="md-toc-link">
-            <p>unordered_set</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_multiset" class="md-toc-link">
-            <p>unordered_multiset</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_map" class="md-toc-link">
-            <p>unordered_map</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_multimap" class="md-toc-link">
-            <p>unordered_multimap</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#" class="md-toc-link"></a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#set-1" class="md-toc-link">
-            <p>set</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_set-1" class="md-toc-link">
-            <p>unordered_set</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#multiset-1" class="md-toc-link">
-            <p>multiset</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_multiset-1" class="md-toc-link">
-            <p>unordered_multiset</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#map-1" class="md-toc-link">
-            <p>map</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_map-1" class="md-toc-link">
-            <p>unordered_map</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#multimap-1" class="md-toc-link">
-            <p>multimap</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#unordered_multimap-1" class="md-toc-link">
-            <p>unordered_multimap</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#容器适配器-adapter" class="md-toc-link">
-            <p>容器适配器 adapter</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#算法-algorithm" class="md-toc-link">
-            <p>算法 algorithm</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#函数对象-functor" class="md-toc-link">
-            <p>函数对象 functor</p>
-
-          </a></div>
-        </div>
-      </details>
-    
-</div>
-</div>
-      <a id="sidebar-toc-btn">≡</a>
-    
-    
-    
-    
-    
-    
-<script>
-document.body.setAttribute('html-show-sidebar-toc', true)
-var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
-sidebarTOCBtn.addEventListener('click', function(event) {
-  event.stopPropagation()
-  if (document.body.hasAttribute('html-show-sidebar-toc')) {
-    document.body.removeAttribute('html-show-sidebar-toc')
-  } else {
-    document.body.setAttribute('html-show-sidebar-toc', true)
-  }
-})
-</script>
       
+      
+    
+    
+    
+    
+    
+    
   
     </body></html>
