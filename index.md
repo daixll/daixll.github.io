@@ -223,7 +223,7 @@ export_on_save:
 
 ### 国一 码蹄杯
 
-- `2023-12` `第五届“码蹄杯”全国职业院校程序设计大赛` `国赛金奖` [公示 / 排名]
+- `2023-12` `第五届“码蹄杯”全国职业院校程序设计大赛` `国赛金奖` [公示 / 排名](https://mp.weixin.qq.com/s/CYvRhmpRfxYQqJ03EkQYXw)
 
 <div class="center">
     <img src="joker/（国1）码蹄杯.jpg " width="300"> 
