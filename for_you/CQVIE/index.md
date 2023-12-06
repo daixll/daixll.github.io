@@ -1,10 +1,3 @@
----
-html:
-    toc: true   # 打开侧边目录
-export_on_save:
-    html: true  # 自动保存
----
-
 # 笔记汇总
 
 * **第一组**：
