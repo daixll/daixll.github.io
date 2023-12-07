@@ -1,18 +1,18 @@
 # 笔记汇总
 
 * **第一组**：
-    * [宋泓杰](http://songhhhj.gitee.io/learning-code-and-notes)
+    * [宋泓杰](https://songhhhj.gitee.io/)
     * [赵文飞](http://qqfff.gitee.io/c-language/)
     * [谭超]
     * [肖桂阳]
 
 * **第二组**：
-    * [陈旭](https://gitee.com/xaiocjajva/user_code.git)
+    * [陈旭](https://gitee.com/xaiocjajva/user_code)
     * [陈莲](https://gitee.com/cldajia/learning)
-    * [龙宪成](https://gitee.com/hilton-chongqing-hotel-g_0/lxc.git)
+    * [龙宪成](https://gitee.com/hilton-chongqing-hotel-g_0/lxc)
 
 * **第三组**：
-    * [程昆]
+    * [程昆](https://gitee.com/clmsck/test/blob/master/ck.html)
     * [黄果]
     * [宋萱]
     * [彭婷]
