@@ -54,7 +54,29 @@
 </a> code</summary><br>
 <p><strong>大意</strong></p>
 <p><strong>思路</strong></p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code></code></pre></details>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    ListNode<span class="token operator">*</span> <span class="token function">mergeTwoLists</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> l1<span class="token punctuation">,</span> ListNode<span class="token operator">*</span> l2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ListNode<span class="token operator">*</span> head <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ListNode<span class="token operator">*</span> pos <span class="token operator">=</span> head<span class="token punctuation">;</span>
+
+        <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>l1 <span class="token operator">!=</span> <span class="token keyword keyword-nullptr">nullptr</span> <span class="token operator">&amp;&amp;</span> l2 <span class="token operator">!=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>l1<span class="token operator">-&gt;</span>val <span class="token operator">&lt;</span> l2<span class="token operator">-&gt;</span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                pos<span class="token operator">-&gt;</span>next <span class="token operator">=</span> l1<span class="token punctuation">;</span>        
+                l1 <span class="token operator">=</span> l1<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>          <span class="token comment">// l1 后移</span>
+            <span class="token punctuation">}</span> <span class="token keyword keyword-else">else</span> <span class="token punctuation">{</span>
+                pos<span class="token operator">-&gt;</span>next <span class="token operator">=</span> l2<span class="token punctuation">;</span>
+                l2 <span class="token operator">=</span> l2<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>          <span class="token comment">// l2 后移</span>
+            <span class="token punctuation">}</span>
+            pos <span class="token operator">=</span> pos<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>            <span class="token comment">// pos 后移</span>
+        <span class="token punctuation">}</span>
+
+        pos<span class="token operator">-&gt;</span>next <span class="token operator">=</span> l1 <span class="token operator">==</span> <span class="token keyword keyword-nullptr">nullptr</span> <span class="token operator">?</span> l2 <span class="token operator">:</span> l1<span class="token punctuation">;</span>
+
+        <span class="token keyword keyword-return">return</span> head<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></details>
 <details><summary><a href="https://leetcode.cn/problems/remove-duplicates-from-sorted-list/" target="_blank">LeetCode 83. 删除排序链表中的重复元素</a> code</summary><br>
 <p><strong>大意</strong></p>
 <p><strong>思路</strong></p>
@@ -122,6 +144,40 @@
         node<span class="token operator">-&gt;</span>val <span class="token operator">=</span> del<span class="token operator">-&gt;</span>val<span class="token punctuation">;</span>
         node<span class="token operator">-&gt;</span>next <span class="token operator">=</span> del<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
         <span class="token keyword keyword-delete">delete</span> del<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></details>
+<details><summary><a href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/" target="_blank">LeetCode 19. 删除链表的倒数第 N 个结点</a> code</summary><br>
+<p><strong>大意</strong></p>
+<p><strong>思路</strong></p>
+<ol>
+<li>
+<p>计算结点数量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>e</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">len</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span></span></span></span></p>
+</li>
+<li>
+<p>删除第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>e</mi><mi>n</mi><mo>−</mo><mi>n</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">len-n+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 个结点</p>
+</li>
+</ol>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    ListNode<span class="token operator">*</span> <span class="token function">removeNthFromEnd</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> head<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 计算长度</span>
+        <span class="token keyword keyword-int">int</span> len<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-auto">auto</span> <span class="token operator">*</span>pos <span class="token operator">=</span> head<span class="token punctuation">;</span>
+        <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>pos<span class="token punctuation">)</span> pos <span class="token operator">=</span> pos<span class="token operator">-&gt;</span>next<span class="token punctuation">,</span> len<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>len<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 创建一个头，以处理删除 head 的情况</span>
+        <span class="token keyword keyword-auto">auto</span> <span class="token operator">*</span>pre <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">ListNode</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pre <span class="token operator">-&gt;</span> next <span class="token operator">=</span> head<span class="token punctuation">;</span>
+        <span class="token keyword keyword-auto">auto</span> <span class="token operator">*</span>ans <span class="token operator">=</span> pre<span class="token punctuation">;</span>
+        <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>len<span class="token operator">-</span>n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> pre <span class="token operator">=</span> pre<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+
+        <span class="token keyword keyword-auto">auto</span> <span class="token operator">*</span>del <span class="token operator">=</span> pre<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+        pre<span class="token operator">-&gt;</span>next <span class="token operator">=</span> pre<span class="token operator">-&gt;</span>next<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+        <span class="token keyword keyword-delete">delete</span> del<span class="token punctuation">;</span>
+
+        <span class="token keyword keyword-return">return</span> ans<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre></details>
@@ -207,6 +263,53 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre></details>
+<h2 id="与栈结合">与栈结合 </h2>
+<details><summary><a href="https://leetcode.cn/problems/lMSNwu/description/" target="_blank">LeetCode LCR 025. 两数相加 II</a> code</summary><br>
+<p><strong>大意</strong></p>
+<p><strong>思路</strong></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    ListNode<span class="token operator">*</span> <span class="token function">addTwoNumbers</span><span class="token punctuation">(</span>ListNode<span class="token operator">*</span> l1<span class="token punctuation">,</span> ListNode<span class="token operator">*</span> l2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>stack<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> stk1<span class="token punctuation">,</span> stk2<span class="token punctuation">,</span> stk3<span class="token punctuation">;</span>
+        <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>l1<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            stk1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>l1<span class="token operator">-&gt;</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            l1<span class="token operator">=</span>l1<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>l2<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            stk2<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>l2<span class="token operator">-&gt;</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            l2<span class="token operator">=</span>l2<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword keyword-int">int</span> add<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>stk1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">||</span>stk2<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>stk1<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                add <span class="token operator">+=</span> stk1<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                stk1<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>stk2<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                add <span class="token operator">+=</span> stk2<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                stk2<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            stk3<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>add<span class="token operator">%</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            add<span class="token operator">/=</span><span class="token number">10</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>add<span class="token punctuation">)</span> stk3<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>add<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        ListNode <span class="token operator">*</span>ans <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">ListNode</span><span class="token punctuation">(</span>stk3<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stk3<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-auto">auto</span> <span class="token operator">*</span>pos <span class="token operator">=</span> ans<span class="token punctuation">;</span>
+
+        <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>stk3<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword keyword-auto">auto</span> <span class="token operator">*</span>t <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">ListNode</span><span class="token punctuation">(</span>stk3<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            pos<span class="token operator">-&gt;</span>next <span class="token operator">=</span> t<span class="token punctuation">;</span>
+            pos <span class="token operator">=</span> pos<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+            stk3<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword keyword-return">return</span> ans<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></details>
 <h2 id="与队列结合">与队列结合 </h2>
 <details><summary><a href="https://leetcode.cn/problems/list-of-depth-lcci/" target="_blank">LeetCode 面试题 04.03. 特定深度节点链表</a> code</summary>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
@@ -254,6 +357,10 @@
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#与栈结合" class="md-toc-link">
+            <p>与栈结合</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#与队列结合" class="md-toc-link">
             <p>与队列结合</p>
 
