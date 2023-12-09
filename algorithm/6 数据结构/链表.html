@@ -346,6 +346,58 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre></details>
+<br>
+<hr>
+<h1 id="双向链表">双向链表 </h1>
+<details><summary><a href="https://leetcode.cn/problems/design-browser-history/description/" target="_blank">LeetCode 1472. 设计浏览器历史记录</a> code</summary><br>
+<p><strong>大意</strong></p>
+<p><strong>思路</strong></p>
+<ol>
+<li>使用 <code>list</code> 来模拟即可</li>
+<li>注意，<code>it</code> 指向当前的结点，注意其 <code>++</code> 或 <code>--</code> 前后的指向情况</li>
+</ol>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">BrowserHistory</span> <span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    std<span class="token double-colon punctuation">::</span>list<span class="token operator">&lt;</span>std<span class="token double-colon punctuation">::</span>string<span class="token operator">&gt;</span> l<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>list<span class="token operator">&lt;</span>std<span class="token double-colon punctuation">::</span>string<span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span>    <span class="token comment">// 指向当前</span>
+
+    <span class="token function">BrowserHistory</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>string homepage<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        l<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>homepage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        it <span class="token operator">=</span> l<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 指向第一个元素</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-void">void</span> <span class="token function">visit</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>string url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        l<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span><span class="token operator">++</span>it<span class="token punctuation">,</span> l<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 删除当前元素之后的元素</span>
+        l<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        it <span class="token operator">=</span> l<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        it<span class="token operator">--</span><span class="token punctuation">;</span>                   <span class="token comment">// 指向最后一个元素</span>
+    <span class="token punctuation">}</span>
+
+    std<span class="token double-colon punctuation">::</span>string <span class="token function">back</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> steps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> steps<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>it <span class="token operator">==</span> l<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
+            it<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>it <span class="token operator">==</span> l<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-return">return</span> <span class="token operator">*</span>it<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    std<span class="token double-colon punctuation">::</span>string <span class="token function">forward</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> steps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> steps<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>it <span class="token operator">==</span> l<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                it<span class="token operator">--</span><span class="token punctuation">;</span>
+                <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            it<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>it <span class="token operator">==</span> l<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                it<span class="token operator">--</span><span class="token punctuation">;</span>
+                <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-return">return</span> <span class="token operator">*</span>it<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></details>
 
       </div>
       <div class="md-sidebar-toc">
@@ -367,7 +419,11 @@
           </a></div>
         </div>
       </details>
-    
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#双向链表" class="md-toc-link">
+            <p>双向链表</p>
+
+          </a></div>
 </div>
 </div>
       <a id="sidebar-toc-btn">≡</a>
