@@ -24,11 +24,7 @@
     
       <div class="crossnote markdown-preview  ">
       
-<p><strong>参考：<a href="https://github.com/chenshuo/muduo">muduo</a></strong></p>
-<hr>
-<p><code>系统</code> WSL: Ubuntu-22.04</p>
-<p><code>软件</code> gcc: gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)</p>
-<p>这是一个HTTP服务器，目的是通过此项目学习网络编程：</p>
+<h1 id="socket">Socket </h1>
 <ul>
 <li><a href="#tcp--ip-%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B">TCP / IP 分层模型</a> 及 <a href="#tcp-%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5">三握四挥</a></li>
 <li><a href="#socket-tcp-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket TCP 通信模型</a> 及 <a href="#socket-tcp-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">实例</a></li>
@@ -423,57 +419,74 @@
 <h2 id="面向对象">面向对象 </h2>
 <h2 id="channel">Channel </h2>
 <p><code>Channel</code> 是 <code>Epoll</code> 的事件处理类，<code>Epoll</code> 通过 <code>Channel</code> 处理事件。</p>
+<br>
+<hr>
+<h1 id="boostasio">Boost.Asio </h1>
+<p><a href="https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio.html">Boost.Asio</a></p>
 
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#socket" class="md-toc-link"><p>Socket</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#tcp--ip-分层模型" class="md-toc-link">
             <p>TCP / IP 分层模型</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#socket-tcp-通信模型" class="md-toc-link">
             <p>socket TCP 通信模型</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#socket-tcp-通信简单实例" class="md-toc-link">
             <p>socket TCP 通信简单实例</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#tcp-三握四挥" class="md-toc-link">
             <p>TCP 三握四挥</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#socket-udp-通信模型" class="md-toc-link">
             <p>socket UDP 通信模型</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#socket-udp-通信简单实例" class="md-toc-link">
             <p>socket UDP 通信简单实例</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#socket-选项" class="md-toc-link">
             <p>Socket 选项</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#非阻塞-socket" class="md-toc-link">
             <p>非阻塞 Socket</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#epoll" class="md-toc-link">
             <p>Epoll</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#epoll-通信实例" class="md-toc-link">
             <p>Epoll 通信实例</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#面向对象" class="md-toc-link">
             <p>面向对象</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#channel" class="md-toc-link">
             <p>Channel</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#boostasio" class="md-toc-link">
+            <p>Boost.Asio</p>
 
           </a></div>
 </div>

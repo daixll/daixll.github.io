@@ -5,16 +5,8 @@ export_on_save:
     html: true  # 自动保存
 ---
 
+# Socket
 
-**参考：[muduo](https://github.com/chenshuo/muduo)**
-
----
-
-`系统` WSL: Ubuntu-22.04
-
-`软件` gcc: gcc version 11.4.0 (Ubuntu 11.4.0-1ubuntu1~22.04)
-
-这是一个HTTP服务器，目的是通过此项目学习网络编程：
 
 * [TCP / IP 分层模型](#tcp--ip-分层模型) 及 [三握四挥](#tcp-三握四挥)
 * [socket TCP 通信模型](#socket-tcp-通信模型) 及 [实例](#socket-tcp-通信简单实例)
@@ -229,3 +221,13 @@ eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）
 ## Channel
 
 `Channel` 是 `Epoll` 的事件处理类，`Epoll` 通过 `Channel` 处理事件。
+
+
+<br>
+
+---
+
+# Boost.Asio
+
+[Boost.Asio](https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio.html)
+
