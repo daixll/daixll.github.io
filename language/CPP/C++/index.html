@@ -1284,8 +1284,46 @@ ptr<span class="token punctuation">.</span><span class="token function">reset</s
 </code></pre><br>
 <hr>
 <h1 id="stl">STL </h1>
+<p><strong>jiao 的 <a href="https://github.com/daixll/CPP_STL">CPP_STL</a></strong></p>
 <p>STL（standard template library），泛型库。<br>
 提供了一系列的模板类和模板函数，支持常用的数据结构和算法。</p>
+<h2 id="如果你未曾接触过数据结构">如果你未曾接触过数据结构 </h2>
+<p>我们简单考虑一下，这个数组：</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> a<span class="token punctuation">[</span><span class="token number">666</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre><p>首先明确：</p>
+<ul>
+<li>当我们声明一个数组时，系统会为我们分配一段 <strong>连续</strong> 的内存空间。</li>
+<li>而数组的名字，就是这段内存空间的 <strong>首地址</strong>，这段空间的 <strong>第一个</strong> 元素。
+<ul>
+<li>访问某地址上的数据，需要解引用，即 <code>*a</code>。</li>
+</ul>
+</li>
+<li>显然，如果我们想访问数组的第 <strong>2</strong> 个元素，地址是 <code>a+1</code>，即 <code>*(a+1)</code>。
+<ul>
+<li>我们常用的 <code>a[i]</code>，其实就是 <code>*(a+i)</code>。</li>
+</ul>
+</li>
+</ul>
+<p>因此，总结一下其优缺点：</p>
+<p><strong>优点</strong>：</p>
+<ol>
+<li>可以通过下标（偏移量）访问元素，时间复杂度为 <code>O(1)</code>。</li>
+</ol>
+<p><strong>缺点</strong>：</p>
+<ol>
+<li>因为声明时就分配了内存空间，所以数组的大小是 <strong>固定</strong> 的。</li>
+<li>我们无法在数组中间插入（删除）元素，因为这会破坏数组的连续性。
+<ul>
+<li>除非我们将目标 <strong>后</strong> 的元素全部后移（前移），然后再插入（删除）。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>人生如戏，我们无法提前知晓它的篇幅，也不知其何时谢幕。<br>
+戏如人生，有人在某个瞬间无奈离去，而也有新的面孔在不经意间加入。</p>
+</blockquote>
+<p>为了能够在数组中间插入（删除）元素，肯定需要摆脱数组的 <strong>连续性</strong>，我们知道，数组中间的元素，是通过第一个元素的地址加上偏移量来访问的，一旦这个连续性被打破，我们就无法通过偏移量来访问元素了。</p>
+<p>因此，单向链表就应运而生了。</p>
 <h2 id="迭代器-iterator">迭代器 iterator </h2>
 <p>迭代器是一种泛型指针，它可以指向容器中的元素。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>容器<span class="token double-colon punctuation">::</span>iterator it<span class="token punctuation">;</span>
@@ -2034,7 +2072,11 @@ multiset<span class="token operator">&lt;</span>pair<span class="token operator"
 </a>
           </summary>
         <div>
-          <details style="padding:0;;padding-left:24px;" open="">
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#如果你未曾接触过数据结构" class="md-toc-link">
+            <p>如果你未曾接触过数据结构</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#迭代器-iterator" class="md-toc-link"><p>迭代器 iterator</p>
 </a>
