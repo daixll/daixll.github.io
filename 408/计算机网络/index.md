@@ -661,7 +661,92 @@ Stub 区域 **不会转发外部路由**，只会转发来自本区域的路由�
       [路由丁-bgp-default] peer 2.2.2.2 connect-interface LoopBack 0
       ```
       
+<br>
 
+---
+
+## BGP路由属性配置
+
+![](./IMAGE/实验9_BGP路由属性配置.png)
+
+1. 配置静态路由
+    * 路由乙
+      ```shell
+      [路由乙] ip route-static 3.3.3.3 255.255.255.255 10.10.10.5
+      [路由乙] ip route-static 4.4.4.4 255.255.255.255 10.10.10.5
+      ```
+    
+    * 路由丙
+      ```shell
+      [路由丙] ip route-static 2.2.2.2 255.255.255.255 10.10.10.6
+      [路由丙] ip route-static 4.4.4.4 255.255.255.255 10.10.10.10
+      ```
+    
+    * 路由丁
+      ```shell
+      [路由丁] ip route-static 2.2.2.2 255.255.255.255 10.10.10.9
+      [路由丁] ip route-static 3.3.3.3 255.255.255.255 10.10.10.9
+      ```
+
+2. 配置BGP
+    * 路由甲
+      ```shell
+      [路由甲] bgp 65000
+      [路由甲-bgp] import-route direct
+      [路由甲-bgp] undo synchronization
+      [路由甲-bgp] peer 10.10.20.2 as-number 65300
+      [路由甲-bgp] peer 10.10.10.2 as-number 65300
+      ```
+    
+    * 路由乙
+      ```shell
+      [路由乙] bgp 65300
+      [路由乙-bgp] network 3.3.3.3 255.255.255.255
+      [路由乙-bgp] import-route direct
+      [路由乙-bgp] undo synchronization
+      [路由乙-bgp] peer 10.10.10.1 as-number 65000
+      [路由乙-bgp] peer 3.3.3.3 as-number 65300
+      [路由乙-bgp] peer 3.3.3.3 next-hop-local  
+      [路由乙-bgp] peer 3.3.3.3 connect-interface LoopBack0
+      ```
+
+    * 路由丙
+      ```shell
+      [路由丙] bgp 65300
+      [路由丙-bgp] import-route direct
+      [路由丙-bgp] undo synchronization
+      [路由丙-bgp] peer 4.4.4.4 as-number 65300
+      [路由丙-bgp] peer 2.2.2.2 as-number 65300
+      [路由丙-bgp] peer 4.4.4.4 connect-interface LoopBack0
+      [路由丙-bgp] peer 2.2.2.2 connect-interface LoopBack0
+      ```
+
+    * 路由丁
+      ```shell
+      [路由丁] bgp 65300
+      [路由丁-bgp] network 3.3.3.3 255.255.255.255
+      [路由丁-bgp] import-route direct
+      [路由丁-bgp] undo synchronization
+      [路由丁-bgp] peer 10.10.20.1 as-number 65000
+      [路由丁-bgp] peer 3.3.3.3 as-number 65300
+      [路由丁-bgp] peer 3.3.3.3 next-hop-local  
+      [路由丁-bgp] peer 3.3.3.3 connect-interface LoopBack0
+      ```
+
+3. 配置LOCAL_PREF属性
+
+    * 路由丁
+      ```shell
+      [路由丁] bgp 65300
+      [路由丁-bgp] default local-preference 300
+      ```
+
+4. 配置 MED 属性
+    * 路由乙
+      ```shell
+      [路由乙] bgp 65300
+      [路由乙-bgp] default med 100
+      ```
 
 
 <br>
