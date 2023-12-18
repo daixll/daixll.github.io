@@ -198,7 +198,7 @@ export_on_save:
 
 | 国家级奖项 🥇 | 省部级奖项 🥈 | 技能证书 🥉 | 奖学金 💰 | 
 |:-:|:-:|:-:|:-:|
-| 7 | 11 | 4 | 9 | 
+| 7 | 12 | 4 | 9 | 
 
 </div>
 
@@ -216,9 +216,26 @@ export_on_save:
 
 - `2023-12`
 
-### 国二 ACCA
+### 省二 ICPC 重庆市赛
 
-- `2023-12`
+- `2023-12` `2023重庆市第十一届大学生程序设计大赛` `省赛二等奖`
+
+<div class="center">
+    <img src="joker/（省2）ICPCCQ.jpg" width="300">
+</div>
+<div class="center">
+    <img src="joker//排名/（省2）ICPCCQ2.jpg" width="300">
+</div>
+
+
+
+### 国二 清华社杯
+
+- `2023-12` `2023第二届“清华社杯”大学生算法大赛大学B组` `国赛二等奖`
+
+<div class="center">
+    <img src="joker/（国2）清华社杯.jpg" width="300">
+</div>
 
 
 ### 国一 码蹄杯
