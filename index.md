@@ -212,7 +212,7 @@ export_on_save:
 
 ## 2023
 
-### 省一 传智杯
+### 省X 传智杯
 
 - `2023-12`
 
@@ -224,7 +224,7 @@ export_on_save:
     <img src="joker/（省2）ICPCCQ.jpg" width="300">
 </div>
 <div class="center">
-    <img src="joker//排名/（省2）ICPCCQ2.jpg" width="300">
+    <img src="joker/排名/（省2）ICPCCQ2.jpg" width="300">
 </div>
 
 
