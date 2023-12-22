@@ -218,7 +218,7 @@ export_on_save:
 
 ### 省二 ICPC 重庆市赛
 
-- `2023-12` `2023重庆市第十一届大学生程序设计大赛` `省赛二等奖`
+- `2023-12` `2023重庆市第十一届大学生程序设计大赛` `省赛二等奖` [报道](https://www.cqust.edu.cn/info/1466/69404.htm)
 
 <div class="center">
     <img src="joker/（省2）ICPCCQ.jpg" width="300">
@@ -328,7 +328,7 @@ export_on_save:
 
 ### 国二 蓝桥杯
 
-- `2023-6` `第十四届“蓝桥杯”C/C++程序设计本科B组` `国赛二等奖` [公示 / 排名](https://dasai.lanqiao.cn/notices/1481/) / [报道](https://www.cqipc.edu.cn/info/1228/18228.htm)
+- `2023-6` `第十四届“蓝桥杯”C/C++程序设计本科B组` `国赛二等奖` [公示 / 排名](https://dasai.lanqiao.cn/notices/1481/) / [报道](https://www.cqipc.edu.cn/info/1206/18229.htm)
 <div class="center">
     <img src="joker/（国2）蓝桥杯23.jpg" width="300"> 
 </div>
