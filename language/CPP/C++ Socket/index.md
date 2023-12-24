@@ -5,19 +5,9 @@ export_on_save:
     html: true  # 自动保存
 ---
 
-# Socket
+源代码见 [GitHub](https://github.com/daixll/A_Tour_of_Socket)
 
-
-* [TCP / IP 分层模型](#tcp--ip-分层模型) 及 [三握四挥](#tcp-三握四挥)
-* [socket TCP 通信模型](#socket-tcp-通信模型) 及 [实例](#socket-tcp-通信简单实例)
-* [socket UDP 通信模型](#socket-udp-通信模型) 及 [实例](#socket-udp-通信简单实例)
-* 网络IO接口复用：select、poll、[epoll](#epoll)
-* 阻塞、[非阻塞](#非阻塞-socket)、[Socket选项](#socket-选项)
-* 同步、异步
-* HTTP协议
-
-
-## TCP / IP 分层模型
+在正式开始之前，有必要先了解一下 **TCP / IP 分层模型**：
 
 | 层     | 协议 |
 | :-:    | :-: |
@@ -26,7 +16,43 @@ export_on_save:
 | 网络层 | `IPV4` `IPV6` `...` |
 | 物理层 | `LAN` `WLAN` `...` |
 
-## socket TCP 通信模型
+以及基础的计算机硬件知识：
+
+|  设备  |  功能   |
+| :-:  | :-: |
+| 数据总线 | 传输数据 |
+| IO设备   | 输入输出 |
+| 主存储器 | 存储数据 |
+| CPU    | 计算数据 |
+
+计算机软件知识：
+
+* **操作系统**
+    * （内核空间）管理计算机硬件资源进行管理和控制
+    * （用户空间）提供系统调用接口，供用户程序调用
+
+* **进程**
+    * 为了让计算机能够同时运行多个程序，操作系统引入了进程的概念
+
+* **线程**
+    * 此线程并 *超线程* 技术
+    * 线程是 CPU 调度的基本单位，进程是资源分配的基本单位
+
+<br>
+
+---
+
+# 阻塞 IO
+
+当 **进程** 发起 **IO请求** 后，如果 **内核** 没有准备好数据，那么 **进程** 将一直等待，直到 **内核** 准备好数据为止
+
+> 当程序发起发送数据的请求时，如果发送缓冲区已满，那么程序将一直等待，直到发送缓冲区有空间为止
+
+> 当程序发起接收数据的请求时，如果接收缓冲区为空，那么程序将一直等待，直到接收缓冲区有数据为止
+
+## TCP
+
+**TCP 通信模型**
 socket是一个接口，而不是一种协议，其抽象在应用层与传输层之间
 
 |       |  函数  |  服务端  |                      
@@ -46,41 +72,169 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
 | 4 | `close()` | 关闭 socket |
 
 
-## socket TCP 通信简单实例
-    
-* 启动 [服务端](样例/TCP通信样例/服务端.cpp)
-    1. 编译 `g++ 服务端.cpp -o 服务端`
-    2. 运行 `./服务端` 默认运行在本地 8080 端口
-* 启动 [客户端](样例/TCP通信样例/客户端.cpp)
-    1. 编译 `g++ 客户端.cpp -o 客户端`
-    2. 运行 `./客户端`     
-   
-可以同时运行多个客户端，但服务端在同一时刻只允许一台客户端连接。连接之后：
-1. 客户端发送消息，服务端接收消息
-2. 服务端发送消息，客户端接收消息
-3. 不断重复，直到客户端断开连接
+### server
 
-## TCP 三握四挥
+1. 创建套接字 `socket()`
+    ```cpp
+    #include <sys/socket.h> // socket()
+    ```
+
+    ```cpp
+    // 创建套接字
+    int server = socket(AF_INET, SOCK_STREAM, 0);
+    ```
+    * `AF_INET`：IPv4
+    * `SOCK_STREAM`：TCP
+    * `0`：自动选择协议，这里是 `TCP` 协议
+
+<br>
+
+2. 绑定 ip + port `bind()`
+    ```cpp
+    #include <cstring>      // memset()
+    #include <arpa/inet.h>  // sockaddr
+    ```
+
+    ```cpp
+    // 服务端地址
+    sockaddr_in server_addr;
+    memset(&server_addr, '\0', sizeof server_addr);
+    // 给地址赋值
+    server_addr.sin_family      = AF_INET;
+    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server_addr.sin_port        = htons(10086);
+    // 绑定
+    bind(server, (sockaddr*)&server_addr, sizeof server_addr);
+    ```
+    * `sockaddr_in`：IPv4 套接字地址结构体
+    * `sin_addr.s_addr`：IPv4 地址
+    * `sin_port`：端口号
+
+    <br>
+
+    > 为什么要强制转换为 `sockaddr`？ 
+    > 为什么要使用 `sockaddr_in` 而不是 `sockaddr`？
+    > * `sockaddr` 是一个通用的套接字地址结构体，可以用于任何类型的套接字
+    > * `sockaddr_in` 是一个 IPv4 套接字地址结构体，只能用于 IPv4 套接字
+    > * `sockaddr_in` 是 `sockaddr` 的子类，可以强制转换为 `sockaddr`
+    > * 除了 `sockaddr_in`，还有 `sockaddr_in6`、`sockaddr_un` 等
+    
+<br>
+
+3. 监听 `listen()`
+
+    ```cpp
+    // 监听
+    listen(server, 0);
+    ```
+    * `0`：等待队列的最大长度，目前无需关注
+
+<br>
+
+4. 接受连接请求 `accept()`
+
+    ```cpp
+    sockaddr_in client_addr;
+    socklen_t   client_addr_len = sizeof client_addr;
+    accept(server, (sockaddr*)&server_addr, &client_addr_len);
+    ```
+    * `socklen_t`：`sockaddr` 的长度类型
+
+    > 为什么这里需要传入 `&client_addr_len` 而不是 `client_addr_len`？
+    > * `accept()` 函数会修改 `client_addr_len` 的值，所以需要传入指针
+
+<br>
+
+5. 接收消息 `recv()`
+
+    ```cpp
+    char buf[1024];
+    memset(buf, '\0', sizeof buf);
+    recv(server, buf, sizeof buf, 0);
+    ```
+
+<br>
+
+6. 关闭套接字 `close()`
+
+    ```cpp
+    close(server);
+    ```
+
+<br>
+
+### client
+
+1. 创建套接字 `socket()`
+    ```cpp
+    // 创建套接字
+    int client = socket(AF_INET, SOCK_STREAM, 0);
+    ```
+
+2. 连接指定 ip + port `connect()`
+    ```cpp
+    sockaddr_in server_addr;
+    memset(&server_addr, '\0', sizeof server_addr);
+    // 给地址赋值
+    server_addr.sin_family      = AF_INET;
+    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server_addr.sin_port        = htons(10086);
+    // 连接
+    connect(client, (sockaddr*)&server_addr, sizeof server_addr);
+    ```
+
+3. 发送消息 `send()`
+
+    ```cpp
+    char buf[1024];
+    memset(buf, '\0', sizeof buf);
+    scanf("%s", buf);
+    send(client, buf, strlen(buf), 0);
+    ```
+
+4. 关闭套接字 `close()`
+
+    ```cpp
+    close(client);
+    ```
+
+<br>
+
+
+基础的 TCP 通信，源代码见 [Leg1](https://github.com/daixll/A_Tour_of_Socket/tree/main/Leg1)
+
+相互通信的 TCP 通信，源代码见 [Leg2](https://github.com/daixll/A_Tour_of_Socket/tree/main/Leg2)
+
+
+<br>
+
+###  TCP 三握四挥
 
 * 连接
-    1. `客户端` 请求连接，`connect` 阻塞。
-    2. `服务端` 收到请求，`accept` 阻塞，同时向 `客户端` 发送确认信息。
-    3. `客户端` 确认。`connect` 返回。同时发送信息。`accept` 返回。
+    1. `客户端` 请求连接，`connect` 阻塞
+    2. `服务端` 收到请求，`accept` 阻塞，同时向 `客户端` 发送确认信息
+    3. `客户端` 确认；`connect` 返回；同时发送信息；`accept` 返回
 
 * 断开
-    1. `客户端` 请求断开，`close` 阻塞。
-    2. `服务端` 发送确认信息（我已知晓）。
-    3. `服务端` 发送请求信息（请求断开），`close` 阻塞。
-    4. `客户端` 收到确认信息，发送确认信息，俩 `close` 先后返回。
+    1. `客户端` 请求断开，`close` 阻塞
+    2. `服务端` 发送确认信息（我已知晓）
+    3. `服务端` 发送请求信息（请求断开），`close` 阻塞
+    4. `客户端` 收到确认信息，发送确认信息，俩 `close` 先后返回
 
 * 连接之后
-    1. `客户端` 发送信息，`send` 阻塞。
-    2. `服务端` 接收信息，`recv` 阻塞。
-    3. `服务端` 发送信息，`send` 阻塞。
-    4. `客户端` 接收信息，`recv` 阻塞。
-    5. 重复 1-4，直到 `客户端` 或 `服务端` 断开连接。
+    1. `客户端` 发送信息，`send` 阻塞
+    2. `服务端` 接收信息，`recv` 阻塞
+    3. `服务端` 发送信息，`send` 阻塞
+    4. `客户端` 接收信息，`recv` 阻塞
+    5. 重复 1-4，直到 `客户端` 或 `服务端` 断开连接
 
-## socket UDP 通信模型
+<br>
+
+---
+
+## UDP
+
+**UDP 通信模型**
 
 |       |  函数  |  服务端  |                      
 | :---: |  :---:  | :---: | 
@@ -95,6 +249,225 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
 | 2 | `sendto()` | 发送消息 |
 | 3 | `close()` | 关闭 socket |
 
+### server
+
+1. 创建套接字 `socket()`
+
+    ```cpp
+    // 创建套接字
+    int server = socket(AF_INET, SOCK_DGRAM, 0);
+    ```
+    * `SOCK_DGRAM`：UDP
+    * `0`：自动选择协议，这里是 `UDP` 协议
+
+2. 绑定 ip + port `bind()`
+
+    ```cpp
+    // 服务端地址
+    sockaddr_in server_addr;
+    memset(&server_addr, '\0', sizeof server_addr);
+    // 给地址赋值
+    server_addr.sin_family      = AF_INET;
+    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server_addr.sin_port        = htons(10086);
+    // 绑定
+    bind(server, (sockaddr*)&server_addr, sizeof server_addr);
+    ```
+
+3. 接收消息 `recvfrom()`
+
+    ```cpp
+    // 缓冲区
+    char buf[1024];
+    memset(buf, '\0', sizeof buf);
+    // 客户端地址
+    sockaddr_in client_addr;
+    memset(&client_addr, '\0', sizeof client_addr);
+    socklen_t   client_addr_len = sizeof client_addr;
+    // 接收消息
+    recvfrom(server, buf, sizeof buf, 0, (sockaddr*)&client_addr, &client_addr_len);
+    ```
+
+4. 关闭套接字 `close()`
+
+    ```cpp
+    close(server);
+    ```
+
+### client
+
+1. 创建套接字 `socket()`
+
+    ```cpp
+    // 创建套接字
+    int client = socket(AF_INET, SOCK_DGRAM, 0);
+    ```
+
+2. 发送消息 `sendto()`
+
+    ```cpp
+    // 服务端地址
+    sockaddr_in server_addr;
+    memset(&server_addr, '\0', sizeof server_addr);
+    // 给地址赋值
+    server_addr.sin_family      = AF_INET;
+    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server_addr.sin_port        = htons(10086);
+    // 发送消息
+    char buf[1024];
+    memset(buf, '\0', sizeof buf);
+    scanf("%s", buf);
+    sendto(client, buf, strlen(buf), 0, (sockaddr*)&server_addr, sizeof server_addr);
+    ```
+
+3. 关闭套接字 `close()`
+
+    ```cpp
+    close(client);
+    ```
+
+<br>
+
+相互通信的 TCP 通信，源代码见 [Leg3](https://github.com/daixll/A_Tour_of_Socket/tree/main/Leg3)
+
+<br>
+
+---
+
+## HTTP
+
+HTTP 协议是基于 TCP 协议的应用层协议，默认端口号是 80（HTTPS是 443），HTTP 协议的通信模型是 **请求-响应** 模型
+
+* 请求，即客户端向服务端发送的消息
+* 响应，即服务端向客户端发送的消息
+
+HTTP 协议的请求消息和响应消息都是由 **请求行**、**请求头**、**请求体** 组成
+
+* **请求行**由三部分组成：请求方法、请求路径、HTTP版本
+
+    * 请求方法：
+        * **GET：**
+           - **用途：** 请求获取指定资源.不应该对服务器端数据产生任何影响。
+           - **示例：** `GET /index.html`，获取首页信息。
+
+        2. **POST：**
+           - **用途：** 用于向指定资源提交数据，请求服务器进行处理。常用于提交表单数据或上传文件。
+           - **示例：** `POST /users`，提交用户注册表单。
+
+        3. **PUT：**
+           - **用途：** 请求服务器存储一个资源。通常是更新已存在的资源或创建新资源。
+           - **示例：** `PUT /products/123`，更新产品编号为123的商品信息。
+
+        4. **DELETE：**
+           - **用途：** 请求服务器删除指定的资源。
+           - **示例：** `DELETE /users/456`，删除用户编号为456的用户信息。
+
+        5. **HEAD：**
+           - **用途：** 请求获取指定资源的响应头信息，而不获取响应体的内容。通常用于检查资源是      否存在或获取资源的元信息。
+           - **示例：** `HEAD /documents/789`，检查文档编号为789的资源是否存在。
+
+        6. **OPTIONS：**
+           - **用途：** 请求获取目标资源所支持的通信选项。用于查询服务器支持的HTTP方法。
+           - **示例：** `OPTIONS /products`，查询服务器支持的HTTP方法。
+
+        7. **TRACE：**
+           - **用途：** 用于追踪路径。发送请求时，服务器会返回该请求所经过的服务器路径。主要用      于调试和测试。
+           - **示例：** `TRACE /debug`，追踪请求的路径。
+
+        8. **CONNECT：**
+           - **用途：** 用于建立与目标资源的隧道连接，通常用于加密连接，如HTTPS。
+           - **示例：** `CONNECT www.example.com:443`，与目标服务器建立加密连接。
+
+这些HTTP请求方法提供了不同的操作方式，允许客户端与服务器进行各种类型的交互。在RESTful API设计中，通常会合理使用这些方法来表达对资源的不同操作。
+
+    * 请求路径：`/`、`/index.html`、`/jiao.html`、`...`
+    * HTTP版本：`HTTP/1.0`、`HTTP/1.1`、`HTTP/2.0`
+
+* 请求头：请求头字段、请求头字段值
+* 请求体：请求体数据
+
+<br>
+
+### 请求行
+
+
+
+### http_server
+
+
+<br>
+
+---
+
+## Boost.Asio
+
+
+<br>
+
+---
+
+# 非阻塞 IO
+
+
+<br>
+
+---
+
+
+# IO 复用
+
+
+<br>
+
+---
+
+# 信号驱动 IO
+
+
+<br>
+
+---
+
+# 异步 IO
+
+前 4 种 IO 模型都是同步 IO，即用户进程发起 IO 请求后，需要等待内核完成 IO 操作后才能继续执行
+
+<br>
+
+---
+
+# errno
+
+
+
+
+
+
+
+
+
+
+
+# Socket
+
+
+* [TCP / IP 分层模型](#tcp--ip-分层模型) 及 [三握四挥](#tcp-三握四挥)
+* [socket TCP 通信模型](#socket-tcp-通信模型) 及 [实例](#socket-tcp-通信简单实例)
+* [socket UDP 通信模型](#socket-udp-通信模型) 及 [实例](#socket-udp-通信简单实例)
+* 网络IO接口复用：select、poll、[epoll](#epoll)
+* 阻塞、[非阻塞](#非阻塞-socket)、[Socket选项](#socket-选项)
+* 同步、异步
+* HTTP协议
+
+
+
+
+
+
+## 
+
+
+
 ## socket UDP 通信简单实例
 
 * 启动 [服务端](样例/UDP通信样例/服务端.cpp)
@@ -104,10 +477,10 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
     1. 编译 `g++ 客户端.cpp -o 客户端`
     2. 运行 `./客户端`     
    
-可以同时运行多个客户端，服务端允许多台客户端连接。连接之后：
+可以同时运行多个客户端，服务端允许多台客户端连接；连接之后：
 
-1. 客户端发送消息，服务端接收消息，回复单一消息。
-2. 服务端发送消息，客户端接收消息，回复单一消息。
+1. 客户端发送消息，服务端接收消息，回复单一消息
+2. 服务端发送消息，客户端接收消息，回复单一消息
 3. 不断重复，直到客户端断开连接
 
 ## Socket 选项
@@ -123,7 +496,7 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
         * `SO_REUSEADDR`：允许重用本地地址和端口
         * `SO_REUSEPORT`：允许重用本地地址和端口
         * `SO_KEEPALIVE`：开启 TCP Keep-Alive
-        * `SO_LINGER`：关闭 socket 时，底层会将发送缓冲区的数据发送给对端，然后等待一段时间，如果还没收到对端的确认信息，就强制关闭 socket。
+        * `SO_LINGER`：关闭 socket 时，底层会将发送缓冲区的数据发送给对端，然后等待一段时间，如果还没收到对端的确认信息，就强制关闭 socket
         * `SO_RCVBUF`：设置接收缓冲区大小
         * `SO_SNDBUF`：设置发送缓冲区大小
         * `TCP_NODELAY`：禁用 Nagle 算法
@@ -154,48 +527,48 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
         * `O_SYNC`：同步
 
 
-阻塞：调用函数时，如果数据没有准备好，那么函数将一直等待，直到数据准备好为止。
+阻塞：调用函数时，如果数据没有准备好，那么函数将一直等待，直到数据准备好为止
 
-非阻塞：调用函数时，如果数据没有准备好，那么函数将立即返回，不会等待数据准备好。
+非阻塞：调用函数时，如果数据没有准备好，那么函数将立即返回，不会等待数据准备好
 
 
 * `accept`
-    * 阻塞：没有新连接时，一直等待。
+    * 阻塞：没有新连接时，一直等待
     * 非阻塞：没有新连接时，立即返回 `EWOULDBLOCK(11)` 或 `EAGAIN`
 
 * `recv`
-    * 阻塞：没有数据时，一直等待。
+    * 阻塞：没有数据时，一直等待
     * 非阻塞：没有数据时，立即返回 `EWOULDBLOCK(11)` 或 `EAGAIN`
 
 * `read`
-    * 阻塞：没有数据时，一直等待。
+    * 阻塞：没有数据时，一直等待
     * 非阻塞：没有数据时，立即返回 `EWOULDBLOCK(11)` 或 `EAGAIN`
 
 
 ## Epoll
 
-eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）的一个实现。
+eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）的一个实现
 
-直观来说，I/O 复用的作用就是：让程序能够在单进程、单线程的模式下，同时处理 **多个文件描述符** 的 I/O 请求。
+直观来说，I/O 复用的作用就是：让程序能够在单进程、单线程的模式下，同时处理 **多个文件描述符** 的 I/O 请求
 
 * `int epoll_create1()` 
-    * 创建一个 epoll 文件描述符，事件轮询的实例，返回一个文件描述符，即事件树。
-    * 底层创建一个 红黑树 和 就绪链表（双向链表）。
-    * 红黑树 存储所监控的文件描述符的节点数据，就绪链表 存储就绪的文件描述符的节点数据。
+    * 创建一个 epoll 文件描述符，事件轮询的实例，返回一个文件描述符，即事件树
+    * 底层创建一个 红黑树 和 就绪链表（双向链表）
+    * 红黑树 存储所监控的文件描述符的节点数据，就绪链表 存储就绪的文件描述符的节点数据
 
 * `int epoll_ctl(事件树, 操作, 文件描述符, 事件)`
     * 操作：
-        * `EPOLL_CTL_ADD`：注册新的事件到事件树。
-        * `EPOLL_CTL_MOD`：修改已经注册的事件。
-        * `EPOLL_CTL_DEL`：删除已经注册的事件。
+        * `EPOLL_CTL_ADD`：注册新的事件到事件树
+        * `EPOLL_CTL_MOD`：修改已经注册的事件
+        * `EPOLL_CTL_DEL`：删除已经注册的事件
     * 事件：
-        * `EPOLLIN`：对应的文件描述符可以读 `read`（包括对端SOCKET正常关闭）。
-        * `EPOLLPRI`：对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）。
-        * `EPOLLOUT`：对应的文件描述符可以写 `recv`。
-        * `EPOLLERR`：对应的文件描述符发生错误。
-        * `EPOLLHUP`：对应的文件描述符被挂断。
-        * `EPOLLET`：将 EPOLL 设为边缘触发(Edge Triggered)模式。
-        * `EPOLLONESHOT`：只监听一次事件，当监听完这次事件之后，删除。
+        * `EPOLLIN`：对应的文件描述符可以读 `read`（包括对端SOCKET正常关闭）
+        * `EPOLLPRI`：对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）
+        * `EPOLLOUT`：对应的文件描述符可以写 `recv`
+        * `EPOLLERR`：对应的文件描述符发生错误
+        * `EPOLLHUP`：对应的文件描述符被挂断
+        * `EPOLLET`：将 EPOLL 设为边缘触发(Edge Triggered)模式
+        * `EPOLLONESHOT`：只监听一次事件，当监听完这次事件之后，删除
 
 * `int epoll_wait(事件树, 事件数组, 事件数组大小, 超时时间)`
     * 事件数组：`epoll_event` 结构体数组
@@ -211,8 +584,8 @@ eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）
     1. 编译 `g++ 客户端.cpp -o 客户端`
     2. 运行 `./客户端`     
    
-可以同时运行多个客户端，服务端允许多台客户端连接。连接之后：
-1. 客户端发送消息，服务端接收消息，回复单一消息。
+可以同时运行多个客户端，服务端允许多台客户端连接连接之后：
+1. 客户端发送消息，服务端接收消息，回复单一消息
 
 ## 面向对象
 
@@ -220,7 +593,7 @@ eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）
 
 ## Channel
 
-`Channel` 是 `Epoll` 的事件处理类，`Epoll` 通过 `Channel` 处理事件。
+`Channel` 是 `Epoll` 的事件处理类，`Epoll` 通过 `Channel` 处理事件
 
 
 <br>

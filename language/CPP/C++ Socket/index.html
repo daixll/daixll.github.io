@@ -24,17 +24,8 @@
     
       <div class="crossnote markdown-preview  ">
       
-<h1 id="socket">Socket </h1>
-<ul>
-<li><a href="#tcp--ip-%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B">TCP / IP 分层模型</a> 及 <a href="#tcp-%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5">三握四挥</a></li>
-<li><a href="#socket-tcp-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket TCP 通信模型</a> 及 <a href="#socket-tcp-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">实例</a></li>
-<li><a href="#socket-udp-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket UDP 通信模型</a> 及 <a href="#socket-udp-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">实例</a></li>
-<li>网络IO接口复用：select、poll、<a href="#epoll">epoll</a></li>
-<li>阻塞、<a href="#%E9%9D%9E%E9%98%BB%E5%A1%9E-socket">非阻塞</a>、<a href="#socket-%E9%80%89%E9%A1%B9">Socket选项</a></li>
-<li>同步、异步</li>
-<li>HTTP协议</li>
-</ul>
-<h2 id="tcp--ip-分层模型">TCP / IP 分层模型 </h2>
+<p>源代码见 <a href="https://github.com/daixll/A_Tour_of_Socket">GitHub</a></p>
+<p>在正式开始之前，有必要先了解一下 <strong>TCP / IP 分层模型</strong>：</p>
 <table>
 <thead>
 <tr>
@@ -61,8 +52,69 @@
 </tr>
 </tbody>
 </table>
-<h2 id="socket-tcp-通信模型">socket TCP 通信模型 </h2>
-<p>socket是一个接口，而不是一种协议，其抽象在应用层与传输层之间</p>
+<p>以及基础的计算机硬件知识：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">设备</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">数据总线</td>
+<td style="text-align:center">传输数据</td>
+</tr>
+<tr>
+<td style="text-align:center">IO设备</td>
+<td style="text-align:center">输入输出</td>
+</tr>
+<tr>
+<td style="text-align:center">主存储器</td>
+<td style="text-align:center">存储数据</td>
+</tr>
+<tr>
+<td style="text-align:center">CPU</td>
+<td style="text-align:center">计算数据</td>
+</tr>
+</tbody>
+</table>
+<p>计算机软件知识：</p>
+<ul>
+<li>
+<p><strong>操作系统</strong></p>
+<ul>
+<li>（内核空间）管理计算机硬件资源进行管理和控制</li>
+<li>（用户空间）提供系统调用接口，供用户程序调用</li>
+</ul>
+</li>
+<li>
+<p><strong>进程</strong></p>
+<ul>
+<li>为了让计算机能够同时运行多个程序，操作系统引入了进程的概念</li>
+</ul>
+</li>
+<li>
+<p><strong>线程</strong></p>
+<ul>
+<li>此线程并 <em>超线程</em> 技术</li>
+<li>线程是 CPU 调度的基本单位，进程是资源分配的基本单位</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h1 id="阻塞-io">阻塞 IO </h1>
+<p>当 <strong>进程</strong> 发起 <strong>IO请求</strong> 后，如果 <strong>内核</strong> 没有准备好数据，那么 <strong>进程</strong> 将一直等待，直到 <strong>内核</strong> 准备好数据为止</p>
+<blockquote>
+<p>当程序发起发送数据的请求时，如果发送缓冲区已满，那么程序将一直等待，直到发送缓冲区有空间为止</p>
+</blockquote>
+<blockquote>
+<p>当程序发起接收数据的请求时，如果接收缓冲区为空，那么程序将一直等待，直到接收缓冲区有数据为止</p>
+</blockquote>
+<h2 id="tcp">TCP </h2>
+<p><strong>TCP 通信模型</strong><br>
+socket是一个接口，而不是一种协议，其抽象在应用层与传输层之间</p>
 <table>
 <thead>
 <tr>
@@ -135,58 +187,167 @@
 </tr>
 </tbody>
 </table>
-<h2 id="socket-tcp-通信简单实例">socket TCP 通信简单实例 </h2>
-<ul>
-<li>启动 <a href="%E6%A0%B7%E4%BE%8B/TCP%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E6%9C%8D%E5%8A%A1%E7%AB%AF.cpp">服务端</a>
+<h3 id="server">server </h3>
 <ol>
-<li>编译 <code>g++ 服务端.cpp -o 服务端</code></li>
-<li>运行 <code>./服务端</code> 默认运行在本地 8080 端口</li>
-</ol>
-</li>
-<li>启动 <a href="%E6%A0%B7%E4%BE%8B/TCP%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E5%AE%A2%E6%88%B7%E7%AB%AF.cpp">客户端</a>
-<ol>
-<li>编译 <code>g++ 客户端.cpp -o 客户端</code></li>
-<li>运行 <code>./客户端</code></li>
-</ol>
-</li>
+<li>
+<p>创建套接字 <code>socket()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h&gt;</span> <span class="token comment">// socket()</span></span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 创建套接字</span>
+<span class="token keyword keyword-int">int</span> server <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li><code>AF_INET</code>：IPv4</li>
+<li><code>SOCK_STREAM</code>：TCP</li>
+<li><code>0</code>：自动选择协议，这里是 <code>TCP</code> 协议</li>
 </ul>
-<p>可以同时运行多个客户端，但服务端在同一时刻只允许一台客户端连接。连接之后：</p>
-<ol>
-<li>客户端发送消息，服务端接收消息</li>
-<li>服务端发送消息，客户端接收消息</li>
-<li>不断重复，直到客户端断开连接</li>
+</li>
 </ol>
-<h2 id="tcp-三握四挥">TCP 三握四挥 </h2>
+<br>
+<ol start="2">
+<li>
+<p>绑定 ip + port <code>bind()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstring&gt;</span>      <span class="token comment">// memset()</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h&gt;</span>  <span class="token comment">// sockaddr</span></span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 服务端地址</span>
+sockaddr_in server_addr<span class="token punctuation">;</span>
+<span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>server_addr<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> server_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 给地址赋值</span>
+server_addr<span class="token punctuation">.</span>sin_family      <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+server_addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+server_addr<span class="token punctuation">.</span>sin_port        <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">10086</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 绑定</span>
+<span class="token function">bind</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>server_addr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> server_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li><code>sockaddr_in</code>：IPv4 套接字地址结构体</li>
+<li><code>sin_addr.s_addr</code>：IPv4 地址</li>
+<li><code>sin_port</code>：端口号</li>
+</ul>
+ <br>
+<blockquote>
+<p>为什么要强制转换为 <code>sockaddr</code>？<br>
+为什么要使用 <code>sockaddr_in</code> 而不是 <code>sockaddr</code>？</p>
+<ul>
+<li><code>sockaddr</code> 是一个通用的套接字地址结构体，可以用于任何类型的套接字</li>
+<li><code>sockaddr_in</code> 是一个 IPv4 套接字地址结构体，只能用于 IPv4 套接字</li>
+<li><code>sockaddr_in</code> 是 <code>sockaddr</code> 的子类，可以强制转换为 <code>sockaddr</code></li>
+<li>除了 <code>sockaddr_in</code>，还有 <code>sockaddr_in6</code>、<code>sockaddr_un</code> 等</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<br>
+<ol start="3">
+<li>
+<p>监听 <code>listen()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 监听</span>
+<span class="token function">listen</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li><code>0</code>：等待队列的最大长度，目前无需关注</li>
+</ul>
+</li>
+</ol>
+<br>
+<ol start="4">
+<li>
+<p>接受连接请求 <code>accept()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>sockaddr_in client_addr<span class="token punctuation">;</span>
+socklen_t   client_addr_len <span class="token operator">=</span> <span class="token keyword keyword-sizeof">sizeof</span> client_addr<span class="token punctuation">;</span>
+<span class="token function">accept</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>server_addr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>client_addr_len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li><code>socklen_t</code>：<code>sockaddr</code> 的长度类型</li>
+</ul>
+<blockquote>
+<p>为什么这里需要传入 <code>&amp;client_addr_len</code> 而不是 <code>client_addr_len</code>？</p>
+<ul>
+<li><code>accept()</code> 函数会修改 <code>client_addr_len</code> 的值，所以需要传入指针</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<br>
+<ol start="5">
+<li>
+<p>接收消息 <code>recv()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-char">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token function">memset</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">recv</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buf<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+</ol>
+<br>
+<ol start="6">
+<li>
+<p>关闭套接字 <code>close()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">close</span><span class="token punctuation">(</span>server<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+</ol>
+<br>
+<h3 id="client">client </h3>
+<ol>
+<li>
+<p>创建套接字 <code>socket()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 创建套接字</span>
+<span class="token keyword keyword-int">int</span> client <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>连接指定 ip + port <code>connect()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>sockaddr_in server_addr<span class="token punctuation">;</span>
+<span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>server_addr<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> server_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 给地址赋值</span>
+server_addr<span class="token punctuation">.</span>sin_family      <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+server_addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+server_addr<span class="token punctuation">.</span>sin_port        <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">10086</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 连接</span>
+<span class="token function">connect</span><span class="token punctuation">(</span>client<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>server_addr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> server_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>发送消息 <code>send()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-char">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token function">memset</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">send</span><span class="token punctuation">(</span>client<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>关闭套接字 <code>close()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">close</span><span class="token punctuation">(</span>client<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+</ol>
+<br>
+<p>基础的 TCP 通信，源代码见 <a href="https://github.com/daixll/A_Tour_of_Socket/tree/main/Leg1">Leg1</a></p>
+<p>相互通信的 TCP 通信，源代码见 <a href="https://github.com/daixll/A_Tour_of_Socket/tree/main/Leg2">Leg2</a></p>
+<br>
+<h3 id="tcp-三握四挥">TCP 三握四挥 </h3>
 <ul>
 <li>
 <p>连接</p>
 <ol>
-<li><code>客户端</code> 请求连接，<code>connect</code> 阻塞。</li>
-<li><code>服务端</code> 收到请求，<code>accept</code> 阻塞，同时向 <code>客户端</code> 发送确认信息。</li>
-<li><code>客户端</code> 确认。<code>connect</code> 返回。同时发送信息。<code>accept</code> 返回。</li>
+<li><code>客户端</code> 请求连接，<code>connect</code> 阻塞</li>
+<li><code>服务端</code> 收到请求，<code>accept</code> 阻塞，同时向 <code>客户端</code> 发送确认信息</li>
+<li><code>客户端</code> 确认；<code>connect</code> 返回；同时发送信息；<code>accept</code> 返回</li>
 </ol>
 </li>
 <li>
 <p>断开</p>
 <ol>
-<li><code>客户端</code> 请求断开，<code>close</code> 阻塞。</li>
-<li><code>服务端</code> 发送确认信息（我已知晓）。</li>
-<li><code>服务端</code> 发送请求信息（请求断开），<code>close</code> 阻塞。</li>
-<li><code>客户端</code> 收到确认信息，发送确认信息，俩 <code>close</code> 先后返回。</li>
+<li><code>客户端</code> 请求断开，<code>close</code> 阻塞</li>
+<li><code>服务端</code> 发送确认信息（我已知晓）</li>
+<li><code>服务端</code> 发送请求信息（请求断开），<code>close</code> 阻塞</li>
+<li><code>客户端</code> 收到确认信息，发送确认信息，俩 <code>close</code> 先后返回</li>
 </ol>
 </li>
 <li>
 <p>连接之后</p>
 <ol>
-<li><code>客户端</code> 发送信息，<code>send</code> 阻塞。</li>
-<li><code>服务端</code> 接收信息，<code>recv</code> 阻塞。</li>
-<li><code>服务端</code> 发送信息，<code>send</code> 阻塞。</li>
-<li><code>客户端</code> 接收信息，<code>recv</code> 阻塞。</li>
-<li>重复 1-4，直到 <code>客户端</code> 或 <code>服务端</code> 断开连接。</li>
+<li><code>客户端</code> 发送信息，<code>send</code> 阻塞</li>
+<li><code>服务端</code> 接收信息，<code>recv</code> 阻塞</li>
+<li><code>服务端</code> 发送信息，<code>send</code> 阻塞</li>
+<li><code>客户端</code> 接收信息，<code>recv</code> 阻塞</li>
+<li>重复 1-4，直到 <code>客户端</code> 或 <code>服务端</code> 断开连接</li>
 </ol>
 </li>
 </ul>
-<h2 id="socket-udp-通信模型">socket UDP 通信模型 </h2>
+<br>
+<hr>
+<h2 id="udp">UDP </h2>
+<p><strong>UDP 通信模型</strong></p>
 <table>
 <thead>
 <tr>
@@ -244,6 +405,194 @@
 </tr>
 </tbody>
 </table>
+<h3 id="server-1">server </h3>
+<ol>
+<li>
+<p>创建套接字 <code>socket()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 创建套接字</span>
+<span class="token keyword keyword-int">int</span> server <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li><code>SOCK_DGRAM</code>：UDP</li>
+<li><code>0</code>：自动选择协议，这里是 <code>UDP</code> 协议</li>
+</ul>
+</li>
+<li>
+<p>绑定 ip + port <code>bind()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 服务端地址</span>
+sockaddr_in server_addr<span class="token punctuation">;</span>
+<span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>server_addr<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> server_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 给地址赋值</span>
+server_addr<span class="token punctuation">.</span>sin_family      <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+server_addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+server_addr<span class="token punctuation">.</span>sin_port        <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">10086</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 绑定</span>
+<span class="token function">bind</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>server_addr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> server_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>接收消息 <code>recvfrom()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 缓冲区</span>
+<span class="token keyword keyword-char">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token function">memset</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 客户端地址</span>
+sockaddr_in client_addr<span class="token punctuation">;</span>
+<span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>client_addr<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> client_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+socklen_t   client_addr_len <span class="token operator">=</span> <span class="token keyword keyword-sizeof">sizeof</span> client_addr<span class="token punctuation">;</span>
+<span class="token comment">// 接收消息</span>
+<span class="token function">recvfrom</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buf<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>client_addr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>client_addr_len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>关闭套接字 <code>close()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">close</span><span class="token punctuation">(</span>server<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+</ol>
+<h3 id="client-1">client </h3>
+<ol>
+<li>
+<p>创建套接字 <code>socket()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 创建套接字</span>
+<span class="token keyword keyword-int">int</span> client <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>发送消息 <code>sendto()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 服务端地址</span>
+sockaddr_in server_addr<span class="token punctuation">;</span>
+<span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>server_addr<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> server_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 给地址赋值</span>
+server_addr<span class="token punctuation">.</span>sin_family      <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+server_addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+server_addr<span class="token punctuation">.</span>sin_port        <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">10086</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 发送消息</span>
+<span class="token keyword keyword-char">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token function">memset</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">sendto</span><span class="token punctuation">(</span>client<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>server_addr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> server_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>关闭套接字 <code>close()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">close</span><span class="token punctuation">(</span>client<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+</ol>
+<br>
+<p>相互通信的 TCP 通信，源代码见 <a href="https://github.com/daixll/A_Tour_of_Socket/tree/main/Leg3">Leg3</a></p>
+<br>
+<hr>
+<h2 id="http">HTTP </h2>
+<p>HTTP 协议是基于 TCP 协议的应用层协议，默认端口号是 80（HTTPS是 443），HTTP 协议的通信模型是 <strong>请求-响应</strong> 模型</p>
+<ul>
+<li>请求，即客户端向服务端发送的消息</li>
+<li>响应，即服务端向客户端发送的消息</li>
+</ul>
+<p>HTTP 协议的请求消息和响应消息都是由 <strong>请求行</strong>、<strong>请求头</strong>、<strong>请求体</strong> 组成</p>
+<ul>
+<li>
+<p><strong>请求行</strong>由三部分组成：请求方法、请求路径、HTTP版本</p>
+<ul>
+<li>
+<p>请求方法：</p>
+<ul>
+<li><strong>GET：</strong>
+<ul>
+<li><strong>用途：</strong> 请求获取指定资源.不应该对服务器端数据产生任何影响。</li>
+<li><strong>示例：</strong> <code>GET /index.html</code>，获取首页信息。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>POST：</strong></p>
+<ul>
+<li><strong>用途：</strong> 用于向指定资源提交数据，请求服务器进行处理。常用于提交表单数据或上传文件。</li>
+<li><strong>示例：</strong> <code>POST /users</code>，提交用户注册表单。</li>
+</ul>
+</li>
+<li>
+<p><strong>PUT：</strong></p>
+<ul>
+<li><strong>用途：</strong> 请求服务器存储一个资源。通常是更新已存在的资源或创建新资源。</li>
+<li><strong>示例：</strong> <code>PUT /products/123</code>，更新产品编号为123的商品信息。</li>
+</ul>
+</li>
+<li>
+<p><strong>DELETE：</strong></p>
+<ul>
+<li><strong>用途：</strong> 请求服务器删除指定的资源。</li>
+<li><strong>示例：</strong> <code>DELETE /users/456</code>，删除用户编号为456的用户信息。</li>
+</ul>
+</li>
+<li>
+<p><strong>HEAD：</strong></p>
+<ul>
+<li><strong>用途：</strong> 请求获取指定资源的响应头信息，而不获取响应体的内容。通常用于检查资源是      否存在或获取资源的元信息。</li>
+<li><strong>示例：</strong> <code>HEAD /documents/789</code>，检查文档编号为789的资源是否存在。</li>
+</ul>
+</li>
+<li>
+<p><strong>OPTIONS：</strong></p>
+<ul>
+<li><strong>用途：</strong> 请求获取目标资源所支持的通信选项。用于查询服务器支持的HTTP方法。</li>
+<li><strong>示例：</strong> <code>OPTIONS /products</code>，查询服务器支持的HTTP方法。</li>
+</ul>
+</li>
+<li>
+<p><strong>TRACE：</strong></p>
+<ul>
+<li><strong>用途：</strong> 用于追踪路径。发送请求时，服务器会返回该请求所经过的服务器路径。主要用      于调试和测试。</li>
+<li><strong>示例：</strong> <code>TRACE /debug</code>，追踪请求的路径。</li>
+</ul>
+</li>
+<li>
+<p><strong>CONNECT：</strong></p>
+<ul>
+<li><strong>用途：</strong> 用于建立与目标资源的隧道连接，通常用于加密连接，如HTTPS。</li>
+<li><strong>示例：</strong> <code>CONNECT www.example.com:443</code>，与目标服务器建立加密连接。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>这些HTTP请求方法提供了不同的操作方式，允许客户端与服务器进行各种类型的交互。在RESTful API设计中，通常会合理使用这些方法来表达对资源的不同操作。</p>
+<pre class="language-text">* 请求路径：`/`、`/index.html`、`/jiao.html`、`...`
+* HTTP版本：`HTTP/1.0`、`HTTP/1.1`、`HTTP/2.0`
+</pre>
+<ul>
+<li>请求头：请求头字段、请求头字段值</li>
+<li>请求体：请求体数据</li>
+</ul>
+<br>
+<h3 id="请求行">请求行 </h3>
+<h3 id="http_server">http_server </h3>
+<br>
+<hr>
+<h2 id="boostasio">Boost.Asio </h2>
+<br>
+<hr>
+<h1 id="非阻塞-io">非阻塞 IO </h1>
+<br>
+<hr>
+<h1 id="io-复用">IO 复用 </h1>
+<br>
+<hr>
+<h1 id="信号驱动-io">信号驱动 IO </h1>
+<br>
+<hr>
+<h1 id="异步-io">异步 IO </h1>
+<p>前 4 种 IO 模型都是同步 IO，即用户进程发起 IO 请求后，需要等待内核完成 IO 操作后才能继续执行</p>
+<br>
+<hr>
+<h1 id="errno">errno </h1>
+<h1 id="socket">Socket </h1>
+<ul>
+<li><a href="#tcp--ip-%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B">TCP / IP 分层模型</a> 及 <a href="#tcp-%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5">三握四挥</a></li>
+<li><a href="#socket-tcp-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket TCP 通信模型</a> 及 <a href="#socket-tcp-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">实例</a></li>
+<li><a href="#socket-udp-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket UDP 通信模型</a> 及 <a href="#socket-udp-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">实例</a></li>
+<li>网络IO接口复用：select、poll、<a href="#epoll">epoll</a></li>
+<li>阻塞、<a href="#%E9%9D%9E%E9%98%BB%E5%A1%9E-socket">非阻塞</a>、<a href="#socket-%E9%80%89%E9%A1%B9">Socket选项</a></li>
+<li>同步、异步</li>
+<li>HTTP协议</li>
+</ul>
+<h2></h2>
 <h2 id="socket-udp-通信简单实例">socket UDP 通信简单实例 </h2>
 <ul>
 <li>启动 <a href="%E6%A0%B7%E4%BE%8B/UDP%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E6%9C%8D%E5%8A%A1%E7%AB%AF.cpp">服务端</a>
@@ -259,10 +608,10 @@
 </ol>
 </li>
 </ul>
-<p>可以同时运行多个客户端，服务端允许多台客户端连接。连接之后：</p>
+<p>可以同时运行多个客户端，服务端允许多台客户端连接；连接之后：</p>
 <ol>
-<li>客户端发送消息，服务端接收消息，回复单一消息。</li>
-<li>服务端发送消息，客户端接收消息，回复单一消息。</li>
+<li>客户端发送消息，服务端接收消息，回复单一消息</li>
+<li>服务端发送消息，客户端接收消息，回复单一消息</li>
 <li>不断重复，直到客户端断开连接</li>
 </ol>
 <h2 id="socket-选项">Socket 选项 </h2>
@@ -284,7 +633,7 @@
 <li><code>SO_REUSEADDR</code>：允许重用本地地址和端口</li>
 <li><code>SO_REUSEPORT</code>：允许重用本地地址和端口</li>
 <li><code>SO_KEEPALIVE</code>：开启 TCP Keep-Alive</li>
-<li><code>SO_LINGER</code>：关闭 socket 时，底层会将发送缓冲区的数据发送给对端，然后等待一段时间，如果还没收到对端的确认信息，就强制关闭 socket。</li>
+<li><code>SO_LINGER</code>：关闭 socket 时，底层会将发送缓冲区的数据发送给对端，然后等待一段时间，如果还没收到对端的确认信息，就强制关闭 socket</li>
 <li><code>SO_RCVBUF</code>：设置接收缓冲区大小</li>
 <li><code>SO_SNDBUF</code>：设置发送缓冲区大小</li>
 <li><code>TCP_NODELAY</code>：禁用 Nagle 算法</li>
@@ -329,41 +678,41 @@
 </ul>
 </li>
 </ul>
-<p>阻塞：调用函数时，如果数据没有准备好，那么函数将一直等待，直到数据准备好为止。</p>
-<p>非阻塞：调用函数时，如果数据没有准备好，那么函数将立即返回，不会等待数据准备好。</p>
+<p>阻塞：调用函数时，如果数据没有准备好，那么函数将一直等待，直到数据准备好为止</p>
+<p>非阻塞：调用函数时，如果数据没有准备好，那么函数将立即返回，不会等待数据准备好</p>
 <ul>
 <li>
 <p><code>accept</code></p>
 <ul>
-<li>阻塞：没有新连接时，一直等待。</li>
+<li>阻塞：没有新连接时，一直等待</li>
 <li>非阻塞：没有新连接时，立即返回 <code>EWOULDBLOCK(11)</code> 或 <code>EAGAIN</code></li>
 </ul>
 </li>
 <li>
 <p><code>recv</code></p>
 <ul>
-<li>阻塞：没有数据时，一直等待。</li>
+<li>阻塞：没有数据时，一直等待</li>
 <li>非阻塞：没有数据时，立即返回 <code>EWOULDBLOCK(11)</code> 或 <code>EAGAIN</code></li>
 </ul>
 </li>
 <li>
 <p><code>read</code></p>
 <ul>
-<li>阻塞：没有数据时，一直等待。</li>
+<li>阻塞：没有数据时，一直等待</li>
 <li>非阻塞：没有数据时，立即返回 <code>EWOULDBLOCK(11)</code> 或 <code>EAGAIN</code></li>
 </ul>
 </li>
 </ul>
 <h2 id="epoll">Epoll </h2>
-<p>eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）的一个实现。</p>
-<p>直观来说，I/O 复用的作用就是：让程序能够在单进程、单线程的模式下，同时处理 <strong>多个文件描述符</strong> 的 I/O 请求。</p>
+<p>eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）的一个实现</p>
+<p>直观来说，I/O 复用的作用就是：让程序能够在单进程、单线程的模式下，同时处理 <strong>多个文件描述符</strong> 的 I/O 请求</p>
 <ul>
 <li>
 <p><code>int epoll_create1()</code></p>
 <ul>
-<li>创建一个 epoll 文件描述符，事件轮询的实例，返回一个文件描述符，即事件树。</li>
-<li>底层创建一个 红黑树 和 就绪链表（双向链表）。</li>
-<li>红黑树 存储所监控的文件描述符的节点数据，就绪链表 存储就绪的文件描述符的节点数据。</li>
+<li>创建一个 epoll 文件描述符，事件轮询的实例，返回一个文件描述符，即事件树</li>
+<li>底层创建一个 红黑树 和 就绪链表（双向链表）</li>
+<li>红黑树 存储所监控的文件描述符的节点数据，就绪链表 存储就绪的文件描述符的节点数据</li>
 </ul>
 </li>
 <li>
@@ -371,20 +720,20 @@
 <ul>
 <li>操作：
 <ul>
-<li><code>EPOLL_CTL_ADD</code>：注册新的事件到事件树。</li>
-<li><code>EPOLL_CTL_MOD</code>：修改已经注册的事件。</li>
-<li><code>EPOLL_CTL_DEL</code>：删除已经注册的事件。</li>
+<li><code>EPOLL_CTL_ADD</code>：注册新的事件到事件树</li>
+<li><code>EPOLL_CTL_MOD</code>：修改已经注册的事件</li>
+<li><code>EPOLL_CTL_DEL</code>：删除已经注册的事件</li>
 </ul>
 </li>
 <li>事件：
 <ul>
-<li><code>EPOLLIN</code>：对应的文件描述符可以读 <code>read</code>（包括对端SOCKET正常关闭）。</li>
-<li><code>EPOLLPRI</code>：对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）。</li>
-<li><code>EPOLLOUT</code>：对应的文件描述符可以写 <code>recv</code>。</li>
-<li><code>EPOLLERR</code>：对应的文件描述符发生错误。</li>
-<li><code>EPOLLHUP</code>：对应的文件描述符被挂断。</li>
-<li><code>EPOLLET</code>：将 EPOLL 设为边缘触发(Edge Triggered)模式。</li>
-<li><code>EPOLLONESHOT</code>：只监听一次事件，当监听完这次事件之后，删除。</li>
+<li><code>EPOLLIN</code>：对应的文件描述符可以读 <code>read</code>（包括对端SOCKET正常关闭）</li>
+<li><code>EPOLLPRI</code>：对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）</li>
+<li><code>EPOLLOUT</code>：对应的文件描述符可以写 <code>recv</code></li>
+<li><code>EPOLLERR</code>：对应的文件描述符发生错误</li>
+<li><code>EPOLLHUP</code>：对应的文件描述符被挂断</li>
+<li><code>EPOLLET</code>：将 EPOLL 设为边缘触发(Edge Triggered)模式</li>
+<li><code>EPOLLONESHOT</code>：只监听一次事件，当监听完这次事件之后，删除</li>
 </ul>
 </li>
 </ul>
@@ -412,16 +761,16 @@
 </ol>
 </li>
 </ul>
-<p>可以同时运行多个客户端，服务端允许多台客户端连接。连接之后：</p>
+<p>可以同时运行多个客户端，服务端允许多台客户端连接连接之后：</p>
 <ol>
-<li>客户端发送消息，服务端接收消息，回复单一消息。</li>
+<li>客户端发送消息，服务端接收消息，回复单一消息</li>
 </ol>
 <h2 id="面向对象">面向对象 </h2>
 <h2 id="channel">Channel </h2>
-<p><code>Channel</code> 是 <code>Epoll</code> 的事件处理类，<code>Epoll</code> 通过 <code>Channel</code> 处理事件。</p>
+<p><code>Channel</code> 是 <code>Epoll</code> 的事件处理类，<code>Epoll</code> 通过 <code>Channel</code> 处理事件</p>
 <br>
 <hr>
-<h1 id="boostasio">Boost.Asio </h1>
+<h1 id="boostasio-1">Boost.Asio </h1>
 <p><a href="https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio.html">Boost.Asio</a></p>
 
       </div>
@@ -429,30 +778,101 @@
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#socket" class="md-toc-link"><p>Socket</p>
+          <a href="#阻塞-io" class="md-toc-link"><p>阻塞 IO</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#tcp" class="md-toc-link"><p>TCP</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#tcp--ip-分层模型" class="md-toc-link">
-            <p>TCP / IP 分层模型</p>
+          <a href="#server" class="md-toc-link">
+            <p>server</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#socket-tcp-通信模型" class="md-toc-link">
-            <p>socket TCP 通信模型</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#socket-tcp-通信简单实例" class="md-toc-link">
-            <p>socket TCP 通信简单实例</p>
+          <a href="#client" class="md-toc-link">
+            <p>client</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#tcp-三握四挥" class="md-toc-link">
             <p>TCP 三握四挥</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#socket-udp-通信模型" class="md-toc-link">
-            <p>socket UDP 通信模型</p>
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#udp" class="md-toc-link"><p>UDP</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#server-1" class="md-toc-link">
+            <p>server</p>
 
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#client-1" class="md-toc-link">
+            <p>client</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#http" class="md-toc-link"><p>HTTP</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#请求行" class="md-toc-link">
+            <p>请求行</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#http_server" class="md-toc-link">
+            <p>http_server</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#boostasio" class="md-toc-link">
+            <p>Boost.Asio</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#非阻塞-io" class="md-toc-link">
+            <p>非阻塞 IO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#io-复用" class="md-toc-link">
+            <p>IO 复用</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#信号驱动-io" class="md-toc-link">
+            <p>信号驱动 IO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#异步-io" class="md-toc-link">
+            <p>异步 IO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#errno" class="md-toc-link">
+            <p>errno</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#socket" class="md-toc-link"><p>Socket</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#" class="md-toc-link">
+            
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#socket-udp-通信简单实例" class="md-toc-link">
             <p>socket UDP 通信简单实例</p>
@@ -485,7 +905,7 @@
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#boostasio" class="md-toc-link">
+          <a href="#boostasio-1" class="md-toc-link">
             <p>Boost.Asio</p>
 
           </a></div>
