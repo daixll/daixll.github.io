@@ -50,6 +50,24 @@
 </ol>
 <br>
 <hr>
+<h1 id="wsl2-镜像桥接网络">WSL2 镜像/桥接网络 </h1>
+<ul>
+<li>Windows <code>%USERPROFILE%</code> 目录下创建 <code>.wslconfig</code> 文件</li>
+</ul>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token punctuation">[</span>experimental<span class="token punctuation">]</span>
+<span class="token assign-left variable">networkingMode</span><span class="token operator">=</span>mirrored
+<span class="token assign-left variable">dnsTunneling</span><span class="token operator">=</span>true
+<span class="token assign-left variable">firewall</span><span class="token operator">=</span>true
+<span class="token assign-left variable">autoProxy</span><span class="token operator">=</span>true
+</code></pre><ul>
+<li>桥接模式需要使用hyper-v创建一个外部交换机</li>
+</ul>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token punctuation">[</span>wsl2<span class="token punctuation">]</span>
+<span class="token assign-left variable">networkingMode</span><span class="token operator">=</span>bridged
+<span class="token assign-left variable">vmSwitch</span><span class="token operator">=</span>WSLBridge
+<span class="token assign-left variable">ipv6</span><span class="token operator">=</span>true
+</code></pre><br>
+<hr>
 <h1 id="wsl2-开机启动脚本">WSL2 开机启动脚本 </h1>
 <ol>
 <li>win + r 输入  <code>shell:startup</code></li>
@@ -214,6 +232,10 @@ ws.run "wsl -d Ubuntu-22.04 -u user /home/user/startup.sh", 0
 <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#wsl2-安装" class="md-toc-link">
             <p>WSL2 安装</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#wsl2-镜像桥接网络" class="md-toc-link">
+            <p>WSL2 镜像/桥接网络</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#wsl2-开机启动脚本" class="md-toc-link">

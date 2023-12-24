@@ -24,6 +24,32 @@ WSL2 的开发环境配置
 
 ---
 
+# WSL2 镜像/桥接网络
+
+* Windows `%USERPROFILE%` 目录下创建 `.wslconfig` 文件
+
+```sh
+[experimental]
+networkingMode=mirrored
+dnsTunneling=true
+firewall=true
+autoProxy=true
+```
+
+* 桥接模式需要使用hyper-v创建一个外部交换机
+
+```sh
+[wsl2]
+networkingMode=bridged
+vmSwitch=WSLBridge
+ipv6=true
+```
+
+
+<br>
+
+---
+
 # WSL2 开机启动脚本
 
 1. win + r 输入  `shell:startup`
