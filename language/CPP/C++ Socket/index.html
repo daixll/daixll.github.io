@@ -482,10 +482,10 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <li>请求，即客户端向服务端发送的消息</li>
 <li>响应，即服务端向客户端发送的消息</li>
 </ul>
-<p>HTTP 协议的请求消息和响应消息都是由 <strong>请求行</strong>、<strong>请求头</strong>、<strong>请求体</strong> 组成</p>
+<p>HTTP 协议的请求消息和响应消息都是由 <strong>请求 / 响应行</strong>、<strong>请求 / 响应头</strong>、<strong>请求 / 响应体</strong> 组成</p>
 <ul>
 <li>
-<p><strong>请求行</strong>由三部分组成：请求方法、请求路径、HTTP版本</p>
+<p><strong>请求行</strong> 由三部分组成：请求方法、请求路径、HTTP版本</p>
 <ul>
 <li>
 <p>请求方法：</p>
@@ -549,19 +549,82 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 </li>
 </ol>
 </li>
+<li>
+<p>请求路径：<code>/</code>、<code>/index.html</code>、<code>/jiao.html</code>、<code>...</code></p>
+<ul>
+<li>我们将请求路径称为 <code>URI</code>，即统一资源标识符，而 <code>URL</code> 是 <code>URI</code> 的子集</li>
+</ul>
+</li>
+<li>
+<p>HTTP版本：<code>HTTP/1.0</code>、<code>HTTP/1.1</code>、<code>HTTP/2.0</code><br>
+<br></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>请求头</strong> 由请求头字段和请求头字段值组成，每个请求头字段都有特定的含义，常见的请求头字段有：</p>
+<ul>
+<li><code>Accept</code>：指定客户端能够接收的内容类型</li>
+<li><code>Accept-Encoding</code>：指定客户端能够接收的内容编码方式</li>
+<li><code>Accept-Language</code>：指定客户端能够接收的语言</li>
+<li><code>Connection</code>：指定客户端与服务端的连接类型</li>
+<li><code>Host</code>：指定请求的主机名和端口号</li>
+<li><code>User-Agent</code>：指定客户端的类型</li>
+<li><code>Referer</code>：指定请求的来源页面</li>
+<li><code>Cookie</code>：指定请求的 Cookie</li>
+<li><code>Content-Type</code>：指定请求体的类型</li>
+<li><code>Content-Length</code>：指定请求体的长度</li>
+<li><code>Authorization</code>：指定请求的授权信息</li>
+<li><code>If-Modified-Since</code>：指定请求的资源的最后修改时间</li>
+<li><code>If-None-Match</code>：指定请求的资源的 ETag 值</li>
 </ul>
 </li>
 </ul>
-<p>这些HTTP请求方法提供了不同的操作方式，允许客户端与服务器进行各种类型的交互。在RESTful API设计中，通常会合理使用这些方法来表达对资源的不同操作。</p>
-<pre class="language-text">* 请求路径：`/`、`/index.html`、`/jiao.html`、`...`
-* HTTP版本：`HTTP/1.0`、`HTTP/1.1`、`HTTP/2.0`
-</pre>
+<br>
 <ul>
-<li>请求头：请求头字段、请求头字段值</li>
-<li>请求体：请求体数据</li>
+<li><strong>请求体</strong> 具体的数据
+<ul>
+<li>通常是在 post 请求中，将表单数据放在请求体中</li>
+</ul>
+</li>
 </ul>
 <br>
-<h3 id="请求行">请求行 </h3>
+<ul>
+<li>
+<p><strong>响应行</strong> 由三部分组成：HTTP版本、状态码、状态码描述</p>
+<ul>
+<li>HTTP版本：<code>HTTP/1.0</code>、<code>HTTP/1.1</code>、<code>HTTP/2.0</code></li>
+<li>状态码：<code>200</code>、<code>404</code>、<code>500</code>、<code>...</code></li>
+<li>状态码描述：<code>OK</code>、<code>Not Found</code>、<code>Internal Server Error</code>、<code>...</code></li>
+<li>例如：<code>HTTP/1.1 200 OK</code></li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li><strong>响应头</strong> 由响应头字段和响应头字段值组成，每个响应头字段都有特定的含义，常见的响应头字段有：
+<ul>
+<li><code>Content-Type</code>：指定响应体的类型</li>
+<li><code>Content-Length</code>：指定响应体的长度</li>
+<li><code>Content-Encoding</code>：指定响应体的编码方式</li>
+<li><code>Content-Language</code>：指定响应体的语言</li>
+<li><code>Content-Disposition</code>：指定响应体的处理方式</li>
+<li><code>Set-Cookie</code>：指定响应的 Cookie</li>
+<li><code>Location</code>：指定响应的重定向地址</li>
+<li><code>Last-Modified</code>：指定响应的资源的最后修改时间</li>
+<li><code>ETag</code>：指定响应的资源的 ETag 值</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li><strong>响应体</strong> 具体的数据
+<ul>
+<li>例如网页的 HTML 代码</li>
+<li>例如图片的二进制数据、pdf文件等</li>
+</ul>
+</li>
+</ul>
 <h3 id="http_server">http_server </h3>
 <br>
 <hr>
@@ -569,6 +632,52 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <br>
 <hr>
 <h1 id="非阻塞-io">非阻塞 IO </h1>
+<p>当 <strong>进程</strong> 发起 <strong>IO请求</strong> 后，即使 <strong>内核</strong> 没有准备好数据，<strong>进程</strong> 也将立即返回，不会等待，同时 <strong>内核</strong> 会返回一个错误码，告诉 <strong>进程</strong> 为什么没有准备好数据</p>
+<h2 id="tcp-server">TCP server </h2>
+<ol>
+<li>
+<p>创建套接字 <code>socket()</code></p>
+</li>
+<li>
+<p>绑定 ip + port <code>bind()</code></p>
+</li>
+<li>
+<p>监听 <code>listen()</code></p>
+</li>
+<li>
+<p>设置套接字为非阻塞 <code>fcntl()</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h&gt;</span>      <span class="token comment">// fcntl()</span></span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">fcntl</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span> F_SETFL<span class="token punctuation">,</span> O_NONBLOCK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li><code>fcntl()</code>：控制文件描述符属性<br>
+<code>int fcntl(int fd, int cmd, ... /* arg */ );</code>
+<ul>
+<li><code>fd</code>：文件描述符</li>
+<li><code>cmd</code>：操作命令，对 <code>fd</code> 进行操作</li>
+<li><code>arg</code>：操作命令的参数，根据 <code>cmd</code> 的不同而不同</li>
+</ul>
+</li>
+<li><code>F_SETFL</code>：设置文件描述符状态标志
+<ul>
+<li><code>O_NONBLOCK</code>：非阻塞</li>
+<li><code>O_ASYNC</code>：异步</li>
+<li><code>O_SYNC</code>：同步</li>
+</ul>
+</li>
+<li><code>F_GETFL</code>：获取文件描述符状态标志</li>
+</ul>
+</li>
+<li>
+<p>接受连接请求 <code>accept()</code></p>
+</li>
+<li>
+<p>接收消息 <code>recv()</code></p>
+</li>
+<li>
+<p>关闭套接字 <code>close()</code></p>
+</li>
+</ol>
+<h2 id="tcp-client">TCP client </h2>
 <br>
 <hr>
 <h1 id="io-复用">IO 复用 </h1>
@@ -827,10 +936,6 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#请求行" class="md-toc-link">
-            <p>请求行</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#http_server" class="md-toc-link">
             <p>http_server</p>
 
@@ -844,11 +949,24 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#非阻塞-io" class="md-toc-link">
-            <p>非阻塞 IO</p>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#非阻塞-io" class="md-toc-link"><p>非阻塞 IO</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-server" class="md-toc-link">
+            <p>TCP server</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-client" class="md-toc-link">
+            <p>TCP client</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#io-复用" class="md-toc-link">
             <p>IO 复用</p>
 
