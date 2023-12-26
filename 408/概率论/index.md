@@ -5,16 +5,11 @@ export_on_save:
     html: true  # 自动保存
 ---
 
-
 概率论研究 **不确定** 事件发生的 **可能性**。
 
 事件可以推导出概率，概率 **不可以** 推导出事件。
 
-# 概率论的基本概念
-
-## <span style="color:red;">题</span>
-
-### 第一题
+# 一、概率论的基本概念
 
 ## 随机试验
 
@@ -25,7 +20,6 @@ export_on_save:
 3. 进行一次试验之前不能确定哪一个结果会出现。
 
 > 掷骰子、掷硬币、抽签、抽奖、生产产品、检查产品、调查统计等。
-
 
 ## 样本空间 
 
@@ -94,8 +88,8 @@ export_on_save:
 * $P(\emptyset) = 0$。
 * $P(\bar{A}) = 1 - P(A)$。
 * 若 $A \subset B$，则 $P(A) \leq P(B)$，有 $P(B - A) = P(B) - P(A)$。
-* <span style="color:red;">$P(A \cup B) = P(A) + P(B) - P(AB)$</span>。
-* <span style="color:red;">$P(A-B) = P(A) - P(AB)$</span>。
+* <span style="color:red;">$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</span>。
+* <span style="color:red;">$P(A-B) = P(A) - P(A \cap B) = P(A \cap \bar B)$</span>。
 
 ## 古典（等可能）概型
 
@@ -105,12 +99,12 @@ export_on_save:
 
 在事件 $B$ 已经发生的条件下，事件 $A$ 发生的概率，记为 $P(A|B)$。
 
-$P(A|B) = \frac{P(AB)}{P(B)}$。
+<span style="color:red;">$P(A|B) = \frac{P(A \cap B)}{P(B)}$</span>
 
 可拓展：
 
 * 乘法定理：
-    **$P(AB) = P(A|B) P(B)$**
+    **$P(A \cap B) = P(A|B) P(B)$**
 
 * 全概率公式：
     **$P(A) = \sum_{i=1}^n P(A|B_i) P(B_i)$**
@@ -120,18 +114,20 @@ $P(A|B) = \frac{P(AB)}{P(B)}$。
 
 ## <span style="color:orange;">独立性</span>
 
-若 <span style="color:red;">$P(AB) = P(A) P(B)$</span>，则称事件 $A$ 与 $B$ 相互独立，反之亦然。
+若 <span style="color:red;">$P(A \cap B) = P(A)P(B)$</span>，则称事件 $A$ 与 $B$ 相互独立，反之亦然。
 
 <br>
 
 
 ---
 
-# 随机变量及其分布
+# 二、随机变量及其分布
 
 ## <span style="color:red;">题</span>
 
 ### 分布函数求概率密度
+
+p58 20
 
 > 设随机变量 $X$ 的分布函数为：
 > 
@@ -166,10 +162,24 @@ $P(A|B) = \frac{P(AB)}{P(B)}$。
 
 * $P\{2 < X < \frac{5}{2}\} = P\{X \leq \frac{5}{2}\} - P\{X \leq 2\} = F(\frac{5}{2}) - F(2) = \ln \frac{5}{2} - \ln 2 = \ln \frac{5}{4}$
 
+p59 34
+
+> 设随机变量 $X$ 在区间 $(0,1)$ 上服从均匀分布
+
+> **Q1：求 $Y = e^X$ 的概率密度**
+
+因为 $X$ 在区间 $(0,1)$ 上服从均匀分布，所以：
+
+* $f(x) = \begin{cases}
+    1,      & 0 < x < 1     \\ 
+    0,      & 其他          \\
+\end{cases}$
+
 ### ? 概率密度求分布函数
 
-
 ### 正态分布
+
+p59 26
 
 > 设 $X \sim N(3,2^2)$。（即 $X$ 服从 **正态分布**，均值为 $3$，方差为 $2^2$）
 
@@ -229,6 +239,8 @@ $d \leq 0.44$
 
 ### 分布律
 
+p59 33
+
 > 设随机变量 $X$ 的分布律为：
 >
 > X | -2 | -1 | 0 | 1 | 3
@@ -260,11 +272,6 @@ $d \leq 0.44$
 Y | 0 | 1 | 4 | 9
 :-:|:-:|:-:|:-:|:-:
 p(Y) | $\frac{1}{5}$ | $\frac{7}{30}$ | $\frac{1}{5}$ | $\frac{11}{30}$
-
-
-### 均匀分布
-
-
 
 
 <br>
@@ -420,7 +427,21 @@ $f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$，其中 $
 
 ---
 
-# 多维随机变量及其分布
+# 三、多维随机变量及其分布
+
+## <span style="color:red;">题</span>
+
+### 求联合分布律
+
+p86 1
+
+> 在一箱子中装有 12 只
+
+<br>
+
+---
+
+# 四、随机变量的数字特征
 
 ## <span style="color:red;">题</span>
 
@@ -428,7 +449,7 @@ $f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$，其中 $
 
 ---
 
-# 样本及抽样分布
+# 六、样本及抽样分布
 
 样本是从总体中选择出来的一部分个体，以便对总体进行统计推断。
 抽样分布是一种概率分布，描述了从同一总体中抽取的各个样本的统计量的分布情况。
@@ -436,6 +457,8 @@ $f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$，其中 $
 ## <span style="color:red;">题</span>
 
 ### $\chi^2$ （卡方）分布
+
+p149 4
 
 > 设 $X_1, X_2, \cdots, X_6$ 是来自总体 $N(0,1)$ 的样本，$Y = (X_1+X_2+X_3)^2 + (X_4+X_5+X_6)^2$，试确定常数 $C$，使 $CY$ 服从 $\chi^2$ 分布。
 
@@ -633,3 +656,63 @@ $Z = \frac{X}{\sqrt{\frac{Y}{n}}}$ 服从自由度为 $n$ 的 $t$ 分布，记�
 设 $U \sim \chi^2(n)$，$V \sim \chi^2(m)$，且 $U$ 与 $V$ 相互独立，则称随机变量
 
 $W = \frac{ U / n}{ V / m}$ 服从自由度为 $n$ 和 $m$ 的 $F$ 分布，记为 $W \sim F(n,m)$。
+
+
+# 七、参数估计
+
+## <span style="color:red;">题</span>
+
+
+# 八、假设检验
+
+## <span style="color:red;">题</span>
+
+# 最后一题
+
+大抵的意思：
+
+* 已知 总体 $\chi\sim N(\mu,{\sigma}^2)$
+* 已知 一组样本，均值为 $\bar{u}$
+
+## 题型一：已知 $\sigma , \bar\mu$，可否认为 $\mu = \bar \mu$
+
+**题目** 根据长期的经验，某工厂生产的特种特种金属丝的折断力服从 $\chi\sim N(\mu,{\sigma}^2)$，已知 $\mu=8kg$，现从该工厂生产的金属丝中随机抽取 $10$ 根，测得样本均值 $\bar{x}=575.2kg$，问这批特种金属丝的平均折断力可否认为是 $570kg$ ？$(\alpha=0.05)$
+
+s: 样本总量
+
+
+1. 提出假设
+
+    $$
+    H_0:\mu=570kg\\
+    H_1:\mu\neq570kg
+    $$
+
+2. 构造检验统计量
+
+    $$
+    Z=\frac{\bar{x}-\mu}{\frac{\sigma}{\sqrt{n}}}
+    $$
+
+
+
+3. 求出拒绝域
+
+    $$
+    |Z| > Z {\frac{\alpha}{2}}
+    $$
+
+<br>
+
+----
+
+
+
+
+    $$
+    T=\frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}}
+    $$
+
+    $$
+    X^2 = \frac{(n-1)S^2}{\sigma^2}
+    $$
