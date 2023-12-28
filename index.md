@@ -198,7 +198,7 @@ export_on_save:
 
 | 国家级奖项 🥇 | 省部级奖项 🥈 | 技能证书 🥉 | 奖学金 💰 | 
 |:-:|:-:|:-:|:-:|
-| 7 | 12 | 4 | 9 | 
+| 7 | 13 | 4 | 9 | 
 
 </div>
 
@@ -212,13 +212,23 @@ export_on_save:
 
 ## 2023
 
-### 省X 传智杯
+### 省三 传智杯
 
-- `2023-12`
+- `2023-12` `第六届“传智杯”全国IT技能大赛-程序设计赛项本科B组` `重庆市铜奖` [公示 / 排名](https://docs.qq.com/sheet/DR2ZuZVBxcXROa0JP?tab=mu4w0a)
+
+
+<div class="center">
+    <img src="joker/（省3）传智杯.jpg" width="300">
+</div>
+<div class="center">
+    <img src="joker/排名/（省3）传智杯.png" width="300">
+</div>
+
+
 
 ### 省二 ICPC 重庆市赛
 
-- `2023-12` `2023重庆市第十一届大学生程序设计大赛` `省赛二等奖` [报道](https://www.cqust.edu.cn/info/1466/69404.htm)
+- `2023-12` `2023重庆市第十一届大学生程序设计大赛` `省赛三等奖` [报道](https://www.cqust.edu.cn/info/1466/69404.htm)
 
 <div class="center">
     <img src="joker/（省2）ICPCCQ.jpg" width="300">
@@ -243,7 +253,10 @@ export_on_save:
 - `2023-12` `第五届“码蹄杯”全国职业院校程序设计大赛` `国赛金奖` [公示 / 排名](https://mp.weixin.qq.com/s/CYvRhmpRfxYQqJ03EkQYXw)
 
 <div class="center">
-    <img src="joker/（国1）码蹄杯.jpg " width="300"> 
+    <img src="joker/排名/（国1）码蹄杯奖杯.jpg" width="300"> 
+</div>
+<div class="center">
+    <img src="joker/（国1）码蹄杯.jpg" width="300"> 
 </div>
 <div class="center">
     <img src="joker/排名/（国1）码蹄杯.png" width="300">
@@ -263,7 +276,7 @@ export_on_save:
 
 ### 省二 百度之星
 
-- `2023-12` `第十九届百度之星程序设计大赛` `重庆市银奖` [公示 / 排名](https://astar.baidu.com/#/news-info?tab=3&id=B09A6D9FC10CC8DE394BA5DD2E32DE00)
+- `2023-9` `第十九届百度之星程序设计大赛` `重庆市银奖` [公示 / 排名](https://astar.baidu.com/#/news-info?tab=3&id=B09A6D9FC10CC8DE394BA5DD2E32DE00)
 
 <div class="center">
     <img src="/joker/（省2）百度之星.jpg" width="300">
