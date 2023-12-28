@@ -4,7 +4,7 @@
     * [宋泓杰](https://songhhhj.gitee.io/)
     * [赵文飞](http://qqfff.gitee.io/c-language/)
     * [谭超]
-    * [肖桂阳]
+    * [肖桂阳]( http://xasdlanksda.gitee.io/xiao-guiyang)
 
 * **第二组**：
     * [陈旭](https://gitee.com/xaiocjajva/user_code)
