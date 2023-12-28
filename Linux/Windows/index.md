@@ -50,6 +50,23 @@ ipv6=true
 
 ---
 
+# WSL2 挂载 Windows 磁盘
+
+1. 在 `/mnt` 中创建挂载目录
+    * `mkdir /mnt/z`
+2. 挂载
+    * `mount -t drvfs Z: /mnt/z`
+3. 持久化
+    * `vim /etc/fstab`
+        ```
+        Z: /mnt/z drvfs defaults 0 0
+        ```
+
+
+<br>
+
+---
+
 # WSL2 开机启动脚本
 
 1. win + r 输入  `shell:startup`

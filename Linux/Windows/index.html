@@ -68,6 +68,27 @@
 <span class="token assign-left variable">ipv6</span><span class="token operator">=</span>true
 </code></pre><br>
 <hr>
+<h1 id="wsl2-挂载-windows-磁盘">WSL2 挂载 Windows 磁盘 </h1>
+<ol>
+<li>在 <code>/mnt</code> 中创建挂载目录
+<ul>
+<li><code>mkdir /mnt/z</code></li>
+</ul>
+</li>
+<li>挂载
+<ul>
+<li><code>mount -t drvfs Z: /mnt/z</code></li>
+</ul>
+</li>
+<li>持久化
+<ul>
+<li><code>vim /etc/fstab</code><pre data-role="codeBlock" data-info="" class="language-text text"><code>Z: /mnt/z drvfs defaults 0 0
+</code></pre></li>
+</ul>
+</li>
+</ol>
+<br>
+<hr>
 <h1 id="wsl2-开机启动脚本">WSL2 开机启动脚本 </h1>
 <ol>
 <li>win + r 输入  <code>shell:startup</code></li>
@@ -236,6 +257,10 @@ ws.run "wsl -d Ubuntu-22.04 -u user /home/user/startup.sh", 0
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#wsl2-镜像桥接网络" class="md-toc-link">
             <p>WSL2 镜像/桥接网络</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#wsl2-挂载-windows-磁盘" class="md-toc-link">
+            <p>WSL2 挂载 Windows 磁盘</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#wsl2-开机启动脚本" class="md-toc-link">
