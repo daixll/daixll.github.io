@@ -103,16 +103,27 @@
 <li>解压文件<br>
 <code>tar -zxvf *.tar.gz</code>
 <ul>
-<li>-z 解压缩（gz）</li>
-<li>-x 解包（tar）</li>
-<li>-v 显示详细的解压过程信息</li>
-<li>-f 指定名称</li>
+<li><code>-z</code> 解压缩（gz）</li>
+<li><code>-x</code> 解包（tar）</li>
+<li><code>-v</code> 显示详细的解压过程信息</li>
+<li><code>-f</code> 指定名称</li>
 </ul>
 </li>
 <li>压缩文件<br>
 <code>tar -zcvf *.tar.gz *</code>
 <ul>
-<li>-c 打包（tar）</li>
+<li><code>-c</code> 打包（tar）</li>
+</ul>
+</li>
+</ul>
+<h2 id="mount">mount </h2>
+<ul>
+<li>挂载<br>
+<code>mount -t ntfs /dev/sda1 /mnt</code>
+<ul>
+<li><code>-t</code> 指定文件系统类型</li>
+<li>/dev/sda1 磁盘分区</li>
+<li>/mnt 挂载点</li>
 </ul>
 </li>
 </ul>
@@ -175,6 +186,10 @@
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#tar" class="md-toc-link">
             <p>tar</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mount" class="md-toc-link">
+            <p>mount</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#rsync" class="md-toc-link">

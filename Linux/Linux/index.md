@@ -87,13 +87,23 @@ GNU编辑器合辑
 ## tar
 * 解压文件
     `tar -zxvf *.tar.gz`
-    * -z 解压缩（gz）
-    * -x 解包（tar）
-    * -v 显示详细的解压过程信息
-    * -f 指定名称
+    * `-z` 解压缩（gz）
+    * `-x` 解包（tar）
+    * `-v` 显示详细的解压过程信息
+    * `-f` 指定名称
 * 压缩文件
     `tar -zcvf *.tar.gz *` 
-    * -c 打包（tar）
+    * `-c` 打包（tar）
+
+
+## mount
+
+* 挂载
+    `mount -t ntfs /dev/sda1 /mnt`
+    * `-t` 指定文件系统类型
+    * /dev/sda1 磁盘分区
+    * /mnt 挂载点
+
 
 
 ## rsync
