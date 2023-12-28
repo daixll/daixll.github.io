@@ -251,7 +251,7 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <p>接受连接请求 <code>accept()</code></p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>sockaddr_in client_addr<span class="token punctuation">;</span>
 socklen_t   client_addr_len <span class="token operator">=</span> <span class="token keyword keyword-sizeof">sizeof</span> client_addr<span class="token punctuation">;</span>
-<span class="token function">accept</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>server_addr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>client_addr_len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> client <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>client_addr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>client_addr_len<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><ul>
 <li><code>socklen_t</code>：<code>sockaddr</code> 的长度类型</li>
 </ul>

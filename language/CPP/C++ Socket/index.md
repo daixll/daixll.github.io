@@ -136,7 +136,7 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
     ```cpp
     sockaddr_in client_addr;
     socklen_t   client_addr_len = sizeof client_addr;
-    accept(server, (sockaddr*)&server_addr, &client_addr_len);
+    int client = accept(server, (sockaddr*)&client_addr, &client_addr_len);
     ```
     * `socklen_t`：`sockaddr` 的长度类型
 
