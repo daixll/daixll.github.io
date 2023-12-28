@@ -371,7 +371,7 @@ $P \{ X=k \} = {n\choose k}p^k(1-p)^{n-k}$
 
 特殊的，当 $n=1$ 时，二项分布就是 0-1 分布。
 
-### ？ 泊松分布
+### ？ 泊松分布 $P$
 
 ## 连续型随机变量及概率密度函数
 
@@ -392,7 +392,7 @@ $F(x) = P\{a \leq X \leq b\} = \int_a^b f(x)dx$
 
 $x$ 为连续型随机变量，$f(x)$ 称为 $X$ 的概率密度函数。
 
-### 均匀分布
+### 均匀分布 $U$
 
 若连续型随机变量 $X$ 的概率密度函数为：
 
@@ -412,7 +412,7 @@ $f(x) = \begin{cases} \frac{1}{b-a}, & a < x < b \\ 0, & \text{其他} \end{case
 $f(x) = \begin{cases} \lambda e^{-\lambda x}, & x \geq 0 \\ 0, & x < 0 \end{cases}$
 
 
-### 正态分布
+### 正态分布 $N$
 
 若连续型随机变量 $X$ 的概率密度函数为：
 
@@ -430,12 +430,6 @@ $f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$，其中 $
 # 三、多维随机变量及其分布
 
 ## <span style="color:red;">题</span>
-
-
-<br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br>
-<br><br><br>
 
 ### 求联合分布律
 
@@ -551,6 +545,10 @@ p87 9
 ## <span style="color:red;">题</span>
 
 <br>
+
+### 常见分布的数字特征（期望，方差）
+
+> 设 $X_1,X_2,X_3$ 相互独立，其中 $X_1 \sim U(0,6)$，$X_2 \sim N(0,4)$，$X_3 \sim P(3)$，则 $D(X_1 - 2 X_2 + 3 X_3)$ = ?
 
 ---
 
