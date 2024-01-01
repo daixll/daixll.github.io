@@ -720,9 +720,7 @@ MainWindow::~MainWindow(){}
 
 ---
 
-## Leg 4 选择控件
-
-常用的控件还有选择控件，如下：
+## Leg 4 单选、多选
 
 #### 单选
 
@@ -742,23 +740,20 @@ private:
 
 ```cpp
 // MainWindow.cpp
-    // 设置单选按钮的文本
-    _one_A->setText("马克思");
-    _one_B->setText("列宁");
-    _one_C->setText("毛泽东");
-
-    // 将单选按钮添加到垂直布局
-    _vLayout->addWidget(_one_A);
-    _vLayout->addWidget(_one_B);
-    _vLayout->addWidget(_one_C);
-
-    // 将单选按钮添加到单选按钮组
-    _one_group->addButton(_one_A);
-    _one_group->addButton(_one_B);
-    _one_group->addButton(_one_C);
-
-    // 设置单选按钮组的选择结果
-    connect(_one_group, &QButtonGroup::buttonClicked, this, &MainWindow::_one_clicked);
+// 设置单选按钮的文本
+_one_A->setText("马克思");
+_one_B->setText("列宁");
+_one_C->setText("毛泽东");
+// 将单选按钮添加到垂直布局
+_vLayout->addWidget(_one_A);
+_vLayout->addWidget(_one_B);
+_vLayout->addWidget(_one_C);
+// 将单选按钮添加到单选按钮组
+_one_group->addButton(_one_A);
+_one_group->addButton(_one_B);
+_one_group->addButton(_one_C);
+// 设置单选按钮组的选择结果
+connect(_one_group, &QButtonGroup::buttonClicked, this, MainWindow::_one_clicked);
 ```
 
 ```cpp
@@ -778,13 +773,52 @@ void MainWindow::_one_clicked(){
 
 给定多个选项，可以选择多个。
 
-🍕🍔🍟🌭🍿
+```cpp
+// MainWindow.h
+QVBoxLayout     *_vLayout2;         // 垂直布局
 
+QButtonGroup    *_two_group;        // 复选按钮组
+QCheckBox       *_two;              // 复选按钮
 
-#### 下拉列表
+QLabel          *_two_res;          // 存放复选选择结果
+void            _two_clicked();     // 复选按钮组的选择结果
+```
 
-#### 滑块
+```cpp
+// 设置为不互斥
+_two_group->setExclusive(false);
+for(int i = 0; i < 4; i++){
+    _vLayout2->addWidget(&_two[i]); // 将复选按钮添加到垂直布局
+    _two_group->addButton(&_two[i]);// 将复选按钮添加到复选按钮组
+}
+// 设置复选按钮的文本
+_two[0].setText("披萨");
+_two[1].setText("汉堡");
+_two[2].setText("薯条");
+_two[3].setText("热狗");
+// 设置复选按钮组的选择结果
+connect(_two_group, &QButtonGroup::buttonClicked, this, MainWindow::_two_clicked);
+```
 
+```cpp
+// MainWindow.cpp
+void MainWindow::_two_clicked(){
+    QString res = "";
+    if(_two[0].isChecked()){
+        res += "披萨 ";
+    }
+    if(_two[1].isChecked()){
+        res += "汉堡 ";
+    }
+    if(_two[2].isChecked()){
+        res += "薯条 ";
+    }
+    if(_two[3].isChecked()){
+        res += "热狗 ";
+    }
+    _two_res->setText(res);
+}
+```
 
 <br>
 
@@ -911,12 +945,84 @@ _about->setShortcut(QKeySequence("Ctrl+A"));
 ---
 
 
+## Leg 6 列表
+
+列表，显示一组数据，其和选择控件大同小异。
+
+```cpp
+// MainWindow.h
+#pragma once
+
+#include <QMainWindow>
+#include <QLayout>
+#include <QListWidget>
+#include <QLineEdit>
+
+class MainWindow : public QMainWindow{
+    Q_OBJECT
+public:
+
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+private:
+
+    void _onSelect(QListWidgetItem* item);
+
+    QWidget*        _centralWidget; // 中心窗口
+    QHBoxLayout*    _layout;        // 水平布局
+    QListWidget*    _listWidget;    // 列表
+    QLineEdit*      _lineEdit;      // 文本框
+};
+```
+
+```cpp
+// MainWindow.cpp
+#include "../include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    this -> setWindowTitle("Leg 6 列表");
+    _centralWidget  = new QWidget();
+    _layout         = new QHBoxLayout();
+    _listWidget     = new QListWidget();
+    _lineEdit       = new QLineEdit();
+
+    setCentralWidget(_centralWidget);
+    _centralWidget -> setLayout(_layout);
+    _layout -> addWidget(_listWidget);
+    _layout -> addWidget(_lineEdit);
+
+    _lineEdit -> setReadOnly(true);
+
+    _listWidget -> addItem("鱼香肉丝");
+    _listWidget -> addItem("宫保鸡丁");
+    _listWidget -> addItem("糖醋排骨");
+
+    connect(_listWidget, &QListWidget::itemClicked, this, &MainWindow::_onSelect);
+}
+
+MainWindow::~MainWindow(){
+    delete _centralWidget;
+    delete _layout;
+    delete _listWidget;
+    delete _lineEdit;
+}
+
+void MainWindow::_onSelect(QListWidgetItem* item){
+    _lineEdit -> setText(item -> text());
+}
+```
+
+<br>
+
+---
+
+## Mission 2* 模糊选择 🧾
 
 
 
 # 待整理
-
-# 列表和组合控件
 
 ## 选择和显示日期/时间
 
