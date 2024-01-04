@@ -59,6 +59,12 @@
 </code></pre><p>将其添加到文件末尾，保存后执行 <code>source ~/.bashrc</code> 使其生效</p>
 </li>
 </ol>
+<blockquote>
+<p>可能会出现 <code>qmake: could not exec '/usr/lib/x86_64-linux-gnu/qt4/bin/qmake': No such file or directory</code> 的错误，这是因为系统中存在多个版本的 QT，解决方法是：<code>sudo apt remove qt4-qmake</code>。</p>
+</blockquote>
+<blockquote>
+<p>另外一方案是，修改 <code>/usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf</code> 文件，将 <code>qt4</code> 的路径修改为 <code>/QT/6.5.3/gcc_64/bin</code>。</p>
+</blockquote>
 <br>
 <ol start="2">
 <li>
@@ -145,7 +151,7 @@ SOURCES <span class="token operator">+=</span> main.cpp
 <ol start="3">
 <li>
 <p>生成 <code>Makefile</code></p>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>qmake hello.pro
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>qmake main.pro
 </code></pre></li>
 </ol>
  <br>
@@ -393,7 +399,7 @@ QColor      # 颜色，用于设置画笔和画刷的颜色
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre><p><code>Q_OBJECT</code> 宏是使用 Qt 的信号与槽机制必须的，它会在编译阶段自动将 <code>moc</code> 文件（元对象编译器）插入到源文件中，这个文件中包含了信号与槽的实现。</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.cpp</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"include/MainWindow.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../include/MainWindow.h"</span></span>
 
 <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span> <span class="token comment">// 这里的parent是可选的</span>
     <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>               <span class="token comment">// 构造函数的初始化列表</span>
@@ -438,8 +444,7 @@ w<span class="token operator">-&gt;</span><span class="token function">show</spa
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLayout&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLabel&gt;</span></span>
 
-<span class="token keyword keyword-class">class</span> <span class="token class-name">MainWindow</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QMainWindow</span></span>
-<span class="token punctuation">{</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MainWindow</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QMainWindow</span></span><span class="token punctuation">{</span>
     Q_OBJECT
 
 <span class="token keyword keyword-public">public</span><span class="token operator">:</span>
@@ -462,7 +467,7 @@ w<span class="token operator">-&gt;</span><span class="token function">show</spa
 </ul>
 </blockquote>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.cpp</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"include/MainWindow.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../include/MainWindow.h"</span></span>
 
 <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span>
     <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
@@ -550,6 +555,11 @@ _labelimg  <span class="token operator">-&gt;</span> <span class="token function
 </ul>
 <blockquote>
 <ul>
+<li>按钮：<code>QPushButton</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
 <li>单行文本输入框：<code>QLineEdit</code></li>
 <li>多行文本输入框：<code>QTextEdit</code></li>
 </ul>
@@ -564,8 +574,7 @@ _labelimg  <span class="token operator">-&gt;</span> <span class="token function
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QPushButton&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMessageBox&gt;</span></span>
 
-<span class="token keyword keyword-class">class</span> <span class="token class-name">MainWindow</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QMainWindow</span></span>
-<span class="token punctuation">{</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MainWindow</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QMainWindow</span></span><span class="token punctuation">{</span>
     Q_OBJECT                  
 
 <span class="token keyword keyword-public">public</span><span class="token operator">:</span>
@@ -595,7 +604,7 @@ _labelimg  <span class="token operator">-&gt;</span> <span class="token function
 </ol>
 </li>
 </ol>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"include/MainWindow.h"</span></span>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../include/MainWindow.h"</span></span>
 
 <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span>
     <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
@@ -639,6 +648,40 @@ _labelimg  <span class="token operator">-&gt;</span> <span class="token function
 <p>源代码及参见：<a href="https://github.com/daixll/A_Tour_of_Qt/tree/main/Leg3">Leg3</a></p>
 <hr>
 <h2 id="mission-1-计算器-">Mission 1 计算器 🧮 </h2>
+<blockquote>
+<p>在此节之前，需要再完成的几个简单任务：</p>
+<ol>
+<li>
+<p>多行的大写转小写</p>
+<ul>
+<li>左输入，中按钮，右输出</li>
+</ul>
+</li>
+<li>
+<p>十进制转二/八进制</p>
+<ul>
+<li>一个按钮将十进制转换为二进制</li>
+<li>一个按钮将十进制转换为八进制</li>
+</ul>
+</li>
+<li>
+<p>密码强度检查</p>
+<ul>
+<li>长度需要超过 8 位，包含大写，小写，数字，特殊字符</li>
+<li>检查结果通过弹出框显示<br>
+<code>QMessageBox::information(this, "title", "text");</code></li>
+</ul>
+</li>
+<li>
+<p>模拟登录</p>
+<ul>
+<li>先注册，再登录</li>
+<li>注册后的信息，保存在任意 <code>.txt</code> 中</li>
+<li>程序重新启动后，可以直接登录</li>
+</ul>
+</li>
+</ol>
+</blockquote>
 <p>设计一个简单的计算器，要求：</p>
 <ol>
 <li>输入框：用于输入数字和运算符；</li>
@@ -665,6 +708,9 @@ _labelimg  <span class="token operator">-&gt;</span> <span class="token function
 <h2 id="leg-4-单选-多选">Leg 4 单选、多选 </h2>
 <h4 id="单选">单选 </h4>
 <p>在一组单选框中，只能选择一个。</p>
+<blockquote>
+<p>单选按钮 <code>QRadioButton</code></p>
+</blockquote>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
 <span class="token keyword keyword-private">private</span><span class="token operator">:</span>
     QButtonGroup    <span class="token operator">*</span>_one_group<span class="token punctuation">;</span>        <span class="token comment">// 单选按钮组</span>
@@ -701,6 +747,9 @@ _one_group<span class="token operator">-&gt;</span><span class="token function">
 <span class="token punctuation">}</span>
 </code></pre><h4 id="多选">多选 </h4>
 <p>给定多个选项，可以选择多个。</p>
+<blockquote>
+<p>复选按钮 <code>QCheckBox</code></p>
+</blockquote>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
 QVBoxLayout     <span class="token operator">*</span>_vLayout2<span class="token punctuation">;</span>         <span class="token comment">// 垂直布局</span>
 
@@ -776,7 +825,7 @@ _two<span class="token punctuation">[</span><span class="token number">3</span><
     <span class="token keyword keyword-void">void</span> <span class="token function">about</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.cpp</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"include/MainWindow.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../include/MainWindow.h"</span></span>
 
 <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span>
     <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
@@ -844,6 +893,9 @@ _about<span class="token operator">-&gt;</span><span class="token function">setS
 <hr>
 <h2 id="leg-6-列表">Leg 6 列表 </h2>
 <p>列表，显示一组数据，其和选择控件大同小异。</p>
+<blockquote>
+<p>列表控件 <code>QListWidget</code></p>
+</blockquote>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
 
@@ -905,14 +957,29 @@ _about<span class="token operator">-&gt;</span><span class="token function">setS
 <span class="token punctuation">}</span>
 </code></pre><br>
 <hr>
+<h2 id="leg-7-下拉列表">Leg 7 下拉列表 </h2>
+<blockquote>
+<p>下拉列表 <code>QComboBox</code></p>
+</blockquote>
+<br>
+<hr>
 <h2 id="mission-2-模糊选择-">Mission 2* 模糊选择 🧾 </h2>
+<h2 id="leg-7-进度条">Leg 7 进度条 </h2>
+<h2 id="leg-8-滑块">Leg 8 滑块 </h2>
+<h2 id="leg-9-调整控件大小与位置">Leg 9 调整控件大小与位置 </h2>
+<h1 id="文件与数据库操作">文件与数据库操作 </h1>
+<h2 id="leg-读写文件">Leg 读写文件 </h2>
+<h2 id="leg-连接-mysql-数据库">Leg 连接 MYSQL 数据库 </h2>
+<h2 id="leg-增删改查">Leg 增删改查 </h2>
+<h1 id="绘图">绘图 </h1>
+<h1 id="多媒体">多媒体 </h1>
 <h1 id="待整理">待整理 </h1>
 <h2 id="选择和显示日期时间">选择和显示日期/时间 </h2>
 <h2 id="-图片显示">⛺ 图片显示 </h2>
 <h2 id="-画图">🎨 画图 </h2>
 <h2 id="进度条和滑块">进度条和滑块 </h2>
 <h2 id="表格和滚动区域">表格和滚动区域 </h2>
-<h2 id="多媒体">多媒体 </h2>
+<h2 id="多媒体-1">多媒体 </h2>
 <h1 id="文件和图像操作">文件和图像操作 </h1>
 <h1 id="raylib">raylib </h1>
 <p>raylib 是一个简单易用的游戏开发库，它提供了一系列的函数，用于处理窗口、图像、音频、输入、模型等。</p>
@@ -1026,13 +1093,58 @@ gcc main<span class="token punctuation">.</span>c <span class="token operator">-
             <p>Leg 6 列表</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-7-下拉列表" class="md-toc-link">
+            <p>Leg 7 下拉列表</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#mission-2-模糊选择-" class="md-toc-link">
             <p>Mission 2* 模糊选择 🧾</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-7-进度条" class="md-toc-link">
+            <p>Leg 7 进度条</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-8-滑块" class="md-toc-link">
+            <p>Leg 8 滑块</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-9-调整控件大小与位置" class="md-toc-link">
+            <p>Leg 9 调整控件大小与位置</p>
 
           </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#文件与数据库操作" class="md-toc-link"><p>文件与数据库操作</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-读写文件" class="md-toc-link">
+            <p>Leg 读写文件</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-连接-mysql-数据库" class="md-toc-link">
+            <p>Leg 连接 MYSQL 数据库</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-增删改查" class="md-toc-link">
+            <p>Leg 增删改查</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#绘图" class="md-toc-link">
+            <p>绘图</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#多媒体" class="md-toc-link">
+            <p>多媒体</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#待整理" class="md-toc-link"><p>待整理</p>
 </a>
@@ -1059,7 +1171,7 @@ gcc main<span class="token punctuation">.</span>c <span class="token operator">-
             <p>表格和滚动区域</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#多媒体" class="md-toc-link">
+          <a href="#多媒体-1" class="md-toc-link">
             <p>多媒体</p>
 
           </a></div>

@@ -50,6 +50,9 @@ export_on_save:
 
     将其添加到文件末尾，保存后执行 `source ~/.bashrc` 使其生效
 
+> 可能会出现 `qmake: could not exec '/usr/lib/x86_64-linux-gnu/qt4/bin/qmake': No such file or directory` 的错误，这是因为系统中存在多个版本的 QT，解决方法是：`sudo apt remove qt4-qmake`。
+
+> 另外一方案是，修改 `/usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf` 文件，将 `qt4` 的路径修改为 `/QT/6.5.3/gcc_64/bin`。
 
 <br>
 
@@ -137,7 +140,7 @@ export_on_save:
     3. 生成 `Makefile`
 
         ```sh
-        qmake hello.pro
+        qmake main.pro
         ```
 
     <br>
@@ -409,7 +412,7 @@ private:
 
 ```cpp
 // MainWindow.cpp
-#include "include/MainWindow.h"
+#include "../include/MainWindow.h"
 
 MainWindow::MainWindow(QWidget *parent) // 这里的parent是可选的
     : QMainWindow(parent)               // 构造函数的初始化列表
@@ -473,8 +476,7 @@ Qt 常见的三种布局管理器：
 #include <QLayout>
 #include <QLabel>
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow{
     Q_OBJECT
 
 public:
@@ -500,7 +502,7 @@ private:
 
 ```cpp
 // MainWindow.cpp
-#include "include/MainWindow.h"
+#include "../include/MainWindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -602,6 +604,8 @@ _labelimg  -> setAlignment(Qt::AlignCenter);
 * **中间**：按钮，用于转换；
 * **右边**：文本显示框，用于显示大写字母。
 
+> * 按钮：`QPushButton`
+
 > * 单行文本输入框：`QLineEdit` 
 > * 多行文本输入框：`QTextEdit`
 
@@ -617,8 +621,7 @@ _labelimg  -> setAlignment(Qt::AlignCenter);
 #include <QPushButton>
 #include <QMessageBox>
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow{
     Q_OBJECT                  
 
 public:
@@ -644,7 +647,7 @@ private:
     4. 将转换后的内容设置到输出文本框中。
 
 ```cpp
-#include "include/MainWindow.h"
+#include "../include/MainWindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -695,6 +698,25 @@ MainWindow::~MainWindow(){}
 
 ## Mission 1 计算器 🧮
 
+> 在此节之前，需要再完成的几个简单任务： 
+> 
+>   1. 多行的大写转小写
+>       * 左输入，中按钮，右输出
+>   
+>   2. 十进制转二/八进制
+>       * 一个按钮将十进制转换为二进制
+>       * 一个按钮将十进制转换为八进制
+>   
+>   3. 密码强度检查
+>       * 长度需要超过 8 位，包含大写，小写，数字，特殊字符
+>       * 检查结果通过弹出框显示
+>           `QMessageBox::information(this, "title", "text");`
+>
+>   4. 模拟登录
+>       * 先注册，再登录
+>       * 注册后的信息，保存在任意 `.txt` 中
+>       * 程序重新启动后，可以直接登录
+
 设计一个简单的计算器，要求：
 
 1. 输入框：用于输入数字和运算符；
@@ -725,6 +747,8 @@ MainWindow::~MainWindow(){}
 #### 单选
 
 在一组单选框中，只能选择一个。
+
+> 单选按钮 `QRadioButton`
 
 ```cpp
 // MainWindow.h
@@ -772,6 +796,8 @@ void MainWindow::_one_clicked(){
 #### 多选
 
 给定多个选项，可以选择多个。
+
+> 复选按钮 `QCheckBox`
 
 ```cpp
 // MainWindow.h
@@ -866,7 +892,7 @@ private:
 
 ```cpp
 // MainWindow.cpp
-#include "include/MainWindow.h"
+#include "../include/MainWindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -949,6 +975,8 @@ _about->setShortcut(QKeySequence("Ctrl+A"));
 
 列表，显示一组数据，其和选择控件大同小异。
 
+> 列表控件 `QListWidget`
+
 ```cpp
 // MainWindow.h
 #pragma once
@@ -1018,9 +1046,39 @@ void MainWindow::_onSelect(QListWidgetItem* item){
 
 ---
 
+## Leg 7 下拉列表
+
+> 下拉列表 `QComboBox`
+
+
+
+<br>
+
+---
+
 ## Mission 2* 模糊选择 🧾
 
 
+
+## Leg 7 进度条
+
+## Leg 8 滑块
+
+## Leg 9 调整控件大小与位置
+
+
+# 文件与数据库操作
+
+## Leg 读写文件
+
+## Leg 连接 MYSQL 数据库
+
+## Leg 增删改查
+
+# 绘图
+
+
+# 多媒体
 
 # 待整理
 
