@@ -214,7 +214,7 @@ export_on_save:
 
 ### 省三 传智杯
 
-- `2023-12` `第六届“传智杯”全国IT技能大赛-程序设计赛项本科B组` `重庆市铜奖` [公示 / 排名](https://docs.qq.com/sheet/DR2ZuZVBxcXROa0JP?tab=mu4w0a)
+- `2023-12` `第六届“传智杯”全国IT技能大赛-程序设计赛项本科B组` `重庆市三等奖` [公示 / 排名](https://docs.qq.com/sheet/DR2ZuZVBxcXROa0JP?tab=mu4w0a)
 
 
 <div class="center">
