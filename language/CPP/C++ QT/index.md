@@ -1048,24 +1048,367 @@ void MainWindow::_onSelect(QListWidgetItem* item){
 
 ## Leg 7 下拉列表
 
+在若干选项中选择一个。
+
 > 下拉列表 `QComboBox`
 
+```cpp
+// MainWindow.h
+#pragma once
 
+#include <QMainWindow>
+#include <QLayout>
+#include <QComboBox>
+#include <QPushButton>
+#include <QMessageBox>
+#include <QCompleter>
+
+class MainWindow : public QMainWindow{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+private:
+    QWidget     _centralWidget; // 中心窗口
+    QHBoxLayout _layout;        // 水平布局
+    QComboBox   _comboBox;      // 下拉框
+    QPushButton _button;        // 按钮
+    QMessageBox _messageBox;    // 消息框
+};
+```
+
+```cpp
+// MainWindow.cpp
+#include "../include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    this -> setWindowTitle("Leg 7 下拉列表");
+    this -> setCentralWidget(&_centralWidget);  // 设置中心窗口
+    _centralWidget.setLayout(&_layout);         // 设置中心窗口的布局
+    _layout.addWidget(&_comboBox);              // 将下拉框添加到布局中
+    _layout.addWidget(&_button);                // 将按钮添加到布局中
+
+    _comboBox.addItem("鱼香肉丝");               // 添加下拉框的选项
+    _comboBox.addItem("宫保鸡丁");
+    _comboBox.addItem("糖醋排骨");
+
+    _button.setText("确定");                    // 设置按钮的文本
+
+    connect(&_button, &QPushButton::clicked, this, [this](){
+        QMessageBox::information(nullptr, "提示", "你选择了：" + _comboBox.currentText());
+    });
+}
+
+MainWindow::~MainWindow(){}
+```
 
 <br>
 
 ---
 
-## Mission 2* 模糊选择 🧾
+## Mission 2 模糊选择 🧾
+
+在下拉列表中，输入一个字符串，下拉列表中的选项会根据输入的字符串进行模糊匹配，然后将匹配的选项显示出来。
+
+```cpp
+#pragma once
+
+#include <QMainWindow>
+#include <QLayout>
+#include <QComboBox>
+#include <QPushButton>
+#include <QMessageBox>
+#include <QCompleter>
+
+class MainWindow : public QMainWindow{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+private:
+    QWidget     _centralWidget; // 中心窗口
+    QHBoxLayout _layout;        // 水平布局
+    QComboBox   _comboBox;      // 下拉框
+    QPushButton _button;        // 按钮
+    QMessageBox _messageBox;    // 消息框
+};
+```
+
+```cpp
+// MainWindow.cpp
+#include "../include/MainWindow.h"
+#include <fstream>
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    this -> setWindowTitle("Mission2 模糊搜索");
+    this -> setCentralWidget(&_centralWidget);  // 设置中心窗口
+    _centralWidget.setLayout(&_layout);         // 设置中心窗口的布局
+    _layout.addWidget(&_comboBox);              // 将下拉框添加到布局中
+    _layout.addWidget(&_button);                // 将按钮添加到布局中
+
+    // 读取文件
+    std::ifstream ifs("data.txt");
+    std::string line;
+    while (std::getline(ifs, line))
+        _comboBox.addItem(QString::fromStdString(line));
+
+    // 设置下拉框可编辑
+    _comboBox.setEditable(true);
+    // 设置下拉框的模糊搜索
+    _comboBox.setCompleter(new QCompleter(_comboBox.model()));
 
 
+    // 设置按钮的文本
+    _button.setText("确定");
+    
+    // 设置按钮的点击事件
+    connect(&_button, &QPushButton::clicked, this, [this](){
+        QMessageBox::information(nullptr, "提示", "你选择了：" + _comboBox.currentText());
+    });
+}
 
-## Leg 7 进度条
+MainWindow::~MainWindow(){}
+```
 
-## Leg 8 滑块
+<br>
 
-## Leg 9 调整控件大小与位置
+---
 
+## Leg 8 进度条
+
+> 进度条 `QProgressBar`
+
+```cpp
+// MainWindow.h
+#pragma once
+
+#include <QMainWindow>
+#include <QLayout>
+#include <QProgressBar>
+#include <QPushButton>
+#include <QMessageBox>
+
+class MainWindow : public QMainWindow{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+private:
+    QWidget         _centralWidget; // 中心窗口
+    QHBoxLayout     _layout;        // 水平布局
+    QProgressBar    _progressBar;   // 进度条
+    QPushButton     _button;        // 按钮
+};
+```
+
+```cpp
+// MainWindow.cpp
+#include "../include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    this -> setWindowTitle("Leg8 进度条");
+    this -> setCentralWidget(&_centralWidget);  // 设置中心窗口
+    _centralWidget.setLayout(&_layout);         // 设置中心窗口的布局
+    _layout.addWidget(&_progressBar);           // 将进度条添加到布局中
+    _layout.addWidget(&_button);                // 将按钮添加到布局中
+
+    // 设置进度条的范围
+    _progressBar.setRange(0, 100);
+    // 设置进度条的当前值
+    _progressBar.setValue(0);
+
+    // 设置按钮的文本
+    _button.setText("点击增加进度条的值");
+
+    // 通过空格键来控制进度条的增长
+    connect(&_button, &QPushButton::clicked, &_progressBar, [&](){
+        if(_progressBar.value() == 100)
+            QMessageBox::information(this, "提示", "进度条已经满了");
+        _progressBar.setValue(_progressBar.value() + 1);
+    });
+}
+
+MainWindow::~MainWindow(){}
+```
+
+<br>
+
+---
+
+## Leg 9 滑块
+
+> 滑块 `QSlider`
+
+```cpp
+#pragma once
+
+#include <QMainWindow>
+#include <QLayout>
+#include <QSlider>
+#include <QLabel>
+
+class MainWindow : public QMainWindow{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+private:
+    QWidget         _centralWidget; // 中心窗口
+    QHBoxLayout     _layout;        // 水平布局
+    QSlider         _slider;        // 滑动条
+    QLabel          _label;         // 标签
+};
+```
+
+```cpp
+#include "../include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    this -> setWindowTitle("Leg9 滑动条");
+    this -> setCentralWidget(&_centralWidget);  // 设置中心窗口
+    _centralWidget.setLayout(&_layout);         // 设置中心窗口的布局
+    
+    _layout.addWidget(&_slider);        // 将滑动条添加到布局中
+    _layout.addWidget(&_label);         // 将标签添加到布局中
+
+    _slider.setRange(0, 99);   // 设置滑动条的范围
+    _slider.setOrientation(Qt::Horizontal); // 设置滑动条的方向
+    _slider.setValue(49);       // 设置滑动条的当前值
+
+    _label.setText("50");       // 设置标签的文本
+
+    // 连接信号和槽
+    connect(&_slider, &QSlider::valueChanged, this, [=](int value){
+        _label.setText(QString::number(value)); // 将滑动条的值转换为字符串并设置为标签的文本
+    });
+}
+
+MainWindow::~MainWindow(){}
+```
+
+<br>
+
+---
+
+## Leg 10 调整控件大小与位置
+
+> 调整控件大小与位置 `setGeometry()`
+
+```cpp
+// MainWindow.h
+#pragma once
+
+#include <QMainWindow>
+#include <QLayout>
+#include <QPushButton>
+#include <QSlider>
+#include <QLabel>
+
+class MainWindow : public QMainWindow{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+private:
+    bool ck(int x, int y);          // 检查是否越界
+    QWidget         _centralWidget; // 中心窗口
+    QPushButton     _button_up,
+                    _button_down,
+                    _button_left,
+                    _button_right;  // 按钮 上下左右
+    QSlider         _slider;        // 滑动条
+    QLabel          _label;         // 图片
+};
+```
+
+```cpp
+// MainWindow.cpp
+#include "../include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    this -> setWindowTitle("leg10 设置大小");
+    this -> setCentralWidget(&_centralWidget);  // 设置中心窗口
+    this -> setFixedSize(1080, 720);            // 设置窗口大小，不可调整
+
+    // 设置按钮
+    _button_up.setParent   (&_centralWidget);
+    _button_down.setParent (&_centralWidget);
+    _button_left.setParent (&_centralWidget);
+    _button_right.setParent(&_centralWidget);
+
+    _button_up.setText   ("up");    
+    _button_down.setText ("down");  
+    _button_left.setText ("left");  
+    _button_right.setText("right"); 
+
+    _button_up.setGeometry   (100, 0, 100, 100);
+    _button_down.setGeometry (100, 100, 100, 100);
+    _button_left.setGeometry (0,   100, 100, 100);
+    _button_right.setGeometry(200, 100, 100, 100);
+
+    // 设置滑动条
+    _slider.setParent(&_centralWidget);
+    _slider.setOrientation(Qt::Horizontal);
+    _slider.setRange(100, 300);
+    _slider.setValue(200);
+    _slider.setGeometry(0, 200, 300, 100);
+
+    // 设置图片
+    _label.setParent(&_centralWidget);
+    
+    QPixmap pixmap("Leg10.png");    // 读取图片 保持长宽比例缩放 图片平滑处理
+    pixmap = pixmap.scaled(QSize(200, 200), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    _label.setPixmap(pixmap);
+    _label.setGeometry(0, 300, 200, 200);
+
+    connect(&_button_up, &QPushButton::clicked, [&](){
+        if(!ck(_label.x(), _label.y() - 10)) return;
+        _label.move(_label.x(), _label.y() - 10);
+    });
+
+    connect(&_button_down, &QPushButton::clicked, [&](){
+        if(!ck(_label.x(), _label.y() + 10)) return;
+        _label.move(_label.x(), _label.y() + 10);
+    });
+    connect(&_button_left, &QPushButton::clicked, [&](){
+        if(!ck(_label.x() - 10, _label.y())) return;
+        _label.move(_label.x() - 10, _label.y());
+    });
+    connect(&_button_right, &QPushButton::clicked, [&](){
+        if(!ck(_label.x() + 10, _label.y())) return;
+        _label.move(_label.x() + 10, _label.y());
+    });
+
+    connect(&_slider, &QSlider::valueChanged, [&](int value){
+        QPixmap pixmap("Leg10.png");    // 读取图片 保持长宽比例缩放 图片平滑处理
+        pixmap = pixmap.scaled(QSize(value, value), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        _label.setPixmap(pixmap);
+        _label.setGeometry(_label.x(), _label.y(), value, value);
+    });
+}
+
+bool MainWindow::ck(int x, int y){
+    if(x < 0 || x > 1080 || y < 0 || y > 720) return false;
+    if(x < 300 && y < 300) return false;
+    return true;
+}
+
+MainWindow::~MainWindow(){}
+```
+
+<br>
+
+---
 
 # 文件与数据库操作
 
