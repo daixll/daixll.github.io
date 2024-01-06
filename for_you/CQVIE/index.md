@@ -14,7 +14,7 @@
 * **第三组**：
     * [程昆](https://gitee.com/clmsck/test/blob/master/ck.html)
     * [黄果]
-    * [宋萱]
+    * [宋萱](https://gitee.com/ssxuan/pratice)
     * [彭婷]
 
 * **第四组**：
