@@ -1278,33 +1278,363 @@ _about<span class="token operator">-&gt;</span><span class="token function">setS
 <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
 </code></pre><br>
 <hr>
-<h1 id="文件与数据库操作">文件与数据库操作 </h1>
-<h2 id="leg-读写文件">Leg 读写文件 </h2>
-<h2 id="leg-连接-mysql-数据库">Leg 连接 MYSQL 数据库 </h2>
-<h2 id="leg-增删改查">Leg 增删改查 </h2>
 <h1 id="绘图">绘图 </h1>
-<h1 id="多媒体">多媒体 </h1>
-<h1 id="待整理">待整理 </h1>
-<h2 id="选择和显示日期时间">选择和显示日期/时间 </h2>
-<h2 id="-图片显示">⛺ 图片显示 </h2>
-<h2 id="-画图">🎨 画图 </h2>
-<h2 id="进度条和滑块">进度条和滑块 </h2>
-<h2 id="表格和滚动区域">表格和滚动区域 </h2>
-<h2 id="多媒体-1">多媒体 </h2>
-<h1 id="文件和图像操作">文件和图像操作 </h1>
-<h1 id="raylib">raylib </h1>
-<p>raylib 是一个简单易用的游戏开发库，它提供了一系列的函数，用于处理窗口、图像、音频、输入、模型等。</p>
-<h2 id="安装">安装 </h2>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
-</code></pre><h2 id="测试代码">测试代码 </h2>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"raylib.h"</span></span>
+<h2 id="leg-11-绘制直线">Leg 11 绘制直线 </h2>
+<blockquote>
+<p>绘制 <code>QPainter</code></p>
+</blockquote>
+<p>在Qt中，绘图通过 <code>paintEvent</code> 事件来实现，当窗口需要重绘时，就会调用 <code>paintEvent</code> 事件，且不需要手动调用，只需要重写 <code>paintEvent</code> 事件即可。</p>
+<p>在下面的例子中，我们通过 <code>QLineEdit</code> 中的内容来绘制一条直线。<br>
+当 <code>QLineEdit</code> 中的内容改变时，就会调用 <code>paintEvent</code> 事件，动态绘制直线。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMainWindow&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QWidget&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLabel&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLineEdit&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QPushButton&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QPainter&gt;</span></span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MainWindow</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QMainWindow</span></span><span class="token punctuation">{</span>
+    Q_OBJECT
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent <span class="token operator">=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    QWidget     _centralWidget<span class="token punctuation">;</span>
+    QLabel      _A<span class="token punctuation">,</span> _B<span class="token punctuation">;</span>
+    QLineEdit   _lineEdit_A_X<span class="token punctuation">,</span>
+                _lineEdit_A_Y<span class="token punctuation">,</span>
+                _lineEdit_B_X<span class="token punctuation">,</span>
+                _lineEdit_B_Y<span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-void">void</span> <span class="token function">paintEvent</span><span class="token punctuation">(</span>QPaintEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../include/MainWindow.h"</span></span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span>
+    <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setWindowTitle</span><span class="token punctuation">(</span><span class="token string">"Leg 11 Qt绘图"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setFixedSize</span><span class="token punctuation">(</span><span class="token number">1080</span><span class="token punctuation">,</span> <span class="token number">720</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 设置窗口大小，不可调整</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setCentralWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 设置中心窗口</span>
+
+    _A<span class="token punctuation">.</span><span class="token function">setParent</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _B<span class="token punctuation">.</span><span class="token function">setParent</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _lineEdit_A_X<span class="token punctuation">.</span><span class="token function">setParent</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _lineEdit_A_Y<span class="token punctuation">.</span><span class="token function">setParent</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _lineEdit_B_X<span class="token punctuation">.</span><span class="token function">setParent</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _lineEdit_B_Y<span class="token punctuation">.</span><span class="token function">setParent</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    _A<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"A点坐标"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _B<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"B点坐标"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _lineEdit_A_X<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _lineEdit_A_Y<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"123"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _lineEdit_B_X<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"456"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _lineEdit_B_Y<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"456"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    _A<span class="token punctuation">.</span><span class="token function">setGeometry</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _B<span class="token punctuation">.</span><span class="token function">setGeometry</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _lineEdit_A_X<span class="token punctuation">.</span><span class="token function">setGeometry</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _lineEdit_A_Y<span class="token punctuation">.</span><span class="token function">setGeometry</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _lineEdit_B_X<span class="token punctuation">.</span><span class="token function">setGeometry</span><span class="token punctuation">(</span><span class="token number">150</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _lineEdit_B_Y<span class="token punctuation">.</span><span class="token function">setGeometry</span><span class="token punctuation">(</span><span class="token number">150</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">paintEvent</span><span class="token punctuation">(</span>QPaintEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">Q_UNUSED</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QPainter <span class="token function">painter</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> A_X <span class="token operator">=</span> _lineEdit_A_X<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        A_Y <span class="token operator">=</span> _lineEdit_A_Y<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        B_X <span class="token operator">=</span> _lineEdit_B_X<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        B_Y <span class="token operator">=</span> _lineEdit_B_Y<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">drawLine</span><span class="token punctuation">(</span><span class="token function">QPoint</span><span class="token punctuation">(</span>A_X<span class="token punctuation">,</span> A_Y<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">QPoint</span><span class="token punctuation">(</span>B_X<span class="token punctuation">,</span> B_Y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre><br>
+<hr>
+<h2 id="leg-12-绘制多种图形">Leg 12 绘制多种图形 </h2>
+<p><code>QPainter</code> 提供了一系列的绘图函数，可以绘制多种图形。</p>
+<blockquote>
+<ul>
+<li>直线：<code>drawLine()</code></li>
+<li>矩形：<code>drawRect()</code></li>
+<li>椭圆：<code>drawEllipse()</code></li>
+<li>圆弧：<code>drawArc()</code></li>
+<li>多边形：<code>drawPolygon()</code></li>
+<li>文字：<code>drawText()</code></li>
+</ul>
+</blockquote>
+<p>同时，<code>QPainter</code> 还提供了一系列的设置函数，可以设置绘图的颜色、线宽、填充等。</p>
+<blockquote>
+<ul>
+<li>设置画笔颜色：<code>setPen()</code> <strong>外部线条</strong></li>
+<li>设置画刷颜色：<code>setBrush()</code> <strong>内部填充</strong></li>
+<li>设置线宽：<code>setLineWidth()</code></li>
+</ul>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMainWindow&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QWidget&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMenuBar&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLabel&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLineEdit&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QInputDialog&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QPainter&gt;</span></span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MainWindow</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QMainWindow</span></span><span class="token punctuation">{</span>
+    Q_OBJECT
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent <span class="token operator">=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    QWidget     _centralWidget<span class="token punctuation">;</span> <span class="token comment">// 中心窗口</span>
+    QMenuBar    _menuBar<span class="token punctuation">;</span>       <span class="token comment">// 菜单栏</span>
+
+    QLabel      _label<span class="token punctuation">;</span>         <span class="token comment">// 状态标签</span>
+
+    QMenu       _shape<span class="token punctuation">;</span>         <span class="token comment">// 形状菜单</span>
+        QAction     _line<span class="token punctuation">;</span>      <span class="token comment">// 直线</span>
+        QAction     _rectangle<span class="token punctuation">;</span> <span class="token comment">// 矩形</span>
+        QAction     _ellipse<span class="token punctuation">;</span>   <span class="token comment">// 椭圆</span>
+        QAction     _polygon<span class="token punctuation">;</span>   <span class="token comment">// 多边形</span>
+    QString     _shape_str<span class="token punctuation">;</span>     <span class="token comment">// 当前选择的形状</span>
+    
+    QMenu       _color_A<span class="token punctuation">;</span>       <span class="token comment">// 外部线条颜色</span>
+        QAction     _A_black<span class="token punctuation">;</span>   <span class="token comment">// 黑色</span>
+        QAction     _A_red<span class="token punctuation">;</span>     <span class="token comment">// 红色</span>
+        QAction     _A_green<span class="token punctuation">;</span>   <span class="token comment">// 绿色</span>
+        QAction     _A_blue<span class="token punctuation">;</span>    <span class="token comment">// 蓝色</span>
+    QString     _color_A_str<span class="token punctuation">;</span>   <span class="token comment">// 当前选择的外部线条颜色</span>
+    
+    QMenu       _color_B<span class="token punctuation">;</span>       <span class="token comment">// 内部填充颜色</span>
+        QAction     _B_black<span class="token punctuation">;</span>   <span class="token comment">// 黑色</span>
+        QAction     _B_red<span class="token punctuation">;</span>     <span class="token comment">// 红色</span>
+        QAction     _B_green<span class="token punctuation">;</span>   <span class="token comment">// 绿色</span>
+        QAction     _B_blue<span class="token punctuation">;</span>    <span class="token comment">// 蓝色</span>
+    QString     _color_B_str<span class="token punctuation">;</span>   <span class="token comment">// 当前选择的内部填充颜色</span>
+    
+    QAction     _width<span class="token punctuation">;</span>         <span class="token comment">// 线条宽度</span>
+    QString     _width_str<span class="token punctuation">;</span>     <span class="token comment">// 当前选择的线条宽度</span>
+
+    <span class="token keyword keyword-void">void</span> <span class="token function">paintEvent</span><span class="token punctuation">(</span>QPaintEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../include/MainWindow.h"</span></span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span>
+    <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setWindowTitle</span><span class="token punctuation">(</span><span class="token string">"Leg 12 绘制多种图形"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setFixedSize</span><span class="token punctuation">(</span><span class="token number">1080</span><span class="token punctuation">,</span> <span class="token number">720</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 设置窗口大小，不可调整</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setCentralWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 设置中心窗口</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setMenuBar</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_menuBar<span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 设置菜单栏</span>
+
+    _menuBar<span class="token punctuation">.</span><span class="token function">addMenu</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_shape<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 添加 形状 菜单</span>
+    _shape<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"形状"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _line<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"直线"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      _shape<span class="token punctuation">.</span><span class="token function">addAction</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_line<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _rectangle<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"矩形"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> _shape<span class="token punctuation">.</span><span class="token function">addAction</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_rectangle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _ellipse<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"椭圆"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   _shape<span class="token punctuation">.</span><span class="token function">addAction</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_ellipse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _polygon<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"多边形"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> _shape<span class="token punctuation">.</span><span class="token function">addAction</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_polygon<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _shape_str <span class="token operator">=</span> <span class="token string">"直线"</span><span class="token punctuation">;</span>
+    
+    _menuBar<span class="token punctuation">.</span><span class="token function">addMenu</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_color_A<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 添加 外部线条颜色 菜单</span>
+    _color_A<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"外部线条颜色"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _A_black<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"black"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   _color_A<span class="token punctuation">.</span><span class="token function">addAction</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_A_black<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _A_red<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"red"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     _color_A<span class="token punctuation">.</span><span class="token function">addAction</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_A_red<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _A_green<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"green"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   _color_A<span class="token punctuation">.</span><span class="token function">addAction</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_A_green<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _A_blue<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"blue"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    _color_A<span class="token punctuation">.</span><span class="token function">addAction</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_A_blue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _color_A_str <span class="token operator">=</span> <span class="token string">"black"</span><span class="token punctuation">;</span>
+
+    _menuBar<span class="token punctuation">.</span><span class="token function">addMenu</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_color_B<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 添加 内部填充颜色 菜单</span>
+    _color_B<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"内部填充颜色"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _B_black<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"black"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   _color_B<span class="token punctuation">.</span><span class="token function">addAction</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_B_black<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _B_red<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"red"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     _color_B<span class="token punctuation">.</span><span class="token function">addAction</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_B_red<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _B_green<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"green"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   _color_B<span class="token punctuation">.</span><span class="token function">addAction</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_B_green<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _B_blue<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"blue"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    _color_B<span class="token punctuation">.</span><span class="token function">addAction</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_B_blue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _color_B_str <span class="token operator">=</span> <span class="token string">"black"</span><span class="token punctuation">;</span>
+    
+    _menuBar<span class="token punctuation">.</span><span class="token function">addAction</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_width<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 添加 线条宽度 菜单</span>
+    _width<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"线条宽度"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _width_str <span class="token operator">=</span> <span class="token string">"1"</span><span class="token punctuation">;</span>
+
+    _menuBar<span class="token punctuation">.</span><span class="token function">setCornerWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_label<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 设置状态标签</span>
+    _label<span class="token punctuation">.</span><span class="token function">setAlignment</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>AlignRight<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 设置标签右对齐</span>
+    _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"      当前选择：直线，black，black，1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 连接信号与槽</span>
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_line<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _shape_str <span class="token operator">=</span> <span class="token string">"直线"</span><span class="token punctuation">;</span>
+        _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"当前选择："</span> <span class="token operator">+</span> _shape_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_A_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_B_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _width_str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_rectangle<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _shape_str <span class="token operator">=</span> <span class="token string">"矩形"</span><span class="token punctuation">;</span>
+        _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"当前选择："</span> <span class="token operator">+</span> _shape_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_A_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_B_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _width_str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_ellipse<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _shape_str <span class="token operator">=</span> <span class="token string">"椭圆"</span><span class="token punctuation">;</span>
+        _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"当前选择："</span> <span class="token operator">+</span> _shape_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_A_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_B_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _width_str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_polygon<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _shape_str <span class="token operator">=</span> <span class="token string">"多边形"</span><span class="token punctuation">;</span>
+        _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"当前选择："</span> <span class="token operator">+</span> _shape_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_A_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_B_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _width_str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_A_black<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _color_A_str <span class="token operator">=</span> <span class="token string">"black"</span><span class="token punctuation">;</span>
+        _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"当前选择："</span> <span class="token operator">+</span> _shape_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_A_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_B_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _width_str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_A_red<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _color_A_str <span class="token operator">=</span> <span class="token string">"red"</span><span class="token punctuation">;</span>
+        _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"当前选择："</span> <span class="token operator">+</span> _shape_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_A_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_B_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _width_str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_A_green<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _color_A_str <span class="token operator">=</span> <span class="token string">"green"</span><span class="token punctuation">;</span>
+        _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"当前选择："</span> <span class="token operator">+</span> _shape_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_A_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_B_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _width_str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_A_blue<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _color_A_str <span class="token operator">=</span> <span class="token string">"blue"</span><span class="token punctuation">;</span>
+        _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"当前选择："</span> <span class="token operator">+</span> _shape_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_A_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_B_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _width_str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_B_black<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _color_B_str <span class="token operator">=</span> <span class="token string">"black"</span><span class="token punctuation">;</span>
+        _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"当前选择："</span> <span class="token operator">+</span> _shape_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_A_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_B_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _width_str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_B_red<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _color_B_str <span class="token operator">=</span> <span class="token string">"red"</span><span class="token punctuation">;</span>
+        _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"当前选择："</span> <span class="token operator">+</span> _shape_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_A_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_B_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _width_str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_B_green<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _color_B_str <span class="token operator">=</span> <span class="token string">"green"</span><span class="token punctuation">;</span>
+        _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"当前选择："</span> <span class="token operator">+</span> _shape_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_A_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_B_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _width_str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_B_blue<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _color_B_str <span class="token operator">=</span> <span class="token string">"blue"</span><span class="token punctuation">;</span>
+        _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"当前选择："</span> <span class="token operator">+</span> _shape_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_A_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_B_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _width_str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_width<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QAction<span class="token double-colon punctuation">::</span>triggered<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-bool">bool</span> ok<span class="token punctuation">;</span>
+        _width_str <span class="token operator">=</span> <span class="token class-name">QInputDialog</span><span class="token double-colon punctuation">::</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token string">"线条宽度"</span><span class="token punctuation">,</span> <span class="token string">"请输入线条宽度"</span><span class="token punctuation">,</span> QLineEdit<span class="token double-colon punctuation">::</span>Normal<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>ok<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token operator">!</span>ok<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            _width_str <span class="token operator">=</span> <span class="token string">"1"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        _label<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"当前选择："</span> <span class="token operator">+</span> _shape_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_A_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _color_B_str <span class="token operator">+</span> <span class="token string">"，"</span> <span class="token operator">+</span> _width_str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">paintEvent</span><span class="token punctuation">(</span>QPaintEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">Q_UNUSED</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QPainter <span class="token function">painter</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>_shape_str <span class="token operator">==</span> <span class="token string">"直线"</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        painter<span class="token punctuation">.</span><span class="token function">setPen</span><span class="token punctuation">(</span><span class="token function">QPen</span><span class="token punctuation">(</span><span class="token function">QColor</span><span class="token punctuation">(</span>_color_A_str<span class="token punctuation">)</span><span class="token punctuation">,</span> _width_str<span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Qt<span class="token double-colon punctuation">::</span>SolidLine<span class="token punctuation">,</span> Qt<span class="token double-colon punctuation">::</span>RoundCap<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        painter<span class="token punctuation">.</span><span class="token function">drawLine</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>_shape_str <span class="token operator">==</span> <span class="token string">"矩形"</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        painter<span class="token punctuation">.</span><span class="token function">setPen</span><span class="token punctuation">(</span><span class="token function">QPen</span><span class="token punctuation">(</span><span class="token function">QColor</span><span class="token punctuation">(</span>_color_A_str<span class="token punctuation">)</span><span class="token punctuation">,</span> _width_str<span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Qt<span class="token double-colon punctuation">::</span>SolidLine<span class="token punctuation">,</span> Qt<span class="token double-colon punctuation">::</span>RoundCap<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        painter<span class="token punctuation">.</span><span class="token function">setBrush</span><span class="token punctuation">(</span><span class="token function">QBrush</span><span class="token punctuation">(</span><span class="token function">QColor</span><span class="token punctuation">(</span>_color_B_str<span class="token punctuation">)</span><span class="token punctuation">,</span> Qt<span class="token double-colon punctuation">::</span>SolidPattern<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        painter<span class="token punctuation">.</span><span class="token function">drawRect</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>_shape_str <span class="token operator">==</span> <span class="token string">"椭圆"</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        painter<span class="token punctuation">.</span><span class="token function">setPen</span><span class="token punctuation">(</span><span class="token function">QPen</span><span class="token punctuation">(</span><span class="token function">QColor</span><span class="token punctuation">(</span>_color_A_str<span class="token punctuation">)</span><span class="token punctuation">,</span> _width_str<span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Qt<span class="token double-colon punctuation">::</span>SolidLine<span class="token punctuation">,</span> Qt<span class="token double-colon punctuation">::</span>RoundCap<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        painter<span class="token punctuation">.</span><span class="token function">setBrush</span><span class="token punctuation">(</span><span class="token function">QBrush</span><span class="token punctuation">(</span><span class="token function">QColor</span><span class="token punctuation">(</span>_color_B_str<span class="token punctuation">)</span><span class="token punctuation">,</span> Qt<span class="token double-colon punctuation">::</span>SolidPattern<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        painter<span class="token punctuation">.</span><span class="token function">drawEllipse</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>_shape_str <span class="token operator">==</span> <span class="token string">"多边形"</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        painter<span class="token punctuation">.</span><span class="token function">setPen</span><span class="token punctuation">(</span><span class="token function">QPen</span><span class="token punctuation">(</span><span class="token function">QColor</span><span class="token punctuation">(</span>_color_A_str<span class="token punctuation">)</span><span class="token punctuation">,</span> _width_str<span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Qt<span class="token double-colon punctuation">::</span>SolidLine<span class="token punctuation">,</span> Qt<span class="token double-colon punctuation">::</span>RoundCap<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        painter<span class="token punctuation">.</span><span class="token function">setBrush</span><span class="token punctuation">(</span><span class="token function">QBrush</span><span class="token punctuation">(</span><span class="token function">QColor</span><span class="token punctuation">(</span>_color_B_str<span class="token punctuation">)</span><span class="token punctuation">,</span> Qt<span class="token double-colon punctuation">::</span>SolidPattern<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        QVector<span class="token operator">&lt;</span>QPoint<span class="token operator">&gt;</span> points<span class="token punctuation">;</span>
+        <span class="token comment">// 五角星</span>
+        points<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">QPoint</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        points<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">QPoint</span><span class="token punctuation">(</span><span class="token number">250</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        points<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">QPoint</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        points<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">QPoint</span><span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        points<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">QPoint</span><span class="token punctuation">(</span><span class="token number">350</span><span class="token punctuation">,</span> <span class="token number">450</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        points<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">QPoint</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">350</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 底部</span>
+        points<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">QPoint</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">450</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        points<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">QPoint</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        points<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">QPoint</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        points<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">QPoint</span><span class="token punctuation">(</span><span class="token number">150</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        painter<span class="token punctuation">.</span><span class="token function">drawPolygon</span><span class="token punctuation">(</span>points<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre><br>
+<hr>
+<h1 id="定时器">定时器 </h1>
+<h2 id="leg-13-定时器">Leg 13 定时器 </h2>
+<blockquote>
+<p>定时器 <code>QTimer</code></p>
+</blockquote>
+<p>除了通过 <code>connect</code> 函数来连接信号和槽，还可以通过定时器来连接信号和槽。<br>
+也就是说，当定时器超时时，就会触发信号，然后执行槽函数。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>
+# 文件与数据库操作
+
+## Leg <span class="token number">11</span> 读写文件
+
+## Leg <span class="token number">12</span> 连接 MYSQL 数据库
+
+## Leg <span class="token number">13</span> 增删改查
+
+# 多媒体
+
+# 待整理
+
+## 选择和显示日期<span class="token operator">/</span>时间
+
+## ⛺ 图片显示
 
 
-## 编译
+## 🎨 画图
+
+
+## 进度条和滑块
+
+## 表格和滚动区域
+
+## 多媒体
+
+# 文件和图像操作
+
+
+<span class="token macro property"><span class="token directive-hash">#</span> <span class="token directive keyword">raylib</span></span>
+
+raylib 是一个简单易用的游戏开发库，它提供了一系列的函数，用于处理窗口、图像、音频、输入、模型等。
+
+## 安装
+
+```sh
+sudo apt install libglfw3<span class="token operator">-</span>dev libgl1<span class="token operator">-</span>mesa<span class="token operator">-</span>dev libglu1<span class="token operator">-</span>mesa<span class="token operator">-</span>dev
+</code></pre><h2>测试代码</h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span> <span class="token directive keyword">include</span> <span class="token string">"raylib.h"</span> <span class="token expression"><span class="token punctuation">{</span>#include<span class="token operator">-</span>raylibh <span class="token punctuation">}</span></span></span>
+
+
+## 编译 <span class="token punctuation">{</span>#编译 <span class="token punctuation">}</span>
 
 ```sh
 gcc main<span class="token punctuation">.</span>c <span class="token operator">-</span>o main <span class="token operator">-</span>lraylib <span class="token operator">-</span>lGL <span class="token operator">-</span>lm <span class="token operator">-</span>lpthread <span class="token operator">-</span>ldl <span class="token operator">-</span>lrt <span class="token operator">-</span>lX11
-</code></pre><h2>运行</h2>
+</code></pre><h2 id="运行">运行 </h2>
 <pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>./main
 </code></pre>
       </div>
@@ -1428,83 +1758,47 @@ gcc main<span class="token punctuation">.</span>c <span class="token operator">-
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#文件与数据库操作" class="md-toc-link"><p>文件与数据库操作</p>
+          <a href="#绘图" class="md-toc-link"><p>绘图</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#leg-读写文件" class="md-toc-link">
-            <p>Leg 读写文件</p>
+          <a href="#leg-11-绘制直线" class="md-toc-link">
+            <p>Leg 11 绘制直线</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#leg-连接-mysql-数据库" class="md-toc-link">
-            <p>Leg 连接 MYSQL 数据库</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#leg-增删改查" class="md-toc-link">
-            <p>Leg 增删改查</p>
+          <a href="#leg-12-绘制多种图形" class="md-toc-link">
+            <p>Leg 12 绘制多种图形</p>
 
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#绘图" class="md-toc-link">
-            <p>绘图</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#多媒体" class="md-toc-link">
-            <p>多媒体</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#待整理" class="md-toc-link"><p>待整理</p>
+          <a href="#定时器" class="md-toc-link"><p>定时器</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#选择和显示日期时间" class="md-toc-link">
-            <p>选择和显示日期/时间</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-图片显示" class="md-toc-link">
-            <p>⛺ 图片显示</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-画图" class="md-toc-link">
-            <p>🎨 画图</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#进度条和滑块" class="md-toc-link">
-            <p>进度条和滑块</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#表格和滚动区域" class="md-toc-link">
-            <p>表格和滚动区域</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#多媒体-1" class="md-toc-link">
-            <p>多媒体</p>
+          <a href="#leg-13-定时器" class="md-toc-link">
+            <p>Leg 13 定时器</p>
 
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#文件和图像操作" class="md-toc-link">
-            <p>文件和图像操作</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#raylib" class="md-toc-link"><p>raylib</p>
+          <a href="#include-raylibh" class="md-toc-link"><p>include "raylib.h"</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#安装" class="md-toc-link">
-            <p>安装</p>
+          <a href="#编译" class="md-toc-link">
+            <p>编译</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#测试代码" class="md-toc-link">
-            <p>测试代码</p>
+          <a href="#运行" class="md-toc-link">
+            <p>运行</p>
 
           </a></div>
         </div>

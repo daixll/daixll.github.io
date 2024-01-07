@@ -1410,16 +1410,344 @@ MainWindow::~MainWindow(){}
 
 ---
 
-# 文件与数据库操作
-
-## Leg 读写文件
-
-## Leg 连接 MYSQL 数据库
-
-## Leg 增删改查
-
 # 绘图
 
+## Leg 11 绘制直线
+
+> 绘制 `QPainter`
+
+在Qt中，绘图通过 `paintEvent` 事件来实现，当窗口需要重绘时，就会调用 `paintEvent` 事件，且不需要手动调用，只需要重写 `paintEvent` 事件即可。
+
+在下面的例子中，我们通过 `QLineEdit` 中的内容来绘制一条直线。
+当 `QLineEdit` 中的内容改变时，就会调用 `paintEvent` 事件，动态绘制直线。
+
+```cpp
+// MainWindow.h
+#pragma once
+
+#include <QMainWindow>
+#include <QWidget>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QPainter>
+
+class MainWindow : public QMainWindow{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+private:
+    QWidget     _centralWidget;
+    QLabel      _A, _B;
+    QLineEdit   _lineEdit_A_X,
+                _lineEdit_A_Y,
+                _lineEdit_B_X,
+                _lineEdit_B_Y;
+
+    void paintEvent(QPaintEvent *event);
+};
+```
+
+```cpp
+#include "../include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    this -> setWindowTitle("Leg 11 Qt绘图");
+    this -> setFixedSize(1080, 720);            // 设置窗口大小，不可调整
+    this -> setCentralWidget(&_centralWidget);  // 设置中心窗口
+
+    _A.setParent(&_centralWidget);
+    _B.setParent(&_centralWidget);
+    _lineEdit_A_X.setParent(&_centralWidget);
+    _lineEdit_A_Y.setParent(&_centralWidget);
+    _lineEdit_B_X.setParent(&_centralWidget);
+    _lineEdit_B_Y.setParent(&_centralWidget);
+
+    _A.setText("A点坐标");
+    _B.setText("B点坐标");
+    _lineEdit_A_X.setText("123");
+    _lineEdit_A_Y.setText("123");
+    _lineEdit_B_X.setText("456");
+    _lineEdit_B_Y.setText("456");
+
+    _A.setGeometry(0, 0, 50, 50);
+    _B.setGeometry(100, 0, 50, 50);
+    _lineEdit_A_X.setGeometry(50, 0, 50, 25);
+    _lineEdit_A_Y.setGeometry(50, 25, 50, 25);
+    _lineEdit_B_X.setGeometry(150, 0, 50, 25);
+    _lineEdit_B_Y.setGeometry(150, 25, 50, 25);
+
+}
+
+void MainWindow::paintEvent(QPaintEvent *event){
+    update();
+    Q_UNUSED(event);
+    QPainter painter(this);
+    int A_X = _lineEdit_A_X.text().toInt(),
+        A_Y = _lineEdit_A_Y.text().toInt(),
+        B_X = _lineEdit_B_X.text().toInt(),
+        B_Y = _lineEdit_B_Y.text().toInt();
+    painter.drawLine(QPoint(A_X, A_Y), QPoint(B_X, B_Y));
+}
+
+MainWindow::~MainWindow(){}
+```
+
+<br>
+
+---
+
+## Leg 12 绘制多种图形
+
+`QPainter` 提供了一系列的绘图函数，可以绘制多种图形。
+
+> * 直线：`drawLine()`
+> * 矩形：`drawRect()`
+> * 椭圆：`drawEllipse()`
+> * 圆弧：`drawArc()`
+> * 多边形：`drawPolygon()`
+> * 文字：`drawText()`
+
+同时，`QPainter` 还提供了一系列的设置函数，可以设置绘图的颜色、线宽、填充等。
+
+> * 设置画笔颜色：`setPen()` **外部线条**
+> * 设置画刷颜色：`setBrush()` **内部填充**
+> * 设置线宽：`setLineWidth()`
+
+```cpp
+#pragma once
+
+#include <QMainWindow>
+#include <QWidget>
+#include <QMenuBar>
+#include <QLabel>
+#include <QLineEdit>
+#include <QInputDialog>
+#include <QPainter>
+
+class MainWindow : public QMainWindow{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+private:
+    QWidget     _centralWidget; // 中心窗口
+    QMenuBar    _menuBar;       // 菜单栏
+
+    QLabel      _label;         // 状态标签
+
+    QMenu       _shape;         // 形状菜单
+        QAction     _line;      // 直线
+        QAction     _rectangle; // 矩形
+        QAction     _ellipse;   // 椭圆
+        QAction     _polygon;   // 多边形
+    QString     _shape_str;     // 当前选择的形状
+    
+    QMenu       _color_A;       // 外部线条颜色
+        QAction     _A_black;   // 黑色
+        QAction     _A_red;     // 红色
+        QAction     _A_green;   // 绿色
+        QAction     _A_blue;    // 蓝色
+    QString     _color_A_str;   // 当前选择的外部线条颜色
+    
+    QMenu       _color_B;       // 内部填充颜色
+        QAction     _B_black;   // 黑色
+        QAction     _B_red;     // 红色
+        QAction     _B_green;   // 绿色
+        QAction     _B_blue;    // 蓝色
+    QString     _color_B_str;   // 当前选择的内部填充颜色
+    
+    QAction     _width;         // 线条宽度
+    QString     _width_str;     // 当前选择的线条宽度
+
+    void paintEvent(QPaintEvent *event);
+};
+```
+
+```cpp
+#include "../include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    this -> setWindowTitle("Leg 12 绘制多种图形");
+    this -> setFixedSize(1080, 720);            // 设置窗口大小，不可调整
+    this -> setCentralWidget(&_centralWidget);  // 设置中心窗口
+    this -> setMenuBar(&_menuBar);              // 设置菜单栏
+
+    _menuBar.addMenu(&_shape);  // 添加 形状 菜单
+    _shape.setTitle("形状");
+        _line.setText("直线");      _shape.addAction(&_line);
+        _rectangle.setText("矩形"); _shape.addAction(&_rectangle);
+        _ellipse.setText("椭圆");   _shape.addAction(&_ellipse);
+        _polygon.setText("多边形"); _shape.addAction(&_polygon);
+    _shape_str = "直线";
+    
+    _menuBar.addMenu(&_color_A);// 添加 外部线条颜色 菜单
+    _color_A.setTitle("外部线条颜色");
+        _A_black.setText("black");   _color_A.addAction(&_A_black);
+        _A_red.setText("red");     _color_A.addAction(&_A_red);
+        _A_green.setText("green");   _color_A.addAction(&_A_green);
+        _A_blue.setText("blue");    _color_A.addAction(&_A_blue);
+    _color_A_str = "black";
+
+    _menuBar.addMenu(&_color_B);// 添加 内部填充颜色 菜单
+    _color_B.setTitle("内部填充颜色");
+        _B_black.setText("black");   _color_B.addAction(&_B_black);
+        _B_red.setText("red");     _color_B.addAction(&_B_red);
+        _B_green.setText("green");   _color_B.addAction(&_B_green);
+        _B_blue.setText("blue");    _color_B.addAction(&_B_blue);
+    _color_B_str = "black";
+    
+    _menuBar.addAction(&_width);// 添加 线条宽度 菜单
+    _width.setText("线条宽度");
+    _width_str = "1";
+
+    _menuBar.setCornerWidget(&_label);  // 设置状态标签
+    _label.setAlignment(Qt::AlignRight);// 设置标签右对齐
+    _label.setText("      当前选择：直线，black，black，1");
+
+    // 连接信号与槽
+    connect(&_line, &QAction::triggered, [=](){
+        _shape_str = "直线";
+        _label.setText("当前选择：" + _shape_str + "，" + _color_A_str + "，" + _color_B_str + "，" + _width_str);
+    });
+
+    connect(&_rectangle, &QAction::triggered, [=](){
+        _shape_str = "矩形";
+        _label.setText("当前选择：" + _shape_str + "，" + _color_A_str + "，" + _color_B_str + "，" + _width_str);
+    });
+
+    connect(&_ellipse, &QAction::triggered, [=](){
+        _shape_str = "椭圆";
+        _label.setText("当前选择：" + _shape_str + "，" + _color_A_str + "，" + _color_B_str + "，" + _width_str);
+    });
+
+    connect(&_polygon, &QAction::triggered, [=](){
+        _shape_str = "多边形";
+        _label.setText("当前选择：" + _shape_str + "，" + _color_A_str + "，" + _color_B_str + "，" + _width_str);
+    });
+
+    connect(&_A_black, &QAction::triggered, [=](){
+        _color_A_str = "black";
+        _label.setText("当前选择：" + _shape_str + "，" + _color_A_str + "，" + _color_B_str + "，" + _width_str);
+    });
+
+    connect(&_A_red, &QAction::triggered, [=](){
+        _color_A_str = "red";
+        _label.setText("当前选择：" + _shape_str + "，" + _color_A_str + "，" + _color_B_str + "，" + _width_str);
+    });
+
+    connect(&_A_green, &QAction::triggered, [=](){
+        _color_A_str = "green";
+        _label.setText("当前选择：" + _shape_str + "，" + _color_A_str + "，" + _color_B_str + "，" + _width_str);
+    });
+
+    connect(&_A_blue, &QAction::triggered, [=](){
+        _color_A_str = "blue";
+        _label.setText("当前选择：" + _shape_str + "，" + _color_A_str + "，" + _color_B_str + "，" + _width_str);
+    });
+
+    connect(&_B_black, &QAction::triggered, [=](){
+        _color_B_str = "black";
+        _label.setText("当前选择：" + _shape_str + "，" + _color_A_str + "，" + _color_B_str + "，" + _width_str);
+    });
+
+    connect(&_B_red, &QAction::triggered, [=](){
+        _color_B_str = "red";
+        _label.setText("当前选择：" + _shape_str + "，" + _color_A_str + "，" + _color_B_str + "，" + _width_str);
+    });
+
+    connect(&_B_green, &QAction::triggered, [=](){
+        _color_B_str = "green";
+        _label.setText("当前选择：" + _shape_str + "，" + _color_A_str + "，" + _color_B_str + "，" + _width_str);
+    });
+
+    connect(&_B_blue, &QAction::triggered, [=](){
+        _color_B_str = "blue";
+        _label.setText("当前选择：" + _shape_str + "，" + _color_A_str + "，" + _color_B_str + "，" + _width_str);
+    });
+
+    connect(&_width, &QAction::triggered, [=](){
+        bool ok;
+        _width_str = QInputDialog::getText(this, "线条宽度", "请输入线条宽度", QLineEdit::Normal, "", &ok);
+        if(!ok){
+            _width_str = "1";
+        }
+        _label.setText("当前选择：" + _shape_str + "，" + _color_A_str + "，" + _color_B_str + "，" + _width_str);
+    });
+
+}
+
+void MainWindow::paintEvent(QPaintEvent *event){
+    update();
+    Q_UNUSED(event);
+    QPainter painter(this);
+
+    if(_shape_str == "直线"){
+        painter.setPen(QPen(QColor(_color_A_str), _width_str.toInt(), Qt::SolidLine, Qt::RoundCap));
+        painter.drawLine(100, 100, 500, 500);
+    }
+    else if(_shape_str == "矩形"){
+        painter.setPen(QPen(QColor(_color_A_str), _width_str.toInt(), Qt::SolidLine, Qt::RoundCap));
+        painter.setBrush(QBrush(QColor(_color_B_str), Qt::SolidPattern));
+        painter.drawRect(100, 100, 400, 400);
+    }
+    else if(_shape_str == "椭圆"){
+        painter.setPen(QPen(QColor(_color_A_str), _width_str.toInt(), Qt::SolidLine, Qt::RoundCap));
+        painter.setBrush(QBrush(QColor(_color_B_str), Qt::SolidPattern));
+        painter.drawEllipse(100, 100, 400, 400);
+    }
+    else if(_shape_str == "多边形"){
+        painter.setPen(QPen(QColor(_color_A_str), _width_str.toInt(), Qt::SolidLine, Qt::RoundCap));
+        painter.setBrush(QBrush(QColor(_color_B_str), Qt::SolidPattern));
+        QVector<QPoint> points;
+        // 五角星
+        points.push_back(QPoint(200, 50));
+        points.push_back(QPoint(250, 200));
+        points.push_back(QPoint(400, 200));
+        points.push_back(QPoint(300, 300));
+        points.push_back(QPoint(350, 450));
+        points.push_back(QPoint(200, 350)); // 底部
+        points.push_back(QPoint(50, 450));
+        points.push_back(QPoint(100, 300));
+        points.push_back(QPoint(0, 200));
+        points.push_back(QPoint(150, 200));
+
+        painter.drawPolygon(points);
+    }
+
+}
+
+MainWindow::~MainWindow(){}
+```
+
+<br>
+
+---
+
+# 定时器
+
+## Leg 13 定时器
+
+> 定时器 `QTimer`
+
+除了通过 `connect` 函数来连接信号和槽，还可以通过定时器来连接信号和槽。
+也就是说，当定时器超时时，就会触发信号，然后执行槽函数。
+
+```cpp
+
+
+# 文件与数据库操作
+
+## Leg 11 读写文件
+
+## Leg 12 连接 MYSQL 数据库
+
+## Leg 13 增删改查
 
 # 多媒体
 
