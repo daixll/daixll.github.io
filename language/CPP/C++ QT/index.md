@@ -1410,6 +1410,167 @@ MainWindow::~MainWindow(){}
 
 ---
 
+## Leg 11 滑动窗口与堆叠窗口
+
+> 滑动窗口 `QScrollArea`
+
+
+<details><summary><a href="" target="_blank"></a> 滑动窗口简单示例</summary><br>
+
+```cpp
+#include <QApplication>
+#include <QWidget>
+#include <QScrollArea>
+#include <QVBoxLayout>
+#include <QLabel>
+
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+    QWidget mainWidget;
+    QVBoxLayout mainLayout;
+    mainWidget.setWindowTitle("可滚动窗口示例");
+    mainWidget.setGeometry(100, 100, 400, 300);
+    mainWidget.setLayout(&mainLayout);
+
+    // 创建滚动区域
+    QScrollArea scrollArea;
+    scrollArea.setParent(&mainWidget);  // 设置父窗口
+    scrollArea.setWidgetResizable(true);// 滚动区域大小可变
+
+    QWidget contentWidget;              // 滚动区域的小部件
+    QVBoxLayout layout;                 // 滚动区域的布局
+    contentWidget.setLayout(&layout);   // 设置布局
+
+    // 添加一些标签以演示内容
+    for (int i = 0; i < 20; ++i) {
+        QLabel *label = new QLabel("这是标签 " + QString::number(i + 1));
+        layout.addWidget(label);
+    }
+
+    // 将子窗口设置为滚动区域的小部件
+    scrollArea.setWidget(&contentWidget);
+
+    // 将滚动区域添加到主窗口的布局中
+    mainLayout.addWidget(&scrollArea);
+
+    mainWidget.show();
+    return app.exec();
+}
+```
+</details>
+
+
+
+> 堆叠窗口 `QStackedWidget`
+
+组合实现
+
+```cpp
+// MainWindow.h
+#pragma once
+
+#include <QMainWindow>
+#include <QLayout>
+#include <QListWidget>
+#include <QStackedWidget>
+#include <QScrollArea>
+#include <QLabel>
+#include <QScrollBar>
+
+class MainWindow : public QMainWindow{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+private:
+    void onItemClicked(QListWidgetItem *item);  // 点击列表项
+
+    QWidget     _centralWidget; // 中心窗口
+    QHBoxLayout _layout;        // 水平布局
+    QListWidget _listWidget;    // 列表窗口
+    QStackedWidget _stackedWidget;  // 堆叠窗口
+
+    QWidget     _contextWidget1;// 右侧窗口
+    QWidget     _contextWidget2;
+    QWidget     _contextWidget3;
+
+    QVBoxLayout _layout1;       // 垂直布局
+    QVBoxLayout _layout2;
+    QVBoxLayout _layout3;
+
+    QScrollArea _scrollArea1;   // 滚动窗口
+    QScrollArea _scrollArea2;
+    QScrollArea _scrollArea3;
+
+    QString _str1="", _str2="", _str3="";
+    int cnt1=0, cnt2=0, cnt3=0;
+};
+```
+
+```cpp
+#include "../include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    this -> setWindowTitle("Leg 11 滑动窗口");
+    this -> setCentralWidget(&_centralWidget);
+    _centralWidget.setLayout(&_layout);
+
+    _layout.addWidget(&_listWidget);    // 左侧列表窗口
+    _layout.addWidget(&_stackedWidget); // 右侧堆叠窗口
+
+    _listWidget.addItem("窗口 1");
+    _listWidget.addItem("窗口 2");
+    _listWidget.addItem("窗口 3");
+
+    _stackedWidget.addWidget(&_scrollArea1); // 右侧第一个窗口
+    _stackedWidget.addWidget(&_scrollArea2); // 右侧第二个窗口
+    _stackedWidget.addWidget(&_scrollArea3); // 右侧第三个窗口
+
+    _contextWidget1.setLayout(&_layout1); // 右侧第一个窗口的布局
+    _contextWidget2.setLayout(&_layout2); // 右侧第二个窗口的布局
+    _contextWidget3.setLayout(&_layout3); // 右侧第三个窗口的布局
+
+    connect(&_listWidget, &QListWidget::itemClicked, this, &MainWindow::onItemClicked);
+}
+
+MainWindow::~MainWindow(){}
+
+void MainWindow::onItemClicked(QListWidgetItem *item){
+    if(item -> text() == "窗口 1"){
+        _stackedWidget.setCurrentWidget(&_scrollArea1);
+        // 直接给窗口怼一个标签
+        QLabel *label = new QLabel(QString("第 1 个窗口，第 %1 次点击").arg(++cnt1), &_contextWidget1);
+        _scrollArea1.setWidgetResizable(true);  // 设置滚动窗口的大小可变
+        _layout1.addWidget(label);
+        _scrollArea1.setWidget(&_contextWidget1);
+        // 定位到最后
+        QScrollBar *vScrollBar = _scrollArea1.verticalScrollBar();
+        vScrollBar->setValue(vScrollBar->maximum());
+    }
+    else if(item -> text() == "窗口 2"){
+        _stackedWidget.setCurrentWidget(&_scrollArea2);
+        QLabel *label = new QLabel(QString("第 2 个窗口，第 %1 次点击").arg(++cnt2)); 
+        _scrollArea2.setWidgetResizable(true);  // 设置滚动窗口的大小可变
+        _layout2.addWidget(label);
+        _scrollArea2.setWidget(&_contextWidget2);
+    }
+    else if(item -> text() == "窗口 3"){
+        _stackedWidget.setCurrentWidget(&_scrollArea3);
+        QLabel *label = new QLabel(QString("第 3 个窗口，第 %1 次点击").arg(++cnt3));
+        _scrollArea3.setWidgetResizable(true);  // 设置滚动窗口的大小可变
+        _layout3.addWidget(label);
+        _scrollArea3.setWidget(&_contextWidget3);
+    }
+}
+```
+
+
+<br>
+
+---
+
 # 绘图
 
 ## Leg 11 绘制直线
