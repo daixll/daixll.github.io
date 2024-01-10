@@ -1573,7 +1573,7 @@ void MainWindow::onItemClicked(QListWidgetItem *item){
 
 # 绘图
 
-## Leg 11 绘制直线
+## Leg 12 绘制直线
 
 > 绘制 `QPainter`
 
@@ -1661,7 +1661,7 @@ MainWindow::~MainWindow(){}
 
 ---
 
-## Leg 12 绘制多种图形
+## Leg 13 绘制多种图形
 
 `QPainter` 提供了一系列的绘图函数，可以绘制多种图形。
 
@@ -1892,15 +1892,74 @@ MainWindow::~MainWindow(){}
 
 # 定时器
 
-## Leg 13 定时器
+## Leg 14 定时器
 
 > 定时器 `QTimer`
 
 除了通过 `connect` 函数来连接信号和槽，还可以通过定时器来连接信号和槽。
 也就是说，当定时器超时时，就会触发信号，然后执行槽函数。
 
-```cpp
+> 随机数 `QRandomGenerator::global()->bounded()`
 
+```cpp
+// MainWindow.h
+#pragma once
+
+#include <QMainWindow>
+#include <QLabel>
+#include <QTimer>
+#include <QRandomGenerator>
+
+class MainWindow : public QMainWindow{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+private:
+    QWidget     _centralWidget; // 中央部件
+    QLabel      _labeltext;
+    QTimer      _timer;         // 定时器
+};
+```
+
+```cpp
+// MainWindow.cpp
+#include "../include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    this -> setWindowTitle("Leg 14 定时器");
+    this -> setCentralWidget(&_centralWidget);
+    this -> resize(400, 300);
+
+    _labeltext.setParent(&_centralWidget);
+    _labeltext.setText("Hello World!");
+
+    _timer.start(5);
+
+    int lastDx = 10, lastDy = 10;
+    connect(&_timer, &QTimer::timeout, this, [&](){
+        int x = _labeltext.x(), y = _labeltext.y();
+        int nx = x + lastDx, ny = y + lastDy;
+
+        if(nx >=1 && nx <= 320 && ny >= 1 && ny <= 280 && x != nx && y != ny)
+            _labeltext.move(nx, ny);
+        else{
+            lastDx = QRandomGenerator::global()->bounded(10)-5;
+            lastDy = QRandomGenerator::global()->bounded(10)-5;
+        }
+    });
+}
+
+MainWindow::~MainWindow(){}
+```
+
+<br>
+
+---
+
+## Mission 3 🐤
 
 # 文件与数据库操作
 

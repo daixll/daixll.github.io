@@ -1424,7 +1424,7 @@ _about<span class="token operator">-&gt;</span><span class="token function">setS
 </code></pre><br>
 <hr>
 <h1 id="绘图">绘图 </h1>
-<h2 id="leg-11-绘制直线">Leg 11 绘制直线 </h2>
+<h2 id="leg-12-绘制直线">Leg 12 绘制直线 </h2>
 <blockquote>
 <p>绘制 <code>QPainter</code></p>
 </blockquote>
@@ -1502,7 +1502,7 @@ _about<span class="token operator">-&gt;</span><span class="token function">setS
 <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
 </code></pre><br>
 <hr>
-<h2 id="leg-12-绘制多种图形">Leg 12 绘制多种图形 </h2>
+<h2 id="leg-13-绘制多种图形">Leg 13 绘制多种图形 </h2>
 <p><code>QPainter</code> 提供了一系列的绘图函数，可以绘制多种图形。</p>
 <blockquote>
 <ul>
@@ -1727,59 +1727,92 @@ _about<span class="token operator">-&gt;</span><span class="token function">setS
 </code></pre><br>
 <hr>
 <h1 id="定时器">定时器 </h1>
-<h2 id="leg-13-定时器">Leg 13 定时器 </h2>
+<h2 id="leg-14-定时器">Leg 14 定时器 </h2>
 <blockquote>
 <p>定时器 <code>QTimer</code></p>
 </blockquote>
 <p>除了通过 <code>connect</code> 函数来连接信号和槽，还可以通过定时器来连接信号和槽。<br>
 也就是说，当定时器超时时，就会触发信号，然后执行槽函数。</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>
-# 文件与数据库操作
+<blockquote>
+<p>随机数 <code>QRandomGenerator::global()-&gt;bounded()</code></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
 
-## Leg <span class="token number">11</span> 读写文件
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMainWindow&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLabel&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QTimer&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QRandomGenerator&gt;</span></span>
 
-## Leg <span class="token number">12</span> 连接 MYSQL 数据库
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MainWindow</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QMainWindow</span></span><span class="token punctuation">{</span>
+    Q_OBJECT
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent <span class="token operator">=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    QWidget     _centralWidget<span class="token punctuation">;</span> <span class="token comment">// 中央部件</span>
+    QLabel      _labeltext<span class="token punctuation">;</span>
+    QTimer      _timer<span class="token punctuation">;</span>         <span class="token comment">// 定时器</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.cpp</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../include/MainWindow.h"</span></span>
 
-## Leg <span class="token number">13</span> 增删改查
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span>
+    <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setWindowTitle</span><span class="token punctuation">(</span><span class="token string">"Leg 14 定时器"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setCentralWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-# 多媒体
+    _labeltext<span class="token punctuation">.</span><span class="token function">setParent</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _labeltext<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-# 待整理
+    _timer<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-## 选择和显示日期<span class="token operator">/</span>时间
+    <span class="token keyword keyword-int">int</span> lastDx <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> lastDy <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_timer<span class="token punctuation">,</span> <span class="token operator">&amp;</span>QTimer<span class="token double-colon punctuation">::</span>timeout<span class="token punctuation">,</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-int">int</span> x <span class="token operator">=</span> _labeltext<span class="token punctuation">.</span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> y <span class="token operator">=</span> _labeltext<span class="token punctuation">.</span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-int">int</span> nx <span class="token operator">=</span> x <span class="token operator">+</span> lastDx<span class="token punctuation">,</span> ny <span class="token operator">=</span> y <span class="token operator">+</span> lastDy<span class="token punctuation">;</span>
 
-## ⛺ 图片显示
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>nx <span class="token operator">&gt;=</span><span class="token number">1</span> <span class="token operator">&amp;&amp;</span> nx <span class="token operator">&lt;=</span> <span class="token number">320</span> <span class="token operator">&amp;&amp;</span> ny <span class="token operator">&gt;=</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> ny <span class="token operator">&lt;=</span> <span class="token number">280</span> <span class="token operator">&amp;&amp;</span> x <span class="token operator">!=</span> nx <span class="token operator">&amp;&amp;</span> y <span class="token operator">!=</span> ny<span class="token punctuation">)</span>
+            _labeltext<span class="token punctuation">.</span><span class="token function">move</span><span class="token punctuation">(</span>nx<span class="token punctuation">,</span> ny<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-else">else</span><span class="token punctuation">{</span>
+            lastDx <span class="token operator">=</span> <span class="token class-name">QRandomGenerator</span><span class="token double-colon punctuation">::</span><span class="token function">global</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-&gt;</span><span class="token function">bounded</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">;</span>
+            lastDy <span class="token operator">=</span> <span class="token class-name">QRandomGenerator</span><span class="token double-colon punctuation">::</span><span class="token function">global</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-&gt;</span><span class="token function">bounded</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre><br>
+<hr>
+<h2 id="mission-3-">Mission 3 🐤 </h2>
+<h1 id="文件与数据库操作">文件与数据库操作 </h1>
+<h2 id="leg-11-读写文件">Leg 11 读写文件 </h2>
+<h2 id="leg-12-连接-mysql-数据库">Leg 12 连接 MYSQL 数据库 </h2>
+<h2 id="leg-13-增删改查">Leg 13 增删改查 </h2>
+<h1 id="多媒体">多媒体 </h1>
+<h1 id="待整理">待整理 </h1>
+<h2 id="选择和显示日期时间">选择和显示日期/时间 </h2>
+<h2 id="-图片显示">⛺ 图片显示 </h2>
+<h2 id="-画图">🎨 画图 </h2>
+<h2 id="进度条和滑块">进度条和滑块 </h2>
+<h2 id="表格和滚动区域">表格和滚动区域 </h2>
+<h2 id="多媒体-1">多媒体 </h2>
+<h1 id="文件和图像操作">文件和图像操作 </h1>
+<h1 id="raylib">raylib </h1>
+<p>raylib 是一个简单易用的游戏开发库，它提供了一系列的函数，用于处理窗口、图像、音频、输入、模型等。</p>
+<h2 id="安装">安装 </h2>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
+</code></pre><h2 id="测试代码">测试代码 </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"raylib.h"</span></span>
 
 
-## 🎨 画图
-
-
-## 进度条和滑块
-
-## 表格和滚动区域
-
-## 多媒体
-
-# 文件和图像操作
-
-
-<span class="token macro property"><span class="token directive-hash">#</span> <span class="token directive keyword">raylib</span></span>
-
-raylib 是一个简单易用的游戏开发库，它提供了一系列的函数，用于处理窗口、图像、音频、输入、模型等。
-
-## 安装
-
-```sh
-sudo apt install libglfw3<span class="token operator">-</span>dev libgl1<span class="token operator">-</span>mesa<span class="token operator">-</span>dev libglu1<span class="token operator">-</span>mesa<span class="token operator">-</span>dev
-</code></pre><h2>测试代码</h2>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span> <span class="token directive keyword">include</span> <span class="token string">"raylib.h"</span> <span class="token expression"><span class="token punctuation">{</span>#include<span class="token operator">-</span>raylibh <span class="token punctuation">}</span></span></span>
-
-
-## 编译 <span class="token punctuation">{</span>#编译 <span class="token punctuation">}</span>
+## 编译
 
 ```sh
 gcc main<span class="token punctuation">.</span>c <span class="token operator">-</span>o main <span class="token operator">-</span>lraylib <span class="token operator">-</span>lGL <span class="token operator">-</span>lm <span class="token operator">-</span>lpthread <span class="token operator">-</span>ldl <span class="token operator">-</span>lrt <span class="token operator">-</span>lX11
-</code></pre><h2 id="运行">运行 </h2>
+</code></pre><h2>运行</h2>
 <pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>./main
 </code></pre>
       </div>
@@ -1912,12 +1945,12 @@ gcc main<span class="token punctuation">.</span>c <span class="token operator">-
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#leg-11-绘制直线" class="md-toc-link">
-            <p>Leg 11 绘制直线</p>
+          <a href="#leg-12-绘制直线" class="md-toc-link">
+            <p>Leg 12 绘制直线</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#leg-12-绘制多种图形" class="md-toc-link">
-            <p>Leg 12 绘制多种图形</p>
+          <a href="#leg-13-绘制多种图形" class="md-toc-link">
+            <p>Leg 13 绘制多种图形</p>
 
           </a></div>
         </div>
@@ -1929,25 +1962,91 @@ gcc main<span class="token punctuation">.</span>c <span class="token operator">-
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#leg-13-定时器" class="md-toc-link">
-            <p>Leg 13 定时器</p>
+          <a href="#leg-14-定时器" class="md-toc-link">
+            <p>Leg 14 定时器</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mission-3-" class="md-toc-link">
+            <p>Mission 3 🐤</p>
 
           </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#include-raylibh" class="md-toc-link"><p>include "raylib.h"</p>
+          <a href="#文件与数据库操作" class="md-toc-link"><p>文件与数据库操作</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#编译" class="md-toc-link">
-            <p>编译</p>
+          <a href="#leg-11-读写文件" class="md-toc-link">
+            <p>Leg 11 读写文件</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#运行" class="md-toc-link">
-            <p>运行</p>
+          <a href="#leg-12-连接-mysql-数据库" class="md-toc-link">
+            <p>Leg 12 连接 MYSQL 数据库</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-13-增删改查" class="md-toc-link">
+            <p>Leg 13 增删改查</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#多媒体" class="md-toc-link">
+            <p>多媒体</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#待整理" class="md-toc-link"><p>待整理</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#选择和显示日期时间" class="md-toc-link">
+            <p>选择和显示日期/时间</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#-图片显示" class="md-toc-link">
+            <p>⛺ 图片显示</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#-画图" class="md-toc-link">
+            <p>🎨 画图</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#进度条和滑块" class="md-toc-link">
+            <p>进度条和滑块</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#表格和滚动区域" class="md-toc-link">
+            <p>表格和滚动区域</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#多媒体-1" class="md-toc-link">
+            <p>多媒体</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#文件和图像操作" class="md-toc-link">
+            <p>文件和图像操作</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#raylib" class="md-toc-link"><p>raylib</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#安装" class="md-toc-link">
+            <p>安装</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#测试代码" class="md-toc-link">
+            <p>测试代码</p>
 
           </a></div>
         </div>
