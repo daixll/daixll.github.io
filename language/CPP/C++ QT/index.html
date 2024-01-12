@@ -1871,20 +1871,155 @@ _about<span class="token operator">-&gt;</span><span class="token function">setS
 <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
 </code></pre><br>
 <hr>
+<h2 id="leg-15-动画">Leg 15 动画 </h2>
+<p>暂时没有好的想法，但感觉有必要，所以先占个坑。</p>
+<br>
+<hr>
+<h1 id="事件">事件 </h1>
+<p>事件 <code>event</code>，是指用户与程序交互的过程中，程序接收到的信号。<br>
+例如 <strong>鼠标点击</strong>、<strong>光标移动</strong>、<strong>键盘按下</strong> 等，都是事件。<br>
+捕捉信号，执行槽函数，就是事件处理。</p>
+<h2 id="leg-16-鼠标事件">Leg 16 鼠标事件 </h2>
+<blockquote>
+<p>鼠标事件 <code>QMouseEvent</code></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMainWindow&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLabel&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMouseEvent&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QPainter&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QTimer&gt;</span></span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MainWindow</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QMainWindow</span></span><span class="token punctuation">{</span>
+    Q_OBJECT
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent <span class="token operator">=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    QWidget     _centralWidget<span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-void">void</span> <span class="token function">paintEvent</span><span class="token punctuation">(</span>QPaintEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-bool">bool</span> _l_pressed<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> _r_pressed<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> _m_pressed<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token comment">// 鼠标按下</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">mousePressEvent</span><span class="token punctuation">(</span>QMouseEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 鼠标释放</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">mouseReleaseEvent</span><span class="token punctuation">(</span>QMouseEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 鼠标移动</span>
+    QLabel      _x_y<span class="token punctuation">;</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">mouseMoveEvent</span><span class="token punctuation">(</span>QMouseEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 鼠标滚轮</span>
+    <span class="token keyword keyword-bool">bool</span> _wheel_up<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> _wheel_down<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">wheelEvent</span><span class="token punctuation">(</span>QWheelEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../include/MainWindow.h"</span></span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span>
+    <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setWindowTitle</span><span class="token punctuation">(</span><span class="token string">"鼠标检测器"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setCentralWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setFixedSize</span><span class="token punctuation">(</span><span class="token number">800</span><span class="token punctuation">,</span> <span class="token number">600</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    _x_y<span class="token punctuation">.</span><span class="token function">setParent</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _x_y<span class="token punctuation">.</span><span class="token function">setGeometry</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _x_y<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"x: 0, y: 0"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">setMouseTracking</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 鼠标跟踪</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">paintEvent</span><span class="token punctuation">(</span>QPaintEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">Q_UNUSED</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QPainter <span class="token function">painter</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">setPen</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>black<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 鼠标外形</span>
+    painter<span class="token punctuation">.</span><span class="token function">drawRect</span><span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 坐标 长宽</span>
+    
+    <span class="token comment">// 鼠标左键</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>_l_pressed<span class="token punctuation">)</span> painter<span class="token punctuation">.</span><span class="token function">setBrush</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>red<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">drawRect</span><span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">,</span> <span class="token number">150</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">setBrush</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>NoBrush<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 恢复现场</span>
+    
+    <span class="token comment">// 鼠标右键</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>_r_pressed<span class="token punctuation">)</span> painter<span class="token punctuation">.</span><span class="token function">setBrush</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>red<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">drawRect</span><span class="token punctuation">(</span><span class="token number">410</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">,</span> <span class="token number">150</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">setBrush</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>NoBrush<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 恢复现场</span>
+    
+    <span class="token comment">// 鼠标中键</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>_m_pressed<span class="token punctuation">)</span> painter<span class="token punctuation">.</span><span class="token function">setBrush</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>red<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">drawRect</span><span class="token punctuation">(</span><span class="token number">390</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">150</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">setBrush</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>NoBrush<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 恢复现场</span>
+    
+    <span class="token comment">// 鼠标前进</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>_wheel_up<span class="token punctuation">)</span> painter<span class="token punctuation">.</span><span class="token function">setPen</span><span class="token punctuation">(</span><span class="token function">QPen</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>red<span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-else">else</span> painter<span class="token punctuation">.</span><span class="token function">setPen</span><span class="token punctuation">(</span><span class="token function">QPen</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>black<span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">drawLine</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">175</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">drawLine</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">95</span><span class="token punctuation">,</span> <span class="token number">375</span><span class="token punctuation">,</span> <span class="token number">125</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">drawLine</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">95</span><span class="token punctuation">,</span> <span class="token number">425</span><span class="token punctuation">,</span> <span class="token number">125</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _wheel_up <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 鼠标后退</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>_wheel_down<span class="token punctuation">)</span> painter<span class="token punctuation">.</span><span class="token function">setPen</span><span class="token punctuation">(</span><span class="token function">QPen</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>red<span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-else">else</span> painter<span class="token punctuation">.</span><span class="token function">setPen</span><span class="token punctuation">(</span><span class="token function">QPen</span><span class="token punctuation">(</span>Qt<span class="token double-colon punctuation">::</span>black<span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">drawLine</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">475</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">drawLine</span><span class="token punctuation">(</span><span class="token number">375</span><span class="token punctuation">,</span> <span class="token number">450</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">480</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    painter<span class="token punctuation">.</span><span class="token function">drawLine</span><span class="token punctuation">(</span><span class="token number">425</span><span class="token punctuation">,</span> <span class="token number">450</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">480</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _wheel_down <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    
+<span class="token punctuation">}</span> <span class="token comment">// 真的服了，这个坐标太反人类了</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">mousePressEvent</span><span class="token punctuation">(</span>QMouseEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>event <span class="token operator">-&gt;</span> <span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> Qt<span class="token double-colon punctuation">::</span>LeftButton<span class="token punctuation">)</span>
+        _l_pressed <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// 鼠标左键</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>event <span class="token operator">-&gt;</span> <span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> Qt<span class="token double-colon punctuation">::</span>RightButton<span class="token punctuation">)</span>
+        _r_pressed <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// 鼠标右键</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>event <span class="token operator">-&gt;</span> <span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> Qt<span class="token double-colon punctuation">::</span>MiddleButton<span class="token punctuation">)</span>
+        _m_pressed <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// 鼠标中键</span>
+    <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 重绘</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">mouseReleaseEvent</span><span class="token punctuation">(</span>QMouseEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>event <span class="token operator">-&gt;</span> <span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> Qt<span class="token double-colon punctuation">::</span>LeftButton<span class="token punctuation">)</span>
+        _l_pressed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 鼠标左键</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>event <span class="token operator">-&gt;</span> <span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> Qt<span class="token double-colon punctuation">::</span>RightButton<span class="token punctuation">)</span>
+        _r_pressed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 鼠标右键</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>event <span class="token operator">-&gt;</span> <span class="token function">button</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> Qt<span class="token double-colon punctuation">::</span>MiddleButton<span class="token punctuation">)</span>
+        _m_pressed <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 鼠标中键</span>
+    <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 重绘</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">mouseMoveEvent</span><span class="token punctuation">(</span>QMouseEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    _x_y<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token function">QString</span><span class="token punctuation">(</span><span class="token string">"x: %1, y: %2"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">arg</span><span class="token punctuation">(</span>event <span class="token operator">-&gt;</span> <span class="token function">pos</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">x</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">arg</span><span class="token punctuation">(</span>event <span class="token operator">-&gt;</span> <span class="token function">pos</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">wheelEvent</span><span class="token punctuation">(</span>QWheelEvent <span class="token operator">*</span>event<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>event <span class="token operator">-&gt;</span><span class="token function">angleDelta</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> _wheel_up <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> _wheel_down <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>event <span class="token operator">-&gt;</span><span class="token function">angleDelta</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> _wheel_up <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> _wheel_down <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>event <span class="token operator">-&gt;</span><span class="token function">angleDelta</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">y</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> _wheel_down <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> _wheel_up <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 233ms 后执行一次</span>
+    <span class="token class-name">QTimer</span><span class="token double-colon punctuation">::</span><span class="token function">singleShot</span><span class="token punctuation">(</span><span class="token number">233</span><span class="token punctuation">,</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _wheel_up <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> _wheel_down <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="leg-17-键盘事件">Leg 17 键盘事件 </h2>
 <h2 id="mission-3-">Mission 3 🐤 </h2>
 <h1 id="文件与数据库操作">文件与数据库操作 </h1>
-<h2 id="leg-11-读写文件">Leg 11 读写文件 </h2>
-<h2 id="leg-12-连接-mysql-数据库">Leg 12 连接 MYSQL 数据库 </h2>
-<h2 id="leg-13-增删改查">Leg 13 增删改查 </h2>
+<h2 id="leg-xx-读写文件">Leg xx 读写文件 </h2>
+<h2 id="leg-xx-连接-mysql-数据库">Leg xx 连接 MYSQL 数据库 </h2>
+<h2 id="leg-xx-增删改查">Leg xx 增删改查 </h2>
 <h1 id="多媒体">多媒体 </h1>
-<h1 id="待整理">待整理 </h1>
-<h2 id="选择和显示日期时间">选择和显示日期/时间 </h2>
-<h2 id="-图片显示">⛺ 图片显示 </h2>
-<h2 id="-画图">🎨 画图 </h2>
-<h2 id="进度条和滑块">进度条和滑块 </h2>
-<h2 id="表格和滚动区域">表格和滚动区域 </h2>
-<h2 id="多媒体-1">多媒体 </h2>
-<h1 id="文件和图像操作">文件和图像操作 </h1>
+<h2 id="leg-xx-播放音频">Leg xx 播放音频 </h2>
+<h2 id="leg-xx-播放视频">Leg xx 播放视频 </h2>
 <h1 id="raylib">raylib </h1>
 <p>raylib 是一个简单易用的游戏开发库，它提供了一系列的函数，用于处理窗口、图像、音频、输入、模型等。</p>
 <h2 id="安装">安装 </h2>
@@ -2051,6 +2186,27 @@ gcc main<span class="token punctuation">.</span>c <span class="token operator">-
             <p>Leg 14 定时器</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-15-动画" class="md-toc-link">
+            <p>Leg 15 动画</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#事件" class="md-toc-link"><p>事件</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-16-鼠标事件" class="md-toc-link">
+            <p>Leg 16 鼠标事件</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#leg-17-键盘事件" class="md-toc-link">
+            <p>Leg 17 键盘事件</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#mission-3-" class="md-toc-link">
             <p>Mission 3 🐤</p>
 
@@ -2064,62 +2220,38 @@ gcc main<span class="token punctuation">.</span>c <span class="token operator">-
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#leg-11-读写文件" class="md-toc-link">
-            <p>Leg 11 读写文件</p>
+          <a href="#leg-xx-读写文件" class="md-toc-link">
+            <p>Leg xx 读写文件</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#leg-12-连接-mysql-数据库" class="md-toc-link">
-            <p>Leg 12 连接 MYSQL 数据库</p>
+          <a href="#leg-xx-连接-mysql-数据库" class="md-toc-link">
+            <p>Leg xx 连接 MYSQL 数据库</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#leg-13-增删改查" class="md-toc-link">
-            <p>Leg 13 增删改查</p>
+          <a href="#leg-xx-增删改查" class="md-toc-link">
+            <p>Leg xx 增删改查</p>
 
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#多媒体" class="md-toc-link">
-            <p>多媒体</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#待整理" class="md-toc-link"><p>待整理</p>
+          <a href="#多媒体" class="md-toc-link"><p>多媒体</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#选择和显示日期时间" class="md-toc-link">
-            <p>选择和显示日期/时间</p>
+          <a href="#leg-xx-播放音频" class="md-toc-link">
+            <p>Leg xx 播放音频</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-图片显示" class="md-toc-link">
-            <p>⛺ 图片显示</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#-画图" class="md-toc-link">
-            <p>🎨 画图</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#进度条和滑块" class="md-toc-link">
-            <p>进度条和滑块</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#表格和滚动区域" class="md-toc-link">
-            <p>表格和滚动区域</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#多媒体-1" class="md-toc-link">
-            <p>多媒体</p>
+          <a href="#leg-xx-播放视频" class="md-toc-link">
+            <p>Leg xx 播放视频</p>
 
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#文件和图像操作" class="md-toc-link">
-            <p>文件和图像操作</p>
-
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
+    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#raylib" class="md-toc-link"><p>raylib</p>
 </a>
