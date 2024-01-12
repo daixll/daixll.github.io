@@ -1282,49 +1282,134 @@ _about<span class="token operator">-&gt;</span><span class="token function">setS
 <blockquote>
 <p>滑动窗口 <code>QScrollArea</code></p>
 </blockquote>
-<details><summary><a href="" target="_blank"></a> 滑动窗口简单示例</summary><br>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QApplication&gt;</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QWidget&gt;</span></span>
+<details><summary><a href="" target="_blank"></a>滑动窗口简单实例 code</summary><br>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMainWindow&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLayout&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QScrollArea&gt;</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QVBoxLayout&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLabel&gt;</span></span>
 
-<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> argc<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    QApplication <span class="token function">app</span><span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    QWidget mainWidget<span class="token punctuation">;</span>
-    QVBoxLayout mainLayout<span class="token punctuation">;</span>
-    mainWidget<span class="token punctuation">.</span><span class="token function">setWindowTitle</span><span class="token punctuation">(</span><span class="token string">"可滚动窗口示例"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    mainWidget<span class="token punctuation">.</span><span class="token function">setGeometry</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    mainWidget<span class="token punctuation">.</span><span class="token function">setLayout</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>mainLayout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MainWindow</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QMainWindow</span></span><span class="token punctuation">{</span>
+    Q_OBJECT
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent <span class="token operator">=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    QWidget         _centralWidget<span class="token punctuation">;</span>
+    QHBoxLayout     _centralLayout<span class="token punctuation">;</span>
 
-    <span class="token comment">// 创建滚动区域</span>
-    QScrollArea scrollArea<span class="token punctuation">;</span>
-    scrollArea<span class="token punctuation">.</span><span class="token function">setParent</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>mainWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 设置父窗口</span>
-    scrollArea<span class="token punctuation">.</span><span class="token function">setWidgetResizable</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 滚动区域大小可变</span>
+    QWidget         _contentWidget<span class="token punctuation">;</span>
+    QVBoxLayout     _contentLayout<span class="token punctuation">;</span>
 
-    QWidget contentWidget<span class="token punctuation">;</span>              <span class="token comment">// 滚动区域的小部件</span>
-    QVBoxLayout layout<span class="token punctuation">;</span>                 <span class="token comment">// 滚动区域的布局</span>
-    contentWidget<span class="token punctuation">.</span><span class="token function">setLayout</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>layout<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 设置布局</span>
+    QScrollArea     _scrollArea<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.cpp</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../include/MainWindow.h"</span></span>
 
-    <span class="token comment">// 添加一些标签以演示内容</span>
-    <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">20</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        QLabel <span class="token operator">*</span>label <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QLabel</span><span class="token punctuation">(</span><span class="token string">"这是标签 "</span> <span class="token operator">+</span> <span class="token class-name">QString</span><span class="token double-colon punctuation">::</span><span class="token function">number</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        layout<span class="token punctuation">.</span><span class="token function">addWidget</span><span class="token punctuation">(</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span>
+    <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setWindowTitle</span><span class="token punctuation">(</span><span class="token string">"Hello Qt!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setCentralWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _centralWidget<span class="token punctuation">.</span><span class="token function">setLayout</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralLayout<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 设置布局</span>
+    
+    _centralLayout<span class="token punctuation">.</span><span class="token function">addWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_scrollArea<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 布局添加滑动区域</span>
 
-    <span class="token comment">// 将子窗口设置为滚动区域的小部件</span>
-    scrollArea<span class="token punctuation">.</span><span class="token function">setWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>contentWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _scrollArea<span class="token punctuation">.</span><span class="token function">setWidgetResizable</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// 滑动区域可动</span>
+    _scrollArea<span class="token punctuation">.</span><span class="token function">setWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_contentWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 设置滑动区域的窗口</span>
 
-    <span class="token comment">// 将滚动区域添加到主窗口的布局中</span>
-    mainLayout<span class="token punctuation">.</span><span class="token function">addWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>scrollArea<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    mainWidget<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-return">return</span> app<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _contentWidget<span class="token punctuation">.</span><span class="token function">setLayout</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_contentLayout<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 设置滑动区域的窗口的布局</span>
+        <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">20</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            QLabel <span class="token operator">*</span>label <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QLabel</span><span class="token punctuation">(</span><span class="token function">QString</span><span class="token punctuation">(</span><span class="token string">"Hello Qt! %1"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">arg</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            _contentLayout<span class="token punctuation">.</span><span class="token function">addWidget</span><span class="token punctuation">(</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
 </code></pre></details>
 <blockquote>
 <p>堆叠窗口 <code>QStackedWidget</code></p>
 </blockquote>
+<details><summary><a href="" target="_blank"></a>堆叠窗口简单实例 code</summary><br>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QMainWindow&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLayout&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QStackedWidget&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QPushButton&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLabel&gt;</span></span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MainWindow</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">QMainWindow</span></span><span class="token punctuation">{</span>
+    Q_OBJECT
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent <span class="token operator">=</span> <span class="token keyword keyword-nullptr">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    QWidget         _centralWidget<span class="token punctuation">;</span>
+    QHBoxLayout     _centralLayout<span class="token punctuation">;</span>
+    QVBoxLayout     _leftLayout<span class="token punctuation">;</span>    <span class="token comment">// 左侧</span>
+    QStackedWidget  _stackedWidget<span class="token punctuation">;</span> <span class="token comment">// 右侧</span>
+    
+    <span class="token comment">// 三个按钮对应三个布局</span>
+    QPushButton _button<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    QWidget     _widget<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        QVBoxLayout _layout_1<span class="token punctuation">;</span>
+            QLabel _label_1<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        QHBoxLayout _layout_2<span class="token punctuation">;</span>
+            QLabel _label_2<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        QGridLayout _layout_3<span class="token punctuation">;</span>
+            QLabel _label_3<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.cpp</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../include/MainWindow.h"</span></span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token function">MainWindow</span><span class="token punctuation">(</span>QWidget <span class="token operator">*</span>parent<span class="token punctuation">)</span>
+    <span class="token operator">:</span> <span class="token function">QMainWindow</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setWindowTitle</span><span class="token punctuation">(</span><span class="token string">"Hello Qt!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-this">this</span> <span class="token operator">-&gt;</span> <span class="token function">setCentralWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _centralWidget<span class="token punctuation">.</span><span class="token function">setLayout</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_centralLayout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    _centralLayout<span class="token punctuation">.</span><span class="token function">addLayout</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_leftLayout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _centralLayout<span class="token punctuation">.</span><span class="token function">addWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_stackedWidget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _leftLayout<span class="token punctuation">.</span><span class="token function">addWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_button<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _button<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token function">QString</span><span class="token punctuation">(</span><span class="token string">"窗口 %1"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">arg</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        _stackedWidget<span class="token punctuation">.</span><span class="token function">addWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_widget<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    _widget<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">setLayout</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_layout_1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _widget<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">setLayout</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_layout_2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    _widget<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">setLayout</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_layout_3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">4</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _layout_1<span class="token punctuation">.</span><span class="token function">addWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_label_1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _label_1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token function">QString</span><span class="token punctuation">(</span><span class="token string">"窗口1的第%1个标签"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">arg</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">4</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _layout_2<span class="token punctuation">.</span><span class="token function">addWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_label_2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _label_2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token function">QString</span><span class="token punctuation">(</span><span class="token string">"窗口2的第%1个标签"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">arg</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">4</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        _layout_3<span class="token punctuation">.</span><span class="token function">addWidget</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_label_3<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        _label_3<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token function">QString</span><span class="token punctuation">(</span><span class="token string">"窗口3的第%1个标签"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">arg</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token function">connect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>_button<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>QPushButton<span class="token double-colon punctuation">::</span>clicked<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            _stackedWidget<span class="token punctuation">.</span><span class="token function">setCurrentIndex</span><span class="token punctuation">(</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">MainWindow</span><span class="token double-colon punctuation">::</span><span class="token operator">~</span><span class="token function">MainWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></details>
+<p><br><br><br></p>
 <p>组合实现</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// MainWindow.h</span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">once</span></span>

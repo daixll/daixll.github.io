@@ -1414,54 +1414,149 @@ MainWindow::~MainWindow(){}
 
 > 滑动窗口 `QScrollArea`
 
-
-<details><summary><a href="" target="_blank"></a> 滑动窗口简单示例</summary><br>
+<details><summary><a href="" target="_blank"></a>滑动窗口简单实例 code</summary><br>
 
 ```cpp
-#include <QApplication>
-#include <QWidget>
+// MainWindow.h
+#pragma once
+
+#include <QMainWindow>
+#include <QLayout>
 #include <QScrollArea>
-#include <QVBoxLayout>
 #include <QLabel>
 
-int main(int argc, char *argv[]) {
-    QApplication app(argc, argv);
-    QWidget mainWidget;
-    QVBoxLayout mainLayout;
-    mainWidget.setWindowTitle("可滚动窗口示例");
-    mainWidget.setGeometry(100, 100, 400, 300);
-    mainWidget.setLayout(&mainLayout);
+class MainWindow : public QMainWindow{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+private:
+    QWidget         _centralWidget;
+    QHBoxLayout     _centralLayout;
 
-    // 创建滚动区域
-    QScrollArea scrollArea;
-    scrollArea.setParent(&mainWidget);  // 设置父窗口
-    scrollArea.setWidgetResizable(true);// 滚动区域大小可变
+    QWidget         _contentWidget;
+    QVBoxLayout     _contentLayout;
 
-    QWidget contentWidget;              // 滚动区域的小部件
-    QVBoxLayout layout;                 // 滚动区域的布局
-    contentWidget.setLayout(&layout);   // 设置布局
-
-    // 添加一些标签以演示内容
-    for (int i = 0; i < 20; ++i) {
-        QLabel *label = new QLabel("这是标签 " + QString::number(i + 1));
-        layout.addWidget(label);
-    }
-
-    // 将子窗口设置为滚动区域的小部件
-    scrollArea.setWidget(&contentWidget);
-
-    // 将滚动区域添加到主窗口的布局中
-    mainLayout.addWidget(&scrollArea);
-
-    mainWidget.show();
-    return app.exec();
-}
+    QScrollArea     _scrollArea;
+};
 ```
+
+```cpp
+// MainWindow.cpp
+#include "../include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    this -> setWindowTitle("Hello Qt!");
+    this -> setCentralWidget(&_centralWidget);
+    _centralWidget.setLayout(&_centralLayout);  // 设置布局
+    
+    _centralLayout.addWidget(&_scrollArea);     // 布局添加滑动区域
+
+    _scrollArea.setWidgetResizable(true);       // 滑动区域可动
+    _scrollArea.setWidget(&_contentWidget);     // 设置滑动区域的窗口
+
+        _contentWidget.setLayout(&_contentLayout);  // 设置滑动区域的窗口的布局
+        for(int i = 0; i < 20; i++){
+            QLabel *label = new QLabel(QString("Hello Qt! %1").arg(i));
+            _contentLayout.addWidget(label);
+        }
+}
+
+MainWindow::~MainWindow(){}
+```
+
 </details>
 
-
-
 > 堆叠窗口 `QStackedWidget`
+
+<details><summary><a href="" target="_blank"></a>堆叠窗口简单实例 code</summary><br>
+
+```cpp
+// MainWindow.h
+#pragma once
+
+#include <QMainWindow>
+#include <QLayout>
+#include <QStackedWidget>
+#include <QPushButton>
+#include <QLabel>
+
+class MainWindow : public QMainWindow{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent = nullptr); 
+    ~MainWindow();
+private:
+    QWidget         _centralWidget;
+    QHBoxLayout     _centralLayout;
+    QVBoxLayout     _leftLayout;    // 左侧
+    QStackedWidget  _stackedWidget; // 右侧
+    
+    // 三个按钮对应三个布局
+    QPushButton _button[4];
+    QWidget     _widget[4];
+        QVBoxLayout _layout_1;
+            QLabel _label_1[5];
+        QHBoxLayout _layout_2;
+            QLabel _label_2[5];
+        QGridLayout _layout_3;
+            QLabel _label_3[5];
+};
+```
+
+```cpp
+// MainWindow.cpp
+#include "../include/MainWindow.h"
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+    this -> setWindowTitle("Hello Qt!");
+    this -> setCentralWidget(&_centralWidget);
+    _centralWidget.setLayout(&_centralLayout);
+
+    _centralLayout.addLayout(&_leftLayout);
+    _centralLayout.addWidget(&_stackedWidget);
+
+    for(int i=1; i<=3; i++){
+        _leftLayout.addWidget(&_button[i]);
+        _button[i].setText(QString("窗口 %1").arg(i));
+
+        _stackedWidget.addWidget(&_widget[i]);
+    }
+    _widget[1].setLayout(&_layout_1);
+    _widget[2].setLayout(&_layout_2);
+    _widget[3].setLayout(&_layout_3);
+
+    for(int i=1; i<=4; i++){
+        _layout_1.addWidget(&_label_1[i]);
+        _label_1[i].setText(QString("窗口1的第%1个标签").arg(i));
+    }
+
+    for(int i=1; i<=4; i++){
+        _layout_2.addWidget(&_label_2[i]);
+        _label_2[i].setText(QString("窗口2的第%1个标签").arg(i));
+    }
+
+    for(int i=1; i<=4; i++){
+        _layout_3.addWidget(&_label_3[i], (i-1)/2, (i-1)%2);
+        _label_3[i].setText(QString("窗口3的第%1个标签").arg(i));
+    }
+    
+    for(int i=1; i<=3; i++)
+        connect(&_button[i], &QPushButton::clicked, [=](){
+            _stackedWidget.setCurrentIndex(i-1);
+        });
+}
+
+MainWindow::~MainWindow(){}
+```
+
+</details>
+
+<br><br><br>
 
 组合实现
 
