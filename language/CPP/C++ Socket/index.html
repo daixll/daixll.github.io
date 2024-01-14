@@ -633,7 +633,8 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <hr>
 <h1 id="非阻塞-io">非阻塞 IO </h1>
 <p>当 <strong>进程</strong> 发起 <strong>IO请求</strong> 后，即使 <strong>内核</strong> 没有准备好数据，<strong>进程</strong> 也将立即返回，不会等待，同时 <strong>内核</strong> 会返回一个错误码，告诉 <strong>进程</strong> 为什么没有准备好数据</p>
-<h2 id="tcp-server">TCP server </h2>
+<h2 id="tcp-1">TCP </h2>
+<h3 id="tcp-server">TCP server </h3>
 <ol>
 <li>
 <p>创建套接字 <code>socket()</code></p>
@@ -677,7 +678,9 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <p>关闭套接字 <code>close()</code></p>
 </li>
 </ol>
-<h2 id="tcp-client">TCP client </h2>
+<h3 id="tcp-client">TCP client </h3>
+<h2 id="http-1">HTTP </h2>
+<h3 id="http_server-1">http_server </h3>
 <br>
 <hr>
 <h1 id="io-复用">IO 复用 </h1>
@@ -955,6 +958,12 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 </a>
           </summary>
         <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#tcp-1" class="md-toc-link"><p>TCP</p>
+</a>
+          </summary>
+        <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#tcp-server" class="md-toc-link">
             <p>TCP server</p>
@@ -964,6 +973,22 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
             <p>TCP client</p>
 
           </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#http-1" class="md-toc-link"><p>HTTP</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#http_server-1" class="md-toc-link">
+            <p>http_server</p>
+
+          </a></div>
+        </div>
+      </details>
+    
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
