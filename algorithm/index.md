@@ -7,7 +7,9 @@ export_on_save:
 
 # 参考
 
-**书籍：**  [阿里云盘](https://www.aliyundrive.com/s/PZFRUW4CgRP)
+**书籍：**  
+
+* [阿里云盘](https://www.aliyundrive.com/s/PZFRUW4CgRP)
 
 **题单：**
 
@@ -17,6 +19,14 @@ export_on_save:
 * [USACO Training](https://www.luogu.com.cn/training/list?keyword=USACO%20Section&type=select&page=1) / [个人整理](todo/USACOTraining.html)
 * [AcWing 算法基础课 / 提高课 / 进阶课](https://www.acwing.com/)
 * [kuangbin 专题](https://www.acwing.com/activity/content/90/)
+
+**比赛：**
+
+* [Acwing 周赛](https://www.acwing.com/activity/1/competition/)
+* [力扣 周赛](https://leetcode.cn/contest/)
+* [牛客 周赛](https://ac.nowcoder.com/acm/contest/vip-index)
+* [洛谷 月赛](https://www.luogu.com.cn/contest/list)
+
 
 ---
 0. 入门
