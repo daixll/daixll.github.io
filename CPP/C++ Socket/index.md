@@ -5,20 +5,22 @@ export_on_save:
     html: true  # 自动保存
 ---
 
-# FYI
+# 引子
 
-源代码见 [GitHub](https://github.com/daixll/A_Tour_of_Socket)
+**[源代码](https://github.com/daixll/A_Tour_of_Socket)**
 
-在正式开始之前，有必要先了解一下 **TCP / IP 分层模型**：
+> 请务必确定，对以下知识有一定的了解
+
+**TCP / IP 分层模型**：
 
 | 层     | 协议 |
 | :-:    | :-: |
 | 应用层 | `HTTP` `FTP` `...` |
 | 传输层 | `TCP` `UDP` `...` |
-| 网络层 | `IPV4` `IPV6` `...` |
+| 网络层 | `IPv4` `IPv6` `...` |
 | 物理层 | `LAN` `WLAN` `...` |
 
-以及基础的计算机硬件知识：
+**计算机组成原理**：
 
 |  设备  |  功能   |
 | :-:  | :-: |
@@ -27,24 +29,32 @@ export_on_save:
 | 主存储器 | 存储数据 |
 | CPU    | 计算数据 |
 
-计算机软件知识：
+**操作系统**：
 
-* **操作系统**
-    * （内核空间）管理计算机硬件资源进行管理和控制
-    * （用户空间）提供系统调用接口，供用户程序调用
+* （内核空间）管理计算机硬件资源进行管理和控制
 
-* **进程**
-    * 为了让计算机能够同时运行多个程序，操作系统引入了进程的概念
+* （用户空间）提供系统调用接口，供用户程序调用
 
-* **线程**
-    * 此线程并 *超线程* 技术
-    * 线程是 CPU 调度的基本单位，进程是资源分配的基本单位
+* **进程**：为了让计算机能够同时运行多个程序，操作系统引入了进程的概念
+
+* **线程**：线程是 CPU 调度的基本单位，进程是资源分配的基本单位
 
 <br>
 
+**参考**
+
+* **书籍**
+    * 《Linux 多线程服务端编程：使用 muduo C++ 网络库》
+    * 《Linux 高性能服务器编程》 游双
+
+
+* **博客**
+    * [30天自制C++服务器](https://github.com/yuesong-feng/30dayMakeCppServer)
+    * [webServer](https://blog.csdn.net/weixin_50437588/category_12156183.html)
+
 ---
 
-# 阻塞 IO
+# 1 阻塞 IO
 
 当 **进程** 发起 **IO请求** 后，如果 **内核** 没有准备好数据，那么 **进程** 将一直等待，直到 **内核** 准备好数据为止
 
@@ -55,7 +65,8 @@ export_on_save:
 ## TCP
 
 **TCP 通信模型**
-socket是一个接口，而不是一种协议，其抽象在应用层与传输层之间
+
+socket 是一个接口，而不是一种协议，其抽象在应用层与传输层之间
 
 |       |  函数  |  服务端  |                      
 | :---: |  :---:  | :---: | 
@@ -82,9 +93,11 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
     ```
 
     ```cpp
-    // 创建套接字
-    int server = socket(AF_INET, SOCK_STREAM, 0);
+    int server = socket(AF_INET, SOCK_STREAM, 0); // 创建套接字
     ```
+    > 当 `socket()` 函数调用成功时，返回一个文件描述符，即 `socket`，当调用失败时，返回 `-1`
+
+
     * `AF_INET`：IPv4
     * `SOCK_STREAM`：TCP
     * `0`：自动选择协议，这里是 `TCP` 协议
@@ -93,8 +106,8 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
 
 2. 绑定 ip + port `bind()`
     ```cpp
-    #include <cstring>      // memset()
-    #include <arpa/inet.h>  // sockaddr
+    #include <cstring>     // memset()
+    #include <arpa/inet.h> // sockaddr
     ```
 
     ```cpp
@@ -103,12 +116,15 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
     memset(&server_addr, '\0', sizeof server_addr);
     // 给地址赋值
     server_addr.sin_family      = AF_INET;
-    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server_addr.sin_addr.s_addr = inet_addr("0.0.0.0");
     server_addr.sin_port        = htons(10086);
     // 绑定
     bind(server, (sockaddr*)&server_addr, sizeof server_addr);
     ```
+    > 当 `bind()` 函数调用成功时，返回 `0`，当调用失败时，返回 `-1`
+
     * `sockaddr_in`：IPv4 套接字地址结构体
+    * `sin_family`：地址族，这里是 IPv4
     * `sin_addr.s_addr`：IPv4 地址
     * `sin_port`：端口号
 
@@ -129,6 +145,8 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
     // 监听
     listen(server, 0);
     ```
+    > 当 `listen()` 函数调用成功时，返回 `0`，当调用失败时，返回 `-1`
+
     * `0`：等待队列的最大长度，目前无需关注
 
 <br>
@@ -140,6 +158,8 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
     socklen_t   client_addr_len = sizeof client_addr;
     int client = accept(server, (sockaddr*)&client_addr, &client_addr_len);
     ```
+    > 当 `accept()` 函数调用成功时，返回一个文件描述符，即 `socket`，当调用失败时，返回 `-1`
+
     * `socklen_t`：`sockaddr` 的长度类型
 
     > 为什么这里需要传入 `&client_addr_len` 而不是 `client_addr_len`？
@@ -169,8 +189,7 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
 
 1. 创建套接字 `socket()`
     ```cpp
-    // 创建套接字
-    int client = socket(AF_INET, SOCK_STREAM, 0);
+    #include <sys/socket.h> // socket()
     ```
 
 2. 连接指定 ip + port `connect()`
@@ -184,6 +203,8 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
     // 连接
     connect(client, (sockaddr*)&server_addr, sizeof server_addr);
     ```
+
+    > 当 `connect()` 函数调用成功时，返回 `0`，当调用失败时，返回 `-1`
 
 3. 发送消息 `send()`
 
@@ -202,10 +223,11 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
 
 <br>
 
+### send 和 recv
 
-基础的 TCP 通信，源代码见 [Leg1](https://github.com/daixll/A_Tour_of_Socket/tree/main/Leg1)
-
-相互通信的 TCP 通信，源代码见 [Leg2](https://github.com/daixll/A_Tour_of_Socket/tree/main/Leg2)
+* `> 0` 发送或接收的字节数
+* `= 0` 对端已经关闭连接
+* `< 0` 出现了错误
 
 
 <br>
@@ -256,8 +278,7 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
 1. 创建套接字 `socket()`
 
     ```cpp
-    // 创建套接字
-    int server = socket(AF_INET, SOCK_DGRAM, 0);
+    int server = socket(AF_INET, SOCK_DGRAM, 0);    // 创建套接字
     ```
     * `SOCK_DGRAM`：UDP
     * `0`：自动选择协议，这里是 `UDP` 协议
@@ -270,7 +291,7 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
     memset(&server_addr, '\0', sizeof server_addr);
     // 给地址赋值
     server_addr.sin_family      = AF_INET;
-    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server_addr.sin_addr.s_addr = inet_addr("0.0.0.0");
     server_addr.sin_port        = htons(10086);
     // 绑定
     bind(server, (sockaddr*)&server_addr, sizeof server_addr);
@@ -301,8 +322,7 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
 1. 创建套接字 `socket()`
 
     ```cpp
-    // 创建套接字
-    int client = socket(AF_INET, SOCK_DGRAM, 0);
+    int server = socket(AF_INET, SOCK_DGRAM, 0);    // 创建套接字
     ```
 
 2. 发送消息 `sendto()`
@@ -327,10 +347,6 @@ socket是一个接口，而不是一种协议，其抽象在应用层与传输�
     ```cpp
     close(client);
     ```
-
-<br>
-
-相互通信的 TCP 通信，源代码见 [Leg3](https://github.com/daixll/A_Tour_of_Socket/tree/main/Leg3)
 
 <br>
 
