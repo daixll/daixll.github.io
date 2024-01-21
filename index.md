@@ -96,7 +96,7 @@ export_on_save:
 
 <div class="container">
     <div class="item">
-        <a href="123/index.html"> Dev </a>
+        <a href="Dev/index.html"> Dev </a>
     </div>
     <div class="item">
         <a href="123/index.html"> Linux </a>
