@@ -24,24 +24,25 @@
     
       <div class="crossnote markdown-preview  ">
       
+<h1 id="git">git </h1>
 <p><a href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰的git教程</a></p>
-<h1 id="安装">安装 </h1>
-<h2 id="linux">Linux </h2>
+<h2 id="安装">安装 </h2>
+<h3 id="linux">Linux </h3>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">apt</span> <span class="token function">install</span> <span class="token function">git</span>     <span class="token comment"># 安装 git</span>
 <span class="token function">git</span> <span class="token parameter variable">--version</span>       <span class="token comment"># 验证 git 安装成功</span>
-</code></pre><h2 id="windows">Windows </h2>
+</code></pre><h3 id="windows">Windows </h3>
 <p><a href="https://git-scm.com/downloads">git 官网</a></p>
 <br>
 <hr>
-<h1 id="首次使用">首次使用 </h1>
-<h2 id="初始化仓库">初始化仓库 </h2>
+<h2 id="首次使用">首次使用 </h2>
+<h3 id="初始化仓库">初始化仓库 </h3>
 <p>在需要管理的目录（工作区）下，执行以下命令：</p>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> init
 </code></pre><blockquote>
 <p>将目标目录初始化成 git 可以管理的仓库，会生成一个 <code>.git</code> 目录<br>
 同时，会创建一个 <code>master</code> 分支</p>
 </blockquote>
-<h2 id="设置名字和邮箱">设置名字和邮箱 </h2>
+<h3 id="设置名字和邮箱">设置名字和邮箱 </h3>
 <p>此操作的目的，是为了追踪每次操作，究竟是谁做的，我们一般将其存储在 <code>config</code> 中，也就是配置文件</p>
 <p>配置文件有三个级别，权重从高到底：</p>
 <ol>
@@ -66,17 +67,17 @@
 </blockquote>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> config --级别 user.name <span class="token string">"名字"</span>
 <span class="token function">git</span> config --级别 user.email <span class="token string">"邮箱"</span>
-</code></pre><h2 id="将目标文件移动到暂存区">将目标文件移动到暂存区 </h2>
+</code></pre><h3 id="将目标文件移动到暂存区">将目标文件移动到暂存区 </h3>
 <blockquote>
 <p>追踪目标文件</p>
 </blockquote>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> <span class="token function">add</span> 目标文件
-</code></pre><h2 id="将暂存区提交到本地仓库">将暂存区提交到本地仓库 </h2>
+</code></pre><h3 id="将暂存区提交到本地仓库">将暂存区提交到本地仓库 </h3>
 <blockquote>
 <p>目标文件提交到本地仓库的当前分支</p>
 </blockquote>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"提交说明"</span>
-</code></pre><h2 id="将本地仓库推送到远程仓库">将本地仓库推送到远程仓库 </h2>
+</code></pre><h3 id="将本地仓库推送到远程仓库">将本地仓库推送到远程仓库 </h3>
 <p>将本地仓库推送到远程仓库，需要使用 <code>SSH key</code> 进行身份验证<br>
 私钥存储在本地，公钥存储在远程仓库<br>
 当你推送的时候，远程仓库会验证你的身份，如果验证通过，就可以推送</p>
@@ -125,7 +126,7 @@
 <blockquote>
 <p>注意，以上操作只是将本地仓库推送到远程仓库，但是远程仓库并不会自动创建分支</p>
 </blockquote>
-<h2 id="将远程仓库拉取到本地仓库">将远程仓库拉取到本地仓库 </h2>
+<h3 id="将远程仓库拉取到本地仓库">将远程仓库拉取到本地仓库 </h3>
 <ol>
 <li>
 <p><code>git fetch origin</code></p>
@@ -156,8 +157,8 @@
 </ol>
 <br>
 <hr>
-<h1 id="查看状态">查看状态 </h1>
-<h2 id="查看仓库的状态">查看仓库的状态 </h2>
+<h2 id="查看状态">查看状态 </h2>
+<h3 id="查看仓库的状态">查看仓库的状态 </h3>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> status
 </code></pre><blockquote>
 <ol>
@@ -166,28 +167,28 @@
 <li>显示 <strong>未跟踪</strong> 的文件</li>
 </ol>
 </blockquote>
-<h2 id="查看仓库设置">查看仓库设置 </h2>
+<h3 id="查看仓库设置">查看仓库设置 </h3>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> config --级别 <span class="token parameter variable">-l</span>
 </code></pre><blockquote>
 <p><code>--级别</code> 可以省略，会显示最终三个配置文件计算后的配置信息</p>
 </blockquote>
-<h2 id="查看所有分支">查看所有分支 </h2>
+<h3 id="查看所有分支">查看所有分支 </h3>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> branch
 </code></pre><blockquote>
 <p><code>*</code> 表示当前分支</p>
 </blockquote>
-<h2 id="查看远程仓库">查看远程仓库 </h2>
+<h3 id="查看远程仓库">查看远程仓库 </h3>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> remote <span class="token parameter variable">-v</span>
 </code></pre><blockquote>
 <p>查看远程仓库的详细信息</p>
 </blockquote>
-<h2 id="查看提交历史">查看提交历史 </h2>
+<h3 id="查看提交历史">查看提交历史 </h3>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> log
 </code></pre><blockquote>
 <p>显示从最近到最远的提交日志<br>
 简化输出：<code>git log --pretty=oneline</code></p>
 </blockquote>
-<h2 id="查看命令历史">查看命令历史 </h2>
+<h3 id="查看命令历史">查看命令历史 </h3>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> reflog
 </code></pre><blockquote>
 <p>显示从最近到最远的命令日志<br>
@@ -195,8 +196,8 @@
 </blockquote>
 <br>
 <hr>
-<h1 id="撤销操作">撤销操作 </h1>
-<h2 id="从暂存区移除文件">从暂存区移除文件 </h2>
+<h2 id="撤销操作">撤销操作 </h2>
+<h3 id="从暂存区移除文件">从暂存区移除文件 </h3>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> reset 目标文件
 </code></pre><p>这个命令本质上是</p>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> reset <span class="token parameter variable">--mixed</span> commit_id
@@ -205,7 +206,7 @@
 <code>commit_id</code> 可以省略，默认是 <code>HEAD</code><br>
 意思是将暂存区的文件恢复到 <code>commit_id</code> 的状态</p>
 </blockquote>
-<h2 id="撤销本次提交">撤销本次提交 </h2>
+<h3 id="撤销本次提交">撤销本次提交 </h3>
 <ol>
 <li>
 <p>保留工作区的修改</p>
@@ -223,7 +224,7 @@
 </blockquote>
 </li>
 </ol>
-<h2 id="删除远程仓库地址">删除远程仓库地址 </h2>
+<h3 id="删除远程仓库地址">删除远程仓库地址 </h3>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> remote <span class="token function">rm</span> origin
 </code></pre><blockquote>
 <p>删除远程仓库的别名为 <code>origin</code> 的仓库（地址）<br>
@@ -231,15 +232,15 @@
 </blockquote>
 <br> 
 <hr>
-<h1 id="国区操作">国区操作 </h1>
-<h2 id="代理">代理 </h2>
+<h2 id="国区操作">国区操作 </h2>
+<h3 id="代理">代理 </h3>
 <p><strong>设置代理</strong></p>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> config <span class="token parameter variable">--global</span> http.proxy http://127.0.0.1:7890
 <span class="token function">git</span> config <span class="token parameter variable">--global</span> https.proxy https://127.0.0.1:7890
 </code></pre><p><strong>取消代理</strong></p>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">git</span> config <span class="token parameter variable">--global</span> <span class="token parameter variable">--unset</span> http.proxy
 <span class="token function">git</span> config <span class="token parameter variable">--global</span> <span class="token parameter variable">--unset</span> https.proxy
-</code></pre><h2 id="同时推送到多个远程仓库">同时推送到多个远程仓库 </h2>
+</code></pre><h3 id="同时推送到多个远程仓库">同时推送到多个远程仓库 </h3>
 <ol>
 <li>
 <p>再添加一个需要推送的远程仓库</p>
@@ -255,11 +256,226 @@
 因为我们只是给 <code>origin</code> 添加了多个 <code>URL</code><br>
 虽然效果上看起来是推送到了多个仓库，但是实际上只是推送到了一个仓库</p>
 </blockquote>
+<h1 id="docker">docker </h1>
+<p><strong>Docker</strong></p>
+<ul>
+<li><strong>轻量化</strong>：在操作系统层面上实现虚拟化</li>
+<li><strong>分布式</strong>：可以在同一台机器上运行多个容器，每个容器之间相互隔离</li>
+<li><strong>无状态</strong>：容器每次创建都是全新的，容器内的进程也是全新的，容器内的内容不可持久化</li>
+</ul>
+<p><strong>Virtual Machines</strong></p>
+<ul>
+<li><strong>更强的隔离性</strong>：在硬件层面上实现虚拟化</li>
+<li><strong>文件特性</strong>：硬盘文件、快照都是文件，可以持久化</li>
+</ul>
+<h2 id="安装-docker">安装 Docker </h2>
+<p>使用官方安装脚本（<a href="https://docs.docker.com/engine/install/ubuntu/">参考文档</a>）：</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code> <span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://test.docker.com <span class="token parameter variable">-o</span> test-docker.sh
+ <span class="token function">sudo</span> <span class="token function">sh</span> test-docker.sh
+</code></pre><h2 id="镜像-image">镜像 IMAGE </h2>
+<p>是一个只读模板，用来创建容器，类似于：</p>
+<ul>
+<li>面向对象中的类，容器是对象</li>
+<li>虚拟机中的 <code>.iso</code>，容器是虚拟机</li>
+</ul>
+<h3 id="docker-hub-下载镜像">Docker Hub 下载镜像 </h3>
+<p><a href="https://hub.docker.com/search?q=">Docker Hub</a></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> pull IMAGE_NAME<span class="token punctuation">[</span>:TAG<span class="token punctuation">]</span>
+</code></pre><ul>
+<li><code>IMAGE_NAME</code> 镜像名称</li>
+<li><code>TAG</code> 可选，镜像版本或标签，默认为 <code>latest</code></li>
+</ul>
+<h3 id="dockerfile-构建镜像">Dockerfile 构建镜像 </h3>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> build <span class="token parameter variable">-t</span> IMAGE_NAME<span class="token punctuation">[</span>:TAG<span class="token punctuation">]</span> PATH_TO_DOCKERFILE
+</code></pre><ul>
+<li><code>IMAGE_NAME</code> 镜像名称</li>
+<li><code>TAG</code> 可选，镜像版本或标签</li>
+<li><code>PATH_TO_DOCKERFILE</code> Dockerfile 所在路径</li>
+</ul>
+<h3 id="查看镜像">查看镜像 </h3>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> images
+</code></pre><ul>
+<li><code>REPOSITORY</code> 镜像名称</li>
+<li><code>TAG</code> 镜像版本或标签</li>
+<li><code>IMAGE ID</code> 镜像 ID：<strong>唯一标识</strong></li>
+<li><code>CREATED</code> 创建时间</li>
+<li><code>SIZE</code> 镜像大小</li>
+</ul>
+<h3 id="删除镜像">删除镜像 </h3>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> rmi IMAGE_NAME<span class="token punctuation">[</span>:TAG<span class="token punctuation">]</span>
+</code></pre><h2 id="容器-container">容器 CONTAINER </h2>
+<h3 id="查看容器">查看容器 </h3>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> <span class="token function">ps</span> <span class="token punctuation">[</span>-a<span class="token punctuation">]</span>
+</code></pre><h3 id="创建--删除容器">创建 / 删除容器 </h3>
+<p><strong>删除容器</strong></p>
+<blockquote>
+<p>删除容器前需要先停止容器</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> <span class="token function">rm</span> CONTAINER_ID
+</code></pre><p><strong>创建容器</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> run <span class="token punctuation">\</span>
+    <span class="token punctuation">[</span>OPTIONS<span class="token punctuation">]</span> <span class="token punctuation">\</span>
+    IMAGE_NAME<span class="token punctuation">[</span>:TAG<span class="token punctuation">]</span> <span class="token punctuation">\</span>
+    <span class="token punctuation">[</span>COMMAND<span class="token punctuation">]</span> <span class="token punctuation">\</span>
+    <span class="token punctuation">[</span>ARG<span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+</code></pre><ol>
+<li><strong>OPTIONS</strong> 命令选项
+<ul>
+<li><code>-it</code> 进入容器终端，通常与 <code>/bin/bash</code> 一起使用</li>
+<li><code>-d</code> 后台运行容器，通常与 <code>sleep infinity</code> 一起使用</li>
+<li><code>--name</code> 容器名称</li>
+<li><code>--restart</code> 容器停止后自动重启
+<ul>
+<li><code>no</code>（默认），不重启</li>
+<li><code>on-failure</code>，非 0 退出时重启</li>
+<li><code>always</code>，总是重启</li>
+</ul>
+</li>
+<li><code>--net</code> 网络模式
+<ul>
+<li><code>bridge</code>（默认），需要端口映射</li>
+<li><code>host</code>，直接使用宿主机端口</li>
+<li><code>none</code>，无网络</li>
+</ul>
+</li>
+<li><code>--rm</code> 容器停止后自动删除</li>
+<li><code>-p</code> 端口映射，<code>HOST_PORT:CONTAINER_PORT</code>，<code>外:内</code></li>
+<li><code>-v</code> 挂载目录，<code>HOST_DIR:CONTAINER_DIR</code>，<code>外:内</code></li>
+<li><code>-e</code> 环境变量，<code>KEY=VALUE</code></li>
+<li><code>-w</code> 工作目录，<code>WORK_DIR</code>，指定容器内的工作目录</li>
+</ul>
+</li>
+</ol>
+<h3 id="进入--退出容器">进入 / 退出容器 </h3>
+<p><strong>进入容器</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> CONTAINER_ID /bin/bash
+</code></pre><p><strong>退出容器</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token builtin class-name">exit</span>
+</code></pre><h3 id="启动--停止容器">启动 / 停止容器 </h3>
+<p><strong>启动容器</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> start CONTAINER_ID
+</code></pre><p><strong>停止容器</strong></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> stop CONTAINER_ID
+</code></pre><h2 id="dockerfile">Dockerfile </h2>
+<br>
+<hr>
+<h1 id="nginx">nginx </h1>
+<h2 id="nginx的使用">nginx的使用 </h2>
+<ul>
+<li>安装nginx</li>
+</ul>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">apt</span> <span class="token function">install</span> nginx
+</code></pre><ul>
+<li>nginx配置反向代理<br>
+修改 <code>/etc/nginx/nginx.conf</code></li>
+</ul>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>http <span class="token punctuation">{</span>
+  server <span class="token punctuation">{</span>
+    listen 本地端口<span class="token punctuation">;</span>
+    server_name 监听ip<span class="token punctuation">;</span>
+    
+    location / <span class="token punctuation">{</span>
+      proxy_pass 目标ip:端口<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li>验证是否正确</li>
+</ul>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>nginx <span class="token parameter variable">-t</span>
+</code></pre><ul>
+<li>重启并加载新的配置文件</li>
+</ul>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>nginx <span class="token parameter variable">-s</span> reload
+</code></pre><br>
+<hr>
+<h1 id="nmap">nmap </h1>
+<p><a href="https://nmap.org/man/zh/index.html">官方中文文档</a></p>
+<p><code>nmap [ &lt;扫描类型&gt; ...] [ &lt;选项&gt; ] { &lt;扫描目标说明&gt; }</code></p>
+<h2 id="nmap-端口状态">nmap 端口状态 </h2>
+<h3 id="open开放的">open（开放的） </h3>
+<p>应用程序正在监听端口，或者响应一个请求来自已连接的客户端。接收TCP连接或者UDP报文。</p>
+<h3 id="closed关闭的">closed（关闭的） </h3>
+<p>没有应用程序监听端口。但是此端口可以被探测到，因为没有应用程序监听，所以会返回一个 RST 包或者 ICMP 端口不可达消息。</p>
+<h3 id="filtered屏蔽的">filtered（屏蔽的） </h3>
+<p>防火墙或者 ACL 屏蔽了端口，所以无法确定端口是否开放。目标端口可能有以下几种情况：</p>
+<ul>
+<li>未响应，屏蔽器丢弃了探测包，此举会让 nmap 误认为探测包丢失，导致扫描时间变长。</li>
+<li>丢弃了探测包，但是返回了 ICMP 错误消息。</li>
+</ul>
+<h3 id="unfiltered未屏蔽的">unfiltered（未屏蔽的） </h3>
+<p>防火墙或者 ACL 没有屏蔽端口，但是 nmap 无法确定端口开放或者关闭。用其它类型的扫描，如窗口扫描，SYN 扫描，或者 FIN 扫描可以帮助确定端口是否开放。</p>
+<h3 id="openfiltered开放或者屏蔽的">open|filtered（开放或者屏蔽的） </h3>
+<p>开放的端口不响应探测包，屏蔽的端口也不响应探测包。所以无法确定端口是否开放。</p>
+<h3 id="closedfiltered关闭或者屏蔽的">closed|filtered（关闭或者屏蔽的） </h3>
+<p>只可能出现在 IPID Idle 扫描中，因为此扫描类型需要发送两个探测包，如果两个探测包都没有响应，那么就无法确定端口是否开放。</p>
+<hr>
+<h2 id="nmap-扫描技术">nmap 扫描技术 </h2>
+<h3 id="1-默认扫描">1 默认扫描 </h3>
+<p><code>nmap dxll.love</code></p>
+<p>默认扫描是 nmap 的最基本的扫描方式，它会扫描 1000 个最常用的端口，扫描方式是 SYN 扫描。</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>nmap <span class="token parameter variable">-T0</span> dxll.love
+nmap <span class="token parameter variable">-T1</span> dxll.love
+nmap <span class="token parameter variable">-T2</span> dxll.love
+nmap <span class="token parameter variable">-T3</span> dxll.love
+nmap <span class="token parameter variable">-T4</span> dxll.love
+nmap <span class="token parameter variable">-T5</span> dxll.love
+</code></pre><p><code>-T0</code> 是最慢的扫描方式，<code>-T5</code> 是最快的扫描方式，<code>-T3</code> 是默认的扫描方式，<code>-T4</code> 是常用的扫描方式。</p>
+<p><code>nmap -6 dxll.love</code></p>
+<p>开启 IPv6 扫描。</p>
+<p><code>nmap -v dxll.love</code></p>
+<p>开启详细模式，显示扫描过程。</p>
+<p><code>nmap -A dxll.love</code></p>
+<p>全面扫描，包括 1-10000 端口扫描，服务版本探测，操作系统探测，脚本扫描等。</p>
+<h3 id="2-扫描多个-ip">2 扫描多个 IP </h3>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>nmap spacex.com dxll.love   <span class="token comment"># 扫描多个域名</span>
+nmap <span class="token number">192.168</span>.31.100,101,102 <span class="token comment"># 扫描同一网段的多个 IP，可以用逗号分隔</span>
+nmap <span class="token number">192.168</span>.31.*           <span class="token comment"># 扫描同一网段的多个 IP，可以用通配符</span>
+nmap <span class="token number">192.168</span>.31.1/24        <span class="token comment"># 扫描同一网段的多个 IP，可以用 CIDR 表示法</span>
+</code></pre><h3 id="3-扫描指定端口">3 扫描指定端口 </h3>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>nmap <span class="token parameter variable">-p</span> <span class="token number">80</span> dxll.love        <span class="token comment"># 扫描单个端口</span>
+nmap <span class="token parameter variable">-p</span> <span class="token number">80,443</span> dxll.love    <span class="token comment"># 扫描多个端口</span>
+nmap <span class="token parameter variable">-p</span> <span class="token number">1</span>-100 dxll.love     <span class="token comment"># 扫描端口范围</span>
+nmap -p-                    <span class="token comment"># 扫描所有端口 等价于 nmap -p 1-65535</span>
+</code></pre><h3 id="4-tcp扫描">4 TCP扫描 </h3>
+<h4 id="tcp-syn-扫描">TCP SYN 扫描 </h4>
+<p><code>nmap -sS dxll.love</code></p>
+<p>此方式不完成 TCP 三次握手，而是发送一个 SYN 包，如果目标端口开放，那么会返回一个 SYN/ACK 包，如果端口关闭，那么会返回一个 RST 包。</p>
+<h4 id="tcp-connect-扫描">TCP Connect 扫描 </h4>
+<p><code>nmap -sT dxll.love</code></p>
+<p>此方式完成 TCP 三次握手，如果目标端口开放，那么会返回一个 SYN/ACK 包，如果端口关闭，那么会返回一个 RST 包。<br>
+目标主机可能会记录下连接，所以此方式不太隐蔽。</p>
+<h4 id="tcp-隐秘扫描">TCP 隐秘扫描 </h4>
+<p>如果收到 RST 响应，则端口关闭，否则判定端口开放或被屏蔽。</p>
+<p><code>nmap -sN dxll.love</code></p>
+<p>不设置任何标志位。</p>
+<p><code>nmap -sF dxll.love</code></p>
+<p>只设置TCP FIN标志位。</p>
+<p><code>nmap -sX dxll.love</code></p>
+<p>flags的FIN、URG、PUSH都为1的包。</p>
+<h4 id="tcp-ping-扫描">TCP ping 扫描 </h4>
+<p><code>nmap -sP dxll.love</code></p>
+<p>通过发送ICMP Echo请求（也称为Ping请求）到目标主机，命令将检测主机是否响应了请求并返回IP地址。如果主机响应，则表示主机是在线的。在这个扫描中，Nmap只检查是否有响应，而不扫描主机的任何端口。</p>
+<h3 id="5-udp-扫描">5 UDP 扫描 </h3>
+<p><code>namp -sU dxll.love</code></p>
+<p>UDP 扫描需要发送 UDP 包，如果目标端口开放，那么会返回一个 ICMP 端口不可达消息，如果端口关闭，那么会返回一个 ICMP 端口不可达消息或者没有响应。</p>
+<h3 id="6-路由跟踪">6 路由跟踪 </h3>
+<p><code>nmap --traceroute dxll.love</code></p>
+<p>查出从本地计算机到目标之间所经过的网络节点，并可以看到通过各个节点的时间。</p>
+<h3 id="7-操作系统探测">7 操作系统探测 </h3>
+<p><code>nmap -O dxll.love</code></p>
+<p>nmap 会发送一系列的 TCP 和 UDP 包，然后分析返回的包，从而判断目标主机的操作系统。</p>
 
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
 <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#git" class="md-toc-link"><p>git</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#安装" class="md-toc-link"><p>安装</p>
 </a>
@@ -276,7 +492,7 @@
           </a></div>
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open="">
+    <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#首次使用" class="md-toc-link"><p>首次使用</p>
 </a>
@@ -309,7 +525,7 @@
           </a></div>
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open="">
+    <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#查看状态" class="md-toc-link"><p>查看状态</p>
 </a>
@@ -342,7 +558,7 @@
           </a></div>
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open="">
+    <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#撤销操作" class="md-toc-link"><p>撤销操作</p>
 </a>
@@ -363,7 +579,7 @@
           </a></div>
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open="">
+    <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#国区操作" class="md-toc-link"><p>国区操作</p>
 </a>
@@ -378,6 +594,189 @@
             <p>同时推送到多个远程仓库</p>
 
           </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#docker" class="md-toc-link"><p>docker</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#安装-docker" class="md-toc-link">
+            <p>安装 Docker</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#镜像-image" class="md-toc-link"><p>镜像 IMAGE</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#docker-hub-下载镜像" class="md-toc-link">
+            <p>Docker Hub 下载镜像</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#dockerfile-构建镜像" class="md-toc-link">
+            <p>Dockerfile 构建镜像</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#查看镜像" class="md-toc-link">
+            <p>查看镜像</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#删除镜像" class="md-toc-link">
+            <p>删除镜像</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#容器-container" class="md-toc-link"><p>容器 CONTAINER</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#查看容器" class="md-toc-link">
+            <p>查看容器</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#创建--删除容器" class="md-toc-link">
+            <p>创建 / 删除容器</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#进入--退出容器" class="md-toc-link">
+            <p>进入 / 退出容器</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#启动--停止容器" class="md-toc-link">
+            <p>启动 / 停止容器</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#dockerfile" class="md-toc-link">
+            <p>Dockerfile</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#nginx" class="md-toc-link"><p>nginx</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#nginx的使用" class="md-toc-link">
+            <p>nginx的使用</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#nmap" class="md-toc-link"><p>nmap</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#nmap-端口状态" class="md-toc-link"><p>nmap 端口状态</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#open开放的" class="md-toc-link">
+            <p>open（开放的）</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#closed关闭的" class="md-toc-link">
+            <p>closed（关闭的）</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#filtered屏蔽的" class="md-toc-link">
+            <p>filtered（屏蔽的）</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#unfiltered未屏蔽的" class="md-toc-link">
+            <p>unfiltered（未屏蔽的）</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#openfiltered开放或者屏蔽的" class="md-toc-link">
+            <p>open|filtered（开放或者屏蔽的）</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#closedfiltered关闭或者屏蔽的" class="md-toc-link">
+            <p>closed|filtered（关闭或者屏蔽的）</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#nmap-扫描技术" class="md-toc-link"><p>nmap 扫描技术</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#1-默认扫描" class="md-toc-link">
+            <p>1 默认扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#2-扫描多个-ip" class="md-toc-link">
+            <p>2 扫描多个 IP</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#3-扫描指定端口" class="md-toc-link">
+            <p>3 扫描指定端口</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#4-tcp扫描" class="md-toc-link"><p>4 TCP扫描</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-syn-扫描" class="md-toc-link">
+            <p>TCP SYN 扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-connect-扫描" class="md-toc-link">
+            <p>TCP Connect 扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-隐秘扫描" class="md-toc-link">
+            <p>TCP 隐秘扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#tcp-ping-扫描" class="md-toc-link">
+            <p>TCP ping 扫描</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#5-udp-扫描" class="md-toc-link">
+            <p>5 UDP 扫描</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#6-路由跟踪" class="md-toc-link">
+            <p>6 路由跟踪</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#7-操作系统探测" class="md-toc-link">
+            <p>7 操作系统探测</p>
+
+          </a></div>
+        </div>
+      </details>
+    
         </div>
       </details>
     
