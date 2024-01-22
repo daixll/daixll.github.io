@@ -354,7 +354,7 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
 
 ---
 
-## HTTP
+## HTTP *
 
 HTTP 协议是基于 TCP 协议的应用层协议，默认端口号是 80（HTTPS是 443），HTTP 协议的通信模型是 **请求-响应** 模型
 
@@ -453,28 +453,35 @@ HTTP 协议的请求消息和响应消息都是由 **请求 / 响应行**、**�
     * 例如图片的二进制数据、pdf文件等
 
 
-### http_server
+<br>
 
+---
+
+## Boost.Asio *
 
 
 <br>
 
 ---
 
-## Boost.Asio
-
-
-<br>
-
----
-
-# 非阻塞 IO
+# 2 非阻塞 IO
 
 当 **进程** 发起 **IO请求** 后，即使 **内核** 没有准备好数据，**进程** 也将立即返回，不会等待，同时 **内核** 会返回一个错误码，告诉 **进程** 为什么没有准备好数据
 
-## TCP
+## 非阻塞输入
 
-### TCP server
+```cpp
+std::cin.sync_with_stdio(false);        // 关闭同步
+if(std::cin.rdbuf() -> in_avail() > 0)  // 如果输入缓冲区有数据
+    std::getline(std::cin, s);          // 读取数据
+```
+
+## c2s
+
+此时，我们可以构建一个简单的 c2s 通信模型：
+**多个** 客户端可以与 **一个** 服务端 **收发任意条** 消息
+
+**`server`：**
 
 1. 创建套接字 `socket()`
 2. 绑定 ip + port `bind()`
@@ -490,28 +497,53 @@ HTTP 协议的请求消息和响应消息都是由 **请求 / 响应行**、**�
     `int fcntl(int fd, int cmd, ... /* arg */ );`
         * `fd`：文件描述符
         * `cmd`：操作命令，对 `fd` 进行操作
+            * `F_SETFL`：设置文件描述符状态标志
+            * `F_GETFL`：获取文件描述符状态标志
         * `arg`：操作命令的参数，根据 `cmd` 的不同而不同
-    * `F_SETFL`：设置文件描述符状态标志
-        * `O_NONBLOCK`：非阻塞
-        * `O_ASYNC`：异步
-        * `O_SYNC`：同步
-    * `F_GETFL`：获取文件描述符状态标志
+            * `O_NONBLOCK`：非阻塞
+            * `O_ASYNC`：异步
+            * `O_SYNC`：同步
+
 
 5. 循环接受连接请求 `accept()`
-6. 循环接收消息 `recv()`
+6. 循环接收 `recv()` 和发送 `send()` 消息
 7. 关闭套接字 `close()`
 
-### TCP client
+**`client`：**
 
-此段使用阻塞客户端
+1. 创建套接字 `socket()`
+2. 连接指定 ip + port `connect()`
+3. 设置套接字为非阻塞 `fcntl()`
+4. 循环发送 `send()` 和接收 `recv()` 消息
+5. 关闭套接字 `close()`
 
 <br>
 
 ---
 
-## HTTP
+## echo server
 
-### http_server
+echo server，即客户端发送什么，服务端就回复什么
+在 c2s 的基础上，初步尝试使用面向对象的思想实现：
+
+* `SockAddr`：套接字地址类
+* `Event`：事件类，包含事件处理函数
+* `Acceptor`：接收器类
+
+<br>
+
+---
+
+## http server
+
+
+<br>
+
+---
+
+## c2c
+
+
 
 <br>
 
