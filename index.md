@@ -193,7 +193,7 @@ $1+1$
         <p href="123/index.html"> 数论 </a>
     </div>
     <div class="item">
-        <a href="123/index.html"> 概率论 </a>
+        <a href="408/概率论/index.html"> 概率论 </a>
     </div>
 </div>
 
