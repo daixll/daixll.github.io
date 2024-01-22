@@ -15,7 +15,29 @@ export_on_save:
 }
 </style>
 
+# GO
 
+1. [官网](https://golang.google.cn/dl/) 康康最新版本，下载
+    * `wget https://golang.google.cn/dl/go1.21.3.linux-amd64.tar.gz`
+
+2. 解压缩至 `/usr/local/`
+    * `tar -zxvf go1.21.0.linux-amd64.tar.gz -C /usr/local/`
+
+3. 配置环境变量 （WSL下的建议方案）
+    * `vim ~/.bashrc`
+      ```sh
+      export GOROOT=/usr/local/go
+      export PATH=$PATH:$GOROOT/bin
+      ```
+
+    * 刷新
+      `source ~/.bashrc`
+
+4. 测试 `go version`
+
+5. GoLand 新建项目
+    * Location：`\\ubuntu\home\工作目录`
+    * GOROOT：`\usr\local\go`
 
 1. [基础语法和常用特性解析](./GO/1.html)
 2. [语言进阶、依赖管理](./GO/2.html)

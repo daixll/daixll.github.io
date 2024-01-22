@@ -33,12 +33,59 @@
   margin-right: auto;
 }
 </style>
+<h1 id="go">GO </h1>
 <ol>
-<li><a href="./GO/1.html">基础语法和常用特性解析</a></li>
-<li><a href="./GO/2.html">语言进阶、依赖管理</a></li>
-<li><a href="./GO/3.html">pprof - 高质量编程与性能调优、分析、测试</a></li>
-<li><a href="./Go/4.html">GORM - 连接数据库</a></li>
-<li><a href="./GO/5.html">Gin - web框架</a></li>
+<li>
+<p><a href="https://golang.google.cn/dl/">官网</a> 康康最新版本，下载</p>
+<ul>
+<li><code>wget https://golang.google.cn/dl/go1.21.3.linux-amd64.tar.gz</code></li>
+</ul>
+</li>
+<li>
+<p>解压缩至 <code>/usr/local/</code></p>
+<ul>
+<li><code>tar -zxvf go1.21.0.linux-amd64.tar.gz -C /usr/local/</code></li>
+</ul>
+</li>
+<li>
+<p>配置环境变量 （WSL下的建议方案）</p>
+<ul>
+<li>
+<p><code>vim ~/.bashrc</code></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token builtin class-name">export</span> <span class="token assign-left variable">GOROOT</span><span class="token operator">=</span>/usr/local/go
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token variable">$GOROOT</span>/bin
+</code></pre></li>
+<li>
+<p>刷新<br>
+<code>source ~/.bashrc</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>测试 <code>go version</code></p>
+</li>
+<li>
+<p>GoLand 新建项目</p>
+<ul>
+<li>Location：<code>\\ubuntu\home\工作目录</code></li>
+<li>GOROOT：<code>\usr\local\go</code></li>
+</ul>
+</li>
+<li>
+<p><a href="./GO/1.html">基础语法和常用特性解析</a></p>
+</li>
+<li>
+<p><a href="./GO/2.html">语言进阶、依赖管理</a></p>
+</li>
+<li>
+<p><a href="./GO/3.html">pprof - 高质量编程与性能调优、分析、测试</a></p>
+</li>
+<li>
+<p><a href="./Go/4.html">GORM - 连接数据库</a></p>
+</li>
+<li>
+<p><a href="./GO/5.html">Gin - web框架</a></p>
+</li>
 </ol>
 <h1 id="go-的优点">Go 的优点 </h1>
 <h2 id="1-高并发支持">1 高并发支持 </h2>
@@ -938,7 +985,11 @@ func <span class="token function">main</span><span class="token punctuation">(</
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
-<details style="padding:0;;padding-left:0px;" open="">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#go" class="md-toc-link">
+            <p>GO</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#go-的优点" class="md-toc-link"><p>Go 的优点</p>
 </a>
