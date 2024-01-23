@@ -24,6 +24,15 @@
     
       <div class="crossnote markdown-preview  ">
       
+<style>
+    .center
+    {
+    width: auto;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    }
+</style>
 <h1 id="引子">引子 </h1>
 <p><strong><a href="https://github.com/daixll/A_Tour_of_Socket">源代码</a></strong></p>
 <blockquote>
@@ -735,12 +744,25 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <br>
 <hr>
 <h2 id="http-server">http server </h2>
+<p>在 echo server 中，使用 deal 函数处理接收到的消息，如果想处理 http 请求，只需要重写 deal 函数即可：</p>
+<ul>
+<li>获取 http 请求的请求</li>
+<li>解析 http 请求的请求</li>
+<li>构造 http 响应的响应</li>
+<li>发送 http 响应的响应</li>
+</ul>
 <br>
 <hr>
 <h2 id="c2c">c2c </h2>
+<p>之前的 c2s 通信模型，是多个客户端与一个服务端收发任意条消息，现在我们尝试构建一个 c2c 通信模型：</p>
+<ul>
+<li>每个客户端可以与任意个客户端建立连接</li>
+<li>每个客户端可以与任意个客户端收发任意条消息</li>
+</ul>
 <br>
 <hr>
-<h1 id="io-复用">IO 复用 </h1>
+<h1 id="3-复用-io">3 复用 IO </h1>
+<p>在之前的 IO 中，虽然都是非阻塞 IO，但是都是轮询的方式，即不断的调用 <code>accept()</code>、<code>recv()</code>、<code>send()</code> 函数，直到返回 <code>EWOULDBLOCK</code> 或 <code>EAGAIN</code> 为止，这样会造成 CPU 的浪费，所以我们需要一种更高效的方式，即 IO 复用</p>
 <br>
 <hr>
 <h1 id="信号驱动-io">信号驱动 IO </h1>
@@ -751,6 +773,32 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <br>
 <hr>
 <h1 id="errno">errno </h1>
+<div class="center">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">错误码</th>
+<th style="text-align:center">别名</th>
+<th style="text-align:center">错误描述</th>
+<th style="text-align:center">note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center"><code>EINTR</code></td>
+<td style="text-align:center">信号中断</td>
+<td style="text-align:center">通常是由于用户按下了 <code>Ctrl + C</code></td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center"><code>EAGAIN</code> <code>EWOULDBLOCK</code></td>
+<td style="text-align:center">操作被阻塞</td>
+<td style="text-align:center">非阻塞下，没有数据可读或写</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h1 id="socket">Socket </h1>
 <ul>
 <li><a href="#tcp--ip-%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B">TCP / IP 分层模型</a> 及 <a href="#tcp-%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5">三握四挥</a></li>
@@ -1038,8 +1086,8 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#io-复用" class="md-toc-link">
-            <p>IO 复用</p>
+          <a href="#3-复用-io" class="md-toc-link">
+            <p>3 复用 IO</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#信号驱动-io" class="md-toc-link">

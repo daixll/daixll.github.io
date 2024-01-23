@@ -5,6 +5,16 @@ export_on_save:
     html: true  # 自动保存
 ---
 
+<style>
+    .center
+    {
+    width: auto;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    }
+</style>
+
 # 引子
 
 **[源代码](https://github.com/daixll/A_Tour_of_Socket)**
@@ -536,6 +546,11 @@ echo server，即客户端发送什么，服务端就回复什么
 
 ## http server
 
+在 echo server 中，使用 deal 函数处理接收到的消息，如果想处理 http 请求，只需要重写 deal 函数即可：
+* 获取 http 请求的请求
+* 解析 http 请求的请求
+* 构造 http 响应的响应
+* 发送 http 响应的响应
 
 <br>
 
@@ -543,6 +558,10 @@ echo server，即客户端发送什么，服务端就回复什么
 
 ## c2c
 
+之前的 c2s 通信模型，是多个客户端与一个服务端收发任意条消息，现在我们尝试构建一个 c2c 通信模型：
+
+* 每个客户端可以与任意个客户端建立连接
+* 每个客户端可以与任意个客户端收发任意条消息
 
 
 <br>
@@ -550,8 +569,9 @@ echo server，即客户端发送什么，服务端就回复什么
 ---
 
 
-# IO 复用
+# 3 复用 IO
 
+在之前的 IO 中，虽然都是非阻塞 IO，但是都是轮询的方式，即不断的调用 `accept()`、`recv()`、`send()` 函数，直到返回 `EWOULDBLOCK` 或 `EAGAIN` 为止，这样会造成 CPU 的浪费，所以我们需要一种更高效的方式，即 IO 复用
 
 <br>
 
@@ -575,9 +595,15 @@ echo server，即客户端发送什么，服务端就回复什么
 # errno
 
 
+<div class="center">
+
+| 错误码 | 别名 | 错误描述 | note | 
+| :-: | :-: | :-: | :-: |
+| 4 | `EINTR` | 信号中断 | 通常是由于用户按下了 `Ctrl + C` |
+| 11 | `EAGAIN` `EWOULDBLOCK`| 操作被阻塞 | 非阻塞下，没有数据可读或写 |
 
 
-
+</div>
 
 
 

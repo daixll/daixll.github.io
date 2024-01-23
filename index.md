@@ -8,7 +8,7 @@ export_on_save:
 <style>
     .center {
         position: absolute;
-        top: 055%;
+        top: 55%;
         left: 50%;
         transform: translate(-50%, -30%);
         text-align: center;
