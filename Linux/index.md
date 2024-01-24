@@ -5,6 +5,7 @@ export_on_save:
     html: true  # 自动保存
 ---
 
+[Linux 命令大全](https://www.linuxcool.com/)
 
 # 基础命令
 

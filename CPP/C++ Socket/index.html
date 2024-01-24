@@ -762,7 +762,9 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <br>
 <hr>
 <h1 id="3-复用-io">3 复用 IO </h1>
-<p>在之前的 IO 中，虽然都是非阻塞 IO，但是都是轮询的方式，即不断的调用 <code>accept()</code>、<code>recv()</code>、<code>send()</code> 函数，直到返回 <code>EWOULDBLOCK</code> 或 <code>EAGAIN</code> 为止，这样会造成 CPU 的浪费，所以我们需要一种更高效的方式，即 IO 复用</p>
+<p>在阻塞 IO 中，如何没有连接请求，<code>accept()</code> 函数将一直阻塞，直到有连接请求为止，<code>recv()</code> 和 <code>send()</code> 函数也是如此，如果没有数据，将一直阻塞，直到有数据为止。</p>
+<p>在非阻塞 IO 中，我们采取循环的方式，不断的调用 <code>accept()</code>、<code>recv()</code>、<code>send()</code> 函数，如果没有接收到连接请求或数据，那么函数将立即返回，不会等待，同时内核会返回一个错误码，告诉进程为什么没有准备好数据。</p>
+<p>在 IO 复用 中，我们可以使用 <code>select()</code>、<code>poll()</code>、<code>epoll()</code> 函数，将多个文件描述符注册到内核中，当有文件描述符准备好数据时，内核将通知进程，进程再调用 <code>accept()</code>、<code>recv()</code>、<code>send()</code> 函数，这样就不需要循环调用这些函数了。</p>
 <br>
 <hr>
 <h1 id="信号驱动-io">信号驱动 IO </h1>
