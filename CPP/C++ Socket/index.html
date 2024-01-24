@@ -305,7 +305,10 @@ socklen_t   client_addr_len <span class="token operator">=</span> <span class="t
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-char">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token function">memset</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">recv</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buf<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre></li>
+</code></pre><blockquote>
+<p>通常，<code>recv()</code> 函数返回接收到的字节数，对端关闭返回 <code>0</code>，其余返回 <code>-1</code></p>
+</blockquote>
+</li>
 </ol>
 <br>
 <ol start="6">
@@ -341,7 +344,10 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <span class="token function">memset</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">send</span><span class="token punctuation">(</span>client<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre></li>
+</code></pre><blockquote>
+<p>通常，<code>send()</code> 函数返回发送的字节数，对端关闭返回 <code>0</code>，其余返回 <code>-1</code></p>
+</blockquote>
+</li>
 <li>
 <p>关闭套接字 <code>close()</code></p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">close</span><span class="token punctuation">(</span>client<span class="token punctuation">)</span><span class="token punctuation">;</span>
