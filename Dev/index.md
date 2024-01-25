@@ -346,6 +346,7 @@ export_on_save:
 
 > 使用 `docker` + `nginx` 搭建文件服务器
 
+见 [网站](#网站)
 
 
 <br>
@@ -355,7 +356,45 @@ export_on_save:
 
 > 使用 `docker` + `nginx` 搭建静态网站服务
 
+配置修改并不多，只需要修改一下 `default.conf` 文件即可
 
+```conf
+server {
+    listen       80;            # IPv4 监听端口
+    listen  [::]:80;            # IPv6 监听端口
+    server_name  localhost;     # 域名
+
+    location / {                # 网站根目录
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    location /doc {             # 文档根目录
+	    charset utf-8;          # 文档编码
+        alias   /usr/share/nginx/doc;
+        autoindex on;           # 自动索引
+    }
+
+    error_page  404               /404.html;
+    error_page   500 502 503 504  /50x.html; # 错误页面
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+```
+
+写一个启动脚本 `NginxRun.sh`
+
+```sh
+docker run \
+-p 2023:80 \
+--name nginx \
+-v /home/jiao/Public/daixll.github.io:/usr/share/nginx/html \
+-v /home/jiao/Public/doc:/usr/share/nginx/doc \
+-v /home/jiao/Documents/NGINX/:/etc/nginx/conf.d \
+--restart unless-stopped \
+-d nginx:latest
+```
 
 <br>
 
@@ -365,3 +404,13 @@ export_on_save:
 
 > 使用 `docker` + `emby` 搭建影音服务
 
+写一个启动脚本 `EmbyRun.sh`
+
+```sh
+docker run \
+-p 8096:8096 \
+--name emby \
+-v /home/jiao/Videos:/mnt/share1 \
+--restart unless-stopped \
+-d emby/embyserver:latest
+```

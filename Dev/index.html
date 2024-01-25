@@ -346,17 +346,57 @@ ws.run <span class="token string">"wsl -d Ubuntu-22.04 -u user /home/user/startu
 <blockquote>
 <p>使用 <code>docker</code> + <code>nginx</code> 搭建文件服务器</p>
 </blockquote>
+<p>见 <a href="#%E7%BD%91%E7%AB%99">网站</a></p>
 <br>
 <h2 id="网站">网站 </h2>
 <blockquote>
 <p>使用 <code>docker</code> + <code>nginx</code> 搭建静态网站服务</p>
 </blockquote>
-<br>
+<p>配置修改并不多，只需要修改一下 <code>default.conf</code> 文件即可</p>
+<pre data-role="codeBlock" data-info="conf" class="language-conf conf"><code>server {
+    listen       80;            # IPv4 监听端口
+    listen  [::]:80;            # IPv6 监听端口
+    server_name  localhost;     # 域名
+
+    location / {                # 网站根目录
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    location /doc {             # 文档根目录
+	    charset utf-8;          # 文档编码
+        alias   /usr/share/nginx/doc;
+        autoindex on;           # 自动索引
+    }
+
+    error_page  404               /404.html;
+    error_page   500 502 503 504  /50x.html; # 错误页面
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+</code></pre><p>写一个启动脚本 <code>NginxRun.sh</code></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> run <span class="token punctuation">\</span>
+<span class="token parameter variable">-p</span> <span class="token number">2023</span>:80 <span class="token punctuation">\</span>
+<span class="token parameter variable">--name</span> nginx <span class="token punctuation">\</span>
+<span class="token parameter variable">-v</span> /home/jiao/Public/daixll.github.io:/usr/share/nginx/html <span class="token punctuation">\</span>
+<span class="token parameter variable">-v</span> /home/jiao/Public/doc:/usr/share/nginx/doc <span class="token punctuation">\</span>
+<span class="token parameter variable">-v</span> /home/jiao/Documents/NGINX/:/etc/nginx/conf.d <span class="token punctuation">\</span>
+<span class="token parameter variable">--restart</span> unless-stopped <span class="token punctuation">\</span>
+<span class="token parameter variable">-d</span> nginx:latest
+</code></pre><br>
 <h2 id="影音">影音 </h2>
 <blockquote>
 <p>使用 <code>docker</code> + <code>emby</code> 搭建影音服务</p>
 </blockquote>
-
+<p>写一个启动脚本 <code>EmbyRun.sh</code></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">docker</span> run <span class="token punctuation">\</span>
+<span class="token parameter variable">-p</span> <span class="token number">8096</span>:8096 <span class="token punctuation">\</span>
+<span class="token parameter variable">--name</span> emby <span class="token punctuation">\</span>
+<span class="token parameter variable">-v</span> /home/jiao/Videos:/mnt/share1 <span class="token punctuation">\</span>
+<span class="token parameter variable">--restart</span> unless-stopped <span class="token punctuation">\</span>
+<span class="token parameter variable">-d</span> emby/embyserver:latest
+</code></pre>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
