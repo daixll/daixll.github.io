@@ -771,6 +771,8 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <p>在阻塞 IO 中，如何没有连接请求，<code>accept()</code> 函数将一直阻塞，直到有连接请求为止，<code>recv()</code> 和 <code>send()</code> 函数也是如此，如果没有数据，将一直阻塞，直到有数据为止。</p>
 <p>在非阻塞 IO 中，我们采取循环的方式，不断的调用 <code>accept()</code>、<code>recv()</code>、<code>send()</code> 函数，如果没有接收到连接请求或数据，那么函数将立即返回，不会等待，同时内核会返回一个错误码，告诉进程为什么没有准备好数据。</p>
 <p>在 IO 复用 中，我们可以使用 <code>select()</code>、<code>poll()</code>、<code>epoll()</code> 函数，将多个文件描述符注册到内核中，当有文件描述符准备好数据时，内核将通知进程，进程再调用 <code>accept()</code>、<code>recv()</code>、<code>send()</code> 函数，这样就不需要循环调用这些函数了。</p>
+<h2 id="c2s_epoll">c2s_epoll </h2>
+<p>在 c2s 的基础上，使用 <code>epoll()</code> 函数实现 IO 复用，客户端是非阻塞的普通客户端。</p>
 <br>
 <hr>
 <h1 id="信号驱动-io">信号驱动 IO </h1>
@@ -1093,11 +1095,20 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#3-复用-io" class="md-toc-link">
-            <p>3 复用 IO</p>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#3-复用-io" class="md-toc-link"><p>3 复用 IO</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#c2s_epoll" class="md-toc-link">
+            <p>c2s_epoll</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#信号驱动-io" class="md-toc-link">
             <p>信号驱动 IO</p>
 
