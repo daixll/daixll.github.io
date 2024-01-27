@@ -152,25 +152,29 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
 <br>
 
 3. 监听 `listen()`
+    <br>
+    > **成功**：返回 `0`
+    > **失败**：返回 `-1`
 
     ```cpp
     // 监听
     listen(server, 0);
     ```
-    > 当 `listen()` 函数调用成功时，返回 `0`，当调用失败时，返回 `-1`
 
     * `0`：等待队列的最大长度，目前无需关注
 
 <br>
 
 4. 接受连接请求 `accept()`
+    <br>
+    > **成功**：返回一个文件描述符，`fd > 0`
+    > **失败**：返回 `-1`
 
     ```cpp
     sockaddr_in client_addr;
     socklen_t   client_addr_len = sizeof client_addr;
     int client = accept(server, (sockaddr*)&client_addr, &client_addr_len);
     ```
-    > 当 `accept()` 函数调用成功时，返回一个文件描述符，即 `socket`，当调用失败时，返回 `-1`
 
     * `socklen_t`：`sockaddr` 的长度类型
 
@@ -180,6 +184,10 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
 <br>
 
 5. 接收消息 `recv()`
+    <br>
+    > **成功**：返回接收的字节数
+    > **错误**：返回 `-1`
+    > **失败**：返回 `0`，对端关闭连接
 
     ```cpp
     char buf[1024];
@@ -202,11 +210,12 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
 ### client
 
 1. 创建套接字 `socket()`
-    ```cpp
-    #include <sys/socket.h> // socket()
-    ```
 
 2. 连接指定 ip + port `connect()`
+    <br>
+    > **成功**：返回 `0`
+    > **失败**：返回 `-1`
+
     ```cpp
     sockaddr_in server_addr;
     memset(&server_addr, '\0', sizeof server_addr);
@@ -218,10 +227,11 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
     connect(client, (sockaddr*)&server_addr, sizeof server_addr);
     ```
 
-    > 当 `connect()` 函数调用成功时，返回 `0`，当调用失败时，返回 `-1`
-
 3. 发送消息 `send()`
-
+    <br>
+    > **成功**：返回发送的字节数
+    > **错误**：返回 `-1`
+    > **失败**：返回 `0`，对端关闭连接
     ```cpp
     char buf[1024];
     memset(buf, '\0', sizeof buf);
@@ -229,7 +239,6 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
     send(client, buf, strlen(buf), 0);
     ```
 
-    > 通常，`send()` 函数返回发送的字节数，对端关闭返回 `0`，其余返回 `-1`
 
 4. 关闭套接字 `close()`
 
@@ -588,6 +597,73 @@ echo server，即客户端发送什么，服务端就回复什么
 
 <br>
 
+eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）的一个实现
+
+直观来说，I/O 复用的作用就是：让程序能够在单进程、单线程的模式下，同时处理 **多个文件描述符** 的 I/O 请求
+
+* 底层创建一个 红黑树 和 就绪链表（双向链表）
+* 红黑树 存储所监控的文件描述符的节点数据，就绪链表 存储就绪的文件描述符的节点数据
+
+1. `epoll_create1` 创建一个 epoll 文件描述符，事件轮询的实例，返回一个文件描述符，即事件树
+
+    ```cpp
+    #include <sys/epoll.h>  // epoll_create1()
+    ```
+
+    ```cpp
+    int epollfd = epoll_create1(0);
+    ```
+
+    * `0`：等待队列的最大长度
+
+2. `int epoll_ctl(事件树, 操作, 文件描述符, 事件)`
+    * 操作：
+        * `EPOLL_CTL_ADD`：注册新的事件到事件树
+        * `EPOLL_CTL_MOD`：修改已经注册的事件
+        * `EPOLL_CTL_DEL`：删除已经注册的事件
+    * 事件：
+        * `EPOLLIN`：对应的文件描述符可以读 `recv` （包括对端SOCKET正常关闭）
+        * `EPOLLPRI`：对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）
+        * `EPOLLOUT`：对应的文件描述符可以写 `send`（包括对端SOCKET正常关闭）
+        * `EPOLLERR`：对应的文件描述符发生错误
+        * `EPOLLHUP`：对应的文件描述符被挂断
+        * `EPOLLET`：将 EPOLL 设为边缘触发(Edge Triggered)模式
+        * `EPOLLONESHOT`：只监听一次事件，当监听完这次事件之后，删除
+
+3. `int epoll_wait(事件树, 事件数组, 事件数组大小, 超时时间)`
+    * 事件数组：`epoll_event` 结构体数组
+    * 超时时间：`-1` 阻塞，`0` 立即返回，`>0` 等待指定时间
+
+<br>
+
+一些数据结构
+
+* `epoll_event` 事件结构体，用于注册事件
+    ```cpp
+    #include <sys/epoll.h>  // epoll_event
+    ```
+    ```cpp
+    struct epoll_event
+    {
+        uint32_t events;    // 事件类型
+        epoll_data_t data;  // 用户数据，一个联合体
+    };
+    ```
+    * `events`：事件类型
+    * `data`：用户数据
+        * `epoll_data_t`：用户数据类型
+            ```cpp
+            typedef union epoll_data
+            {
+                void *ptr;      // 指针
+                int fd;         // 文件描述符
+                uint32_t u32;   // 32位无符号整数
+                uint64_t u64;   // 64位无符号整数
+            } epoll_data_t;
+            ```
+
+
+
 ---
 
 # 信号驱动 IO
@@ -613,7 +689,10 @@ echo server，即客户端发送什么，服务端就回复什么
 | 错误码 | 别名 | 错误描述 | note | 
 | :-: | :-: | :-: | :-: |
 | 4 | `EINTR` | 信号中断 | 通常是由于用户按下了 `Ctrl + C` |
+| 9 | | 文件描述符无效 | |
 | 11 | `EAGAIN` `EWOULDBLOCK`| 操作被阻塞 | 非阻塞下，没有数据可读或写 |
+| 98 | | 地址已经在使用 | 通常是 `bind()` 时，地址已经被占用 |
+| 107 |  | 传输终点没有连接 | |
 
 
 </div>
@@ -722,32 +801,7 @@ echo server，即客户端发送什么，服务端就回复什么
 
 ## Epoll
 
-eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）的一个实现
 
-直观来说，I/O 复用的作用就是：让程序能够在单进程、单线程的模式下，同时处理 **多个文件描述符** 的 I/O 请求
-
-* `int epoll_create1()` 
-    * 创建一个 epoll 文件描述符，事件轮询的实例，返回一个文件描述符，即事件树
-    * 底层创建一个 红黑树 和 就绪链表（双向链表）
-    * 红黑树 存储所监控的文件描述符的节点数据，就绪链表 存储就绪的文件描述符的节点数据
-
-* `int epoll_ctl(事件树, 操作, 文件描述符, 事件)`
-    * 操作：
-        * `EPOLL_CTL_ADD`：注册新的事件到事件树
-        * `EPOLL_CTL_MOD`：修改已经注册的事件
-        * `EPOLL_CTL_DEL`：删除已经注册的事件
-    * 事件：
-        * `EPOLLIN`：对应的文件描述符可以读 `read`（包括对端SOCKET正常关闭）
-        * `EPOLLPRI`：对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）
-        * `EPOLLOUT`：对应的文件描述符可以写 `recv`
-        * `EPOLLERR`：对应的文件描述符发生错误
-        * `EPOLLHUP`：对应的文件描述符被挂断
-        * `EPOLLET`：将 EPOLL 设为边缘触发(Edge Triggered)模式
-        * `EPOLLONESHOT`：只监听一次事件，当监听完这次事件之后，删除
-
-* `int epoll_wait(事件树, 事件数组, 事件数组大小, 超时时间)`
-    * 事件数组：`epoll_event` 结构体数组
-    * 超时时间：`-1` 阻塞，`0` 立即返回，`>0` 等待指定时间
 
 
 ## Epoll 通信实例

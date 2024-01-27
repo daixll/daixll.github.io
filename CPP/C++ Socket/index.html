@@ -266,13 +266,15 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <br>
 <ol start="3">
 <li>
-<p>监听 <code>listen()</code></p>
+<p>监听 <code>listen()</code><br>
+<br></p>
+<blockquote>
+<p><strong>成功</strong>：返回 <code>0</code><br>
+<strong>失败</strong>：返回 <code>-1</code></p>
+</blockquote>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 监听</span>
 <span class="token function">listen</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><blockquote>
-<p>当 <code>listen()</code> 函数调用成功时，返回 <code>0</code>，当调用失败时，返回 <code>-1</code></p>
-</blockquote>
-<ul>
+</code></pre><ul>
 <li><code>0</code>：等待队列的最大长度，目前无需关注</li>
 </ul>
 </li>
@@ -280,14 +282,16 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <br>
 <ol start="4">
 <li>
-<p>接受连接请求 <code>accept()</code></p>
+<p>接受连接请求 <code>accept()</code><br>
+<br></p>
+<blockquote>
+<p><strong>成功</strong>：返回一个文件描述符，<code>fd &gt; 0</code><br>
+<strong>失败</strong>：返回 <code>-1</code></p>
+</blockquote>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>sockaddr_in client_addr<span class="token punctuation">;</span>
 socklen_t   client_addr_len <span class="token operator">=</span> <span class="token keyword keyword-sizeof">sizeof</span> client_addr<span class="token punctuation">;</span>
 <span class="token keyword keyword-int">int</span> client <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>client_addr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>client_addr_len<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><blockquote>
-<p>当 <code>accept()</code> 函数调用成功时，返回一个文件描述符，即 <code>socket</code>，当调用失败时，返回 <code>-1</code></p>
-</blockquote>
-<ul>
+</code></pre><ul>
 <li><code>socklen_t</code>：<code>sockaddr</code> 的长度类型</li>
 </ul>
 <blockquote>
@@ -301,7 +305,13 @@ socklen_t   client_addr_len <span class="token operator">=</span> <span class="t
 <br>
 <ol start="5">
 <li>
-<p>接收消息 <code>recv()</code></p>
+<p>接收消息 <code>recv()</code><br>
+<br></p>
+<blockquote>
+<p><strong>成功</strong>：返回接收的字节数<br>
+<strong>错误</strong>：返回 <code>-1</code><br>
+<strong>失败</strong>：返回 <code>0</code>，对端关闭连接</p>
+</blockquote>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-char">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token function">memset</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">recv</span><span class="token punctuation">(</span>server<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buf<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -322,10 +332,14 @@ socklen_t   client_addr_len <span class="token operator">=</span> <span class="t
 <ol>
 <li>
 <p>创建套接字 <code>socket()</code></p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h&gt;</span> <span class="token comment">// socket()</span></span>
-</code></pre></li>
+</li>
 <li>
-<p>连接指定 ip + port <code>connect()</code></p>
+<p>连接指定 ip + port <code>connect()</code><br>
+<br></p>
+<blockquote>
+<p><strong>成功</strong>：返回 <code>0</code><br>
+<strong>失败</strong>：返回 <code>-1</code></p>
+</blockquote>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>sockaddr_in server_addr<span class="token punctuation">;</span>
 <span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>server_addr<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> server_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// 给地址赋值</span>
@@ -334,20 +348,20 @@ server_addr<span class="token punctuation">.</span>sin_addr<span class="token pu
 server_addr<span class="token punctuation">.</span>sin_port        <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">10086</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// 连接</span>
 <span class="token function">connect</span><span class="token punctuation">(</span>client<span class="token punctuation">,</span> <span class="token punctuation">(</span>sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>server_addr<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> server_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><blockquote>
-<p>当 <code>connect()</code> 函数调用成功时，返回 <code>0</code>，当调用失败时，返回 <code>-1</code></p>
-</blockquote>
-</li>
+</code></pre></li>
 <li>
-<p>发送消息 <code>send()</code></p>
+<p>发送消息 <code>send()</code><br>
+<br></p>
+<blockquote>
+<p><strong>成功</strong>：返回发送的字节数<br>
+<strong>错误</strong>：返回 <code>-1</code><br>
+<strong>失败</strong>：返回 <code>0</code>，对端关闭连接</p>
+</blockquote>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-char">char</span> buf<span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token function">memset</span><span class="token punctuation">(</span>buf<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">send</span><span class="token punctuation">(</span>client<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><blockquote>
-<p>通常，<code>send()</code> 函数返回发送的字节数，对端关闭返回 <code>0</code>，其余返回 <code>-1</code></p>
-</blockquote>
-</li>
+</code></pre></li>
 <li>
 <p>关闭套接字 <code>close()</code></p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">close</span><span class="token punctuation">(</span>client<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -774,6 +788,78 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <h2 id="c2s_epoll">c2s_epoll </h2>
 <p>在 c2s 的基础上，使用 <code>epoll()</code> 函数实现 IO 复用，客户端是非阻塞的普通客户端。</p>
 <br>
+<p>eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）的一个实现</p>
+<p>直观来说，I/O 复用的作用就是：让程序能够在单进程、单线程的模式下，同时处理 <strong>多个文件描述符</strong> 的 I/O 请求</p>
+<ul>
+<li>底层创建一个 红黑树 和 就绪链表（双向链表）</li>
+<li>红黑树 存储所监控的文件描述符的节点数据，就绪链表 存储就绪的文件描述符的节点数据</li>
+</ul>
+<ol>
+<li>
+<p><code>epoll_create1</code> 创建一个 epoll 文件描述符，事件轮询的实例，返回一个文件描述符，即事件树</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/epoll.h&gt;</span>  <span class="token comment">// epoll_create1()</span></span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> epollfd <span class="token operator">=</span> <span class="token function">epoll_create1</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li><code>0</code>：等待队列的最大长度</li>
+</ul>
+</li>
+<li>
+<p><code>int epoll_ctl(事件树, 操作, 文件描述符, 事件)</code></p>
+<ul>
+<li>操作：
+<ul>
+<li><code>EPOLL_CTL_ADD</code>：注册新的事件到事件树</li>
+<li><code>EPOLL_CTL_MOD</code>：修改已经注册的事件</li>
+<li><code>EPOLL_CTL_DEL</code>：删除已经注册的事件</li>
+</ul>
+</li>
+<li>事件：
+<ul>
+<li><code>EPOLLIN</code>：对应的文件描述符可以读 <code>recv</code> （包括对端SOCKET正常关闭）</li>
+<li><code>EPOLLPRI</code>：对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）</li>
+<li><code>EPOLLOUT</code>：对应的文件描述符可以写 <code>send</code>（包括对端SOCKET正常关闭）</li>
+<li><code>EPOLLERR</code>：对应的文件描述符发生错误</li>
+<li><code>EPOLLHUP</code>：对应的文件描述符被挂断</li>
+<li><code>EPOLLET</code>：将 EPOLL 设为边缘触发(Edge Triggered)模式</li>
+<li><code>EPOLLONESHOT</code>：只监听一次事件，当监听完这次事件之后，删除</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>int epoll_wait(事件树, 事件数组, 事件数组大小, 超时时间)</code></p>
+<ul>
+<li>事件数组：<code>epoll_event</code> 结构体数组</li>
+<li>超时时间：<code>-1</code> 阻塞，<code>0</code> 立即返回，<code>&gt;0</code> 等待指定时间</li>
+</ul>
+</li>
+</ol>
+<br>
+<p>一些数据结构</p>
+<ul>
+<li><code>epoll_event</code> 事件结构体，用于注册事件<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/epoll.h&gt;</span>  <span class="token comment">// epoll_event</span></span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-struct">struct</span> <span class="token class-name">epoll_event</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-uint32_t">uint32_t</span> events<span class="token punctuation">;</span>    <span class="token comment">// 事件类型</span>
+    epoll_data_t data<span class="token punctuation">;</span>  <span class="token comment">// 用户数据，一个联合体</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li><code>events</code>：事件类型</li>
+<li><code>data</code>：用户数据
+<ul>
+<li><code>epoll_data_t</code>：用户数据类型<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-union">union</span> epoll_data
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-void">void</span> <span class="token operator">*</span>ptr<span class="token punctuation">;</span>      <span class="token comment">// 指针</span>
+    <span class="token keyword keyword-int">int</span> fd<span class="token punctuation">;</span>         <span class="token comment">// 文件描述符</span>
+    <span class="token keyword keyword-uint32_t">uint32_t</span> u32<span class="token punctuation">;</span>   <span class="token comment">// 32位无符号整数</span>
+    <span class="token keyword keyword-uint64_t">uint64_t</span> u64<span class="token punctuation">;</span>   <span class="token comment">// 64位无符号整数</span>
+<span class="token punctuation">}</span> epoll_data_t<span class="token punctuation">;</span>
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <hr>
 <h1 id="信号驱动-io">信号驱动 IO </h1>
 <br>
@@ -801,10 +887,28 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <td style="text-align:center">通常是由于用户按下了 <code>Ctrl + C</code></td>
 </tr>
 <tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">文件描述符无效</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
 <td style="text-align:center">11</td>
 <td style="text-align:center"><code>EAGAIN</code> <code>EWOULDBLOCK</code></td>
 <td style="text-align:center">操作被阻塞</td>
 <td style="text-align:center">非阻塞下，没有数据可读或写</td>
+</tr>
+<tr>
+<td style="text-align:center">98</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">地址已经在使用</td>
+<td style="text-align:center">通常是 <code>bind()</code> 时，地址已经被占用</td>
+</tr>
+<tr>
+<td style="text-align:center">107</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">传输终点没有连接</td>
+<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
@@ -931,48 +1035,6 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 </li>
 </ul>
 <h2 id="epoll">Epoll </h2>
-<p>eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）的一个实现</p>
-<p>直观来说，I/O 复用的作用就是：让程序能够在单进程、单线程的模式下，同时处理 <strong>多个文件描述符</strong> 的 I/O 请求</p>
-<ul>
-<li>
-<p><code>int epoll_create1()</code></p>
-<ul>
-<li>创建一个 epoll 文件描述符，事件轮询的实例，返回一个文件描述符，即事件树</li>
-<li>底层创建一个 红黑树 和 就绪链表（双向链表）</li>
-<li>红黑树 存储所监控的文件描述符的节点数据，就绪链表 存储就绪的文件描述符的节点数据</li>
-</ul>
-</li>
-<li>
-<p><code>int epoll_ctl(事件树, 操作, 文件描述符, 事件)</code></p>
-<ul>
-<li>操作：
-<ul>
-<li><code>EPOLL_CTL_ADD</code>：注册新的事件到事件树</li>
-<li><code>EPOLL_CTL_MOD</code>：修改已经注册的事件</li>
-<li><code>EPOLL_CTL_DEL</code>：删除已经注册的事件</li>
-</ul>
-</li>
-<li>事件：
-<ul>
-<li><code>EPOLLIN</code>：对应的文件描述符可以读 <code>read</code>（包括对端SOCKET正常关闭）</li>
-<li><code>EPOLLPRI</code>：对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）</li>
-<li><code>EPOLLOUT</code>：对应的文件描述符可以写 <code>recv</code></li>
-<li><code>EPOLLERR</code>：对应的文件描述符发生错误</li>
-<li><code>EPOLLHUP</code>：对应的文件描述符被挂断</li>
-<li><code>EPOLLET</code>：将 EPOLL 设为边缘触发(Edge Triggered)模式</li>
-<li><code>EPOLLONESHOT</code>：只监听一次事件，当监听完这次事件之后，删除</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><code>int epoll_wait(事件树, 事件数组, 事件数组大小, 超时时间)</code></p>
-<ul>
-<li>事件数组：<code>epoll_event</code> 结构体数组</li>
-<li>超时时间：<code>-1</code> 阻塞，<code>0</code> 立即返回，<code>&gt;0</code> 等待指定时间</li>
-</ul>
-</li>
-</ul>
 <h2 id="epoll-通信实例">Epoll 通信实例 </h2>
 <ul>
 <li>启动 <a href="%E6%A0%B7%E4%BE%8B/%E4%BA%8B%E4%BB%B6%E8%BD%AE%E8%AF%A2%E6%A0%B7%E4%BE%8B/%E6%9C%8D%E5%8A%A1%E7%AB%AF.cpp">服务端</a>
