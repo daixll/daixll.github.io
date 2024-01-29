@@ -7,7 +7,9 @@ export_on_save:
 
 [Linux 命令大全](https://www.linuxcool.com/)
 
-# 基础命令
+* 更新软件源、软件、系统更新（非升级）
+    `apt update && apt upgrade && apt dist-upgrade`
+
 
 ## 权限管理
 
@@ -33,15 +35,40 @@ export_on_save:
 
 ## 磁盘管理
 
+## 守护进程
 
-<br>
+## 计划作业
 
----
+`crontab`
 
-# 基础软件
+## 进程线程
 
-* 更新软件源、软件、系统更新（非升级）
-    `apt update && apt upgrade && apt dist-upgrade`
+`top` `strace` `pstack`
+
+## 内存状态
+
+`memstat` `free`
+
+## IO状态
+
+`iostat` `df` `du`
+
+## 文件传输
+
+`scp` `rsync` `rz` `sz`
+
+## 文件定位
+
+`find` `whereis`
+
+## 软链接
+
+`ln`
+
+## `lsof`
+
+
+
 
 ## build-essential
 
@@ -110,6 +137,7 @@ GNU编辑器合辑
 ## rsync
 
 
+## nc
 
-
+网络工具
 
