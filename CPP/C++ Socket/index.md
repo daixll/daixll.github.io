@@ -666,14 +666,15 @@ eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）
 
 ---
 
-# 信号驱动 IO
+# 4 信号驱动 IO
 
+## TCP
 
 <br>
 
 ---
 
-# 异步 IO
+# 5 异步 IO
 
 前 4 种 IO 模型都是同步 IO，即用户进程发起 IO 请求后，需要等待内核完成 IO 操作后才能继续执行
 
