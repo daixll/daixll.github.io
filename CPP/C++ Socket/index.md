@@ -480,7 +480,16 @@ HTTP 协议的请求消息和响应消息都是由 **请求 / 响应行**、**�
 
 ---
 
-## Boost.Asio *
+## Boost.Asio
+
+直接使用其提供的 `boost::asio::ip::tcp`
+
+### server
+
+
+
+### client
+
 
 
 <br>
@@ -676,7 +685,46 @@ eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）
 
 # 5 异步 IO
 
-前 4 种 IO 模型都是同步 IO，即用户进程发起 IO 请求后，需要等待内核完成 IO 操作后才能继续执行
+前 4 种 IO 模型都是同步 IO，即用户进程发起 IO 请求后，需要等待内核完成 IO 操作后才能继续执行。
+
+异步 IO 模型，用户进程发起 IO 请求后，不需要等待内核完成 IO 操作，用户进程可以继续执行，当内核完成 IO 操作后，会通知用户进程。
+
+```cpp
+#include <boost/asio.hpp>
+#include <iostream>
+
+using namespace boost::asio;
+
+int main(){
+    io_context io;
+    
+    steady_timer t3(io, chrono::seconds(3));
+    t3.async_wait([](const boost::system::error_code&){
+        std::cout << "t: " << 666 << std::endl; });
+    steady_timer t2(io, chrono::seconds(2));
+    t2.async_wait([](const boost::system::error_code&){
+        std::cout << "t: " << 888 << std::endl; });
+    steady_timer t1(io, chrono::seconds(1));
+    t1.async_wait([](const boost::system::error_code&){
+        std::cout << "t: " << 999 << std::endl; });
+    io.run();   // 处理已提交的异步任务，直到所有任务完成
+    
+    std::cout << "-------------------" << std::endl;
+
+    for(int i=1; i<=5; i++){
+        steady_timer t(io, chrono::seconds(1));
+        t.wait();
+        std::cout << "t: " << i << std::endl;
+    }
+
+    return 0;
+}
+```
+
+程序运行后一秒，`999`，`888`，`666` 会间隔一秒，依次输出。
+而后，`t: 1`、`t: 2`、`t: 3`、`t: 4`、`t: 5` 会依次输出。
+
+前者是异步的，而后者是同步的，通过代码不难理解：同步的是 `wait()`，阻塞；异步的是 `async_wait()`，不阻塞，任务在 `io.run()` 之后，由后台处理。 
 
 <br>
 

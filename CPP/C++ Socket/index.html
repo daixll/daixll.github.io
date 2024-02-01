@@ -684,7 +684,10 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 </ul>
 <br>
 <hr>
-<h2 id="boostasio-">Boost.Asio * </h2>
+<h2 id="boostasio">Boost.Asio </h2>
+<p>直接使用其提供的 <code>boost::asio::ip::tcp</code></p>
+<h3 id="server-2">server </h3>
+<h3 id="client-2">client </h3>
 <br>
 <hr>
 <h1 id="2-非阻塞-io">2 非阻塞 IO </h1>
@@ -866,7 +869,40 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <br>
 <hr>
 <h1 id="5-异步-io">5 异步 IO </h1>
-<p>前 4 种 IO 模型都是同步 IO，即用户进程发起 IO 请求后，需要等待内核完成 IO 操作后才能继续执行</p>
+<p>前 4 种 IO 模型都是同步 IO，即用户进程发起 IO 请求后，需要等待内核完成 IO 操作后才能继续执行。</p>
+<p>异步 IO 模型，用户进程发起 IO 请求后，不需要等待内核完成 IO 操作，用户进程可以继续执行，当内核完成 IO 操作后，会通知用户进程。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/asio.hpp&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> boost<span class="token double-colon punctuation">::</span>asio<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    io_context io<span class="token punctuation">;</span>
+    
+    steady_timer <span class="token function">t3</span><span class="token punctuation">(</span>io<span class="token punctuation">,</span> chrono<span class="token double-colon punctuation">::</span><span class="token function">seconds</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    t3<span class="token punctuation">.</span><span class="token function">async_wait</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> boost<span class="token double-colon punctuation">::</span>system<span class="token double-colon punctuation">::</span>error_code<span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"t: "</span> <span class="token operator">&lt;&lt;</span> <span class="token number">666</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    steady_timer <span class="token function">t2</span><span class="token punctuation">(</span>io<span class="token punctuation">,</span> chrono<span class="token double-colon punctuation">::</span><span class="token function">seconds</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    t2<span class="token punctuation">.</span><span class="token function">async_wait</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> boost<span class="token double-colon punctuation">::</span>system<span class="token double-colon punctuation">::</span>error_code<span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"t: "</span> <span class="token operator">&lt;&lt;</span> <span class="token number">888</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    steady_timer <span class="token function">t1</span><span class="token punctuation">(</span>io<span class="token punctuation">,</span> chrono<span class="token double-colon punctuation">::</span><span class="token function">seconds</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    t1<span class="token punctuation">.</span><span class="token function">async_wait</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> boost<span class="token double-colon punctuation">::</span>system<span class="token double-colon punctuation">::</span>error_code<span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"t: "</span> <span class="token operator">&lt;&lt;</span> <span class="token number">999</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    io<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 处理已提交的异步任务，直到所有任务完成</span>
+    
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"-------------------"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        steady_timer <span class="token function">t</span><span class="token punctuation">(</span>io<span class="token punctuation">,</span> chrono<span class="token double-colon punctuation">::</span><span class="token function">seconds</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"t: "</span> <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>程序运行后一秒，<code>999</code>，<code>888</code>，<code>666</code> 会间隔一秒，依次输出。<br>
+而后，<code>t: 1</code>、<code>t: 2</code>、<code>t: 3</code>、<code>t: 4</code>、<code>t: 5</code> 会依次输出。</p>
+<p>前者是异步的，而后者是同步的，通过代码不难理解：同步的是 <code>wait()</code>，阻塞；异步的是 <code>async_wait()</code>，不阻塞，任务在 <code>io.run()</code> 之后，由后台处理。</p>
 <br>
 <hr>
 <h1 id="errno">errno </h1>
@@ -1060,7 +1096,7 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 <p><code>Channel</code> 是 <code>Epoll</code> 的事件处理类，<code>Epoll</code> 通过 <code>Channel</code> 处理事件</p>
 <br>
 <hr>
-<h1 id="boostasio">Boost.Asio </h1>
+<h1 id="boostasio-1">Boost.Asio </h1>
 <p><a href="https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio.html">Boost.Asio</a></p>
 
       </div>
@@ -1122,11 +1158,24 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
           <a href="#http-" class="md-toc-link">
             <p>HTTP *</p>
 
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#boostasio" class="md-toc-link"><p>Boost.Asio</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#server-2" class="md-toc-link">
+            <p>server</p>
+
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#boostasio-" class="md-toc-link">
-            <p>Boost.Asio *</p>
+          <a href="#client-2" class="md-toc-link">
+            <p>client</p>
 
           </a></div>
+        </div>
+      </details>
+    
         </div>
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
@@ -1233,7 +1282,7 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#boostasio" class="md-toc-link">
+          <a href="#boostasio-1" class="md-toc-link">
             <p>Boost.Asio</p>
 
           </a></div>
