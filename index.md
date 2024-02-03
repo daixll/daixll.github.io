@@ -121,7 +121,7 @@ export_on_save:
         Data Structures
     </div>
     <div class="item">
-        Net
+        <a href="NET/index.html"> Net </a>
     </div>
     <div class="item">
         Organization
