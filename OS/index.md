@@ -105,7 +105,9 @@ int main(int argc, char *argv[]) {
 
 ## 2.17
 
-#### 加载与卸载内核模块
+### A
+
+**加载与卸载内核模块**
 
 进入 `ch2` 目录
 
@@ -128,3 +130,38 @@ int main(int argc, char *argv[]) {
 
 5. 查看内核日志缓冲区 `dmesg`
     * 可以看到 `内核卸载`
+
+### B
+
+**输出内核模块从加载到卸载的时间**
+
+```cpp
+#include <linux/init.h>
+#include <linux/module.h>
+#include <linux/kernel.h>
+
+#include <linux/jiffies.h>
+unsigned long cnt=0;
+
+/* This function is called when the module is loaded. */
+static int simple_init(void)
+{
+       cnt = jiffies;
+       printk(KERN_INFO "加载内核:%lu %d\n", cnt, HZ);
+       return 0;
+}
+
+/* This function is called when the module is removed. */
+static void simple_exit(void) {
+        cnt = (jiffies-cnt)/HZ;
+        printk(KERN_INFO "卸载内核:%lu\n", cnt);
+}
+
+/* Macros for registering module entry and exit points. */
+module_init( simple_init );
+module_exit( simple_exit );
+
+MODULE_LICENSE("GPL");
+MODULE_DESCRIPTION("Simple Module");
+MODULE_AUTHOR("SGG");
+```

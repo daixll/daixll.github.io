@@ -120,7 +120,8 @@
 <br>
 <hr>
 <h2 id="217">2.17 </h2>
-<h4 id="加载与卸载内核模块">加载与卸载内核模块 </h4>
+<h3 id="a">A </h3>
+<p><strong>加载与卸载内核模块</strong></p>
 <p>进入 <code>ch2</code> 目录</p>
 <blockquote>
 <p>我将 <code>simple.c</code> 中的 <code>printk</code> 的输出分别改为 <code>内核加载</code>，<code>内核卸载</code>，以便区分</p>
@@ -160,7 +161,37 @@
 </ul>
 </li>
 </ol>
+<h3 id="b">B </h3>
+<p><strong>输出内核模块从加载到卸载的时间</strong></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/init.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/module.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/kernel.h&gt;</span></span>
 
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/jiffies.h&gt;</span></span>
+<span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-long">long</span> cnt<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* This function is called when the module is loaded. */</span>
+<span class="token keyword keyword-static">static</span> <span class="token keyword keyword-int">int</span> <span class="token function">simple_init</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+       cnt <span class="token operator">=</span> jiffies<span class="token punctuation">;</span>
+       <span class="token function">printk</span><span class="token punctuation">(</span>KERN_INFO <span class="token string">"加载内核:%lu %d\n"</span><span class="token punctuation">,</span> cnt<span class="token punctuation">,</span> HZ<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* This function is called when the module is removed. */</span>
+<span class="token keyword keyword-static">static</span> <span class="token keyword keyword-void">void</span> <span class="token function">simple_exit</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cnt <span class="token operator">=</span> <span class="token punctuation">(</span>jiffies<span class="token operator">-</span>cnt<span class="token punctuation">)</span><span class="token operator">/</span>HZ<span class="token punctuation">;</span>
+        <span class="token function">printk</span><span class="token punctuation">(</span>KERN_INFO <span class="token string">"卸载内核:%lu\n"</span><span class="token punctuation">,</span> cnt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Macros for registering module entry and exit points. */</span>
+<span class="token function">module_init</span><span class="token punctuation">(</span> simple_init <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">module_exit</span><span class="token punctuation">(</span> simple_exit <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">MODULE_LICENSE</span><span class="token punctuation">(</span><span class="token string">"GPL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">MODULE_DESCRIPTION</span><span class="token punctuation">(</span><span class="token string">"Simple Module"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">MODULE_AUTHOR</span><span class="token punctuation">(</span><span class="token string">"SGG"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
@@ -178,11 +209,24 @@
           <a href="#224" class="md-toc-link">
             <p>2.24</p>
 
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#217" class="md-toc-link"><p>2.17</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#a" class="md-toc-link">
+            <p>A</p>
+
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#217" class="md-toc-link">
-            <p>2.17</p>
+          <a href="#b" class="md-toc-link">
+            <p>B</p>
 
           </a></div>
+        </div>
+      </details>
+    
         </div>
       </details>
     
