@@ -15,9 +15,7 @@ export_on_save:
 
 # **gcc**
 
-## 安装 
-
-### Linux
+## Linux
 
 安装多个版本且可以随意切换
 
@@ -38,7 +36,7 @@ export_on_save:
     ```
 
 
-### Windows
+## Windows
 
 修改环境变量来切换版本
 
@@ -58,49 +56,37 @@ export_on_save:
 
 ---
 
-# **Boost**
+# **make**
 
 ## Linux
 
-1. 下载
-    [Boost](https://www.boost.org/users/download/)
-
-2. 解压
-
-3. 进入解压后的目录，执行 `./bootstrap.sh`
-    * 编译前的配置工作
-
-4. 执行 `sudo ./b2 install`
-    * 编译安装
-
-5. 测试
-    ```cpp
-    #include <boost/version.hpp>//包含 Boost 头文件
-    #include <boost/config.hpp> //包含 Boost 头文件
-    #include <iostream>
-
-    using namespace std;
-    int main(){
-        cout << BOOST_VERSION << endl;      // Boost 版本号
-        cout << BOOST_LIB_VERSION << endl;  // Boost 版本号
-        cout << BOOST_PLATFORM << endl;     // 操作系统
-        cout << BOOST_COMPILER << endl;     // 编译器
-        cout << BOOST_STDLIB << endl;       // 标准库
-        return 0;
-    }
-    ```
+```shell
+sudo apt install make   # 安装 make
+make -v                 # 验证 make 安装成功
+```
 
 ## Windows
 
 1. 下载
-    [Boost](https://www.boost.org/users/download/)
+    [make](https://gnuwin32.sourceforge.net/downlinks/make.php)
 
-2. 解压
+2. 安装
+3. 添加环境变量
+    * `C:\Program Files (x86)\GnuWin32\bin`
 
+## 简单使用
 
 <br>
 
 ---
+
+
+
+# **OpenSSL**
+
+## Linux
+
+
 
 
 
@@ -112,15 +98,13 @@ export_on_save:
 
 [廖雪峰的git教程](https://www.liaoxuefeng.com/wiki/896043488029600)
 
-## 安装
-
-### Linux
+## Linux
 ```shell
-apt install git     # 安装 git
-git --version       # 验证 git 安装成功
+sudo apt install git # 安装 git
+git --version        # 验证 git 安装成功
 ```
 
-### Windows
+## Windows
 
 [git 官网](https://git-scm.com/downloads)
 

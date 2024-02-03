@@ -30,7 +30,90 @@
 <hr>
 <h1 id="boost"><strong>Boost</strong> </h1>
 <h2 id="linux">Linux </h2>
+<ol>
+<li>
+<p>下载<br>
+<a href="https://www.boost.org/users/download/">Boost</a></p>
+</li>
+<li>
+<p>解压</p>
+</li>
+<li>
+<p>进入解压后的目录，执行 <code>./bootstrap.sh</code></p>
+<ul>
+<li>编译前的配置工作</li>
+</ul>
+</li>
+<li>
+<p>执行 <code>sudo ./b2 install</code></p>
+<ul>
+<li>编译安装</li>
+</ul>
+</li>
+<li>
+<p>测试</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/version.hpp&gt;</span><span class="token comment">//包含 Boost 头文件</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/config.hpp&gt;</span> <span class="token comment">//包含 Boost 头文件</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token comment">// Boost 版本号</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_LIB_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// Boost 版本号</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_PLATFORM <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 操作系统</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_COMPILER <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 编译器</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_STDLIB <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>       <span class="token comment">// 标准库</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li>编译<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ <span class="token parameter variable">-o</span> <span class="token builtin class-name">test</span> test.cpp
+</code></pre></li>
+</ul>
+</li>
+</ol>
 <h2 id="windows">Windows </h2>
+<ol>
+<li>
+<p>下载<br>
+<a href="https://www.boost.org/users/download/">Boost</a></p>
+</li>
+<li>
+<p>解压</p>
+</li>
+<li>
+<p>进入解压后的目录，执行 <code>.\bootstrap.bat gcc</code></p>
+<ul>
+<li>编译前的配置工作</li>
+</ul>
+</li>
+<li>
+<p>执行 <code>.\b2.exe install</code></p>
+<ul>
+<li>编译安装</li>
+</ul>
+</li>
+<li>
+<p>测试</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/version.hpp&gt;</span><span class="token comment">//包含 Boost 头文件</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/config.hpp&gt;</span> <span class="token comment">//包含 Boost 头文件</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token comment">// Boost 版本号</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_LIB_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// Boost 版本号</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_PLATFORM <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 操作系统</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_COMPILER <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 编译器</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_STDLIB <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>       <span class="token comment">// 标准库</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li>编译<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ <span class="token parameter variable">-o</span> <span class="token builtin class-name">test</span> test.cpp -I<span class="token string">"C:\Boost\include<span class="token entity" title="\b">\b</span>oost-1_84"</span> -L<span class="token string">"C:\Boost\lib"</span>
+</code></pre></li>
+<li>如果使用网络库，还需要 <code>-lws2_32</code></li>
+</ul>
+</li>
+</ol>
 <br>
 <hr>
 <h1 id="openssl"><strong>openssl</strong> </h1>

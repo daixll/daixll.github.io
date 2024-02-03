@@ -29,8 +29,7 @@
 <br>
 <hr>
 <h1 id="gcc"><strong>gcc</strong> </h1>
-<h2 id="安装">安装 </h2>
-<h3 id="linux">Linux </h3>
+<h2 id="linux">Linux </h2>
 <p>安装多个版本且可以随意切换</p>
 <ol>
 <li>下载<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> gcc-12 g++-12
@@ -45,7 +44,7 @@
 <li>切换版本<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> update-alternatives <span class="token parameter variable">--config</span> gcc
 </code></pre></li>
 </ol>
-<h3 id="windows">Windows </h3>
+<h2 id="windows">Windows </h2>
 <p>修改环境变量来切换版本</p>
 <ol>
 <li>
@@ -65,66 +64,39 @@
 <h2 id="简单使用">简单使用 </h2>
 <br>
 <hr>
-<h1 id="boost"><strong>Boost</strong> </h1>
+<h1 id="make"><strong>make</strong> </h1>
 <h2 id="linux-1">Linux </h2>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">make</span>   <span class="token comment"># 安装 make</span>
+<span class="token function">make</span> <span class="token parameter variable">-v</span>                 <span class="token comment"># 验证 make 安装成功</span>
+</code></pre><h2 id="windows-1">Windows </h2>
 <ol>
 <li>
 <p>下载<br>
-<a href="https://www.boost.org/users/download/">Boost</a></p>
+<a href="https://gnuwin32.sourceforge.net/downlinks/make.php">make</a></p>
 </li>
 <li>
-<p>解压</p>
+<p>安装</p>
 </li>
 <li>
-<p>进入解压后的目录，执行 <code>./bootstrap.sh</code></p>
+<p>添加环境变量</p>
 <ul>
-<li>编译前的配置工作</li>
+<li><code>C:\Program Files (x86)\GnuWin32\bin</code></li>
 </ul>
 </li>
-<li>
-<p>执行 <code>sudo ./b2 install</code></p>
-<ul>
-<li>编译安装</li>
-</ul>
-</li>
-<li>
-<p>测试</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/version.hpp&gt;</span><span class="token comment">//包含 Boost 头文件</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/config.hpp&gt;</span> <span class="token comment">//包含 Boost 头文件</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
-
-<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token comment">// Boost 版本号</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_LIB_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// Boost 版本号</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_PLATFORM <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 操作系统</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_COMPILER <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 编译器</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_STDLIB <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>       <span class="token comment">// 标准库</span>
-    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre></li>
 </ol>
-<h2 id="windows-1">Windows </h2>
-<ol>
-<li>
-<p>下载<br>
-<a href="https://www.boost.org/users/download/">Boost</a></p>
-</li>
-<li>
-<p>解压</p>
-</li>
-</ol>
+<h2 id="简单使用-1">简单使用 </h2>
 <br>
 <hr>
+<h1 id="openssl"><strong>OpenSSL</strong> </h1>
+<h2 id="linux-2">Linux </h2>
 <br>
 <hr>
 <h1 id="git"><strong>git</strong> </h1>
 <p><a href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰的git教程</a></p>
-<h2 id="安装-1">安装 </h2>
-<h3 id="linux-2">Linux </h3>
-<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">apt</span> <span class="token function">install</span> <span class="token function">git</span>     <span class="token comment"># 安装 git</span>
-<span class="token function">git</span> <span class="token parameter variable">--version</span>       <span class="token comment"># 验证 git 安装成功</span>
-</code></pre><h3 id="windows-2">Windows </h3>
+<h2 id="linux-3">Linux </h2>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">git</span> <span class="token comment"># 安装 git</span>
+<span class="token function">git</span> <span class="token parameter variable">--version</span>        <span class="token comment"># 验证 git 安装成功</span>
+</code></pre><h2 id="windows-2">Windows </h2>
 <p><a href="https://git-scm.com/downloads">git 官网</a></p>
 <br>
 <hr>
@@ -573,12 +545,6 @@ nmap -p-                    <span class="token comment"># 扫描所有端口 等
 </a>
           </summary>
         <div>
-          <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#安装" class="md-toc-link"><p>安装</p>
-</a>
-          </summary>
-        <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#linux" class="md-toc-link">
             <p>Linux</p>
@@ -587,10 +553,7 @@ nmap -p-                    <span class="token comment"># 扫描所有端口 等
           <a href="#windows" class="md-toc-link">
             <p>Windows</p>
 
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#简单使用" class="md-toc-link">
             <p>简单使用</p>
 
@@ -599,7 +562,7 @@ nmap -p-                    <span class="token comment"># 扫描所有端口 等
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#boost" class="md-toc-link"><p><strong>Boost</strong></p>
+          <a href="#make" class="md-toc-link"><p><strong>make</strong></p>
 </a>
           </summary>
         <div>
@@ -611,6 +574,23 @@ nmap -p-                    <span class="token comment"># 扫描所有端口 等
           <a href="#windows-1" class="md-toc-link">
             <p>Windows</p>
 
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#简单使用-1" class="md-toc-link">
+            <p>简单使用</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#openssl" class="md-toc-link"><p><strong>OpenSSL</strong></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-2" class="md-toc-link">
+            <p>Linux</p>
+
           </a></div>
         </div>
       </details>
@@ -620,24 +600,15 @@ nmap -p-                    <span class="token comment"># 扫描所有端口 等
 </a>
           </summary>
         <div>
-          <details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#安装-1" class="md-toc-link"><p>安装</p>
-</a>
-          </summary>
-        <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-2" class="md-toc-link">
+          <a href="#linux-3" class="md-toc-link">
             <p>Linux</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#windows-2" class="md-toc-link">
             <p>Windows</p>
 
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:24px;" open="">
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#首次使用" class="md-toc-link"><p>首次使用</p>
 </a>
