@@ -931,46 +931,6 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
 </ol>
 <br>
 <hr>
-<h2 id="boost">Boost </h2>
-<p>Boost 是一个跨平台的C++库，提供了许多重要的系统工具和应用程序。</p>
-<ol>
-<li>
-<p>下载 <a href="https://www.boost.org/users/download/">Boost</a></p>
-</li>
-<li>
-<p>解压到 <code>~/Desktop/boost_*</code></p>
-</li>
-<li>
-<p>进入解压后的目录，执行 <code>./bootstrap.sh</code></p>
-<ul>
-<li>编译前的配置工作</li>
-</ul>
-</li>
-<li>
-<p>执行 <code>sudo ./b2 install</code></p>
-<ul>
-<li>编译安装</li>
-</ul>
-</li>
-<li>
-<p>测试</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/version.hpp&gt;</span><span class="token comment">//包含 Boost 头文件</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/config.hpp&gt;</span> <span class="token comment">//包含 Boost 头文件</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
-
-<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token comment">// Boost 版本号</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_LIB_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// Boost 版本号</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_PLATFORM <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 操作系统</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_COMPILER <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 编译器</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_STDLIB <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>       <span class="token comment">// 标准库</span>
-    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre></li>
-</ol>
-<br>
-<hr>
 <h2 id="perf">Perf </h2>
 <p>Perf 是一个性能分析工具，可以用于分析程序的性能瓶颈。</p>
 <ol>
@@ -1302,10 +1262,6 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#cmake--cmakeliststxt" class="md-toc-link">
             <p>Cmake &amp; CmakeLists.txt</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#boost" class="md-toc-link">
-            <p>Boost</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#perf" class="md-toc-link">

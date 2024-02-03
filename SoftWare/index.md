@@ -5,6 +5,109 @@ export_on_save:
     html: true  # 自动保存
 ---
 
+# 引子
+
+常用开发工具的 **安装** 及 **简单使用**
+
+<br>
+
+---
+
+# **gcc**
+
+## 安装 
+
+### Linux
+
+安装多个版本且可以随意切换
+
+1. 下载
+    ```shell
+    sudo apt install gcc-12 g++-12
+    sudo apt install gcc-11 g++-11
+    ```
+2. 设置优先级
+    ```shell
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 120 --slave /usr/bin/g++ g++ /usr/bin/g++-12
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 --slave /usr/bin/g++ g++ /usr/bin/g++-11
+    ```
+    * 此时，`gcc-12` 优先级更高
+3. 切换版本
+    ```shell
+    sudo update-alternatives --config gcc
+    ```
+
+
+### Windows
+
+修改环境变量来切换版本
+
+1. 下载
+    [mingw-w64](https://github.com/niXman/mingw-builds-binaries/releases) `x86_64` `posix` `seh` `ucrt`
+
+2. 解压
+
+3. 添加环境变量
+    * `C:\GCC\12\mingw-w64\bin`
+
+
+## 简单使用
+
+
+<br>
+
+---
+
+# **Boost**
+
+## Linux
+
+1. 下载
+    [Boost](https://www.boost.org/users/download/)
+
+2. 解压
+
+3. 进入解压后的目录，执行 `./bootstrap.sh`
+    * 编译前的配置工作
+
+4. 执行 `sudo ./b2 install`
+    * 编译安装
+
+5. 测试
+    ```cpp
+    #include <boost/version.hpp>//包含 Boost 头文件
+    #include <boost/config.hpp> //包含 Boost 头文件
+    #include <iostream>
+
+    using namespace std;
+    int main(){
+        cout << BOOST_VERSION << endl;      // Boost 版本号
+        cout << BOOST_LIB_VERSION << endl;  // Boost 版本号
+        cout << BOOST_PLATFORM << endl;     // 操作系统
+        cout << BOOST_COMPILER << endl;     // 编译器
+        cout << BOOST_STDLIB << endl;       // 标准库
+        return 0;
+    }
+    ```
+
+## Windows
+
+1. 下载
+    [Boost](https://www.boost.org/users/download/)
+
+2. 解压
+
+
+<br>
+
+---
+
+
+
+<br>
+
+---
+
 # **git**
 
 [廖雪峰的git教程](https://www.liaoxuefeng.com/wiki/896043488029600)
