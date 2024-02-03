@@ -5,7 +5,7 @@ export_on_save:
     html: true  # 自动保存
 ---
 
-# git
+# **git**
 
 [廖雪峰的git教程](https://www.liaoxuefeng.com/wiki/896043488029600)
 
@@ -282,7 +282,7 @@ git config --global --unset https.proxy
 > 虽然效果上看起来是推送到了多个仓库，但是实际上只是推送到了一个仓库
 
 
-# docker
+# **docker**
 
 **Docker**
 
@@ -433,7 +433,7 @@ docker stop CONTAINER_ID
 
 ---
 
-# nginx
+# **nginx**
 
 ## nginx的使用
 
@@ -473,7 +473,7 @@ nginx -s reload
 
 ---
 
-# nmap
+# **nmap**
 
 [官方中文文档](https://nmap.org/man/zh/index.html)
 
