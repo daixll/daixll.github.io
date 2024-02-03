@@ -111,35 +111,35 @@ export_on_save:
 
 
 
-<h5 class="left"> 计算机基础 </h5>
+<h5 class="left"> CS </h5>
 
 <div class="container">
     <div class="item">
-        <a href="123/index.html"> 操作系统 </a>
+        <a href="OS/index.html"> OS </a>
     </div>
     <div class="item">
-        <a href="123/index.html"> 数据结构 </a>
+        Data Structures
     </div>
     <div class="item">
-        <a href="123/index.html"> 组成原理 </a>
+        Net
     </div>
     <div class="item">
-        <a href="123/index.html"> 计算机网络 </a>
+        Organization
     </div>
 </div>
 
 <div class="container">
     <div class="item">
-        <a href="123/index.html"> 系统架构 </a>
-    </div>
-    <div class="item">
-        <a href="123/index.html"> 设计模式 </a>
-    </div>
-    <div class="item">
-        <a href="123/index.html"> 软考:架构师 </a>
+        软考:架构师
     </div>
     <div class="item">
         <a href="algorithm/index.html"> Algorithm </a>
+    </div>
+    <div class="item">
+        系统架构
+    </div>
+    <div class="item">
+        设计模式
     </div>
 </div>
 
@@ -193,7 +193,7 @@ $1+1$
         <p href="123/index.html"> 数论 </a>
     </div>
     <div class="item">
-        <a href="408/概率论/index.html"> 概率论 </a>
+        <a href="概率论/index.html"> 概率论 </a>
     </div>
 </div>
 

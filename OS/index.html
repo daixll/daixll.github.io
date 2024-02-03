@@ -24,179 +24,189 @@
     
       <div class="crossnote markdown-preview  ">
       
-<style>
-    .center {
-        position: absolute;
-        top: 55%;
-        left: 50%;
-        transform: translate(-50%, -30%);
-        text-align: center;
-    }
+<h1 id="引子">引子 </h1>
+<p>全文分为两个部分：</p>
+<ol>
+<li>黑书的实验题</li>
+<li>操作系统的笔记 / 王道习题</li>
+</ol>
+<p>书籍参考：</p>
+<ul>
+<li>《操作系统概念/原书第10版》 机械工业出版社</li>
+<li>《王道2025》垃圾京东还没发货</li>
+</ul>
+<p>编程环境：</p>
+<ul>
+<li><code>Ubuntu 22.04 LTS</code> <a href="https://ubuntu.com/download/desktop">下载</a></li>
+<li><code>gcc 11.4.0</code></li>
+</ul>
+<p>源码参考：</p>
+<ul>
+<li><a href="https://github.com/greggagne/osc10e">osc10e</a></li>
+<li><a href="">此文源码</a></li>
+</ul>
+<p><strong>注意!</strong></p>
+<ul>
+<li>除非你知道你在做什么，否则不要在生产环境中使用这些 <strong>代码</strong> / <strong>命令</strong><br>
+强烈建议新开一个 <a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">虚拟机</a> 进行实验</li>
+</ul>
+<hr>
+<h1 id="os_black">OS_black </h1>
+<h2 id="224">2.24 </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// FileCopy.cpp</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h&gt;</span>  <span class="token comment">// open</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h&gt;</span> <span class="token comment">// read write</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span> <span class="token comment">// memset</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span> <span class="token comment">// std::cerr</span></span>
 
-    .left {
-        text-align: left;
-    }
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> argc<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>argc <span class="token operator">!=</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"请输入源文件和目标文件的名称"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    .container {
-        display: flex;
-        text-align: center;
-    }
+    <span class="token comment">// 以只读的方式打开</span>
+    <span class="token keyword keyword-int">int</span> fd1 <span class="token operator">=</span> <span class="token function">open</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> O_RDONLY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>fd1 <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"打开源文件失败"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    .item {
-        flex: 1;
-        margin: 3px 0;
-    }
-</style>
-<div class="center">
-<h1> 戴兴龙 </h1>
-<p><a href="joker/index.html"> &nbsp;bio&nbsp; </a> <span style="color:grey"> | </span>  <a href="https://github.com/daixll"> &nbsp;github&nbsp; </a>  <span style="color:grey">  | </span>  <a href="mailto:dxlcq@outlook.com">&nbsp;dxlcq@outlook.com&nbsp; </a></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-<h5 class="left"> C / C++ </h5>
-<div class="container">
-    <div class="item">
-        <a href="CPP/C/index.html"> C &amp; Tools </a>
-    </div>
-    <div class="item">基础语法、运行环境、常用工具</div>
-</div>
-<div class="container">
-    <div class="item">
-        <a href="CPP/C++/index.html"> Modern C++ </a>
-    </div>
-    <div class="item">现代特性、STL、类与对象</div>
-</div>
-<div class="container">
-    <div class="item">
-        <a href="CPP/C++ Concurrency/index.html"> Concurrency </a>
-    </div>
-    <div class="item">并发、多线程、多进程</div>
-</div>
-<div class="container">
-    <div class="item">
-        <a href="CPP/C++ Socket/index.html"> Socket </a>
-    </div>
-    <div class="item">网络编程、Boost.Asio</div>
-</div>
-<div class="container">
-    <div class="item">
-        <a href="CPP/C++ Qt/index.html"> Qt </a>
-    </div>
-    <div class="item">图形化编程、QWidgets</div>
-</div>
-<h5 class="left"> language </h5>
-<div class="container">
-    <div class="item">
-        <a href="GO/index.html"> Golang </a>
-    </div>
-    <div class="item">
-        <a href="PY/index.html"> Python </a>
-    </div>
-    <div class="item">
-        <a href="">  </a>
-    </div>
-    <div class="item">
-        <a href="">  </a>
-    </div>
-</div>
-<h5 class="left"> Workspace </h5>
-<div class="container">
-    <div class="item">
-        <a href="Dev/index.html"> Dev </a>
-    </div>
-    <div class="item">
-        <a href="Linux/index.html"> linux </a>
-    </div>
-    <div class="item">
-        <a href="SoftWare/index.html"> software </a>
-    </div>
-    <div class="item">
-        <a href="">  </a>
-    </div>
-</div>
-<h5 class="left"> CS </h5>
-<div class="container">
-    <div class="item">
-        <a href="OS/index.html"> OS </a>
-    </div>
-    <div class="item">
-        Data Structures
-    </div>
-    <div class="item">
-        Net
-    </div>
-    <div class="item">
-        Organization
-    </div>
-</div>
-<div class="container">
-    <div class="item">
-        软考:架构师
-    </div>
-    <div class="item">
-        <a href="algorithm/index.html"> Algorithm </a>
-    </div>
-    <div class="item">
-        系统架构
-    </div>
-    <div class="item">
-        设计模式
-    </div>
-</div>
-<div class="container">
-    <div class="item">
-        <a href="MySQL/index.html"> 数据库 </a>
-    </div>
-    <div class="item">
-        <a href="123/index.html">  </a>
-    </div>
-    <div class="item">
-        <a href="123/index.html">  </a>
-    </div>
-    <div class="item">
-        <a href="algorithm/index.html">  </a>
-    </div>
-</div>
-<h5 class="left"><span style="color:red;">☭</span></h5>
-<div class="container">
-    <div class="item">
-        <p href="123/index.html"> 马克思主义 
-    </p></div>
-    <div class="item">
-        <p href="123/index.html"> 列宁主义 
-    </p></div>
-    <div class="item">
-        <p href="123/index.html"> 毛泽东思想 
-    </p></div>
-    <div class="item">
-        <p href="123/index.html"> 共产党宣言 
-    </p></div>
-</div>
-<h5 class="left">
-<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></p>
-</h5>
-<div class="container">
-    <div class="item">
-        <p href="123/index.html"> 微积分 
-    </p></div>
-    <div class="item">
-        <p href="123/index.html"> 线性代数 
-    </p></div>
-    <div class="item">
-        <p href="123/index.html"> 数论 
-    </p></div>
-    <div class="item">
-        <a href="概率论/index.html"> 概率论 </a>
-    </div>
-</div>
-</div>
+    <span class="token comment">// 以只写的方式打开，如果不存在则创建，如果存在则清空，权限为 666</span>
+    <span class="token keyword keyword-int">int</span> fd2 <span class="token operator">=</span> <span class="token function">open</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> O_WRONLY <span class="token operator">|</span> O_CREAT <span class="token operator">|</span> O_TRUNC<span class="token punctuation">,</span> <span class="token number">0666</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>fd2 <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"打开目标文件失败"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-char">char</span> buffer<span class="token punctuation">[</span><span class="token number">64</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">memset</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-int">int</span> len <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span>fd1<span class="token punctuation">,</span> buffer<span class="token punctuation">,</span> <span class="token keyword keyword-sizeof">sizeof</span> buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>len <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"读取文件失败"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+            <span class="token keyword keyword-return">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>len <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
+
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token function">write</span><span class="token punctuation">(</span>fd2<span class="token punctuation">,</span> buffer<span class="token punctuation">,</span> len<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"写入文件失败"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+            <span class="token keyword keyword-return">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li>可以通过 <code>man open</code>，<code>man read</code> 等命令查看函数的使用方法</li>
+</ul>
+<p>运行：</p>
+<ol>
+<li>编译源文件 <code>g++ FileCopy.cpp -o FileCopy</code></li>
+<li>运行 <code>./FileCopy FileCopy.cpp FileCopy.cpp.bak</code></li>
+<li>查看文件 <code>cat FileCopy.cpp.bak</code>
+<ul>
+<li>与 <code>FileCopy.cpp</code> 一致</li>
+</ul>
+</li>
+<li>使用系统调用跟踪工具 <code>strace ./FileCopy FileCopy.cpp FileCopy.cpp.bak</code>
+<ul>
+<li>可以看到系统调用的详细信息</li>
+</ul>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="217">2.17 </h2>
+<h4 id="加载与卸载内核模块">加载与卸载内核模块 </h4>
+<p>进入 <code>ch2</code> 目录</p>
+<blockquote>
+<p>我将 <code>simple.c</code> 中的 <code>printk</code> 的输出分别改为 <code>内核加载</code>，<code>内核卸载</code>，以便区分</p>
+</blockquote>
+<ol>
+<li>
+<p>编译 <code>make</code></p>
+<ul>
+<li>生成 <code>simple.ko</code> 内核模块</li>
+</ul>
+</li>
+<li>
+<p>加载内核模块 <code>sudo insmod simple.ko</code></p>
+<ul>
+<li>查看内核模块 <code>lsmod</code></li>
+<li>可以看到 <code>simple</code> 模块</li>
+</ul>
+</li>
+<li>
+<p>查看内核日志缓冲区 <code>sudo dmesg</code></p>
+<ul>
+<li>可以看到 <code>内核加载</code></li>
+<li>定期删除内核日志缓冲区 <code>sudo dmesg -c</code></li>
+</ul>
+</li>
+<li>
+<p>卸载内核模块 <code>sudo rmmod simple</code></p>
+<ul>
+<li>查看内核模块 <code>lsmod</code></li>
+<li>无 <code>simple</code> 模块</li>
+</ul>
+</li>
+<li>
+<p>查看内核日志缓冲区 <code>dmesg</code></p>
+<ul>
+<li>可以看到 <code>内核卸载</code></li>
+</ul>
+</li>
+</ol>
 
       </div>
+      <div class="md-sidebar-toc">
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#引子" class="md-toc-link">
+            <p>引子</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#os_black" class="md-toc-link"><p>OS_black</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#224" class="md-toc-link">
+            <p>2.24</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#217" class="md-toc-link">
+            <p>2.17</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+</div>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    
+    
+    
+    
+    
+    
+<script>
+document.body.setAttribute('html-show-sidebar-toc', true)
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
       
-      
-    
-    
-    
-    
-    
-    
   
     </body></html>
