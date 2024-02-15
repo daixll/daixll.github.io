@@ -130,7 +130,7 @@ export_on_save:
 
 <div class="container">
     <div class="item">
-        软考:架构师
+        <a href="Engineer/index.html"> 软考架构师 </a>
     </div>
     <div class="item">
         <a href="algorithm/index.html"> Algorithm </a>
