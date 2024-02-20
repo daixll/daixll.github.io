@@ -7,16 +7,14 @@ export_on_save:
 
 [Linux 命令大全](https://www.linuxcool.com/)
 
-* 更新软件源、软件、系统更新（非升级）
-    `apt update && apt upgrade && apt dist-upgrade`
-
+# 基本操作
 
 ## 权限管理
 
-每个文件有三种身份：
+每个文件有三种粒度：
 
-* 所有者 `u`
-* 用户组 `g`
+* 所属人 `u`
+* 所属组 `g`
 * 其他人 `o`
 
 各自有三种权限：
@@ -25,33 +23,65 @@ export_on_save:
 * 写 `w` `2`
 * 行 `x` `1`
 
+查看：
+
+* `ls -l`
+    ```shell
+    文件类型[所属人权限][所属组权限][其他人权限] 硬连接数量 所属人 所属组 文件大小 修改日期和时间 文件名
+    ```
+    文件类型：
+    * `-` 普通文件
+    * `d` 目录
+    * `l` 软链接
+    * `b` 块设备
+    * `c` 字符设备
+    * `s` 套接字
+    * `p` 管道
+
 修改：
 
 * 修改所有者 `chown`
 * 修改用户组 `chgrp`
 * 修改权限 `chmod`
+    > `chmod +x`，给 **所有人** 添加执行权限，等价于 `chmod a+x`
+    > `chmod +r`，给 **所有人** 添加读权限，等价于 `chmod a+r`
+    > `chmod +w`，给 **所属人** 添加写权限，若想给所有人，`chmod a+w`
+
+    > `chmod u+x`，给 **所属人** 添加执行权限
+    > `chmod g+r`，给 **所属组** 添加读权限
+    > `chmod o+w`，给 **其他人** 添加写权限
+
+    > `chmod 777`，给 **所有人** 添加所有权限
+    > `chmod 755`，给 **所属人** 添加所有权限，给 **所属组** 和 **其他人** 添加读和执行权限
+
+    > `chmod -R`，递归修改
+
+<br>
 
 ## 文件管理
 
+
+
+
 ## 磁盘管理
+
+<br>
+
+---
+
+# 常用命令
+
+## 软件安装
+
+* 更新软件源、软件、系统更新（非升级）
+    `apt update && apt upgrade && apt dist-upgrade && apt autoremove`
+
 
 ## 守护进程
 
 ## 计划作业
 
 `crontab`
-
-## 进程线程
-
-`top` `strace` `pstack`
-
-## 内存状态
-
-`memstat` `free`
-
-## IO状态
-
-`iostat` `df` `du`
 
 ## 文件传输
 
@@ -69,6 +99,33 @@ export_on_save:
 
 
 
+<br>
+
+---
+
+# 状态查询
+
+## 基本信息
+
+`sudo apt install screenfetch`
+`screenfetch`
+
+
+## 进程线程
+
+`top` `strace` `pstack`
+
+## 内存状态
+
+`memstat` `free`
+
+## IO状态
+
+`iostat` `df` `du`
+
+
+
+# 必会软件
 
 ## build-essential
 
@@ -115,7 +172,7 @@ GNU编辑器合辑
 ## tar
 * 解压文件
     `tar -zxvf *.tar.gz`
-    * `-z` 解压缩（gz）
+    * `-z` 解压缩（gz）（有时可以省略）
     * `-x` 解包（tar）
     * `-v` 显示详细的解压过程信息
     * `-f` 指定名称

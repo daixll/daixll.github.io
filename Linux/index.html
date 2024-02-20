@@ -25,15 +25,12 @@
       <div class="crossnote markdown-preview  ">
       
 <p><a href="https://www.linuxcool.com/">Linux 命令大全</a></p>
-<ul>
-<li>更新软件源、软件、系统更新（非升级）<br>
-<code>apt update &amp;&amp; apt upgrade &amp;&amp; apt dist-upgrade</code></li>
-</ul>
+<h1 id="基本操作">基本操作 </h1>
 <h2 id="权限管理">权限管理 </h2>
-<p>每个文件有三种身份：</p>
+<p>每个文件有三种粒度：</p>
 <ul>
-<li>所有者 <code>u</code></li>
-<li>用户组 <code>g</code></li>
+<li>所属人 <code>u</code></li>
+<li>所属组 <code>g</code></li>
 <li>其他人 <code>o</code></li>
 </ul>
 <p>各自有三种权限：</p>
@@ -42,23 +39,64 @@
 <li>写 <code>w</code> <code>2</code></li>
 <li>行 <code>x</code> <code>1</code></li>
 </ul>
+<p>查看：</p>
+<ul>
+<li><code>ls -l</code><pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>文件类型<span class="token punctuation">[</span>所属人权限<span class="token punctuation">]</span><span class="token punctuation">[</span>所属组权限<span class="token punctuation">]</span><span class="token punctuation">[</span>其他人权限<span class="token punctuation">]</span> 硬连接数量 所属人 所属组 文件大小 修改日期和时间 文件名
+</code></pre>文件类型：
+<ul>
+<li><code>-</code> 普通文件</li>
+<li><code>d</code> 目录</li>
+<li><code>l</code> 软链接</li>
+<li><code>b</code> 块设备</li>
+<li><code>c</code> 字符设备</li>
+<li><code>s</code> 套接字</li>
+<li><code>p</code> 管道</li>
+</ul>
+</li>
+</ul>
 <p>修改：</p>
 <ul>
-<li>修改所有者 <code>chown</code></li>
-<li>修改用户组 <code>chgrp</code></li>
-<li>修改权限 <code>chmod</code></li>
+<li>
+<p>修改所有者 <code>chown</code></p>
+</li>
+<li>
+<p>修改用户组 <code>chgrp</code></p>
+</li>
+<li>
+<p>修改权限 <code>chmod</code></p>
+<blockquote>
+<p><code>chmod +x</code>，给 <strong>所有人</strong> 添加执行权限，等价于 <code>chmod a+x</code><br>
+<code>chmod +r</code>，给 <strong>所有人</strong> 添加读权限，等价于 <code>chmod a+r</code><br>
+<code>chmod +w</code>，给 <strong>所属人</strong> 添加写权限，若想给所有人，<code>chmod a+w</code></p>
+</blockquote>
+<blockquote>
+<p><code>chmod u+x</code>，给 <strong>所属人</strong> 添加执行权限<br>
+<code>chmod g+r</code>，给 <strong>所属组</strong> 添加读权限<br>
+<code>chmod o+w</code>，给 <strong>其他人</strong> 添加写权限</p>
+</blockquote>
+<blockquote>
+<p><code>chmod 777</code>，给 <strong>所有人</strong> 添加所有权限<br>
+<code>chmod 755</code>，给 <strong>所属人</strong> 添加所有权限，给 <strong>所属组</strong> 和 <strong>其他人</strong> 添加读和执行权限</p>
+</blockquote>
+<blockquote>
+<p><code>chmod -R</code>，递归修改</p>
+</blockquote>
+</li>
 </ul>
+<br>
 <h2 id="文件管理">文件管理 </h2>
 <h2 id="磁盘管理">磁盘管理 </h2>
+<br>
+<hr>
+<h1 id="常用命令">常用命令 </h1>
+<h2 id="软件安装">软件安装 </h2>
+<ul>
+<li>更新软件源、软件、系统更新（非升级）<br>
+<code>apt update &amp;&amp; apt upgrade &amp;&amp; apt dist-upgrade &amp;&amp; apt autoremove</code></li>
+</ul>
 <h2 id="守护进程">守护进程 </h2>
 <h2 id="计划作业">计划作业 </h2>
 <p><code>crontab</code></p>
-<h2 id="进程线程">进程线程 </h2>
-<p><code>top</code> <code>strace</code> <code>pstack</code></p>
-<h2 id="内存状态">内存状态 </h2>
-<p><code>memstat</code> <code>free</code></p>
-<h2 id="io状态">IO状态 </h2>
-<p><code>iostat</code> <code>df</code> <code>du</code></p>
 <h2 id="文件传输">文件传输 </h2>
 <p><code>scp</code> <code>rsync</code> <code>rz</code> <code>sz</code></p>
 <h2 id="文件定位">文件定位 </h2>
@@ -66,6 +104,19 @@
 <h2 id="软链接">软链接 </h2>
 <p><code>ln</code></p>
 <h2 id="lsof"><code>lsof</code> </h2>
+<br>
+<hr>
+<h1 id="状态查询">状态查询 </h1>
+<h2 id="基本信息">基本信息 </h2>
+<p><code>sudo apt install screenfetch</code><br>
+<code>screenfetch</code></p>
+<h2 id="进程线程">进程线程 </h2>
+<p><code>top</code> <code>strace</code> <code>pstack</code></p>
+<h2 id="内存状态">内存状态 </h2>
+<p><code>memstat</code> <code>free</code></p>
+<h2 id="io状态">IO状态 </h2>
+<p><code>iostat</code> <code>df</code> <code>du</code></p>
+<h1 id="必会软件">必会软件 </h1>
 <h2 id="build-essential">build-essential </h2>
 <p>GNU编辑器合辑</p>
 <h2 id="ssh">ssh </h2>
@@ -116,7 +167,7 @@
 <li>解压文件<br>
 <code>tar -zxvf *.tar.gz</code>
 <ul>
-<li><code>-z</code> 解压缩（gz）</li>
+<li><code>-z</code> 解压缩（gz）（有时可以省略）</li>
 <li><code>-x</code> 解包（tar）</li>
 <li><code>-v</code> 显示详细的解压过程信息</li>
 <li><code>-f</code> 指定名称</li>
@@ -147,95 +198,139 @@
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#基本操作" class="md-toc-link"><p>基本操作</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#权限管理" class="md-toc-link">
             <p>权限管理</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#文件管理" class="md-toc-link">
             <p>文件管理</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#磁盘管理" class="md-toc-link">
             <p>磁盘管理</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#常用命令" class="md-toc-link"><p>常用命令</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#软件安装" class="md-toc-link">
+            <p>软件安装</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#守护进程" class="md-toc-link">
             <p>守护进程</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#计划作业" class="md-toc-link">
             <p>计划作业</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#进程线程" class="md-toc-link">
-            <p>进程线程</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#内存状态" class="md-toc-link">
-            <p>内存状态</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#io状态" class="md-toc-link">
-            <p>IO状态</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#文件传输" class="md-toc-link">
             <p>文件传输</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#文件定位" class="md-toc-link">
             <p>文件定位</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#软链接" class="md-toc-link">
             <p>软链接</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#lsof" class="md-toc-link">
             <p><code>lsof</code></p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#状态查询" class="md-toc-link"><p>状态查询</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#基本信息" class="md-toc-link">
+            <p>基本信息</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#进程线程" class="md-toc-link">
+            <p>进程线程</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#内存状态" class="md-toc-link">
+            <p>内存状态</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#io状态" class="md-toc-link">
+            <p>IO状态</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#必会软件" class="md-toc-link"><p>必会软件</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#build-essential" class="md-toc-link">
             <p>build-essential</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#ssh" class="md-toc-link">
             <p>ssh</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#ufw" class="md-toc-link">
             <p>ufw</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#vim" class="md-toc-link">
             <p>vim</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#curl" class="md-toc-link">
             <p>curl</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#wget" class="md-toc-link">
             <p>wget</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#tar" class="md-toc-link">
             <p>tar</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#mount" class="md-toc-link">
             <p>mount</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#rsync" class="md-toc-link">
             <p>rsync</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#nc" class="md-toc-link">
             <p>nc</p>
 
           </a></div>
+        </div>
+      </details>
+    
 </div>
 </div>
       <a id="sidebar-toc-btn">≡</a>
