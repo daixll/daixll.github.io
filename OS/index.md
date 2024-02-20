@@ -14,8 +14,8 @@ export_on_save:
 
 书籍参考：
 
-* 《操作系统概念/原书第10版》 机械工业出版社
-* 《王道2025》垃圾京东还没发货
+* 《操作系统概念/原书第10版》机械工业出版社
+* 《操作系统 王道2025》
 
 编程环境：
 
@@ -35,7 +35,7 @@ export_on_save:
 
 ---
 
-# OS_black
+# 编程题
 
 ## 2.24
 
@@ -90,7 +90,7 @@ int main(int argc, char *argv[]) {
 
 * 可以通过 `man open`，`man read` 等命令查看函数的使用方法
 
-运行：
+**运行**：
 
 1. 编译源文件 `g++ FileCopy.cpp -o FileCopy`
 2. 运行 `./FileCopy FileCopy.cpp FileCopy.cpp.bak`
@@ -103,9 +103,9 @@ int main(int argc, char *argv[]) {
 
 ---
 
-## 2.17
+# 编程项目
 
-### A
+## 2.17
 
 **加载与卸载内核模块**
 
@@ -122,7 +122,7 @@ int main(int argc, char *argv[]) {
 
 3. 查看内核日志缓冲区 `sudo dmesg`
     * 可以看到 `内核加载`
-    * 定期删除内核日志缓冲区 `sudo dmesg -c`
+    * 删除内核日志缓冲区 `sudo dmesg -c`
 
 4. 卸载内核模块 `sudo rmmod simple`
     * 查看内核模块 `lsmod`
@@ -131,11 +131,12 @@ int main(int argc, char *argv[]) {
 5. 查看内核日志缓冲区 `dmesg`
     * 可以看到 `内核卸载`
 
-### B
+<br>
 
 **输出内核模块从加载到卸载的时间**
 
 ```cpp
+// simple.c
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/kernel.h>
@@ -165,3 +166,14 @@ MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Simple Module");
 MODULE_AUTHOR("SGG");
 ```
+
+<br>
+
+## 2.17 - 1
+
+
+
+
+<br>
+
+## 2.17 - 2

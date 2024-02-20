@@ -32,8 +32,8 @@
 </ol>
 <p>书籍参考：</p>
 <ul>
-<li>《操作系统概念/原书第10版》 机械工业出版社</li>
-<li>《王道2025》垃圾京东还没发货</li>
+<li>《操作系统概念/原书第10版》机械工业出版社</li>
+<li>《操作系统 王道2025》</li>
 </ul>
 <p>编程环境：</p>
 <ul>
@@ -51,7 +51,7 @@
 强烈建议新开一个 <a href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">虚拟机</a> 进行实验</li>
 </ul>
 <hr>
-<h1 id="os_black">OS_black </h1>
+<h1 id="编程题">编程题 </h1>
 <h2 id="224">2.24 </h2>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// FileCopy.cpp</span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h&gt;</span>  <span class="token comment">// open</span></span>
@@ -102,7 +102,7 @@
 </code></pre><ul>
 <li>可以通过 <code>man open</code>，<code>man read</code> 等命令查看函数的使用方法</li>
 </ul>
-<p>运行：</p>
+<p><strong>运行</strong>：</p>
 <ol>
 <li>编译源文件 <code>g++ FileCopy.cpp -o FileCopy</code></li>
 <li>运行 <code>./FileCopy FileCopy.cpp FileCopy.cpp.bak</code></li>
@@ -119,8 +119,8 @@
 </ol>
 <br>
 <hr>
+<h1 id="编程项目">编程项目 </h1>
 <h2 id="217">2.17 </h2>
-<h3 id="a">A </h3>
 <p><strong>加载与卸载内核模块</strong></p>
 <p>进入 <code>ch2</code> 目录</p>
 <blockquote>
@@ -144,7 +144,7 @@
 <p>查看内核日志缓冲区 <code>sudo dmesg</code></p>
 <ul>
 <li>可以看到 <code>内核加载</code></li>
-<li>定期删除内核日志缓冲区 <code>sudo dmesg -c</code></li>
+<li>删除内核日志缓冲区 <code>sudo dmesg -c</code></li>
 </ul>
 </li>
 <li>
@@ -161,9 +161,10 @@
 </ul>
 </li>
 </ol>
-<h3 id="b">B </h3>
+<br>
 <p><strong>输出内核模块从加载到卸载的时间</strong></p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/init.h&gt;</span></span>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// simple.c</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/init.h&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/module.h&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;linux/kernel.h&gt;</span></span>
 
@@ -191,7 +192,11 @@
 <span class="token function">MODULE_LICENSE</span><span class="token punctuation">(</span><span class="token string">"GPL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">MODULE_DESCRIPTION</span><span class="token punctuation">(</span><span class="token string">"Simple Module"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">MODULE_AUTHOR</span><span class="token punctuation">(</span><span class="token string">"SGG"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+</code></pre><br>
+<h2 id="217---1">2.17 - 1 </h2>
+<br>
+<h2 id="217---2">2.17 - 2 </h2>
+
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
@@ -201,7 +206,7 @@
 
           </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#os_black" class="md-toc-link"><p>OS_black</p>
+          <a href="#编程题" class="md-toc-link"><p>编程题</p>
 </a>
           </summary>
         <div>
@@ -209,24 +214,28 @@
           <a href="#224" class="md-toc-link">
             <p>2.24</p>
 
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#217" class="md-toc-link"><p>2.17</p>
+          <a href="#编程项目" class="md-toc-link"><p>编程项目</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#a" class="md-toc-link">
-            <p>A</p>
+          <a href="#217" class="md-toc-link">
+            <p>2.17</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#b" class="md-toc-link">
-            <p>B</p>
+          <a href="#217---1" class="md-toc-link">
+            <p>2.17 - 1</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#217---2" class="md-toc-link">
+            <p>2.17 - 2</p>
 
           </a></div>
-        </div>
-      </details>
-    
         </div>
       </details>
     
