@@ -153,6 +153,36 @@ LL n<span class="token punctuation">,</span> l<span class="token punctuation">,<
 <span class="token punctuation">}</span>
 </code></pre></details>
 <details><summary><a href="https://www.acwing.com/problem/content/4090/" target="_blank">AcWing 4087. 插入排序</a> code</summary>
+<br>
+<p><strong>大意</strong></p>
+<p>给定一个序列 <code>a</code>，每次可以对该序列做两种操作：</p>
+<ol>
+<li>令 <code>a[x] = v</code></li>
+<li>查询 <code>a[x]</code> 在排序后，所在的位置</li>
+</ol>
+<p><strong>思路</strong></p>
+<ol>
+<li>如果每次查询操作都重新排序，那么必定会超时，因此尝试先排序</li>
+<li>排序后会丢失部分信息，因此有必要记录下来
+<ul>
+<li><code>a[i].fst</code> 记录值</li>
+<li><code>a[i].sed</code> 记录其在原序列的位置</li>
+</ul>
+</li>
+<li>对 <code>a</code> 排序</li>
+<li><code>a</code> 排序后无法快速找到原序列，因此有必要建立一个索引，<code>p[x] = i</code>
+<ul>
+<li>原序列中第 <code>x</code> 位，现在在 <code>i</code> 位</li>
+</ul>
+</li>
+<li>对于查询，我们只需要输出 <code>p[x]</code></li>
+<li>对于修改
+<ul>
+<li>定位到当前的位置 <code>p[x]</code>，令 <code>a[ p[x] ] = v</code></li>
+<li>将 <code>a[ p[x] ]</code> 移动到合适的位置即可</li>
+</ul>
+</li>
+</ol>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">fst</span> <span class="token expression">first</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">sed</span> <span class="token expression">second</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
@@ -1319,13 +1349,13 @@ __int128 c<span class="token punctuation">[</span>N<span class="token punctuatio
 <p>前7天的目标是 csp-j2 的第一题，大量基础题，保证第一题的正确性和解题的速度</p>
 </blockquote>
 <ul>
-<li>第 1 天 <a href="..\..\base\algorithm\Content\0%20%E5%85%A5%E9%97%A8\%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84.html">顺序结构</a> 算法竞赛及OJ的概念</li>
-<li>第 2 天 <a href="..\..\base\algorithm\Content\0%20%E5%85%A5%E9%97%A8\%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84.html">分支结构</a> if</li>
-<li>第 3 天 <a href="..\..\base\algorithm\Content\0%20%E5%85%A5%E9%97%A8\%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84.html">循环结构</a> 循环优化（特判）、嵌套循环</li>
-<li>第 4 天 <a href="..\..\base\algorithm\Content\0%20%E5%85%A5%E9%97%A8\%E6%95%B0%E7%BB%84.html">数组</a> 一维数组、vector等</li>
-<li>第 5 天 <a href="..\..\base\algorithm\Content\0%20%E5%85%A5%E9%97%A8\%E5%AD%97%E7%AC%A6%E4%B8%B2.html">字符串</a> 字符串处理及简单技巧 string &lt;-&gt; int</li>
-<li>第 6 天 <a href="..\..\base\algorithm\Content\0%20%E5%85%A5%E9%97%A8\%E5%87%BD%E6%95%B0.html">函数与结构体</a> pair及利用函数简化解题思路</li>
-<li>第 7 天 <a href="..\..\base\algorithm\Content\1%20%E5%9F%BA%E7%A1%80\%E6%A8%A1%E6%8B%9F.html">枚举与模拟</a> 各种常见的问题</li>
+<li>第 1 天 <a href="../../base/algorithm/Content/0%20%E5%85%A5%E9%97%A8/%E9%A1%BA%E5%BA%8F%E7%BB%93%E6%9E%84.html">顺序结构</a> 算法竞赛及OJ的概念</li>
+<li>第 2 天 <a href="../../base/algorithm/Content/0%20%E5%85%A5%E9%97%A8/%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84.html">分支结构</a> if</li>
+<li>第 3 天 <a href="../../base/algorithm/Content/0%20%E5%85%A5%E9%97%A8/%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84.html">循环结构</a> 循环优化（特判）、嵌套循环</li>
+<li>第 4 天 <a href="../../base/algorithm/Content/0%20%E5%85%A5%E9%97%A8/%E6%95%B0%E7%BB%84.html">数组</a> 一维数组、vector等</li>
+<li>第 5 天 <a href="../../base/algorithm/Content/0%20%E5%85%A5%E9%97%A8/%E5%AD%97%E7%AC%A6%E4%B8%B2.html">字符串</a> 字符串处理及简单技巧 string &lt;-&gt; int</li>
+<li>第 6 天 <a href="../../base/algorithm/Content/0%20%E5%85%A5%E9%97%A8/%E5%87%BD%E6%95%B0.html">函数与结构体</a> pair及利用函数简化解题思路</li>
+<li>第 7 天 <a href="../../base/algorithm/Content/1%20%E5%9F%BA%E7%A1%80/%E6%A8%A1%E6%8B%9F.html">枚举与模拟</a> 各种常见的问题</li>
 </ul>
 <blockquote>
 <p>通过前7天的题海战术，对暴力和模拟已经有了较为深刻的了解<br>
@@ -1337,14 +1367,14 @@ __int128 c<span class="token punctuation">[</span>N<span class="token punctuatio
 掌握简单算法及数据结构，在暴力的基础上进行优化，第二题轻松拿下</p>
 </blockquote>
 <ul>
-<li>第 8 天 <a href="..\..\base\algorithm\Content\5%20%E6%95%B0%E5%AD%A6\%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97.html">高精度</a> 进制转换</li>
-<li>第 9 天 <a href="..\..\base\algorithm\Content\7%20%E5%9B%BE%E8%AE%BA\%E4%BA%8C%E5%8F%89%E6%A0%91.html">二(N)叉树</a> 简单树及特殊树</li>
-<li>第 10 天 <a href="..\..\base\algorithm\Content\1%20%E5%9F%BA%E7%A1%80\%E9%80%92%E5%BD%92.html">递归与递推</a></li>
-<li>第 11 天 <a href="..\..\base\algorithm\Content\2%20%E6%90%9C%E7%B4%A2\DFS.html">DFS</a> 暴搜思想</li>
-<li>第 12 天 <a href="..\..\base\algorithm\Content\2%20%E6%90%9C%E7%B4%A2\BFS.html">BFS</a> 暴搜最优及洪水覆盖</li>
-<li>第 13 天 <a href="..\..\base\algorithm\Content\1%20%E5%9F%BA%E7%A1%80\%E4%BA%8C%E5%88%86.html">二分</a> 一种常见优化</li>
-<li>第 14 天 <a href="..\..\base\algorithm\Content\1%20%E5%9F%BA%E7%A1%80\%E5%89%8D%E7%BC%80%E5%92%8C.html">前缀和与差分</a></li>
-<li>第 15 天 <a href="..\..\base\algorithm\Content\5%20%E6%95%B0%E5%AD%A6\%E8%B4%A8%E6%95%B0.html">素数筛法</a></li>
+<li>第 8 天 <a href="../../base/algorithm/Content/5%20%E6%95%B0%E5%AD%A6/%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97.html">高精度</a> 进制转换</li>
+<li>第 9 天 <a href="../../base/algorithm/Content/7%20%E5%9B%BE%E8%AE%BA/%E4%BA%8C%E5%8F%89%E6%A0%91.html">二(N)叉树</a> 简单树及特殊树</li>
+<li>第 10 天 <a href="../../base/algorithm/Content/1%20%E5%9F%BA%E7%A1%80/%E9%80%92%E5%BD%92.html">递归与递推</a></li>
+<li>第 11 天 <a href="../../base/algorithm/Content/2%20%E6%90%9C%E7%B4%A2/DFS.html">DFS</a> 暴搜思想</li>
+<li>第 12 天 <a href="../../base/algorithm/Content/2%20%E6%90%9C%E7%B4%A2/BFS.html">BFS</a> 暴搜最优及洪水覆盖</li>
+<li>第 13 天 <a href="../../base/algorithm/Content/1%20%E5%9F%BA%E7%A1%80/%E4%BA%8C%E5%88%86.html">二分</a> 一种常见优化</li>
+<li>第 14 天 <a href="../../base/algorithm/Content/1%20%E5%9F%BA%E7%A1%80/%E5%89%8D%E7%BC%80%E5%92%8C.html">前缀和与差分</a></li>
+<li>第 15 天 <a href="../../base/algorithm/Content/5%20%E6%95%B0%E5%AD%A6/%E8%B4%A8%E6%95%B0.html">素数筛法</a></li>
 </ul>
 <blockquote>
 <p>16-21天的目标是 csp-j2 的第三题和第四题<br>

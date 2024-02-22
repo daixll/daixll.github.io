@@ -209,6 +209,32 @@ int main(){
 
 <details><summary><a href="https://www.acwing.com/problem/content/4090/" target="_blank">AcWing 4087. 插入排序</a> code</summary>
 
+<br>
+
+
+**大意**
+
+给定一个序列 `a`，每次可以对该序列做两种操作：
+
+1. 令 `a[x] = v`
+2. 查询 `a[x]` 在排序后，所在的位置
+
+
+**思路**
+
+1. 如果每次查询操作都重新排序，那么必定会超时，因此尝试先排序
+2. 排序后会丢失部分信息，因此有必要记录下来
+    * `a[i].fst` 记录值
+    * `a[i].sed` 记录其在原序列的位置
+3. 对 `a` 排序
+4. `a` 排序后无法快速找到原序列，因此有必要建立一个索引，`p[x] = i`
+    * 原序列中第 `x` 位，现在在 `i` 位
+5. 对于查询，我们只需要输出 `p[x]`
+6. 对于修改
+    * 定位到当前的位置 `p[x]`，令 `a[ p[x] ] = v`
+    * 将 `a[ p[x] ]` 移动到合适的位置即可
+
+
 ```cpp
 #define fst first
 #define sed second
