@@ -26,6 +26,66 @@
       
 <p><a href="https://www.linuxcool.com/">Linux 命令大全</a></p>
 <h1 id="基本操作">基本操作 </h1>
+<h2 id="文件管理">文件管理 </h2>
+<ul>
+<li>
+<p><strong><code>ls</code> 查看</strong></p>
+<ul>
+<li>
+<p><code>ls -a</code><br>
+列出全部文件（含隐藏）</p>
+</li>
+<li>
+<p><code>ls -l</code></p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>文件类型<span class="token punctuation">[</span>所属人权限<span class="token punctuation">]</span><span class="token punctuation">[</span>所属组权限<span class="token punctuation">]</span><span class="token punctuation">[</span>其他人权限<span class="token punctuation">]</span> 硬连接数量 所属人 所属组 文件大小 修改 日期和时间 文件名
+</code></pre><p>文件类型：</p>
+<ul>
+<li><code>-</code> 普通文件</li>
+<li><code>d</code> 目录</li>
+<li><code>l</code> 软链接</li>
+<li><code>b</code> 块设备</li>
+<li><code>c</code> 字符设备</li>
+<li><code>s</code> 套接字</li>
+<li><code>p</code> 管道</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>cd</code> 切换目录</strong></p>
+</li>
+<li>
+<p><strong><code>mkdir</code> 创建文件夹</strong></p>
+<ul>
+<li><code>mkdir -m 711 dir</code><br>
+创建文件夹，权限为 711</li>
+<li><code>mkdir -p dir/dir/dir</code><br>
+创建多层文件夹</li>
+</ul>
+</li>
+<li>
+<p><strong><code>cp</code> 复制文件</strong></p>
+<ul>
+<li><code>cp -p file file.bak</code><br>
+同时复制文件属性</li>
+<li><code>cp -r dir/ dir.bak/</code><br>
+递归复制</li>
+</ul>
+</li>
+<li>
+<p><strong><code>mv</code> 移动文件</strong></p>
+</li>
+<li>
+<p><strong><code>rm</code> 删除文件</strong></p>
+<ul>
+<li><code>rm -r dir/</code><br>
+递归删除</li>
+<li><code>rm -f dir/</code><br>
+忽略不存在的文件</li>
+</ul>
+</li>
+</ul>
+<br>
 <h2 id="权限管理">权限管理 </h2>
 <p>每个文件有三种粒度：</p>
 <ul>
@@ -38,21 +98,6 @@
 <li>读 <code>r</code> <code>4</code></li>
 <li>写 <code>w</code> <code>2</code></li>
 <li>行 <code>x</code> <code>1</code></li>
-</ul>
-<p>查看：</p>
-<ul>
-<li><code>ls -l</code><pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>文件类型<span class="token punctuation">[</span>所属人权限<span class="token punctuation">]</span><span class="token punctuation">[</span>所属组权限<span class="token punctuation">]</span><span class="token punctuation">[</span>其他人权限<span class="token punctuation">]</span> 硬连接数量 所属人 所属组 文件大小 修改日期和时间 文件名
-</code></pre>文件类型：
-<ul>
-<li><code>-</code> 普通文件</li>
-<li><code>d</code> 目录</li>
-<li><code>l</code> 软链接</li>
-<li><code>b</code> 块设备</li>
-<li><code>c</code> 字符设备</li>
-<li><code>s</code> 套接字</li>
-<li><code>p</code> 管道</li>
-</ul>
-</li>
 </ul>
 <p>修改：</p>
 <ul>
@@ -84,8 +129,9 @@
 </li>
 </ul>
 <br>
-<h2 id="文件管理">文件管理 </h2>
 <h2 id="磁盘管理">磁盘管理 </h2>
+<p><strong><code>mount</code> 磁盘挂载</strong></p>
+<p><strong><code>umount</code> 磁盘卸载</strong></p>
 <br>
 <hr>
 <h1 id="常用命令">常用命令 </h1>
@@ -205,12 +251,12 @@
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#权限管理" class="md-toc-link">
-            <p>权限管理</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#文件管理" class="md-toc-link">
             <p>文件管理</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#权限管理" class="md-toc-link">
+            <p>权限管理</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#磁盘管理" class="md-toc-link">
