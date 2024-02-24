@@ -153,14 +153,17 @@ $$f'(x_0) = \lim_{x \to x_0} \frac{f(x)-f(x_0)}{x-x_0} = \left. \frac{\text{d} f
 
 # $\int^a_b f(x) \ \text{d}x$
 
-## 不定积分
-
 <br>
 
 ## 定积分
 
+**牛顿-莱布利兹定理**
 
+$\int^a_b f(x) \ \text{d}x = F(x)|_a^b = F(b) - F(a)$
 
+<br>
+
+## 不定积分
 
 <br>
 
