@@ -85,10 +85,10 @@ export_on_save:
         <a href="PY/index.html"> Python </a>
     </div>
     <div class="item">
-        <a href="">  </a>
+        <a href="JAVA/index.html"> JAVA </a>
     </div>
     <div class="item">
-        <a href="">  </a>
+        <a href="HTML/index.html"> HTML </a>
     </div>
 </div>
 
@@ -163,7 +163,7 @@ export_on_save:
 
 <div class="container">
     <div class="item">
-        <p href="123/index.html"> 马克思主义 </a>
+        <a href="马克思/index.html"> 马克思主义 </a>
     </div>
     <div class="item">
         <p href="123/index.html"> 列宁主义 </a>

@@ -22,7 +22,13 @@ export_on_save:
 
 # 📚 求学
 
+
+
+[学信网查询](https://www.chsi.com.cn/xlcx/bgcx.jsp)
+
 ## 重庆科技大学
+
+在线验证码：`AK7J41XHYJLJUNY1`
 
 2023 - 2025、本科、计算机科学与技术
 
@@ -30,16 +36,9 @@ export_on_save:
 
 ## 重庆工业职业技术学院
 
+在线验证码：`AJMQ3S1HRKAJ5Y4Z`
+
 2020 - 2023、专科、计算机网络技术
-
----
-
-# 🪓 项目
-
-## XD 
-
-[链接](./for_you/XD/index.html)
-
 
 ---
 
