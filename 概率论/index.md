@@ -152,14 +152,67 @@ $P\{X + Y = 0\} = \frac{5}{18}$
 
 <br>
 
-### 分布函数求分布函数
+### 概率密度求分布函数
 
-> 设 $X$ 的分布函数为 $F(x)$，则 $Y = X-3$ 的分布函数 $G(Y)$
+> 设随机变量 $X$ 服从 $(0, 2)$ 上的均匀分布，则 $P\{1 < X < 3\}$
 
-$ G(Y) = P\{Y <= y\} $
-$ G(Y) = P\{X-3 <= y\} $
-$ G(Y) = P\{X <= y+3\} $
+$f(x) = \begin{cases} \frac{1}{b-a}, & a < x < b \\ 0, & \text{其他} \end{cases}$
 
+$f(x) = \begin{cases} \frac{1}{2}, & 0 < x < 2 \\ 0, & \text{其他} \end{cases}$
+
+$P\{1 < x < 3\} = \int_1^2 \frac{1}{2} \text{d}x$
+
+$P\{1 < x < 3\} = \frac{1}{2}x |_1^2 = 1 - \frac{1}{2} = \frac{1}{2}$
+
+<br>
+
+> $f(x) = \begin{cases} Ke^{-5x}, x>0 \\ 0, x \leq 0 \end{cases}$，（1）确定 $K$；（2）求 $P\{X>0.2\}$
+
+$\int_0^{+\infty} Ke^{-5x} = \int_0^{+\infty} -\frac{K}{5} e^{-5x} \text{d}(-5x) = 1$
+
+$= -\frac{K}{5}e^{-5x} |_0^{+\infty} = \frac{K}{5} = 1$
+
+$K = 5$
+
+$\int_{0.2}^{+\infty} 5e^{-5x} \text{d}x = \int_{0.2}^{+\infty} -\frac{5}{5} e^{-5x} \text{d}(-5x) = -e^{-5x}|_{0.2}^{+\infty} = e^{-1}$
+
+<br>
+
+### 概率密度求概率密度
+
+> 设 $X \sim f_X(x) = \begin{cases} \frac{x}{8}, 0<x<4\\ 0, 其他\end{cases}$，求 $Y=2X+8$ 的密度函数 $f_Y(y)$
+
+$F_Y(y) = P(Y \leq y) = P(2X+8 \leq y) = P(X \leq \frac{y-8}{2}) = F_X(\frac{y-8}{2})$
+
+$f_Y(y) = \begin{cases} f_x(h(y))*|h^{'}(y)| , a < y < b\\ 0, 其他\end{cases}$
+
+$f_Y(y) = \begin{cases} \frac{\frac{y-8}{2}}{8}*|(\frac{y-8}{2})^{'}| , a < y < b\\ 0, 其他\end{cases}$
+
+* 错误做法
+    $F_Y(y) = \int_0^{\frac{y-8}{2}} \frac{x}{8} \text{d}x = \frac{x^2}{16}|_0^\frac{y-8}{2} = \frac{(y-8)^2}{64}$
+    $F_Y^{'}(y) = f_Y(y) = (\frac{1}{64}y^2 - \frac{1}{4}y + 1)^{'} = \frac{y-8}{32}$
+
+$f_Y(y) = \begin{cases} \frac{y-8}{32}, 8<y<16 \\ 0, 其他 \end{cases}$
+
+<br>
+
+> 设 $X \sim f_X(x) = \begin{cases} \frac{x}{8}, 0<x<4\\ 0, 其他\end{cases}$，求 $Y=2X-1$ 的密度函数 $f_Y(y)$
+
+$F_Y(y) = P(Y \leq y) = P(2x-1 \leq y) = P(x \leq \frac{y+1}{2}) = F_X(\frac{y+1}{2})$
+
+$f_Y(y) = \begin{cases} f_x(h(y))*|h^{'}(y)| , a < y < b\\ 0, 其他\end{cases}$
+
+$f_Y(y) = \begin{cases} \frac{\frac{y+1}{2}}{8}*|(\frac{y+1}{2})^{'}| , a < y < b\\ 0, 其他\end{cases}$
+
+
+* 错误做法
+
+    $F_Y(y) = \int_0^\frac{y+1}{2} \frac{x}{8} \text{d}x = \frac{x^2}{16}|_0^\frac{y+1}{2} = \frac{(y+1)^2}{64}$
+    $F_Y^{'}(y) = f_Y(y) = \frac{y+1}{32}$
+
+
+
+$f_Y(y) = \begin{cases} \frac{y+1}{32}, -1<y<7 \\ 0, 其他 \end{cases}$
 
 <br>
 
@@ -175,20 +228,6 @@ $\frac{\lambda^k e^{-\lambda}}{k!} = \frac{\frac{1}{3^k}A}{k!}$
 $\lambda^k e^{-\lambda} = (\frac{1}{3})^kA$，令$ \lambda = \frac{1}{3} $
 
 $ A = e ^ {-\frac{1}{3}}$
-
-<br>
-
-### U
-
-> 设随机变量 $X$ 服从 $(0, 2)$ 上的均匀分布，则 $P\{1 < X < 3\}$
-
-$f(x) = \begin{cases} \frac{1}{b-a}, & a < x < b \\ 0, & \text{其他} \end{cases}$
-
-$f(x) = \begin{cases} \frac{1}{2}, & 0 < x < 2 \\ 0, & \text{其他} \end{cases}$
-
-$P\{1 < x < 3\} = \int_1^2 \frac{1}{2} \text{d}x$
-
-$P\{1 < x < 3\} = \frac{1}{2}x |_1^2 = 1 - \frac{1}{2} = \frac{1}{2}$
 
 <br>
 
@@ -375,17 +414,6 @@ $$X \sim N(\mu, \sigma^2)$$
 
 ---
 
-## 4、随机变量函数的分布
-
-### 离散型
-
-
-
-
-<br>
-
----
-
 # 三、多维随机变量及其分布
 
 ## 0、题
@@ -408,13 +436,6 @@ $E(X) = \int^1_0 x(2x) \text{d}x = \frac{2}{3} x^3 |^1_0 = \frac{2}{3}$
 $E(X^2) = \int^1_0 x^2(2x) \text{d}x = \frac{1}{2}x^4 |^1_0 = \frac{1}{2}$
 
 $D(X) = E(X^2) - E^2(X) = \frac{1}{18}$
-
-<br>
-
-### 连续型确定常数 ？
-
-> 设 $ f(x) = \begin{cases} Ae^{-6x}, x > 0 \\ 0 , x \leq 0 \end{cases}$：（1）确定 $A$；（2）求 $P\{ X > \frac{1}{6} \}$；（3）求分布函数 $F(x)$
-
 
 <br>
 
@@ -682,7 +703,25 @@ $E(X) = \int_0^1x(\theta+1)x^\theta \text{d}x = \frac{\theta + 1}{\theta + 2}$
 
 ### 求极大似然估计
 
-> 设总体 $X \sim N(\mu, \sigma^2)$，$X_1, X_2, \cdots, X_n$ 是来自总体 $X$ 的样本，求 $\mu$ 的矩估计量和极大似然估计量。 
+> 设总体 $X \sim P(x), \lambda > 0$ 且未知，其分布律 $P\{X=k\} = \frac{\lambda^k e^{-\lambda}}{k!}, k=0,1...$， $x_1, x_2, ... , x_n$ 是来自总体 $X$ 的一个样本，求 $\lambda$ 的极大似然估计
+
+$L(x_1, x_2, ... , x_n) = P\{X=x_1\} * P\{X=x_2\} * ... * P\{X=x_n\} = \frac{\lambda^{x_1} e^{-\lambda}}{{x_1}!} * \frac{\lambda^{x_2} e^{-\lambda}}{{x_2}!} * ... * \frac{\lambda^{x_n} e^{-\lambda}}{{x_n}!}$
+
+$L(x_1, x_2, ... , x_n) = \frac{\lambda^{\sum_{i=1}^n x_i} e^{-n\lambda}}{x_1!x_2!...x_n!}$
+
+$\ln L(\lambda) = \sum_{i=1}^n x_i \ln \lambda - n\lambda - \ln(x_1!x_2!...x_n!)$
+
+$\frac{\text{d}\ln L(\lambda)}{\text{d} \lambda} = \frac{\sum_{i=1}^n x_i}{\lambda} - n + 0 \triangleq 0$
+
+解得 $\hat \lambda = \frac{\sum_{i=1}^{n} x_i}{n} = \bar x$
+
+<br>
+
+> 设总体 $X \sim N(\mu, \sigma^2)$，$\mu, \sigma^2$ 为未知参数，$x_1, x_2, ... , x_n$ 是来自总体 $X$ 的一组样本值，求 $\mu, \sigma^2$ 的极大似然估计量
+
+$f(x; \mu \sigma^2) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+
+$L(\mu, \sigma^2) = \sum_{i=1}^n \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}$
 
 <br>
 
@@ -701,14 +740,23 @@ $E(X) = \int_0^1x(\theta+1)x^\theta \text{d}x = \frac{\theta + 1}{\theta + 2}$
 2. 令 $\bar X = E(X)$，解得 $\hat \theta$ 即为矩估计量
 
 
-
-
-
 <br>
 
 ---
 
 ## 2、极大似然估计
+
+### 基本思想
+
+使得当前样本 $x_1, x_2, x_3, ... , x_n$ 出现的概率最大的参数值 $\hat \theta$ 即为极大似然估计
+
+### 基本步骤
+
+1. 写出样本似然函数 $L(\theta)$
+
+2. 取对数：$\ln L(\theta)$
+
+3. 求导数，得驻点：$\frac{\text{d}\ln L(\theta) }{\text{d} \theta} \triangleq 0$
 
 <br>
 
@@ -722,7 +770,10 @@ $E(X) = \int_0^1x(\theta+1)x^\theta \text{d}x = \frac{\theta + 1}{\theta + 2}$
 
 # 八、假设检验
 
-## 0、
+## 0、题
+
+
+<!--
 
 # 最后一题
 
