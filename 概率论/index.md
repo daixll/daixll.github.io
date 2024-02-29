@@ -11,6 +11,82 @@ export_on_save:
 
 # 一、概率论的基本概念
 
+* $P(A+B) = P(A) + P(B) - P(AB)$
+    * 若独立，则 $P(AB) = P(A) * P(B)$
+
+## 事件的关系
+
+* 包含：$A \subset B$，，$B$ 包含 $A$，事件 $A$ 发生必然导致事件 $B$ 发生。
+
+* 并：$A \cup B$，事件 $A$ 与 $B$ 至少发生一个。
+
+* 交：$A \cap B$，事件 $A$ 与 $B$ 同时发生，有时候也称为积，也写作 $AB$。
+
+* 差：$A - B$，事件 $A$ 发生而 $B$ 不发生。
+
+* 互斥：$A \cap B = \emptyset$，事件 $A$ 与 $B$ 不可能同时发生。
+
+* 逆（对立）：$\bar{A}$，事件 $A$ 不发生。
+
+* 互斥：$A \cap \bar{A} = \emptyset$，$A \cup \bar{A} = S$，事件 $A$ 与 $\bar{A}$ 互斥。
+
+## <span style="color:orange;">事件的运算</span>
+
+* 交换律：$A \cup B = B \cup A$，$A \cap B = B \cap A$。
+* 结合律：$(A \cup B) \cup C = A \cup (B \cup C)$，$(A \cap B) \cap C = A \cap (B \cap C)$。
+* 分配律：$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$，$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$。
+* 德摩根律：$\overline{A \cup B} = \bar{A} \cap \bar{B}$，$\overline{A \cap B} = \bar{A} \cup \bar{B}$。
+
+
+## 频率
+
+在相同条件下，进行了 $n$ 次试验，事件 $A$ 发生的次数 $n_A$ 与 $n$ 的比值。
+
+## <span style="color:orange;">概率</span>
+
+事件 $A$ 发生的可能性大小的度量，记作 $P(A)$。
+
+性质：
+
+* 非负性：$P(A) \geq 0$。
+* 规范性：$P(S) = 1$。
+* 可列可加性：若 $A_1, A_2, \cdots$ 两两互斥，则 $P(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)$。
+
+根据性质拓展：
+
+* $P(\emptyset) = 0$。
+* $P(\bar{A}) = 1 - P(A)$。
+* 若 $A \subset B$，则 $P(A) \leq P(B)$，有 $P(B - A) = P(B) - P(A)$。
+* <span style="color:red;">$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</span>。
+* <span style="color:red;">$P(A-B) = P(A) - P(A \cap B) = P(A \cap \bar B)$</span>。
+
+## 古典（等可能）概型
+
+样本空间 $S$ 中的基本事件发生的可能性相同。
+
+## <span style="color:orange;">条件概率</span>
+
+在事件 $B$ 已经发生的条件下，事件 $A$ 发生的概率，记作 $P(A|B)$。
+
+<span style="color:red;">$P(A|B) = \frac{P(A \cap B)}{P(B)}$</span>
+
+可拓展：
+
+* 乘法定理：
+    **$P(A \cap B) = P(A|B) P(B)$**
+
+* 全概率公式：
+    **$P(A) = \sum_{i=1}^n P(A|B_i) P(B_i)$**
+
+* 贝叶斯公式：
+    **$P(B_j|A) = \frac{P(A|B_j) P(B_j)}{\sum_{i=1}^n P(A|B_i) P(B_i)}$**
+
+## <span style="color:orange;">独立性</span>
+
+若 <span style="color:red;">$P(A \cap B) = P(A)P(B)$</span>，则称事件 $A$ 与 $B$ 相互独立，反之亦然。
+
+<br>
+
 ## 0、题
 
 ### 全概率与贝叶斯
@@ -478,6 +554,10 @@ $X$：
 
 $$E(X) = \sum_{i=1}^{n} x_i p_i$$
 
+$X^2$：
+
+$$E(X^2) = \sum_{i=1}^{n} x_i^2 p_i$$
+
 $Y=g(X)$：
 
 $$E(Y) = \sum_{i=1}^{n} g(x_i) p_i$$
@@ -493,7 +573,11 @@ $$E(Z) = \sum_{i=1}^{n} \sum_{j=1}^{m} g(x_i, y_j) p_{ij}$$
 
 $X$：
 
-$$E(x) = \int_{-\infty}^{+\infty} x f(x) dx$$
+$$E(X) = \int_{-\infty}^{+\infty} x f(x) \text{d}x$$
+
+$X^2$：
+
+$$E(X^2) = \int_{-\infty}^{+\infty} x^2 f(x) \text{d}x$$
 
 $Y=g(X)$：
 
@@ -545,8 +629,8 @@ $C$ 为常数
 
 * $D(CX) = C^2D(X)$
 
-* $D(X+Y) = D(X) + D(Y) + 2(E(XY) - E(X)E(Y))$
-    * 独立，则 $D(X+Y) = D(X) + D(Y)$（不能反推）
+* $D(X \pm Y) = D(X) + D(Y) \pm 2(E(XY) - E(X)E(Y))$
+    * 独立，则 $D(X \pm Y) = D(X) + D(Y)$（不能反推）（符号就是这样）
 
 * 若 $D(X)=0$，则 $P\{X=E(X)\}=1$
 
