@@ -11,82 +11,6 @@ export_on_save:
 
 # 一、概率论的基本概念
 
-* $P(A+B) = P(A) + P(B) - P(AB)$
-    * 若独立，则 $P(AB) = P(A) * P(B)$
-
-## 事件的关系
-
-* 包含：$A \subset B$，，$B$ 包含 $A$，事件 $A$ 发生必然导致事件 $B$ 发生。
-
-* 并：$A \cup B$，事件 $A$ 与 $B$ 至少发生一个。
-
-* 交：$A \cap B$，事件 $A$ 与 $B$ 同时发生，有时候也称为积，也写作 $AB$。
-
-* 差：$A - B$，事件 $A$ 发生而 $B$ 不发生。
-
-* 互斥：$A \cap B = \emptyset$，事件 $A$ 与 $B$ 不可能同时发生。
-
-* 逆（对立）：$\bar{A}$，事件 $A$ 不发生。
-
-* 互斥：$A \cap \bar{A} = \emptyset$，$A \cup \bar{A} = S$，事件 $A$ 与 $\bar{A}$ 互斥。
-
-## <span style="color:orange;">事件的运算</span>
-
-* 交换律：$A \cup B = B \cup A$，$A \cap B = B \cap A$。
-* 结合律：$(A \cup B) \cup C = A \cup (B \cup C)$，$(A \cap B) \cap C = A \cap (B \cap C)$。
-* 分配律：$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$，$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$。
-* 德摩根律：$\overline{A \cup B} = \bar{A} \cap \bar{B}$，$\overline{A \cap B} = \bar{A} \cup \bar{B}$。
-
-
-## 频率
-
-在相同条件下，进行了 $n$ 次试验，事件 $A$ 发生的次数 $n_A$ 与 $n$ 的比值。
-
-## <span style="color:orange;">概率</span>
-
-事件 $A$ 发生的可能性大小的度量，记作 $P(A)$。
-
-性质：
-
-* 非负性：$P(A) \geq 0$。
-* 规范性：$P(S) = 1$。
-* 可列可加性：若 $A_1, A_2, \cdots$ 两两互斥，则 $P(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)$。
-
-根据性质拓展：
-
-* $P(\emptyset) = 0$。
-* $P(\bar{A}) = 1 - P(A)$。
-* 若 $A \subset B$，则 $P(A) \leq P(B)$，有 $P(B - A) = P(B) - P(A)$。
-* <span style="color:red;">$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</span>。
-* <span style="color:red;">$P(A-B) = P(A) - P(A \cap B) = P(A \cap \bar B)$</span>。
-
-## 古典（等可能）概型
-
-样本空间 $S$ 中的基本事件发生的可能性相同。
-
-## <span style="color:orange;">条件概率</span>
-
-在事件 $B$ 已经发生的条件下，事件 $A$ 发生的概率，记作 $P(A|B)$。
-
-<span style="color:red;">$P(A|B) = \frac{P(A \cap B)}{P(B)}$</span>
-
-可拓展：
-
-* 乘法定理：
-    **$P(A \cap B) = P(A|B) P(B)$**
-
-* 全概率公式：
-    **$P(A) = \sum_{i=1}^n P(A|B_i) P(B_i)$**
-
-* 贝叶斯公式：
-    **$P(B_j|A) = \frac{P(A|B_j) P(B_j)}{\sum_{i=1}^n P(A|B_i) P(B_i)}$**
-
-## <span style="color:orange;">独立性</span>
-
-若 <span style="color:red;">$P(A \cap B) = P(A)P(B)$</span>，则称事件 $A$ 与 $B$ 相互独立，反之亦然。
-
-<br>
-
 ## 0、题
 
 ### 全概率与贝叶斯
@@ -208,6 +132,71 @@ $P(A_3) = 0.08, P(B_3|A_3) = 0.05$
 $P(B) = 0.2*0.1 + 0.1*0.82 + 0.05*0.08 = 0.106$
 
 $P(A_1|B) = \frac{0.2*0.1}{0.106} = 0.1886$
+
+<br>
+
+## 一、事件
+
+### 事件的关系
+
+* 包含：$A \subset B$，，$B$ 包含 $A$，事件 $A$ 发生必然导致事件 $B$ 发生
+
+* 并：$A \cup B$，事件 $A$ 与 $B$ 至少发生一个
+
+* 交：$A \cap B$，事件 $A$ 与 $B$ 同时发生，有时候也称为积，也写作 $AB$
+
+* 差：$A - B$，事件 $A$ 发生而 $B$ 不发生
+
+* 互斥：$A \cap B = \emptyset$，事件 $A$ 与 $B$ 不可能同时发生
+
+* 逆（对立）：$\bar{A}$，事件 $A$ 不发生
+
+* 互斥：$A \cap \bar{A} = \emptyset$，$A \cup \bar{A} = S$，事件 $A$ 与 $\bar{A}$ 互斥
+
+### <span style="color:orange;">事件的运算</span>
+
+* 交换律：$A \cup B = B \cup A$，$A \cap B = B \cap A$
+* 结合律：$(A \cup B) \cup C = A \cup (B \cup C)$，$(A \cap B) \cap C = A \cap (B \cap C)$
+* 分配律：$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$，$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+* 德摩根律：$\overline{A \cup B} = \bar{A} \cap \bar{B}$，$\overline{A \cap B} = \bar{A} \cup \bar{B}$
+
+
+### 频率
+
+在相同条件下，进行了 $n$ 次试验，事件 $A$ 发生的次数 $n_A$ 与 $n$ 的比值
+
+### <span style="color:orange;">概率</span>
+
+事件 $A$ 发生的可能性大小的度量，记作 $P(A)$
+
+性质：
+
+* 非负性：$P(A) \geq 0$
+* 规范性：$P(S) = 1$
+* 可列可加性：若 $A_1, A_2, \cdots$ 两两互斥，则 $P(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)$
+
+根据性质拓展：
+
+* $P(\emptyset) = 0$
+* $P(\bar{A}) = 1 - P(A)$
+* 若 $A \subset B$，则 $P(A) \leq P(B)$，有 $P(B - A) = P(B) - P(A)$
+* <span style="color:red;">$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</span>
+    * <span style="color:red;">$P(A \cap B) = P(A|B) P(B)$</span>
+    * 若独立，则 <span style="color:red;">$P(A \cap B) = P(A)P(B)$</span>
+* <span style="color:red;">$P(A-B) = P(A) - P(A \cap B) = P(A \cap \bar B)$</span>
+
+### <span style="color:orange;">条件概率</span>
+
+在事件 $B$ 已经发生的条件下，事件 $A$ 发生的概率，记作 $P(A|B)$
+
+<span style="color:red;">$P(A|B) = \frac{P(A \cap B)}{P(B)}$</span>
+
+可拓展：
+* 全概率公式：
+    **<span style="color:red;">$P(A) = \sum_{i=1}^n P(A|B_i) P(B_i)$</span>**
+
+* 贝叶斯公式：
+    **<span style="color:red;">$P(B_j|A) = \frac{P(A|B_j) P(B_j)}{\sum_{i=1}^n P(A|B_i) P(B_i)}$</span>**
 
 <br>
 
@@ -448,7 +437,7 @@ $$ X \sim G(p) $$
 
 $$F(x) = \int_{-\infty}^{x} f(t) dt$$ $$其中, -\infty < x < +\infty$$
 
-$x$ 为连续型随机变量，$f(x)$ 称为 $X$ 的概率密度函数。
+$x$ 为连续型随机变量，$f(x)$ 称为 $X$ 的概率密度函数
 
 ### 均匀分布 $U$
 
@@ -567,7 +556,7 @@ $Z=g(X, Y)$：
 $$E(Z) = \sum_{i=1}^{n} \sum_{j=1}^{m} g(x_i, y_j) p_{ij}$$
 
 
-### 连续型
+### <span style="color:orange;">连续型</span>
 
 **连续期望 = 取值乘密度再积分**
 
@@ -683,94 +672,6 @@ $$D(X+Y) = D(X) + D(Y) + 2Cov(X, Y)$$
 * $Cov(aX,bY) = abCov(X, Y)$
 
 * $Cov(X+Y,Z) = Cov(X,Z)+Cov(Y,Z)$
-
-<br>
-
----
-
-
-
-# 六、样本及抽样分布
-
-样本是从总体中选择出来的一部分个体，以便对总体进行统计推断
-抽样分布是一种概率分布，描述了从同一总体中抽取的各个样本的统计量的分布情况
-
-
-
-## 总体
-
-研究对象的全体，称为总体
-
-> 对全球所有人的身高进行研究，那么全球所有人的身高就是总体
-
-组成总体的每个对象，称为 **个体**，也称为 **样本单位**
-个体数量称为 **容量**，容量为有限的总体称为 **有限总体**，容量为无限的总体称为 **无限总体**
-
-> 每个人就是一个个体，全球所有人是有限总体
-
-## 简单随机样本
-
-从总体中随机抽取的 $n$ 个个体组成的样本，称为简单随机样本
-
-具有以下特点：
-
-* **等概率性**：每个个体被抽取的概率相等
-* **独立性**：每个个体被抽取与否不影响其他个体被抽取的概率
-* **随机性**：每个个体被抽取的概率是随机的
-
-## <span style="color:orange;">统计量</span>
-
-统计量是样本的函数，用于对总体的未知参数进行估计
-
-**均值**
-
-总体的平均水平
-
-$\overline{X} = \frac{1}{n} \sum_{i=1}^n X_i$
-
-**样本方差**
-
-样本的离散程度。
-
-$S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \overline{X})^2$
-
-> 使用 $n-1$ 而不是 $n$，是为了使得样本方差的期望等于总体方差。
-
-**样本标准差**
-
-样本的离散程度。
-
-$S = \sqrt{S^2}$
-
-**中位数**
-
-样本的中间值，对抗极端值的影响。
-
-$Me = \begin{cases} X_{(\frac{n+1}{2})}, & n \text{为奇数} \\ \frac{1}{2} (X_{(\frac{n}{2})} + X_{(\frac{n}{2}+1)}), & n \text{为偶数} \end{cases}$
-
-## 三大分布
-
-### $\chi^2$ （卡方）分布
-
-若 $X_1, X_2, \cdots, X_n$ 相互独立，且都服从标准正态分布 $N(0,1)$，
-则称随机变量 $Y = X_1^2 + X_2^2 + \cdots + X_n^2$ 服从自由度为 $n$ 的 $\chi^2$ 分布，记作 $Y \sim \chi^2(n)$。
-
-**概率密度**：
-
-$f(x) = \begin{cases} \frac{1}{2^{\frac{n}{2}} \Gamma(\frac{n}{2})} x^{\frac{n}{2}-1} e^{-\frac{x}{2}}, & x > 0 \\ 0, & x \leq 0 \end{cases}$
-
-### $t$ 分布
-
-设 $X \sim N(0,1)$，$Y \sim \chi^2(n)$，且 $X$ 与 $Y$ 相互独立，则称随机变量 
-
-$Z = \frac{X}{\sqrt{\frac{Y}{n}}}$ 服从自由度为 $n$ 的 $t$ 分布，记作 $Z \sim t(n)$。
-
-### $F$ 分布
-
-设 $U \sim \chi^2(n)$，$V \sim \chi^2(m)$，且 $U$ 与 $V$ 相互独立，则称随机变量
-
-$W = \frac{ U / n}{ V / m}$ 服从自由度为 $n$ 和 $m$ 的 $F$ 分布，记作 $W \sim F(n,m)$。
-
 
 <br>
 
@@ -935,7 +836,7 @@ $38.5066 < 39.364$
 
 <br>
 
-> 在排放的工业废气中，某种有害物质不得超过 $0.05‰$，假定有害物质含量 $X$ 服从正态分布。现取得 $5$ 份样本，测定该有害物质含量，得如下数据：$0.53‰, 0.542‰, 0.51‰, 0.495‰, 0.515‰$，能否认为有害物质含量超过了规定（显著性水平 $\alpha = 0.05$）
+> 在排放的工业废气中，某种有害物质不得超过 $0.05‰$，假定有害物质含量 $X$ 服从正态分布现取得 $5$ 份样本，测定该有害物质含量，得如下数据：$0.53‰, 0.542‰, 0.51‰, 0.495‰, 0.515‰$，能否认为有害物质含量超过了规定（显著性水平 $\alpha = 0.05$）
 
 已知：$n = 5, \bar X = 0.5184, \mu_0=0.05, S^2 = 3.303*10^{-4}, S = 0.018174$
 
@@ -958,7 +859,7 @@ $38.5066 < 39.364$
 
     
 
-## 1、公式
+## <span style="color:orange;">1、公式 </span>
 
 检验统计量：
 
@@ -972,11 +873,11 @@ $38.5066 < 39.364$
 
 拒绝域：
 
-**$$|Z| \geq Z_{\frac{\alpha}{2}}$$**
+**$$|Z| \geq Z_{\frac{\alpha}{2}}, \ |Z| \geq Z_{\alpha} $$**
 
-**$$|T| \geq T_{\alpha}(n-1)$$**
+**$$|T| \geq Z_{\frac{\alpha}{2}}(n-1), \ T \geq T_{\alpha}(n-1)$$**
 
-**$$ \begin{cases} \chi^2 \leq \chi^2_{1-\frac{\alpha}{2}}(n-1) \\ \chi^2 \geq \chi^2_{\frac{\alpha}{2}}(n-1)\end{cases} $$**
+**$$ \begin{cases} \chi^2 \geq \chi^2_{\frac{\alpha}{2}}(n-1) \\ \chi^2 \leq \chi^2_{1-\frac{\alpha}{2}}(n-1)\end{cases} $$**
 
 <!--
 
@@ -1029,87 +930,87 @@ s: 样本总量
 
 1. 可以在相同的条件下重复进行；
 2. 试验的结果不止一个，且能事先明确试验的所有可能结果；
-3. 进行一次试验之前不能确定哪一个结果会出现。
+3. 进行一次试验之前不能确定哪一个结果会出现
 
-> 掷骰子、掷硬币、抽签、抽奖、生产产品、检查产品、调查统计等。
+> 掷骰子、掷硬币、抽签、抽奖、生产产品、检查产品、调查统计等
 
 ## 样本空间 
 
-随机试验的 **所有可能结果组成的集合** 称为随机试验的样本空间，记作 $S$。
+随机试验的 **所有可能结果组成的集合** 称为随机试验的样本空间，记作 $S$
 
-集合的全集 -> 事件的所有可能结果 -> 样本空间。
+集合的全集 -> 事件的所有可能结果 -> 样本空间
 
 ## 随机事件
 
-样本空间 $S$ 的子集称为随机事件。
+样本空间 $S$ 的子集称为随机事件
 
-集合的子集 -> 事件的某些可能结果 -> 随机事件。
+集合的子集 -> 事件的某些可能结果 -> 随机事件
 
 ## 基本事件
 
-样本空间 $S$ 的单个元素称为基本事件。
+样本空间 $S$ 的单个元素称为基本事件
 
-集合的单个元素 -> 事件的某一个可能结果 -> 基本事件。
+集合的单个元素 -> 事件的某一个可能结果 -> 基本事件
 
 ## 必然事件与不可能事件
 
-* 必然事件：样本空间 $S$ 。
+* 必然事件：样本空间 $S$ 
 
-* 不可能事件：空集 $\emptyset$ 。
+* 不可能事件：空集 $\emptyset$ 
 
 ## 事件的关系
 
-* 包含：$A \subset B$，，$B$ 包含 $A$，事件 $A$ 发生必然导致事件 $B$ 发生。
+* 包含：$A \subset B$，，$B$ 包含 $A$，事件 $A$ 发生必然导致事件 $B$ 发生
 
-* 并：$A \cup B$，事件 $A$ 与 $B$ 至少发生一个。
+* 并：$A \cup B$，事件 $A$ 与 $B$ 至少发生一个
 
-* 交：$A \cap B$，事件 $A$ 与 $B$ 同时发生，有时候也称为积，也写作 $AB$。
+* 交：$A \cap B$，事件 $A$ 与 $B$ 同时发生，有时候也称为积，也写作 $AB$
 
-* 差：$A - B$，事件 $A$ 发生而 $B$ 不发生。
+* 差：$A - B$，事件 $A$ 发生而 $B$ 不发生
 
-* 互斥：$A \cap B = \emptyset$，事件 $A$ 与 $B$ 不可能同时发生。
+* 互斥：$A \cap B = \emptyset$，事件 $A$ 与 $B$ 不可能同时发生
 
-* 逆（对立）：$\bar{A}$，事件 $A$ 不发生。
+* 逆（对立）：$\bar{A}$，事件 $A$ 不发生
 
-* 互斥：$A \cap \bar{A} = \emptyset$，$A \cup \bar{A} = S$，事件 $A$ 与 $\bar{A}$ 互斥。
+* 互斥：$A \cap \bar{A} = \emptyset$，$A \cup \bar{A} = S$，事件 $A$ 与 $\bar{A}$ 互斥
 
 ## <span style="color:orange;">事件的运算</span>
 
-* 交换律：$A \cup B = B \cup A$，$A \cap B = B \cap A$。
-* 结合律：$(A \cup B) \cup C = A \cup (B \cup C)$，$(A \cap B) \cap C = A \cap (B \cap C)$。
-* 分配律：$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$，$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$。
-* 德摩根律：$\overline{A \cup B} = \bar{A} \cap \bar{B}$，$\overline{A \cap B} = \bar{A} \cup \bar{B}$。
+* 交换律：$A \cup B = B \cup A$，$A \cap B = B \cap A$
+* 结合律：$(A \cup B) \cup C = A \cup (B \cup C)$，$(A \cap B) \cap C = A \cap (B \cap C)$
+* 分配律：$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$，$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+* 德摩根律：$\overline{A \cup B} = \bar{A} \cap \bar{B}$，$\overline{A \cap B} = \bar{A} \cup \bar{B}$
 
 
 ## 频率
 
-在相同条件下，进行了 $n$ 次试验，事件 $A$ 发生的次数 $n_A$ 与 $n$ 的比值。
+在相同条件下，进行了 $n$ 次试验，事件 $A$ 发生的次数 $n_A$ 与 $n$ 的比值
 
 ## <span style="color:orange;">概率</span>
 
-事件 $A$ 发生的可能性大小的度量，记作 $P(A)$。
+事件 $A$ 发生的可能性大小的度量，记作 $P(A)$
 
 性质：
 
-* 非负性：$P(A) \geq 0$。
-* 规范性：$P(S) = 1$。
-* 可列可加性：若 $A_1, A_2, \cdots$ 两两互斥，则 $P(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)$。
+* 非负性：$P(A) \geq 0$
+* 规范性：$P(S) = 1$
+* 可列可加性：若 $A_1, A_2, \cdots$ 两两互斥，则 $P(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)$
 
 根据性质拓展：
 
-* $P(\emptyset) = 0$。
-* $P(\bar{A}) = 1 - P(A)$。
-* 若 $A \subset B$，则 $P(A) \leq P(B)$，有 $P(B - A) = P(B) - P(A)$。
-* <span style="color:red;">$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</span>。
-* <span style="color:red;">$P(A-B) = P(A) - P(A \cap B) = P(A \cap \bar B)$</span>。
+* $P(\emptyset) = 0$
+* $P(\bar{A}) = 1 - P(A)$
+* 若 $A \subset B$，则 $P(A) \leq P(B)$，有 $P(B - A) = P(B) - P(A)$
+* <span style="color:red;">$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</span>
+* <span style="color:red;">$P(A-B) = P(A) - P(A \cap B) = P(A \cap \bar B)$</span>
 
 ## 古典（等可能）概型
 
-样本空间 $S$ 中的基本事件发生的可能性相同。
+样本空间 $S$ 中的基本事件发生的可能性相同
 
 ## <span style="color:orange;">条件概率</span>
 
-在事件 $B$ 已经发生的条件下，事件 $A$ 发生的概率，记作 $P(A|B)$。
+在事件 $B$ 已经发生的条件下，事件 $A$ 发生的概率，记作 $P(A|B)$
 
 <span style="color:red;">$P(A|B) = \frac{P(A \cap B)}{P(B)}$</span>
 
@@ -1126,7 +1027,7 @@ s: 样本总量
 
 ## <span style="color:orange;">独立性</span>
 
-若 <span style="color:red;">$P(A \cap B) = P(A)P(B)$</span>，则称事件 $A$ 与 $B$ 相互独立，反之亦然。
+若 <span style="color:red;">$P(A \cap B) = P(A)P(B)$</span>，则称事件 $A$ 与 $B$ 相互独立，反之亦然
 
 <br>
 
@@ -1147,9 +1048,9 @@ p58 20
 > **Q1：求 $X$ 的概率密度函数 $f(x)$**
 
 * 分段求导：
-    * $x < 1$，$F(x) = 0$。$f^{'}(x) = 0$
-    * $1 \leq x < e$，$F(x) = \ln x$。$f^{'}(x) = \frac{1}{x}$
-    * $x \geq e$，$F(x) = 1$。$f^{'}(x) = 0$
+    * $x < 1$，$F(x) = 0$$f^{'}(x) = 0$
+    * $1 \leq x < e$，$F(x) = \ln x$$f^{'}(x) = \frac{1}{x}$
+    * $x \geq e$，$F(x) = 1$$f^{'}(x) = 0$
 
     因此，有：
     $f(x) = \begin{cases}
@@ -1159,9 +1060,9 @@ p58 20
 
 > **Q2: 求 $P\{X < 2\}$，$P\{0 < X \leq 3\}$，$P\{2 < X < \frac{5}{2}\}$**
 
-> 在概率论中，事件 `X<=2` 与事件 `x<2` 的概率是相等的。
-> 这是因为在实数轴上，概率为零的点是可忽略的。
-> 在连续型随机变量的情况下，单个点的概率为零。
+> 在概率论中，事件 `X<=2` 与事件 `x<2` 的概率是相等的
+> 这是因为在实数轴上，概率为零的点是可忽略的
+> 在连续型随机变量的情况下，单个点的概率为零
 
 * $P\{X < 2\} = P\{X \leq 2\} = F(2) = \ln 2$
 
@@ -1188,7 +1089,7 @@ p59 34
 
 p59 26
 
-> 设 $X \sim N(3,2^2)$。（即 $X$ 服从 **正态分布**，均值为 $3$，方差为 $2^2$）
+> 设 $X \sim N(3,2^2)$（即 $X$ 服从 **正态分布**，均值为 $3$，方差为 $2^2$）
 
 $\mu = 3$，$\sigma = 2$
 
@@ -1490,36 +1391,36 @@ $E(xy) = ?$
 
 p149 4
 
-> 设 $X_1, X_2, \cdots, X_6$ 是来自总体 $N(0,1)$ 的样本，$Y = (X_1+X_2+X_3)^2 + (X_4+X_5+X_6)^2$，试确定常数 $C$，使 $CY$ 服从 $\chi^2$ 分布。
+> 设 $X_1, X_2, \cdots, X_6$ 是来自总体 $N(0,1)$ 的样本，$Y = (X_1+X_2+X_3)^2 + (X_4+X_5+X_6)^2$，试确定常数 $C$，使 $CY$ 服从 $\chi^2$ 分布
 
 $CY 服从 \chi^2$ 分布：
 
-* ${(\sqrt{C}(X_1+X_2+X_3))}^2 + {(\sqrt{C}(X_4+X_5+X_6))}^2 \sim \chi^2(2)$。
+* ${(\sqrt{C}(X_1+X_2+X_3))}^2 + {(\sqrt{C}(X_4+X_5+X_6))}^2 \sim \chi^2(2)$
 
 同理：
 
-* ${(\sqrt{C}(X_1+X_2+X_3))}^2 \sim \chi^2(1)$，${(\sqrt{C}(X_4+X_5+X_6))}^2 \sim \chi^2(1)$。
+* ${(\sqrt{C}(X_1+X_2+X_3))}^2 \sim \chi^2(1)$，${(\sqrt{C}(X_4+X_5+X_6))}^2 \sim \chi^2(1)$
 
 因为 $X_1, X_2, \cdots, X_6$ 是来自总体 $N(0,1)$ 的样本，所以：
 
-* $X_1 + X_2 + X_3 \sim N(0,3)$，$X_4 + X_5 + X_6 \sim N(0,3)$。
+* $X_1 + X_2 + X_3 \sim N(0,3)$，$X_4 + X_5 + X_6 \sim N(0,3)$
 
 为了将 $X_1 + X_2 + X_3$ 和 $X_4 + X_5 + X_6$ 的方差变为 1：
 
-* 当前方差为3，即 $a^2+b^2+c^2=3$，所以 $a=b=c=1$。
-* 令 $a^2+b^2+c^2=1$，所以 $a=b=c=\frac{1}{\sqrt{3}}$。
+* 当前方差为3，即 $a^2+b^2+c^2=3$，所以 $a=b=c=1$
+* 令 $a^2+b^2+c^2=1$，所以 $a=b=c=\frac{1}{\sqrt{3}}$
 
 因此：
 
-* $\frac{x_1+x_2+x_3}{\sqrt{3}} \sim N(0,1)$，$\frac{x_4+x_5+x_6}{\sqrt{3}} \sim N(0,1)$。
+* $\frac{x_1+x_2+x_3}{\sqrt{3}} \sim N(0,1)$，$\frac{x_4+x_5+x_6}{\sqrt{3}} \sim N(0,1)$
 
 由 $\chi^2$ 分布的定义可知：
 
-* ${(\frac{x_1+x_2+x_3}{\sqrt{3}})}^2 \sim \chi^2(1)$，${(\frac{x_4+x_5+x_6}{\sqrt{3}})}^2 \sim \chi^2(1)$。
+* ${(\frac{x_1+x_2+x_3}{\sqrt{3}})}^2 \sim \chi^2(1)$，${(\frac{x_4+x_5+x_6}{\sqrt{3}})}^2 \sim \chi^2(1)$
 
 因此：
 
-* $\sqrt{C} = \frac{1}{\sqrt{3}}$，$C = \frac{1}{3}$。
+* $\sqrt{C} = \frac{1}{\sqrt{3}}$，$C = \frac{1}{3}$
 
 
 ### $t$ 分布
@@ -1532,58 +1433,58 @@ $CY 服从 \chi^2$ 分布：
 
 为了将 $X_1 + X_2$ 的方差变为 1：
 
-* 当前方差为2，即 $a^2+b^2=2$，所以 $a=b=1$。
-* 令 $a^2+b^2=1$，所以 $a=b=\frac{1}{\sqrt{2}}$。
+* 当前方差为2，即 $a^2+b^2=2$，所以 $a=b=1$
+* 令 $a^2+b^2=1$，所以 $a=b=\frac{1}{\sqrt{2}}$
 
 因此：
 
-* $\frac{x_1+x_2}{\sqrt{2}} \sim N(0,1)$。
+* $\frac{x_1+x_2}{\sqrt{2}} \sim N(0,1)$
 
 由 $\chi^2$ 分布的定义可知：
 
-* $X^2_3 + X^2_4 + X^2_5 \sim \chi^2(3)$。
+* $X^2_3 + X^2_4 + X^2_5 \sim \chi^2(3)$
 
 由 $t$ 分布的定义可知：
 
-* $Y = \frac{\frac{x_1+x_2}{\sqrt{2}}}{ \sqrt{\frac{X^2_3 + X^2_4 + X^2_5}{3}}} \sim t(3)$。
+* $Y = \frac{\frac{x_1+x_2}{\sqrt{2}}}{ \sqrt{\frac{X^2_3 + X^2_4 + X^2_5}{3}}} \sim t(3)$
 
 因此，整理一下：
 
-* $Y = \frac{\frac{1}{\sqrt{2}}{(X_1+X_2)} }{ \frac{1}{\sqrt{3}} \sqrt{X^2_3+X^2_4 + X^2_5 }}$。
+* $Y = \frac{\frac{1}{\sqrt{2}}{(X_1+X_2)} }{ \frac{1}{\sqrt{3}} \sqrt{X^2_3+X^2_4 + X^2_5 }}$
 
 所以：
 
-* $C = \frac{\sqrt{3}}{\sqrt{2}} = \frac{\sqrt{6}}{2}$。
+* $C = \frac{\sqrt{3}}{\sqrt{2}} = \frac{\sqrt{6}}{2}$
 
 
 ### $F$ 分布
 
-> 已知总体 $X \sim t(n)$，求证 $X^2 \sim F(1,n)$。
+> 已知总体 $X \sim t(n)$，求证 $X^2 \sim F(1,n)$
 
-* $X \sim t(n)$，$X^2 \sim t^2(n)$。
+* $X \sim t(n)$，$X^2 \sim t^2(n)$
 
 由 $t$ 分布的定义可知：
 
-* $X = \frac{Z}{\sqrt{\frac{Y}{n}}}$，其中 $Z \sim N(0,1)$，$Y \sim \chi^2(n)$。
+* $X = \frac{Z}{\sqrt{\frac{Y}{n}}}$，其中 $Z \sim N(0,1)$，$Y \sim \chi^2(n)$
 
 <br>
 
-* $X^2 = \frac{Z^2}{ Y / n}$。
+* $X^2 = \frac{Z^2}{ Y / n}$
 
 由 $\chi^2$ 分布的定义可知：
 
-* $Z^2 \sim \chi^2(1)$。
+* $Z^2 \sim \chi^2(1)$
 
 由 $F$ 分布的定义可知：
 
-* $X^2 = \frac{Z^2}{ Y / n} = \frac{\chi^2(1) / 1}{\chi^2(n) / n} \sim F(1,n)$。
+* $X^2 = \frac{Z^2}{ Y / n} = \frac{\chi^2(1) / 1}{\chi^2(n) / n} \sim F(1,n)$
 
 
 ### 均值、方差
 
-> 设总体 $X \sim \chi^2(n)$，$X_1, X_2, \cdots, X_{10}$ 是来自总体 $X$ 的样本，求 $E(\bar{X})$，$D(\bar{X})$，$E(S^2)$。
+> 设总体 $X \sim \chi^2(n)$，$X_1, X_2, \cdots, X_{10}$ 是来自总体 $X$ 的样本，求 $E(\bar{X})$，$D(\bar{X})$，$E(S^2)$
 
-> * $E(\bar{X})$：样本均值的期望。
+> * $E(\bar{X})$：样本均值的期望
 
 对于卡方分布，其均值为自由度，因此，有：
 
@@ -1593,7 +1494,7 @@ $CY 服从 \chi^2$ 分布：
 
 * $E(\bar{X}) = E(\frac{1}{n} \sum_{i=1}^n X_i) = \frac{1}{n} \sum_{i=1}^n E(X_i) = \frac{1}{n} \sum_{i=1}^n n = n$
 
-> * $D(\bar{X})$：样本均值的方差。
+> * $D(\bar{X})$：样本均值的方差
 
 对于卡方分布，其方差为自由度的两倍，因此，有：
 
@@ -1603,7 +1504,7 @@ $CY 服从 \chi^2$ 分布：
 
 * $D(\bar{X}) = \frac{2n}{10} = \frac{n}{5}$
 
-> * $E(S^2)$：样本方差的期望。
+> * $E(S^2)$：样本方差的期望
 
 对于卡方分布，其方差为自由度的两倍，因此，有：
 
