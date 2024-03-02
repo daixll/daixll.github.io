@@ -48,6 +48,7 @@ export_on_save:
 
 * 在 `powershell` 中执行
     ```sh
+    wsl --update
     wsl --install -d Ubuntu-22.04   # 下载并安装 Ubuntu 22.04
     ```
 
