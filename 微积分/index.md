@@ -7,25 +7,15 @@ export_on_save:
 
 # 引子
 
-[画图工具](https://www.geogebra.org/graphing?lang=zh_CN)
+[画图](https://www.geogebra.org/graphing?lang=zh_CN) / [计算](https://mathsolver.microsoft.com/zh) / [备用计算](https://mathdf.com/cn/)
 
 <br>
 
 ---
 
-# $\lim_{x \to x_0} = A$
+# **$\lim_{x \to x_0} = A$**
 
 ## 函数
-
-**性质**
-
-1. 有界性
-
-2. 单调性
-
-3. 奇偶性
-
-4. 周期性
 
 ### 三角函数
 
@@ -50,6 +40,24 @@ export_on_save:
 一般对数函数：$\log_a x$
 自然对数函数：$\ln x$ = $\log_e x$
 常用对数函数：$\lg x$ = $\log_{10} x$
+
+### 指数函数
+
+指数函数：$a^x$
+
+### 幂函数
+
+幂函数：$x^a$
+
+### 性质
+
+1. 有界性
+
+2. 单调性
+
+3. 奇偶性
+
+4. 周期性
 
 
 <br>
@@ -79,6 +87,10 @@ ${\forall} \ {\epsilon} > 0$，$ {\exists} \ N > 0$，当 $n > N$ 时，$|a_n - 
 > * ${\frac{\epsilon}{10}}$ 的值域 $(0, +\infty)$
 > * $e^{\frac{\epsilon}{10}}$ 的值域 $(1, +\infty)$
 
+**充要条件**
+
+$\lim_{n \to \infty} u_n = A \iff \lim_{n \to \infty} u_{2n} = \lim_{n \to \infty} u_{2n-1} = A$
+
 <br>
 
 ### 函数极限
@@ -99,8 +111,27 @@ ${\forall} \ {\epsilon} > 0$，$ {\exists} \ N > 0$，当 $n > N$ 时，$|a_n - 
 
 1. $x \to x_0$
     * $\forall \ \epsilon > 0, \exists \ \delta > 0$，当 $0 < |x - x_0| < \delta$ 时，$|f(x) - A| < \epsilon$，称 $\lim_{x \to x_0} f(x) = A$
-        > 给定一个 **任意小** 的正数 $\epsilon$ 和 $\delta$，使得 $x$ 与 $x_0$ 之间的差异小于 $\delta$ 时
+        > 给定 **任意小** 的正数 $\epsilon$ 和 $\delta$，当 $x$ 与 $x_0$ 之间的差异小于 $\delta$ 时
         > 函数值与极限值 $A$ 之间的差异都小于 $\epsilon$
+
+2. $x \to \infty$
+    * $\forall \ \epsilon > 0, \exists \ \delta > 0$，当 $|x| > \delta$ 时，$|f(x) - A| < \epsilon$，称 $\lim_{x \to \infty} f(x) = A$
+        > 给定 **任意小** 的正数 $\epsilon$ 和 $\delta$，当 $x$ 的绝对值大于 $\delta$ 时
+        > 函数值与极限值 $A$ 之间的差异都小于 $\epsilon$
+
+**充要条件**
+
+$\lim_{x \to x_0} f(x) = A \iff f(x_0^-) = f(x_0^+) = A$
+
+### 无穷大小
+
+<br>
+
+### 性质
+
+<br>
+
+### 运算
 
 <br>
 
@@ -108,11 +139,14 @@ ${\forall} \ {\epsilon} > 0$，$ {\exists} \ N > 0$，当 $n > N$ 时，$|a_n - 
 
 函数在某个区间内的所有点都 **存在** 且 **无间断**，那么这个函数就是连续的
 
+### 间断点
+
+
 <br>
 
 ---
 
-# $\text{d}y = A \ \text{d}x$
+# **$\text{d}y = A \ \text{d}x$**
 
 
 <br>
@@ -151,7 +185,7 @@ $$f'(x_0) = \lim_{x \to x_0} \frac{f(x)-f(x_0)}{x-x_0} = \left. \frac{\text{d} f
 
 ---
 
-# $\int^a_b f(x) \ \text{d}x$
+# **$\int^a_b f(x) \ \text{d}x$**
 
 <br>
 
