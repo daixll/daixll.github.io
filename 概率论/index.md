@@ -706,7 +706,7 @@ $E(X) = \int_0^1x(\theta+1)x^\theta \text{d}x = \frac{\theta + 1}{\theta + 2}$
 
 > 设总体 $X \sim P(x), \lambda > 0$ 且未知，其分布律 $P\{X=k\} = \frac{\lambda^k e^{-\lambda}}{k!}, k=0,1...$， $x_1, x_2, ... , x_n$ 是来自总体 $X$ 的一个样本，求 $\lambda$ 的极大似然估计
 
-$L(x_1, x_2, ... , x_n) = P \{ X=x_1 \} * P \{ X=x_2 \} * ... * P\{ X=x_n \} = \frac{\lambda^{x_1} e^{-\lambda}}{{ x_1 }!} * \frac{\lambda^{x_2} e^{-\lambda}}{{x_2}!} * ... * \frac{\lambda^{x_n} e^{-\lambda}}{{x_n}!}$
+$L(x_1, x_2, ... , x_n) = P \{ X=x_1 \} * P \{ X=x_2 \} * ... * P\{ X=x_n \} = \frac{\lambda^{x_1} e^{-\lambda}}{x_1!} * \frac{\lambda^{x_2} e^{-\lambda}}{{x_2}!} * ... * \frac{\lambda^{x_n} e^{-\lambda}}{{x_n}!}$
 
 $L(x_1, x_2, ... , x_n) = \frac{\lambda^{\sum_{i=1}^n x_i} e^{-n\lambda}}{x_1!x_2!...x_n!}$
 
