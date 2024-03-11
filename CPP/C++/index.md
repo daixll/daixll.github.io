@@ -9,7 +9,7 @@ export_on_save:
 
 # 参考
 
-关于 C++ 的学习参考：
+关于 C++ 的学习参
 
 * [cppreference](https://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5)：C++ 参考手册
 
