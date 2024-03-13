@@ -78,7 +78,7 @@ export_on_save:
 
 ### 省二 ICPC 重庆市赛
 
-- `2023-12` `2023重庆市第十一届大学生程序设计大赛` `省赛三等奖` [报道](https://www.cqust.edu.cn/info/1466/69404.htm)
+- `2023-12` `2023重庆市第十一届大学生程序设计大赛` `省赛二等奖` [报道](https://www.cqust.edu.cn/info/1466/69404.htm)
 
 <div class="center">
     <img src="（省2）ICPCCQ.jpg" width="300">
