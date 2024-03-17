@@ -181,15 +181,41 @@ export_on_save:
         <title> 网页名称 </title>
 
         <script>
-            function
+            function one(){
+                document.getElementById("demo").innerHTML=Date();
+            }
+
+            // 每一秒重新调用 one() 函数
+            setInterval(one, 1000);
         </script>
     </head>    
     
     <body>
-        网页内容
+        <p id="demo"></p>
     </body>
 </html>
 ```
+
+## 操纵 html 元素
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <title> 网页名称 </title>
+    </head>    
+    
+    <body>
+        <p id="one"> hhh </p>
+
+        <script>
+            document.getElementById("one").innerHTML="666";
+        </script>
+    </body>
+</html>
+```
+
 
 
 <br>
@@ -198,5 +224,89 @@ export_on_save:
 
 # VUE
 
+1. 下载 [Node.js](https://nodejs.org/en)
+    * 终端验证 `node -v`
+
+2. 创建 `vue` 项目
+    * `npm create vue@latest`
+    * 不知道就全 `No`
+
+3. 运行 `vue` 项目
+    * `cd 项目`
+    * `npm install`
+    * `npm run dev`
+    
+## 使用 CDN 运行
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Vue CDN</title>
+        <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
+    </head>
+    
+    <body>
+        <div id="hello-vue" class="demo">
+            {{ message }}
+        </div>
+
+        <script>
+            const HelloVueApp = {
+                data() {
+                    return {
+                        message: 'Hello Vue!!'
+                    }
+                }
+            }
+            Vue.createApp(HelloVueApp).mount('#hello-vue')
+        </script>
+    </body>
+</html>
+```
+
+## `v-bind`
+
+
+
+<br>
+
+---
+
+## `v-for`
+
+
+
+
+<br>
+
+---
+
+## `v-if`
+
+
+
+<br>
+
+---
+
+## `v-show`
+
+
+<br>
+
+---
+
+
+## `v-model`
+
+
+<br>
+
+---
+
+
+## `v-on`
 
 
