@@ -98,6 +98,33 @@ make -v                 # 验证 make 安装成功
 
 [廖雪峰的git教程](https://www.liaoxuefeng.com/wiki/896043488029600)
 
+## License
+
+[参考](https://opensource.org/licenses)
+
+> 例如我开发了 `A` 软件
+
+**MIT** `Massachusetts Institute of Technology License`
+
+> 我只想安安静静写代码，你干嘛都与我无关，如果你有良心，新的软件说明一下，是基于我的软件。出了任何事情与我无关
+
+1. 使用
+    * 随便用，商用卖钱都行
+2. 修改
+    * 随便改
+3. 分发
+    * 随意
+
+**BSD** `Berkeley Software Distribution License`
+
+**GPL** 123
+
+**LGPL** 123
+
+**Apache** 123
+
+**MPL** 123
+
 ## Linux
 ```shell
 sudo apt install git # 安装 git
