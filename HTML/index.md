@@ -243,24 +243,24 @@ export_on_save:
 <html>
     <head>
         <meta charset="utf-8">
-        <title> Vue CDN</title>
+        <title> Vue CDN </title>
         <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
     </head>
     
     <body>
-        <div id="hello-vue" class="demo">
+        <div id="one">
             {{ message }}
         </div>
 
         <script>
-            const HelloVueApp = {
-                data() {
-                    return {
-                        message: 'Hello Vue!!'
+            const HelloVueApp = {   // 定义 Vue 应用程序对象
+                data() {            // 数据对象
+                    return {        // 初始化数据
+                        message: 'Hello Vue!'
                     }
                 }
-            }
-            Vue.createApp(HelloVueApp).mount('#hello-vue')
+            }   // 创建 vue 实例并将其挂载到页面上指定元素上 
+            Vue.createApp(HelloVueApp).mount('#one')
         </script>
     </body>
 </html>
@@ -268,7 +268,50 @@ export_on_save:
 
 ## `v-bind`
 
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>  v-bind </title>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
 
+</head>
+
+<body>
+    
+    <div id="one">
+        <div v-bind:title="V_titleText"> 鼠标悬停这里查看标题 </div>
+        <a v-bind:href="V_userName"> 用户资料 </a>
+        <div v-bind:style="{ color: V_textColor, fontSize: V_fontSize + 'px' }"> 这是一个动态样式的文本 </div>
+        <button v-on:click="V_handleClick"> 点击触发事件 </button>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        const app = createApp({
+            data() {
+                return {
+                    V_titleText: '这是一个标题',
+                    V_userName: 'https://daixll.github.io',
+                    V_textColor: 'red',
+                    V_fontSize: 1
+                };
+            },
+            methods: {
+                V_handleClick(){
+                    this.V_fontSize += 1;
+                }
+            }
+        });
+
+        app.mount('#one');
+    </script>
+
+</body>
+</html>
+```
 
 <br>
 
@@ -276,8 +319,152 @@ export_on_save:
 
 ## `v-for`
 
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> v-for 列表 </title>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
+</head>
 
+<body>
+    <ul id="one">
+        <!--对 items 数组中的每个元素进行遍历-->
+        <li v-for="item in arr" :key="item.id">{{ item.text }}</li>
+    </ul>
 
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    arr: [
+                        { id: 1, text: 'Item 1' },
+                        { id: 2, text: 'Item 2' },
+                        { id: 3, text: 'Item 3' }
+                    ]
+                };
+            }
+        });
+        app.mount('#one');
+    </script>
+</body>
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> v-for 对象 </title>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
+</head>
+
+<body>
+    <ul id="one">
+        <li v-for="(value, key) in object" :key="key">{{ key }}: {{ value }}</li>
+    </ul>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    object: {
+                        a: 'A',
+                        b: 'B',
+                        c: 'C'
+                    }
+                };
+            }
+        });
+        app.mount('#one');
+    </script>
+
+</body>
+</html>
+```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> v-for 表格</title>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
+</head>
+
+<body>
+
+    <div id = "one">
+        <table border="1" colspan="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>地址</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(student, index) in students" :key="index">
+                    <td>{{index + 1}}</td>
+                    <td>{{student.id}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.age}}</td>
+                    <td>{{student.sex === 1 ? '男' : '女'}}</td>
+                    <td>{{student.addr}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const app=Vue.createApp({
+            data(){
+                return {
+                    students:[
+                        {
+                            id: "101",
+                            name: "张三",
+                            age: 18,
+                            sex: 1,
+                            addr: "重庆"
+                        },
+                        {
+                            id: "105",
+                            name: "李红",
+                            age: 20,
+                            sex: 2,
+                            addr: "上海"
+                        },
+                        {
+                            id: "217",
+                            name: "刘天民",
+                            age: 19,
+                            sex: 1,
+                            addr: "乌鲁木齐"
+                        },
+                        {
+                            id: "301",
+                            name: "田田",
+                            age: 21,
+                            sex: 2,
+                            addr: "成都"
+                        },
+                    ]
+                }
+            }
+        });
+
+        app.mount('#one');
+    </script>
+
+</body>
+</html>
+```
 
 <br>
 
