@@ -497,3 +497,87 @@ export_on_save:
 ## `v-on`
 
 
+<br>
+
+---
+
+# AXIOS
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> axios </title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    
+</body>
+</html>
+```
+
+## get
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> axios </title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <table border="1" colspan="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>地址</th>
+                </tr>
+            </thead>
+            <tbody id="one"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const apiUrl = "https://yapi.pro/mock/152964/students";
+        const tableBody = document.getElementById('one');
+
+        axios.get(apiUrl)
+            .then(response => {
+                // 请求成功，遍历数据并添加到表格中
+                response.data.data.forEach(item => {
+                    // 创建表格行
+                    const row = document.createElement('tr');
+
+                    // 使用循环创建并填充表格单元格
+                    ['id', 'name', 'age', 'sex', 'addr'].forEach(key => {
+                        const cell = document.createElement('td');
+                        cell.textContent = key === 'sex' ? (item[key] === 1 ? '男' : '女') : item[key];
+                        row.appendChild(cell);
+                    });
+
+                    // 将行添加到表格体中
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                // 请求失败，打印错误信息
+                console.error('Error fetching data:', error);
+            });
+    </script>
+
+</body>
+</html>
+```
+
+
+<br>
+
+---
