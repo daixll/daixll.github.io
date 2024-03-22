@@ -70,6 +70,13 @@ export_on_save:
 
 <div class="container">
     <div class="item">
+        <a href="CPP/C++ AV/index.html"> AV </a>
+    </div>
+    <div class="item">音视频开发、OpenCV</div>
+</div>
+
+<div class="container">
+    <div class="item">
         <a href="CPP/C++ Qt/index.html"> Qt </a>
     </div>
     <div class="item">图形化编程、QWidgets</div>
