@@ -7,15 +7,10 @@ export_on_save:
 
 # 引子
 
+[为什么要编码](https://juejin.cn/post/6945838292017840135#heading-3)
 
-<br>
+[OpenCV 入门教程](https://vincentqin.gitee.io/blogresource-2/cv-books/OpenCV-Guide-Primer.pdf)
 
----
-
-
-# 音视频流
-
-a's'd
 
 <br>
 
@@ -24,7 +19,13 @@ a's'd
 
 # 音频
 
+## MP3
 
+## AAC
+
+## FLAC
+
+## 
 
 <br>
 
