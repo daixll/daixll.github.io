@@ -5,7 +5,15 @@ export_on_save:
     html: true  # 自动保存
 ---
 
-* ubuntu
+# 引子
+
+<br>
+
+---
+
+# 安装
+
+## ubuntu
 
 1. 下载安装
     * `apt install mysql-server`
@@ -26,3 +34,16 @@ export_on_save:
 
 5. 退出
     * `quit`
+
+## windows
+
+1. 下载
+
+
+
+<br>
+
+---
+
+
+## one
