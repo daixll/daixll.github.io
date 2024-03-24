@@ -72,7 +72,7 @@ export_on_save:
     <div class="item">
         <a href="CPP/C++ AV/index.html"> AV </a>
     </div>
-    <div class="item">音视频开发、OpenCV</div>
+    <div class="item">音视频、ffmpeg、OpenCV</div>
 </div>
 
 <div class="container">
