@@ -26,6 +26,21 @@
       
 <p><a href="https://www.linuxcool.com/">Linux 命令大全</a></p>
 <h1 id="基本操作">基本操作 </h1>
+<h2 id="软件安装">软件安装 </h2>
+<ul>
+<li>
+<p>更新软件源、软件、系统更新（非升级）<br>
+<code>sudo apt update &amp;&amp; sudo apt upgrade &amp;&amp; sudo apt dist-upgrade &amp;&amp; sudo apt autoremove</code></p>
+</li>
+<li>
+<p>查看已安装的软件<br>
+<code>sudo apt list --installed | grep 软件名</code></p>
+</li>
+<li>
+<p>查找软件<br>
+<code>sudo apt-cache search 软件名</code></p>
+</li>
+</ul>
 <h2 id="文件管理">文件管理 </h2>
 <ul>
 <li>
@@ -135,11 +150,6 @@
 <br>
 <hr>
 <h1 id="常用命令">常用命令 </h1>
-<h2 id="软件安装">软件安装 </h2>
-<ul>
-<li>更新软件源、软件、系统更新（非升级）<br>
-<code>apt update &amp;&amp; apt upgrade &amp;&amp; apt dist-upgrade &amp;&amp; apt autoremove</code></li>
-</ul>
 <h2 id="守护进程">守护进程 </h2>
 <h2 id="计划作业">计划作业 </h2>
 <p><code>crontab</code></p>
@@ -150,14 +160,59 @@
 <h2 id="软链接">软链接 </h2>
 <p><code>ln</code></p>
 <h2 id="lsof"><code>lsof</code> </h2>
+<h2 id="跟踪系统调用">跟踪系统调用 </h2>
+<ul>
+<li><strong><code>strace</code></strong><br>
+<code>strace ./a.out</code>
+<blockquote>
+<p>显示程序执行过程的系统调用</p>
+</blockquote>
+</li>
+</ul>
 <br>
 <hr>
 <h1 id="状态查询">状态查询 </h1>
 <h2 id="基本信息">基本信息 </h2>
-<p><code>sudo apt install screenfetch</code><br>
-<code>screenfetch</code></p>
-<h2 id="进程线程">进程线程 </h2>
-<p><code>top</code> <code>strace</code> <code>pstack</code></p>
+<ul>
+<li>
+<p><strong>screenfetch</strong><br>
+<code>sudo apt install screenfetch</code></p>
+</li>
+<li>
+<p><strong>btop</strong><br>
+<code>sudo apt install btop</code></p>
+</li>
+<li>
+<p><strong>top</strong></p>
+</li>
+</ul>
+<h2 id="进程">进程 </h2>
+<ul>
+<li>
+<p><strong><code>ps -ef</code></strong></p>
+<blockquote>
+<p>显示所有用户的所有进程</p>
+</blockquote>
+</li>
+<li>
+<p><strong><code>pstree</code></strong></p>
+<blockquote>
+<p>显示进程树</p>
+</blockquote>
+</li>
+<li>
+<p><strong><code>pgrep 进程名</code></strong></p>
+<blockquote>
+<p>通过进程名查找 pid</p>
+</blockquote>
+</li>
+<li>
+<p><strong><code>kill PID</code></strong></p>
+<blockquote>
+<p>结束进程，<code>kill -9 PID</code> 强制结束</p>
+</blockquote>
+</li>
+</ul>
 <h2 id="内存状态">内存状态 </h2>
 <p><code>memstat</code> <code>free</code></p>
 <h2 id="io状态">IO状态 </h2>
@@ -251,6 +306,10 @@
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#软件安装" class="md-toc-link">
+            <p>软件安装</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#文件管理" class="md-toc-link">
             <p>文件管理</p>
 
@@ -272,10 +331,6 @@
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#软件安装" class="md-toc-link">
-            <p>软件安装</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#守护进程" class="md-toc-link">
             <p>守护进程</p>
 
@@ -299,6 +354,10 @@
           <a href="#lsof" class="md-toc-link">
             <p><code>lsof</code></p>
 
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#跟踪系统调用" class="md-toc-link">
+            <p>跟踪系统调用</p>
+
           </a></div>
         </div>
       </details>
@@ -313,8 +372,8 @@
             <p>基本信息</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#进程线程" class="md-toc-link">
-            <p>进程线程</p>
+          <a href="#进程" class="md-toc-link">
+            <p>进程</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#内存状态" class="md-toc-link">

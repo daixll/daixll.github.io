@@ -9,6 +9,17 @@ export_on_save:
 
 # 基本操作
 
+## 软件安装
+
+* 更新软件源、软件、系统更新（非升级）
+    `sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && sudo apt autoremove`
+
+* 查看已安装的软件
+    `sudo apt list --installed | grep 软件名`
+
+* 查找软件
+    `sudo apt-cache search 软件名`
+
 ## 文件管理
 
 * **`ls` 查看** 
@@ -104,10 +115,6 @@ export_on_save:
 
 # 常用命令
 
-## 软件安装
-
-* 更新软件源、软件、系统更新（非升级）
-    `apt update && apt upgrade && apt dist-upgrade && apt autoremove`
 
 
 ## 守护进程
@@ -130,6 +137,12 @@ export_on_save:
 
 ## `lsof`
 
+## 跟踪系统调用
+
+* **`strace`** 
+    `strace ./a.out`
+    > 显示程序执行过程的系统调用
+
 
 
 <br>
@@ -140,13 +153,27 @@ export_on_save:
 
 ## 基本信息
 
-`sudo apt install screenfetch`
-`screenfetch`
+* **screenfetch**
+    `sudo apt install screenfetch`
 
+* **btop**
+    `sudo apt install btop`
 
-## 进程线程
+* **top**
 
-`top` `strace` `pstack`
+## 进程
+
+* **`ps -ef`**
+    > 显示所有用户的所有进程
+
+* **`pstree`**
+    > 显示进程树
+
+* **`pgrep 进程名`**
+    > 通过进程名查找 pid
+
+* **`kill PID`**
+    > 结束进程，`kill -9 PID` 强制结束
 
 ## 内存状态
 
