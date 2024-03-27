@@ -83,12 +83,10 @@ export_on_save:
 
 ## 安装
 
-
-
 1. 安装
     **Linux**
     
-    * `apt install libopencv-dev`
+    * `sudo apt install libopencv-dev`
 
     **Windows**
     
@@ -127,6 +125,13 @@ export_on_save:
     ```
     g++ main.cpp -o main `pkg-config --cflags --libs opencv4`
     ```
+
+## 调用摄像头
+
+```cpp
+
+```
+
 
 <br>
 
@@ -177,3 +182,9 @@ export_on_save:
     ```
     g++ main.cpp -o main -lavcodec -lavformat -lavutil -lswscale
     ```
+
+## ffplay
+
+```
+ffplay -f v4l2 -framerate 30 -video_size 1080x720 -input_format mjpeg -i /dev/video0 -fflags nobuffer
+```

@@ -101,7 +101,7 @@
 <p>安装<br>
 <strong>Linux</strong></p>
 <ul>
-<li><code>apt install libopencv-dev</code></li>
+<li><code>sudo apt install libopencv-dev</code></li>
 </ul>
 <p><strong>Windows</strong></p>
 <ol>
@@ -137,7 +137,8 @@
 </code></pre><pre data-role="codeBlock" data-info="" class="language-text"><code>g++ main.cpp -o main `pkg-config --cflags --libs opencv4`
 </code></pre></li>
 </ol>
-<br>
+<h2 id="调用摄像头">调用摄像头 </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code></code></pre><br>
 <hr>
 <h1 id="ffmpeg">FFmpeg </h1>
 <h2 id="安装-1">安装 </h2>
@@ -183,7 +184,9 @@
 </code></pre><pre data-role="codeBlock" data-info="" class="language-text"><code>g++ main.cpp -o main -lavcodec -lavformat -lavutil -lswscale
 </code></pre></li>
 </ol>
-
+<h2 id="ffplay">ffplay </h2>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>ffplay -f v4l2 -framerate 30 -video_size 1080x720 -input_format mjpeg -i /dev/video0 -fflags nobuffer
+</code></pre>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
@@ -221,6 +224,10 @@
           <a href="#安装" class="md-toc-link">
             <p>安装</p>
 
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#调用摄像头" class="md-toc-link">
+            <p>调用摄像头</p>
+
           </a></div>
         </div>
       </details>
@@ -233,6 +240,10 @@
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#安装-1" class="md-toc-link">
             <p>安装</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ffplay" class="md-toc-link">
+            <p>ffplay</p>
 
           </a></div>
         </div>
