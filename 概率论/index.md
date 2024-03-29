@@ -9,7 +9,7 @@ export_on_save:
 
 > 如果不挂科，不考数一、三，大抵是不会更新了
 
-> 尼玛，挂了。。。
+> **，挂了。。。
 
 概率论研究 **不确定** 事件发生的 **可能性**
 
@@ -199,9 +199,9 @@ $1-P(\bar A \cup \bar B \cup \bar C) = $
 
 * 包含：$A \subset B$，，$B$ 包含 $A$，事件 $A$ 发生必然导致事件 $B$ 发生
 
-* 并：$A \cup B$，事件 $A$ 与 $B$ 至少发生一个
+* <span style="color:orange;">并：$A \cup B$，事件 $A$ 与 $B$ 至少发生一个，也写作 $A + B$</span>
 
-* 交：$A \cap B$，事件 $A$ 与 $B$ 同时发生，有时候也称为积，也写作 $AB$
+* <span style="color:orange;">交：$A \cap B$，事件 $A$ 与 $B$ 同时发生，也写作 $AB$</span>
 
 * 差：$A - B$，事件 $A$ 发生而 $B$ 不发生
 
