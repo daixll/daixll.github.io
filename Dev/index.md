@@ -31,10 +31,13 @@ export_on_save:
     `Clash for Windows`
 
 * 激活 [下载](https://github.com/massgravel/Microsoft-Activation-Scripts/releases)
-    `Microsoft-Activation-Scripts`
+    `Microsoft-Activation-Scripts` `irm https://massgrave.dev/get | iex`
 
 * Office [下载](https://otp.landian.vip/zh-cn/download.html) | [文档](https://www.coolhub.top/archives/11)
     `Office Tool Plus`
+
+* Adobe [下载](https://creativecloud.adobe.com/apps/download/creative-cloud) | [激活](https://github.com/cw2k/Adobe-GenP)
+    `Adobe`
 
 * 解压缩 [下载](https://www.bandisoft.com/bandizip/)
     `Bandizip`
