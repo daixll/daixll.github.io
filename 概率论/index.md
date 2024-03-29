@@ -211,6 +211,8 @@ $1-P(\bar A \cup \bar B \cup \bar C) = $
 
 * 互斥：$A \cap \bar{A} = \emptyset$，$A \cup \bar{A} = S$，事件 $A$ 与 $\bar{A}$ 互斥
 
+对立 -> 互斥（互不相容） -> 独立
+
 ### <span style="color:orange;">事件的运算</span>
 
 * 交换律：$A \cup B = B \cup A$，$A \cap B = B \cap A$
