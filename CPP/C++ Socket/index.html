@@ -966,8 +966,8 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 </code></pre><p>程序运行后一秒，<code>999</code>，<code>888</code>，<code>666</code> 会间隔一秒，依次输出。<br>
 而后，<code>t: 1</code>、<code>t: 2</code>、<code>t: 3</code>、<code>t: 4</code>、<code>t: 5</code> 会依次输出。</p>
 <p>前者是异步的，而后者是同步的，通过代码不难理解：同步的是 <code>wait()</code>，阻塞；异步的是 <code>async_wait()</code>，不阻塞，任务在 <code>io.run()</code> 之后，由后台处理。</p>
-<h2 id="server-3">Server </h2>
-<h2 id="client-3">Client </h2>
+<h2 id="tcp_server">TCP_Server </h2>
+<h2 id="udp_server">UDP_Server </h2>
 <br>
 <hr>
 <h1 id="errno">errno </h1>
@@ -1305,12 +1305,12 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#server-3" class="md-toc-link">
-            <p>Server</p>
+          <a href="#tcp_server" class="md-toc-link">
+            <p>TCP_Server</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#client-3" class="md-toc-link">
-            <p>Client</p>
+          <a href="#udp_server" class="md-toc-link">
+            <p>UDP_Server</p>
 
           </a></div>
         </div>
