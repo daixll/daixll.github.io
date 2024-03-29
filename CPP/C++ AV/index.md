@@ -17,6 +17,9 @@ export_on_save:
 [FFMPEG开发快速入坑——绪论](https://zhuanlan.zhihu.com/p/345402619)
 [雷霄骅的开源视音频项目汇总](https://blog.csdn.net/leixiaohua1020/article/details/42658139)
 
+
+[FFmpeg 官方文档](https://ffmpeg.org/documentation.html)
+
 <br>
 
 ---
@@ -129,7 +132,44 @@ export_on_save:
 ## 调用摄像头
 
 ```cpp
+#include <opencv2/opencv.hpp>
+using namespace cv;
+using namespace std;
+ 
+int main()
+{
+	VideoCapture capture(0, cv::CAP_V4L2);
+    
+    // 设置格式
+    capture.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('M', 'J', 'P', 'G'));
+    // capture.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('H', '2', '6', '4'));
+    // capture.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('H', 'E', 'V', 'C'));
+    // capture.set(cv::CAP_PROP_FOURCC, cv::VideoWriter::fourcc('X', 'V', 'I', 'D'));
 
+    // 设置摄像头的分辨率
+    capture.set(cv::CAP_PROP_FRAME_WIDTH, 1920);
+    capture.set(cv::CAP_PROP_FRAME_HEIGHT, 1080);
+    capture.set(cv::CAP_PROP_FPS, 30);
+
+    // 查询摄像头的参数信息
+    double fps = capture.get(cv::CAP_PROP_FPS);
+    int width = capture.get(cv::CAP_PROP_FRAME_WIDTH);
+    int height = capture.get(cv::CAP_PROP_FRAME_HEIGHT);
+
+    // 输出参数信息
+    std::cout << "Frame rate: " << fps << " fps" << std::endl;
+    std::cout << "Frame size: " << width << "x" << height << std::endl;
+
+	while (true)
+	{
+		Mat frame;
+		capture >> frame;
+		imshow("camera", frame);
+		waitKey(1);
+	}
+    
+	return 0;
+}
 ```
 
 
@@ -143,7 +183,17 @@ export_on_save:
 
 1. 安装
     **Linux**
-    `sudo apt install ffmpeg libavcodec-dev libavformat-dev libavutil-dev libswscale-dev`
+    `sudo apt install ffmpeg libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev`
+
+    * `libavformat-dev` 格式处理库
+    * `libavcodec-dev` 编解码库
+    * `libswresample` 音频格式转换库
+    * `libswscale-dev` 视频格式转换库
+        
+    * `libavdevice-dev` 设备操作库
+        
+    * `libavutil-dev` Utility辅助库
+    * `libavfilter` 音视频滤镜
 
 2. 测试
     ```cpp
@@ -183,8 +233,144 @@ export_on_save:
     g++ main.cpp -o main -lavcodec -lavformat -lavutil -lswscale
     ```
 
+## 调用麦克风
+
+```cpp
+#include <iostream>
+extern "C" {
+#include <libavdevice/avdevice.h>
+#include <libavutil/audio_fifo.h>
+}
+
+#define AUDIO_IN_DEVICE "default" // 麦克风设备名
+#define SAMPLE_RATE 44100 // 采样率
+#define CHANNELS 2 // 声道数
+#define SAMPLE_FORMAT AV_SAMPLE_FMT_S16 // 采样格式
+#define OUTPUT_FILENAME "output.wav" // 输出文件名
+
+int main() {
+    avdevice_register_all(); // 注册设备
+
+    AVInputFormat *inputFormat = av_find_input_format("alsa"); // ALSA是Linux上常用的音频设备接口
+
+    AVFormatContext *formatContext = avformat_alloc_context();
+    if (!formatContext) {
+        std::cerr << "Failed to allocate format context" << std::endl;
+        return -1;
+    }
+
+    AVDictionary *options = NULL;
+    av_dict_set(&options, "ac", std::to_string(CHANNELS).c_str(), 0); // 设置声道数
+    av_dict_set(&options, "ar", std::to_string(SAMPLE_RATE).c_str(), 0); // 设置采样率
+    av_dict_set(&options, "sample_fmt", av_get_sample_fmt_name(SAMPLE_FORMAT), 0); // 设置采样格式
+
+    if (avformat_open_input(&formatContext, AUDIO_IN_DEVICE, inputFormat, &options) < 0) {
+        std::cerr << "Failed to open audio input device" << std::endl;
+        return -1;
+    }
+
+    if (avformat_find_stream_info(formatContext, NULL) < 0) {
+        std::cerr << "Failed to find stream information" << std::endl;
+        return -1;
+    }
+
+    AVPacket packet;
+    //av_init_packet(&packet);
+    av_packet_alloc();
+
+    AVCodec *codec = avcodec_find_encoder(AV_CODEC_ID_PCM_S16LE);
+    if (!codec) {
+        std::cerr << "Failed to find encoder" << std::endl;
+        return -1;
+    }
+
+    AVCodecContext *codecContext = avcodec_alloc_context3(codec);
+    if (!codecContext) {
+        std::cerr << "Failed to allocate codec context" << std::endl;
+        return -1;
+    }
+
+    codecContext->sample_rate = SAMPLE_RATE;
+    codecContext->channels = CHANNELS;
+    codecContext->sample_fmt = SAMPLE_FORMAT;
+
+    if (avcodec_open2(codecContext, codec, NULL) < 0) {
+        std::cerr << "Failed to open codec" << std::endl;
+        return -1;
+    }
+
+    AVFormatContext *outputFormatContext = NULL;
+    if (avformat_alloc_output_context2(&outputFormatContext, NULL, NULL, OUTPUT_FILENAME) < 0) {
+        std::cerr << "Failed to allocate output format context" << std::endl;
+        return -1;
+    }
+
+    AVStream *outputStream = avformat_new_stream(outputFormatContext, NULL);
+    if (!outputStream) {
+        std::cerr << "Failed to allocate output stream" << std::endl;
+        return -1;
+    }
+
+    if (avcodec_parameters_from_context(outputStream->codecpar, codecContext) < 0) {
+        std::cerr << "Failed to copy codec parameters to stream" << std::endl;
+        return -1;
+    }
+
+    if (!(outputFormatContext->oformat->flags & AVFMT_NOFILE)) {
+        if (avio_open(&outputFormatContext->pb, OUTPUT_FILENAME, AVIO_FLAG_WRITE) < 0) {
+            std::cerr << "Failed to open output file" << std::endl;
+            return -1;
+        }
+    }
+
+    if (avformat_write_header(outputFormatContext, NULL) < 0) {
+        std::cerr << "Failed to write header" << std::endl;
+        return -1;
+    }
+
+    std::cout << "Capturing audio from microphone and saving to " << OUTPUT_FILENAME << " ... Press Ctrl+C to stop." << std::endl;
+
+    while (true) {
+        if (av_read_frame(formatContext, &packet) < 0) {
+            std::cerr << "Failed to read audio frame" << std::endl;
+            break;
+        }
+
+        // 写入音频帧到输出文件
+        if (av_write_frame(outputFormatContext, &packet) < 0) {
+            std::cerr << "Failed to write audio frame" << std::endl;
+            break;
+        }
+
+        av_packet_unref(&packet); // 释放packet
+    }
+
+    av_write_trailer(outputFormatContext);
+
+    avformat_close_input(&formatContext);
+    avformat_free_context(formatContext);
+
+    avcodec_close(codecContext);
+    avcodec_free_context(&codecContext);
+
+    if (outputFormatContext && !(outputFormatContext->oformat->flags & AVFMT_NOFILE)) {
+        avio_closep(&outputFormatContext->pb);
+    }
+    avformat_free_context(outputFormatContext);
+
+    return 0;
+}
+```
+
+## 调用摄像头
+
+```cpp
+
+```
+
+
 ## ffplay
 
 ```
-ffplay -f v4l2 -framerate 30 -video_size 1080x720 -input_format mjpeg -i /dev/video0 -fflags nobuffer
+ffplay -f v4l2 -framerate 30 -video_size 1920x1080 -input_format mjpeg -i /dev/video0 -fflags nobuffer
 ```
