@@ -27,20 +27,18 @@ export_on_save:
 
 ## 装机必备
 
-* 联网 [下载](https://archive.org/download/clash_for_windows_pkg)
-    `Clash for Windows`
+* [远程协助](https://dl.todesk.com/windows/ToDesk_Lite.exe)
 
-* 激活 [下载](https://github.com/massgravel/Microsoft-Activation-Scripts/releases)
-    `Microsoft-Activation-Scripts` `irm https://massgrave.dev/get | iex`
+* [联网](https://archive.org/download/clash_for_windows_pkg) `Clash for Windows`
 
-* Office [下载](https://otp.landian.vip/zh-cn/download.html) | [文档](https://www.coolhub.top/archives/11)
-    `Office Tool Plus`
+* [MS激活](https://github.com/massgravel/Microsoft-Activation-Scripts/releases) `Microsoft-Activation-Scripts`
+    `irm https://massgrave.dev/get | iex`
 
-* Adobe [下载](https://creativecloud.adobe.com/apps/download/creative-cloud) | [激活](https://github.com/cw2k/Adobe-GenP)
-    `Adobe`
+* [Office](https://otp.landian.vip/zh-cn/download.html) | [文档](https://www.coolhub.top/archives/11) `Office Tool Plus`
 
-* 解压缩 [下载](https://www.bandisoft.com/bandizip/)
-    `Bandizip`
+* [Adobe](https://creativecloud.adobe.com/apps/download/creative-cloud) | [激活](https://github.com/cw2k/Adobe-GenP)
+
+* [Bandizip](https://www.bandisoft.com/bandizip/)
 
 <br>
 
