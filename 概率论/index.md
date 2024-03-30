@@ -23,17 +23,7 @@ export_on_save:
 
 ## 0、题
 
-### 全概率与贝叶斯(1)
-
-全概率公式：
-    
-**$$P(B) = \sum_{i=1}^n P(B|A_i) P(A_i)$$**
-
-贝叶斯公式：
-
-**$$P(A_j|B) = \frac{P(B|A_j) P(A_j)}{\sum_{i=1}^n P(B|A_i) P(A_i)}$$**
-
-<br>
+### 全概率与贝叶斯 **$^1$**
 
 > 有 $10$ 箱产品，$1, 2, 3$ 分别有 $5, 3, 2$ 箱，次品率为 $0.1, 0.2, 0.3$，任选一箱，再取一个产品，为良品的概率
 
@@ -193,7 +183,9 @@ $1-P(\bar A \cup \bar B \cup \bar C) = $
 
 <br>
 
-## 一、事件
+---
+
+## 1、事件
 
 ### 事件的关系
 
@@ -205,15 +197,15 @@ $1-P(\bar A \cup \bar B \cup \bar C) = $
 
 * 差：$A - B$，事件 $A$ 发生而 $B$ 不发生
 
-* 互斥：$A \cap B = \emptyset$，事件 $A$ 与 $B$ 不可能同时发生
-
 * 逆（对立）：$\bar{A}$，事件 $A$ 不发生
+
+* 互斥：$A \cap B = \emptyset$，事件 $A$ 与 $B$ 不可能同时发生
 
 * 互斥：$A \cap \bar{A} = \emptyset$，$A \cup \bar{A} = S$，事件 $A$ 与 $\bar{A}$ 互斥
 
-对立 -> 互斥（互不相容） -> 独立
+<span style="color:orange;">对立（概率之和为 1） -> 互斥（互不相容）（概率之和不一定为 1） -> 独立（联合概率为各自乘积）</span>
 
-### <span style="color:orange;">事件的运算</span>
+### 事件的运算
 
 * 交换律：$A \cup B = B \cup A$，$A \cap B = B \cap A$
 * 结合律：$(A \cup B) \cup C = A \cup (B \cup C)$，$(A \cap B) \cap C = A \cap (B \cap C)$
@@ -225,7 +217,7 @@ $1-P(\bar A \cup \bar B \cup \bar C) = $
 
 在相同条件下，进行了 $n$ 次试验，事件 $A$ 发生的次数 $n_A$ 与 $n$ 的比值
 
-### <span style="color:orange;">概率</span>
+### 概率 **$^*$**
 
 事件 $A$ 发生的可能性大小的度量，记作 $P(A)$
 
@@ -240,24 +232,28 @@ $1-P(\bar A \cup \bar B \cup \bar C) = $
 * $P(\emptyset) = 0$
 * $P(\bar{A}) = 1 - P(A)$
 * 若 $A \subset B$，则 $P(A) \leq P(B)$，有 $P(B - A) = P(B) - P(A)$
-* <span style="color:red;">$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</span>
-    * <span style="color:red;">$P(A \cap B) = P(A|B) P(B)$</span>
-    * 若独立，则 <span style="color:red;">$P(A \cap B) = P(A)P(B)$</span>
-* <span style="color:red;">$P(A-B) = P(A) - P(A \cap B) = P(A \cap \bar B)$</span>
+* <span style="color:orange;">$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</span>
+* <span style="color:orange;">$P(A-B) = P(A) - P(A \cap B) = P(A \cap \bar B)$</span>
+* <span style="color:orange;">$P(A \cap B) = P(A|B) P(B)$</span>
+    * 若独立，则 <span style="color:orange;">$P(A \cap B) = P(A)P(B)$</span>
 
-### <span style="color:orange;">条件概率</span>
+**条件概率**：
 
 在事件 $B$ 已经发生的条件下，事件 $A$ 发生的概率，记作 $P(A|B)$
 
-<span style="color:red;">$P(A|B) = \frac{P(A \cap B)}{P(B)}$</span>
+* <span style="color:orange;">$P(A|B) = \frac{P(A \cap B)}{P(B)}$</span>
 
 可拓展：
+
 * 全概率公式：
-    **<span style="color:red;">$P(A) = \sum_{i=1}^n P(A|B_i) P(B_i)$</span>**
+    
+**<span style="color:orange;">$$P(B) = \sum_{i=1}^n P(B|A_i) P(A_i)$$</span>**
 
 * 贝叶斯公式：
-    **<span style="color:red;">$P(B_j|A) = \frac{P(A|B_j) P(B_j)}{\sum_{i=1}^n P(A|B_i) P(B_i)}$</span>**
 
+**<span style="color:orange;">$$P(A_j|B) = \frac{P(B|A_j) P(A_j)}{\sum_{i=1}^n P(B|A_i) P(A_i)}$$</span>**
+
+<br>
 <br>
 
 ---
@@ -277,7 +273,7 @@ $P\{X + Y = 0\} = \frac{5}{18}$
 
 <br>
 
-### 概率密度求分布函数(2)
+### 概率密度求分布函数 **$^2$**
 
 > 设随机变量 $X$ 服从 $(0, 2)$ 上的均匀分布，则 $P\{1 < X < 3\}$
 
@@ -291,7 +287,11 @@ $P\{1 < x < 3\} = \frac{1}{2}x |_1^2 = 1 - \frac{1}{2} = \frac{1}{2}$
 
 <br>
 
-> $f(x) = \begin{cases} Ke^{-5x}, x>0 \\ 0, x \leq 0 \end{cases}$，（1）确定 $K$；（2）求 $P\{X>0.2\}$
+> $f(x) = \begin{cases} Ke^{-5x}, x>0 \\ 0, x \leq 0 \end{cases}$，（1）确定 $K$；（2）求 $P\{X>0.2\}$；（3）求分布函数 $F(x)$
+
+$(1)$
+
+**$\int_{-\infty}^{+\infty}f(x) \text{d} x = 1$**
 
 $\int_0^{+\infty} Ke^{-5x} = \int_0^{+\infty} -\frac{K}{5} e^{-5x} \text{d}(-5x) = 1$
 
@@ -299,11 +299,43 @@ $= -\frac{K}{5}e^{-5x} |_0^{+\infty} = \frac{K}{5} = 1$
 
 $K = 5$
 
-$\int_{0.2}^{+\infty} 5e^{-5x} \text{d}x = \int_{0.2}^{+\infty} -\frac{5}{5} e^{-5x} \text{d}(-5x) = -e^{-5x}|_{0.2}^{+\infty} = e^{-1}$
+$(2)$
+
+$P\{X>0.2\} = \int_{0.2}^{+\infty} 5e^{-5x} \text{d}x = \int_{0.2}^{+\infty} -\frac{5}{5} e^{-5x} \text{d}(-5x) = -e^{-5x}|_{0.2}^{+\infty} = e^{-1}$
+
+$(3)$
+
+**$F(x) = \int_{-\infty}^{+\infty} f(x) \text{d}x$**
+
+$\begin{cases} 0, & x \leq 0 \\ \int_{0}^{+\infty}5e^{-5x} \text{d}x, & x > 0 \end{cases} \Rightarrow F(x) = \begin{cases} 0, & x \leq 0 \\ 1, & x > 0 \end{cases}$
 
 <br>
 
-### 概率密度求概率密度(4)
+> 设连续型随机变量 $X$ 的密度函数为 $f(x) = \begin{cases} Ax, & 0 \leq x \leq 1 \\ A(2-x), & 1 < x \leq 2 \\ 0, & 其他 \end{cases}$，求（1）常数 $A$；（2）$X$ 的分布函数 $F(x)$；（3）$P\{\frac{1}{2} < X < \frac{3}{2}\}$
+
+$(1)$
+
+**$\int_{-\infty}^{+\infty}f(x)\text{d}x = 1$**
+
+$\int_{0}^{1} Ax \text{d}x + \int_{1}^{2} A(2-x) \text{d}x = 1$
+
+$\frac{A}{2} x^2 |_0^1 + (2Ax - \frac{A}{2}x^2)|_1^2 = 1$
+
+$A = 1$
+
+$(2)$
+
+**$F(x) = \int_{-\infty}^{+\infty} f(x) \text{d}x$**
+
+$\begin{cases} 0, & x < 0 \\ \int_{0}^{x} x \text{d}x, & 0 \leq x < 1 \\ \int_0^1 x \text{d}x + \int_1^x (2-x) \text{d}x, & 1 \leq x < 2 \\ \int_{0}^{1}x\text{d}x + \int_1^2 (2-x) \text{d}x, & x \geq 2 \end{cases} \Rightarrow F(x) = \begin{cases} 0, & x < 0 \\ \frac{1}{2}x^2, & 0 \leq x < 1 \\ 2x - \frac{1}{2}x^2-1, & 1 \leq x < 2 \\ 1, & x \geq 2 \end{cases}$
+
+$(3)$
+
+$P\{\frac{1}{2} < X < \frac{3}{2}\} = \int_{\frac{1}{2}}^{\frac{3}{2}} f(x) \text{d}x = \int_{\frac{1}{2}}^{1}x\text{d}x + \int_{1}^{\frac{3}{2}} (2-x) \text{d} x = \frac{3}{4}$
+
+<br>
+
+### 概率密度求概率密度 **$^4$**
 
 > 设 $X \sim f_X(x) = \begin{cases} \frac{x}{8}, 0<x<4\\ 0, 其他\end{cases}$，求 $Y=2X+8$ 的密度函数 $f_Y(y)$
 
@@ -369,11 +401,11 @@ $ A = e ^ {-\frac{1}{3}}$
 
 数值化后，更有利于建立数学模型，进行数学分析
 
-### 分布函数
+### 累计分布函数
 
 对于一个随机变量 $X$，其分布函数 $F(x)$ 定义为： 
 
-$$F(x) = P \{X \leq x\}$$
+**<span style="color:orange;">$$F(x) = P \{X \leq x\}$$</span>**
 
 $F(x)$ 等于 $X$ 的值 $\leq x$ 的 **概率**
 
@@ -398,7 +430,18 @@ $F(x)$ 等于 $X$ 的值 $\leq x$ 的 **概率**
 
 * 单调不减：$x_1 < x_2 \Rightarrow F(x_1) \leq F(x_2)$
 * 非负性：$0 \leq F(x) \leq 1$
-* 规范性：$F(x)$ 是一个概率，$F(-\infty) = 0$，$F(+\infty) = 1$
+* 规范性：$F(x)$ 是一个概率，<span style="color:orange;">$F(-\infty) = 0$，$F(+\infty) = 1$</span>
+
+### 概率分布
+
+<br>
+
+**概率分布** **$f$** 
+* 通常是指 **分布律**（离散）和 **概率密度函数**（连续）
+
+**累计分布函数** **$F$**
+* 即 $F(x) = P \{X \leq x\}$
+
 
 <br>
 
@@ -413,7 +456,7 @@ $F(x)$ 等于 $X$ 的值 $\leq x$ 的 **概率**
 
 离散型随机变量的分布律：
 * 一个函数，描述了随机变量的取值和其概率的对应关系
-* 表示为：$P(X=x_i) = p_i$，满足：
+* 表示为：<span style="color:orange;">$P(X=x_i) = p_i$</span>，满足：
     * 对于所有的 $i$，$p_i \geq 0$，即概率非负
     * $\sum p_i = 1$，即概率和为 $1$
 
@@ -1062,8 +1105,8 @@ s: 样本总量
 * $P(\emptyset) = 0$
 * $P(\bar{A}) = 1 - P(A)$
 * 若 $A \subset B$，则 $P(A) \leq P(B)$，有 $P(B - A) = P(B) - P(A)$
-* <span style="color:red;">$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</span>
-* <span style="color:red;">$P(A-B) = P(A) - P(A \cap B) = P(A \cap \bar B)$</span>
+* <span style="color:orange;">$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</span>
+* <span style="color:orange;">$P(A-B) = P(A) - P(A \cap B) = P(A \cap \bar B)$</span>
 
 ## 古典（等可能）概型
 
@@ -1073,7 +1116,7 @@ s: 样本总量
 
 在事件 $B$ 已经发生的条件下，事件 $A$ 发生的概率，记作 $P(A|B)$
 
-<span style="color:red;">$P(A|B) = \frac{P(A \cap B)}{P(B)}$</span>
+<span style="color:orange;">$P(A|B) = \frac{P(A \cap B)}{P(B)}$</span>
 
 可拓展：
 
@@ -1088,11 +1131,11 @@ s: 样本总量
 
 ## <span style="color:orange;">独立性</span>
 
-若 <span style="color:red;">$P(A \cap B) = P(A)P(B)$</span>，则称事件 $A$ 与 $B$ 相互独立，反之亦然
+若 <span style="color:orange;">$P(A \cap B) = P(A)P(B)$</span>，则称事件 $A$ 与 $B$ 相互独立，反之亦然
 
 <br>
 
-## <span style="color:red;">2题</span>
+## <span style="color:orange;">2题</span>
 
 ### 分布函数求概率密度
 
@@ -1248,7 +1291,7 @@ p(Y) | $\frac{1}{5}$ | $\frac{7}{30}$ | $\frac{1}{5}$ | $\frac{11}{30}$
 ---
 
 
-## <span style="color:red;">3题</span>
+## <span style="color:orange;">3题</span>
 
 ### 求联合分布律
 
@@ -1361,7 +1404,7 @@ p87 9
 
 
 
-## <span style="color:red;">4题</span>
+## <span style="color:orange;">4题</span>
 
 ### 常见分布的数字特征（期望，方差）
 
@@ -1446,7 +1489,7 @@ $E(xy) = ?$
 
 ---
 
-## <span style="color:red;">6题</span>
+## <span style="color:orange;">6题</span>
 
 ### $\chi^2$ （卡方）分布
 
