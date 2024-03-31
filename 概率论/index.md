@@ -333,6 +333,19 @@ $(3)$
 
 $P\{\frac{1}{2} < X < \frac{3}{2}\} = \int_{\frac{1}{2}}^{\frac{3}{2}} f(x) \text{d}x = \int_{\frac{1}{2}}^{1}x\text{d}x + \int_{1}^{\frac{3}{2}} (2-x) \text{d} x = \frac{3}{4}$
 
+> 设连续型随机变量 $X$ 的密度为 $f(x) = \begin{cases} A \sin x ,& 0<x< \pi \\ 0, & 其他\end{cases}$ 求（1）$A$；（2）$X$ 的分布函数 $F(x)$；（3）$P\{0< x < \frac{\pi}{4} \}$
+
+$(1)$
+
+**$\int_{-\infty}^{+\infty}f(x) \text{d}x = 1$**
+
+
+
+
+$(2)$
+
+$(3)$
+
 <br>
 
 ### 概率密度求概率密度 **$^4$**
