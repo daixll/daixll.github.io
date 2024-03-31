@@ -333,24 +333,37 @@ $(3)$
 
 $P\{\frac{1}{2} < X < \frac{3}{2}\} = \int_{\frac{1}{2}}^{\frac{3}{2}} f(x) \text{d}x = \int_{\frac{1}{2}}^{1}x\text{d}x + \int_{1}^{\frac{3}{2}} (2-x) \text{d} x = \frac{3}{4}$
 
+<br>
+
 > 设连续型随机变量 $X$ 的密度为 $f(x) = \begin{cases} A \sin x ,& 0<x< \pi \\ 0, & 其他\end{cases}$ 求（1）$A$；（2）$X$ 的分布函数 $F(x)$；（3）$P\{0< x < \frac{\pi}{4} \}$
 
 $(1)$
 
 **$\int_{-\infty}^{+\infty}f(x) \text{d}x = 1$**
 
+$\int_0^\pi A \sin x \text{d} x = 1$
 
-test
+$-A \cos x |_0^\pi = 1$
 
-test
+$2A = 1 \Rightarrow A = \frac{1}{2}$
 
 $(2)$
 
+**$F(x) = \int_{-\infty}^{+\infty} f(x) \text{d}x$**
+
+$F(x) = \begin{cases} 0, & x < 0 \\ \int_0^x \frac{1}{2} \sin x \text{d} x , & 0 \leq x < \pi \\ \int_0^\pi \frac{1}{2} \sin x \text{d}x, & x \geq \pi \end{cases} \Rightarrow \begin{cases} 0, & x < 0  \\ 1-\frac{1}{2} \cos x , & 0 \leq x < \pi \\ 1 , & x \geq \pi \end{cases}$
+
 $(3)$
+
+$P\{ 0 < x < \frac{\pi}{4} \} = \int_0^{\frac{\pi}{4}} \frac{1}{2} \sin x \text{d} x = \frac{2 - \sqrt{2}}{4}$
 
 <br>
 
 ### 概率密度求概率密度 **$^4$**
+
+> 
+
+<br>
 
 > 设 $X \sim f_X(x) = \begin{cases} \frac{x}{8}, 0<x<4\\ 0, 其他\end{cases}$，求 $Y=2X+8$ 的密度函数 $f_Y(y)$
 
@@ -386,20 +399,6 @@ $f_Y(y) = \begin{cases} \frac{\frac{y+1}{2}}{8}*|(\frac{y+1}{2})^{'}| , a < y < 
 
 $f_Y(y) = \begin{cases} \frac{y+1}{32}, -1<y<7 \\ 0, 其他 \end{cases}$
 
-<br>
-
-
-### P
-
-> 设离散型随机变量 $X$ 的分布律为 $P\{X=k\}=\frac{A}{3^kk!},k=1,2...$，则 $A$
-
-泊松分布 $P\{X=k\} = \frac{\lambda^k}{k!}e^{-\lambda}$
-
-$\frac{\lambda^k e^{-\lambda}}{k!} = \frac{\frac{1}{3^k}A}{k!}$
-
-$\lambda^k e^{-\lambda} = (\frac{1}{3})^kA$，令$ \lambda = \frac{1}{3} $
-
-$ A = e ^ {-\frac{1}{3}}$
 
 <br>
 
