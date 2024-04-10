@@ -361,43 +361,49 @@ $P\{ 0 < x < \frac{\pi}{4} \} = \int_0^{\frac{\pi}{4}} \frac{1}{2} \sin x \text{
 
 ### 概率密度求概率密度 **$^4$**
 
+> 设随机变量 $X$ 的密度为 $f(x) = \begin{cases} x, & 0 \leq x \leq 1 \\ 2-x , & 1 < x \leq 2 \\ 0 , & 其他\end{cases}$，求（1）$Y = -2X+1$ 的密度；（2）$Z=e^X$ 的密度
+
+$(1)$
+
+$F(y) = P\{Y \leq y\} = P\{-2X+1 \leq y\} = P\{X \geq \frac{1-y}{2}\}$
+
+$(2)$
+
+$F(y) = P\{Y \leq y\} = P\{ e^X \leq y\} = P\{ X \leq \ln y \} = \int_{-\infty}^{\ln y} f(x) \text{d} x$
+
+$= \begin{cases} 0, & \ln y < 0\\ \int_{0}^{\ln y} (\ln y)\text{d} \ln y , & 0 \leq \ln y < 1 \\ \int_{0}^{1} (\ln y) \text{d}\ln y + \int_{1}^{\ln y} (2-\ln y) \text{d}\ln y , & 1 \leq \ln y < 2 \\ 1, & \ln y \geq 2 \end{cases} $
+
+$= \begin{cases} 0, & \ln y < 0 \\ \frac{1}{2}(\ln y)^2 , & 0 \leq \ln y < 1 \\ 2 \ln y - \frac{1}{2}(\ln y)^2 - 1, & 1 \leq \ln y < 2 \\ 1, & \ln y \geq 2 \end{cases}$
+
+$f(y) = F^{'}(y) = \begin{cases} \frac{\ln y}{y}, & 0 < y < e \\ \frac{2}{y} - \frac{\ln y}{y}, & e < y < e^2 \\ 0 , & 其他\end{cases}$
+
+<br>
+
+> 设 $X \sim f_X(x) = \begin{cases} \frac{x}{8}, & 0<x<4\\ 0, & 其他\end{cases}$，（1）求 $Y=2X+8$ 的密度函数 $f_Y(y)$；（2）求 $Y=2X-1$ 的密度函数 $f_Y(y)$
+
+$(1)$
+
+$F(y) = P\{Y \leq y\} = P\{2X + 8 \leq y\} = P\{X \leq \frac{y-8}{2}\}= \int_{-\infty}^{\frac{y-8}{2}} f(x) \text{d} x $
+
+$= \begin{cases} 0, & \frac{y-8}{2} < 0 \\ \int_0^{\frac{y-8}{2}} (\frac{\frac{y-8}{2}}{8}) \text{d} \frac{y-8}{2}, & 0 \leq \frac{y-8}{2} < 4 \\ 1, & \frac{y-8}{2} \geq 4 \end{cases}$
+
+$= \begin{cases} 0, & \frac{y-8}{2} < 0 \\ \frac{1}{8} * \frac{1}{2} * (\frac{y-8}{2})^2 , & 0 \leq \frac{y-8}{2} < 4 \\ 1, & \frac{y-8}{2} \geq 4 \end{cases}$
+
+$f(y) = F^{'}(y) = \begin{cases} \frac{y-8}{32}, & 8 < y < 16 \\ 0, & 其他\end{cases}$
+
+$(2)$
+
+$F(y) = P\{Y \leq y\} = P\{2X-1 \leq y\} = P\{X \leq \frac{y+1}{2}\} = \int_{-\infty}^{\frac{y+1}{2}} f(x) \text{d} x$
+
+$= \begin{cases} 0, & \frac{y+1}{2} < 0 \\ \int_{0}^{\frac{y+1}{2}} \frac{\frac{y+1}{2}}{8} \text{d} \frac{y+1}{2}, & 0 \leq \frac{y+1}{2} < 4 \\ 1, & \frac{y+1}{2} \geq 4 \end{cases}$
+
+$= \begin{cases} 0, & \frac{y+1}{2} < 0 \\ \frac{1}{8} * \frac{1}{2} * (\frac{y+1}{2})^2, & 0 \leq \frac{y+1}{2} < 4 \\ 1, & \frac{y+1}{2} \geq 4 \end{cases}$
+
+$f(y) = F^{'}(y) = \begin{cases} \frac{y+1}{32}, & -1 < y < 7 \\ 0, & 其他\end{cases}$
+
+<br>
+
 > 
-
-<br>
-
-> 设 $X \sim f_X(x) = \begin{cases} \frac{x}{8}, 0<x<4\\ 0, 其他\end{cases}$，求 $Y=2X+8$ 的密度函数 $f_Y(y)$
-
-$F_Y(y) = P(Y \leq y) = P(2X+8 \leq y) = P(X \leq \frac{y-8}{2}) = F_X(\frac{y-8}{2})$
-
-$f_Y(y) = \begin{cases} f_x(h(y))*|h^{'}(y)| , a < y < b\\ 0, 其他\end{cases}$
-
-$f_Y(y) = \begin{cases} \frac{\frac{y-8}{2}}{8}*|(\frac{y-8}{2})^{'}| , a < y < b\\ 0, 其他\end{cases}$
-
-* 错误做法
-    $F_Y(y) = \int_0^{\frac{y-8}{2}} \frac{x}{8} \text{d}x = \frac{x^2}{16}|_0^\frac{y-8}{2} = \frac{(y-8)^2}{64}$
-    $F_Y^{'}(y) = f_Y(y) = (\frac{1}{64}y^2 - \frac{1}{4}y + 1)^{'} = \frac{y-8}{32}$
-
-$f_Y(y) = \begin{cases} \frac{y-8}{32}, 8<y<16 \\ 0, 其他 \end{cases}$
-
-<br>
-
-> 设 $X \sim f_X(x) = \begin{cases} \frac{x}{8}, 0<x<4\\ 0, 其他\end{cases}$，求 $Y=2X-1$ 的密度函数 $f_Y(y)$
-
-$F_Y(y) = P(Y \leq y) = P(2x-1 \leq y) = P(x \leq \frac{y+1}{2}) = F_X(\frac{y+1}{2})$
-
-$f_Y(y) = \begin{cases} f_x(h(y))*|h^{'}(y)| , a < y < b\\ 0, 其他\end{cases}$
-
-$f_Y(y) = \begin{cases} \frac{\frac{y+1}{2}}{8}*|(\frac{y+1}{2})^{'}| , a < y < b\\ 0, 其他\end{cases}$
-
-
-* 错误做法
-
-    $F_Y(y) = \int_0^\frac{y+1}{2} \frac{x}{8} \text{d}x = \frac{x^2}{16}|_0^\frac{y+1}{2} = \frac{(y+1)^2}{64}$
-    $F_Y^{'}(y) = f_Y(y) = \frac{y+1}{32}$
-
-
-
-$f_Y(y) = \begin{cases} \frac{y+1}{32}, -1<y<7 \\ 0, 其他 \end{cases}$
 
 
 <br>
