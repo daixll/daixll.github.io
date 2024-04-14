@@ -20,6 +20,8 @@ export_on_save:
 
 [FFmpeg 官方文档](https://ffmpeg.org/documentation.html)
 
+[1](https://blog.csdn.net/wanggao_1990/article/details/119207034)
+
 <br>
 
 ---
@@ -141,7 +143,7 @@ LCD 最底层为光源（通常是 LED 光带），通过 **液晶层** 和色�
 
 # V4L2
 
-
+v4l2-ctl -d 0 --list-formats-ext
 
 <br>
 

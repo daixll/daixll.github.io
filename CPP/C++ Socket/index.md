@@ -19,8 +19,6 @@ export_on_save:
 
 **[源代码](https://github.com/daixll/A_Tour_of_Socket)**
 
-> 请务必确定，对以下知识有一定的了解
-
 **TCP / IP 分层模型**：
 
 | 层     | 协议 |
@@ -377,104 +375,6 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
 
 ---
 
-## HTTP *
-
-HTTP 协议是基于 TCP 协议的应用层协议，默认端口号是 80（HTTPS是 443），HTTP 协议的通信模型是 **请求-响应** 模型
-
-* 请求，即客户端向服务端发送的消息
-* 响应，即服务端向客户端发送的消息
-
-HTTP 协议的请求消息和响应消息都是由 **请求 / 响应行**、**请求 / 响应头**、**请求 / 响应体** 组成
-
-* **请求行** 由三部分组成：请求方法、请求路径、HTTP版本
-
-    * 请求方法：
-        * **GET：**
-           - **用途：** 请求获取指定资源.不应该对服务器端数据产生任何影响。
-           - **示例：** `GET /index.html`，获取首页信息。
-
-        2. **POST：**
-           - **用途：** 用于向指定资源提交数据，请求服务器进行处理。常用于提交表单数据或上传文件。
-           - **示例：** `POST /users`，提交用户注册表单。
-
-        3. **PUT：**
-           - **用途：** 请求服务器存储一个资源。通常是更新已存在的资源或创建新资源。
-           - **示例：** `PUT /products/123`，更新产品编号为123的商品信息。
-
-        4. **DELETE：**
-           - **用途：** 请求服务器删除指定的资源。
-           - **示例：** `DELETE /users/456`，删除用户编号为456的用户信息。
-
-        5. **HEAD：**
-           - **用途：** 请求获取指定资源的响应头信息，而不获取响应体的内容。通常用于检查资源是      否存在或获取资源的元信息。
-           - **示例：** `HEAD /documents/789`，检查文档编号为789的资源是否存在。
-
-        6. **OPTIONS：**
-           - **用途：** 请求获取目标资源所支持的通信选项。用于查询服务器支持的HTTP方法。
-           - **示例：** `OPTIONS /products`，查询服务器支持的HTTP方法。
-
-        7. **TRACE：**
-           - **用途：** 用于追踪路径。发送请求时，服务器会返回该请求所经过的服务器路径。主要用      于调试和测试。
-           - **示例：** `TRACE /debug`，追踪请求的路径。
-
-        8. **CONNECT：**
-           - **用途：** 用于建立与目标资源的隧道连接，通常用于加密连接，如HTTPS。
-           - **示例：** `CONNECT www.example.com:443`，与目标服务器建立加密连接。
-
-    * 请求路径：`/`、`/index.html`、`/jiao.html`、`...`
-        * 我们将请求路径称为 `URI`，即统一资源标识符，而 `URL` 是 `URI` 的子集
-
-    * HTTP版本：`HTTP/1.0`、`HTTP/1.1`、`HTTP/2.0`
-<br>
-
-* **请求头** 由请求头字段和请求头字段值组成，每个请求头字段都有特定的含义，常见的请求头字段有：
-    * `Accept`：指定客户端能够接收的内容类型
-    * `Accept-Encoding`：指定客户端能够接收的内容编码方式
-    * `Accept-Language`：指定客户端能够接收的语言
-    * `Connection`：指定客户端与服务端的连接类型
-    * `Host`：指定请求的主机名和端口号
-    * `User-Agent`：指定客户端的类型
-    * `Referer`：指定请求的来源页面
-    * `Cookie`：指定请求的 Cookie
-    * `Content-Type`：指定请求体的类型
-    * `Content-Length`：指定请求体的长度
-    * `Authorization`：指定请求的授权信息
-    * `If-Modified-Since`：指定请求的资源的最后修改时间
-    * `If-None-Match`：指定请求的资源的 ETag 值
-
-<br>
-
-* **请求体** 具体的数据
-    * 通常是在 post 请求中，将表单数据放在请求体中
-
-<br>
-
-* **响应行** 由三部分组成：HTTP版本、状态码、状态码描述
-
-    * HTTP版本：`HTTP/1.0`、`HTTP/1.1`、`HTTP/2.0`
-    * 状态码：`200`、`404`、`500`、`...`
-    * 状态码描述：`OK`、`Not Found`、`Internal Server Error`、`...`
-    * 例如：`HTTP/1.1 200 OK`
-
-<br>
-
-* **响应头** 由响应头字段和响应头字段值组成，每个响应头字段都有特定的含义，常见的响应头字段有：
-    * `Content-Type`：指定响应体的类型
-    * `Content-Length`：指定响应体的长度
-    * `Content-Encoding`：指定响应体的编码方式
-    * `Content-Language`：指定响应体的语言
-    * `Content-Disposition`：指定响应体的处理方式
-    * `Set-Cookie`：指定响应的 Cookie
-    * `Location`：指定响应的重定向地址
-    * `Last-Modified`：指定响应的资源的最后修改时间
-    * `ETag`：指定响应的资源的 ETag 值
-
-<br>
-
-* **响应体** 具体的数据
-    * 例如网页的 HTML 代码
-    * 例如图片的二进制数据、pdf文件等
-
 
 <br>
 
@@ -825,139 +725,111 @@ int main(){
 
 </div>
 
+<br>
 
+---
 
+# HTTP
 
+HTTP 协议是基于 TCP 协议的应用层协议，默认端口号是 80（HTTPS是 443），HTTP 协议的通信模型是 **请求-响应** 模型
 
+* 请求，即客户端向服务端发送的消息
+* 响应，即服务端向客户端发送的消息
 
-# Socket
+HTTP 协议的请求消息和响应消息都是由 **请求 / 响应行**、**请求 / 响应头**、**请求 / 响应体** 组成
 
+* **请求行** 由三部分组成：请求方法、请求路径、HTTP版本
 
-* [TCP / IP 分层模型](#tcp--ip-分层模型) 及 [三握四挥](#tcp-三握四挥)
-* [socket TCP 通信模型](#socket-tcp-通信模型) 及 [实例](#socket-tcp-通信简单实例)
-* [socket UDP 通信模型](#socket-udp-通信模型) 及 [实例](#socket-udp-通信简单实例)
-* 网络IO接口复用：select、poll、[epoll](#epoll)
-* 阻塞、[非阻塞](#非阻塞-socket)、[Socket选项](#socket-选项)
-* 同步、异步
-* HTTP协议
+    * 请求方法：
+        * **GET：**
+           - **用途：** 请求获取指定资源.不应该对服务器端数据产生任何影响。
+           - **示例：** `GET /index.html`，获取首页信息。
 
+        2. **POST：**
+           - **用途：** 用于向指定资源提交数据，请求服务器进行处理。常用于提交表单数据或上传文件。
+           - **示例：** `POST /users`，提交用户注册表单。
 
+        3. **PUT：**
+           - **用途：** 请求服务器存储一个资源。通常是更新已存在的资源或创建新资源。
+           - **示例：** `PUT /products/123`，更新产品编号为123的商品信息。
 
+        4. **DELETE：**
+           - **用途：** 请求服务器删除指定的资源。
+           - **示例：** `DELETE /users/456`，删除用户编号为456的用户信息。
 
+        5. **HEAD：**
+           - **用途：** 请求获取指定资源的响应头信息，而不获取响应体的内容。通常用于检查资源是      否存在或获取资源的元信息。
+           - **示例：** `HEAD /documents/789`，检查文档编号为789的资源是否存在。
 
+        6. **OPTIONS：**
+           - **用途：** 请求获取目标资源所支持的通信选项。用于查询服务器支持的HTTP方法。
+           - **示例：** `OPTIONS /products`，查询服务器支持的HTTP方法。
 
-## 
+        7. **TRACE：**
+           - **用途：** 用于追踪路径。发送请求时，服务器会返回该请求所经过的服务器路径。主要用      于调试和测试。
+           - **示例：** `TRACE /debug`，追踪请求的路径。
 
+        8. **CONNECT：**
+           - **用途：** 用于建立与目标资源的隧道连接，通常用于加密连接，如HTTPS。
+           - **示例：** `CONNECT www.example.com:443`，与目标服务器建立加密连接。
 
+    * 请求路径：`/`、`/index.html`、`/jiao.html`、`...`
+        * 我们将请求路径称为 `URI`，即统一资源标识符，而 `URL` 是 `URI` 的子集
 
-## socket UDP 通信简单实例
+    * HTTP版本：`HTTP/1.0`、`HTTP/1.1`、`HTTP/2.0`
+<br>
 
-* 启动 [服务端](样例/UDP通信样例/服务端.cpp)
-    1. 编译 `g++ 服务端.cpp -o 服务端`
-    2. 运行 `./服务端` 默认运行在本地 8080 端口
-* 启动 [客户端](样例/UDP通信样例/客户端.cpp)
-    1. 编译 `g++ 客户端.cpp -o 客户端`
-    2. 运行 `./客户端`     
-   
-可以同时运行多个客户端，服务端允许多台客户端连接；连接之后：
+* **请求头** 由请求头字段和请求头字段值组成，每个请求头字段都有特定的含义，常见的请求头字段有：
+    * `Accept`：指定客户端能够接收的内容类型
+    * `Accept-Encoding`：指定客户端能够接收的内容编码方式
+    * `Accept-Language`：指定客户端能够接收的语言
+    * `Connection`：指定客户端与服务端的连接类型
+    * `Host`：指定请求的主机名和端口号
+    * `User-Agent`：指定客户端的类型
+    * `Referer`：指定请求的来源页面
+    * `Cookie`：指定请求的 Cookie
+    * `Content-Type`：指定请求体的类型
+    * `Content-Length`：指定请求体的长度
+    * `Authorization`：指定请求的授权信息
+    * `If-Modified-Since`：指定请求的资源的最后修改时间
+    * `If-None-Match`：指定请求的资源的 ETag 值
 
-1. 客户端发送消息，服务端接收消息，回复单一消息
-2. 服务端发送消息，客户端接收消息，回复单一消息
-3. 不断重复，直到客户端断开连接
+<br>
 
-## Socket 选项
+* **请求体** 具体的数据
+    * 通常是在 post 请求中，将表单数据放在请求体中
 
-* `int setsockopt(int sockfd, int level, int optname, const void *optval, socklen_t optlen);`
-    * `sockfd`：文件描述符
-    * `level`：选项定义的层次
-        * `SOL_SOCKET`：通用套接字选项
-        * `IPPROTO_IP`：IP选项
-        * `IPPROTO_TCP`：TCP选项
-        * `IPPROTO_IPV6`：IPv6选项
-    * `optname`：选项名称
-        * `SO_REUSEADDR`：允许重用本地地址和端口
-        * `SO_REUSEPORT`：允许重用本地地址和端口
-        * `SO_KEEPALIVE`：开启 TCP Keep-Alive
-        * `SO_LINGER`：关闭 socket 时，底层会将发送缓冲区的数据发送给对端，然后等待一段时间，如果还没收到对端的确认信息，就强制关闭 socket
-        * `SO_RCVBUF`：设置接收缓冲区大小
-        * `SO_SNDBUF`：设置发送缓冲区大小
-        * `TCP_NODELAY`：禁用 Nagle 算法
-        * `TCP_MAXSEG`：设置 TCP 最大分段大小
-        * `TCP_CORK`：开启 TCP_CORK，关闭 Nagle 算法
-        * `TCP_QUICKACK`：开启 TCP_QUICKACK，关闭延迟确认
-    * `optval`：选项值
-    * `optlen`：选项值长度
+<br>
 
-* `int getsockopt(int sockfd, int level, int optname, void *optval, socklen_t *optlen);`
-    * `sockfd`：文件描述符
-    * `level`：选项定义的层次
-    * `optname`：选项名称
-    * `optval`：选项值
-    * `optlen`：选项值长度
+* **响应行** 由三部分组成：HTTP版本、状态码、状态码描述
 
+    * HTTP版本：`HTTP/1.0`、`HTTP/1.1`、`HTTP/2.0`
+    * 状态码：`200`、`404`、`500`、`...`
+    * 状态码描述：`OK`、`Not Found`、`Internal Server Error`、`...`
+    * 例如：`HTTP/1.1 200 OK`
 
-## 非阻塞 Socket
+<br>
 
-* `int fcntl(int fd, int cmd, ... /* arg */ );`
-    * `fd`：文件描述符
-    * `cmd`：
-        * `F_GETFL`：获取文件描述符状态标志
-        * `F_SETFL`：设置文件描述符状态标志
-    * `arg`：文件描述符状态标志
-        * `O_NONBLOCK`：非阻塞
-        * `O_ASYNC`：异步
-        * `O_SYNC`：同步
+* **响应头** 由响应头字段和响应头字段值组成，每个响应头字段都有特定的含义，常见的响应头字段有：
+    * `Content-Type`：指定响应体的类型
+    * `Content-Length`：指定响应体的长度
+    * `Content-Encoding`：指定响应体的编码方式
+    * `Content-Language`：指定响应体的语言
+    * `Content-Disposition`：指定响应体的处理方式
+    * `Set-Cookie`：指定响应的 Cookie
+    * `Location`：指定响应的重定向地址
+    * `Last-Modified`：指定响应的资源的最后修改时间
+    * `ETag`：指定响应的资源的 ETag 值
 
+<br>
 
-阻塞：调用函数时，如果数据没有准备好，那么函数将一直等待，直到数据准备好为止
-
-非阻塞：调用函数时，如果数据没有准备好，那么函数将立即返回，不会等待数据准备好
-
-
-* `accept`
-    * 阻塞：没有新连接时，一直等待
-    * 非阻塞：没有新连接时，立即返回 `EWOULDBLOCK(11)` 或 `EAGAIN`
-
-* `recv`
-    * 阻塞：没有数据时，一直等待
-    * 非阻塞：没有数据时，立即返回 `EWOULDBLOCK(11)` 或 `EAGAIN`
-
-* `read`
-    * 阻塞：没有数据时，一直等待
-    * 非阻塞：没有数据时，立即返回 `EWOULDBLOCK(11)` 或 `EAGAIN`
-
-
-## Epoll
-
-
-
-
-## Epoll 通信实例
-
-* 启动 [服务端](样例/事件轮询样例/服务端.cpp)
-    1. 编译 `g++ 服务端.cpp -o 服务端`
-    2. 运行 `./服务端` 默认运行在本地 8080 端口
-* 启动 [客户端](样例/事件轮询样例/客户端.cpp)
-    1. 编译 `g++ 客户端.cpp -o 客户端`
-    2. 运行 `./客户端`     
-   
-可以同时运行多个客户端，服务端允许多台客户端连接连接之后：
-1. 客户端发送消息，服务端接收消息，回复单一消息
-
-## 面向对象
-
-
-
-## Channel
-
-`Channel` 是 `Epoll` 的事件处理类，`Epoll` 通过 `Channel` 处理事件
-
+* **响应体** 具体的数据
+    * 例如网页的 HTML 代码
+    * 例如图片的二进制数据、pdf文件等
 
 <br>
 
 ---
 
-# Boost.Asio
-
-[Boost.Asio](https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio.html)
+# RTP/RTCP
 

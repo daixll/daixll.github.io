@@ -35,9 +35,6 @@
 </style>
 <h1 id="引子">引子 </h1>
 <p><strong><a href="https://github.com/daixll/A_Tour_of_Socket">源代码</a></strong></p>
-<blockquote>
-<p>请务必确定，对以下知识有一定的了解</p>
-</blockquote>
 <p><strong>TCP / IP 分层模型</strong>：</p>
 <table>
 <thead>
@@ -533,155 +530,6 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 </ol>
 <br>
 <hr>
-<h2 id="http-">HTTP * </h2>
-<p>HTTP 协议是基于 TCP 协议的应用层协议，默认端口号是 80（HTTPS是 443），HTTP 协议的通信模型是 <strong>请求-响应</strong> 模型</p>
-<ul>
-<li>请求，即客户端向服务端发送的消息</li>
-<li>响应，即服务端向客户端发送的消息</li>
-</ul>
-<p>HTTP 协议的请求消息和响应消息都是由 <strong>请求 / 响应行</strong>、<strong>请求 / 响应头</strong>、<strong>请求 / 响应体</strong> 组成</p>
-<ul>
-<li>
-<p><strong>请求行</strong> 由三部分组成：请求方法、请求路径、HTTP版本</p>
-<ul>
-<li>
-<p>请求方法：</p>
-<ul>
-<li><strong>GET：</strong>
-<ul>
-<li><strong>用途：</strong> 请求获取指定资源.不应该对服务器端数据产生任何影响。</li>
-<li><strong>示例：</strong> <code>GET /index.html</code>，获取首页信息。</li>
-</ul>
-</li>
-</ul>
-<ol start="2">
-<li>
-<p><strong>POST：</strong></p>
-<ul>
-<li><strong>用途：</strong> 用于向指定资源提交数据，请求服务器进行处理。常用于提交表单数据或上传文件。</li>
-<li><strong>示例：</strong> <code>POST /users</code>，提交用户注册表单。</li>
-</ul>
-</li>
-<li>
-<p><strong>PUT：</strong></p>
-<ul>
-<li><strong>用途：</strong> 请求服务器存储一个资源。通常是更新已存在的资源或创建新资源。</li>
-<li><strong>示例：</strong> <code>PUT /products/123</code>，更新产品编号为123的商品信息。</li>
-</ul>
-</li>
-<li>
-<p><strong>DELETE：</strong></p>
-<ul>
-<li><strong>用途：</strong> 请求服务器删除指定的资源。</li>
-<li><strong>示例：</strong> <code>DELETE /users/456</code>，删除用户编号为456的用户信息。</li>
-</ul>
-</li>
-<li>
-<p><strong>HEAD：</strong></p>
-<ul>
-<li><strong>用途：</strong> 请求获取指定资源的响应头信息，而不获取响应体的内容。通常用于检查资源是      否存在或获取资源的元信息。</li>
-<li><strong>示例：</strong> <code>HEAD /documents/789</code>，检查文档编号为789的资源是否存在。</li>
-</ul>
-</li>
-<li>
-<p><strong>OPTIONS：</strong></p>
-<ul>
-<li><strong>用途：</strong> 请求获取目标资源所支持的通信选项。用于查询服务器支持的HTTP方法。</li>
-<li><strong>示例：</strong> <code>OPTIONS /products</code>，查询服务器支持的HTTP方法。</li>
-</ul>
-</li>
-<li>
-<p><strong>TRACE：</strong></p>
-<ul>
-<li><strong>用途：</strong> 用于追踪路径。发送请求时，服务器会返回该请求所经过的服务器路径。主要用      于调试和测试。</li>
-<li><strong>示例：</strong> <code>TRACE /debug</code>，追踪请求的路径。</li>
-</ul>
-</li>
-<li>
-<p><strong>CONNECT：</strong></p>
-<ul>
-<li><strong>用途：</strong> 用于建立与目标资源的隧道连接，通常用于加密连接，如HTTPS。</li>
-<li><strong>示例：</strong> <code>CONNECT www.example.com:443</code>，与目标服务器建立加密连接。</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>
-<p>请求路径：<code>/</code>、<code>/index.html</code>、<code>/jiao.html</code>、<code>...</code></p>
-<ul>
-<li>我们将请求路径称为 <code>URI</code>，即统一资源标识符，而 <code>URL</code> 是 <code>URI</code> 的子集</li>
-</ul>
-</li>
-<li>
-<p>HTTP版本：<code>HTTP/1.0</code>、<code>HTTP/1.1</code>、<code>HTTP/2.0</code><br>
-<br></p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>请求头</strong> 由请求头字段和请求头字段值组成，每个请求头字段都有特定的含义，常见的请求头字段有：</p>
-<ul>
-<li><code>Accept</code>：指定客户端能够接收的内容类型</li>
-<li><code>Accept-Encoding</code>：指定客户端能够接收的内容编码方式</li>
-<li><code>Accept-Language</code>：指定客户端能够接收的语言</li>
-<li><code>Connection</code>：指定客户端与服务端的连接类型</li>
-<li><code>Host</code>：指定请求的主机名和端口号</li>
-<li><code>User-Agent</code>：指定客户端的类型</li>
-<li><code>Referer</code>：指定请求的来源页面</li>
-<li><code>Cookie</code>：指定请求的 Cookie</li>
-<li><code>Content-Type</code>：指定请求体的类型</li>
-<li><code>Content-Length</code>：指定请求体的长度</li>
-<li><code>Authorization</code>：指定请求的授权信息</li>
-<li><code>If-Modified-Since</code>：指定请求的资源的最后修改时间</li>
-<li><code>If-None-Match</code>：指定请求的资源的 ETag 值</li>
-</ul>
-</li>
-</ul>
-<br>
-<ul>
-<li><strong>请求体</strong> 具体的数据
-<ul>
-<li>通常是在 post 请求中，将表单数据放在请求体中</li>
-</ul>
-</li>
-</ul>
-<br>
-<ul>
-<li>
-<p><strong>响应行</strong> 由三部分组成：HTTP版本、状态码、状态码描述</p>
-<ul>
-<li>HTTP版本：<code>HTTP/1.0</code>、<code>HTTP/1.1</code>、<code>HTTP/2.0</code></li>
-<li>状态码：<code>200</code>、<code>404</code>、<code>500</code>、<code>...</code></li>
-<li>状态码描述：<code>OK</code>、<code>Not Found</code>、<code>Internal Server Error</code>、<code>...</code></li>
-<li>例如：<code>HTTP/1.1 200 OK</code></li>
-</ul>
-</li>
-</ul>
-<br>
-<ul>
-<li><strong>响应头</strong> 由响应头字段和响应头字段值组成，每个响应头字段都有特定的含义，常见的响应头字段有：
-<ul>
-<li><code>Content-Type</code>：指定响应体的类型</li>
-<li><code>Content-Length</code>：指定响应体的长度</li>
-<li><code>Content-Encoding</code>：指定响应体的编码方式</li>
-<li><code>Content-Language</code>：指定响应体的语言</li>
-<li><code>Content-Disposition</code>：指定响应体的处理方式</li>
-<li><code>Set-Cookie</code>：指定响应的 Cookie</li>
-<li><code>Location</code>：指定响应的重定向地址</li>
-<li><code>Last-Modified</code>：指定响应的资源的最后修改时间</li>
-<li><code>ETag</code>：指定响应的资源的 ETag 值</li>
-</ul>
-</li>
-</ul>
-<br>
-<ul>
-<li><strong>响应体</strong> 具体的数据
-<ul>
-<li>例如网页的 HTML 代码</li>
-<li>例如图片的二进制数据、pdf文件等</li>
-</ul>
-</li>
-</ul>
 <br>
 <hr>
 <h2 id="boostasio">Boost.Asio </h2>
@@ -1016,154 +864,160 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
 </tbody>
 </table>
 </div>
-<h1 id="socket">Socket </h1>
-<ul>
-<li><a href="#tcp--ip-%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B">TCP / IP 分层模型</a> 及 <a href="#tcp-%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5">三握四挥</a></li>
-<li><a href="#socket-tcp-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket TCP 通信模型</a> 及 <a href="#socket-tcp-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">实例</a></li>
-<li><a href="#socket-udp-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B">socket UDP 通信模型</a> 及 <a href="#socket-udp-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B">实例</a></li>
-<li>网络IO接口复用：select、poll、<a href="#epoll">epoll</a></li>
-<li>阻塞、<a href="#%E9%9D%9E%E9%98%BB%E5%A1%9E-socket">非阻塞</a>、<a href="#socket-%E9%80%89%E9%A1%B9">Socket选项</a></li>
-<li>同步、异步</li>
-<li>HTTP协议</li>
-</ul>
-<h2></h2>
-<h2 id="socket-udp-通信简单实例">socket UDP 通信简单实例 </h2>
-<ul>
-<li>启动 <a href="%E6%A0%B7%E4%BE%8B/UDP%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E6%9C%8D%E5%8A%A1%E7%AB%AF.cpp">服务端</a>
-<ol>
-<li>编译 <code>g++ 服务端.cpp -o 服务端</code></li>
-<li>运行 <code>./服务端</code> 默认运行在本地 8080 端口</li>
-</ol>
-</li>
-<li>启动 <a href="%E6%A0%B7%E4%BE%8B/UDP%E9%80%9A%E4%BF%A1%E6%A0%B7%E4%BE%8B/%E5%AE%A2%E6%88%B7%E7%AB%AF.cpp">客户端</a>
-<ol>
-<li>编译 <code>g++ 客户端.cpp -o 客户端</code></li>
-<li>运行 <code>./客户端</code></li>
-</ol>
-</li>
-</ul>
-<p>可以同时运行多个客户端，服务端允许多台客户端连接；连接之后：</p>
-<ol>
-<li>客户端发送消息，服务端接收消息，回复单一消息</li>
-<li>服务端发送消息，客户端接收消息，回复单一消息</li>
-<li>不断重复，直到客户端断开连接</li>
-</ol>
-<h2 id="socket-选项">Socket 选项 </h2>
-<ul>
-<li>
-<p><code>int setsockopt(int sockfd, int level, int optname, const void *optval, socklen_t optlen);</code></p>
-<ul>
-<li><code>sockfd</code>：文件描述符</li>
-<li><code>level</code>：选项定义的层次
-<ul>
-<li><code>SOL_SOCKET</code>：通用套接字选项</li>
-<li><code>IPPROTO_IP</code>：IP选项</li>
-<li><code>IPPROTO_TCP</code>：TCP选项</li>
-<li><code>IPPROTO_IPV6</code>：IPv6选项</li>
-</ul>
-</li>
-<li><code>optname</code>：选项名称
-<ul>
-<li><code>SO_REUSEADDR</code>：允许重用本地地址和端口</li>
-<li><code>SO_REUSEPORT</code>：允许重用本地地址和端口</li>
-<li><code>SO_KEEPALIVE</code>：开启 TCP Keep-Alive</li>
-<li><code>SO_LINGER</code>：关闭 socket 时，底层会将发送缓冲区的数据发送给对端，然后等待一段时间，如果还没收到对端的确认信息，就强制关闭 socket</li>
-<li><code>SO_RCVBUF</code>：设置接收缓冲区大小</li>
-<li><code>SO_SNDBUF</code>：设置发送缓冲区大小</li>
-<li><code>TCP_NODELAY</code>：禁用 Nagle 算法</li>
-<li><code>TCP_MAXSEG</code>：设置 TCP 最大分段大小</li>
-<li><code>TCP_CORK</code>：开启 TCP_CORK，关闭 Nagle 算法</li>
-<li><code>TCP_QUICKACK</code>：开启 TCP_QUICKACK，关闭延迟确认</li>
-</ul>
-</li>
-<li><code>optval</code>：选项值</li>
-<li><code>optlen</code>：选项值长度</li>
-</ul>
-</li>
-<li>
-<p><code>int getsockopt(int sockfd, int level, int optname, void *optval, socklen_t *optlen);</code></p>
-<ul>
-<li><code>sockfd</code>：文件描述符</li>
-<li><code>level</code>：选项定义的层次</li>
-<li><code>optname</code>：选项名称</li>
-<li><code>optval</code>：选项值</li>
-<li><code>optlen</code>：选项值长度</li>
-</ul>
-</li>
-</ul>
-<h2 id="非阻塞-socket">非阻塞 Socket </h2>
-<ul>
-<li><code>int fcntl(int fd, int cmd, ... /* arg */ );</code>
-<ul>
-<li><code>fd</code>：文件描述符</li>
-<li><code>cmd</code>：
-<ul>
-<li><code>F_GETFL</code>：获取文件描述符状态标志</li>
-<li><code>F_SETFL</code>：设置文件描述符状态标志</li>
-</ul>
-</li>
-<li><code>arg</code>：文件描述符状态标志
-<ul>
-<li><code>O_NONBLOCK</code>：非阻塞</li>
-<li><code>O_ASYNC</code>：异步</li>
-<li><code>O_SYNC</code>：同步</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>阻塞：调用函数时，如果数据没有准备好，那么函数将一直等待，直到数据准备好为止</p>
-<p>非阻塞：调用函数时，如果数据没有准备好，那么函数将立即返回，不会等待数据准备好</p>
-<ul>
-<li>
-<p><code>accept</code></p>
-<ul>
-<li>阻塞：没有新连接时，一直等待</li>
-<li>非阻塞：没有新连接时，立即返回 <code>EWOULDBLOCK(11)</code> 或 <code>EAGAIN</code></li>
-</ul>
-</li>
-<li>
-<p><code>recv</code></p>
-<ul>
-<li>阻塞：没有数据时，一直等待</li>
-<li>非阻塞：没有数据时，立即返回 <code>EWOULDBLOCK(11)</code> 或 <code>EAGAIN</code></li>
-</ul>
-</li>
-<li>
-<p><code>read</code></p>
-<ul>
-<li>阻塞：没有数据时，一直等待</li>
-<li>非阻塞：没有数据时，立即返回 <code>EWOULDBLOCK(11)</code> 或 <code>EAGAIN</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="epoll">Epoll </h2>
-<h2 id="epoll-通信实例">Epoll 通信实例 </h2>
-<ul>
-<li>启动 <a href="%E6%A0%B7%E4%BE%8B/%E4%BA%8B%E4%BB%B6%E8%BD%AE%E8%AF%A2%E6%A0%B7%E4%BE%8B/%E6%9C%8D%E5%8A%A1%E7%AB%AF.cpp">服务端</a>
-<ol>
-<li>编译 <code>g++ 服务端.cpp -o 服务端</code></li>
-<li>运行 <code>./服务端</code> 默认运行在本地 8080 端口</li>
-</ol>
-</li>
-<li>启动 <a href="%E6%A0%B7%E4%BE%8B/%E4%BA%8B%E4%BB%B6%E8%BD%AE%E8%AF%A2%E6%A0%B7%E4%BE%8B/%E5%AE%A2%E6%88%B7%E7%AB%AF.cpp">客户端</a>
-<ol>
-<li>编译 <code>g++ 客户端.cpp -o 客户端</code></li>
-<li>运行 <code>./客户端</code></li>
-</ol>
-</li>
-</ul>
-<p>可以同时运行多个客户端，服务端允许多台客户端连接连接之后：</p>
-<ol>
-<li>客户端发送消息，服务端接收消息，回复单一消息</li>
-</ol>
-<h2 id="面向对象">面向对象 </h2>
-<h2 id="channel">Channel </h2>
-<p><code>Channel</code> 是 <code>Epoll</code> 的事件处理类，<code>Epoll</code> 通过 <code>Channel</code> 处理事件</p>
 <br>
 <hr>
-<h1 id="boostasio-1">Boost.Asio </h1>
-<p><a href="https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio.html">Boost.Asio</a></p>
+<h1 id="http">HTTP </h1>
+<p>HTTP 协议是基于 TCP 协议的应用层协议，默认端口号是 80（HTTPS是 443），HTTP 协议的通信模型是 <strong>请求-响应</strong> 模型</p>
+<ul>
+<li>请求，即客户端向服务端发送的消息</li>
+<li>响应，即服务端向客户端发送的消息</li>
+</ul>
+<p>HTTP 协议的请求消息和响应消息都是由 <strong>请求 / 响应行</strong>、<strong>请求 / 响应头</strong>、<strong>请求 / 响应体</strong> 组成</p>
+<ul>
+<li>
+<p><strong>请求行</strong> 由三部分组成：请求方法、请求路径、HTTP版本</p>
+<ul>
+<li>
+<p>请求方法：</p>
+<ul>
+<li><strong>GET：</strong>
+<ul>
+<li><strong>用途：</strong> 请求获取指定资源.不应该对服务器端数据产生任何影响。</li>
+<li><strong>示例：</strong> <code>GET /index.html</code>，获取首页信息。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>POST：</strong></p>
+<ul>
+<li><strong>用途：</strong> 用于向指定资源提交数据，请求服务器进行处理。常用于提交表单数据或上传文件。</li>
+<li><strong>示例：</strong> <code>POST /users</code>，提交用户注册表单。</li>
+</ul>
+</li>
+<li>
+<p><strong>PUT：</strong></p>
+<ul>
+<li><strong>用途：</strong> 请求服务器存储一个资源。通常是更新已存在的资源或创建新资源。</li>
+<li><strong>示例：</strong> <code>PUT /products/123</code>，更新产品编号为123的商品信息。</li>
+</ul>
+</li>
+<li>
+<p><strong>DELETE：</strong></p>
+<ul>
+<li><strong>用途：</strong> 请求服务器删除指定的资源。</li>
+<li><strong>示例：</strong> <code>DELETE /users/456</code>，删除用户编号为456的用户信息。</li>
+</ul>
+</li>
+<li>
+<p><strong>HEAD：</strong></p>
+<ul>
+<li><strong>用途：</strong> 请求获取指定资源的响应头信息，而不获取响应体的内容。通常用于检查资源是      否存在或获取资源的元信息。</li>
+<li><strong>示例：</strong> <code>HEAD /documents/789</code>，检查文档编号为789的资源是否存在。</li>
+</ul>
+</li>
+<li>
+<p><strong>OPTIONS：</strong></p>
+<ul>
+<li><strong>用途：</strong> 请求获取目标资源所支持的通信选项。用于查询服务器支持的HTTP方法。</li>
+<li><strong>示例：</strong> <code>OPTIONS /products</code>，查询服务器支持的HTTP方法。</li>
+</ul>
+</li>
+<li>
+<p><strong>TRACE：</strong></p>
+<ul>
+<li><strong>用途：</strong> 用于追踪路径。发送请求时，服务器会返回该请求所经过的服务器路径。主要用      于调试和测试。</li>
+<li><strong>示例：</strong> <code>TRACE /debug</code>，追踪请求的路径。</li>
+</ul>
+</li>
+<li>
+<p><strong>CONNECT：</strong></p>
+<ul>
+<li><strong>用途：</strong> 用于建立与目标资源的隧道连接，通常用于加密连接，如HTTPS。</li>
+<li><strong>示例：</strong> <code>CONNECT www.example.com:443</code>，与目标服务器建立加密连接。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>请求路径：<code>/</code>、<code>/index.html</code>、<code>/jiao.html</code>、<code>...</code></p>
+<ul>
+<li>我们将请求路径称为 <code>URI</code>，即统一资源标识符，而 <code>URL</code> 是 <code>URI</code> 的子集</li>
+</ul>
+</li>
+<li>
+<p>HTTP版本：<code>HTTP/1.0</code>、<code>HTTP/1.1</code>、<code>HTTP/2.0</code><br>
+<br></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>请求头</strong> 由请求头字段和请求头字段值组成，每个请求头字段都有特定的含义，常见的请求头字段有：</p>
+<ul>
+<li><code>Accept</code>：指定客户端能够接收的内容类型</li>
+<li><code>Accept-Encoding</code>：指定客户端能够接收的内容编码方式</li>
+<li><code>Accept-Language</code>：指定客户端能够接收的语言</li>
+<li><code>Connection</code>：指定客户端与服务端的连接类型</li>
+<li><code>Host</code>：指定请求的主机名和端口号</li>
+<li><code>User-Agent</code>：指定客户端的类型</li>
+<li><code>Referer</code>：指定请求的来源页面</li>
+<li><code>Cookie</code>：指定请求的 Cookie</li>
+<li><code>Content-Type</code>：指定请求体的类型</li>
+<li><code>Content-Length</code>：指定请求体的长度</li>
+<li><code>Authorization</code>：指定请求的授权信息</li>
+<li><code>If-Modified-Since</code>：指定请求的资源的最后修改时间</li>
+<li><code>If-None-Match</code>：指定请求的资源的 ETag 值</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li><strong>请求体</strong> 具体的数据
+<ul>
+<li>通常是在 post 请求中，将表单数据放在请求体中</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p><strong>响应行</strong> 由三部分组成：HTTP版本、状态码、状态码描述</p>
+<ul>
+<li>HTTP版本：<code>HTTP/1.0</code>、<code>HTTP/1.1</code>、<code>HTTP/2.0</code></li>
+<li>状态码：<code>200</code>、<code>404</code>、<code>500</code>、<code>...</code></li>
+<li>状态码描述：<code>OK</code>、<code>Not Found</code>、<code>Internal Server Error</code>、<code>...</code></li>
+<li>例如：<code>HTTP/1.1 200 OK</code></li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li><strong>响应头</strong> 由响应头字段和响应头字段值组成，每个响应头字段都有特定的含义，常见的响应头字段有：
+<ul>
+<li><code>Content-Type</code>：指定响应体的类型</li>
+<li><code>Content-Length</code>：指定响应体的长度</li>
+<li><code>Content-Encoding</code>：指定响应体的编码方式</li>
+<li><code>Content-Language</code>：指定响应体的语言</li>
+<li><code>Content-Disposition</code>：指定响应体的处理方式</li>
+<li><code>Set-Cookie</code>：指定响应的 Cookie</li>
+<li><code>Location</code>：指定响应的重定向地址</li>
+<li><code>Last-Modified</code>：指定响应的资源的最后修改时间</li>
+<li><code>ETag</code>：指定响应的资源的 ETag 值</li>
+</ul>
+</li>
+</ul>
+<br>
+<ul>
+<li><strong>响应体</strong> 具体的数据
+<ul>
+<li>例如网页的 HTML 代码</li>
+<li>例如图片的二进制数据、pdf文件等</li>
+</ul>
+</li>
+</ul>
+<br>
+<hr>
+<h1 id="rtprtcp">RTP/RTCP </h1>
 
       </div>
       <div class="md-sidebar-toc">
@@ -1220,11 +1074,7 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
           </a></div>
         </div>
       </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#http-" class="md-toc-link">
-            <p>HTTP *</p>
-
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
+    <details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#boostasio" class="md-toc-link"><p>Boost.Asio</p>
 </a>
@@ -1320,49 +1170,13 @@ server_addr<span class="token punctuation">.</span>sin_port        <span class="
           <a href="#errno" class="md-toc-link">
             <p>errno</p>
 
-          </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#socket" class="md-toc-link"><p>Socket</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#" class="md-toc-link">
-            
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#socket-udp-通信简单实例" class="md-toc-link">
-            <p>socket UDP 通信简单实例</p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#http" class="md-toc-link">
+            <p>HTTP</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#socket-选项" class="md-toc-link">
-            <p>Socket 选项</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#非阻塞-socket" class="md-toc-link">
-            <p>非阻塞 Socket</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#epoll" class="md-toc-link">
-            <p>Epoll</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#epoll-通信实例" class="md-toc-link">
-            <p>Epoll 通信实例</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#面向对象" class="md-toc-link">
-            <p>面向对象</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#channel" class="md-toc-link">
-            <p>Channel</p>
-
-          </a></div>
-        </div>
-      </details>
-    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#boostasio-1" class="md-toc-link">
-            <p>Boost.Asio</p>
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#rtprtcp" class="md-toc-link">
+            <p>RTP/RTCP</p>
 
           </a></div>
 </div>
