@@ -365,7 +365,13 @@ $P\{ 0 < x < \frac{\pi}{4} \} = \int_0^{\frac{\pi}{4}} \frac{1}{2} \sin x \text{
 
 $(1)$
 
-$F(y) = P\{Y \leq y\} = P\{-2X+1 \leq y\} = P\{X \geq \frac{1-y}{2}\}$
+$F(y) = P\{Y \leq y\} = P\{-2X+1 \leq y\} = P\{X \geq \frac{1-y}{2}\} = \int_{\frac{1-y}{2}}^{+\infty} f(x) \text{d} x$
+
+$=\begin{cases} 1, & \frac{1-y}{2} < 0 \\ \int_{\frac{1-y}{2}}^{1} \frac{1-y}{2} \text{d} \frac{1-y}{2} + \int_{1}^{2} (2 - \frac{1-y}{2}) \text{d} \frac{1-y}{2}, & 0 \leq \frac{1-y}{2} < 1 \\ \int_{\frac{1-y}{2}}^{2} ( 2 - \frac{1-y}{2}) \text{d} \frac{1-y}{2}, & 1 \leq \frac{1-y}{2} < 2 \\ 0, & \frac{1-y}{2} \geq 2 \end{cases}$
+
+$=\begin{cases} 1, & \frac{1-y}{2} < 0 \\ 1-\frac{1}{2} * (\frac{1-y}{2})^2, & 0 \leq \frac{1-y}{2} < 1 \\ 2 - 2 * \frac{1-y}{2} + \frac{1}{2}(\frac{1-y}{2})^2, & 1 \leq \frac{1-y}{2} < 2 \\ 0, & \frac{1-y}{2} \geq 2 \end{cases}$
+
+$f(y) = F^{'}(y) = \begin{cases} \frac{y}{4}-\frac{1}{4}, & -1 < y < 1 \\ \frac{y}{4} + \frac{3}{4} , & -3 < y < -1 \\ 0, & 其他 \end{cases}$
 
 $(2)$
 
@@ -606,7 +612,7 @@ $$X \sim N(\mu, \sigma^2)$$
 
 ## 0、题
 
-### 边缘概率密度(3)
+### 边缘概率密度 **$^3$**
 
 <br>
 
@@ -628,8 +634,6 @@ $D(X) = E(X^2) - E^2(X) = \frac{1}{18}$
 
 <br>
 
-### B
-
 > 设随机变量 $X \sim B(n, p), E(X)=1.8, D(X)=1.26$，则参数 $n, p$ 的值为
 
 $E(X) = np = 1.8$
@@ -639,8 +643,6 @@ $D(X) = np(1-p) = 1.26$
 $n = 6, p = 0.3$
 
 <br>
-
-### P
 
 > 设 $X_i \sim P(\lambda)(i=1,2,3)$，且 $\lambda = 3$，$X_1, X_2, X_3$ 相互独立，则 $D[\frac{1}{3}(X_1 + X_2 + X_3)]$
 
