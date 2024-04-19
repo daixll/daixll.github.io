@@ -185,7 +185,7 @@ int main(){
 [基本算法之搜索](http://noi.openjudge.cn/ch0205/)
 [算法之搜索](http://noi.openjudge.cn/ch0407/)
 
-<1details><summary><a href="http://noi.openjudge.cn/ch0205/1789/" target="_blank">1789:算24</a> code</summary><br>
+<details><summary><a href="http://noi.openjudge.cn/ch0205/1789/" target="_blank">1789:算24</a> no code</summary><br>
 
 **大意**
 
@@ -445,6 +445,17 @@ int main(){
 
 [基本算法之分治](http://noi.openjudge.cn/ch0204/)
 [算法之分治](http://noi.openjudge.cn/ch0404/)
+
+
+
+
+<br>
+
+---
+
+
+# 六级
+
 
 
 
