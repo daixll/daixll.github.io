@@ -614,6 +614,35 @@ $$X \sim N(\mu, \sigma^2)$$
 
 ### 边缘概率密度 **$^3$**
 
+> 设二维随机变量 $(X, Y)$ 的概率密度为 $f(x, y) = \begin{cases} kx^2y , & x^2 \leq y \leq 1 \\ 0 , & 其他\end{cases}$ 求
+> （1）常数 $k$；（2）边缘概率密度；（3）$X$ 与 $Y$ 是否独立
+
+（1）
+
+**由规范性 $\int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x, y) \text{d}x \text{d}y = 1$**
+
+$\int_{-1}^{1} \int_{x^2}^{1} kx^2y \text{d}y \text{d}x = 1$
+
+$k = \frac{21}{4}$
+
+（2）
+
+**$f_X(x) = \int_{-\infty}^{+\infty} f(x,y) \text{d}y$**
+**$f_Y(y) = \int_{-\infty}^{+\infty} f(x,y) \text{d}x$**
+
+$f_X(x) = \begin{cases} \int_{x^2}^{1} \frac{21}{4} x^2 y \text{d}y, & x^2 \leq 1 \\ 0, & 其他\end{cases}$
+
+$f_Y(y) = \begin{cases} \int_{-1}^{1} \frac{21}{4} x^2 y \text{d}x, & x^2 \leq y \leq 1 \\ 0, & 其他\end{cases}$
+
+$f_X(x) = \begin{cases} \frac{21x^2-21x^6}{8}, & x^2 \leq 1 \\ 0, & 其他\end{cases}$
+
+$f_Y(y) = \begin{cases} \frac{21y}{6}, & x^2 \leq y \leq 1 \\ 0, & 其他\end{cases}$
+
+（3）
+
+由于 $f(x,y) \neq f_X(x)f_Y(y)$，所以 $X$ 与 $Y$ 不独立
+
+
 <br>
 
 ---
