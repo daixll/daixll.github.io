@@ -27,36 +27,45 @@
 <h1 id="引子">引子 </h1>
 <br>
 <hr>
+<h1 id="springboot">springboot </h1>
+<h2 id="main-application-class">Main Application Class </h2>
+<blockquote>
+<p>程序入口主类</p>
+</blockquote>
+<ul>
+<li><code>@SpringBootApplication</code></li>
+</ul>
+<br>
+<hr>
+<h2 id="controller">Controller </h2>
+<blockquote>
+<p>控制类，处理 HTTP 请求，返回 HTTP 相应</p>
+</blockquote>
+<ul>
+<li><code>@RestController</code><br>
+这个控制器返回数据</li>
+<li><code>@GetMapping</code><br>
+当有 GET 请求发送到特定的 URL 时，应该调用这个方法来处理请求</li>
+<li><code>@RequestParam</code><br>
+从请求中获取 key 的 value，并且赋值给某个变量</li>
+</ul>
+<br>
+<hr>
+<h2 id="server">Server </h2>
+<br>
+<hr>
+<h2 id="dao">DAO </h2>
+<br>
+<hr>
 
       </div>
-      <div class="md-sidebar-toc">
-<div class="md-toc">
-<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#引子" class="md-toc-link">
-            <p>引子</p>
-
-          </a></div>
-</div>
-</div>
-      <a id="sidebar-toc-btn">≡</a>
-    
-    
-    
-    
-    
-    
-<script>
-document.body.setAttribute('html-show-sidebar-toc', true)
-var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
-sidebarTOCBtn.addEventListener('click', function(event) {
-  event.stopPropagation()
-  if (document.body.hasAttribute('html-show-sidebar-toc')) {
-    document.body.removeAttribute('html-show-sidebar-toc')
-  } else {
-    document.body.setAttribute('html-show-sidebar-toc', true)
-  }
-})
-</script>
       
+      
+    
+    
+    
+    
+    
+    
   
     </body></html>
