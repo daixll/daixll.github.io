@@ -27,45 +27,124 @@
 <h1 id="引子">引子 </h1>
 <br>
 <hr>
-<h1 id="springboot">springboot </h1>
-<h2 id="main-application-class">Main Application Class </h2>
-<blockquote>
-<p>程序入口主类</p>
-</blockquote>
-<ul>
-<li><code>@SpringBootApplication</code></li>
-</ul>
-<br>
-<hr>
+<h1 id="1">1 </h1>
 <h2 id="controller">Controller </h2>
 <blockquote>
-<p>控制类，处理 HTTP 请求，返回 HTTP 相应</p>
+<p><strong>控制器</strong></p>
+<ul>
+<li>处理 HTTP 请求，返回 HTTP 响应</li>
+<li>调用业务逻辑返回结果</li>
+</ul>
 </blockquote>
 <ul>
-<li><code>@RestController</code><br>
-这个控制器返回数据</li>
-<li><code>@GetMapping</code><br>
-当有 GET 请求发送到特定的 URL 时，应该调用这个方法来处理请求</li>
-<li><code>@RequestParam</code><br>
-从请求中获取 key 的 value，并且赋值给某个变量</li>
+<li>
+<p><code>@RestController</code></p>
+</li>
+<li>
+<p><code>@GetMapping</code></p>
+</li>
+<li>
+<p><code>@RequestParam</code><br>
+从请求中获取 key 的 value，并且赋值给某个变量</p>
+</li>
 </ul>
 <br>
 <hr>
 <h2 id="server">Server </h2>
+<blockquote>
+<p><strong>服务层</strong></p>
+<ul>
+<li>封装业务逻辑和数据处理，提供给 Controller 使用</li>
+<li>调用 DAO 层实现对数据的访问和操作</li>
+</ul>
+</blockquote>
 <br>
 <hr>
 <h2 id="dao">DAO </h2>
+<blockquote>
+<p><strong>数据访问对象</strong></p>
+<ul>
+<li>CRUD</li>
+<li>数据访问与业务逻辑分离</li>
+</ul>
+</blockquote>
+<br>
+<hr>
+<h2 id="mapper">Mapper </h2>
+<blockquote>
+<p><strong>映射器</strong></p>
+<ul>
+<li>MyBatis 等组件使用</li>
+</ul>
+</blockquote>
+<br>
+<hr>
+<h2 id="pojo">POJO </h2>
+<blockquote>
+<p><strong>普通 Java 对象</strong><br>
+常用于封装数据传输对象</p>
+</blockquote>
 <br>
 <hr>
 
       </div>
+      <div class="md-sidebar-toc">
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#引子" class="md-toc-link">
+            <p>引子</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#1" class="md-toc-link"><p>1</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#controller" class="md-toc-link">
+            <p>Controller</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#server" class="md-toc-link">
+            <p>Server</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#dao" class="md-toc-link">
+            <p>DAO</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mapper" class="md-toc-link">
+            <p>Mapper</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#pojo" class="md-toc-link">
+            <p>POJO</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+</div>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    
+    
+    
+    
+    
+    
+<script>
+document.body.setAttribute('html-show-sidebar-toc', true)
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
       
-      
-    
-    
-    
-    
-    
-    
   
     </body></html>

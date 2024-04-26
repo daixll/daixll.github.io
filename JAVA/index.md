@@ -12,30 +12,22 @@ export_on_save:
 ---
 
 
-# springboot
-
-##  Main Application Class
-
-> 程序入口主类
-
-* `@SpringBootApplication`
-
-
-<br>
-
----
+# 1
 
 ## Controller
 
-> 控制类，处理 HTTP 请求，返回 HTTP 相应
+> **控制器**
+> * 处理 HTTP 请求，返回 HTTP 响应
+> * 调用业务逻辑返回结果
 
 * `@RestController`
-    这个控制器返回数据
+    
+
 * `@GetMapping`
-    当有 GET 请求发送到特定的 URL 时，应该调用这个方法来处理请求
+
+
 * `@RequestParam`
     从请求中获取 key 的 value，并且赋值给某个变量
-
 
 <br>
 
@@ -43,13 +35,38 @@ export_on_save:
 
 ## Server
 
-
+> **服务层**
+> * 封装业务逻辑和数据处理，提供给 Controller 使用
+> * 调用 DAO 层实现对数据的访问和操作
 
 <br>
 
 ---
 
 ## DAO
+
+> **数据访问对象**
+> * CRUD
+> * 数据访问与业务逻辑分离
+
+<br>
+
+---
+
+## Mapper
+
+> **映射器**
+> * MyBatis 等组件使用
+
+
+<br>
+
+---
+
+## POJO
+
+> **普通 Java 对象**
+> 常用于封装数据传输对象
 
 <br>
 
