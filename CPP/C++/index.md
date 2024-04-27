@@ -1,6 +1,4 @@
 ---
-toc:
-    depth_to: 3
 html:
     toc: true   # 打开侧边目录
 export_on_save:
