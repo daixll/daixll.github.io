@@ -36,18 +36,30 @@
 <li>调用业务逻辑返回结果</li>
 </ul>
 </blockquote>
+<details><summary><a href="" target="_blank"></a> 简单 RESTful API 接口</summary><br>
 <ul>
-<li>
-<p><code>@RestController</code></p>
-</li>
-<li>
-<p><code>@GetMapping</code></p>
-</li>
-<li>
-<p><code>@RequestParam</code><br>
-从请求中获取 key 的 value，并且赋值给某个变量</p>
-</li>
+<li><code>@RestController</code> 处理 HTTP 请求并返回响应数据</li>
+<li><code>@Resource</code> 依赖注入</li>
+<li><code>@GetMapping</code> 处理 HTTP GET 请求，并且映射路径</li>
+<li><code>@RequestParam</code> 从请求中获取 key 的 value，并且赋值给某个变量</li>
 </ul>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token annotation punctuation">@RestController</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">EmpController</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Resource</span>
+    <span class="token class-name">EmpService</span> empService<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/list"</span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-public">public</span> <span class="token class-name">Result</span> <span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> emps <span class="token operator">=</span> empService<span class="token punctuation">.</span><span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> <span class="token class-name">Result</span><span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span>emps<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-public">public</span> <span class="token class-name">RedirectView</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">RedirectView</span><span class="token punctuation">(</span><span class="token string">"emp.html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 重定向</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></details>
 <br>
 <hr>
 <h2 id="server">Server </h2>
@@ -58,6 +70,29 @@
 <li>调用 DAO 层实现对数据的访问和操作</li>
 </ul>
 </blockquote>
+<details><summary><a href="" target="_blank"></a> Server</summary><br>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-interface">interface</span> <span class="token class-name">EmpService</span> <span class="token punctuation">{</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> <span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></details>
+<details><summary><a href="" target="_blank"></a> ServerImpl</summary><br>
+<ul>
+<li><code>@Server</code> 标识为 Spring Bean，由 Spring 管理的服务类</li>
+<li><code>Resource</code> 依赖注入</li>
+<li><code>Override</code> 重写父类方法</li>
+</ul>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token annotation punctuation">@Service</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">EmpServiceImpl</span> <span class="token keyword keyword-implements">implements</span> <span class="token class-name">EmpService</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Resource</span>
+    <span class="token class-name">EmpMapper</span> empMapper<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword keyword-public">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> <span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> emps <span class="token operator">=</span> empMapper<span class="token punctuation">.</span><span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> emps<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></details>
 <br>
 <hr>
 <h2 id="dao">DAO </h2>
@@ -77,6 +112,15 @@
 <li>MyBatis 等组件使用</li>
 </ul>
 </blockquote>
+<details><summary><a href="" target="_blank"></a> Mapper </summary><br>
+<ul>
+<li><code>@Mapper</code> 使用 MyBatis 框架为接口生成对应实现类</li>
+</ul>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token annotation punctuation">@Mapper</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-interface">interface</span> <span class="token class-name">EmpMapper</span> <span class="token punctuation">{</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> <span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></details>
 <br>
 <hr>
 <h2 id="pojo">POJO </h2>
@@ -84,6 +128,86 @@
 <p><strong>普通 Java 对象</strong><br>
 常用于封装数据传输对象</p>
 </blockquote>
+<details><summary><a href="" target="_blank"></a> Result 统一响应结果封装类</summary><br>
+<ul>
+<li><code>@Override</code> 重写父类方法</li>
+</ul>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Result</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">Integer</span> code <span class="token punctuation">;</span><span class="token comment">//1 成功 , 0 失败</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">String</span> msg<span class="token punctuation">;</span> <span class="token comment">//提示信息</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">Object</span> data<span class="token punctuation">;</span> <span class="token comment">//数据 date</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token class-name">Result</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token class-name">Result</span><span class="token punctuation">(</span><span class="token class-name">Integer</span> code<span class="token punctuation">,</span> <span class="token class-name">String</span> msg<span class="token punctuation">,</span> <span class="token class-name">Object</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> code<span class="token punctuation">;</span>
+        <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>msg <span class="token operator">=</span> msg<span class="token punctuation">;</span>
+        <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> data<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token class-name">Integer</span> <span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> code<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-void">void</span> <span class="token function">setCode</span><span class="token punctuation">(</span><span class="token class-name">Integer</span> code<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> code<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token class-name">String</span> <span class="token function">getMsg</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> msg<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-void">void</span> <span class="token function">setMsg</span><span class="token punctuation">(</span><span class="token class-name">String</span> msg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>msg <span class="token operator">=</span> msg<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token class-name">Object</span> <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> data<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-void">void</span> <span class="token function">setData</span><span class="token punctuation">(</span><span class="token class-name">Object</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> data<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token class-name">Result</span> <span class="token function">success</span><span class="token punctuation">(</span><span class="token class-name">Object</span> data<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Result</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"success"</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token class-name">Result</span> <span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Result</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"success"</span><span class="token punctuation">,</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-static">static</span> <span class="token class-name">Result</span> <span class="token function">error</span><span class="token punctuation">(</span><span class="token class-name">String</span> msg<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Result</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> msg<span class="token punctuation">,</span> <span class="token keyword keyword-null">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword keyword-public">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword keyword-return">return</span> <span class="token string">"Result{"</span> <span class="token operator">+</span>
+                <span class="token string">"code="</span> <span class="token operator">+</span> code <span class="token operator">+</span>
+                <span class="token string">", msg='"</span> <span class="token operator">+</span> msg <span class="token operator">+</span> <span class="token char">'\''</span> <span class="token operator">+</span>
+                <span class="token string">", data="</span> <span class="token operator">+</span> data <span class="token operator">+</span>
+                <span class="token char">'}'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></details>
+<details><summary><a href="" target="_blank"></a> Emp 用于数据库操作的实体类</summary><br>
+<p><code>Lombok</code> 提供的注解</p>
+<ul>
+<li><code>@Data</code> 用于自动生成类的 <code>toString()</code> 等</li>
+<li><code>@NoArgsConstructor</code> 自动生成无参构造方法</li>
+<li><code>@AllArgsConstructor</code>自动生成包含所有成员变量的构造方法</li>
+</ul>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Emp</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">Integer</span> id<span class="token punctuation">;</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">String</span> userName<span class="token punctuation">;</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">String</span> password<span class="token punctuation">;</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">Short</span> gender<span class="token punctuation">;</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">Short</span> job<span class="token punctuation">;</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">LocalDate</span> entryDate<span class="token punctuation">;</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">Integer</span> deptId<span class="token punctuation">;</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">LocalDateTime</span> createTime<span class="token punctuation">;</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">LocalDateTime</span> updateTime<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre></details>
 <br>
 <hr>
 
