@@ -249,72 +249,6 @@
 </code></pre><br>
 <hr>
 <h1 id="ffmpeg">FFmpeg </h1>
-<h2 id="安装-1">安装 </h2>
-<ol>
-<li>
-<p>安装<br>
-<strong>Linux</strong><br>
-<code>sudo apt install ffmpeg libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev</code></p>
-<ul>
-<li>
-<p><code>libavformat-dev</code> 格式处理库</p>
-</li>
-<li>
-<p><code>libavcodec-dev</code> 编解码库</p>
-</li>
-<li>
-<p><code>libswresample</code> 音频格式转换库</p>
-</li>
-<li>
-<p><code>libswscale-dev</code> 视频格式转换库</p>
-</li>
-<li>
-<p><code>libavdevice-dev</code> 设备操作库</p>
-</li>
-<li>
-<p><code>libavutil-dev</code> Utility辅助库</p>
-</li>
-<li>
-<p><code>libavfilter</code> 音视频滤镜</p>
-</li>
-</ul>
-</li>
-<li>
-<p>测试</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-extern">extern</span> <span class="token string">"C"</span><span class="token punctuation">{</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavcodec/avcodec.h&gt;</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavformat/avformat.h&gt;</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavutil/dict.h&gt;</span></span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> argc<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">avformat_network_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 替换 av_register_all()</span>
-
-    AVFormatContext <span class="token operator">*</span>formatContext <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// 打开视频文件</span>
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">avformat_open_input</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>formatContext<span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">!=</span>     <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span> <span class="token string">"无法打开视频文件\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment">// 获取视频文件信息</span>
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">avformat_find_stream_info</span><span class="token punctuation">(</span>formatContext<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span> <span class="token string">"无法获取视频文件信息\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment">// 打印视频文件信息</span>
-    <span class="token function">av_dump_format</span><span class="token punctuation">(</span>formatContext<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// 关闭视频文件</span>
-    <span class="token function">avformat_close_input</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>formatContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre><pre data-role="codeBlock" data-info="" class="language-text"><code>g++ main.cpp -o main -lavcodec -lavformat -lavutil -lswscale
-</code></pre></li>
-</ol>
 <h2 id="调用麦克风">调用麦克风 </h2>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 <span class="token keyword keyword-extern">extern</span> <span class="token string">"C"</span> <span class="token punctuation">{</span>
@@ -532,10 +466,6 @@
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#安装-1" class="md-toc-link">
-            <p>安装</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#调用麦克风" class="md-toc-link">
             <p>调用麦克风</p>
 

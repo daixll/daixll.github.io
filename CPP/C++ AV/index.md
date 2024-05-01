@@ -247,59 +247,6 @@ int main()
 
 # FFmpeg
 
-## 安装
-
-1. 安装
-    **Linux**
-    `sudo apt install ffmpeg libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev`
-
-    * `libavformat-dev` 格式处理库
-    * `libavcodec-dev` 编解码库
-    * `libswresample` 音频格式转换库
-    * `libswscale-dev` 视频格式转换库
-        
-    * `libavdevice-dev` 设备操作库
-        
-    * `libavutil-dev` Utility辅助库
-    * `libavfilter` 音视频滤镜
-
-2. 测试
-    ```cpp
-    extern "C"{
-    #include <libavcodec/avcodec.h>
-    #include <libavformat/avformat.h>
-    #include <libavutil/dict.h>
-    }
-
-    int main(int argc, char *argv[]) {
-        avformat_network_init(); // 替换 av_register_all()
-
-        AVFormatContext *formatContext = NULL;
-
-        // 打开视频文件
-        if (avformat_open_input(&formatContext, argv[1], NULL, NULL) !=     0) {
-            fprintf(stderr, "无法打开视频文件\n");
-            return -1;
-        }
-
-        // 获取视频文件信息
-        if (avformat_find_stream_info(formatContext, NULL) < 0) {
-            fprintf(stderr, "无法获取视频文件信息\n");
-            return -1;
-        }
-
-        // 打印视频文件信息
-        av_dump_format(formatContext, 0, argv[1], 0);
-
-        // 关闭视频文件
-        avformat_close_input(&formatContext);
-
-        return 0;
-    }
-    ```
-    ```
-    g++ main.cpp -o main -lavcodec -lavformat -lavutil -lswscale
-    ```
 
 ## 调用麦克风
 
