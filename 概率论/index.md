@@ -277,9 +277,9 @@ $P\{X + Y = 0\} = \frac{5}{18}$
 
 > 设随机变量 $X$ 服从 $(0, 2)$ 上的均匀分布，则 $P\{1 < X < 3\}$
 
-$f(x) = \begin{cases} \frac{1}{b-a}, & a < x < b \\ 0, & \text{其他} \end{cases}$
+$f(x) = \begin{cases} \frac{1}{b-a}, & a < x < b \\ 0, & else \end{cases}$
 
-$f(x) = \begin{cases} \frac{1}{2}, & 0 < x < 2 \\ 0, & \text{其他} \end{cases}$
+$f(x) = \begin{cases} \frac{1}{2}, & 0 < x < 2 \\ 0, & else \end{cases}$
 
 $P\{1 < x < 3\} = \int_1^2 \frac{1}{2} \text{d}x$
 
@@ -311,7 +311,7 @@ $\begin{cases} 0, & x \leq 0 \\ \int_{0}^{+\infty}5e^{-5x} \text{d}x, & x > 0 \e
 
 <br>
 
-> 设连续型随机变量 $X$ 的密度函数为 $f(x) = \begin{cases} Ax, & 0 \leq x \leq 1 \\ A(2-x), & 1 < x \leq 2 \\ 0, & 其他 \end{cases}$，求（1）常数 $A$；（2）$X$ 的分布函数 $F(x)$；（3）$P\{\frac{1}{2} < X < \frac{3}{2}\}$
+> 设连续型随机变量 $X$ 的密度函数为 $f(x) = \begin{cases} Ax, & 0 \leq x \leq 1 \\ A(2-x), & 1 < x \leq 2 \\ 0, & else \end{cases}$，求（1）常数 $A$；（2）$X$ 的分布函数 $F(x)$；（3）$P\{\frac{1}{2} < X < \frac{3}{2}\}$
 
 $(1)$
 
@@ -335,7 +335,7 @@ $P\{\frac{1}{2} < X < \frac{3}{2}\} = \int_{\frac{1}{2}}^{\frac{3}{2}} f(x) \tex
 
 <br>
 
-> 设连续型随机变量 $X$ 的密度为 $f(x) = \begin{cases} A \sin x ,& 0<x< \pi \\ 0, & 其他\end{cases}$ 求（1）$A$；（2）$X$ 的分布函数 $F(x)$；（3）$P\{0< x < \frac{\pi}{4} \}$
+> 设连续型随机变量 $X$ 的密度为 $f(x) = \begin{cases} A \sin x ,& 0<x< \pi \\ 0, & else\end{cases}$ 求（1）$A$；（2）$X$ 的分布函数 $F(x)$；（3）$P\{0< x < \frac{\pi}{4} \}$
 
 $(1)$
 
@@ -361,7 +361,7 @@ $P\{ 0 < x < \frac{\pi}{4} \} = \int_0^{\frac{\pi}{4}} \frac{1}{2} \sin x \text{
 
 ### 概率密度求概率密度 **$^4$**
 
-> 设随机变量 $X$ 的密度为 $f(x) = \begin{cases} x, & 0 \leq x \leq 1 \\ 2-x , & 1 < x \leq 2 \\ 0 , & 其他\end{cases}$，求（1）$Y = -2X+1$ 的密度；（2）$Z=e^X$ 的密度
+> 设随机变量 $X$ 的密度为 $f(x) = \begin{cases} x, & 0 \leq x \leq 1 \\ 2-x , & 1 < x \leq 2 \\ 0 , & else\end{cases}$，求（1）$Y = -2X+1$ 的密度；（2）$Z=e^X$ 的密度
 
 $(1)$
 
@@ -371,7 +371,7 @@ $=\begin{cases} 1, & \frac{1-y}{2} < 0 \\ \int_{\frac{1-y}{2}}^{1} \frac{1-y}{2}
 
 $=\begin{cases} 1, & \frac{1-y}{2} < 0 \\ 1-\frac{1}{2} * (\frac{1-y}{2})^2, & 0 \leq \frac{1-y}{2} < 1 \\ 2 - 2 * \frac{1-y}{2} + \frac{1}{2}(\frac{1-y}{2})^2, & 1 \leq \frac{1-y}{2} < 2 \\ 0, & \frac{1-y}{2} \geq 2 \end{cases}$
 
-$f(y) = F^{'}(y) = \begin{cases} \frac{y}{4}-\frac{1}{4}, & -1 < y < 1 \\ \frac{y}{4} + \frac{3}{4} , & -3 < y < -1 \\ 0, & 其他 \end{cases}$
+$f(y) = F^{'}(y) = \begin{cases} \frac{y}{4}-\frac{1}{4}, & -1 < y < 1 \\ \frac{y}{4} + \frac{3}{4} , & -3 < y < -1 \\ 0, & else \end{cases}$
 
 $(2)$
 
@@ -381,11 +381,11 @@ $= \begin{cases} 0, & \ln y < 0\\ \int_{0}^{\ln y} (\ln y)\text{d} \ln y , & 0 \
 
 $= \begin{cases} 0, & \ln y < 0 \\ \frac{1}{2}(\ln y)^2 , & 0 \leq \ln y < 1 \\ 2 \ln y - \frac{1}{2}(\ln y)^2 - 1, & 1 \leq \ln y < 2 \\ 1, & \ln y \geq 2 \end{cases}$
 
-$f(y) = F^{'}(y) = \begin{cases} \frac{\ln y}{y}, & 0 < y < e \\ \frac{2}{y} - \frac{\ln y}{y}, & e < y < e^2 \\ 0 , & 其他\end{cases}$
+$f(y) = F^{'}(y) = \begin{cases} \frac{\ln y}{y}, & 0 < y < e \\ \frac{2}{y} - \frac{\ln y}{y}, & e < y < e^2 \\ 0 , & else\end{cases}$
 
 <br>
 
-> 设 $X \sim f_X(x) = \begin{cases} \frac{x}{8}, & 0<x<4\\ 0, & 其他\end{cases}$，（1）求 $Y=2X+8$ 的密度函数 $f_Y(y)$；（2）求 $Y=2X-1$ 的密度函数 $f_Y(y)$
+> 设 $X \sim f_X(x) = \begin{cases} \frac{x}{8}, & 0<x<4\\ 0, & else\end{cases}$，（1）求 $Y=2X+8$ 的密度函数 $f_Y(y)$；（2）求 $Y=2X-1$ 的密度函数 $f_Y(y)$
 
 $(1)$
 
@@ -395,7 +395,7 @@ $= \begin{cases} 0, & \frac{y-8}{2} < 0 \\ \int_0^{\frac{y-8}{2}} (\frac{\frac{y
 
 $= \begin{cases} 0, & \frac{y-8}{2} < 0 \\ \frac{1}{8} * \frac{1}{2} * (\frac{y-8}{2})^2 , & 0 \leq \frac{y-8}{2} < 4 \\ 1, & \frac{y-8}{2} \geq 4 \end{cases}$
 
-$f(y) = F^{'}(y) = \begin{cases} \frac{y-8}{32}, & 8 < y < 16 \\ 0, & 其他\end{cases}$
+$f(y) = F^{'}(y) = \begin{cases} \frac{y-8}{32}, & 8 < y < 16 \\ 0, & else\end{cases}$
 
 $(2)$
 
@@ -405,7 +405,7 @@ $= \begin{cases} 0, & \frac{y+1}{2} < 0 \\ \int_{0}^{\frac{y+1}{2}} \frac{\frac{
 
 $= \begin{cases} 0, & \frac{y+1}{2} < 0 \\ \frac{1}{8} * \frac{1}{2} * (\frac{y+1}{2})^2, & 0 \leq \frac{y+1}{2} < 4 \\ 1, & \frac{y+1}{2} \geq 4 \end{cases}$
 
-$f(y) = F^{'}(y) = \begin{cases} \frac{y+1}{32}, & -1 < y < 7 \\ 0, & 其他\end{cases}$
+$f(y) = F^{'}(y) = \begin{cases} \frac{y+1}{32}, & -1 < y < 7 \\ 0, & else\end{cases}$
 
 <br>
 
@@ -572,7 +572,7 @@ $x$ 为连续型随机变量，$f(x)$ 称为 $X$ 的概率密度函数
 
 若连续型随机变量 $X$ 的概率密度函数为：
 
-$$f(x) = \begin{cases} \frac{1}{b-a}, & a < x < b \\ 0, & \text{其他} \end{cases}$$
+$$f(x) = \begin{cases} \frac{1}{b-a}, & a < x < b \\ 0, & else \end{cases}$$
 
 则 $X$ 在区间 $(a,b)$ 上服从 **均匀分布**，记作：
 
@@ -614,7 +614,7 @@ $$X \sim N(\mu, \sigma^2)$$
 
 ### 边缘概率密度 **$^3$**
 
-> 设二维随机变量 $(X, Y)$ 的概率密度为 $f(x, y) = \begin{cases} kx^2y , & x^2 \leq y \leq 1 \\ 0 , & 其他\end{cases}$ 求
+> 设二维随机变量 $(X, Y)$ 的概率密度为 $f(x, y) = \begin{cases} kx^2y , & x^2 \leq y \leq 1 \\ 0 , & else\end{cases}$ 求
 > （1）常数 $k$；（2）边缘概率密度；（3）$X$ 与 $Y$ 是否独立
 
 （1）
@@ -630,13 +630,13 @@ $k = \frac{21}{4}$
 **$f_X(x) = \int_{-\infty}^{+\infty} f(x,y) \text{d}y$**
 **$f_Y(y) = \int_{-\infty}^{+\infty} f(x,y) \text{d}x$**
 
-$f_X(x) = \begin{cases} \int_{x^2}^{1} \frac{21}{4} x^2 y \text{d}y, & x^2 \leq 1 \\ 0, & 其他\end{cases}$
+$f_X(x) = \begin{cases} \int_{x^2}^{1} \frac{21}{4} x^2 y \text{d}y, & x^2 \leq 1 \\ 0, & else\end{cases}$
 
-$f_Y(y) = \begin{cases} \int_{-1}^{1} \frac{21}{4} x^2 y \text{d}x, & x^2 \leq y \leq 1 \\ 0, & 其他\end{cases}$
+$f_Y(y) = \begin{cases} \int_{-1}^{1} \frac{21}{4} x^2 y \text{d}x, & x^2 \leq y \leq 1 \\ 0, & else\end{cases}$
 
-$f_X(x) = \begin{cases} \frac{21x^2-21x^6}{8}, & x^2 \leq 1 \\ 0, & 其他\end{cases}$
+$f_X(x) = \begin{cases} \frac{21x^2-21x^6}{8}, & x^2 \leq 1 \\ 0, & else\end{cases}$
 
-$f_Y(y) = \begin{cases} \frac{21y}{6}, & x^2 \leq y \leq 1 \\ 0, & 其他\end{cases}$
+$f_Y(y) = \begin{cases} \frac{21y}{6}, & x^2 \leq y \leq 1 \\ 0, & else\end{cases}$
 
 （3）
 
@@ -653,7 +653,7 @@ $f_Y(y) = \begin{cases} \frac{21y}{6}, & x^2 \leq y \leq 1 \\ 0, & 其他\end{ca
 
 ### 连续型求期望方差 **$^5$**
 
-> 设随机变量 $X$ 的密度函数为 $f(x) = \begin{cases} 2x, 0 \leq x < 1 \\ 0, 其他 \end{cases}$：（1）求 $E(X)$；（2）求 $D(X)$
+> 设随机变量 $X$ 的密度函数为 $f(x) = \begin{cases} 2x, 0 \leq x < 1 \\ 0, else \end{cases}$：（1）求 $E(X)$；（2）求 $D(X)$
 
 $E(X) = \int^1_0 x(2x) \text{d}x = \frac{2}{3} x^3 |^1_0 = \frac{2}{3}$
 
@@ -834,11 +834,110 @@ $$D(X+Y) = D(X) + D(Y) + 2Cov(X, Y)$$
 
 # 七、参数估计
 
-## 0、题
+## 0、求矩或极大似然估计 **$^6$**
 
-### 求矩估计量
+> （1）设总体 $X \sim B(1, p)$ 其中 $p$ 是未知参数，$X_1, X_2, X_3, X_4, X_5$ 是总体的样本，若样本观测值为 $1, 1, 0, 1, 0$，求 $p$ 的矩估计量
 
-> 设总体 $X \sim f(x, \theta) = \begin{cases} (\theta + 1)x^\theta , 0<x<1 \\ 0, 其他\end{cases}, \theta > -1$，$X_1, X_2, X_3 ... X_n$ 是来自总体 $X$ 的样本，求 $\theta$ 的矩估计量 
+1. 求出总体矩 $E(X)$
+
+&emsp;&emsp;&emsp;&emsp; $E(X) = np = p$
+
+2. 令 $\bar X = E(X)$
+
+&emsp;&emsp;&emsp;&emsp; $\frac{\sum_{i=1}^5 X_i}{5} = p$
+
+3. 求解方程
+
+&emsp;&emsp;&emsp;&emsp; $\hat p = \frac{3}{5}$
+
+<br>
+
+> （2）设总体 $X \sim \pi(\lambda)$，$\lambda$ 未知，$X_1, X_2, ..., X_m$ 是来自总体得简单随机样本，试求参数 $\lambda$ 的矩估计量
+
+1. 求出总体矩 $E(X)$
+
+&emsp;&emsp;&emsp;&emsp; $E(X) = \lambda$
+
+2. 令 $\bar X = E(X)$
+
+&emsp;&emsp;&emsp;&emsp; $\frac{\sum_{i=1}^{m} X_i}{m} = \lambda$
+
+3. 求解方程
+
+&emsp;&emsp;&emsp;&emsp; $\hat \lambda = \frac{\sum_{i=1}^{m} X_i}{m}$
+
+
+<br>
+
+> （3）设总体 $X$ 的分布律为
+> | $X$ | $1$ | $2$ | $3$ |
+> |:-:|:-:|:-:|:-:|
+> | $P$ | $\theta^2$ | $2\theta(1-\theta)$ | $(1-\theta)^2$ |
+> 
+> 其中 $\theta ( 0 < \theta < 1 )$ 是未知参数，利用总体 $X$ 的如下样本值：$1, 2, 1$，求 $\theta$ 的矩估计量和最大似然估计量
+
+1. 求出总体矩 $E(X)$
+
+&emsp;&emsp;&emsp;&emsp; $E(X) = \sum_{i=1}^k(X_i * P_i) $
+
+&emsp;&emsp;&emsp;&emsp; $= \theta^2 + 4\theta(1-\theta) + 3(1-\theta)^2 $
+
+&emsp;&emsp;&emsp;&emsp; $= 3 - 2\theta$
+
+2. 令 $\bar X = E(X)$
+    
+&emsp;&emsp;&emsp;&emsp; $\bar X = \frac{1+2+1}{3} = \frac{4}{3}$
+
+&emsp;&emsp;&emsp;&emsp; $\frac{4}{3} = 3 - 2\theta$
+
+3. 求解方程
+
+&emsp;&emsp;&emsp;&emsp; $\hat \theta = \frac{5}{6}$
+
+
+<br>
+
+1. 写出样本似然函数 $L (\theta)$
+
+&emsp;&emsp;&emsp;&emsp; $L(x, \theta) = \prod_{i=1}^{3} P\{X=x_i\}$
+
+&emsp;&emsp;&emsp;&emsp; $ = \theta^2 * 2\theta(1-\theta) *\theta^2$
+
+&emsp;&emsp;&emsp;&emsp; $ = 2 \theta^5  - 2 \theta^6$
+
+2. 求导数 $\frac{\text{d} L(\theta) }{\text{d} \theta} = 0$
+
+&emsp;&emsp;&emsp;&emsp; $\frac{\text{d} L(x, \theta) }{\text{d} \theta} = 10 \theta^4 - 12\theta^5 = 0$
+
+&emsp;&emsp;&emsp;&emsp; $\hat \theta = \frac{5}{6}$
+
+<br>
+
+> （4）设总体 $X$ 的概率密度函数为 $f(x;\theta) = \begin{cases} \theta e^{-\theta x}, & 0 < x \\ 0 , & else \end{cases}$，设 $X_1, X_2, ... , X_n$ 为总体 $X$ 的一个样本，试求参数 $\theta$ 的最大似然估计量 $\hat \theta$
+
+1. 写出样本似然函数 $L (\theta)$
+    
+&emsp;&emsp;&emsp;&emsp; $L(x, \theta) = \prod_{i=1}^{n} f(x_i)$
+
+&emsp;&emsp;&emsp;&emsp; $= \prod_{i=1}^{\theta} \theta e^{-\theta x_i}$
+
+&emsp;&emsp;&emsp;&emsp; $= \theta ^ n e^{-\theta \sum_{i=1}^{n}x_i}$
+
+2. 对似然函数取对数 $\ln L(\theta)$
+    
+&emsp;&emsp;&emsp;&emsp; $\ln L(x, \theta) = \ln \theta^n + \ln e^{-\theta \sum_{i=1}^{n} x_i}$
+
+&emsp;&emsp;&emsp;&emsp; $= n \ln \theta - \theta \sum_{i=1}^{n}x_i$
+
+3. 求导数 $\frac{\text{d}\ln L(\theta) }{\text{d} \theta} = 0$
+
+&emsp;&emsp;&emsp;&emsp; $\frac{\text{d}\ln L(x, \theta) }{\text{d} \theta} = \frac{n}{\theta} - \sum_{i=1}^{n}x_i = 0$
+
+&emsp;&emsp;&emsp;&emsp; $\hat \theta = \frac{n}{\sum_{n}^{i=1}x_i}$
+
+<br>
+
+> 设总体 $X \sim f(x, \theta) = \begin{cases} (\theta + 1)x^\theta , 0<x<1 \\ 0, else\end{cases}, \theta > -1$，$X_1, X_2, X_3 ... X_n$ 是来自总体 $X$ 的样本，求 $\theta$ 的矩估计量 
 
 $E(X) = \int_0^1x(\theta+1)x^\theta \text{d}x = \frac{\theta + 1}{\theta + 2}$
 
@@ -847,9 +946,6 @@ $E(X) = \int_0^1x(\theta+1)x^\theta \text{d}x = \frac{\theta + 1}{\theta + 2}$
 解得 $\hat \theta = \frac{1 - 2\bar X}{\bar X - 1}$
 
 <br>
-
-
-### 求极大似然估计(6)
 
 > 设总体 $X \sim P(x), \lambda > 0$ 且未知，其分布律 $P\{X=k\} = \frac{\lambda^k e^{-\lambda}}{k!}, k=0,1...$， $x_1, x_2, ... , x_n$ 是来自总体 $X$ 的一个样本，求 $\lambda$ 的极大似然估计
 
@@ -877,15 +973,17 @@ $L(\mu, \sigma^2) = \sum_{i=1}^n \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x_i-\mu
 
 ## 1、矩估计
 
-### 基本思想
+#### 基本思想
 
 用样本矩 $A_k = \frac{\sum_{i=1}^n X_i^k}{n}$ 代替总体矩 $\mu_k = E(X^k)$ （大数定理）
 
-### 基本步骤
+#### 基本步骤
 
-1. 先求出总体矩 $E(X)$
+1. 求出总体矩（期望） $E(X)$
 
-2. 令 $\bar X = E(X)$，解得 $\hat \theta$ 即为矩估计量
+2. 令 $\bar X$ （样本均值） $= E(X)$
+
+3. 解得 $\hat \theta$ 即为矩估计量
 
 
 <br>
@@ -894,17 +992,21 @@ $L(\mu, \sigma^2) = \sum_{i=1}^n \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x_i-\mu
 
 ## 2、极大似然估计
 
-### 基本思想
+#### 基本思想
 
 使得当前样本 $x_1, x_2, x_3, ... , x_n$ 出现的概率最大的参数值 $\hat \theta$ 即为极大似然估计
 
-### 基本步骤
+#### 基本步骤
 
-1. 写出样本似然函数 $L(\theta)$
+0. 设 $x_1, x_2, x_3, ... , x_n$ 为一组观测值
 
-2. 取对数：$\ln L(\theta)$
+1. 样本似然函数 $L(\theta)$
 
-3. 求导数，得驻点：$\frac{\text{d}\ln L(\theta) }{\text{d} \theta} \triangleq 0$
+2. 取对数 $\ln L(\theta)$
+
+3. 求导数 $\frac{\text{d}\ln L(\theta) }{\text{d} \theta} = 0$
+
+> 部分情况 0, 2 可以省略
 
 <br>
 
@@ -1292,7 +1394,7 @@ p58 20
     因此，有：
     $f(x) = \begin{cases}
     \frac{1}{x},    & 1 \leq x < e  \\
-    0,              & 其他    
+    0,              & else    
     \end{cases}$
 
 > **Q2: 求 $P\{X < 2\}$，$P\{0 < X \leq 3\}$，$P\{2 < X < \frac{5}{2}\}$**
@@ -1317,7 +1419,7 @@ p59 34
 
 * $f(x) = \begin{cases}
     1,      & 0 < x < 1     \\ 
-    0,      & 其他          \\
+    0,      & else          \\
 \end{cases}$
 
 ### ? 概率密度求分布函数
@@ -1502,7 +1604,7 @@ p86 3
 > 设随机变量 $(X,Y)$ 的概率密度为：
 $f(x,y) = \begin{cases}
     k(6 - x - y),       & 0 < x < 2, 2 < y < 4  \\ 
-    0,                  & \text{其他}           \\
+    0,                  & else           \\
     \end{cases}$
 > （1）确定常数 $k$
 > （2）求 $P\{ X<1, Y<3 \}$
@@ -1521,7 +1623,7 @@ p87 7
 > 
 > $f(x,y) = \begin{cases}
     4.8y(2-x),       & 0 \leq x \leq 1.0, 0 \leq y \leq x  \\ 
-    0,                  & \text{其他}           \\
+    0,                  & else           \\
     \end{cases}$
 > 求边缘概率密度
 
@@ -1610,7 +1712,7 @@ $\rho(X,Y) = \frac{cov(X,Y)}{\sqrt{D(X)} \sqrt{D(Y)}} = 0$
 > 设 $(x, y)$ 的概率密度为：
 > $ f(x,y) = \begin{cases}
 >    \frac{3}{4}x^2 y,      & 0 \leq x \leq 2,  0 \leq y \leq 1 \\ 
->    0,      & \text{其他}       \\
+>    0,      & else       \\
 >\end{cases}$
 > 求 $\rho(x,y)$
 
