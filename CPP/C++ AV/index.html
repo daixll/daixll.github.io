@@ -249,135 +249,7 @@
 </code></pre><br>
 <hr>
 <h1 id="ffmpeg">FFmpeg </h1>
-<h2 id="调用麦克风">调用麦克风 </h2>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
-<span class="token keyword keyword-extern">extern</span> <span class="token string">"C"</span> <span class="token punctuation">{</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavdevice/avdevice.h&gt;</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavutil/audio_fifo.h&gt;</span></span>
-<span class="token punctuation">}</span>
 
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">AUDIO_IN_DEVICE</span> <span class="token string">"default"</span> <span class="token comment">// 麦克风设备名</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">SAMPLE_RATE</span> <span class="token expression"><span class="token number">44100</span> </span><span class="token comment">// 采样率</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">CHANNELS</span> <span class="token expression"><span class="token number">2</span> </span><span class="token comment">// 声道数</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">SAMPLE_FORMAT</span> <span class="token expression">AV_SAMPLE_FMT_S16 </span><span class="token comment">// 采样格式</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">OUTPUT_FILENAME</span> <span class="token string">"output.wav"</span> <span class="token comment">// 输出文件名</span></span>
-
-<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">avdevice_register_all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 注册设备</span>
-
-    AVInputFormat <span class="token operator">*</span>inputFormat <span class="token operator">=</span> <span class="token function">av_find_input_format</span><span class="token punctuation">(</span><span class="token string">"alsa"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ALSA是Linux上常用的音频设备接口</span>
-
-    AVFormatContext <span class="token operator">*</span>formatContext <span class="token operator">=</span> <span class="token function">avformat_alloc_context</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>formatContext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to allocate format context"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    AVDictionary <span class="token operator">*</span>options <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-    <span class="token function">av_dict_set</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>options<span class="token punctuation">,</span> <span class="token string">"ac"</span><span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span><span class="token function">to_string</span><span class="token punctuation">(</span>CHANNELS<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 设置声道数</span>
-    <span class="token function">av_dict_set</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>options<span class="token punctuation">,</span> <span class="token string">"ar"</span><span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span><span class="token function">to_string</span><span class="token punctuation">(</span>SAMPLE_RATE<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 设置采样率</span>
-    <span class="token function">av_dict_set</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>options<span class="token punctuation">,</span> <span class="token string">"sample_fmt"</span><span class="token punctuation">,</span> <span class="token function">av_get_sample_fmt_name</span><span class="token punctuation">(</span>SAMPLE_FORMAT<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 设置采样格式</span>
-
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">avformat_open_input</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>formatContext<span class="token punctuation">,</span> AUDIO_IN_DEVICE<span class="token punctuation">,</span> inputFormat<span class="token punctuation">,</span> <span class="token operator">&amp;</span>options<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to open audio input device"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">avformat_find_stream_info</span><span class="token punctuation">(</span>formatContext<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to find stream information"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    AVPacket packet<span class="token punctuation">;</span>
-    <span class="token comment">//av_init_packet(&amp;packet);</span>
-    <span class="token function">av_packet_alloc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    AVCodec <span class="token operator">*</span>codec <span class="token operator">=</span> <span class="token function">avcodec_find_encoder</span><span class="token punctuation">(</span>AV_CODEC_ID_PCM_S16LE<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>codec<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to find encoder"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    AVCodecContext <span class="token operator">*</span>codecContext <span class="token operator">=</span> <span class="token function">avcodec_alloc_context3</span><span class="token punctuation">(</span>codec<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>codecContext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to allocate codec context"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    codecContext<span class="token operator">-&gt;</span>sample_rate <span class="token operator">=</span> SAMPLE_RATE<span class="token punctuation">;</span>
-    codecContext<span class="token operator">-&gt;</span>channels <span class="token operator">=</span> CHANNELS<span class="token punctuation">;</span>
-    codecContext<span class="token operator">-&gt;</span>sample_fmt <span class="token operator">=</span> SAMPLE_FORMAT<span class="token punctuation">;</span>
-
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">avcodec_open2</span><span class="token punctuation">(</span>codecContext<span class="token punctuation">,</span> codec<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to open codec"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    AVFormatContext <span class="token operator">*</span>outputFormatContext <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">avformat_alloc_output_context2</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>outputFormatContext<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> OUTPUT_FILENAME<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to allocate output format context"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    AVStream <span class="token operator">*</span>outputStream <span class="token operator">=</span> <span class="token function">avformat_new_stream</span><span class="token punctuation">(</span>outputFormatContext<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>outputStream<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to allocate output stream"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">avcodec_parameters_from_context</span><span class="token punctuation">(</span>outputStream<span class="token operator">-&gt;</span>codecpar<span class="token punctuation">,</span> codecContext<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to copy codec parameters to stream"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>outputFormatContext<span class="token operator">-&gt;</span>oformat<span class="token operator">-&gt;</span>flags <span class="token operator">&amp;</span> AVFMT_NOFILE<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">avio_open</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>outputFormatContext<span class="token operator">-&gt;</span>pb<span class="token punctuation">,</span> OUTPUT_FILENAME<span class="token punctuation">,</span> AVIO_FLAG_WRITE<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to open output file"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-            <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">avformat_write_header</span><span class="token punctuation">(</span>outputFormatContext<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to write header"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Capturing audio from microphone and saving to "</span> <span class="token operator">&lt;&lt;</span> OUTPUT_FILENAME <span class="token operator">&lt;&lt;</span> <span class="token string">" ... Press Ctrl+C to stop."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-
-    <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">av_read_frame</span><span class="token punctuation">(</span>formatContext<span class="token punctuation">,</span> <span class="token operator">&amp;</span>packet<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to read audio frame"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-            <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token comment">// 写入音频帧到输出文件</span>
-        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">av_write_frame</span><span class="token punctuation">(</span>outputFormatContext<span class="token punctuation">,</span> <span class="token operator">&amp;</span>packet<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Failed to write audio frame"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
-            <span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token function">av_packet_unref</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>packet<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 释放packet</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token function">av_write_trailer</span><span class="token punctuation">(</span>outputFormatContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token function">avformat_close_input</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>formatContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">avformat_free_context</span><span class="token punctuation">(</span>formatContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token function">avcodec_close</span><span class="token punctuation">(</span>codecContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">avcodec_free_context</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>codecContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>outputFormatContext <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token punctuation">(</span>outputFormatContext<span class="token operator">-&gt;</span>oformat<span class="token operator">-&gt;</span>flags <span class="token operator">&amp;</span> AVFMT_NOFILE<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">avio_closep</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>outputFormatContext<span class="token operator">-&gt;</span>pb<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token function">avformat_free_context</span><span class="token punctuation">(</span>outputFormatContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre><h2 id="调用摄像头-1">调用摄像头 </h2>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code></code></pre><h2 id="ffplay">ffplay </h2>
-<pre data-role="codeBlock" data-info="" class="language-text"><code>ffplay -f v4l2 -framerate 30 -video_size 1920x1080 -input_format mjpeg -i /dev/video0 -fflags nobuffer
-</code></pre>
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
@@ -459,28 +331,11 @@
           </a></div>
         </div>
       </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#ffmpeg" class="md-toc-link"><p>FFmpeg</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#调用麦克风" class="md-toc-link">
-            <p>调用麦克风</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#调用摄像头-1" class="md-toc-link">
-            <p>调用摄像头</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ffplay" class="md-toc-link">
-            <p>ffplay</p>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#ffmpeg" class="md-toc-link">
+            <p>FFmpeg</p>
 
           </a></div>
-        </div>
-      </details>
-    
 </div>
 </div>
       <a id="sidebar-toc-btn">≡</a>
