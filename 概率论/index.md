@@ -610,9 +610,7 @@ $$X \sim N(\mu, \sigma^2)$$
 
 # 三、多维随机变量及其分布
 
-## 0、题
-
-### 边缘概率密度 **$^3$**
+## 0、边缘概率密度 **$^3$**
 
 > 设二维随机变量 $(X, Y)$ 的概率密度为 $f(x, y) = \begin{cases} kx^2y , & x^2 \leq y \leq 1 \\ 0 , & else\end{cases}$ 求
 > （1）常数 $k$；（2）边缘概率密度；（3）$X$ 与 $Y$ 是否独立
@@ -649,39 +647,43 @@ $f_Y(y) = \begin{cases} \frac{21y}{6}, & x^2 \leq y \leq 1 \\ 0, & else\end{case
 
 # 四、随机变量的数字特征
 
-## 0、题
+## 0、求期望方差 **$^5$**
 
-### 连续型求期望方差 **$^5$**
+> （1）设随机变量 $X$ 的密度函数为 $f(x) = \begin{cases} 2x, & 0 \leq x < 1 \\ 0, & else \end{cases}$：（1）求 $E(X)$；（2）求 $D(X)$
 
-> 设随机变量 $X$ 的密度函数为 $f(x) = \begin{cases} 2x, 0 \leq x < 1 \\ 0, else \end{cases}$：（1）求 $E(X)$；（2）求 $D(X)$
+1. $E(X) = \int_{-\infty}^{+\infty} x f(x) \text{d}x$
 
-$E(X) = \int^1_0 x(2x) \text{d}x = \frac{2}{3} x^3 |^1_0 = \frac{2}{3}$
+&emsp;&emsp;&emsp;&emsp; $E(X) = \int^1_0 x(2x) \text{d}x = \frac{2}{3} x^3 |^1_0 = \frac{2}{3}$
 
-$E(X^2) = \int^1_0 x^2(2x) \text{d}x = \frac{1}{2}x^4 |^1_0 = \frac{1}{2}$
+2. $D(X) = E(X^2) - E^2(X)$
 
-$D(X) = E(X^2) - E^2(X) = \frac{1}{18}$
+&emsp;&emsp;&emsp;&emsp; $E(X^2) = \int^1_0 x^2(2x) \text{d}x = \frac{1}{2}x^4 |^1_0 = \frac{1}{2}$
 
-<br>
-
-> 设随机变量 $X \sim B(n, p), E(X)=1.8, D(X)=1.26$，则参数 $n, p$ 的值为
-
-$E(X) = np = 1.8$
-
-$D(X) = np(1-p) = 1.26$
-
-$n = 6, p = 0.3$
+&emsp;&emsp;&emsp;&emsp; $D(X) = \frac{1}{2} - (\frac{2}{3})^2 = \frac{1}{18}$
 
 <br>
 
-> 设 $X_i \sim P(\lambda)(i=1,2,3)$，且 $\lambda = 3$，$X_1, X_2, X_3$ 相互独立，则 $D[\frac{1}{3}(X_1 + X_2 + X_3)]$
+> （2）设随机变量 $X \sim B(n, p), E(X)=1.8, D(X)=1.26$，则参数 $n, p$ 的值为
 
-$D[\frac{1}{3}(X_1 + X_2 + X_3)] = \frac{1}{9} D(X_1 + X_2 + X_3)$
+1. 由二项分布的期望方差
 
-$D(X_1 + X_2 + X_3) = D(X_1) + D(X_2) + D(X_3) + 2(E(X_1 X_2) - E(X_1)E(X_2)) + 2(E(X_1 X_3) - E(X_1)E(X_3)) + 2(E(X_2 X_3) - E(X_2)E(X_3))$
+&emsp;&emsp;&emsp;&emsp; $E(X) = np = 1.8$
 
-因为独立，$E(XY) = E(X)E(Y)$
+&emsp;&emsp;&emsp;&emsp; $D(X) = np(1-p) = 1.26$
 
-所以原式 $= \frac{1}{9}(D(X_1) + D(X_2) + D(X_3)) = 1$
+&emsp;&emsp;&emsp;&emsp; $n = 6, p = 0.3$
+
+<br>
+
+> （3）设 $X_i \sim P(\lambda)(i=1,2,3)$，且 $\lambda = 3$，$X_1, X_2, X_3$ 相互独立，则 $D[\frac{1}{3}(X_1 + X_2 + X_3)]$
+
+&emsp;&emsp;&emsp;&emsp; $D[\frac{1}{3}(X_1 + X_2 + X_3)] = \frac{1}{9} D(X_1 + X_2 + X_3)$
+
+&emsp;&emsp;&emsp;&emsp; $D(X_1 + X_2 + X_3) = D(X_1) + D(X_2) + D(X_3) + 2(E(X_1 X_2) - E(X_1)E(X_2)) + 2(E(X_1 X_3) - E(X_1)E(X_3)) + 2(E(X_2 X_3) - E(X_2)E(X_3))$
+
+&emsp;&emsp;&emsp;&emsp; 因为独立，$E(XY) = E(X)E(Y)$
+
+&emsp;&emsp;&emsp;&emsp; 所以原式 $= \frac{1}{9}(D(X_1) + D(X_2) + D(X_3)) = 1$
 
 <br>
 
@@ -690,7 +692,7 @@ $D(X_1 + X_2 + X_3) = D(X_1) + D(X_2) + D(X_3) + 2(E(X_1 X_2) - E(X_1)E(X_2)) + 
 ## 1、数学期望 $E(X)$
 
 
-### 离散型
+#### 离散型
 
 **离散期望 = 取值乘概率再求和**
 
@@ -711,7 +713,7 @@ $Z=g(X, Y)$：
 $$E(Z) = \sum_{i=1}^{n} \sum_{j=1}^{m} g(x_i, y_j) p_{ij}$$
 
 
-### 连续型
+#### 连续型
 
 **连续期望 = 取值乘密度再积分**
 
@@ -731,25 +733,13 @@ $Z=g(X, Y)$：
 
 $$E(g(X,Y)) = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} g(x, y) f(x, y) dx dy$$
 
-### 性质 **$^*$**
-
-$C$ 为常数
-
-* $E(C)=C$
-
-* $E(CX) = CE(X)$
-
-* $E(X \pm Y) = E(X) \pm E(Y)$
-
-* 若 $X$ 与 $Y$ 相互独立，则 $E(XY) = E(X)E(Y)$（不能反推）
-
 <br>
 
 ---
 
 ## 2、方差 $D(X)$
 
-### 硬算
+#### 硬算
 
 [国家统计局：方差与标准（均方）差](https://www.stats.gov.cn/zs/tjll/sjms/202307/t20230719_1941405.html)
 
@@ -757,70 +747,85 @@ $C$ 为常数
 
 样本方差 = $s^2 = \frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}$
 
-### 公式
+#### 公式
 
 **$$D(X) = E(X^2) - E^2(X)$$**
 
 $$E(X^2) = D(X) + E^2(X)$$
 
-### 性质 **$^*$**
-
-$C$ 为常数
-
-* $D(C)=0$
-
-* $D(X + C) = D(X)$
-
-* $D(CX) = C^2D(X)$
-
-* $D(X \pm Y) = D(X) + D(Y) \pm 2(E(XY) - E(X)E(Y))$
-    * 独立，则 $D(X \pm Y) = D(X) + D(Y)$（不能反推）（就是 $+$，没写错）
-
-* 若 $D(X)=0$，则 $P\{X=E(X)\}=1$
-
 <br>
 
 ---
 
-## 3、常见分布的期望和方差
+## 3、协方差与相关系数 $Cov$
 
-### 0-1分布
+#### 公式
 
-$$E(X) = p$$ $$D(X) = p(1-p)$$
+$$Cov(X,Y) = E(XY) - E(X)E(Y)$$ 
 
-### 二项分布 $B$
-
-$$E(X) = np$$ $$D(X) = np(1-p)$$
-
-### 泊松分布 $P$
-
-$$E(X) = \lambda$$ $$D(X) = \lambda$$
-
-### 均匀分布 $U$
-
-$$E(X) = \frac{a+b}{2}$$ $$D(X) = \frac{(b-a)^2}{12}$$
-
-### 指数分布 $E$
-
-$$E(X) = \frac{1}{\lambda}$$ $$D(X) = \frac{1}{\lambda^2}$$
-
-### 正态分布 $N$
-
-$$E(X) = \mu$$ $$D(X) = \sigma^2$$
-
-<br>
-
----
-
-## 4、协方差与相关系数 $Cov$
-
-### 协方差
-
-$$Cov(X,Y) = E(XY) - E(X)E(Y)$$ $$Cov(X,X) = D(X)$$
+$$Cov(X,X) = D(X)$$
 
 $$D(X+Y) = D(X) + D(Y) + 2Cov(X, Y)$$
 
-### 协方差的性质
+
+<br>
+
+---
+
+## 4、常见分布的期望和方差 **$^*$**
+
+#### 0-1分布
+
+$$E(X) = p$$ $$D(X) = p(1-p)$$
+
+#### 二项分布 $B$
+
+$$E(X) = np$$ $$D(X) = np(1-p)$$
+
+#### 泊松分布 $P$
+
+$$E(X) = \lambda$$ $$D(X) = \lambda$$
+
+#### 均匀分布 $U$
+
+$$E(X) = \frac{a+b}{2}$$ $$D(X) = \frac{(b-a)^2}{12}$$
+
+#### 指数分布 $E$
+
+$$E(X) = \frac{1}{\lambda}$$ $$D(X) = \frac{1}{\lambda^2}$$
+
+#### 正态分布 $N$
+
+$$E(X) = \mu$$ $$D(X) = \sigma^2$$
+
+#### 性质
+
+$C$ 为常数
+
+期望：
+
+* $E(C)=C$
+
+* $E(CX) = CE(X)$
+
+* $E(X \pm C) = E(X) \pm C$
+
+* $E(X \pm Y) = E(X) \pm E(Y)$
+
+    * 独立，有 $E(XY) = E(X)E(Y)$（不能反推）
+
+方差：
+
+* $D(C)=0$
+
+* $D(CX) = C^2D(X)$
+
+* $D(X \pm C) = D(X)$
+
+* $D(X \pm Y) = D(X) + D(Y) \pm 2(E(XY) - E(X)E(Y))$
+    * 独立，有 $D(X \pm Y) = D(X) + D(Y)$（不能反推）（就是 $+$，没写错）
+
+斜方差：
 
 * $Cov(X,Y) = Cov(Y, X)$
 
