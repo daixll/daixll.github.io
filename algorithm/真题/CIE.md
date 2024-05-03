@@ -456,8 +456,184 @@ int main(){
 
 # 六级
 
+## 字符串
+
+<details><summary><a href="https://tctm.cpolar.cn/submission/449347" target="_blank">字符串插入（202305a）</a> code</summary><br>
+
+**大意**
+
+**思路**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+const int N = 1e5+10;
+
+string s, sub;
+
+int main(){
+    while(cin >> s >> sub){
+        int idx = 0;
+        char maxC = 0;
+        for(int i=0; i<s.size(); i++)
+            if(maxC < s[i])
+                maxC = s[i], idx = i;
+        
+        s.insert(idx + 1, sub);
+        cout << s << "\n";
+    }
+    return 0;
+}
+```
+</details>
+
+<br>
+
+---
+
+## 哈希
+
+<details><summary><a href="https://tctm.cpolar.cn/problem/4307" target="_blank">生日相同 2.0（202309a）</a> code</summary><br>
+
+**大意**
+
+**思路**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+vector<string> res[13][32];
+
+bool cmp(string a, string b){
+    if(a.size() < b.size()) return 1;   // 长度
+    if(a.size() > b.size()) return 0;   
+    if(a < b) return 1;                 // 字典序
+    if(a > b) return 0;
+    return 0;
+}
+
+int main(){
+    int n; cin >> n;
+    for(int i=1; i<=n; i++){
+        string name;
+        int m, d;
+        cin >> name >> m >> d;
+        res[m][d].push_back(name);
+    }
+
+    bool flg = 0;
+
+    for(int i=1; i<=12; i++)
+        for(int j=1; j<=31; j++)
+            if(res[i][j].size() > 1){
+                flg = 1;
+                sort(res[i][j].begin(), res[i][j].end(), cmp);
+                cout << i << " " << j << " ";
+                for(auto name: res[i][j])
+                    cout << name << " ";
+                cout << "\n";
+            }
+    
+    if(flg == 0)
+        cout << "None";
+
+    return 0;
+}
+```
+</details>
+
+<br>
+
+## 栈
 
 
+<details><summary><a href="https://tctm.cpolar.cn/problem/4308" target="_blank">合法出栈序列（202309b）</a> code</summary><br>
+
+**大意**
+
+**思路**
+
+```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+#include <stack>
+using namespace std;
+
+const int N = 1e5+10;
+
+string x, s;
+
+int main(){
+    cin >> x;
+    while(cin >> s){
+        stack<char> a, b, t;
+        for(int i=x.size()-1; i>=0; i--) a.push(x[i]);
+        for(int i=s.size()-1; i>=0; i--) b.push(s[i]);
+
+        while(a.size()){
+            t.push(a.top());
+            a.pop();
+
+            while(t.size() && t.top() == b.top())
+                t.pop(), b.pop();
+        }
+
+        if(t.size() == 0) cout << "YES\n";
+        else cout << "NO\n";
+    }
+
+    return 0;
+}
+```
+</details>
+
+
+<details><summary><a href="https://tctm.cpolar.cn/problem/4309" target="_blank">括号画家（202309c）</a> code</summary><br>
+
+**大意**
+
+**思路**
+
+```cpp
+#include <iostream>
+#include <stack>
+using namespace std;
+
+const int N = 1e5+10;
+
+stack<int> stk;
+
+int main(){
+    char c;
+    while(cin >> c){
+        int x;
+        if(c == '(' || c == ')') x = 1;
+        if(c == '[' || c == ']') x = 2;
+        if(c == '{' || c == '}') x = 3;
+        
+        if(stk.size() && stk.top() == x)
+            stk.pop();
+        else
+            stk.push(x);
+    }
+
+    if(stk.size()) cout << "No";
+    else cout << "Yes";
+
+    return 0;
+}
+```
+</details>
+
+<br>
+
+## 队列
 
 
 <br>
