@@ -21,9 +21,7 @@ export_on_save:
 
 # 一、概率论的基本概念
 
-## 0、题
-
-### 全概率与贝叶斯 **$^1$**
+## 0、全概率与贝叶斯 **$^1$**
 
 > 有 $10$ 箱产品，$1, 2, 3$ 分别有 $5, 3, 2$ 箱，次品率为 $0.1, 0.2, 0.3$，任选一箱，再取一个产品，为良品的概率
 
@@ -154,40 +152,13 @@ $P(B) = 0.2*0.1 + 0.1*0.82 + 0.05*0.08 = 0.106$
 
 $P(A_1|B) = \frac{0.2*0.1}{0.106} = 0.1886$
 
-### 古典概率
-
-> 已知 $P(A)=P(B)=P(C)=0.25$，$P(A \cap B) = P(B \cap C) = 0$，$P(A \cap C) = \frac{1}{8}$，（1）$A,B,C$ 同时发生的概率；（2）$A,B,C$ 至少发生一个的概率
-
-$P(A \cap B \cap C) = 0$
-
-$1-P(\bar A \cup \bar B \cup \bar C) = $
-
-<br>
-
-> 假设一个家庭中有两个小孩，（1）已知其中一个是女孩，求另外一个也是女孩的概率；（2）已知第一胎是女孩，求第二胎也是女孩的概率
-
-女（姐姐），女（妹妹），女（哥哥），女（弟弟）
-已知其中一个是女孩，另外一个也是女孩的概率是 $\frac{1}{2}$
-
-生男生女都一样
-已知第一胎是女孩，第二胎也是女孩的概率是 $\frac{1}{2}$
-
-<br>
-
-> 已知有两个口袋，甲袋中有 $2$ 个白球，$1$ 个黑球，乙袋中有 $1$ 个白球，$2$ 个黑球。由甲袋中任取一球放入乙袋，再从乙袋任取一球，问取得白球的概率是多少
-
-<br>
-
-> 假设有两箱同种零件，第一箱装 $50$ 件，其中 $10$ 件一等品；第二箱装 $30$ 件，其中 $18$ 件一等品。现从两箱中随机挑出一箱，然后从该箱中先后随机取两个零件（不放回），试求：（1）第一次取出的零件是一等品的概率；（2）在第一次取出的零件是一等品的条件下，第二次取出的零件仍然是一等品的概率
-
-
 <br>
 
 ---
 
-## 1、事件
+## 1、事件 **$^*$**
 
-### 事件的关系
+#### 事件的关系
 
 * 包含：$A \subset B$，，$B$ 包含 $A$，事件 $A$ 发生必然导致事件 $B$ 发生
 
@@ -205,19 +176,14 @@ $1-P(\bar A \cup \bar B \cup \bar C) = $
 
 <span style="color:orange;">对立（概率之和为 1） -> 互斥（互不相容）（概率之和不一定为 1） -> 独立（联合概率为各自乘积）</span>
 
-### 事件的运算
+#### 事件的运算
 
 * 交换律：$A \cup B = B \cup A$，$A \cap B = B \cap A$
 * 结合律：$(A \cup B) \cup C = A \cup (B \cup C)$，$(A \cap B) \cap C = A \cap (B \cap C)$
 * 分配律：$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$，$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
 * 德摩根律：$\overline{A \cup B} = \bar{A} \cap \bar{B}$，$\overline{A \cap B} = \bar{A} \cup \bar{B}$
 
-
-### 频率
-
-在相同条件下，进行了 $n$ 次试验，事件 $A$ 发生的次数 $n_A$ 与 $n$ 的比值
-
-### 概率 **$^*$**
+#### 概率
 
 事件 $A$ 发生的可能性大小的度量，记作 $P(A)$
 
@@ -615,31 +581,43 @@ $$X \sim N(\mu, \sigma^2)$$
 > 设二维随机变量 $(X, Y)$ 的概率密度为 $f(x, y) = \begin{cases} kx^2y , & x^2 \leq y \leq 1 \\ 0 , & else\end{cases}$ 求
 > （1）常数 $k$；（2）边缘概率密度；（3）$X$ 与 $Y$ 是否独立
 
-（1）
+1. 由规范性 $\int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x, y) \text{d}x \text{d}y = 1$
 
-**由规范性 $\int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x, y) \text{d}x \text{d}y = 1$**
+&emsp;&emsp;&emsp;&emsp; $\int_{-1}^{1} \int_{x^2}^{1} kx^2y \text{d}y \text{d}x = 1$
 
-$\int_{-1}^{1} \int_{x^2}^{1} kx^2y \text{d}y \text{d}x = 1$
+&emsp;&emsp;&emsp;&emsp; $k = \frac{21}{4}$
 
-$k = \frac{21}{4}$
+<br>
 
-（2）
+2. $\begin{cases}f_X(x) = \int_{-\infty}^{+\infty} f(x,y) \text{d}y \\ f_Y(y) = \int_{-\infty}^{+\infty} f(x,y) \text{d}x \end{cases}$
 
-**$f_X(x) = \int_{-\infty}^{+\infty} f(x,y) \text{d}y$**
-**$f_Y(y) = \int_{-\infty}^{+\infty} f(x,y) \text{d}x$**
+&emsp;&emsp;&emsp;&emsp; $f_X(x) = \begin{cases} \int_{x^2}^{1} \frac{21}{4} x^2 y \text{d}y, & -1 \leq x \leq  1 \\ 0, & else\end{cases} = \begin{cases} \frac{21x^2-21x^6}{8}, & -1 \leq x \leq 1 \\ 0, & else\end{cases}$
 
-$f_X(x) = \begin{cases} \int_{x^2}^{1} \frac{21}{4} x^2 y \text{d}y, & x^2 \leq 1 \\ 0, & else\end{cases}$
+&emsp;&emsp;&emsp;&emsp; $f_Y(y) = \begin{cases} \int_{-\sqrt y}^{ \sqrt y} \frac{21}{4} x^2 y \text{d}x, & 0 \leq y \leq 1 \\ 0, & else\end{cases} = \begin{cases} \frac{21y^2 \sqrt y}{6}, & 0 \leq y \leq 1 \\ 0, & else\end{cases}$
 
-$f_Y(y) = \begin{cases} \int_{-1}^{1} \frac{21}{4} x^2 y \text{d}x, & x^2 \leq y \leq 1 \\ 0, & else\end{cases}$
+<br>
 
-$f_X(x) = \begin{cases} \frac{21x^2-21x^6}{8}, & x^2 \leq 1 \\ 0, & else\end{cases}$
+3. 由于 $f(x,y) \neq f_X(x)f_Y(y)$，所以 $X$ 与 $Y$ 不独立
 
-$f_Y(y) = \begin{cases} \frac{21y}{6}, & x^2 \leq y \leq 1 \\ 0, & else\end{cases}$
+<br>
 
-（3）
+> 设二维连续型随机变量 $(X, Y)$ 的联合概率密度函数为 $ f(x,y) = \begin{cases} 4xy, & 0 < x < 1 \\ 0 , & else \end{cases}$ 求（1）边缘密度函数；（2）$X, Y$ 是否独立；（3）求 $P\{Y \leq X^2\}$
 
-由于 $f(x,y) \neq f_X(x)f_Y(y)$，所以 $X$ 与 $Y$ 不独立
+1. $\begin{cases}f_X(x) = \int_{-\infty}^{+\infty} f(x,y) \text{d}y \\ f_Y(y) = \int_{-\infty}^{+\infty} f(x,y) \text{d}x \end{cases}$
 
+&emsp;&emsp;&emsp;&emsp; $f_X(x) = \begin{cases} \int_0^1 4xy \text{d}y , & 0 < x < 1 \\ 0 , & else \end{cases} = \begin{cases} 2x, & 0 < x < 1 \\ 0 , & else \end{cases}$
+
+&emsp;&emsp;&emsp;&emsp; $f_Y(y) = \begin{cases} \int_0^1 4xy \text{d}x , & 0 < y < 1 \\ 0 , & else \end{cases} = \begin{cases} 2y, & 0 < y < 1 \\ 0 , & else \end{cases}$
+
+<br>
+
+2. 由于 $f(x,y) = f_X(x)f_Y(y)$，所以 $X$ 与 $Y$ 独立
+
+<br>
+
+3. $P\{Y \leq X^2 \} = \underset{G^{'}}{\int\int} f(x, y) \text{d} x \text{d} y$
+
+&emsp;&emsp;&emsp;&emsp; $\int_0^1 \int_0^{x^2} 4xy \text{d}y \text{d}x = \frac{1}{3}$
 
 <br>
 
