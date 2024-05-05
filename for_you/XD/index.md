@@ -306,6 +306,8 @@ for i, s in enumerate(my_subopt):
     
     `pip3 install pandas openpyxl`
 
+    运行程序之前，需要新建一个 `res` 目录，存放所有的结果
+
     ```py
     from nupack import *
     import pandas as pd
