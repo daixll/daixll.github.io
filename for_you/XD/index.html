@@ -54,7 +54,7 @@
 <li>
 <p>安装依赖软件</p>
 <pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">source</span> activate <span class="token comment"># 可能需要先激活环境</span>
-</code></pre><pre data-role="codeBlock" data-info="" class="language-text text"><code>conda activate XD
+</code></pre><pre data-role="codeBlock" data-info="" class="language-text"><code>conda activate XD
 conda install numpy scipy pip matplotlib pandas jupyterlab
 </code></pre></li>
 <li>
@@ -232,6 +232,158 @@ python setup.py <span class="token function">install</span>
 </ul>
 <br>
 <hr>
+<h2 id="环境构建全流程">环境构建全流程 </h2>
+<ul>
+<li>
+<p>升级系统</p>
+<ol>
+<li><code>sudo apt update &amp;&amp; sudo apt upgrade &amp;&amp; sudo apt dist-upgrade &amp;&amp; sudo apt autoremove</code></li>
+</ol>
+</li>
+<li>
+<p>py 环境</p>
+<ol>
+<li>系统自带 <code>python3.8.10</code>，使用 <code>python3.8.10 --version</code> 可以验证</li>
+<li>下载包管理器 <code>pip3</code>，使用 <code>sudo apt install python3-pip</code></li>
+</ol>
+</li>
+<li>
+<p>安装 nupack</p>
+<ol>
+<li>使用浏览器下载 <a href="https://nupack.org/download/software">NUPACK 4.0.1.9</a></li>
+<li>添加执行权限 <code>chmod +x nupack-4.0.1.9.zip</code></li>
+<li>将其解压至桌面 <code>unzip -d ~/Desktop/ nupack-4.0.1.9.zip</code></li>
+<li>手动安装 <code>pip3 install -U nupack -f ~/Desktop/nupack-4.0.1.9/package/</code></li>
+</ol>
+</li>
+<li>
+<p>测试</p>
+<ol>
+<li><code>sudo apt install vim</code></li>
+<li><code>vim TestNupack.py</code>
+<ul>
+<li>输入 <code>i</code> 进入插入模式</li>
+<li>粘贴代码<pre data-role="codeBlock" data-info="py" class="language-python py"><code><span class="token keyword keyword-from">from</span> nupack <span class="token keyword keyword-import">import</span> <span class="token operator">*</span>
+my_model <span class="token operator">=</span> Model<span class="token punctuation">(</span>material<span class="token operator">=</span><span class="token string">'dna'</span><span class="token punctuation">,</span> celsius<span class="token operator">=</span><span class="token number">37</span><span class="token punctuation">)</span>
+walker_seq <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'augcugcccccugugugaagca'</span><span class="token punctuation">]</span>
+walker_struc <span class="token operator">=</span> <span class="token string">'(20.23+.23)20'</span>
+my_subopt <span class="token operator">=</span> subopt<span class="token punctuation">(</span>strands<span class="token operator">=</span>walker_seq<span class="token punctuation">,</span> model<span class="token operator">=</span>my_model<span class="token punctuation">,</span> energy_gap<span class="token operator">=</span><span class="token number">1.1</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">'\nSuboptimal proxy structure(s):\n\nseq: '</span><span class="token punctuation">,</span> walker_seq<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token keyword keyword-for">for</span> i<span class="token punctuation">,</span> s <span class="token keyword keyword-in">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>my_subopt<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">'    %2d: %s (%.2f kcal/mol)'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>i<span class="token punctuation">,</span> s<span class="token punctuation">.</span>structure<span class="token punctuation">,</span> s<span class="token punctuation">.</span>energy<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></li>
+<li>按下 <code>Esc</code> 键，再输入 <code>:wq</code>，保存退出</li>
+</ul>
+</li>
+<li>运行 <code>python3 TestNupack.py</code>
+<ul>
+<li>看到如下消息，说明安装成功<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>Suboptimal proxy structure<span class="token punctuation">(</span>s<span class="token punctuation">)</span>:
+
+seq:  augcugcccccugugugaagca
+     <span class="token number">0</span>: <span class="token builtin class-name">.</span><span class="token variable"><span class="token punctuation">((</span><span class="token punctuation">((</span>.............<span class="token punctuation">))</span></span><span class="token punctuation">))</span> <span class="token punctuation">(</span>-1.65 kcal/mol<span class="token punctuation">)</span>
+     <span class="token number">1</span>: <span class="token builtin class-name">.</span><span class="token variable"><span class="token punctuation">((</span><span class="token punctuation">((</span>.............<span class="token punctuation">))</span></span><span class="token punctuation">))</span> <span class="token punctuation">(</span>-1.65 kcal/mol<span class="token punctuation">)</span>
+     <span class="token number">2</span>: <span class="token builtin class-name">.</span><span class="token variable"><span class="token punctuation">((</span><span class="token punctuation">((</span>.<span class="token punctuation">(</span>.........<span class="token punctuation">)</span>.<span class="token punctuation">))</span></span><span class="token punctuation">))</span> <span class="token punctuation">(</span>-1.56 kcal/mol<span class="token punctuation">)</span>
+     <span class="token number">3</span>: <span class="token builtin class-name">.</span><span class="token variable"><span class="token punctuation">((</span><span class="token punctuation">((</span>.<span class="token punctuation">(</span>.........<span class="token punctuation">)</span>.<span class="token punctuation">))</span></span><span class="token punctuation">))</span> <span class="token punctuation">(</span>-1.56 kcal/mol<span class="token punctuation">)</span>
+     <span class="token number">4</span>: <span class="token punctuation">..</span><span class="token variable"><span class="token punctuation">((</span><span class="token punctuation">(</span>.............<span class="token punctuation">))</span></span><span class="token punctuation">)</span>. <span class="token punctuation">(</span>-1.29 kcal/mol<span class="token punctuation">)</span>
+     <span class="token number">5</span>: <span class="token punctuation">..</span><span class="token variable"><span class="token punctuation">((</span><span class="token punctuation">(</span>.............<span class="token punctuation">))</span></span><span class="token punctuation">)</span>. <span class="token punctuation">(</span>-1.29 kcal/mol<span class="token punctuation">)</span>
+     <span class="token number">6</span>: <span class="token punctuation">..</span><span class="token variable"><span class="token punctuation">((</span><span class="token punctuation">(</span>.<span class="token punctuation">(</span>.........<span class="token punctuation">)</span>.<span class="token punctuation">))</span></span><span class="token punctuation">)</span>. <span class="token punctuation">(</span>-1.20 kcal/mol<span class="token punctuation">)</span>
+     <span class="token number">7</span>: <span class="token builtin class-name">.</span><span class="token variable"><span class="token punctuation">((</span><span class="token punctuation">((</span>.<span class="token punctuation">(</span>.<span class="token punctuation">(</span>.....<span class="token punctuation">)</span>.<span class="token punctuation">)</span>.<span class="token punctuation">))</span></span><span class="token punctuation">))</span> <span class="token punctuation">(</span>-0.96 kcal/mol<span class="token punctuation">)</span>
+     <span class="token number">8</span>: <span class="token builtin class-name">.</span><span class="token variable"><span class="token punctuation">((</span><span class="token punctuation">(</span>...............<span class="token punctuation">))</span></span><span class="token punctuation">)</span> <span class="token punctuation">(</span>-0.67 kcal/mol<span class="token punctuation">)</span>
+     <span class="token number">9</span>: <span class="token builtin class-name">.</span><span class="token variable"><span class="token punctuation">((</span><span class="token punctuation">((</span>.<span class="token punctuation">(</span>..<span class="token punctuation">(</span>....<span class="token punctuation">)</span>.<span class="token punctuation">)</span>.<span class="token punctuation">))</span></span><span class="token punctuation">))</span> <span class="token punctuation">(</span>-0.66 kcal/mol<span class="token punctuation">)</span>
+</code></pre></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>下载 Rosetta</p>
+<ol>
+<li>下载 <a href="https://www.rosettacommons.org/software/academic">Rosetta</a></li>
+<li>添加权限 <code>chmod +x rosetta.binary.ubuntu.release-371.tar.bz2</code></li>
+<li>解压 <code>tar -zvjf rosetta.binary.ubuntu.release-371.tar.bz2 -C ~/Desktop/</code></li>
+</ol>
+</li>
+<li>
+<p>安装构建工具 SCons</p>
+<ol>
+<li>下载 <a href="https://sourceforge.net/projects/scons/files/scons/">SCons</a></li>
+<li>添加执行权限 <code>chmod +x SCons-4.7.0.tar.gz</code></li>
+<li>解压 <code>tar -zxvf SCons-4.7.0.tar.gz -C ~/Desktop/</code></li>
+<li>安装 <code>cd ~/Desktop/SCons-4.7.0/ &amp;&amp; sudo python3 setup.py install</code></li>
+<li>验证 <code>scons --version</code></li>
+</ol>
+</li>
+<li>
+<p>下载依赖</p>
+<ol>
+<li><code>sudo apt install lib32z1-dev</code></li>
+</ol>
+</li>
+<li>
+<p>构建 Rosetta</p>
+<ol>
+<li>去目标目录 <code>cd rosetta.binary.ubuntu.release-371/main/source/</code></li>
+<li>搞个软链接 <code>sudo ln -s /usr/bin/python3 /usr/bin/python</code></li>
+<li>运行 <code>sudo ./scons.py -j20 mode=release bin</code>
+<ul>
+<li><code>-j20</code> 是指用 24 个线程</li>
+</ul>
+</li>
+<li>创建文件夹 <code>mkdir ~/Desktop/TestRosetta &amp;&amp; cd ~/Desktop/TestRosetta</code></li>
+<li>测试 <code>~/Desktop/rosetta.binary.ubuntu.release-371/main/source/bin/rna_denovo.linuxgccrelease -sequence "ucaggu aagcag" -secstruct "(....( )....)" -nstruct 2 -out:file:silent test.out -minimize_rna -dump</code>
+<ul>
+<li>运行结束，出现下面几个文件则说明成功<br>
+<code>add_chunks.pdb  init.pdb  random_moves.pdb  start_0.pdb  test.out</code></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>在 py 中调用 rosetta</p>
+<p><code>pip3 install pandas openpyxl</code></p>
+<pre data-role="codeBlock" data-info="py" class="language-python py"><code><span class="token keyword keyword-from">from</span> nupack <span class="token keyword keyword-import">import</span> <span class="token operator">*</span>
+<span class="token keyword keyword-import">import</span> pandas <span class="token keyword keyword-as">as</span> pd
+<span class="token keyword keyword-import">import</span> subprocess
+<span class="token keyword keyword-import">import</span> concurrent<span class="token punctuation">.</span>futures
+
+<span class="token comment"># farfar shell </span>
+<span class="token keyword keyword-def">def</span> <span class="token function">farfar2</span><span class="token punctuation">(</span>seq<span class="token punctuation">,</span> sec<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    res <span class="token operator">=</span> <span class="token string">"/home/jiao/Desktop/'rosetta.binary.ubuntu.release-371'/main/source/bin/rna_denovo.linuxgccrelease"</span>
+    res <span class="token operator">=</span> res <span class="token operator">+</span> <span class="token string">" -sequence \""</span>
+    res <span class="token operator">=</span> res <span class="token operator">+</span> seq
+    res<span class="token operator">=</span> res <span class="token operator">+</span> <span class="token string">"\" -secstruct \""</span>
+    res <span class="token operator">=</span> res <span class="token operator">+</span> sec
+    res <span class="token operator">=</span> res <span class="token operator">+</span> <span class="token string">"\""</span>
+    res <span class="token operator">=</span> res <span class="token operator">+</span> <span class="token string">" -minimize_rna -dump"</span>
+    <span class="token keyword keyword-return">return</span> res
+
+<span class="token keyword keyword-def">def</span> <span class="token function">task</span><span class="token punctuation">(</span>seq<span class="token punctuation">,</span> sec<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    process <span class="token operator">=</span> subprocess<span class="token punctuation">.</span>Popen<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"mkdir"</span><span class="token punctuation">,</span> seq<span class="token operator">+</span>sec<span class="token punctuation">]</span><span class="token punctuation">,</span> stdout<span class="token operator">=</span>subprocess<span class="token punctuation">.</span>PIPE<span class="token punctuation">,</span> stderr<span class="token operator">=</span>subprocess<span class="token punctuation">.</span>PIPE<span class="token punctuation">,</span> cwd<span class="token operator">=</span><span class="token string">"./res/"</span><span class="token punctuation">)</span>
+    stdout<span class="token punctuation">,</span> stderr <span class="token operator">=</span> process<span class="token punctuation">.</span>communicate<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    process <span class="token operator">=</span> subprocess<span class="token punctuation">.</span>Popen<span class="token punctuation">(</span>farfar2<span class="token punctuation">(</span>seq<span class="token punctuation">,</span> sec<span class="token punctuation">)</span><span class="token punctuation">,</span> shell<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> stdout<span class="token operator">=</span>subprocess<span class="token punctuation">.</span>PIPE<span class="token punctuation">,</span> text<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> cwd<span class="token operator">=</span><span class="token string">"./res/"</span><span class="token operator">+</span>seq<span class="token operator">+</span>sec<span class="token punctuation">)</span>
+    stdout<span class="token punctuation">,</span> stderr <span class="token operator">=</span> process<span class="token punctuation">.</span>communicate<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>stdout<span class="token punctuation">)</span>
+
+<span class="token keyword keyword-def">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># nupack</span>
+    df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_excel<span class="token punctuation">(</span><span class="token string">'list_40bit.xlsx'</span><span class="token punctuation">,</span> header<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+    walker_seq <span class="token operator">=</span> df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span>
+    my_model <span class="token operator">=</span> Model<span class="token punctuation">(</span>material<span class="token operator">=</span><span class="token string">'dna'</span><span class="token punctuation">,</span> celsius<span class="token operator">=</span><span class="token number">37</span><span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-with">with</span> concurrent<span class="token punctuation">.</span>futures<span class="token punctuation">.</span>ThreadPoolExecutor<span class="token punctuation">(</span>max_workers<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token keyword keyword-as">as</span> executor<span class="token punctuation">:</span>
+        <span class="token keyword keyword-for">for</span> _<span class="token punctuation">,</span> seq <span class="token keyword keyword-in">in</span> walker_seq<span class="token punctuation">.</span>iterrows<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            i <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>seq<span class="token punctuation">.</span>values<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            my_subopt <span class="token operator">=</span> subopt<span class="token punctuation">(</span>strands<span class="token operator">=</span>i<span class="token punctuation">,</span> model<span class="token operator">=</span>my_model<span class="token punctuation">,</span> energy_gap<span class="token operator">=</span><span class="token number">1.1</span><span class="token punctuation">)</span>
+
+            futures <span class="token operator">=</span> <span class="token punctuation">[</span>executor<span class="token punctuation">.</span>submit<span class="token punctuation">(</span>task<span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">(</span>j<span class="token punctuation">.</span>structure<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword keyword-for">for</span> j <span class="token keyword keyword-in">in</span> my_subopt<span class="token punctuation">]</span>
+
+        concurrent<span class="token punctuation">.</span>futures<span class="token punctuation">.</span>wait<span class="token punctuation">(</span>futures<span class="token punctuation">)</span>
+
+<span class="token keyword keyword-if">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></li>
+</ul>
 
       </div>
       <div class="md-sidebar-toc">
@@ -251,6 +403,10 @@ python setup.py <span class="token function">install</span>
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
           <a href="#pyrosetta4" class="md-toc-link">
             <p>PyRosetta4</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#环境构建全流程" class="md-toc-link">
+            <p>环境构建全流程</p>
 
           </a></div>
 </div>
