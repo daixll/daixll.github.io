@@ -456,7 +456,7 @@ int main(){
 
 # 六级
 
-## 字符串
+## 数据结构
 
 <details><summary><a href="https://tctm.cpolar.cn/submission/449347" target="_blank">字符串插入（202305a）</a> code</summary><br>
 
@@ -488,12 +488,6 @@ int main(){
 }
 ```
 </details>
-
-<br>
-
----
-
-## 哈希
 
 <details><summary><a href="https://tctm.cpolar.cn/problem/4307" target="_blank">生日相同 2.0（202309a）</a> code</summary><br>
 
@@ -551,6 +545,124 @@ int main(){
 
 ## 栈
 
+<details><summary><a href="" target="_blank">栈的基本操作（202209a）</a> code</summary><br>
+
+**大意**
+
+**思路**
+
+```cpp
+#pragma G++ optimize("Ofast", 3)
+#define fst first
+
+#define sed second
+
+#define pb push_back
+
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long LL;
+typedef pair<int, int> PII;
+
+const int inf = 0x3f3f3f3f;
+const int dxy[][2]={ {-1,0},{1,0},{0,-1},{0,1} };
+const int N = 2e5+10;
+
+int n;
+
+void solve(){
+	stack<int> stk;
+	cin >> n;
+
+	bool flg = 1;
+	while(n--){
+		string op;
+		cin >> op;
+		if(op == "push"){
+			int x; cin >> x;
+			if(flg == 0) continue;
+
+			stk.push(x);
+		}else{
+			if(flg == 0) continue;
+
+			if(stk.size() == 0){
+				cout << "error\n";
+				flg = 0;
+				continue;
+			}
+
+			stk.pop();
+		}
+	}
+
+	if(flg == 0) return ;
+
+	stack<int> t;
+	while(stk.size()){
+		t.push(stk.top());
+		stk.pop();
+	}
+
+	while(t.size()){
+		cout << t.top() << " ";
+		t.pop();
+	}
+
+	cout << "\n";
+}
+
+int main(){
+	int T; cin>>T; while(T--)
+	solve();
+	return 0;
+}
+```
+</details>
+
+<details><summary><a href="https://tctm.cpolar.cn/problem/4305" target="_blank">栈基本操作（202305b）</a> code</summary><br>
+
+**大意**
+
+**思路**
+
+```cpp
+#include <iostream>
+#include <stack>
+#include <queue>
+using namespace std;
+
+const int N = 1e5+10;
+
+stack<int> stk;
+queue<pair<string, int>> q;
+int b[N];
+int n;
+
+int main(){
+    cin >> n;
+    // 出栈序列
+    for(int i=1; i<=n; i++) cin >> b[i];
+    b[0] = 1;
+
+    // 入栈顺序
+    for(int i=1; i<=n; i++){
+        stk.push(i);
+        q.push({"PUSH", i});
+        while(stk.size() && stk.top() == b[ b[0] ])
+            stk.pop(), ++b[0], q.push({"POP", b[b[0]-1]});
+    }
+
+    if(stk.size()) cout << "NO";
+    else
+        while(q.size())
+            cout << q.front().first << " " << q.front().second << "\n", q.pop();
+
+    return 0;
+}
+```
+</details>
 
 <details><summary><a href="https://tctm.cpolar.cn/problem/4308" target="_blank">合法出栈序列（202309b）</a> code</summary><br>
 
@@ -634,6 +746,149 @@ int main(){
 <br>
 
 ## 队列
+
+<details><summary><a href="https://tctm.cpolar.cn/problem/4319" target="_blank">队列和栈（202312X）</a> code</summary><br>
+
+**大意**
+
+**思路**
+
+```cpp
+#pragma G++ optimize("Ofast", 3)
+#define fst first
+
+#define sed second
+
+#define pb push_back
+
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long LL;
+typedef pair<int, int> PII;
+
+const int inf = 0x3f3f3f3f;
+const int dxy[][2]={ {-1,0},{1,0},{0,-1},{0,1} };
+const int N = 2e5+10;
+
+int n;
+
+void solve(){
+	stack<int> stk;
+	queue<int> q;
+	cin >> n;
+
+	bool flg = 1;
+	while(n--){
+		string op;
+		cin >> op;
+		if(op == "push"){
+			int x; cin >> x;
+			if(flg == 0) continue;
+
+			stk.push(x);
+			q.push(x);
+		}else{
+			if(flg == 0) continue;
+
+			if(stk.size() == 0 || q.size() == 0){
+				cout << "error\nerror\n";
+				flg = 0;
+				continue;
+			}
+
+			stk.pop();
+			q.pop();
+		}
+	}
+
+	if(flg == 0) return ;
+
+	while(q.size()){
+		cout << q.front() << " ";
+		q.pop();
+	}
+
+	stack<int> t;
+	while(stk.size()){
+		t.push(stk.top());
+		stk.pop();
+	}
+
+	cout << "\n";
+
+	while(t.size()){
+		cout << t.top() << " ";
+		t.pop();
+	}
+
+	cout << "\n";
+}
+
+int main(){
+	int T; cin>>T; while(T--)
+	solve();
+	return 0;
+}
+```
+</details>
+
+
+<details><summary><a href="https://tctm.cpolar.cn/problem/4306" target="_blank">双端队列（202305d）</a> code</summary><br>
+
+**大意**
+
+**思路**
+
+```cpp
+#pragma G++ optimize("Ofast", 3)
+#define fst first
+
+#define sed second
+
+#define pb push_back
+
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long LL;
+typedef pair<int, int> PII;
+
+const int inf = 0x3f3f3f3f;
+const int dxy[][2]={ {-1,0},{1,0},{0,-1},{0,1} };
+const int N = 2e5+10;
+
+int n;
+
+void solve(){
+    cin >> n;
+    deque<int> q;
+    while(n--){
+        int op, x;
+        cin >> op >> x;
+        if(op == 1)
+            q.push_back(x);
+        else{
+            if(x == 1) q.pop_back();
+            else q.pop_front();
+        }
+    }
+
+    if(q.size() == 0)
+        cout << "NULL\n";
+
+    while(q.size())
+        cout << q.front() << " ", q.pop_front();
+    cout << "\n";
+}
+
+int main(){
+    int T; cin>>T; while(T--)
+    solve();
+    return 0;
+}
+```
+</details>
 
 
 <br>
