@@ -9,33 +9,40 @@ export_on_save:
 
 <br>
 
+**所以，是在写代码还是在 cv api 呢 ;)**
+
+
 ---
 
 
-# 1
+# **main**
 
-## Controller
+## **java**
+
+### org.dxl.controller
 
 > **控制器**
 > * 处理 HTTP 请求，返回 HTTP 响应
 > * 调用业务逻辑返回结果
 
-<details><summary><a href="" target="_blank"></a> 简单 RESTful API 接口</summary><br>
+<details><summary><a href="" target="_blank"></a> 简单 RESTful API 接口 </summary><br>
 
 * `@RestController` 处理 HTTP 请求并返回响应数据
-* `@Resource` 依赖注入
-* `@GetMapping` 处理 HTTP GET 请求，并且映射路径
+* `@Resource` 依赖注入，解耦一个类对其依赖对象的创建和管理过程
+* `@GetMapping` 处理 HTTP GET 请求
 * `@RequestParam` 从请求中获取 key 的 value，并且赋值给某个变量
 
 ```java
+// EmpController.java
+
 @RestController
 public class EmpController {
     @Resource
-    EmpService empService;
+    EmpService empService;              // 暂时按照自动实例化、智能指针理解吧
 
-    @GetMapping("/list")
-    public Result getEmpList() {
-        List<Emp> emps = empService.getEmpList();
+    @GetMapping("/list")                // 处理客户端对 "/list" 路径的 GET 请求
+    public Result getEmpList() {        // 返回一个 Result
+        List<Emp> emps = empService.getEmpList();   // 调用服务层
         return Result.success(emps);
     }
 
@@ -51,7 +58,7 @@ public class EmpController {
 
 ---
 
-## Server
+### org.dxl.server
 
 > **服务层**
 > * 封装业务逻辑和数据处理，提供给 Controller 使用
@@ -69,8 +76,8 @@ public interface EmpService {
 <details><summary><a href="" target="_blank"></a> ServerImpl</summary><br>
 
 * `@Server` 标识为 Spring Bean，由 Spring 管理的服务类
-* `Resource` 依赖注入
-* `Override` 重写父类方法
+* `@Resource` 依赖注入
+* `@Override` 重写父类方法
 
 ```java
 @Service
@@ -92,17 +99,8 @@ public class EmpServiceImpl implements EmpService {
 
 ---
 
-## DAO
 
-> **数据访问对象**
-> * CRUD
-> * 数据访问与业务逻辑分离
-
-<br>
-
----
-
-## Mapper
+### org.dxl.mapper
 
 > **映射器**
 > * MyBatis 等组件使用
@@ -123,10 +121,10 @@ public interface EmpMapper {
 
 ---
 
-## POJO
+### org.dxl.pojo
 
 > **普通 Java 对象**
-> 常用于封装数据传输对象
+> * 常用于封装数据传输对象
 
 <details><summary><a href="" target="_blank"></a> Result 统一响应结果封装类</summary><br>
 
@@ -219,3 +217,38 @@ public class Emp {
 <br>
 
 ---
+
+### org.dxl.dao
+
+> **数据访问对象**
+> * CRUD
+> * 数据访问与业务逻辑分离
+
+<br>
+
+---
+
+### Application
+
+
+<br>
+
+---
+
+## **resources**
+
+### org.dxl.mapper
+
+### static
+
+<br>
+
+---
+
+# **test**
+
+## **java**
+
+### org.dxl.ApplicationTests
+
+

@@ -26,9 +26,11 @@
       
 <h1 id="引子">引子 </h1>
 <br>
+<p><strong>所以，是在写代码还是在 cv api 呢 😉</strong></p>
 <hr>
-<h1 id="1">1 </h1>
-<h2 id="controller">Controller </h2>
+<h1 id="main"><strong>main</strong> </h1>
+<h2 id="java"><strong>java</strong> </h2>
+<h3 id="orgdxlcontroller">org.dxl.controller </h3>
 <blockquote>
 <p><strong>控制器</strong></p>
 <ul>
@@ -36,21 +38,23 @@
 <li>调用业务逻辑返回结果</li>
 </ul>
 </blockquote>
-<details><summary><a href="" target="_blank"></a> 简单 RESTful API 接口</summary><br>
+<details><summary><a href="" target="_blank"></a> 简单 RESTful API 接口 </summary><br>
 <ul>
 <li><code>@RestController</code> 处理 HTTP 请求并返回响应数据</li>
-<li><code>@Resource</code> 依赖注入</li>
-<li><code>@GetMapping</code> 处理 HTTP GET 请求，并且映射路径</li>
+<li><code>@Resource</code> 依赖注入，解耦一个类对其依赖对象的创建和管理过程</li>
+<li><code>@GetMapping</code> 处理 HTTP GET 请求</li>
 <li><code>@RequestParam</code> 从请求中获取 key 的 value，并且赋值给某个变量</li>
 </ul>
-<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token annotation punctuation">@RestController</span>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token comment">// EmpController.java</span>
+
+<span class="token annotation punctuation">@RestController</span>
 <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">EmpController</span> <span class="token punctuation">{</span>
     <span class="token annotation punctuation">@Resource</span>
-    <span class="token class-name">EmpService</span> empService<span class="token punctuation">;</span>
+    <span class="token class-name">EmpService</span> empService<span class="token punctuation">;</span>              <span class="token comment">// 暂时按照自动实例化、智能指针理解吧</span>
 
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/list"</span><span class="token punctuation">)</span>
-    <span class="token keyword keyword-public">public</span> <span class="token class-name">Result</span> <span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> emps <span class="token operator">=</span> empService<span class="token punctuation">.</span><span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/list"</span><span class="token punctuation">)</span>                <span class="token comment">// 处理客户端对 "/list" 路径的 GET 请求</span>
+    <span class="token keyword keyword-public">public</span> <span class="token class-name">Result</span> <span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token comment">// 返回一个 Result</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> emps <span class="token operator">=</span> empService<span class="token punctuation">.</span><span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 调用服务层</span>
         <span class="token keyword keyword-return">return</span> <span class="token class-name">Result</span><span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span>emps<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
@@ -62,7 +66,7 @@
 </code></pre></details>
 <br>
 <hr>
-<h2 id="server">Server </h2>
+<h3 id="orgdxlserver">org.dxl.server </h3>
 <blockquote>
 <p><strong>服务层</strong></p>
 <ul>
@@ -78,8 +82,8 @@
 <details><summary><a href="" target="_blank"></a> ServerImpl</summary><br>
 <ul>
 <li><code>@Server</code> 标识为 Spring Bean，由 Spring 管理的服务类</li>
-<li><code>Resource</code> 依赖注入</li>
-<li><code>Override</code> 重写父类方法</li>
+<li><code>@Resource</code> 依赖注入</li>
+<li><code>@Override</code> 重写父类方法</li>
 </ul>
 <pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token annotation punctuation">@Service</span>
 <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">EmpServiceImpl</span> <span class="token keyword keyword-implements">implements</span> <span class="token class-name">EmpService</span> <span class="token punctuation">{</span>
@@ -95,17 +99,7 @@
 </code></pre></details>
 <br>
 <hr>
-<h2 id="dao">DAO </h2>
-<blockquote>
-<p><strong>数据访问对象</strong></p>
-<ul>
-<li>CRUD</li>
-<li>数据访问与业务逻辑分离</li>
-</ul>
-</blockquote>
-<br>
-<hr>
-<h2 id="mapper">Mapper </h2>
+<h3 id="orgdxlmapper">org.dxl.mapper </h3>
 <blockquote>
 <p><strong>映射器</strong></p>
 <ul>
@@ -123,10 +117,12 @@
 </code></pre></details>
 <br>
 <hr>
-<h2 id="pojo">POJO </h2>
+<h3 id="orgdxlpojo">org.dxl.pojo </h3>
 <blockquote>
-<p><strong>普通 Java 对象</strong><br>
-常用于封装数据传输对象</p>
+<p><strong>普通 Java 对象</strong></p>
+<ul>
+<li>常用于封装数据传输对象</li>
+</ul>
 </blockquote>
 <details><summary><a href="" target="_blank"></a> Result 统一响应结果封装类</summary><br>
 <ul>
@@ -210,6 +206,27 @@
 </code></pre></details>
 <br>
 <hr>
+<h3 id="orgdxldao">org.dxl.dao </h3>
+<blockquote>
+<p><strong>数据访问对象</strong></p>
+<ul>
+<li>CRUD</li>
+<li>数据访问与业务逻辑分离</li>
+</ul>
+</blockquote>
+<br>
+<hr>
+<h3 id="application">Application </h3>
+<br>
+<hr>
+<h2 id="resources"><strong>resources</strong> </h2>
+<h3 id="orgdxlmapper-1">org.dxl.mapper </h3>
+<h3 id="static">static </h3>
+<br>
+<hr>
+<h1 id="test"><strong>test</strong> </h1>
+<h2 id="java-1"><strong>java</strong> </h2>
+<h3 id="orgdxlapplicationtests">org.dxl.ApplicationTests </h3>
 
       </div>
       <div class="md-sidebar-toc">
@@ -220,31 +237,83 @@
 
           </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#1" class="md-toc-link"><p>1</p>
+          <a href="#main" class="md-toc-link"><p><strong>main</strong></p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#java" class="md-toc-link"><p><strong>java</strong></p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#controller" class="md-toc-link">
-            <p>Controller</p>
+          <a href="#orgdxlcontroller" class="md-toc-link">
+            <p>org.dxl.controller</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#server" class="md-toc-link">
-            <p>Server</p>
+          <a href="#orgdxlserver" class="md-toc-link">
+            <p>org.dxl.server</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#dao" class="md-toc-link">
-            <p>DAO</p>
+          <a href="#orgdxlmapper" class="md-toc-link">
+            <p>org.dxl.mapper</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#mapper" class="md-toc-link">
-            <p>Mapper</p>
+          <a href="#orgdxlpojo" class="md-toc-link">
+            <p>org.dxl.pojo</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#pojo" class="md-toc-link">
-            <p>POJO</p>
+          <a href="#orgdxldao" class="md-toc-link">
+            <p>org.dxl.dao</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#application" class="md-toc-link">
+            <p>Application</p>
 
           </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#resources" class="md-toc-link"><p><strong>resources</strong></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#orgdxlmapper-1" class="md-toc-link">
+            <p>org.dxl.mapper</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#static" class="md-toc-link">
+            <p>static</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#test" class="md-toc-link"><p><strong>test</strong></p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#java-1" class="md-toc-link"><p><strong>java</strong></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#orgdxlapplicationtests" class="md-toc-link">
+            <p>org.dxl.ApplicationTests</p>
+
+          </a></div>
+        </div>
+      </details>
+    
         </div>
       </details>
     
