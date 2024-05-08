@@ -76,6 +76,41 @@
 <br>
 <hr>
 <h2 id="one">one </h2>
+<h1 id="mysql-速查">MySQL 速查 </h1>
+<ul>
+<li>查看数据库 <code>show databases;</code></li>
+<li>使用数据库 <code>use 库名;</code></li>
+<li>删除数据库 <code>drop database 库名;</code></li>
+<li>创建数据库 <code>create database 库名;</code></li>
+</ul>
+<h2 id="create"><strong>C</strong>reate </h2>
+<ul>
+<li>
+<p>创建表</p>
+<pre data-role="codeBlock" data-info="sql" class="language-sql sql"><code><span class="token keyword keyword-CREATE">CREATE</span> <span class="token keyword keyword-TABLE">TABLE</span> 表名<span class="token punctuation">(</span>
+    列名 类型 约束<span class="token punctuation">,</span>
+    user_id <span class="token keyword keyword-INT">INT</span> <span class="token keyword keyword-AUTO_INCREMENT">AUTO_INCREMENT</span> <span class="token keyword keyword-PRIMARY">PRIMARY</span> <span class="token keyword keyword-KEY">KEY</span><span class="token punctuation">,</span>
+    username <span class="token keyword keyword-VARCHAR">VARCHAR</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    birthdate <span class="token keyword keyword-DATE">DATE</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+<li>
+<p>创建记录</p>
+<pre data-role="codeBlock" data-info="sql" class="language-sql sql"><code><span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> students <span class="token punctuation">(</span>student_name<span class="token punctuation">,</span> age<span class="token punctuation">)</span>
+<span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span><span class="token string">'Alice'</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></li>
+</ul>
+<h2 id="read"><strong>R</strong>ead </h2>
+<ul>
+<li>查看所有表 <code>show tables;</code></li>
+<li>查看表中所有数据 <code>select * from 表名;</code></li>
+</ul>
+<h2 id="update"><strong>U</strong>pdate </h2>
+<h2 id="delete"><strong>D</strong>elete </h2>
+<ul>
+<li>删除某张表 <code>drop table 表名;</code></li>
+<li>简单条件删除 <code>delete from 表名 where 列名 = 值;</code></li>
+</ul>
 
       </div>
       <div class="md-sidebar-toc">
@@ -101,6 +136,31 @@
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#one" class="md-toc-link">
             <p>one</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#mysql-速查" class="md-toc-link"><p>MySQL 速查</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#create" class="md-toc-link">
+            <p><strong>C</strong>reate</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#read" class="md-toc-link">
+            <p><strong>R</strong>ead</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#update" class="md-toc-link">
+            <p><strong>U</strong>pdate</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#delete" class="md-toc-link">
+            <p><strong>D</strong>elete</p>
 
           </a></div>
         </div>

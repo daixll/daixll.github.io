@@ -47,3 +47,42 @@ export_on_save:
 
 
 ## one
+
+
+
+# MySQL 速查
+
+* 查看数据库 `show databases;`
+* 使用数据库 `use 库名;`
+* 删除数据库 `drop database 库名;`
+* 创建数据库 `create database 库名;`
+
+## **C**reate
+
+* 创建表 
+    ```sql
+    CREATE TABLE 表名(
+        列名 类型 约束,
+        user_id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(50) NOT NULL,
+        birthdate DATE
+    );
+    ```
+
+* 创建记录
+    ```sql
+    INSERT INTO students (student_name, age)
+    VALUES ('Alice', 20);
+    ```
+
+## **R**ead
+
+* 查看所有表 `show tables;`
+* 查看表中所有数据 `select * from 表名;`
+
+## **U**pdate
+
+## **D**elete
+
+* 删除某张表 `drop table 表名;`
+* 简单条件删除 `delete from 表名 where 列名 = 值;`

@@ -25,7 +25,7 @@ export_on_save:
 > * 处理 HTTP 请求，返回 HTTP 响应
 > * 调用业务逻辑返回结果
 
-<details><summary><a href="" target="_blank"></a> 简单 RESTful API 接口 </summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: blue">Controller.java</span></summary><br>
 
 * `@RestController` 处理 HTTP 请求并返回响应数据
 * `@Resource` 依赖注入，解耦一个类对其依赖对象的创建和管理过程
@@ -34,7 +34,6 @@ export_on_save:
 
 ```java
 // EmpController.java
-
 @RestController
 public class EmpController {
     @Resource
@@ -58,61 +57,29 @@ public class EmpController {
 
 ---
 
-### org.dxl.server
-
-> **服务层**
-> * 封装业务逻辑和数据处理，提供给 Controller 使用
-> * 调用 DAO 层实现对数据的访问和操作
-
-<details><summary><a href="" target="_blank"></a> Server</summary><br>
-
-```java
-public interface EmpService {
-    List<Emp> getEmpList();
-}
-```
-</details>
-
-<details><summary><a href="" target="_blank"></a> ServerImpl</summary><br>
-
-* `@Server` 标识为 Spring Bean，由 Spring 管理的服务类
-* `@Resource` 依赖注入
-* `@Override` 重写父类方法
-
-```java
-@Service
-public class EmpServiceImpl implements EmpService {
-    @Resource
-    EmpMapper empMapper;
-
-    @Override
-    public List<Emp> getEmpList() {
-        List<Emp> emps = empMapper.getEmpList();
-        return emps;
-    }
-}
-```
-</details>
-
-
-<br>
-
----
-
-
 ### org.dxl.mapper
 
 > **映射器**
 > * MyBatis 等组件使用
 
-<details><summary><a href="" target="_blank"></a> Mapper </summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: blue">Mapper.java</span></summary><br>
 
 * `@Mapper` 使用 MyBatis 框架为接口生成对应实现类
 
 ```java
 @Mapper
 public interface EmpMapper {
-    List<Emp> getEmpList();
+    List<Emp> getEmpList();             // select * from emp;
+    Emp selectById(int id);             // select * from emp where id = ?;
+    List<Emp> selectByName(String name, Short gender, LocalDate begin, LocalDate end);
+                                        // select * from emp where name like ?
+    
+    void insertEmp(Emp emp);            // insert into emp values(...);
+    
+    void updateEmp(Emp emp);            // update emp set ... where id = ?;
+    
+    void deleteById(int id);            // delete from emp where id = ?;
+    void deleteByIds(List<Integer> ids);// delete from emp where id in (...);
 }
 ```
 </details>
@@ -121,16 +88,22 @@ public interface EmpMapper {
 
 ---
 
+
 ### org.dxl.pojo
 
 > **普通 Java 对象**
 > * 常用于封装数据传输对象
 
-<details><summary><a href="" target="_blank"></a> Result 统一响应结果封装类</summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: blue">Result.java</span></summary><br>
 
 * `@Override` 重写父类方法
 
 ```java
+package org.dxl.pojo;
+
+/**
+ * 统一响应结果封装类
+ */
 public class Result {
     private Integer code ;//1 成功 , 0 失败
     private String msg; //提示信息
@@ -181,12 +154,11 @@ public class Result {
                 '}';
     }
 }
-
 ```
 </details>
 
 
-<details><summary><a href="" target="_blank"></a> Emp 用于数据库操作的实体类</summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: blue">Emp.java</span></summary><br>
 
 `Lombok` 提供的注解
 
@@ -195,6 +167,15 @@ public class Result {
 * `@AllArgsConstructor`自动生成包含所有成员变量的构造方法
 
 ```java
+package org.dxl.pojo;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -204,19 +185,65 @@ public class Emp {
     private String password;
     private String name;
     private Short gender;
+    private String image;
     private Short job;
     private LocalDate entryDate;
     private Integer deptId;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 }
-
 ```
 </details>
 
 <br>
 
 ---
+
+
+### org.dxl.service
+
+> **服务层**
+> * 封装业务逻辑和数据处理，提供给 Controller 使用
+> * 调用 DAO 层实现对数据的访问和操作
+
+<details><summary><a href="" target="_blank"></a><span style="color: blue">Server.java</span></summary><br>
+
+```java
+// EmpService.java
+public interface EmpService {
+    List<Emp> getEmpList();
+}
+```
+</details>
+
+<details><summary><a href="" target="_blank"></a><span style="color: blue">impl / ServerImpl.java</span></summary><br>
+
+* `@Server` 标识为 Spring Bean，由 Spring 管理的服务类
+* `@Resource` 依赖注入
+* `@Override` 重写父类方法
+
+```java
+// EmpServiceImpl.java
+@Service
+public class EmpServiceImpl implements EmpService {
+    @Resource
+    EmpMapper empMapper;
+
+    @Override
+    public List<Emp> getEmpList() {
+        List<Emp> emps = empMapper.getEmpList();
+        return emps;
+    }
+}
+```
+</details>
+
+
+<br>
+
+---
+
+
 
 ### org.dxl.dao
 
@@ -239,11 +266,43 @@ public class Emp {
 
 ### org.dxl.mapper
 
+> 
+
+<details><summary><a href="" target="_blank"></a><span style="color: blue">EmpMapper.xml</span></summary><br>
+
+```xml
+
+```
+</details>
+
+
 ### static
 
 <br>
 
 ---
+
+### application.properties
+
+> **配置文件**
+
+<details><summary><a href="" target="_blank"></a><span style="color: blue"> application.properties</span></summary><br>
+
+```sh
+spring.application.name=one
+
+# mysql 配置
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/数据库名字
+spring.datasource.username=root
+spring.datasource.password=1234
+```
+</details>
+
+<br>
+
+---
+
 
 # **test**
 
