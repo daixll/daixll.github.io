@@ -19,7 +19,7 @@ export_on_save:
 
 ## **java**
 
-### org.dxl.controller
+### org / dxl / controller
 
 > **控制器**
 > * 处理 HTTP 请求，返回 HTTP 响应
@@ -57,7 +57,7 @@ public class EmpController {
 
 ---
 
-### org.dxl.mapper
+### org / dxl / mapper
 
 > **映射器**
 > * MyBatis 等组件使用
@@ -89,7 +89,7 @@ public interface EmpMapper {
 ---
 
 
-### org.dxl.pojo
+### org / dxl / pojo
 
 > **普通 Java 对象**
 > * 常用于封装数据传输对象
@@ -200,13 +200,13 @@ public class Emp {
 ---
 
 
-### org.dxl.service
+### org / dxl / service
 
 > **服务层**
 > * 封装业务逻辑和数据处理，提供给 Controller 使用
 > * 调用 DAO 层实现对数据的访问和操作
 
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Server.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: blue">Service.java</span></summary><br>
 
 ```java
 // EmpService.java
@@ -216,7 +216,7 @@ public interface EmpService {
 ```
 </details>
 
-<details><summary><a href="" target="_blank"></a><span style="color: blue">impl / ServerImpl.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: blue">impl / ServiceImpl.java</span></summary><br>
 
 * `@Server` 标识为 Spring Bean，由 Spring 管理的服务类
 * `@Resource` 依赖注入
@@ -245,7 +245,7 @@ public class EmpServiceImpl implements EmpService {
 
 
 
-### org.dxl.dao
+### org / dxl / dao
 
 > **数据访问对象**
 > * CRUD
@@ -264,17 +264,41 @@ public class EmpServiceImpl implements EmpService {
 
 ## **resources**
 
-### org.dxl.mapper
+### org / dxl / mapper
 
 > 
 
 <details><summary><a href="" target="_blank"></a><span style="color: blue">EmpMapper.xml</span></summary><br>
 
 ```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<mapper namespace="org.dxl.EmpMapper">
+
+    <resultMap id="empResultMap" type="org.dxl.pojo.Emp">
+        <result property="实体类中的属性名" column="数据库表中列名"/>
+    </resultMap>
+
+    <!-- 查询所有 -->
+    <select id="getEmpList" resultMap="empResultMap">
+        select * from 表名
+    </select>
+
+
+
+</mapper>
 ```
+
+
 </details>
 
+
+<br>
+
+---
 
 ### static
 
@@ -289,7 +313,7 @@ public class EmpServiceImpl implements EmpService {
 <details><summary><a href="" target="_blank"></a><span style="color: blue"> application.properties</span></summary><br>
 
 ```sh
-spring.application.name=one
+spring.application.name=项目名字
 
 # mysql 配置
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
@@ -308,6 +332,40 @@ spring.datasource.password=1234
 
 ## **java**
 
-### org.dxl.ApplicationTests
+### org / dxl / ApplicationTests
 
 
+<details><summary><a href="" target="_blank"></a><span style="color: blue">Tests</span></summary><br>
+
+```java
+package org.dxl;
+
+import jakarta.annotation.Resource;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.dxl.mapper.EmpMapper;
+import org.dxl.pojo.Emp;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+@SpringBootTest
+class SpringbootWebMybatisCrudApplicationTests {
+
+    @Resource
+    EmpMapper empMapper;
+
+    @Test
+    void testGetEmpList(){
+        List<Emp> list = empMapper.getEmpList();
+        for (Emp e : list){
+            System.out.println(e);
+        }
+    }
+
+
+}
+```
+</details>

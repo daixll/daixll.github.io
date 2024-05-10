@@ -30,7 +30,7 @@
 <hr>
 <h1 id="main"><strong>main</strong> </h1>
 <h2 id="java"><strong>java</strong> </h2>
-<h3 id="orgdxlcontroller">org.dxl.controller </h3>
+<h3 id="org--dxl--controller">org / dxl / controller </h3>
 <blockquote>
 <p><strong>控制器</strong></p>
 <ul>
@@ -65,7 +65,7 @@
 </code></pre></details>
 <br>
 <hr>
-<h3 id="orgdxlmapper">org.dxl.mapper </h3>
+<h3 id="org--dxl--mapper">org / dxl / mapper </h3>
 <blockquote>
 <p><strong>映射器</strong></p>
 <ul>
@@ -93,7 +93,7 @@
 </code></pre></details>
 <br>
 <hr>
-<h3 id="orgdxlpojo">org.dxl.pojo </h3>
+<h3 id="org--dxl--pojo">org / dxl / pojo </h3>
 <blockquote>
 <p><strong>普通 Java 对象</strong></p>
 <ul>
@@ -195,7 +195,7 @@
 </code></pre></details>
 <br>
 <hr>
-<h3 id="orgdxlservice">org.dxl.service </h3>
+<h3 id="org--dxl--service">org / dxl / service </h3>
 <blockquote>
 <p><strong>服务层</strong></p>
 <ul>
@@ -203,13 +203,13 @@
 <li>调用 DAO 层实现对数据的访问和操作</li>
 </ul>
 </blockquote>
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Server.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: blue">Service.java</span></summary><br>
 <pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token comment">// EmpService.java</span>
 <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-interface">interface</span> <span class="token class-name">EmpService</span> <span class="token punctuation">{</span>
     <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> <span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre></details>
-<details><summary><a href="" target="_blank"></a><span style="color: blue">impl / ServerImpl.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: blue">impl / ServiceImpl.java</span></summary><br>
 <ul>
 <li><code>@Server</code> 标识为 Spring Bean，由 Spring 管理的服务类</li>
 <li><code>@Resource</code> 依赖注入</li>
@@ -230,7 +230,7 @@
 </code></pre></details>
 <br>
 <hr>
-<h3 id="orgdxldao">org.dxl.dao </h3>
+<h3 id="org--dxl--dao">org / dxl / dao </h3>
 <blockquote>
 <p><strong>数据访问对象</strong></p>
 <ul>
@@ -244,10 +244,31 @@
 <br>
 <hr>
 <h2 id="resources"><strong>resources</strong> </h2>
-<h3 id="orgdxlmapper-1">org.dxl.mapper </h3>
+<h3 id="org--dxl--mapper-1">org / dxl / mapper </h3>
 <blockquote></blockquote>
 <details><summary><a href="" target="_blank"></a><span style="color: blue">EmpMapper.xml</span></summary><br>
-<pre data-role="codeBlock" data-info="xml" class="language-xml xml"><code></code></pre></details>
+<pre data-role="codeBlock" data-info="xml" class="language-xml xml"><code><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">mapper</span>
+        <span class="token name">PUBLIC</span> <span class="token string">"-//mybatis.org//DTD Mapper 3.0//EN"</span>
+        <span class="token string">"https://mybatis.org/dtd/mybatis-3-mapper.dtd"</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">namespace</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>org.dxl.EmpMapper<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>empResultMap<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>org.dxl.pojo.Emp<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>result</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>实体类中的属性名<span class="token punctuation">"</span></span> <span class="token attr-name">column</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>数据库表中列名<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resultMap</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token comment">&lt;!-- 查询所有 --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getEmpList<span class="token punctuation">"</span></span> <span class="token attr-name">resultMap</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>empResultMap<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        select * from 表名
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>
+
+
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">&gt;</span></span>
+</code></pre></details>
+<br>
+<hr>
 <h3 id="static">static </h3>
 <br>
 <hr>
@@ -256,7 +277,7 @@
 <p><strong>配置文件</strong></p>
 </blockquote>
 <details><summary><a href="" target="_blank"></a><span style="color: blue"> application.properties</span></summary><br>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token assign-left variable">spring.application.name</span><span class="token operator">=</span>one
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token assign-left variable">spring.application.name</span><span class="token operator">=</span>项目名字
 
 <span class="token comment"># mysql 配置</span>
 spring.datasource.driver-class-name<span class="token operator">=</span>com.mysql.cj.jdbc.Driver
@@ -268,7 +289,38 @@ spring.datasource.driver-class-name<span class="token operator">=</span>com.mysq
 <hr>
 <h1 id="test"><strong>test</strong> </h1>
 <h2 id="java-1"><strong>java</strong> </h2>
-<h3 id="orgdxlapplicationtests">org.dxl.ApplicationTests </h3>
+<h3 id="org--dxl--applicationtests">org / dxl / ApplicationTests </h3>
+<details><summary><a href="" target="_blank"></a><span style="color: blue">Tests</span></summary><br>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token keyword keyword-package">package</span> <span class="token namespace">org<span class="token punctuation">.</span>dxl</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">jakarta<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Resource</span></span><span class="token punctuation">;</span>
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token punctuation">.</span>api<span class="token punctuation">.</span></span><span class="token class-name">Test</span></span><span class="token punctuation">;</span>
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>test<span class="token punctuation">.</span>context<span class="token punctuation">.</span></span><span class="token class-name">SpringBootTest</span></span><span class="token punctuation">;</span>
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>dxl<span class="token punctuation">.</span>mapper<span class="token punctuation">.</span></span><span class="token class-name">EmpMapper</span></span><span class="token punctuation">;</span>
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>dxl<span class="token punctuation">.</span>pojo<span class="token punctuation">.</span></span><span class="token class-name">Emp</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>time<span class="token punctuation">.</span></span><span class="token class-name">LocalDate</span></span><span class="token punctuation">;</span>
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>time<span class="token punctuation">.</span></span><span class="token class-name">LocalDateTime</span></span><span class="token punctuation">;</span>
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">ArrayList</span></span><span class="token punctuation">;</span>
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@SpringBootTest</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">SpringbootWebMybatisCrudApplicationTests</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Resource</span>
+    <span class="token class-name">EmpMapper</span> empMapper<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">testGetEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> empMapper<span class="token punctuation">.</span><span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-for">for</span> <span class="token punctuation">(</span><span class="token class-name">Emp</span> e <span class="token operator">:</span> list<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+
+<span class="token punctuation">}</span>
+</code></pre></details>
 
       </div>
       <div class="md-sidebar-toc">
@@ -290,24 +342,24 @@ spring.datasource.driver-class-name<span class="token operator">=</span>com.mysq
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#orgdxlcontroller" class="md-toc-link">
-            <p>org.dxl.controller</p>
+          <a href="#org--dxl--controller" class="md-toc-link">
+            <p>org / dxl / controller</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#orgdxlmapper" class="md-toc-link">
-            <p>org.dxl.mapper</p>
+          <a href="#org--dxl--mapper" class="md-toc-link">
+            <p>org / dxl / mapper</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#orgdxlpojo" class="md-toc-link">
-            <p>org.dxl.pojo</p>
+          <a href="#org--dxl--pojo" class="md-toc-link">
+            <p>org / dxl / pojo</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#orgdxlservice" class="md-toc-link">
-            <p>org.dxl.service</p>
+          <a href="#org--dxl--service" class="md-toc-link">
+            <p>org / dxl / service</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#orgdxldao" class="md-toc-link">
-            <p>org.dxl.dao</p>
+          <a href="#org--dxl--dao" class="md-toc-link">
+            <p>org / dxl / dao</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#application" class="md-toc-link">
@@ -323,8 +375,8 @@ spring.datasource.driver-class-name<span class="token operator">=</span>com.mysq
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#orgdxlmapper-1" class="md-toc-link">
-            <p>org.dxl.mapper</p>
+          <a href="#org--dxl--mapper-1" class="md-toc-link">
+            <p>org / dxl / mapper</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#static" class="md-toc-link">
@@ -353,8 +405,8 @@ spring.datasource.driver-class-name<span class="token operator">=</span>com.mysq
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#orgdxlapplicationtests" class="md-toc-link">
-            <p>org.dxl.ApplicationTests</p>
+          <a href="#org--dxl--applicationtests" class="md-toc-link">
+            <p>org / dxl / ApplicationTests</p>
 
           </a></div>
         </div>
