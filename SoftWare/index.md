@@ -32,23 +32,52 @@ export_on_save:
 
 ## Linux-setup
 
-安装多个版本且可以随意切换
+* 编译安装指定版本
 
-1. 下载
-    ```shell
-    sudo apt install gcc-12 g++-12
-    sudo apt install gcc-11 g++-11
-    ```
-2. 设置优先级
-    ```shell
-    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 120 --slave /usr/bin/g++ g++ /usr/bin/g++-12
-    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 --slave /usr/bin/g++ g++ /usr/bin/g++-11
-    ```
-    * 此时，`gcc-12` 优先级更高
-3. 切换版本
-    ```shell
-    sudo update-alternatives --config gcc
-    ```
+    1. [下载（日本镜像站）](https://ftp.tsukuba.wide.ad.jp/software/gcc/releases/)
+
+    2. 解压缩
+        ```sh
+        tar -zxvf *.tar.gz
+        ```
+
+    2. 安装依赖
+        ```sh
+        sudo apt install libgmp-dev libmpfr-dev libmpc-dev
+        ```
+
+    3. 配置编译选项
+        ```sh
+        cd gcc*
+        ./configure --prefix=/usr/local/gcc-x.y.z --enable-languages=c,c++ --disable-multilib
+        ```
+    
+    4. 编译
+        ```sh
+        make -j$(nproc)
+        ```
+    
+    5. 安装
+        ```sh
+        sudo make install
+        ```
+
+<br>
+
+* 多个版本切换
+
+    1. 设置候选项
+        ```shell
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 110
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/local/gcc-14.1.0/bin/gcc 140
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/local/gcc-14.1.0/bin/g++ 140
+        ```
+    
+    2. 切换版本
+        ```shell
+        sudo update-alternatives --config gcc
+        ```
 
 
 ## Windows
@@ -92,6 +121,20 @@ make -v                 # 验证 make 安装成功
 
 ---
 
+# **CMake**
+
+
+
+## Linux-setup
+## Linux-use
+## Win-setup
+## Win-use
+
+
+
+<br>
+
+---
 
 
 # **OpenSSL**

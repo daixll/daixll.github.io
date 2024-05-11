@@ -41,20 +41,56 @@
 <hr>
 <h1 id="gcc"><strong>gcc</strong> </h1>
 <h2 id="linux-setup">Linux-setup </h2>
-<p>安装多个版本且可以随意切换</p>
+<ul>
+<li>
+<p>编译安装指定版本</p>
 <ol>
-<li>下载<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> gcc-12 g++-12
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> gcc-11 g++-11
-</code></pre></li>
-<li>设置优先级<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> update-alternatives <span class="token parameter variable">--install</span> /usr/bin/gcc gcc /usr/bin/gcc-12 <span class="token number">120</span> <span class="token parameter variable">--slave</span> /usr/bin/g++ g++ /usr/bin/g++-12
-<span class="token function">sudo</span> update-alternatives <span class="token parameter variable">--install</span> /usr/bin/gcc gcc /usr/bin/gcc-11 <span class="token number">110</span> <span class="token parameter variable">--slave</span> /usr/bin/g++ g++ /usr/bin/g++-11
-</code></pre><ul>
-<li>此时，<code>gcc-12</code> 优先级更高</li>
-</ul>
+<li>
+<p><a href="https://ftp.tsukuba.wide.ad.jp/software/gcc/releases/">下载（日本镜像站）</a></p>
 </li>
-<li>切换版本<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> update-alternatives <span class="token parameter variable">--config</span> gcc
+<li>
+<p>解压缩</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> *.tar.gz
+</code></pre></li>
+<li>
+<p>安装依赖</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libgmp-dev libmpfr-dev libmpc-dev
+</code></pre></li>
+<li>
+<p>配置编译选项</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token builtin class-name">cd</span> gcc*
+./configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span>/usr/local/gcc-x.y.z --enable-languages<span class="token operator">=</span>c,c++ --disable-multilib
+</code></pre></li>
+<li>
+<p>编译</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">make</span> -j<span class="token variable"><span class="token variable">$(</span>nproc<span class="token variable">)</span></span>
+</code></pre></li>
+<li>
+<p>安装</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">sudo</span> <span class="token function">make</span> <span class="token function">install</span>
 </code></pre></li>
 </ol>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p>多个版本切换</p>
+<ol>
+<li>
+<p>设置候选项</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> update-alternatives <span class="token parameter variable">--install</span> /usr/bin/gcc gcc /usr/bin/gcc-11 <span class="token number">110</span>
+<span class="token function">sudo</span> update-alternatives <span class="token parameter variable">--install</span> /usr/bin/g++ g++ /usr/bin/g++-11 <span class="token number">110</span>
+<span class="token function">sudo</span> update-alternatives <span class="token parameter variable">--install</span> /usr/bin/gcc gcc /usr/local/gcc-14.1.0/bin/gcc <span class="token number">140</span>
+<span class="token function">sudo</span> update-alternatives <span class="token parameter variable">--install</span> /usr/bin/g++ g++ /usr/local/gcc-14.1.0/bin/g++ <span class="token number">140</span>
+</code></pre></li>
+<li>
+<p>切换版本</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> update-alternatives <span class="token parameter variable">--config</span> gcc
+</code></pre></li>
+</ol>
+</li>
+</ul>
 <h2 id="windows">Windows </h2>
 <p>修改环境变量来切换版本</p>
 <ol>
@@ -95,6 +131,13 @@
 </li>
 </ol>
 <h2 id="简单使用">简单使用 </h2>
+<br>
+<hr>
+<h1 id="cmake"><strong>CMake</strong> </h1>
+<h2 id="linux-setup-1">Linux-setup </h2>
+<h2 id="linux-use">Linux-use </h2>
+<h2 id="win-setup">Win-setup </h2>
+<h2 id="win-use">Win-use </h2>
 <br>
 <hr>
 <h1 id="openssl"><strong>OpenSSL</strong> </h1>
@@ -1331,6 +1374,31 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#简单使用" class="md-toc-link">
             <p>简单使用</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#cmake" class="md-toc-link"><p><strong>CMake</strong></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-setup-1" class="md-toc-link">
+            <p>Linux-setup</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-use" class="md-toc-link">
+            <p>Linux-use</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#win-setup" class="md-toc-link">
+            <p>Win-setup</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#win-use" class="md-toc-link">
+            <p>Win-use</p>
 
           </a></div>
         </div>
