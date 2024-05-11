@@ -106,13 +106,13 @@ export_on_save:
         <a href="Dev/index.html"> Dev </a>
     </div>
     <div class="item">
-        <a href="Linux/index.html"> linux </a>
-    </div>
-    <div class="item">
         <a href="SoftWare/index.html"> software </a>
     </div>
     <div class="item">
-        <a href="Package/index.html"> package </a>
+        <a href=""></a>
+    </div>
+        <div class="item">
+        <a href=""></a>
     </div>
 </div>
 

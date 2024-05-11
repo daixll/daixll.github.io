@@ -70,7 +70,7 @@ export_on_save:
     <img src="（省1）蓝桥杯24.jpg" width="300"> 
 </div>
 <div class="center">
-    <img src="排名/（省1）蓝桥杯24.png" width="300">
+    <img src="排名/（省1）蓝桥杯24.jpg" width="300">
 </div>
 
 
