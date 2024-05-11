@@ -42,44 +42,20 @@ export_on_save:
 
 <div class="container">
     <div class="item">
-        <a href="CPP/C/index.html"> C & Tools </a>
-    </div>
-    <div class="item">基础语法、运行环境、常用工具</div>
-</div>
-
-<div class="container">
-    <div class="item">
         <a href="CPP/C++/index.html"> Modern C++ </a>
     </div>
-    <div class="item">现代特性、STL、类与对象</div>
-</div>
-
-<div class="container">
     <div class="item">
-        <a href="CPP/C++ Concurrency/index.html"> Concurrency </a>
+        <a href="CPP/C++ Concurrency/index.html"> Conc. </a>
     </div>
-    <div class="item">并发、多线程、多进程</div>
-</div>
-
-<div class="container">
     <div class="item">
         <a href="CPP/C++ Socket/index.html"> Socket </a>
     </div>
-    <div class="item">网络编程、Boost.Asio</div>
-</div>
-
-<div class="container">
-    <div class="item">
-        <a href="CPP/C++ AV/index.html"> AV </a>
-    </div>
-    <div class="item">音视频、ffmpeg、OpenCV</div>
-</div>
-
-<div class="container">
     <div class="item">
         <a href="CPP/C++ Qt/index.html"> Qt </a>
     </div>
-    <div class="item">图形化编程、QWidgets</div>
+    <div class="item">
+        <a href="CPP/C++ AV/index.html"> AV </a>
+    </div>
 </div>
 
 <h5 class="left"> language </h5>
