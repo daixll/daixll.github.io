@@ -7,7 +7,36 @@ export_on_save:
 
 # 参考
 
-关于 C++ 的学习参
+关于 C/C++ 的学习心得：
+
+1. 学习 **基本语法**：最快速的上手方式是国内自学网站 [菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html) 等 + [洛谷OJ](https://www.luogu.com.cn/training/list) 等，再看看视频等。
+    * 视频推荐：[【Youtube】 The Cherno](https://www.youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb) / [【bilibili】 The Cherno(搬运)](https://www.bilibili.com/video/BV1oD4y1h7S3)
+    * 洛谷OJ 只需要完成入门系列的题目即可，但如果你未来想要更好的从事开发相关的工作，建议开始 **系统地** 学习数据结构与算法，同时，对网络、OS、数据库等方面也要有一定的了解。
+    * 学有余力，可以看看《C++ Primer》 、《C 和指针》等书籍。
+
+<br>
+
+2. 学习 **C++ STL**：如果你有数据结构和算法的基础，其实也就不必再学习 C++ STL 了，因为 C++ STL 本质上就是数据结构和算法的实现。
+    * [C语言中文网：C++ STL快速入门](https://c.biancheng.net/stl/)
+    * 书籍：侯捷 - 《STL源码剖析》
+
+<br>
+
+3. 学习 **现代C++** C++ 11/14/17/20：这是一个非常庞大的话题，涉及了很多方面，最高效的方式是看书。
+    * 优先学习新特性，或者说，优先学习新特性的使用方法，而不是去了解新特性的实现原理。
+    * **网络编程** 和 **并发编程** 部分，建议单独学习。
+    * 书籍：[现代 C++ 教程](https://changkun.de/modern-cpp/)、《C++ XX高级编程》、《现代C++ 白皮书》（课外阅读）。
+    * 近期出版的《C++ 之旅（第三版）》、《C++ Core Guildelines解析》也是非常不错的书籍。
+
+<br>
+
+4. 学习 **面向对象**：用C++之父 本贾尼 的话说，C++是支持面向对象，而不是，C++是面向对象的语言。*“面向对象不是 C++ 的所有，而仅仅是其支持的多种编程范式（面向过程、面向对象、泛型编程、函数式编程）中的一种”*。
+    * 面向对象编程：封装、继承、多态。
+    * 既然面向对象是一种思想，我们应该跳脱出语言的限制，去思考如何设计一个面向对象的系统。
+    * 书籍：《设计模式的艺术——软件开发人员内功修炼之道》、《head first设计模式》。
+    * 架构为道、设计为术。设计模式是确定架构下的最佳实践。
+
+<br>
 
 * [cppreference](https://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5)：C++ 参考手册
 
