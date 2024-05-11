@@ -32,13 +32,14 @@ export_on_save:
 
 ## Linux-setup
 
-* 编译安装指定版本
+* **编译安装指定版本**
 
     1. [下载（日本镜像站）](https://ftp.tsukuba.wide.ad.jp/software/gcc/releases/)
 
     2. 解压缩
         ```sh
         tar -zxvf *.tar.gz
+        cd gcc*
         ```
 
     2. 安装依赖
@@ -48,8 +49,10 @@ export_on_save:
 
     3. 配置编译选项
         ```sh
-        cd gcc*
-        ./configure --prefix=/usr/local/gcc-x.y.z --enable-languages=c,c++ --disable-multilib
+        ./configure \
+            --enable-languages=c,c++ \
+            --prefix='/usr/local/gcc-x.y.z' \
+            --disable-multilib
         ```
     
     4. 编译
@@ -62,9 +65,14 @@ export_on_save:
         sudo make install
         ```
 
+    6. 添加动态连接
+        ```
+        export LD_LIBRARY_PATH=/usr/local/gcc-x.y.z/lib64:$LD_LIBRARY_PATH
+        ```
+
 <br>
 
-* 多个版本切换
+* **多个版本切换**
 
     1. 设置候选项
         ```shell
@@ -79,43 +87,43 @@ export_on_save:
         sudo update-alternatives --config gcc
         ```
 
+    3. 删除多余候选项
+        ```shell
+        sudo update-alternatives --remove gcc /usr/local/gcc-14.1.0/bin/gcc
+        sudo update-alternatives --remove g++ /usr/local/gcc-14.1.0/bin/g++
+        ```
 
-## Windows
+## Win-setup
 
-修改环境变量来切换版本
+* **安装**
 
-1. 下载
-    [mingw-w64](https://github.com/niXman/mingw-builds-binaries/releases) `x86_64` `posix` `seh` `ucrt`
+    1. 下载 [mingw-w64](https://github.com/niXman/mingw-builds-binaries/releases) `x86_64` `posix` `seh` `ucrt`
 
-2. 解压
+    2. 解压
 
-3. 添加至环境变量
-    * `C:\GCC\12\mingw-w64\bin`
+    3. 添加至环境变量 `GCC\XY\mingw-w64\bin`
 
 
 <br>
 
 ---
 
-# **make**
+# **Make**
 
-## Linux
+## Linux-setup
 
 ```shell
 sudo apt install make   # 安装 make
 make -v                 # 验证 make 安装成功
 ```
 
-## Windows
+## Windows-setup
 
-1. 下载
-    [make](https://gnuwin32.sourceforge.net/downlinks/make.php)
-
+1. 下载 [Make](https://gnuwin32.sourceforge.net/downlinks/make.php)
 2. 安装
-3. 添加环境变量
-    * `C:\Program Files (x86)\GnuWin32\bin`
+3. 添加环境变量 `GnuWin32\bin`
 
-## 简单使用
+## Linux-use
 
 <br>
 

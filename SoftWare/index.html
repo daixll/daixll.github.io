@@ -43,7 +43,7 @@
 <h2 id="linux-setup">Linux-setup </h2>
 <ul>
 <li>
-<p>编译安装指定版本</p>
+<p><strong>编译安装指定版本</strong></p>
 <ol>
 <li>
 <p><a href="https://ftp.tsukuba.wide.ad.jp/software/gcc/releases/">下载（日本镜像站）</a></p>
@@ -51,6 +51,7 @@
 <li>
 <p>解压缩</p>
 <pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> *.tar.gz
+<span class="token builtin class-name">cd</span> gcc*
 </code></pre></li>
 <li>
 <p>安装依赖</p>
@@ -58,8 +59,10 @@
 </code></pre></li>
 <li>
 <p>配置编译选项</p>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token builtin class-name">cd</span> gcc*
-./configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span>/usr/local/gcc-x.y.z --enable-languages<span class="token operator">=</span>c,c++ --disable-multilib
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>./configure <span class="token punctuation">\</span>
+    --enable-languages<span class="token operator">=</span>c,c++ <span class="token punctuation">\</span>
+    <span class="token parameter variable">--prefix</span><span class="token operator">=</span><span class="token string">'/usr/local/gcc-x.y.z'</span> <span class="token punctuation">\</span>
+    --disable-multilib
 </code></pre></li>
 <li>
 <p>编译</p>
@@ -69,13 +72,17 @@
 <p>安装</p>
 <pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">sudo</span> <span class="token function">make</span> <span class="token function">install</span>
 </code></pre></li>
+<li>
+<p>添加动态连接</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>export LD_LIBRARY_PATH=/usr/local/gcc-x.y.z/lib64:$LD_LIBRARY_PATH
+</code></pre></li>
 </ol>
 </li>
 </ul>
 <br>
 <ul>
 <li>
-<p>多个版本切换</p>
+<p><strong>多个版本切换</strong></p>
 <ol>
 <li>
 <p>设置候选项</p>
@@ -88,60 +95,55 @@
 <p>切换版本</p>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> update-alternatives <span class="token parameter variable">--config</span> gcc
 </code></pre></li>
+<li>
+<p>删除多余候选项</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> update-alternatives <span class="token parameter variable">--remove</span> gcc /usr/local/gcc-14.1.0/bin/gcc
+<span class="token function">sudo</span> update-alternatives <span class="token parameter variable">--remove</span> g++ /usr/local/gcc-14.1.0/bin/g++
+</code></pre></li>
 </ol>
 </li>
 </ul>
-<h2 id="windows">Windows </h2>
-<p>修改环境变量来切换版本</p>
+<h2 id="win-setup">Win-setup </h2>
+<ul>
+<li>
+<p><strong>安装</strong></p>
 <ol>
 <li>
-<p>下载<br>
-<a href="https://github.com/niXman/mingw-builds-binaries/releases">mingw-w64</a> <code>x86_64</code> <code>posix</code> <code>seh</code> <code>ucrt</code></p>
+<p>下载 <a href="https://github.com/niXman/mingw-builds-binaries/releases">mingw-w64</a> <code>x86_64</code> <code>posix</code> <code>seh</code> <code>ucrt</code></p>
 </li>
 <li>
 <p>解压</p>
 </li>
 <li>
-<p>添加至环境变量</p>
-<ul>
-<li><code>C:\GCC\12\mingw-w64\bin</code></li>
-</ul>
+<p>添加至环境变量 <code>GCC\XY\mingw-w64\bin</code></p>
 </li>
 </ol>
+</li>
+</ul>
 <br>
 <hr>
-<h1 id="make"><strong>make</strong> </h1>
-<h2 id="linux">Linux </h2>
+<h1 id="make"><strong>Make</strong> </h1>
+<h2 id="linux-setup-1">Linux-setup </h2>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">make</span>   <span class="token comment"># 安装 make</span>
 <span class="token function">make</span> <span class="token parameter variable">-v</span>                 <span class="token comment"># 验证 make 安装成功</span>
-</code></pre><h2 id="windows-1">Windows </h2>
+</code></pre><h2 id="windows-setup">Windows-setup </h2>
 <ol>
-<li>
-<p>下载<br>
-<a href="https://gnuwin32.sourceforge.net/downlinks/make.php">make</a></p>
-</li>
-<li>
-<p>安装</p>
-</li>
-<li>
-<p>添加环境变量</p>
-<ul>
-<li><code>C:\Program Files (x86)\GnuWin32\bin</code></li>
-</ul>
-</li>
+<li>下载 <a href="https://gnuwin32.sourceforge.net/downlinks/make.php">Make</a></li>
+<li>安装</li>
+<li>添加环境变量 <code>GnuWin32\bin</code></li>
 </ol>
-<h2 id="简单使用">简单使用 </h2>
+<h2 id="linux-use">Linux-use </h2>
 <br>
 <hr>
 <h1 id="cmake"><strong>CMake</strong> </h1>
-<h2 id="linux-setup-1">Linux-setup </h2>
-<h2 id="linux-use">Linux-use </h2>
-<h2 id="win-setup">Win-setup </h2>
+<h2 id="linux-setup-2">Linux-setup </h2>
+<h2 id="linux-use-1">Linux-use </h2>
+<h2 id="win-setup-1">Win-setup </h2>
 <h2 id="win-use">Win-use </h2>
 <br>
 <hr>
 <h1 id="openssl"><strong>OpenSSL</strong> </h1>
-<h2 id="linux-1">Linux </h2>
+<h2 id="linux">Linux </h2>
 <br>
 <hr>
 <h1 id="git"><strong>git</strong> </h1>
@@ -307,10 +309,10 @@
 </ol>
 <br>
 <hr>
-<h2 id="linux-2">Linux </h2>
+<h2 id="linux-1">Linux </h2>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">git</span> <span class="token comment"># 安装 git</span>
 <span class="token function">git</span> <span class="token parameter variable">--version</span>        <span class="token comment"># 验证 git 安装成功</span>
-</code></pre><h2 id="windows-2">Windows </h2>
+</code></pre><h2 id="windows">Windows </h2>
 <p><a href="https://git-scm.com/downloads">git 官网</a></p>
 <br>
 <hr>
@@ -747,7 +749,7 @@ nmap -p-                    <span class="token comment"># 扫描所有端口 等
 <p>nmap 会发送一系列的 TCP 和 UDP 包，然后分析返回的包，从而判断目标主机的操作系统。</p>
 <h1 id="wireshark"><strong>Wireshark</strong> </h1>
 <h1 id="boost"><strong>Boost</strong> </h1>
-<h2 id="linux-3">Linux </h2>
+<h2 id="linux-2">Linux </h2>
 <ol>
 <li>
 <p>下载<br>
@@ -789,7 +791,7 @@ nmap -p-                    <span class="token comment"># 扫描所有端口 等
 </ul>
 </li>
 </ol>
-<h2 id="windows-3">Windows </h2>
+<h2 id="windows-1">Windows </h2>
 <ol>
 <li>
 <p>下载<br>
@@ -835,8 +837,8 @@ nmap -p-                    <span class="token comment"># 扫描所有端口 等
 <br>
 <hr>
 <h1 id="openssl-1"><strong>openssl</strong> </h1>
-<h2 id="linux-4">Linux </h2>
-<h2 id="windows-4">Windows </h2>
+<h2 id="linux-3">Linux </h2>
+<h2 id="windows-2">Windows </h2>
 <p><strong>openssl</strong> 是一个开源的软件库包，实现了 <strong>SSL</strong> 和 <strong>TLS</strong> 协议，包含了众多密码算法，常用于 <strong>HTTPS</strong> 的服务器端和客户端的实现。</p>
 <h3 id="openssl-命令">openssl 命令 </h3>
 <p><a href="https://www.feistyduck.com/library/openssl-cookbook/online/">官方手册</a></p>
@@ -1351,29 +1353,29 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
             <p>Linux-setup</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#windows" class="md-toc-link">
-            <p>Windows</p>
+          <a href="#win-setup" class="md-toc-link">
+            <p>Win-setup</p>
 
           </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#make" class="md-toc-link"><p><strong>make</strong></p>
+          <a href="#make" class="md-toc-link"><p><strong>Make</strong></p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux" class="md-toc-link">
-            <p>Linux</p>
+          <a href="#linux-setup-1" class="md-toc-link">
+            <p>Linux-setup</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#windows-1" class="md-toc-link">
-            <p>Windows</p>
+          <a href="#windows-setup" class="md-toc-link">
+            <p>Windows-setup</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#简单使用" class="md-toc-link">
-            <p>简单使用</p>
+          <a href="#linux-use" class="md-toc-link">
+            <p>Linux-use</p>
 
           </a></div>
         </div>
@@ -1385,15 +1387,15 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-setup-1" class="md-toc-link">
+          <a href="#linux-setup-2" class="md-toc-link">
             <p>Linux-setup</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-use" class="md-toc-link">
+          <a href="#linux-use-1" class="md-toc-link">
             <p>Linux-use</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#win-setup" class="md-toc-link">
+          <a href="#win-setup-1" class="md-toc-link">
             <p>Win-setup</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
@@ -1410,7 +1412,7 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-1" class="md-toc-link">
+          <a href="#linux" class="md-toc-link">
             <p>Linux</p>
 
           </a></div>
@@ -1452,11 +1454,11 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-2" class="md-toc-link">
+          <a href="#linux-1" class="md-toc-link">
             <p>Linux</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#windows-2" class="md-toc-link">
+          <a href="#windows" class="md-toc-link">
             <p>Windows</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
@@ -1757,11 +1759,11 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-3" class="md-toc-link">
+          <a href="#linux-2" class="md-toc-link">
             <p>Linux</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#windows-3" class="md-toc-link">
+          <a href="#windows-1" class="md-toc-link">
             <p>Windows</p>
 
           </a></div>
@@ -1774,12 +1776,12 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-4" class="md-toc-link">
+          <a href="#linux-3" class="md-toc-link">
             <p>Linux</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#windows-4" class="md-toc-link"><p>Windows</p>
+          <a href="#windows-2" class="md-toc-link"><p>Windows</p>
 </a>
           </summary>
         <div>
