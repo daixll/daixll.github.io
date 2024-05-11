@@ -36,10 +36,615 @@
 </ul>
 <br>
 <hr>
-<h2 id="oop">OOP </h2>
+<h1 id="基于-c">基于 C </h1>
+<h2 id="c是如何工作的">C是如何工作的 </h2>
+<p>对于这个问题，</p>
+<ul>
+<li>通俗的，计算机是如何看懂我给它下达的指令。</li>
+<li>具体的，如何把 <code>.c</code> （文本文件） -&gt; <code>.exe</code> （可执行文件）</li>
+</ul>
+<p><strong>源文件 -&gt; 预处理 -&gt; 编译 -&gt; 汇编 -&gt; 链接 -&gt; 可执行文件</strong></p>
+<br>
+<h3 id="预处理">预处理 </h3>
+<ul>
+<li>
+<p>一个文本替换工具罢了，它会根据源文件中的预处理指令，修改源文件。</p>
+</li>
+<li>
+<p>预处理指令以 <code>#</code> 开头，如 <code>#include</code>、<code>#define</code> 等。</p>
+<ul>
+<li>
+<p><code>#include</code> 会把指定的文件内容插入到当前文件中。</p>
+</li>
+<li>
+<p><code>#define</code> （宏定义）会把指定的内容替换到当前文件中。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MAX</span> <span class="token expression"><span class="token number">100</span></span></span>
+
+<span class="token keyword keyword-int">int</span> a<span class="token punctuation">[</span>MAX<span class="token punctuation">]</span><span class="token punctuation">;</span>             <span class="token comment">// int a[100]; 定义一个大小为 100 的数组</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> MAX<span class="token operator">*</span>MAX<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// printf("%d", 100*100); 输出 10000</span>
+</code></pre><p><strong>值得注意的是，宏定义只是简单的文本替换</strong></p>
+<p>C语言自带一些宏定义：<code>__TIME__</code>，<code>__FILE__</code> 等等</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> <span class="token constant">__TIME__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 输出当前（预处理器替换时候的）时间</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> <span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 输出当前文件名</span>
+</code></pre></li>
+</ul>
+<p>更多内容可以参考：<a href="https://www.runoob.com/cprogramming/c-preprocessors.html">C语言预处理器</a></p>
+  <br>
+</li>
+<li>
+<p>预处理后的文件，以 <code>.i</code> 为后缀名，如 <code>main.i</code>。</p>
+<ol>
+<li>
+<p>源文件 <code>main.c</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MAX</span> <span class="token expression"><span class="token number">100</span></span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> a<span class="token punctuation">[</span>MAX<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> MAX<span class="token operator">*</span>MAX<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li>
+<p>使用 gcc 生成预处理后的文件 <code>main.i</code></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc <span class="token parameter variable">-E</span> main.c <span class="token parameter variable">-o</span> main.i
+</code></pre></li>
+</ol>
+</li>
+</ul>
+<br>
+<h3 id="编译">编译 </h3>
+<ul>
+<li>编译器会把预处理后的文件，翻译成汇编语言。
+<ul>
+<li>一种低级语言，它使用助记符（mnemonic）代替二进制指令。</li>
+<li>汇编语言是与硬件相关的，不同的硬件有不同的汇编语言。</li>
+</ul>
+</li>
+<li>汇编语言以 <code>.s</code> 为后缀名，如 <code>main.s</code>。
+<ol>
+<li>使用 gcc 生成汇编文件 <code>main.s</code><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc <span class="token parameter variable">-S</span> main.i <span class="token parameter variable">-o</span> main.s
+</code></pre></li>
+</ol>
+</li>
+</ul>
+<br>
+<h3 id="汇编">汇编 </h3>
+<ul>
+<li>
+<p>汇编器会把汇编语言翻译成机器语言。</p>
+<ul>
+<li>机器语言，使用二进制指令。</li>
+</ul>
+</li>
+<li>
+<p>机器语言以 <code>.o</code> 为后缀名，如 <code>main.o</code>。</p>
+<ol>
+<li>使用 gcc 生成目标文件 <code>main.o</code><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc <span class="token parameter variable">-c</span> main.s <span class="token parameter variable">-o</span> main.o
+</code></pre></li>
+</ol>
+</li>
+</ul>
+<br>
+<h3 id="链接">链接 </h3>
+<ul>
+<li>
+<p>链接器将多个汇编文件链接成一个可执行文件。</p>
+</li>
+<li>
+<p>在 linux 中，可执行文件以 <code>.out</code> 为后缀名，如 <code>main.out</code>。</p>
+<ol>
+<li>使用 gcc 生成可执行文件 <code>main.out</code><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc main.o <span class="token parameter variable">-o</span> main.out
+</code></pre></li>
+</ol>
+</li>
+<li>
+<p>现在有 <code>a.c</code> 文件和 <code>b.c</code> 文件</p>
+<ul>
+<li><code>a.c</code><pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token function">ADD</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li><code>b.c</code><pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">ADD</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+</ul>
+<ol>
+<li>
+<p>使用 gcc 生成 <code>.o</code> 文件</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc <span class="token parameter variable">-c</span> a.c <span class="token parameter variable">-o</span> a.o
+</code></pre><p>此时，<code>a.o</code> 中的 <code>main</code> 函数调用了 <code>ADD</code> 函数，但是 <code>ADD</code> 函数的定义并没有找到。弹出了一个警告。<br>
+<strong>注意，<code>gcc</code> 只检查语法，不检查函数的定义。</strong><br>
+<strong>注意，<code>g++</code> 会检查函数的定义，它会在这里弹出错误。</strong></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc <span class="token parameter variable">-c</span> b.c <span class="token parameter variable">-o</span> b.o
+</code></pre></li>
+<li>
+<p>使用 gcc 生成可执行文件</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc a.o b.o <span class="token parameter variable">-o</span> main.out
+</code></pre><p><strong>注意，链接器会检查函数的定义，如果找不到定义，就会报错。</strong></p>
+</li>
+</ol>
+</li>
+</ul>
+<br>
+<p>至此，我们不仅知道 C 工作的原理，还在一定程度上了解 <code>.h</code>，<code>.c</code> 文件的关系</p>
 <br>
 <hr>
-<h1 id="class">class </h1>
+<h2 id="编译器是如何工作的">编译器是如何工作的 </h2>
+<h3 id="todo">todo </h3>
+<br>
+<hr>
+<h2 id="链接器是如何工作的">链接器是如何工作的 </h2>
+<h3 id="todo-1">todo </h3>
+<br>
+<hr>
+<h2 id="基本数据类型">基本数据类型 </h2>
+<blockquote>
+<p><strong>预习</strong>：<br>
+<a href="https://www.runoob.com/cprogramming/c-data-types.html">C 数据类型</a><br>
+<a href="https://www.runoob.com/cprogramming/c-variables.html">C 变量</a><br>
+<a href="https://www.runoob.com/cprogramming/c-constants.html">C 常量</a><br>
+<strong>练习</strong>：<br>
+<a href="http://noi.openjudge.cn/ch0101/">NOI 1.1 编程基础之输入输出</a><br>
+<a href="http://noi.openjudge.cn/ch0102/">NOI 1.2 编程基础之变量定义、赋值及转换</a></p>
+</blockquote>
+<p>在 C 中，有以下几种基本数据类型：</p>
+<h3 id="整型">整型 </h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">字节数</th>
+<th style="text-align:center">signed</th>
+<th style="text-align:center">unsigned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>short</code></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mn>15</mn></msup></mrow><annotation encoding="application/x-tex">-2^{15}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">15</span></span></span></span></span></span></span></span></span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>15</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{15} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">15</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> <code>%hd</code></td>
+<td style="text-align:center">0 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>16</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{16} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> <code>%hu</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int</code></td>
+<td style="text-align:center">4</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mn>31</mn></msup></mrow><annotation encoding="application/x-tex">-2^{31}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>31</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{31} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> <code>%d</code></td>
+<td style="text-align:center">0 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>32</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{32} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">32</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> <code>%u</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>long long</code></td>
+<td style="text-align:center">8</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mn>63</mn></msup></mrow><annotation encoding="application/x-tex">-2^{63}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">63</span></span></span></span></span></span></span></span></span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>63</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{63} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">63</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> <code>%lld</code></td>
+<td style="text-align:center">0 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>64</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{64} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">64</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> <code>%llu</code></td>
+</tr>
+</tbody>
+</table>
+<p>特别的，为了兼容性，有了精确宽度整数类型（exact-width integers types）的定义。</p>
+<p><code>#include &lt;stdint.h&gt;</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">字节数</th>
+<th style="text-align:center">signed</th>
+<th style="text-align:center">unsigned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>int8_t</code></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mn>7</mn></msup></mrow><annotation encoding="application/x-tex">-2^{7}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span></span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>7</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{7} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td>
+<td style="text-align:center">0 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{8} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int16_t</code></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mn>15</mn></msup></mrow><annotation encoding="application/x-tex">-2^{15}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">15</span></span></span></span></span></span></span></span></span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>15</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{15} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">15</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td>
+<td style="text-align:center">0 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>16</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{16} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int32_t</code></td>
+<td style="text-align:center">4</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mn>31</mn></msup></mrow><annotation encoding="application/x-tex">-2^{31}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>31</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{31} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td>
+<td style="text-align:center">0 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>32</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{32} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">32</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int64_t</code></td>
+<td style="text-align:center">8</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mn>63</mn></msup></mrow><annotation encoding="application/x-tex">-2^{63}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">63</span></span></span></span></span></span></span></span></span></span></span></span> 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>63</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{63} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">63</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td>
+<td style="text-align:center">0 到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>64</mn></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{64} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">64</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td>
+</tr>
+</tbody>
+</table>
+<p>特别的，GCC编译器还支持 <code>__int128_t</code> 类型，即128位整型。</p>
+<p>遗憾的，因为是编译器扩展，所以不是标准的C语言，无法直接 printf。</p>
+<h3 id="浮点型">浮点型 </h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">字节数</th>
+<th style="text-align:center">精度</th>
+<th style="text-align:center">格式化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>float</code></td>
+<td style="text-align:center">4</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>7</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-7}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">7</span></span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:center"><code>%f</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>double</code></td>
+<td style="text-align:center">8</td>
+<td style="text-align:center"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>15</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-15}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">15</span></span></span></span></span></span></span></span></span></span></span></span></td>
+<td style="text-align:center"><code>%lf</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="字符型">字符型 </h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">字节数</th>
+<th style="text-align:center">格式化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>char</code></td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>%c</code></td>
+</tr>
+</tbody>
+</table>
+<p>常用的 ASCII 码表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">ASCII 码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>\0</code></td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>0</code></td>
+<td style="text-align:center">48</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>A</code></td>
+<td style="text-align:center">65</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>a</code></td>
+<td style="text-align:center">97</td>
+</tr>
+</tbody>
+</table>
+<h3 id="指针">指针 </h3>
+<p>指针也是一种数据类型，它用于存储内存地址。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">字节数</th>
+<th style="text-align:center">格式化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>void *</code></td>
+<td style="text-align:center">8</td>
+<td style="text-align:center"><code>%p</code></td>
+</tr>
+</tbody>
+</table>
+<p>和其他数据类型一样</p>
+<ul>
+<li><code>int</code> 存储数字</li>
+<li><code>char</code> 存储字符</li>
+<li><code>double</code> 存储浮点数</li>
+<li><strong><code>void *</code> 存储内存地址</strong></li>
+</ul>
+<p><strong>那为何有 <code>char *</code>、<code>int *</code>、<code>double *</code> 等类型呢？</strong><br>
+<strong>指明指针指向的数据类型：</strong></p>
+<ol>
+<li>
+<p>指针的算术操作<br>
+不同类型的指针运算时，步长不同。</p>
+<ul>
+<li>
+<p><code>char</code> 占用 1 字节， <code>char *</code> 步长为 1。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-char">char</span> c <span class="token operator">=</span> <span class="token char">'6'</span><span class="token punctuation">;</span>   <span class="token comment">// c 的地址为 0xa</span>
+<span class="token keyword keyword-char">char</span> <span class="token operator">*</span>p <span class="token operator">=</span> c<span class="token punctuation">;</span>    <span class="token comment">// p 的 值 为 0xa</span>
+p <span class="token operator">=</span> p <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>      <span class="token comment">// p 的 值 为 0xb</span>
+</code></pre></li>
+<li>
+<p><code>int</code> 占用 4 字节， <code>int *</code> 步长为 4。</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">;</span>      <span class="token comment">// i 的地址为 0x1</span>
+<span class="token keyword keyword-int">int</span> <span class="token operator">*</span>p <span class="token operator">=</span> i<span class="token punctuation">;</span>     <span class="token comment">// p 的 值 为 0x1</span>
+p <span class="token operator">=</span> p <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>      <span class="token comment">// p 的 值 为 0x5</span>
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>类型安全<br>
+编译器会在编译时检查指针的类型，<br>
+从而避免不同类型的指针直接赋值或比较，<br>
+确保了在程序中正确使用指针。</p>
+</li>
+</ol>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-char">char</span> c <span class="token operator">=</span> <span class="token char">'6'</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-char">char</span> t <span class="token operator">=</span> <span class="token char">'?'</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token operator">&amp;</span>c<span class="token punctuation">;</span>
+
+    <span class="token comment">// 变量 c 的值</span>
+    <span class="token comment">// 变量 c 的地址</span>
+    <span class="token comment">// 指针 p 的值</span>
+    <span class="token comment">// 指针 p 的地址</span>
+    <span class="token comment">// 通过指针 p 访问变量 c 的值</span>
+	<span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"c的地址 和 p的值，都是一样的 | *p 就是 c的值"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\nc                &amp;c               p                &amp;p               *p\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%-16c %-16p %-16p %-16p %-16c\n\n"</span><span class="token punctuation">,</span> c<span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token punctuation">,</span> p<span class="token punctuation">,</span> <span class="token operator">&amp;</span>p<span class="token punctuation">,</span> <span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"c+1的地址 和 p+1的值，都是一样的 | *p+1 就是 t的值"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\nc                &amp;c+1             p+1              &amp;p+1             *(p+1)\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%-16c %-16p %-16p %-16p %-16c\n\n"</span><span class="token punctuation">,</span> c<span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"输入一个数，到 p+1 的值里面去："</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%c"</span><span class="token punctuation">,</span> p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"c+1的地址 和 p+1的值，都是一样的 | *p+1 就是 t的值"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\nc                &amp;c+1             p+1              &amp;p+1             *(p+1)\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%-16c %-16p %-16p %-16p %-16c\n\n"</span><span class="token punctuation">,</span> c<span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"输出t的值："</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%c"</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="聚合类型">聚合类型 </h3>
+<p>聚合类型是由多个基本类型组成的数据类型。</p>
+<p><strong>数组</strong></p>
+<p>数组的本质是一段连续的内存空间，数组名是数组首元素的地址。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-int">int</span> a<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>         <span class="token comment">// 定义一个大小为 100 的数组</span>
+<span class="token keyword keyword-int">int</span> b<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment">// 定义一个大小为 4 的数组，元素为 1,2,3,4</span>
+<span class="token keyword keyword-int">int</span> c<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>   <span class="token comment">// 定义一个大小为 100 的数组，第一个元素为 1，其他元素为 0</span>
+</code></pre><p><strong>结构体</strong></p>
+<ul>
+<li>数组：多个 <strong>相同</strong> 元素的集合</li>
+<li>结构体：多个 <strong>不同</strong> 的元素的集合</li>
+</ul>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-struct">struct</span> <span class="token class-name">PII</span><span class="token punctuation">{</span>
+	<span class="token keyword keyword-int">int</span> fst<span class="token punctuation">;</span>
+	<span class="token keyword keyword-int">int</span> sed<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+PII a<span class="token punctuation">;</span>              <span class="token comment">// 定义一个结构体变量</span>
+PII b<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>          <span class="token comment">// 定义一个结构体数组      </span>
+</code></pre><pre data-role="codeBlock" data-info="c" class="language-c c"><code>a<span class="token punctuation">.</span>fst <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>          <span class="token comment">// 访问结构体变量的成员</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">.</span>fst<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 输入结构体变量的成员</span>
+</code></pre><p><strong>联合体</strong></p>
+<p>联合体是一种特殊的结构体，它的所有成员共用一段内存空间。<br>
+内存空间的大小为最大成员的大小。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-union">union</span> UIC<span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> x<span class="token punctuation">;</span>
+    <span class="token keyword keyword-char">char</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+UIC a<span class="token punctuation">;</span>               <span class="token comment">// 定义一个联合体变量</span>
+UIC b<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>           <span class="token comment">// 定义一个联合体数组</span>
+</code></pre><p>在 <code>UIC</code> 中，<code>x</code> 和 <code>y</code> 共用一段内存空间，它们的地址是一样的。<br>
+内存空间的大小为 <code>sizeof(int)</code></p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code>a<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>             <span class="token comment">// 访问联合体变量的成员</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 输入联合体变量的成员</span>
+</code></pre><p>C，就是一个玩地址的语言。</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword keyword-union">union</span> UIC <span class="token punctuation">{</span>
+	<span class="token keyword keyword-int">int</span> x<span class="token punctuation">;</span>
+	<span class="token keyword keyword-char">char</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	UIC a<span class="token punctuation">;</span>              <span class="token comment">// 定义一个联合体变量，开辟 4 个字节的内存空间</span>
+	<span class="token keyword keyword-char">char</span><span class="token operator">*</span> p <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 指针 p 指向联合体变量的第一个字节</span>
+
+	p<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'A'</span><span class="token punctuation">;</span>	<span class="token comment">// 0100 0001</span>
+	p<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'A'</span><span class="token punctuation">;</span>
+	p<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'A'</span><span class="token punctuation">;</span>
+	p<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token char">'A'</span><span class="token punctuation">;</span>
+
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> a<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 1094795585</span>
+	<span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><br>
+<hr>
+<h2 id="基本数据运算">基本数据运算 </h2>
+<blockquote>
+<p><strong>预习</strong>：<br>
+<a href="https://www.runoob.com/cprogramming/c-operators.html">C 运算符</a><br>
+<strong>练习</strong>：<br>
+<a href="http://noi.openjudge.cn/ch0103/">NOI 1.3 编程基础之算术表达式与顺序执行</a></p>
+</blockquote>
+<blockquote>
+<p>选择最合适的数据类型参与运算</p>
+</blockquote>
+<p><strong>注意！</strong></p>
+<ul>
+<li>小数在参与运算时，会存在 <strong>浮点误差</strong>，导致结果不准确。<br>
+例如，<code>1.0</code> 被保存为 <code>1.0000000000000002</code>。<br>
+在 <code>float</code> 类型中，尤为明显。追求精确的计算，尽量使用 <code>double</code> 类型。</li>
+</ul>
+<h3 id="算术运算">算术运算 </h3>
+<p><strong><code>+</code></strong> <strong><code>-</code></strong> <strong><code>*</code></strong> <strong><code>/</code></strong> <strong><code>%</code></strong></p>
+<ul>
+<li>注意操作数的数据范围，防止溢出。</li>
+<li>注意除数为 0 的情况。</li>
+<li>注意字符型和整型的转换。</li>
+</ul>
+<p><strong><code>++</code></strong></p>
+<ul>
+<li><code>a++</code> / <code>a--</code>，先使用 <code>a</code> 的值，再对 <code>a</code> 进行自增/自减。</li>
+<li><code>++a</code> / <code>--a</code>，先对 <code>a</code> 进行自增/自减，再使用 <code>a</code> 的值。</li>
+</ul>
+<h3 id="关系运算">关系运算 </h3>
+<p><strong><code>&gt;</code></strong> <strong><code>&lt;</code></strong> <strong><code>&gt;=</code></strong> <strong><code>&lt;=</code></strong> <strong><code>==</code></strong> <strong><code>!=</code></strong></p>
+<ul>
+<li>小数在进行比较时，需要限定精度进行比较</li>
+<li>字符型和整型的比较，会先将字符型转换为整型，再进行比较。</li>
+</ul>
+<h3 id="逻辑运算">逻辑运算 </h3>
+<p><strong><code>&amp;&amp;</code></strong> <strong><code>||</code></strong> <strong><code>!</code></strong></p>
+<ul>
+<li>逻辑运算的结果是 <code>0</code> 或 <code>1</code>，可以和整型进行运算。</li>
+<li>逻辑运算的短路特性。</li>
+</ul>
+<h3 id="位运算">位运算 </h3>
+<ul>
+<li>位运算的操作数必须是整型。</li>
+</ul>
+<p><strong><code>&lt;&lt;</code></strong></p>
+<ul>
+<li><code>a &lt;&lt; b</code>，将 <code>a</code> 的二进制表示左移 <code>b</code> 位，右边空出的位用 <code>0</code> 填充。</li>
+<li><code>a &lt;&lt; b</code>，相当于 <code>a * 2^b</code>。</li>
+</ul>
+<p><strong><code>&gt;&gt;</code></strong></p>
+<ul>
+<li><strong>值得注意！</strong><br>
+<code>-5 &gt;&gt; 1</code> 的结果是 <code>-3</code>，而不是 <code>-2</code>。<br>
+因为 <code>-5</code> 的二进制表示为 <code>1111 1111 1111 1111 1111 1111 1111 1011</code><br>
+右移一位后，变成了 <code>1111 1111 1111 1111 1111 1111 1111 1101</code>，即 <code>-3</code>。<br>
+因此，并不是简单的除以 <code>2</code>。</li>
+</ul>
+<h3 id="赋值运算">赋值运算 </h3>
+<p><strong><code>+=</code></strong> <strong><code>-=</code></strong> <strong><code>*=</code></strong> <strong><code>/=</code></strong> <strong><code>%=</code></strong> <strong><code>&lt;&lt;=</code></strong> <strong><code>&gt;&gt;=</code></strong></p>
+<p>简单写法罢了。</p>
+<br>
+<hr>
+<h2 id="分支结构">分支结构 </h2>
+<blockquote>
+<p><strong>预习</strong>：<br>
+<a href="https://www.runoob.com/cprogramming/c-decision.html">C 判断</a><br>
+<strong>练习</strong>：<br>
+<a href="https://www.luogu.com.cn/training/101#problems">luogu 分支结构</a><br>
+<a href="http://noi.openjudge.cn/ch0104/">NOI 1.4 编程基础之逻辑表达式与条件分支</a></p>
+</blockquote>
+<h2 id="循环结构">循环结构 </h2>
+<blockquote>
+<p><strong>预习</strong>：<br>
+<a href="https://www.runoob.com/cprogramming/c-loops.html">C 循环</a><br>
+<strong>练习</strong>：<br>
+<a href="https://www.luogu.com.cn/training/102#problems">luogu 循环结构</a><br>
+<a href="http://noi.openjudge.cn/ch0105/">NOI 1.5 编程基础之循环结构</a></p>
+</blockquote>
+<h2 id="memory-areas">Memory Areas </h2>
+<p>C 在程序执行时，将内存大致分为 <strong>代码区</strong>，<strong>全局区</strong>，<strong>栈区</strong>，<strong>堆区</strong> 四个区域。<br>
+不同的区域存储不同的数据，赋予不同的 <strong>生命周期</strong>，能够更灵活地进行编程。</p>
+<h3 id="code-segment">Code Segment </h3>
+<p>代码区，简单来说，就是存放 <strong>执行指令</strong> 的地方。<br>
+代码区是只读的，不允许修改。<br>
+当一个 <code>.c</code> 文件，开始运行时，从 <code>ROM</code> 加载到 <code>RAM</code>，成为代码区。</p>
+<h3 id="data-segment">Data Segment </h3>
+<p>数据区（常量区），用来存储 <strong>静态变量</strong>、<strong>全局变量</strong>、<strong>静态数据</strong>。<br>
+在这个区域中，数据的大小和结构在程序编译时就已经确定。</p>
+<ol>
+<li>
+<p><strong>全局变量：</strong> 如果你在程序中定义了一个全局变量，它会被存储在数据段中。例如：</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-int">int</span> globalVar <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+</code></pre><p>在这个例子中，<code>globalVar</code>是一个全局变量，它的初始值为10，会被存储在数据段中。</p>
+</li>
+<li>
+<p><strong>静态变量：</strong> 静态变量（包括静态全局变量和静态局部变量）也会被存储在数据段中。例如：</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-void">void</span> <span class="token function">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-int">int</span> staticVar <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>在这个例子中，<code>staticVar</code>是一个静态局部变量，它的值在函数调用之间保持不变，存储在数据段中。</p>
+</li>
+<li>
+<p><strong>常量：</strong> 字符串常量和其他常量数据也被存储在数据段中。例如：</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-char">char</span> hello<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello, World!"</span><span class="token punctuation">;</span>
+</code></pre><p>在这个例子中，字符串常量"Hello, World!"会被存储在数据段中，而<code>hello</code>数组则会在栈或堆上分配内存，存储在数据段中的地址。</p>
+</li>
+</ol>
+<h3 id="stack">Stack </h3>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token operator">*</span>p<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> x <span class="token operator">=</span> <span class="token number">666</span><span class="token punctuation">;</span>
+
+    p <span class="token operator">=</span> <span class="token operator">&amp;</span>x<span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a函数 y:\n%d %p\n"</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> <span class="token operator">&amp;</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> y <span class="token operator">=</span> <span class="token number">888</span><span class="token punctuation">;</span> 
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"b函数 y:\n%d %p\n"</span><span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token operator">&amp;</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"主函数 p:\n%d %p\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>p<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"主函数 p:\n%d %p\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>p<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="heap">Heap </h3>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token operator">*</span>p<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span><span class="token operator">*</span> x <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">(</span><span class="token number">666</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    p <span class="token operator">=</span> x<span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a函数 y:\n%d %p\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>x<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 手动释放内存</span>
+    <span class="token comment">// delete x;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span><span class="token operator">*</span> y <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token keyword keyword-int">int</span><span class="token punctuation">(</span><span class="token number">888</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"b函数 y:\n%d %p\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>y<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"主函数 p:\n%d %p\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>p<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"主函数 p:\n%d %p\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>p<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><br>
+<hr>
+<h1 id="oop">OOP </h1>
 <blockquote>
 <p>假设，我们需要接受一个不确定的输入，<br>
 如果这个输入是一个整数，那么我们就输出这个整数的平方，<br>
@@ -1817,22 +2422,164 @@ multiset<span class="token operator">&lt;</span>pair<span class="token operator"
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
-<details style="padding:0;;padding-left:0px;" open="">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#参考" class="md-toc-link">
+            <p>参考</p>
+
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#参考" class="md-toc-link"><p>参考</p>
+          <a href="#基于-c" class="md-toc-link"><p>基于 C</p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#c是如何工作的" class="md-toc-link"><p>C是如何工作的</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#oop" class="md-toc-link">
-            <p>OOP</p>
+          <a href="#预处理" class="md-toc-link">
+            <p>预处理</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#编译" class="md-toc-link">
+            <p>编译</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#汇编" class="md-toc-link">
+            <p>汇编</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#链接" class="md-toc-link">
+            <p>链接</p>
 
           </a></div>
         </div>
       </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#编译器是如何工作的" class="md-toc-link"><p>编译器是如何工作的</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#todo" class="md-toc-link">
+            <p>todo</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#链接器是如何工作的" class="md-toc-link"><p>链接器是如何工作的</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#todo-1" class="md-toc-link">
+            <p>todo</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#基本数据类型" class="md-toc-link"><p>基本数据类型</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#整型" class="md-toc-link">
+            <p>整型</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#浮点型" class="md-toc-link">
+            <p>浮点型</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#字符型" class="md-toc-link">
+            <p>字符型</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#指针" class="md-toc-link">
+            <p>指针</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#聚合类型" class="md-toc-link">
+            <p>聚合类型</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#基本数据运算" class="md-toc-link"><p>基本数据运算</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#算术运算" class="md-toc-link">
+            <p>算术运算</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#关系运算" class="md-toc-link">
+            <p>关系运算</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#逻辑运算" class="md-toc-link">
+            <p>逻辑运算</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#位运算" class="md-toc-link">
+            <p>位运算</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#赋值运算" class="md-toc-link">
+            <p>赋值运算</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#分支结构" class="md-toc-link">
+            <p>分支结构</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#循环结构" class="md-toc-link">
+            <p>循环结构</p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#memory-areas" class="md-toc-link"><p>Memory Areas</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#code-segment" class="md-toc-link">
+            <p>Code Segment</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#data-segment" class="md-toc-link">
+            <p>Data Segment</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#stack" class="md-toc-link">
+            <p>Stack</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#heap" class="md-toc-link">
+            <p>Heap</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
     <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#class" class="md-toc-link"><p>class</p>
+          <a href="#oop" class="md-toc-link"><p>OOP</p>
 </a>
           </summary>
         <div>

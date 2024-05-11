@@ -125,7 +125,7 @@ export_on_save:
         <a href="OS/index.html"> OS </a>
     </div>
     <div class="item">
-        Data Structures
+        <a href="algorithm/index.html"> Algorithm </a>
     </div>
     <div class="item">
         <a href="NET/index.html"> Net </a>
@@ -140,28 +140,13 @@ export_on_save:
         <a href="Engineer/index.html"> 软考架构师 </a>
     </div>
     <div class="item">
-        <a href="algorithm/index.html"> Algorithm </a>
-    </div>
-    <div class="item">
-        系统架构
-    </div>
-    <div class="item">
-        设计模式
-    </div>
-</div>
-
-<div class="container">
-    <div class="item">
         <a href="MySQL/index.html"> 数据库 </a>
     </div>
     <div class="item">
-        <a href="123/index.html">  </a>
+         <a href=""></a>
     </div>
     <div class="item">
-        <a href="123/index.html">  </a>
-    </div>
-    <div class="item">
-        <a href="algorithm/index.html">  </a>
+         <a href=""></a>
     </div>
 </div>
 
