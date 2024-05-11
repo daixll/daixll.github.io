@@ -67,6 +67,19 @@ public class EmpController {
 * `@Mapper` 使用 MyBatis 框架为接口生成对应实现类
 
 ```java
+// EmpMapper.java
+package org.dxl.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.cglib.core.Local;
+import org.dxl.pojo.Emp;
+
+import java.time.LocalDate;
+import java.util.List;
+
 @Mapper
 public interface EmpMapper {
     List<Emp> getEmpList();             // select * from emp;
@@ -276,18 +289,16 @@ public class EmpServiceImpl implements EmpService {
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.dxl.EmpMapper">
+<mapper namespace="org.dxl.mapper.EmpMapper">
 
     <resultMap id="empResultMap" type="org.dxl.pojo.Emp">
-        <result property="实体类中的属性名" column="数据库表中列名"/>
+        <result colum="class" property="class_name">
     </resultMap>
 
     <!-- 查询所有 -->
     <select id="getEmpList" resultMap="empResultMap">
-        select * from 表名
+        select * from work
     </select>
-
-
 
 </mapper>
 ```
