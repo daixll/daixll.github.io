@@ -27,6 +27,13 @@ export_on_save:
 * [牛客 周赛](https://ac.nowcoder.com/acm/contest/vip-index)
 * [洛谷 月赛](https://www.luogu.com.cn/contest/list)
 
+**五年算竞三年模拟：**
+   1. [USACO-Bronze](真题/USACO_Bronze.html)
+   2. [CCF-J](真题/CCF_J.html)
+   3. [CIE](真题/CIE.html)
+   3. [CCF-CSP]
+   4. [蓝桥杯](真题/lanqiao.html)
+   5. [考研真题]
 
 ---
 0. 入门
@@ -112,13 +119,3 @@ export_on_save:
 
 8. 计算几何
    1. [距离]
-
----
-
-* 五年算竞三年模拟
-   1. [USACO-Bronze](真题/USACO_Bronze.html)
-   2. [CCF-J](真题/CCF_J.html)
-   3. [CIE](真题/CIE.html)
-   3. [CCF-CSP]
-   4. [蓝桥杯](真题/lanqiao.html)
-   5. [考研真题]
