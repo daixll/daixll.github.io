@@ -28,7 +28,7 @@
 <p>常用开发软件/包的 <strong>安装</strong> 及 <strong>简单使用</strong></p>
 <p><code>Linux</code> 以 <code>Ubuntu 22.04</code> 为例<br>
 <code>Win</code> 以 <code>Windows 11 pro</code> 为例</p>
-<pre data-role="codeBlock" data-info="" class="language-text"><code>├── 软件名
+<pre data-role="codeBlock" data-info="" class="language-text"><code>├── 软件名/
     ├── Linux-setup
     ├── Linux-use
     ├── Linux-dev-setup
@@ -120,24 +120,156 @@
 </ol>
 </li>
 </ul>
+<h2 id="linux-use">Linux-use </h2>
+<ul>
+<li>
+<p>指定输出文件名字</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ main.cpp <span class="token parameter variable">-o</span> main
+</code></pre></li>
+<li>
+<p>指定 <code>c++</code> 标准</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ main.cpp <span class="token parameter variable">-std</span><span class="token operator">=</span>c++26
+</code></pre></li>
+<li>
+<p>指定编译器优化</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ main.cpp <span class="token parameter variable">-O2</span>
+</code></pre><ul>
+<li><code>-O0</code> 无优化
+<ul>
+<li>效果：不进行任何优化，生成的代码与源代码结构一致，方便试</li>
+<li>适用：开发和调试阶段，用于方便调试和查找问题</li>
+</ul>
+</li>
+<li><code>-O1</code> 基本优化（缺省）
+<ul>
+<li>效果：应用基本的优化策略，如内联函数、去除未使用的变量等</li>
+<li>适用：提供一些优化，但不会显著增加编译时间，适用于大多情况</li>
+</ul>
+</li>
+<li><code>-O2</code> 标准优化
+<ul>
+<li>效果：包括更多的内联、循环展开、消除不必要的指令等优化略</li>
+<li>适用：提供更多的性能优化，适用于发布版本，编译时间可能增加</li>
+</ul>
+</li>
+<li><code>-O3</code> 更高级的优化
+<ul>
+<li>效果：包括更多复杂的优化，如矢量化、函数调用优化等</li>
+<li>适用：对性能要求非常高的应用，但可能增加编译时间，不建用于所有应用</li>
+</ul>
+</li>
+<li><code>-Ofast</code> 最高级的优化
+<ul>
+<li>效果：启用所有可能的优化，包括不遵循标准的优化，例如非准数学优化和禁用安全性检查</li>
+<li>适用：对极致性能要求的应用，但可能引入精度损失和不可预的行为</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>输出文件带调试信息</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ main.cpp <span class="token parameter variable">-g</span>
+</code></pre></li>
+<li>
+<p>连接动态库</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ main.cpp <span class="token parameter variable">-lssl</span>
+</code></pre><ul>
+<li><code>-lssl</code> 是 <code>OpenSSL</code> 的 <code>SSL</code> 库</li>
+</ul>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ main.cpp -I/usr/local/openssl-x.y.z/include -L/usrlocal/openssl-x.y.z/lib <span class="token parameter variable">-lssl</span>
+</code></pre><ul>
+<li>在手动连接动态库时，通常还需要指定头文件搜索位置</li>
+</ul>
+</li>
+</ul>
 <br>
 <hr>
 <h1 id="make"><strong>Make</strong> </h1>
+<blockquote>
+<p><code>make</code> 并不编译文件，<code>make</code> 只用于申明编译规则</p>
+</blockquote>
 <h2 id="linux-setup-1">Linux-setup </h2>
-<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">make</span>   <span class="token comment"># 安装 make</span>
+<ul>
+<li><strong>安装</strong><pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">make</span>   <span class="token comment"># 安装 make</span>
 <span class="token function">make</span> <span class="token parameter variable">-v</span>                 <span class="token comment"># 验证 make 安装成功</span>
-</code></pre><h2 id="windows-setup">Windows-setup </h2>
+</code></pre></li>
+</ul>
+<h2 id="windows-setup">Windows-setup </h2>
+<ul>
+<li><strong>安装</strong>
 <ol>
 <li>下载 <a href="https://gnuwin32.sourceforge.net/downlinks/make.php">Make</a></li>
 <li>安装</li>
 <li>添加环境变量 <code>GnuWin32\bin</code></li>
 </ol>
-<h2 id="linux-use">Linux-use </h2>
+</li>
+</ul>
+<h2 id="linux-use-1">Linux-use </h2>
+<ul>
+<li>
+<p>当前目录下存在 <code>Makefile</code> 文件</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>project/
+├── main.cpp
+└── Makefile
+</code></pre><pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">make</span> <span class="token comment"># 直接 make 即可</span>
+</code></pre></li>
+<li>
+<p><code>Makefile</code> 最简示例</p>
+<pre data-role="codeBlock" data-info="makefile" class="language-makefile makefile"><code><span class="token comment"># 声明变量</span>
+CXX <span class="token operator">=</span> g++                       <span class="token comment"># 编译器命令</span>
+CXXFLAGS <span class="token operator">=</span> -std<span class="token operator">=</span>c++26 -O2       <span class="token comment"># 编译选项</span>
+TARGET <span class="token operator">=</span> main                   <span class="token comment"># 目标可执行文件名</span>
+SRCS <span class="token operator">=</span> main.cpp                 <span class="token comment"># 源文件列表</span>
+
+<span class="token target symbol">all</span><span class="token punctuation">:</span> <span class="token variable">$</span><span class="token punctuation">(</span>TARGET<span class="token punctuation">)</span>                  <span class="token comment"># 默认目标规则</span>
+
+<span class="token target symbol"><span class="token variable">$</span>(TARGET)</span><span class="token punctuation">:</span> <span class="token variable">$</span><span class="token punctuation">(</span>SRCS<span class="token punctuation">)</span>              <span class="token comment"># 生成可执行文件的规则</span>
+        <span class="token variable">$</span><span class="token punctuation">(</span>CXX<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>CXXFLAGS<span class="token punctuation">)</span> -o <span class="token variable">$</span><span class="token punctuation">(</span>TARGET<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>SRCS<span class="token punctuation">)</span>
+
+<span class="token target symbol">clean</span><span class="token punctuation">:</span>                          <span class="token comment"># 清理生成的文件</span>
+        rm -f <span class="token variable">$</span><span class="token punctuation">(</span>TARGET<span class="token punctuation">)</span>
+
+<span class="token builtin-target builtin">.PHONY</span><span class="token punctuation">:</span> all clean               <span class="token comment"># 声明伪目标，避免与文件名冲突</span>
+</code></pre></li>
+<li>
+<p><code>Makefile</code> 连接动态库</p>
+<pre data-role="codeBlock" data-info="makefile" class="language-makefile makefile"><code><span class="token comment"># 编译器和编译选项</span>
+CXX <span class="token operator">=</span> g++
+CXXFLAGS <span class="token operator">=</span> -std<span class="token operator">=</span>c++11 -Wall
+
+<span class="token comment"># 目标可执行文件名</span>
+TARGET <span class="token operator">=</span> myapp
+
+<span class="token comment"># 源文件</span>
+SRCS <span class="token operator">=</span> main.cpp
+
+<span class="token comment"># 需要链接的动态库列表</span>
+LIBS <span class="token operator">=</span> -lssl -lcrypto -lz  <span class="token comment"># 示例中包括 OpenSSL 的 SSL 库、加密库和     zlib 库</span>
+
+<span class="token comment"># 头文件和库文件路径</span>
+INC_DIR <span class="token operator">=</span> /path/to/custom/<span class="token keyword keyword-include">include</span>  <span class="token comment"># 自定义头文件路径</span>
+LIB_DIR <span class="token operator">=</span> /path/to/custom/lib      <span class="token comment"># 自定义库文件路径</span>
+
+<span class="token comment"># 默认目标规则</span>
+<span class="token target symbol">all</span><span class="token punctuation">:</span> <span class="token variable">$</span><span class="token punctuation">(</span>TARGET<span class="token punctuation">)</span>
+
+<span class="token comment"># 生成可执行文件的规则</span>
+<span class="token target symbol"><span class="token variable">$</span>(TARGET)</span><span class="token punctuation">:</span> <span class="token variable">$</span><span class="token punctuation">(</span>SRCS<span class="token punctuation">)</span>
+    <span class="token variable">$</span><span class="token punctuation">(</span>CXX<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>CXXFLAGS<span class="token punctuation">)</span> -I<span class="token variable">$</span><span class="token punctuation">(</span>INC_DIR<span class="token punctuation">)</span> -L<span class="token variable">$</span><span class="token punctuation">(</span>LIB_DIR<span class="token punctuation">)</span> -o <span class="token variable">$</span><span class="token punctuation">(</span>TARGET<span class="token punctuation">)</span> $ <span class="token punctuation">(</span>SRCS<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>LIBS<span class="token punctuation">)</span>
+
+<span class="token comment"># 清理生成的文件</span>
+<span class="token target symbol">clean</span><span class="token punctuation">:</span>
+    rm -f <span class="token variable">$</span><span class="token punctuation">(</span>TARGET<span class="token punctuation">)</span>
+
+<span class="token comment"># 声明伪目标，避免与文件名冲突</span>
+<span class="token builtin-target builtin">.PHONY</span><span class="token punctuation">:</span> all clean
+</code></pre></li>
+</ul>
 <br>
 <hr>
 <h1 id="cmake"><strong>CMake</strong> </h1>
 <h2 id="linux-setup-2">Linux-setup </h2>
-<h2 id="linux-use-1">Linux-use </h2>
+<h2 id="linux-use-2">Linux-use </h2>
 <h2 id="win-setup-1">Win-setup </h2>
 <h2 id="win-use">Win-use </h2>
 <br>
@@ -1356,6 +1488,10 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
           <a href="#win-setup" class="md-toc-link">
             <p>Win-setup</p>
 
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-use" class="md-toc-link">
+            <p>Linux-use</p>
+
           </a></div>
         </div>
       </details>
@@ -1374,7 +1510,7 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
             <p>Windows-setup</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-use" class="md-toc-link">
+          <a href="#linux-use-1" class="md-toc-link">
             <p>Linux-use</p>
 
           </a></div>
@@ -1391,7 +1527,7 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
             <p>Linux-setup</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-use-1" class="md-toc-link">
+          <a href="#linux-use-2" class="md-toc-link">
             <p>Linux-use</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">

@@ -13,7 +13,7 @@ export_on_save:
 `Win` 以 `Windows 11 pro` 为例
 
 ```
-├── 软件名
+├── 软件名/
     ├── Linux-setup
     ├── Linux-use
     ├── Linux-dev-setup
@@ -103,6 +103,52 @@ export_on_save:
 
     3. 添加至环境变量 `GCC\XY\mingw-w64\bin`
 
+## Linux-use
+
+* 指定输出文件名字
+    ```shell
+    g++ main.cpp -o main
+    ```
+* 指定 `c++` 标准
+    ```shell
+    g++ main.cpp -std=c++26
+    ```
+* 指定编译器优化
+    
+    ```shell
+    g++ main.cpp -O2
+    ```
+    
+    * `-O0` 无优化
+        * 效果：不进行任何优化，生成的代码与源代码结构一致，方便试
+        * 适用：开发和调试阶段，用于方便调试和查找问题
+    * `-O1` 基本优化（缺省）
+        * 效果：应用基本的优化策略，如内联函数、去除未使用的变量等
+        * 适用：提供一些优化，但不会显著增加编译时间，适用于大多情况
+    * `-O2` 标准优化
+        * 效果：包括更多的内联、循环展开、消除不必要的指令等优化略
+        * 适用：提供更多的性能优化，适用于发布版本，编译时间可能增加
+    *  `-O3` 更高级的优化
+        * 效果：包括更多复杂的优化，如矢量化、函数调用优化等
+        * 适用：对性能要求非常高的应用，但可能增加编译时间，不建用于所有应用
+    * `-Ofast` 最高级的优化
+        * 效果：启用所有可能的优化，包括不遵循标准的优化，例如非准数学优化和禁用安全性检查
+        * 适用：对极致性能要求的应用，但可能引入精度损失和不可预的行为
+
+* 输出文件带调试信息
+    ```shell
+    g++ main.cpp -g
+    ``` 
+* 连接动态库
+    ```shell
+    g++ main.cpp -lssl
+    ```
+    * `-lssl` 是 `OpenSSL` 的 `SSL` 库
+    ```shell
+    g++ main.cpp -I/usr/local/openssl-x.y.z/include -L/usrlocal/openssl-x.y.z/lib -lssl
+    ```
+    * 在手动连接动态库时，通常还需要指定头文件搜索位置
+
 
 <br>
 
@@ -110,20 +156,88 @@ export_on_save:
 
 # **Make**
 
+> `make` 并不编译文件，`make` 只用于申明编译规则
+
 ## Linux-setup
 
-```shell
-sudo apt install make   # 安装 make
-make -v                 # 验证 make 安装成功
-```
+* **安装**
+    ```shell
+    sudo apt install make   # 安装 make
+    make -v                 # 验证 make 安装成功
+    ```
 
 ## Windows-setup
 
-1. 下载 [Make](https://gnuwin32.sourceforge.net/downlinks/make.php)
-2. 安装
-3. 添加环境变量 `GnuWin32\bin`
+* **安装**
+    1. 下载 [Make](https://gnuwin32.sourceforge.net/downlinks/make.php)
+    2. 安装
+    3. 添加环境变量 `GnuWin32\bin`
 
 ## Linux-use
+
+* 当前目录下存在 `Makefile` 文件
+    ```
+    project/
+    ├── main.cpp
+    └── Makefile
+    ```
+
+    ```shell
+    make # 直接 make 即可
+    ```
+
+* `Makefile` 最简示例
+    ```makefile
+    # 声明变量
+    CXX = g++                       # 编译器命令
+    CXXFLAGS = -std=c++26 -O2       # 编译选项
+    TARGET = main                   # 目标可执行文件名
+    SRCS = main.cpp                 # 源文件列表
+
+    all: $(TARGET)                  # 默认目标规则
+
+    $(TARGET): $(SRCS)              # 生成可执行文件的规则
+            $(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS)
+
+    clean:                          # 清理生成的文件
+            rm -f $(TARGET)
+
+    .PHONY: all clean               # 声明伪目标，避免与文件名冲突
+    ```
+
+* `Makefile` 连接动态库
+    ```makefile
+    # 编译器和编译选项
+    CXX = g++
+    CXXFLAGS = -std=c++11 -Wall
+
+    # 目标可执行文件名
+    TARGET = myapp
+
+    # 源文件
+    SRCS = main.cpp
+
+    # 需要链接的动态库列表
+    LIBS = -lssl -lcrypto -lz  # 示例中包括 OpenSSL 的 SSL 库、加密库和     zlib 库
+
+    # 头文件和库文件路径
+    INC_DIR = /path/to/custom/include  # 自定义头文件路径
+    LIB_DIR = /path/to/custom/lib      # 自定义库文件路径
+
+    # 默认目标规则
+    all: $(TARGET)
+
+    # 生成可执行文件的规则
+    $(TARGET): $(SRCS)
+        $(CXX) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TARGET) $ (SRCS) $(LIBS)
+
+    # 清理生成的文件
+    clean:
+        rm -f $(TARGET)
+
+    # 声明伪目标，避免与文件名冲突
+    .PHONY: all clean
+    ```
 
 <br>
 
