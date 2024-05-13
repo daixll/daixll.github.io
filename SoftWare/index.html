@@ -103,23 +103,6 @@
 </ol>
 </li>
 </ul>
-<h2 id="win-setup">Win-setup </h2>
-<ul>
-<li>
-<p><strong>安装</strong></p>
-<ol>
-<li>
-<p>下载 <a href="https://github.com/niXman/mingw-builds-binaries/releases">mingw-w64</a> <code>x86_64</code> <code>posix</code> <code>seh</code> <code>ucrt</code></p>
-</li>
-<li>
-<p>解压</p>
-</li>
-<li>
-<p>添加至环境变量 <code>GCC\XY\mingw-w64\bin</code></p>
-</li>
-</ol>
-</li>
-</ul>
 <h2 id="linux-use">Linux-use </h2>
 <ul>
 <li>
@@ -182,6 +165,23 @@
 </ul>
 </li>
 </ul>
+<h2 id="win-setup">Win-setup </h2>
+<ul>
+<li>
+<p><strong>安装</strong></p>
+<ol>
+<li>
+<p>下载 <a href="https://github.com/niXman/mingw-builds-binaries/releases">mingw-w64</a> <code>x86_64</code> <code>posix</code> <code>seh</code> <code>ucrt</code></p>
+</li>
+<li>
+<p>解压</p>
+</li>
+<li>
+<p>添加至环境变量 <code>GCC\XY\mingw-w64\bin</code></p>
+</li>
+</ol>
+</li>
+</ul>
 <br>
 <hr>
 <h1 id="make"><strong>Make</strong> </h1>
@@ -193,16 +193,6 @@
 <li><strong>安装</strong><pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">make</span>   <span class="token comment"># 安装 make</span>
 <span class="token function">make</span> <span class="token parameter variable">-v</span>                 <span class="token comment"># 验证 make 安装成功</span>
 </code></pre></li>
-</ul>
-<h2 id="windows-setup">Windows-setup </h2>
-<ul>
-<li><strong>安装</strong>
-<ol>
-<li>下载 <a href="https://gnuwin32.sourceforge.net/downlinks/make.php">Make</a></li>
-<li>安装</li>
-<li>添加环境变量 <code>GnuWin32\bin</code></li>
-</ol>
-</li>
 </ul>
 <h2 id="linux-use-1">Linux-use </h2>
 <ul>
@@ -233,44 +223,73 @@ SRCS <span class="token operator">=</span> main.cpp                 <span class=
 </code></pre></li>
 <li>
 <p><code>Makefile</code> 连接动态库</p>
-<pre data-role="codeBlock" data-info="makefile" class="language-makefile makefile"><code><span class="token comment"># 编译器和编译选项</span>
+<pre data-role="codeBlock" data-info="makefile" class="language-makefile makefile"><code><span class="token comment"># 声明变量</span>
 CXX <span class="token operator">=</span> g++
-CXXFLAGS <span class="token operator">=</span> -std<span class="token operator">=</span>c++11 -Wall
-
-<span class="token comment"># 目标可执行文件名</span>
-TARGET <span class="token operator">=</span> myapp
-
-<span class="token comment"># 源文件</span>
+CXXFLAGS <span class="token operator">=</span> -std<span class="token operator">=</span>c++26
+TARGET <span class="token operator">=</span> main
 SRCS <span class="token operator">=</span> main.cpp
 
 <span class="token comment"># 需要链接的动态库列表</span>
-LIBS <span class="token operator">=</span> -lssl -lcrypto -lz  <span class="token comment"># 示例中包括 OpenSSL 的 SSL 库、加密库和     zlib 库</span>
+LIBS <span class="token operator">=</span> -lssl -lcrypto -lz       <span class="token comment"># OpenSSL 的 SSL 库、加密库和 zlib 库</span>
 
 <span class="token comment"># 头文件和库文件路径</span>
-INC_DIR <span class="token operator">=</span> /path/to/custom/<span class="token keyword keyword-include">include</span>  <span class="token comment"># 自定义头文件路径</span>
-LIB_DIR <span class="token operator">=</span> /path/to/custom/lib      <span class="token comment"># 自定义库文件路径</span>
+INC_DIR <span class="token operator">=</span> /usr/local/XYZ/<span class="token keyword keyword-include">include</span>
+LIB_DIR <span class="token operator">=</span> /usr/local/XYZ/lib /usr/lib
 
-<span class="token comment"># 默认目标规则</span>
-<span class="token target symbol">all</span><span class="token punctuation">:</span> <span class="token variable">$</span><span class="token punctuation">(</span>TARGET<span class="token punctuation">)</span>
+<span class="token target symbol">all</span><span class="token punctuation">:</span> <span class="token variable">$</span><span class="token punctuation">(</span>TARGET<span class="token punctuation">)</span>                  <span class="token comment"># 默认目标规则</span>
 
-<span class="token comment"># 生成可执行文件的规则</span>
-<span class="token target symbol"><span class="token variable">$</span>(TARGET)</span><span class="token punctuation">:</span> <span class="token variable">$</span><span class="token punctuation">(</span>SRCS<span class="token punctuation">)</span>
+<span class="token target symbol"><span class="token variable">$</span>(TARGET)</span><span class="token punctuation">:</span> <span class="token variable">$</span><span class="token punctuation">(</span>SRCS<span class="token punctuation">)</span>              <span class="token comment"># 生成可执行文件的规则</span>
     <span class="token variable">$</span><span class="token punctuation">(</span>CXX<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>CXXFLAGS<span class="token punctuation">)</span> -I<span class="token variable">$</span><span class="token punctuation">(</span>INC_DIR<span class="token punctuation">)</span> -L<span class="token variable">$</span><span class="token punctuation">(</span>LIB_DIR<span class="token punctuation">)</span> -o <span class="token variable">$</span><span class="token punctuation">(</span>TARGET<span class="token punctuation">)</span> $ <span class="token punctuation">(</span>SRCS<span class="token punctuation">)</span> <span class="token variable">$</span><span class="token punctuation">(</span>LIBS<span class="token punctuation">)</span>
 
-<span class="token comment"># 清理生成的文件</span>
-<span class="token target symbol">clean</span><span class="token punctuation">:</span>
+<span class="token target symbol">clean</span><span class="token punctuation">:</span>                          <span class="token comment"># 清理生成的文件</span>
     rm -f <span class="token variable">$</span><span class="token punctuation">(</span>TARGET<span class="token punctuation">)</span>
 
-<span class="token comment"># 声明伪目标，避免与文件名冲突</span>
-<span class="token builtin-target builtin">.PHONY</span><span class="token punctuation">:</span> all clean
+<span class="token builtin-target builtin">.PHONY</span><span class="token punctuation">:</span> all clean               <span class="token comment"># 声明伪目标，避免与文件名冲突</span>
 </code></pre></li>
+</ul>
+<h2 id="windows-setup">Windows-setup </h2>
+<ul>
+<li><strong>安装</strong>
+<ol>
+<li>下载 <a href="https://gnuwin32.sourceforge.net/downlinks/make.php">Make</a></li>
+<li>安装</li>
+<li>添加环境变量 <code>GnuWin32\bin</code></li>
+</ol>
+</li>
 </ul>
 <br>
 <hr>
 <h1 id="cmake"><strong>CMake</strong> </h1>
 <h2 id="linux-setup-2">Linux-setup </h2>
+<ul>
+<li><strong>安装</strong>
+<ol>
+<li>下载 <a href="https://cmake.org/download/">CMake</a></li>
+<li>解压缩</li>
+<li>设置环境变量</li>
+</ol>
+</li>
+</ul>
 <h2 id="linux-use-2">Linux-use </h2>
-<h2 id="win-setup-1">Win-setup </h2>
+<ul>
+<li>
+<p>当前目录下存在 <code>CMakeLists.txt</code> 文件</p>
+<ol>
+<li><code>mkdir build &amp;&amp; cd build</code> 通常做法，避免中间文件污染源代码目录</li>
+<li><code>cmake ..</code> 生成构建系统文件</li>
+<li><code>cmake --build .</code> 执行相应的构建命令（例如 <code>make</code>）</li>
+</ol>
+</li>
+<li>
+<p>最简示例</p>
+<pre data-role="codeBlock" data-info="py" class="language-python py"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.10</span><span class="token punctuation">)</span>  <span class="token comment"># 指定 CMake 的最低版本要求</span>
+
+project<span class="token punctuation">(</span>main VERSION <span class="token number">1.0</span><span class="token punctuation">)</span>  <span class="token comment"># 设置项目名称和版本号</span>
+
+<span class="token comment"># 可选：设置 C++ 标准</span>
+set_target_properties<span class="token punctuation">(</span>myapp PROPERTIES CXX_STANDARD <span class="token number">11</span> CXX_STANDARD_REQUIRED YES<span class="token punctuation">)</span>
+</code></pre></li>
+</ul>
 <h2 id="win-use">Win-use </h2>
 <br>
 <hr>
@@ -1485,12 +1504,12 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
             <p>Linux-setup</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#win-setup" class="md-toc-link">
-            <p>Win-setup</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#linux-use" class="md-toc-link">
             <p>Linux-use</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#win-setup" class="md-toc-link">
+            <p>Win-setup</p>
 
           </a></div>
         </div>
@@ -1506,12 +1525,12 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
             <p>Linux-setup</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#windows-setup" class="md-toc-link">
-            <p>Windows-setup</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#linux-use-1" class="md-toc-link">
             <p>Linux-use</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#windows-setup" class="md-toc-link">
+            <p>Windows-setup</p>
 
           </a></div>
         </div>
@@ -1529,10 +1548,6 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#linux-use-2" class="md-toc-link">
             <p>Linux-use</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#win-setup-1" class="md-toc-link">
-            <p>Win-setup</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#win-use" class="md-toc-link">

@@ -93,16 +93,6 @@ export_on_save:
         sudo update-alternatives --remove g++ /usr/local/gcc-14.1.0/bin/g++
         ```
 
-## Win-setup
-
-* **安装**
-
-    1. 下载 [mingw-w64](https://github.com/niXman/mingw-builds-binaries/releases) `x86_64` `posix` `seh` `ucrt`
-
-    2. 解压
-
-    3. 添加至环境变量 `GCC\XY\mingw-w64\bin`
-
 ## Linux-use
 
 * 指定输出文件名字
@@ -150,6 +140,19 @@ export_on_save:
     * 在手动连接动态库时，通常还需要指定头文件搜索位置
 
 
+
+
+## Win-setup
+
+* **安装**
+
+    1. 下载 [mingw-w64](https://github.com/niXman/mingw-builds-binaries/releases) `x86_64` `posix` `seh` `ucrt`
+
+    2. 解压
+
+    3. 添加至环境变量 `GCC\XY\mingw-w64\bin`
+
+
 <br>
 
 ---
@@ -165,13 +168,6 @@ export_on_save:
     sudo apt install make   # 安装 make
     make -v                 # 验证 make 安装成功
     ```
-
-## Windows-setup
-
-* **安装**
-    1. 下载 [Make](https://gnuwin32.sourceforge.net/downlinks/make.php)
-    2. 安装
-    3. 添加环境变量 `GnuWin32\bin`
 
 ## Linux-use
 
@@ -207,37 +203,38 @@ export_on_save:
 
 * `Makefile` 连接动态库
     ```makefile
-    # 编译器和编译选项
+    # 声明变量
     CXX = g++
-    CXXFLAGS = -std=c++11 -Wall
-
-    # 目标可执行文件名
-    TARGET = myapp
-
-    # 源文件
+    CXXFLAGS = -std=c++26
+    TARGET = main
     SRCS = main.cpp
 
     # 需要链接的动态库列表
-    LIBS = -lssl -lcrypto -lz  # 示例中包括 OpenSSL 的 SSL 库、加密库和     zlib 库
+    LIBS = -lssl -lcrypto -lz       # OpenSSL 的 SSL 库、加密库和 zlib 库
 
     # 头文件和库文件路径
-    INC_DIR = /path/to/custom/include  # 自定义头文件路径
-    LIB_DIR = /path/to/custom/lib      # 自定义库文件路径
+    INC_DIR = /usr/local/XYZ/include
+    LIB_DIR = /usr/local/XYZ/lib /usr/lib
 
-    # 默认目标规则
-    all: $(TARGET)
+    all: $(TARGET)                  # 默认目标规则
 
-    # 生成可执行文件的规则
-    $(TARGET): $(SRCS)
+    $(TARGET): $(SRCS)              # 生成可执行文件的规则
         $(CXX) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TARGET) $ (SRCS) $(LIBS)
 
-    # 清理生成的文件
-    clean:
+    clean:                          # 清理生成的文件
         rm -f $(TARGET)
 
-    # 声明伪目标，避免与文件名冲突
-    .PHONY: all clean
+    .PHONY: all clean               # 声明伪目标，避免与文件名冲突
     ```
+
+
+## Windows-setup
+
+* **安装**
+    1. 下载 [Make](https://gnuwin32.sourceforge.net/downlinks/make.php)
+    2. 安装
+    3. 添加环境变量 `GnuWin32\bin`
+
 
 <br>
 
@@ -245,11 +242,31 @@ export_on_save:
 
 # **CMake**
 
-
-
 ## Linux-setup
+
+* **安装**
+    1. 下载 [CMake](https://cmake.org/download/)
+    2. 解压缩
+    3. 设置环境变量
+
 ## Linux-use
-## Win-setup
+
+* 当前目录下存在 `CMakeLists.txt` 文件
+    1. `mkdir build && cd build` 通常做法，避免中间文件污染源代码目录
+    2. `cmake ..` 生成构建系统文件
+    3. `cmake --build .` 执行相应的构建命令（例如 `make`）
+
+* 最简示例 
+    ```py
+    cmake_minimum_required(VERSION 3.10)  # 指定 CMake 的最低版本要求
+
+    project(main VERSION 1.0)  # 设置项目名称和版本号
+
+    # 可选：设置 C++ 标准
+    set_target_properties(myapp PROPERTIES CXX_STANDARD 11 CXX_STANDARD_REQUIRED YES)
+    ```
+
+
 ## Win-use
 
 
