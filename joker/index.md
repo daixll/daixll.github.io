@@ -54,11 +54,14 @@ export_on_save:
 
 </div>
 
+
 <p align="center">
+<a href="http://daixll.tpddns.cn:2024/doc/" target="_blank">
 求知若渴，日积月累，虽在繁星之中或难觉察<br>
 然内心感悟其温暖光辉，鼓舞前行<br>
 如此微薄，唯愿勉己，追求卓越
-</p> 
+</a> 
+</p>
 
 ## 2024
 
