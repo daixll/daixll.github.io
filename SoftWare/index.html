@@ -154,6 +154,10 @@
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ main.cpp <span class="token parameter variable">-g</span>
 </code></pre></li>
 <li>
+<p>生成动态库</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ <span class="token parameter variable">-shared</span> <span class="token parameter variable">-fPIC</span> <span class="token parameter variable">-o</span> libutil.so util.cpp
+</code></pre></li>
+<li>
 <p>连接动态库</p>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ main.cpp <span class="token parameter variable">-lssl</span>
 </code></pre><ul>
@@ -275,26 +279,189 @@ LIB_DIR <span class="token operator">=</span> /usr/local/XYZ/lib /usr/lib
 <li>
 <p>当前目录下存在 <code>CMakeLists.txt</code> 文件</p>
 <ol>
-<li><code>mkdir build &amp;&amp; cd build</code> 通常做法，避免中间文件污染源代码目录</li>
+<li><code>mkdir build &amp;&amp; cd build</code> 通常做法，避免中间文件污染源代码目录（out-of-source）</li>
 <li><code>cmake ..</code> 生成构建系统文件</li>
 <li><code>cmake --build .</code> 执行相应的构建命令（例如 <code>make</code>）</li>
 </ol>
 </li>
 <li>
-<p>最简示例</p>
-<pre data-role="codeBlock" data-info="py" class="language-python py"><code>cmake_minimum_required<span class="token punctuation">(</span>VERSION <span class="token number">3.10</span><span class="token punctuation">)</span>  <span class="token comment"># 指定 CMake 的最低版本要求</span>
+<p>开始</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token function">cmake_minimum_required</span><span class="token punctuation">(</span>VERSION <span class="token number">3.29</span><span class="token punctuation">)</span>    # 指定 CMake 的最低版本要求
 
-project<span class="token punctuation">(</span>main VERSION <span class="token number">1.0</span><span class="token punctuation">)</span>  <span class="token comment"># 设置项目名称和版本号</span>
+<span class="token function">project</span><span class="token punctuation">(</span>main VERSION <span class="token number">1.0</span><span class="token punctuation">)</span>               # 设置项目名称和版本号
 
-<span class="token comment"># 可选：设置 C++ 标准</span>
-set_target_properties<span class="token punctuation">(</span>myapp PROPERTIES CXX_STANDARD <span class="token number">11</span> CXX_STANDARD_REQUIRED YES<span class="token punctuation">)</span>
+<span class="token function">set</span><span class="token punctuation">(</span>CMAKE_CXX_STANDARD <span class="token number">23</span><span class="token punctuation">)</span>              # 指定 C<span class="token operator">++</span> 标准版本
+<span class="token function">set</span><span class="token punctuation">(</span>CMAKE_CXX_STANDARD_REQUIRED True<span class="token punctuation">)</span>   # 编译器必须严格遵循指定的 C<span class="token operator">++</span> 标准版本
+</code></pre></li>
+<li>
+<p>生成可执行文件</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token function">add_executable</span><span class="token punctuation">(</span>main main<span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>           # 生成可执行文件
+</code></pre></li>
+<li>
+<p>生成库目标</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token function">add_library</span><span class="token punctuation">(</span>util STATIC util<span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>       # 生成静态库 libutil<span class="token punctuation">.</span>a
+<span class="token function">add_library</span><span class="token punctuation">(</span>util SHARED util<span class="token punctuation">.</span>cpp<span class="token punctuation">)</span>       # 生成动态库 libutil<span class="token punctuation">.</span>so
+</code></pre></li>
+<li>
+<p>链接动态库</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token function">LINK_DIRECTORIES</span><span class="token punctuation">(</span><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>xyz<span class="token operator">/</span>lib<span class="token punctuation">)</span>    # 添加动态库目录
+<span class="token function">target_link_libraries</span><span class="token punctuation">(</span>main libssl<span class="token punctuation">.</span>so<span class="token punctuation">)</span>   # 链接库到 main
+</code></pre></li>
+<li>
+<p>选择判断</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>CMAKE_SYSTEM_NAME STREQUAL <span class="token string">"Linux"</span><span class="token punctuation">)</span>
+    <span class="token function">set</span><span class="token punctuation">(</span>LIB_PATH <span class="token string">"/usr/local/xyz/lib"</span><span class="token punctuation">)</span>
+<span class="token function">elseif</span> <span class="token punctuation">(</span>CMAKE_SYSTEM_NAME STREQUAL <span class="token string">"Windows"</span><span class="token punctuation">)</span>
+    <span class="token function">set</span><span class="token punctuation">(</span>LIB_PATH <span class="token string">"C:/Path/To/Your/Libraries"</span><span class="token punctuation">)</span>
+<span class="token function">endif</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token function">LINK_DIRECTORIES</span><span class="token punctuation">(</span>$<span class="token punctuation">{</span>LIB_PATH<span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre></li>
 </ul>
-<h2 id="win-use">Win-use </h2>
+<h2 id="win-setup-1">Win-setup </h2>
 <br>
 <hr>
-<h1 id="openssl"><strong>OpenSSL</strong> </h1>
-<h2 id="linux">Linux </h2>
+<h1 id="openssl"><strong>openssl</strong> </h1>
+<h2 id="linux-setup-3">Linux-setup </h2>
+<h2 id="linux-use-3">Linux-use </h2>
+<p><a href="https://www.feistyduck.com/library/openssl-cookbook/online/">官方手册</a></p>
+<h2 id="linux-dev-setup">Linux-dev-setup </h2>
+<ul>
+<li>安装<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libssl-dev
+g++ main.cpp <span class="token parameter variable">-lssl</span> <span class="token parameter variable">-lcrypto</span>
+</code></pre></li>
+</ul>
+<h2 id="linux-dev-use">Linux-dev-use </h2>
+<p><a href="https://www.openssl.org/docs/man3.0/man7/">官方手册 3.0</a><br>
+<a href="https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_encrypt.html">加密部分</a></p>
+<h2 id="win-setup-2">Win-setup </h2>
+<h2 id="win-dev-setup">Win-dev-setup </h2>
+<br>
+<hr>
+<h1 id="boost"><strong>Boost</strong> </h1>
+<h2 id="linux-setup-4">Linux-setup </h2>
+<ol>
+<li>
+<p>下载<br>
+<a href="https://www.boost.org/users/download/">Boost</a></p>
+</li>
+<li>
+<p>解压</p>
+</li>
+<li>
+<p>进入解压后的目录，执行 <code>./bootstrap.sh</code></p>
+<ul>
+<li>编译前的配置工作</li>
+</ul>
+</li>
+<li>
+<p>执行 <code>sudo ./b2 install</code></p>
+<ul>
+<li>编译安装</li>
+</ul>
+</li>
+<li>
+<p>测试</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/version.hpp&gt;</span><span class="token comment">//包含 Boost 头文件</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/config.hpp&gt;</span> <span class="token comment">//包含 Boost 头文件</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token comment">// Boost 版本号</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_LIB_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// Boost 版本号</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_PLATFORM <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 操作系统</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_COMPILER <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 编译器</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_STDLIB <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>       <span class="token comment">// 标准库</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li>编译<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ <span class="token parameter variable">-o</span> <span class="token builtin class-name">test</span> test.cpp
+</code></pre></li>
+</ul>
+</li>
+</ol>
+<h2 id="windows">Windows </h2>
+<ol>
+<li>
+<p>下载<br>
+<a href="https://www.boost.org/users/download/">Boost</a></p>
+</li>
+<li>
+<p>解压</p>
+</li>
+<li>
+<p>进入解压后的目录，执行 <code>.\bootstrap.bat gcc</code></p>
+<ul>
+<li>编译前的配置工作</li>
+</ul>
+</li>
+<li>
+<p>执行 <code>.\b2.exe install</code></p>
+<ul>
+<li>编译安装</li>
+</ul>
+</li>
+<li>
+<p>测试</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/version.hpp&gt;</span><span class="token comment">//包含 Boost 头文件</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/config.hpp&gt;</span> <span class="token comment">//包含 Boost 头文件</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token comment">// Boost 版本号</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_LIB_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// Boost 版本号</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_PLATFORM <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 操作系统</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_COMPILER <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 编译器</span>
+    cout <span class="token operator">&lt;&lt;</span> BOOST_STDLIB <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>       <span class="token comment">// 标准库</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li>编译<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ <span class="token parameter variable">-o</span> <span class="token builtin class-name">test</span> test.cpp -I<span class="token string">"C:\Boost\include<span class="token entity" title="\b">\b</span>oost-1_84"</span> -L<span class="token string">"C:\Boost\lib"</span>
+</code></pre></li>
+<li>如果使用网络库，还需要 <code>-lws2_32</code></li>
+</ul>
+</li>
+</ol>
+<br>
+<hr>
+<h1 id="qt"><strong>Qt</strong> </h1>
+<p><a href="https://www.qt.io/zh-cn/">官网</a> 注册账号</p>
+<h2 id="linux-setup-5">Linux-setup </h2>
+<ul>
+<li>
+<p>在线安装</p>
+<ol>
+<li>
+<p>下载 <a href="https://mirrors.tuna.tsinghua.edu.cn/qt/official_releases/online_installers/">在线安装器</a></p>
+</li>
+<li>
+<p>使用镜像启动</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>./Qt <span class="token parameter variable">--mirror</span> https://mirrors.tuna.tsinghua.edu.cn/qt
+</code></pre><ul>
+<li>启动过程 <strong>可能</strong> 出现依赖缺失问题：<s><em>不知道装什么，那就全装</em></s><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libxcb*
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libgl1-mesa-dev
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>检测是否安装成功</p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>/ope/Qt/x.y.z/gcc_64/bin/qmake <span class="token parameter variable">-v</span>
+</code></pre></li>
+<li>
+<p>添加用户级环境变量 <code>~/.bashrc</code></p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/opt/Qt/x.y.z/gcc_64/bin
+</code></pre><blockquote>
+<p>可能会出现 <code>qmake: could not exec '/usr/lib/x86_64-linux-gnu/qt4/bin/qmake': No such file or directory</code> 的错误，这是因为系统中存在多个版本的 QT，解决方法是：<code>sudo apt remove qt4-qmake</code>。</p>
+</blockquote>
+<blockquote>
+<p>另外一方案是，修改 <code>/usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf</code> 文件，将 <code>qt4</code> 的路径修改为 <code>/opt/Qt/x.y.z/gcc_64/bin</code>。</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
 <br>
 <hr>
 <h1 id="git"><strong>git</strong> </h1>
@@ -460,10 +627,10 @@ set_target_properties<span class="token punctuation">(</span>myapp PROPERTIES CX
 </ol>
 <br>
 <hr>
-<h2 id="linux-1">Linux </h2>
+<h2 id="linux">Linux </h2>
 <pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">git</span> <span class="token comment"># 安装 git</span>
 <span class="token function">git</span> <span class="token parameter variable">--version</span>        <span class="token comment"># 验证 git 安装成功</span>
-</code></pre><h2 id="windows">Windows </h2>
+</code></pre><h2 id="windows-1">Windows </h2>
 <p><a href="https://git-scm.com/downloads">git 官网</a></p>
 <br>
 <hr>
@@ -899,115 +1066,6 @@ nmap -p-                    <span class="token comment"># 扫描所有端口 等
 <p><code>nmap -O dxll.love</code></p>
 <p>nmap 会发送一系列的 TCP 和 UDP 包，然后分析返回的包，从而判断目标主机的操作系统。</p>
 <h1 id="wireshark"><strong>Wireshark</strong> </h1>
-<h1 id="boost"><strong>Boost</strong> </h1>
-<h2 id="linux-2">Linux </h2>
-<ol>
-<li>
-<p>下载<br>
-<a href="https://www.boost.org/users/download/">Boost</a></p>
-</li>
-<li>
-<p>解压</p>
-</li>
-<li>
-<p>进入解压后的目录，执行 <code>./bootstrap.sh</code></p>
-<ul>
-<li>编译前的配置工作</li>
-</ul>
-</li>
-<li>
-<p>执行 <code>sudo ./b2 install</code></p>
-<ul>
-<li>编译安装</li>
-</ul>
-</li>
-<li>
-<p>测试</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/version.hpp&gt;</span><span class="token comment">//包含 Boost 头文件</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/config.hpp&gt;</span> <span class="token comment">//包含 Boost 头文件</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
-
-<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token comment">// Boost 版本号</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_LIB_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// Boost 版本号</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_PLATFORM <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 操作系统</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_COMPILER <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 编译器</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_STDLIB <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>       <span class="token comment">// 标准库</span>
-    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre><ul>
-<li>编译<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ <span class="token parameter variable">-o</span> <span class="token builtin class-name">test</span> test.cpp
-</code></pre></li>
-</ul>
-</li>
-</ol>
-<h2 id="windows-1">Windows </h2>
-<ol>
-<li>
-<p>下载<br>
-<a href="https://www.boost.org/users/download/">Boost</a></p>
-</li>
-<li>
-<p>解压</p>
-</li>
-<li>
-<p>进入解压后的目录，执行 <code>.\bootstrap.bat gcc</code></p>
-<ul>
-<li>编译前的配置工作</li>
-</ul>
-</li>
-<li>
-<p>执行 <code>.\b2.exe install</code></p>
-<ul>
-<li>编译安装</li>
-</ul>
-</li>
-<li>
-<p>测试</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/version.hpp&gt;</span><span class="token comment">//包含 Boost 头文件</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/config.hpp&gt;</span> <span class="token comment">//包含 Boost 头文件</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
-
-<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token comment">// Boost 版本号</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_LIB_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// Boost 版本号</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_PLATFORM <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 操作系统</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_COMPILER <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>     <span class="token comment">// 编译器</span>
-    cout <span class="token operator">&lt;&lt;</span> BOOST_STDLIB <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>       <span class="token comment">// 标准库</span>
-    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre><ul>
-<li>编译<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ <span class="token parameter variable">-o</span> <span class="token builtin class-name">test</span> test.cpp -I<span class="token string">"C:\Boost\include<span class="token entity" title="\b">\b</span>oost-1_84"</span> -L<span class="token string">"C:\Boost\lib"</span>
-</code></pre></li>
-<li>如果使用网络库，还需要 <code>-lws2_32</code></li>
-</ul>
-</li>
-</ol>
-<br>
-<hr>
-<h1 id="openssl-1"><strong>openssl</strong> </h1>
-<h2 id="linux-3">Linux </h2>
-<h2 id="windows-2">Windows </h2>
-<p><strong>openssl</strong> 是一个开源的软件库包，实现了 <strong>SSL</strong> 和 <strong>TLS</strong> 协议，包含了众多密码算法，常用于 <strong>HTTPS</strong> 的服务器端和客户端的实现。</p>
-<h3 id="openssl-命令">openssl 命令 </h3>
-<p><a href="https://www.feistyduck.com/library/openssl-cookbook/online/">官方手册</a></p>
-<h3 id="ssllib">ssllib </h3>
-<p><a href="https://www.openssl.org/docs/man3.0/man7/">官方手册 3.0</a><br>
-<a href="https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_encrypt.html">加密部分</a></p>
-<p><strong>安装</strong></p>
-<ul>
-<li><code>ubuntu</code><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libssl-dev
-</code></pre></li>
-</ul>
-<p><strong>编译</strong></p>
-<ul>
-<li><code>g++</code><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>g++ main.cpp <span class="token parameter variable">-lssl</span> <span class="token parameter variable">-lcrypto</span>
-</code></pre></li>
-</ul>
-<br>
-<hr>
 <h1 id="ffmpeg"><strong>FFmpeg</strong> </h1>
 <h2 id="安装">安装 </h2>
 <ol>
@@ -1550,21 +1608,71 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
             <p>Linux-use</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#win-use" class="md-toc-link">
-            <p>Win-use</p>
+          <a href="#win-setup-1" class="md-toc-link">
+            <p>Win-setup</p>
 
           </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#openssl" class="md-toc-link"><p><strong>OpenSSL</strong></p>
+          <a href="#openssl" class="md-toc-link"><p><strong>openssl</strong></p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux" class="md-toc-link">
-            <p>Linux</p>
+          <a href="#linux-setup-3" class="md-toc-link">
+            <p>Linux-setup</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-use-3" class="md-toc-link">
+            <p>Linux-use</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-dev-setup" class="md-toc-link">
+            <p>Linux-dev-setup</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-dev-use" class="md-toc-link">
+            <p>Linux-dev-use</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#win-setup-2" class="md-toc-link">
+            <p>Win-setup</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#win-dev-setup" class="md-toc-link">
+            <p>Win-dev-setup</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#boost" class="md-toc-link"><p><strong>Boost</strong></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-setup-4" class="md-toc-link">
+            <p>Linux-setup</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#windows" class="md-toc-link">
+            <p>Windows</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#qt" class="md-toc-link"><p><strong>Qt</strong></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-setup-5" class="md-toc-link">
+            <p>Linux-setup</p>
 
           </a></div>
         </div>
@@ -1605,11 +1713,11 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
         </div>
       </details>
     <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-1" class="md-toc-link">
+          <a href="#linux" class="md-toc-link">
             <p>Linux</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#windows" class="md-toc-link">
+          <a href="#windows-1" class="md-toc-link">
             <p>Windows</p>
 
           </a></div><details style="padding:0;;padding-left:24px;" open="">
@@ -1904,53 +2012,6 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
             <p><strong>Wireshark</strong></p>
 
           </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#boost" class="md-toc-link"><p><strong>Boost</strong></p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-2" class="md-toc-link">
-            <p>Linux</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#windows-1" class="md-toc-link">
-            <p>Windows</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#openssl-1" class="md-toc-link"><p><strong>openssl</strong></p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#linux-3" class="md-toc-link">
-            <p>Linux</p>
-
-          </a></div><details style="padding:0;;padding-left:24px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#windows-2" class="md-toc-link"><p>Windows</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#openssl-命令" class="md-toc-link">
-            <p>openssl 命令</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#ssllib" class="md-toc-link">
-            <p>ssllib</p>
-
-          </a></div>
-        </div>
-      </details>
-    
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#ffmpeg" class="md-toc-link"><p><strong>FFmpeg</strong></p>
 </a>

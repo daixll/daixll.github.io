@@ -38,33 +38,7 @@
 <h1 id="setup">SETUP </h1>
 <p>首先注册一个 QT 账号：<a href="https://www.qt.io/zh-cn/">官网</a></p>
 <h2 id="linux">LINUX </h2>
-<p><a href="https://visualstudio.microsoft.com/zh-hans/downloads/">visual studio code</a> + <a href="https://mirrors.tuna.tsinghua.edu.cn/help/qt/">QT</a></p>
-<ul>
-<li>安装 QT 的过程 <strong>可能</strong> 出现依赖缺失问题：<s><em>不知道装什么，那就全装</em></s><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libxcb*
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libgl1-mesa-dev
-</code></pre></li>
-</ul>
-<br>
-<ol>
-<li>
-<p><strong>检测是否安装成功，添加用户级环境变量</strong></p>
-<ul>
-<li>检测</li>
-</ul>
-<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>/QT/6.5.3/gcc_64/bin/qmake <span class="token parameter variable">-v</span>
-</code></pre><ul>
-<li>添加用户级环境变量 <code>~/.bashrc</code></li>
-</ul>
-<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/QT/6.5.3/gcc_64/bin
-</code></pre><p>将其添加到文件末尾，保存后执行 <code>source ~/.bashrc</code> 使其生效</p>
-</li>
-</ol>
-<blockquote>
-<p>可能会出现 <code>qmake: could not exec '/usr/lib/x86_64-linux-gnu/qt4/bin/qmake': No such file or directory</code> 的错误，这是因为系统中存在多个版本的 QT，解决方法是：<code>sudo apt remove qt4-qmake</code>。</p>
-</blockquote>
-<blockquote>
-<p>另外一方案是，修改 <code>/usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf</code> 文件，将 <code>qt4</code> 的路径修改为 <code>/QT/6.5.3/gcc_64/bin</code>。</p>
-</blockquote>
+<p><a href="https://visualstudio.microsoft.com/zh-hans/downloads/">visual studio code</a> +</p>
 <br>
 <ol start="2">
 <li>
@@ -301,7 +275,7 @@ debug<span class="token punctuation">\</span>main.exe  <span class="token commen
 <br>
 <hr>
 <h1 id="简单窗口和基本控件">简单窗口和基本控件 </h1>
-<pre data-role="codeBlock" data-info="" class="language-text text"><code>QObject                 # 所有类的基类，提供了对象的基本功能（属性、信号与槽...）
+<pre data-role="codeBlock" data-info="" class="language-text"><code>QObject                 # 所有类的基类，提供了对象的基本功能（属性、信号与槽...）
   └── QWidget           # 所有窗口部件的基类，提供了窗口部件的基本功能（尺寸、位置、标题...）
       ├── QMainWindow   # 主窗口类，提供了主窗口的基本功能（菜单栏、工具栏、状态栏...）
       ├── QLabel        # 标签类，用于显示文本或图像

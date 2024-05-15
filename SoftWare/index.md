@@ -128,7 +128,13 @@ export_on_save:
 * 输出文件带调试信息
     ```shell
     g++ main.cpp -g
-    ``` 
+    ```
+
+* 生成动态库
+    ```shell
+    g++ -shared -fPIC -o libutil.so util.cpp
+    ```
+
 * 连接动态库
     ```shell
     g++ main.cpp -lssl
@@ -252,22 +258,50 @@ export_on_save:
 ## Linux-use
 
 * 当前目录下存在 `CMakeLists.txt` 文件
-    1. `mkdir build && cd build` 通常做法，避免中间文件污染源代码目录
+    1. `mkdir build && cd build` 通常做法，避免中间文件污染源代码目录（out-of-source）
     2. `cmake ..` 生成构建系统文件
     3. `cmake --build .` 执行相应的构建命令（例如 `make`）
 
-* 最简示例 
-    ```py
-    cmake_minimum_required(VERSION 3.10)  # 指定 CMake 的最低版本要求
+* 开始
+    ```c
+    cmake_minimum_required(VERSION 3.29)    # 指定 CMake 的最低版本要求
 
-    project(main VERSION 1.0)  # 设置项目名称和版本号
+    project(main VERSION 1.0)               # 设置项目名称和版本号
 
-    # 可选：设置 C++ 标准
-    set_target_properties(myapp PROPERTIES CXX_STANDARD 11 CXX_STANDARD_REQUIRED YES)
+    set(CMAKE_CXX_STANDARD 23)              # 指定 C++ 标准版本
+    set(CMAKE_CXX_STANDARD_REQUIRED True)   # 编译器必须严格遵循指定的 C++ 标准版本
+    ```
+
+* 生成可执行文件
+    ```c
+    add_executable(main main.cpp)           # 生成可执行文件
+    ```
+
+* 生成库目标
+    ```c
+    add_library(util STATIC util.cpp)       # 生成静态库 libutil.a
+    add_library(util SHARED util.cpp)       # 生成动态库 libutil.so
+    ```
+
+* 链接动态库
+    ```c
+    LINK_DIRECTORIES(/usr/local/xyz/lib)    # 添加动态库目录
+    target_link_libraries(main libssl.so)   # 链接库到 main
+    ```
+
+* 选择判断
+    ```c
+    if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+        set(LIB_PATH "/usr/local/xyz/lib")
+    elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+        set(LIB_PATH "C:/Path/To/Your/Libraries")
+    endif()
+
+    LINK_DIRECTORIES(${LIB_PATH})
     ```
 
 
-## Win-use
+## Win-setup
 
 
 
@@ -275,18 +309,150 @@ export_on_save:
 
 ---
 
+# **openssl**
 
-# **OpenSSL**
+## Linux-setup
 
-## Linux
+## Linux-use
+
+[官方手册](https://www.feistyduck.com/library/openssl-cookbook/online/)
+
+## Linux-dev-setup
+
+* 安装
+    ```bash
+    sudo apt install libssl-dev
+    g++ main.cpp -lssl -lcrypto
+    ```
+
+## Linux-dev-use
+
+[官方手册 3.0](https://www.openssl.org/docs/man3.0/man7/)
+[加密部分](https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_encrypt.html)
+
+## Win-setup
+
+## Win-dev-setup
+
+<br>
+
+---
 
 
 
+# **Boost**
+
+## Linux-setup
+
+1. 下载
+    [Boost](https://www.boost.org/users/download/)
+
+2. 解压
+
+3. 进入解压后的目录，执行 `./bootstrap.sh`
+    * 编译前的配置工作
+
+4. 执行 `sudo ./b2 install`
+    * 编译安装
+
+5. 测试
+    ```cpp
+    #include <boost/version.hpp>//包含 Boost 头文件
+    #include <boost/config.hpp> //包含 Boost 头文件
+    #include <iostream>
+
+    using namespace std;
+    int main(){
+        cout << BOOST_VERSION << endl;      // Boost 版本号
+        cout << BOOST_LIB_VERSION << endl;  // Boost 版本号
+        cout << BOOST_PLATFORM << endl;     // 操作系统
+        cout << BOOST_COMPILER << endl;     // 编译器
+        cout << BOOST_STDLIB << endl;       // 标准库
+        return 0;
+    }
+    ```
+    * 编译
+        ```shell
+        g++ -o test test.cpp
+        ```
+
+## Windows
+
+1. 下载
+    [Boost](https://www.boost.org/users/download/)
+
+2. 解压
+
+3. 进入解压后的目录，执行 `.\bootstrap.bat gcc`
+    * 编译前的配置工作
+
+4. 执行 `.\b2.exe install`
+    * 编译安装
+
+5. 测试
+    ```cpp
+    #include <boost/version.hpp>//包含 Boost 头文件
+    #include <boost/config.hpp> //包含 Boost 头文件
+    #include <iostream>
+
+    using namespace std;
+    int main(){
+        cout << BOOST_VERSION << endl;      // Boost 版本号
+        cout << BOOST_LIB_VERSION << endl;  // Boost 版本号
+        cout << BOOST_PLATFORM << endl;     // 操作系统
+        cout << BOOST_COMPILER << endl;     // 编译器
+        cout << BOOST_STDLIB << endl;       // 标准库
+        return 0;
+    }
+    ```
+    * 编译
+        ```shell
+        g++ -o test test.cpp -I"C:\Boost\include\boost-1_84" -L"C:\Boost\lib"
+        ```
+    * 如果使用网络库，还需要 `-lws2_32`
 
 
 <br>
 
 ---
+
+
+# **Qt**
+
+[官网](https://www.qt.io/zh-cn/) 注册账号
+
+## Linux-setup
+
+* 在线安装
+
+    1. 下载 [在线安装器](https://mirrors.tuna.tsinghua.edu.cn/qt/official_releases/online_installers/)
+    2. 使用镜像启动
+        ```shell
+        ./Qt --mirror https://mirrors.tuna.tsinghua.edu.cn/qt
+        ```
+        * 启动过程 **可能** 出现依赖缺失问题：~~*不知道装什么，那就全装*~~
+            ```bash
+            sudo apt install libxcb*
+            sudo apt install libgl1-mesa-dev
+            ```
+    3. 检测是否安装成功
+        ```shell
+        /ope/Qt/x.y.z/gcc_64/bin/qmake -v
+        ```
+
+    4. 添加用户级环境变量 `~/.bashrc`
+        ```bash
+        export PATH=$PATH:/opt/Qt/x.y.z/gcc_64/bin
+        ```
+        > 可能会出现 `qmake: could not exec '/usr/lib/x86_64-linux-gnu/qt4/bin/qmake': No such file or directory` 的错误，这是因为系统中存在多个版本的 QT，解决方法是：`sudo apt remove qt4-qmake`。
+
+        > 另外一方案是，修改 `/usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf` 文件，将 `qt4` 的路径修改为 `/opt/Qt/x.y.z/gcc_64/bin`。
+
+
+<br>
+
+---
+
 
 # **git**
 
@@ -997,119 +1163,7 @@ nmap 会发送一系列的 TCP 和 UDP 包，然后分析返回的包，从而�
 
 # **Wireshark**
 
-# **Boost**
 
-## Linux
-
-1. 下载
-    [Boost](https://www.boost.org/users/download/)
-
-2. 解压
-
-3. 进入解压后的目录，执行 `./bootstrap.sh`
-    * 编译前的配置工作
-
-4. 执行 `sudo ./b2 install`
-    * 编译安装
-
-5. 测试
-    ```cpp
-    #include <boost/version.hpp>//包含 Boost 头文件
-    #include <boost/config.hpp> //包含 Boost 头文件
-    #include <iostream>
-
-    using namespace std;
-    int main(){
-        cout << BOOST_VERSION << endl;      // Boost 版本号
-        cout << BOOST_LIB_VERSION << endl;  // Boost 版本号
-        cout << BOOST_PLATFORM << endl;     // 操作系统
-        cout << BOOST_COMPILER << endl;     // 编译器
-        cout << BOOST_STDLIB << endl;       // 标准库
-        return 0;
-    }
-    ```
-    * 编译
-        ```shell
-        g++ -o test test.cpp
-        ```
-
-## Windows
-
-1. 下载
-    [Boost](https://www.boost.org/users/download/)
-
-2. 解压
-
-3. 进入解压后的目录，执行 `.\bootstrap.bat gcc`
-    * 编译前的配置工作
-
-4. 执行 `.\b2.exe install`
-    * 编译安装
-
-5. 测试
-    ```cpp
-    #include <boost/version.hpp>//包含 Boost 头文件
-    #include <boost/config.hpp> //包含 Boost 头文件
-    #include <iostream>
-
-    using namespace std;
-    int main(){
-        cout << BOOST_VERSION << endl;      // Boost 版本号
-        cout << BOOST_LIB_VERSION << endl;  // Boost 版本号
-        cout << BOOST_PLATFORM << endl;     // 操作系统
-        cout << BOOST_COMPILER << endl;     // 编译器
-        cout << BOOST_STDLIB << endl;       // 标准库
-        return 0;
-    }
-    ```
-    * 编译
-        ```shell
-        g++ -o test test.cpp -I"C:\Boost\include\boost-1_84" -L"C:\Boost\lib"
-        ```
-    * 如果使用网络库，还需要 `-lws2_32`
-
-
-<br>
-
----
-
-# **openssl**
-
-## Linux
-
-
-## Windows
-
-**openssl** 是一个开源的软件库包，实现了 **SSL** 和 **TLS** 协议，包含了众多密码算法，常用于 **HTTPS** 的服务器端和客户端的实现。
-
-### openssl 命令
-
-[官方手册](https://www.feistyduck.com/library/openssl-cookbook/online/)
-
-### ssllib
-
-[官方手册 3.0](https://www.openssl.org/docs/man3.0/man7/)
-[加密部分](https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_encrypt.html)
-
-
-**安装**
-
-* `ubuntu`
-    ```bash
-    sudo apt install libssl-dev
-    ```
-**编译**
-
-* `g++`
-    ```bash
-    g++ main.cpp -lssl -lcrypto
-    ```
-
-
-
-<br>
-
----
 
 # **FFmpeg**
 
