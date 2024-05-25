@@ -20,31 +20,45 @@ export_on_save:
 
 <br>
 
-# 📚 求学
+# 👨‍💻 **工作**
 
+## 2022 - 2024
 
+### 重庆奇灵云教育
 
-[学信网查询](https://www.chsi.com.cn/xlcx/bgcx.jsp)
-
-## 重庆科技大学
-
-在线验证码：`AK7J41XHYJLJUNY1`
-
-2023 - 2025、本科、计算机科学与技术
+兼职、信息学奥赛培训
 
 <br>
 
-## 重庆工业职业技术学院
+---
 
-在线验证码：`AJMQ3S1HRKAJ5Y4Z`
+# 📚 **求学**
 
-2020 - 2023、专科、计算机网络技术
+## 2023 - 2025
+
+### 重庆科技大学
+
+本科、计算机科学与技术
+
+[学信网查询](https://www.chsi.com.cn/xlcx/bgcx.jsp) `AK7J41XHYJLJUNY1`
+
+<br>
+
+## 2020 - 2023
+
+### 重庆工业职业技术大学
+
+专科、计算机网络技术
+
+[学信网查询](https://www.chsi.com.cn/xlcx/bgcx.jsp) `AJMQ3S1HRKAJ5Y4Z`
+
+<br>
 
 ---
 
 
 
-# 🏆 证书
+# 🏆 **证书**
 
 <div class="center">
 
