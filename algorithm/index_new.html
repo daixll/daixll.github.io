@@ -40,13 +40,84 @@
 <br>
 <hr>
 <h1 id="字符串">字符串 </h1>
-<br>
+<h2 id="kmp"><strong>KMP</strong> </h2>
+<ul>
+<li>作用：字符串中查找子串</li>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n+m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">m</span><span class="mclose">)</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 为字符串长度，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span> 为子串长度</li>
+<li>核心思想：通过预处理子串，生成部分匹配表（前缀函数），利用此表在匹配过程中跳过匹配的部分</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> <span class="token function">KMP</span><span class="token punctuation">(</span>string s<span class="token punctuation">,</span> string p<span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token comment">// 返回所有匹配的位置</span>
+    <span class="token keyword keyword-int">int</span> n<span class="token operator">=</span>s<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> m<span class="token operator">=</span>p<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    s <span class="token operator">=</span> <span class="token string">" "</span> <span class="token operator">+</span> s<span class="token punctuation">,</span> p <span class="token operator">=</span> <span class="token string">" "</span> <span class="token operator">+</span> p<span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> res<span class="token punctuation">,</span> <span class="token function">ne</span><span class="token punctuation">(</span>m<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>       <span class="token comment">// 预处理得部分匹配表</span>
+        <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>j <span class="token operator">&amp;&amp;</span> p<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">!=</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> j<span class="token operator">=</span>ne<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> p<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> j<span class="token operator">++</span><span class="token punctuation">;</span>
+        ne<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>j<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>   <span class="token comment">// m - ne[m] 为最小循环子串</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>       <span class="token comment">// KMP 匹配</span>
+        <span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>j <span class="token operator">&amp;&amp;</span> p<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">!=</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> j<span class="token operator">=</span>ne<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> p<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> j<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>j <span class="token operator">==</span> m<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            j <span class="token operator">=</span> ne<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>                  <span class="token comment">// 当匹配成功时继续</span>
+            res<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>i<span class="token operator">-</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-return">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="trie"><strong>Trie</strong> </h2>
+<ul>
+<li>作用：存储字符串集合，非常适合前缀搜索</li>
+<li>时间复杂度：插入与搜索均为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></li>
+<li>核心思想：逐字符存储，利用字符串的公共前缀来节省存储空间，并加快查询速度</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Trie</span><span class="token punctuation">{</span>
+<span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+    <span class="token function">Trie</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> n<span class="token operator">=</span><span class="token number">1e5</span><span class="token punctuation">)</span><span class="token operator">:</span>
+        <span class="token function">son</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token generic-function"><span class="token function">vector</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token number">27</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment">// 仅包含小写字母</span>
+        <span class="token function">idx</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token operator">~</span><span class="token function">Trie</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-void">void</span> <span class="token function">insert</span><span class="token punctuation">(</span>string <span class="token operator">&amp;</span>s<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-int">int</span> p <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>                  <span class="token comment">// deep</span>
+        <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> <span class="token operator">&amp;</span>c<span class="token operator">:</span> s<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token operator">!</span>son<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token operator">-</span><span class="token char">'a'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                son<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token operator">-</span><span class="token char">'a'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">++</span>idx<span class="token punctuation">;</span>
+            p <span class="token operator">=</span> son<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token operator">-</span><span class="token char">'a'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        cnt<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-int">int</span> <span class="token function">query</span><span class="token punctuation">(</span>string <span class="token operator">&amp;</span>s<span class="token punctuation">)</span><span class="token punctuation">{</span>           <span class="token comment">// 此字符出现次数</span>
+        <span class="token keyword keyword-int">int</span> p <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-auto">auto</span> <span class="token operator">&amp;</span>c<span class="token operator">:</span> s<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token operator">!</span>son<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token operator">-</span><span class="token char">'a'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            p <span class="token operator">=</span> son<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token operator">-</span><span class="token char">'a'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-return">return</span> cnt<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+    vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;&gt;</span> son<span class="token punctuation">;</span>        <span class="token comment">// 树</span>
+    map<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> cnt<span class="token punctuation">;</span>              <span class="token comment">// 某节点结尾的字符串数量</span>
+    <span class="token keyword keyword-int">int</span> idx<span class="token punctuation">;</span>                        <span class="token comment">// 当前插入节点的值</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><br>
 <hr>
 <h1 id="数学">数学 </h1>
+<h2 id="异或性质">异或性质 </h2>
+<h2 id="高精度"><strong>高精度</strong> </h2>
+<h2 id="进制转换"><strong>进制转换</strong> </h2>
 <br>
 <hr>
 <h1 id="数据结构">数据结构 </h1>
-<h2 id="线段树">线段树 </h2>
+<h2 id="栈">栈 </h2>
+<h2 id="队列">队列 </h2>
+<h2 id="单调栈">单调栈 </h2>
+<h2 id="单调队列">单调队列 </h2>
+<h2 id="并查集">并查集 </h2>
+<h2 id="线段树"><strong>线段树</strong> </h2>
 <br>
 <hr>
 <h1 id="图论">图论 </h1>
@@ -58,6 +129,7 @@
 <h1 id="game">game </h1>
 <h2 id="ccf-j">CCF-J </h2>
 <h2 id="cie">CIE </h2>
+<h2 id="gesp">GESP </h2>
 
       </div>
       <div class="md-sidebar-toc">
@@ -82,23 +154,73 @@
           <a href="#动规" class="md-toc-link">
             <p>动规</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#字符串" class="md-toc-link">
-            <p>字符串</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
-          <a href="#数学" class="md-toc-link">
-            <p>数学</p>
-
           </a></div><details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#字符串" class="md-toc-link"><p>字符串</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#kmp" class="md-toc-link">
+            <p><strong>KMP</strong></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#trie" class="md-toc-link">
+            <p><strong>Trie</strong></p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#数学" class="md-toc-link"><p>数学</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#异或性质" class="md-toc-link">
+            <p>异或性质</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#高精度" class="md-toc-link">
+            <p><strong>高精度</strong></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#进制转换" class="md-toc-link">
+            <p><strong>进制转换</strong></p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#数据结构" class="md-toc-link"><p>数据结构</p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#栈" class="md-toc-link">
+            <p>栈</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#队列" class="md-toc-link">
+            <p>队列</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#单调栈" class="md-toc-link">
+            <p>单调栈</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#单调队列" class="md-toc-link">
+            <p>单调队列</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#并查集" class="md-toc-link">
+            <p>并查集</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#线段树" class="md-toc-link">
-            <p>线段树</p>
+            <p><strong>线段树</strong></p>
 
           </a></div>
         </div>
@@ -124,6 +246,10 @@
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#cie" class="md-toc-link">
             <p>CIE</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#gesp" class="md-toc-link">
+            <p>GESP</p>
 
           </a></div>
         </div>
