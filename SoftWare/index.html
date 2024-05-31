@@ -163,7 +163,7 @@
 </code></pre><ul>
 <li><code>-lssl</code> 是 <code>OpenSSL</code> 的 <code>SSL</code> 库</li>
 </ul>
-<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ main.cpp -I/usr/local/openssl-x.y.z/include -L/usrlocal/openssl-x.y.z/lib <span class="token parameter variable">-lssl</span>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ main.cpp -I/usr/local/openssl-x.y.z/include -L/usr/local/openssl-x.y.z/lib <span class="token parameter variable">-lssl</span>
 </code></pre><ul>
 <li>在手动连接动态库时，通常还需要指定头文件搜索位置</li>
 </ul>
@@ -325,15 +325,48 @@ LIB_DIR <span class="token operator">=</span> /usr/local/XYZ/lib /usr/lib
 <h2 id="linux-setup-3">Linux-setup </h2>
 <h2 id="linux-use-3">Linux-use </h2>
 <p><a href="https://www.feistyduck.com/library/openssl-cookbook/online/">官方手册</a></p>
-<h2 id="linux-dev-setup">Linux-dev-setup </h2>
 <ul>
-<li>安装<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libssl-dev
-g++ main.cpp <span class="token parameter variable">-lssl</span> <span class="token parameter variable">-lcrypto</span>
+<li>生成密钥对<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>openssl genpkey <span class="token parameter variable">-out</span> pri.key <span class="token parameter variable">-algorithm</span> RSA <span class="token parameter variable">-pkeyopt</span> rsa_keygen_bits:2048
+openssl pkey <span class="token parameter variable">-in</span> pri.key <span class="token parameter variable">-pubout</span> <span class="token parameter variable">-out</span> pub.key
 </code></pre></li>
 </ul>
+<h2 id="linux-dev-setup">Linux-dev-setup </h2>
+<ul>
+<li>
+<p>安装</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libssl-dev
+g++ main.cpp <span class="token parameter variable">-lssl</span> <span class="token parameter variable">-lcrypto</span>
+</code></pre></li>
+<li>
+<p>手动安装</p>
+<ol>
+<li>下载 <a href="https://www.openssl.org/source/">openssl</a></li>
+<li>解压，进入解压后的目录</li>
+<li>配置安装选项<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>./config shared <span class="token parameter variable">--prefix</span><span class="token operator">=</span>/opt/openssl-x.y.z <span class="token parameter variable">--openssldir</span><span class="token operator">=</span>/opt/openssl-x.y.z
+</code></pre></li>
+<li>安装<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">make</span> <span class="token function">install</span>
+</code></pre></li>
+<li>测试<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;openssl/opensslv.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;openssl/crypto.h&gt;</span></span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 输出 OpenSSL 版本信息</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"OpenSSL version: %s\n"</span><span class="token punctuation">,</span> <span class="token function">OpenSSL_version</span><span class="token punctuation">(</span>OPENSSL_VERSION<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"OpenSSL version number: %lx\n"</span><span class="token punctuation">,</span> <span class="token function">OpenSSL_version_num</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li>编译<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc a.c -I/opt/openssl-x.y.z/include -L/opt/openssl-x.y.z/lib64 -Wl,-rpath<span class="token operator">=</span>/opt/openssl-x.y.z/lib64 <span class="token parameter variable">-lssl</span> <span class="token parameter variable">-lcrypto</span>
+./a.out
+</code></pre></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
 <h2 id="linux-dev-use">Linux-dev-use </h2>
-<p><a href="https://www.openssl.org/docs/man3.0/man7/">官方手册 3.0</a><br>
-<a href="https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_encrypt.html">加密部分</a></p>
+<p><a href="https://www.openssl.org/docs/man3.0/man7/">官方手册 3.0</a> / <a href="https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_encrypt.html">加密部分</a></p>
 <h2 id="win-setup-2">Win-setup </h2>
 <h2 id="win-dev-setup">Win-dev-setup </h2>
 <br>
@@ -342,31 +375,27 @@ g++ main.cpp <span class="token parameter variable">-lssl</span> <span class="to
 <h2 id="linux-setup-4">Linux-setup </h2>
 <ol>
 <li>
-<p>下载<br>
-<a href="https://www.boost.org/users/download/">Boost</a></p>
+<p>下载 <a href="https://www.boost.org/users/download/">Boost</a></p>
 </li>
 <li>
-<p>解压</p>
+<p>解压，进入解压后的目录</p>
 </li>
 <li>
-<p>进入解压后的目录，执行 <code>./bootstrap.sh</code></p>
-<ul>
-<li>编译前的配置工作</li>
-</ul>
-</li>
+<p>配置安装选项</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token comment"># 需要 g++</span>
+./bootstrap.sh <span class="token parameter variable">--prefix</span><span class="token operator">=</span>/opt/boost-x.y.z
+</code></pre></li>
 <li>
-<p>执行 <code>sudo ./b2 install</code></p>
-<ul>
-<li>编译安装</li>
-</ul>
-</li>
+<p>安装</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> ./b2 -j<span class="token variable"><span class="token variable">$(</span>nproc<span class="token variable">)</span></span> <span class="token parameter variable">--prefix</span><span class="token operator">=</span>/opt/boost-x.y.z <span class="token function">install</span>
+</code></pre></li>
 <li>
 <p>测试</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/version.hpp&gt;</span><span class="token comment">//包含 Boost 头文件</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/config.hpp&gt;</span> <span class="token comment">//包含 Boost 头文件</span></span>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/version.hpp&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/config.hpp&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
-
 <span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+
 <span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     cout <span class="token operator">&lt;&lt;</span> BOOST_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token comment">// Boost 版本号</span>
     cout <span class="token operator">&lt;&lt;</span> BOOST_LIB_VERSION <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// Boost 版本号</span>
@@ -376,7 +405,7 @@ g++ main.cpp <span class="token parameter variable">-lssl</span> <span class="to
     <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre><ul>
-<li>编译<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ <span class="token parameter variable">-o</span> <span class="token builtin class-name">test</span> test.cpp
+<li>编译<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>g++ test.cpp -I/opt/boost-1.85.0/include -L/opt/boost-1.85.0/lib
 </code></pre></li>
 </ul>
 </li>
@@ -426,9 +455,319 @@ g++ main.cpp <span class="token parameter variable">-lssl</span> <span class="to
 </ol>
 <br>
 <hr>
+<h1 id="ffmpeg"><strong>FFmpeg</strong> </h1>
+<h2 id="linux-setup-5">Linux-setup </h2>
+<ul>
+<li>手动安装
+<ol>
+<li>
+<p>下载 <a href="https://ffmpeg.org/download.html">ffmpeg</a></p>
+</li>
+<li>
+<p>解压，进入解压后的目录</p>
+</li>
+<li>
+<p>下载编译工具</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> nasm
+</code></pre></li>
+<li>
+<p>配置安装选项</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>./configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span>/opt/ffmpeg-x.y.z
+</code></pre></li>
+<li>
+<p>编译</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">make</span> -j<span class="token variable"><span class="token variable">$(</span>nproc<span class="token variable">)</span></span>
+</code></pre></li>
+<li>
+<p>安装</p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token function">sudo</span> <span class="token function">make</span> <span class="token function">install</span>
+</code></pre></li>
+<li>
+<p>验证</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">/**
+ * 最简单的FFmpeg Helloworld程序
+ * Simplest FFmpeg HelloWorld
+ *
+ * 雷霄骅 Lei Xiaohua
+ * leixiaohua1020@126.com
+ * 中国传媒大学/数字电视技术
+ * Communication University of China / Digital TV Technology
+ * http://blog.csdn.net/leixiaohua1020
+ *
+ * 
+ * 本程序是基于FFmpeg函数的最简单的程序。它可以打印出FFmpeg类库的下列信息：
+ * Protocol:  FFmpeg类库支持的协议
+ * AVFormat:  FFmpeg类库支持的封装格式
+ * AVCodec:   FFmpeg类库支持的编解码器
+ * AVFilter:  FFmpeg类库支持的滤镜
+ * Configure: FFmpeg类库的配置信息
+ * 
+ * This is the simplest program based on FFmpeg API. It can show        following 
+ * informations about FFmpeg library:
+ * Protocol:  Protocols supported by FFmpeg.
+ * AVFormat:  Container format supported by FFmpeg.
+ * AVCodec:   Encoder/Decoder supported by FFmpeg.
+ * AVFilter:  Filters supported by FFmpeg.
+ * Configure: configure information of FFmpeg.
+ *
+ */</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">__STDC_CONSTANT_MACROS</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifdef</span> <span class="token expression">_WIN32</span></span>
+<span class="token comment">//Windows</span>
+<span class="token keyword keyword-extern">extern</span> <span class="token string">"C"</span>
+<span class="token punctuation">{</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"libavcodec/avcodec.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"libavformat/avformat.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"libavfilter/avfilter.h"</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">else</span></span>
+<span class="token comment">//Linux...</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifdef</span> <span class="token expression">__cplusplus</span></span>
+<span class="token keyword keyword-extern">extern</span> <span class="token string">"C"</span>
+<span class="token punctuation">{</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavcodec/avcodec.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavformat/avformat.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavfilter/avfilter.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifdef</span> <span class="token expression">__cplusplus</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+<span class="token comment">//FIX</span>
+<span class="token keyword keyword-struct">struct</span> <span class="token class-name">URLProtocol</span><span class="token punctuation">;</span>
+<span class="token comment">/**
+ * Protocol Support Information
+ */</span>
+<span class="token keyword keyword-char">char</span> <span class="token operator">*</span> <span class="token function">urlprotocolinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+	<span class="token keyword keyword-char">char</span> <span class="token operator">*</span>info<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token number">40000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">memset</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">40000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">av_register_all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword keyword-struct">struct</span> <span class="token class-name">URLProtocol</span> <span class="token operator">*</span>pup <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+	<span class="token comment">//Input</span>
+	<span class="token keyword keyword-struct">struct</span> <span class="token class-name">URLProtocol</span> <span class="token operator">*</span><span class="token operator">*</span>p_temp <span class="token operator">=</span> <span class="token operator">&amp;</span>pup<span class="token punctuation">;</span>
+	<span class="token function">avio_enum_protocols</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span>p_temp<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">*</span>p_temp<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token function">sprintf</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span> <span class="token string">"%s[In ][%10s]\n"</span><span class="token punctuation">,</span> info<span class="token punctuation">,</span> <span class="token function">avio_enum_protocols</span>      <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span>p_temp<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	pup <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+	<span class="token comment">//Output</span>
+	<span class="token function">avio_enum_protocols</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span>p_temp<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">*</span>p_temp<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token function">sprintf</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span> <span class="token string">"%s[Out][%10s]\n"</span><span class="token punctuation">,</span> info<span class="token punctuation">,</span> <span class="token function">avio_enum_protocols</span>      <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword keyword-void">void</span> <span class="token operator">*</span><span class="token operator">*</span><span class="token punctuation">)</span>p_temp<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword keyword-return">return</span> info<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * AVFormat Support Information
+ */</span>
+<span class="token keyword keyword-char">char</span> <span class="token operator">*</span> <span class="token function">avformatinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+	<span class="token keyword keyword-char">char</span> <span class="token operator">*</span>info<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token number">40000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">memset</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">40000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">av_register_all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	AVInputFormat <span class="token operator">*</span>if_temp <span class="token operator">=</span> <span class="token function">av_iformat_next</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	AVOutputFormat <span class="token operator">*</span>of_temp <span class="token operator">=</span> <span class="token function">av_oformat_next</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//Input</span>
+	<span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>if_temp<span class="token operator">!=</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token function">sprintf</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span> <span class="token string">"%s[In ] %10s\n"</span><span class="token punctuation">,</span> info<span class="token punctuation">,</span> if_temp<span class="token operator">-&gt;</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		if_temp<span class="token operator">=</span>if_temp<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token comment">//Output</span>
+	<span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>of_temp <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token function">sprintf</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span> <span class="token string">"%s[Out] %10s\n"</span><span class="token punctuation">,</span> info<span class="token punctuation">,</span> of_temp<span class="token operator">-&gt;</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		of_temp <span class="token operator">=</span> of_temp<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword keyword-return">return</span> info<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * AVCodec Support Information
+ */</span>
+<span class="token keyword keyword-char">char</span> <span class="token operator">*</span> <span class="token function">avcodecinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword keyword-char">char</span> <span class="token operator">*</span>info<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token number">40000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">memset</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">40000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">av_register_all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	AVCodec <span class="token operator">*</span>c_temp <span class="token operator">=</span> <span class="token function">av_codec_next</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword keyword-while">while</span><span class="token punctuation">(</span>c_temp<span class="token operator">!=</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>c_temp<span class="token operator">-&gt;</span>decode<span class="token operator">!=</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+			<span class="token function">sprintf</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span> <span class="token string">"%s[Dec]"</span><span class="token punctuation">,</span> info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword keyword-else">else</span><span class="token punctuation">{</span>
+			<span class="token function">sprintf</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span> <span class="token string">"%s[Enc]"</span><span class="token punctuation">,</span> info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword keyword-switch">switch</span> <span class="token punctuation">(</span>c_temp<span class="token operator">-&gt;</span>type<span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token keyword keyword-case">case</span> AVMEDIA_TYPE_VIDEO<span class="token operator">:</span>
+			<span class="token function">sprintf</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span> <span class="token string">"%s[Video]"</span><span class="token punctuation">,</span> info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
+		<span class="token keyword keyword-case">case</span> AVMEDIA_TYPE_AUDIO<span class="token operator">:</span>
+			<span class="token function">sprintf</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span> <span class="token string">"%s[Audio]"</span><span class="token punctuation">,</span> info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
+		<span class="token keyword keyword-default">default</span><span class="token operator">:</span>
+			<span class="token function">sprintf</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span> <span class="token string">"%s[Other]"</span><span class="token punctuation">,</span> info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword keyword-break">break</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+
+		<span class="token function">sprintf</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span> <span class="token string">"%s %10s\n"</span><span class="token punctuation">,</span> info<span class="token punctuation">,</span> c_temp<span class="token operator">-&gt;</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		c_temp<span class="token operator">=</span>c_temp<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword keyword-return">return</span> info<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * AVFilter Support Information
+ */</span>
+<span class="token keyword keyword-char">char</span> <span class="token operator">*</span> <span class="token function">avfilterinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword keyword-char">char</span> <span class="token operator">*</span>info<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token number">40000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">memset</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">40000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">avfilter_register_all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	AVFilter <span class="token operator">*</span>f_temp <span class="token operator">=</span> <span class="token punctuation">(</span>AVFilter <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">avfilter_next</span><span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>f_temp <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token function">sprintf</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span> <span class="token string">"%s[%15s]\n"</span><span class="token punctuation">,</span> info<span class="token punctuation">,</span> f_temp<span class="token operator">-&gt;</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		f_temp<span class="token operator">=</span>f_temp<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword keyword-return">return</span> info<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * Configuration Information
+ */</span>
+<span class="token keyword keyword-char">char</span> <span class="token operator">*</span> <span class="token function">configurationinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword keyword-char">char</span> <span class="token operator">*</span>info<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword keyword-char">char</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token number">40000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">memset</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">40000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">av_register_all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token function">sprintf</span><span class="token punctuation">(</span>info<span class="token punctuation">,</span> <span class="token string">"%s\n"</span><span class="token punctuation">,</span> <span class="token function">avcodec_configuration</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword keyword-return">return</span> info<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> argc<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword keyword-char">char</span> <span class="token operator">*</span>infostr<span class="token operator">=</span><span class="token constant">NULL</span><span class="token punctuation">;</span>
+	infostr<span class="token operator">=</span><span class="token function">configurationinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n&lt;&lt;Configuration&gt;&gt;\n%s"</span><span class="token punctuation">,</span>infostr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">free</span><span class="token punctuation">(</span>infostr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	infostr<span class="token operator">=</span><span class="token function">urlprotocolinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n&lt;&lt;URLProtocol&gt;&gt;\n%s"</span><span class="token punctuation">,</span>infostr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">free</span><span class="token punctuation">(</span>infostr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	infostr<span class="token operator">=</span><span class="token function">avformatinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n&lt;&lt;AVFormat&gt;&gt;\n%s"</span><span class="token punctuation">,</span>infostr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">free</span><span class="token punctuation">(</span>infostr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	infostr<span class="token operator">=</span><span class="token function">avcodecinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n&lt;&lt;AVCodec&gt;&gt;\n%s"</span><span class="token punctuation">,</span>infostr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">free</span><span class="token punctuation">(</span>infostr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	infostr<span class="token operator">=</span><span class="token function">avfilterinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n&lt;&lt;AVFilter&gt;&gt;\n%s"</span><span class="token punctuation">,</span>infostr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">free</span><span class="token punctuation">(</span>infostr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li>编译<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>g++ test.cpp -I/opt/ffmpeg-x.y.z/include -L/opt/ffmpeg-x.y.z/lib <span class="token parameter variable">-lavformat</span> <span class="token parameter variable">-lavcodec</span> <span class="token parameter variable">-lavutil</span>
+</code></pre></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="安装">安装 </h2>
+<ol>
+<li>
+<p>安装<br>
+<strong>Linux</strong><br>
+<code>sudo apt install ffmpeg libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev</code></p>
+<ul>
+<li>
+<p><code>libavformat-dev</code> 格式处理库</p>
+</li>
+<li>
+<p><code>libavcodec-dev</code> 编解码库</p>
+</li>
+<li>
+<p><code>libswresample</code> 音频格式转换库</p>
+</li>
+<li>
+<p><code>libswscale-dev</code> 视频格式转换库</p>
+</li>
+<li>
+<p><code>libavdevice-dev</code> 设备操作库</p>
+</li>
+<li>
+<p><code>libavutil-dev</code> Utility辅助库</p>
+</li>
+<li>
+<p><code>libavfilter</code> 音视频滤镜</p>
+</li>
+</ul>
+</li>
+<li>
+<p>测试</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-extern">extern</span> <span class="token string">"C"</span><span class="token punctuation">{</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavcodec/avcodec.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavformat/avformat.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavutil/dict.h&gt;</span></span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> argc<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">avformat_network_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 替换 av_register_all()</span>
+
+    AVFormatContext <span class="token operator">*</span>formatContext <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 打开视频文件</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">avformat_open_input</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>formatContext<span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">!=</span>     <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span> <span class="token string">"无法打开视频文件\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 获取视频文件信息</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">avformat_find_stream_info</span><span class="token punctuation">(</span>formatContext<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span> <span class="token string">"无法获取视频文件信息\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 打印视频文件信息</span>
+    <span class="token function">av_dump_format</span><span class="token punctuation">(</span>formatContext<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 关闭视频文件</span>
+    <span class="token function">avformat_close_input</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>formatContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="" class="language-text"><code>g++ main.cpp -o main -lavcodec -lavformat -lavutil -lswscale
+</code></pre></li>
+</ol>
+<br>
+<hr>
 <h1 id="qt"><strong>Qt</strong> </h1>
 <p><a href="https://www.qt.io/zh-cn/">官网</a> 注册账号</p>
-<h2 id="linux-setup-5">Linux-setup </h2>
+<h2 id="linux-setup-6">Linux-setup </h2>
 <ul>
 <li>
 <p>在线安装</p>
@@ -438,7 +777,7 @@ g++ main.cpp <span class="token parameter variable">-lssl</span> <span class="to
 </li>
 <li>
 <p>使用镜像启动</p>
-<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>./Qt <span class="token parameter variable">--mirror</span> https://mirrors.tuna.tsinghua.edu.cn/qt
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token function">sudo</span> ./Qt
 </code></pre><ul>
 <li>启动过程 <strong>可能</strong> 出现依赖缺失问题：<s><em>不知道装什么，那就全装</em></s><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libxcb*
 <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> libgl1-mesa-dev
@@ -447,7 +786,7 @@ g++ main.cpp <span class="token parameter variable">-lssl</span> <span class="to
 </li>
 <li>
 <p>检测是否安装成功</p>
-<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>/ope/Qt/x.y.z/gcc_64/bin/qmake <span class="token parameter variable">-v</span>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code>/opt/Qt/x.y.z/gcc_64/bin/qmake <span class="token parameter variable">-v</span>
 </code></pre></li>
 <li>
 <p>添加用户级环境变量 <code>~/.bashrc</code></p>
@@ -856,6 +1195,19 @@ g++ main.cpp <span class="token parameter variable">-lssl</span> <span class="to
 因为我们只是给 <code>origin</code> 添加了多个 <code>URL</code><br>
 虽然效果上看起来是推送到了多个仓库，但是实际上只是推送到了一个仓库</p>
 </blockquote>
+<h1 id="vm"><strong>VM</strong> </h1>
+<h2 id="linux-setup-7">Linux-setup </h2>
+<ul>
+<li><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro">下载</a></li>
+</ul>
+<h2 id="win-setup-3">Win-setup </h2>
+<ul>
+<li><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro">下载</a></li>
+</ul>
+<h2 id="mac-setup">Mac-setup </h2>
+<ul>
+<li><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Fusion">下载</a></li>
+</ul>
 <h1 id="docker"><strong>docker</strong> </h1>
 <p><strong>Docker</strong></p>
 <ul>
@@ -1066,73 +1418,6 @@ nmap -p-                    <span class="token comment"># 扫描所有端口 等
 <p><code>nmap -O dxll.love</code></p>
 <p>nmap 会发送一系列的 TCP 和 UDP 包，然后分析返回的包，从而判断目标主机的操作系统。</p>
 <h1 id="wireshark"><strong>Wireshark</strong> </h1>
-<h1 id="ffmpeg"><strong>FFmpeg</strong> </h1>
-<h2 id="安装">安装 </h2>
-<ol>
-<li>
-<p>安装<br>
-<strong>Linux</strong><br>
-<code>sudo apt install ffmpeg libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev</code></p>
-<ul>
-<li>
-<p><code>libavformat-dev</code> 格式处理库</p>
-</li>
-<li>
-<p><code>libavcodec-dev</code> 编解码库</p>
-</li>
-<li>
-<p><code>libswresample</code> 音频格式转换库</p>
-</li>
-<li>
-<p><code>libswscale-dev</code> 视频格式转换库</p>
-</li>
-<li>
-<p><code>libavdevice-dev</code> 设备操作库</p>
-</li>
-<li>
-<p><code>libavutil-dev</code> Utility辅助库</p>
-</li>
-<li>
-<p><code>libavfilter</code> 音视频滤镜</p>
-</li>
-</ul>
-</li>
-<li>
-<p>测试</p>
-<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-extern">extern</span> <span class="token string">"C"</span><span class="token punctuation">{</span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavcodec/avcodec.h&gt;</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavformat/avformat.h&gt;</span></span>
-<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavutil/dict.h&gt;</span></span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> argc<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">avformat_network_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 替换 av_register_all()</span>
-
-    AVFormatContext <span class="token operator">*</span>formatContext <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// 打开视频文件</span>
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">avformat_open_input</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>formatContext<span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">!=</span>     <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span> <span class="token string">"无法打开视频文件\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment">// 获取视频文件信息</span>
-    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token function">avformat_find_stream_info</span><span class="token punctuation">(</span>formatContext<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token constant">stderr</span><span class="token punctuation">,</span> <span class="token string">"无法获取视频文件信息\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment">// 打印视频文件信息</span>
-    <span class="token function">av_dump_format</span><span class="token punctuation">(</span>formatContext<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// 关闭视频文件</span>
-    <span class="token function">avformat_close_input</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>formatContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre><pre data-role="codeBlock" data-info="" class="language-text"><code>g++ main.cpp -o main -lavcodec -lavformat -lavutil -lswscale
-</code></pre></li>
-</ol>
 <h1 id="todo">todo </h1>
 <p><strong>值得一提</strong>，我们可以通过 <code>build-essential</code> 包来安装 GCC 等一系列编译工具。</p>
 <h2 id="gnu">GNU </h2>
@@ -1666,12 +1951,29 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
-          <a href="#qt" class="md-toc-link"><p><strong>Qt</strong></p>
+          <a href="#ffmpeg" class="md-toc-link"><p><strong>FFmpeg</strong></p>
 </a>
           </summary>
         <div>
           <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#linux-setup-5" class="md-toc-link">
+            <p>Linux-setup</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#安装" class="md-toc-link">
+            <p>安装</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#qt" class="md-toc-link"><p><strong>Qt</strong></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-setup-6" class="md-toc-link">
             <p>Linux-setup</p>
 
           </a></div>
@@ -1825,6 +2127,27 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
         </div>
       </details>
     
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#vm" class="md-toc-link"><p><strong>VM</strong></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#linux-setup-7" class="md-toc-link">
+            <p>Linux-setup</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#win-setup-3" class="md-toc-link">
+            <p>Win-setup</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#mac-setup" class="md-toc-link">
+            <p>Mac-setup</p>
+
+          </a></div>
         </div>
       </details>
     <details style="padding:0;;padding-left:0px;" open="">
@@ -2012,19 +2335,6 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
             <p><strong>Wireshark</strong></p>
 
           </a></div><details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#ffmpeg" class="md-toc-link"><p><strong>FFmpeg</strong></p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#安装" class="md-toc-link">
-            <p>安装</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#todo" class="md-toc-link"><p>todo</p>
 </a>

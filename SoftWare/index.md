@@ -141,7 +141,7 @@ export_on_save:
     ```
     * `-lssl` 是 `OpenSSL` 的 `SSL` 库
     ```shell
-    g++ main.cpp -I/usr/local/openssl-x.y.z/include -L/usrlocal/openssl-x.y.z/lib -lssl
+    g++ main.cpp -I/usr/local/openssl-x.y.z/include -L/usr/local/openssl-x.y.z/lib -lssl
     ```
     * 在手动连接动态库时，通常还需要指定头文件搜索位置
 
@@ -317,6 +317,12 @@ export_on_save:
 
 [官方手册](https://www.feistyduck.com/library/openssl-cookbook/online/)
 
+* 生成密钥对
+    ```bash
+    openssl genpkey -out pri.key -algorithm RSA -pkeyopt rsa_keygen_bits:2048
+    openssl pkey -in pri.key -pubout -out pub.key
+    ```
+
 ## Linux-dev-setup
 
 * 安装
@@ -325,10 +331,41 @@ export_on_save:
     g++ main.cpp -lssl -lcrypto
     ```
 
+* 手动安装
+    1. 下载 [openssl](https://www.openssl.org/source/)
+    2. 解压，进入解压后的目录
+    3. 配置安装选项
+        ```bash
+        ./config shared --prefix=/opt/openssl-x.y.z --openssldir=/opt/openssl-x.y.z
+        ```
+    4. 安装
+        ```bash
+        make && sudo make install
+        ```
+    5. 测试
+        ```c
+        #include <stdio.h>
+        #include <openssl/opensslv.h>
+        #include <openssl/crypto.h>
+
+        int main() {
+            // 输出 OpenSSL 版本信息
+            printf("OpenSSL version: %s\n", OpenSSL_version(OPENSSL_VERSION));
+            printf("OpenSSL version number: %lx\n", OpenSSL_version_num());
+            return 0;
+        }
+        ```
+        * 编译
+            ```bash
+            gcc a.c -I/opt/openssl-x.y.z/include -L/opt/openssl-x.y.z/lib64 -Wl,-rpath=/opt/openssl-x.y.z/lib64 -lssl -lcrypto
+            ./a.out
+            ```
+
 ## Linux-dev-use
 
-[官方手册 3.0](https://www.openssl.org/docs/man3.0/man7/)
-[加密部分](https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_encrypt.html)
+[官方手册 3.0](https://www.openssl.org/docs/man3.0/man7/) / [加密部分](https://www.openssl.org/docs/manmaster/man3/EVP_PKEY_encrypt.html)
+
+
 
 ## Win-setup
 
@@ -344,24 +381,28 @@ export_on_save:
 
 ## Linux-setup
 
-1. 下载
-    [Boost](https://www.boost.org/users/download/)
+1. 下载 [Boost](https://www.boost.org/users/download/)
 
-2. 解压
+2. 解压，进入解压后的目录
 
-3. 进入解压后的目录，执行 `./bootstrap.sh`
-    * 编译前的配置工作
+3. 配置安装选项
+    ```bash
+    # 需要 g++
+    ./bootstrap.sh --prefix=/opt/boost-x.y.z
+    ```
 
-4. 执行 `sudo ./b2 install`
-    * 编译安装
+4. 安装
+    ```bash
+    sudo ./b2 -j$(nproc) --prefix=/opt/boost-x.y.z install
+    ```
 
 5. 测试
     ```cpp
-    #include <boost/version.hpp>//包含 Boost 头文件
-    #include <boost/config.hpp> //包含 Boost 头文件
+    #include <boost/version.hpp>
+    #include <boost/config.hpp>
     #include <iostream>
-
     using namespace std;
+
     int main(){
         cout << BOOST_VERSION << endl;      // Boost 版本号
         cout << BOOST_LIB_VERSION << endl;  // Boost 版本号
@@ -373,7 +414,7 @@ export_on_save:
     ```
     * 编译
         ```shell
-        g++ -o test test.cpp
+        g++ test.cpp -I/opt/boost-1.85.0/include -L/opt/boost-1.85.0/lib
         ```
 
 ## Windows
@@ -416,6 +457,304 @@ export_on_save:
 
 ---
 
+# **FFmpeg**
+
+## Linux-setup
+
+* 手动安装
+    1. 下载 [ffmpeg](https://ffmpeg.org/download.html)
+    2. 解压，进入解压后的目录
+    3. 下载编译工具
+        ```bash
+        sudo apt install nasm
+        ```
+    4. 配置安装选项
+        ```bash
+        ./configure --prefix=/opt/ffmpeg-x.y.z
+        ```
+    5. 编译
+        ```sh
+        make -j$(nproc)
+        ```
+    
+    6. 安装
+        ```sh
+        sudo make install
+        ```
+    
+    7. 验证
+        ```cpp
+        /**
+         * 最简单的FFmpeg Helloworld程序
+         * Simplest FFmpeg HelloWorld
+         *
+         * 雷霄骅 Lei Xiaohua
+         * leixiaohua1020@126.com
+         * 中国传媒大学/数字电视技术
+         * Communication University of China / Digital TV Technology
+         * http://blog.csdn.net/leixiaohua1020
+         *
+         * 
+         * 本程序是基于FFmpeg函数的最简单的程序。它可以打印出FFmpeg类库的下列信息：
+         * Protocol:  FFmpeg类库支持的协议
+         * AVFormat:  FFmpeg类库支持的封装格式
+         * AVCodec:   FFmpeg类库支持的编解码器
+         * AVFilter:  FFmpeg类库支持的滤镜
+         * Configure: FFmpeg类库的配置信息
+         * 
+         * This is the simplest program based on FFmpeg API. It can show        following 
+         * informations about FFmpeg library:
+         * Protocol:  Protocols supported by FFmpeg.
+         * AVFormat:  Container format supported by FFmpeg.
+         * AVCodec:   Encoder/Decoder supported by FFmpeg.
+         * AVFilter:  Filters supported by FFmpeg.
+         * Configure: configure information of FFmpeg.
+         *
+         */
+        
+        #include <stdio.h>
+        
+        #define __STDC_CONSTANT_MACROS
+        
+        #ifdef _WIN32
+        //Windows
+        extern "C"
+        {
+        #include "libavcodec/avcodec.h"
+        #include "libavformat/avformat.h"
+        #include "libavfilter/avfilter.h"
+        };
+        #else
+        //Linux...
+        #ifdef __cplusplus
+        extern "C"
+        {
+        #endif
+        #include <libavcodec/avcodec.h>
+        #include <libavformat/avformat.h>
+        #include <libavfilter/avfilter.h>
+        #ifdef __cplusplus
+        };
+        #endif
+        #endif
+        
+        //FIX
+        struct URLProtocol;
+        /**
+         * Protocol Support Information
+         */
+        char * urlprotocolinfo(){
+        
+        	char *info=(char *)malloc(40000);
+        	memset(info,0,40000);
+        
+        	av_register_all();
+        
+        	struct URLProtocol *pup = NULL;
+        	//Input
+        	struct URLProtocol **p_temp = &pup;
+        	avio_enum_protocols((void **)p_temp, 0);
+        	while ((*p_temp) != NULL){
+        		sprintf(info, "%s[In ][%10s]\n", info, avio_enum_protocols      ((void **)p_temp, 0));
+        	}
+        	pup = NULL;
+        	//Output
+        	avio_enum_protocols((void **)p_temp, 1);
+        	while ((*p_temp) != NULL){
+        		sprintf(info, "%s[Out][%10s]\n", info, avio_enum_protocols      ((void **)p_temp, 1));
+        	}
+        
+        	return info;
+        }
+        
+        /**
+         * AVFormat Support Information
+         */
+        char * avformatinfo(){
+        
+        	char *info=(char *)malloc(40000);
+        	memset(info,0,40000);
+        
+        	av_register_all();
+        
+        	AVInputFormat *if_temp = av_iformat_next(NULL);
+        	AVOutputFormat *of_temp = av_oformat_next(NULL);
+        	//Input
+        	while(if_temp!=NULL){
+        		sprintf(info, "%s[In ] %10s\n", info, if_temp->name);
+        		if_temp=if_temp->next;
+        	}
+        	//Output
+        	while (of_temp != NULL){
+        		sprintf(info, "%s[Out] %10s\n", info, of_temp->name);
+        		of_temp = of_temp->next;
+        	}
+        	return info;
+        }
+        
+        /**
+         * AVCodec Support Information
+         */
+        char * avcodecinfo()
+        {
+        	char *info=(char *)malloc(40000);
+        	memset(info,0,40000);
+        
+        	av_register_all();
+        
+        	AVCodec *c_temp = av_codec_next(NULL);
+        
+        	while(c_temp!=NULL){
+        		if (c_temp->decode!=NULL){
+        			sprintf(info, "%s[Dec]", info);
+        		}
+        		else{
+        			sprintf(info, "%s[Enc]", info);
+        		}
+        		switch (c_temp->type){
+        		case AVMEDIA_TYPE_VIDEO:
+        			sprintf(info, "%s[Video]", info);
+        			break;
+        		case AVMEDIA_TYPE_AUDIO:
+        			sprintf(info, "%s[Audio]", info);
+        			break;
+        		default:
+        			sprintf(info, "%s[Other]", info);
+        			break;
+        		}
+        
+        		sprintf(info, "%s %10s\n", info, c_temp->name);
+        
+        		c_temp=c_temp->next;
+        	}
+        	return info;
+        }
+        
+        /**
+         * AVFilter Support Information
+         */
+        char * avfilterinfo()
+        {
+        	char *info=(char *)malloc(40000);
+        	memset(info,0,40000);
+        
+        	avfilter_register_all();
+        
+        	AVFilter *f_temp = (AVFilter *)avfilter_next(NULL);
+        
+        	while (f_temp != NULL){
+        		sprintf(info, "%s[%15s]\n", info, f_temp->name);
+        		f_temp=f_temp->next;
+        	}
+        	return info;
+        }
+        
+        /**
+         * Configuration Information
+         */
+        char * configurationinfo()
+        {
+        	char *info=(char *)malloc(40000);
+        	memset(info,0,40000);
+        
+        	av_register_all();
+        
+        	sprintf(info, "%s\n", avcodec_configuration());
+        
+        	return info;
+        }
+        
+        int main(int argc, char* argv[])
+        {
+        	char *infostr=NULL;
+        	infostr=configurationinfo();
+        	printf("\n<<Configuration>>\n%s",infostr);
+        	free(infostr);
+        
+        	infostr=urlprotocolinfo();
+        	printf("\n<<URLProtocol>>\n%s",infostr);
+        	free(infostr);
+        
+        	infostr=avformatinfo();
+        	printf("\n<<AVFormat>>\n%s",infostr);
+        	free(infostr);
+        
+        	infostr=avcodecinfo();
+        	printf("\n<<AVCodec>>\n%s",infostr);
+        	free(infostr);
+        
+        	infostr=avfilterinfo();
+        	printf("\n<<AVFilter>>\n%s",infostr);
+        	free(infostr);
+        
+        	return 0;
+        }
+        ```
+
+        * 编译
+            ```bash
+            g++ test.cpp -I/opt/ffmpeg-x.y.z/include -L/opt/ffmpeg-x.y.z/lib -lavformat -lavcodec -lavutil
+            ```
+
+
+## 安装
+
+1. 安装
+    **Linux**
+    `sudo apt install ffmpeg libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev`
+
+    * `libavformat-dev` 格式处理库
+    * `libavcodec-dev` 编解码库
+    * `libswresample` 音频格式转换库
+    * `libswscale-dev` 视频格式转换库
+        
+    * `libavdevice-dev` 设备操作库
+        
+    * `libavutil-dev` Utility辅助库
+    * `libavfilter` 音视频滤镜
+
+2. 测试
+    ```cpp
+    extern "C"{
+    #include <libavcodec/avcodec.h>
+    #include <libavformat/avformat.h>
+    #include <libavutil/dict.h>
+    }
+
+    int main(int argc, char *argv[]) {
+        avformat_network_init(); // 替换 av_register_all()
+
+        AVFormatContext *formatContext = NULL;
+
+        // 打开视频文件
+        if (avformat_open_input(&formatContext, argv[1], NULL, NULL) !=     0) {
+            fprintf(stderr, "无法打开视频文件\n");
+            return -1;
+        }
+
+        // 获取视频文件信息
+        if (avformat_find_stream_info(formatContext, NULL) < 0) {
+            fprintf(stderr, "无法获取视频文件信息\n");
+            return -1;
+        }
+
+        // 打印视频文件信息
+        av_dump_format(formatContext, 0, argv[1], 0);
+
+        // 关闭视频文件
+        avformat_close_input(&formatContext);
+
+        return 0;
+    }
+    ```
+    ```
+    g++ main.cpp -o main -lavcodec -lavformat -lavutil -lswscale
+    ```
+
+<br>
+
+---
+
 
 # **Qt**
 
@@ -428,7 +767,7 @@ export_on_save:
     1. 下载 [在线安装器](https://mirrors.tuna.tsinghua.edu.cn/qt/official_releases/online_installers/)
     2. 使用镜像启动
         ```shell
-        ./Qt --mirror https://mirrors.tuna.tsinghua.edu.cn/qt
+        sudo ./Qt
         ```
         * 启动过程 **可能** 出现依赖缺失问题：~~*不知道装什么，那就全装*~~
             ```bash
@@ -437,7 +776,7 @@ export_on_save:
             ```
     3. 检测是否安装成功
         ```shell
-        /ope/Qt/x.y.z/gcc_64/bin/qmake -v
+        /opt/Qt/x.y.z/gcc_64/bin/qmake -v
         ```
 
     4. 添加用户级环境变量 `~/.bashrc`
@@ -827,6 +1166,20 @@ git config --global --unset https.proxy
 > 虽然效果上看起来是推送到了多个仓库，但是实际上只是推送到了一个仓库
 
 
+# **VM**
+
+## Linux-setup
+
+* [下载](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro)
+
+## Win-setup
+
+* [下载](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro)
+
+## Mac-setup
+
+* [下载](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Fusion)
+
 # **docker**
 
 **Docker**
@@ -1164,62 +1517,6 @@ nmap 会发送一系列的 TCP 和 UDP 包，然后分析返回的包，从而�
 # **Wireshark**
 
 
-
-# **FFmpeg**
-
-## 安装
-
-1. 安装
-    **Linux**
-    `sudo apt install ffmpeg libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev`
-
-    * `libavformat-dev` 格式处理库
-    * `libavcodec-dev` 编解码库
-    * `libswresample` 音频格式转换库
-    * `libswscale-dev` 视频格式转换库
-        
-    * `libavdevice-dev` 设备操作库
-        
-    * `libavutil-dev` Utility辅助库
-    * `libavfilter` 音视频滤镜
-
-2. 测试
-    ```cpp
-    extern "C"{
-    #include <libavcodec/avcodec.h>
-    #include <libavformat/avformat.h>
-    #include <libavutil/dict.h>
-    }
-
-    int main(int argc, char *argv[]) {
-        avformat_network_init(); // 替换 av_register_all()
-
-        AVFormatContext *formatContext = NULL;
-
-        // 打开视频文件
-        if (avformat_open_input(&formatContext, argv[1], NULL, NULL) !=     0) {
-            fprintf(stderr, "无法打开视频文件\n");
-            return -1;
-        }
-
-        // 获取视频文件信息
-        if (avformat_find_stream_info(formatContext, NULL) < 0) {
-            fprintf(stderr, "无法获取视频文件信息\n");
-            return -1;
-        }
-
-        // 打印视频文件信息
-        av_dump_format(formatContext, 0, argv[1], 0);
-
-        // 关闭视频文件
-        avformat_close_input(&formatContext);
-
-        return 0;
-    }
-    ```
-    ```
-    g++ main.cpp -o main -lavcodec -lavformat -lavutil -lswscale
-    ```
 
 
 # todo
