@@ -64,7 +64,7 @@ export_on_save:
 
 | 国家级奖项 🥇 | 省部级奖项 🥈 | 技能证书 🥉 | 奖学金 💰 | 
 |:-:|:-:|:-:|:-:|
-| 7 | 14 | 4 | 9 | 
+| 8 | 14 | 4 | 9 | 
 
 </div>
 
@@ -87,13 +87,27 @@ export_on_save:
 
 - `2024-6-8`
 
-### 国一 蓝桥杯
+### 国三 蓝桥杯
 
-- `2024-6-1`
+- `2024-6-1` `第十五届“蓝桥杯”C/C++程序设计本科B组` `国赛三等奖` [公示 / 排名](https://dasai.lanqiao.cn/notices/1639)
+
+<div class="center">
+    <img src="（国三）蓝桥杯24.jpg" width="300"> 
+</div>
+<div class="center">
+    <img src="排名/（国3）蓝桥杯24.jpg" width="300">
+</div>
 
 ### 冠军 重科杯
 
-- `2024-5` `第二届“重科杯”` `冠军` 
+- `2024-5` `第二届“重科杯”` `冠军` [公示 / 排名](https://ac.nowcoder.com/acm/contest/83317#rank)
+
+<div class="center">
+    <img src="ckcpc2.jpg" width="300"> 
+</div>
+<div class="center">
+    <img src="排名/ckcpc2.jpg" width="300">
+</div>
 
 ### 省一 蓝桥杯
 
