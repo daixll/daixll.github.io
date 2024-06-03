@@ -116,7 +116,28 @@
 <h2 id="队列">队列 </h2>
 <h2 id="单调栈">单调栈 </h2>
 <h2 id="单调队列">单调队列 </h2>
-<h2 id="并查集">并查集 </h2>
+<h2 id="并查集"><strong>并查集</strong> </h2>
+<p><strong>1. 朴素并查集</strong></p>
+<ul>
+<li>作用：</li>
+<li>时间复杂度：</li>
+<li>核心思想：</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// 初始化</span>
+<span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>i<span class="token punctuation">;</span>     <span class="token comment">// 自己是自己的祖先</span>
+<span class="token comment">// 查找</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> x<span class="token punctuation">)</span><span class="token punctuation">{</span>                    <span class="token comment">// 找 x 的祖先</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">!=</span> x<span class="token punctuation">)</span> p<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 如果 x 的祖先不是自己</span>
+    <span class="token keyword keyword-return">return</span> p<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>                    <span class="token comment">// 会在这个过程中合并</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 合并</span>
+p<span class="token punctuation">[</span><span class="token function">find</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">find</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// a -&gt; b</span>
+</code></pre><p><strong>2. 维护数量的并查集</strong></p>
+<ul>
+<li>作用：</li>
+<li>时间复杂度：</li>
+<li>核心思想：</li>
+</ul>
 <h2 id="线段树"><strong>线段树</strong> </h2>
 <br>
 <hr>
@@ -217,7 +238,7 @@
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#并查集" class="md-toc-link">
-            <p>并查集</p>
+            <p><strong>并查集</strong></p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#线段树" class="md-toc-link">
