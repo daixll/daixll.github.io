@@ -38,37 +38,55 @@
 <h1 id="windows-windows-11-pro">Windows <code>Windows 11 Pro</code> </h1>
 <h2 id="装机必备">装机必备 </h2>
 <ul>
+<li><a href="https://www.nvidia.com/en-us/software/nvidia-app/">NV 驱动</a></li>
+<li><a href="https://www.intel.com/content/www/us/en/support/detect.html">INTEL 驱动</a></li>
+</ul>
+<br>
+<ul>
 <li>
-<p><a href="https://dl.todesk.com/windows/ToDesk_Lite.exe">远程协助</a></p>
+<p><a href="https://github.com/clash-verge-rev/clash-verge-rev/releases">联网 clash-verge</a></p>
 </li>
 <li>
-<p><a href="https://archive.org/download/clash_for_windows_pkg">联网</a> <code>Clash for Windows</code></p>
+<p><a href="https://github.com/zhongyang219/TrafficMonitor">状态栏 状态显示</a></p>
 </li>
 <li>
-<p><a href="https://github.com/massgravel/Microsoft-Activation-Scripts/releases">MS激活</a> <code>Microsoft-Activation-Scripts</code><br>
-<code>irm https://massgrave.dev/get | iex</code></p>
+<p><a href="https://github.com/massgravel/Microsoft-Activation-Scripts">MS 激活</a> <code>irm https://get.activated.win | iex</code></p>
 </li>
 <li>
-<p><a href="https://otp.landian.vip/zh-cn/download.html">Office</a> | <a href="https://www.coolhub.top/archives/11">文档</a> <code>Office Tool Plus</code></p>
+<p><a href="https://otp.landian.vip/zh-cn/download.html">Office</a></p>
 </li>
 <li>
-<p><a href="https://creativecloud.adobe.com/apps/download/creative-cloud">Adobe</a> | <a href="https://github.com/cw2k/Adobe-GenP">激活</a></p>
+<p><a href="https://www.wps.cn/">WPS</a></p>
+</li>
+</ul>
+<br>
+<ul>
+<li>
+<p><a href="https://dl.todesk.com/windows/ToDesk_Lite.exe">远程协助 todesk</a></p>
 </li>
 <li>
 <p><a href="https://www.bandisoft.com/bandizip/">Bandizip</a></p>
 </li>
 </ul>
 <br>
-<h2 id="wsl2-安装">WSL2 安装 </h2>
-<p><a href="https://learn.microsoft.com/zh-cn/windows/wsl/install">官方文档</a></p>
+<h2 id="wsl2">WSL2 </h2>
 <ul>
-<li>在 <code>powershell</code> 中执行<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>wsl <span class="token parameter variable">--update</span>
+<li>安装
+<ul>
+<li>
+<p>自动安装：<a href="https://learn.microsoft.com/zh-cn/windows/wsl/install">官方文档</a></p>
+<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>wsl <span class="token parameter variable">--update</span>                    <span class="token comment"># powershell</span>
 wsl <span class="token parameter variable">--install</span> <span class="token parameter variable">-d</span> Ubuntu-22.04   <span class="token comment"># 下载并安装 Ubuntu 22.04</span>
 </code></pre></li>
+<li>
+<p>手动安装 <a href="https://github.com/microsoft/WSL">ms/WSL</a></p>
+</li>
+</ul>
+</li>
 </ul>
 <br>
-<h2 id="wsl2-镜像网络">WSL2 镜像网络 </h2>
-<p><a href="https://learn.microsoft.com/zh-cn/windows/wsl/networking#mirrored-mode-networking">官方文档</a></p>
+<ul>
+<li>镜像网络 <a href="https://learn.microsoft.com/zh-cn/windows/wsl/networking#mirrored-mode-networking">官方文档</a>
 <ul>
 <li>创建 <code>C:\Users\&lt;UserName&gt;\.wslconfig</code> 文件<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token punctuation">[</span>wsl2<span class="token punctuation">]</span>
 <span class="token assign-left variable">networkingMode</span><span class="token operator">=</span>mirrored
@@ -76,17 +94,28 @@ wsl <span class="token parameter variable">--install</span> <span class="token p
 <span class="token assign-left variable">autoProxy</span><span class="token operator">=</span>true
 </code></pre></li>
 </ul>
+</li>
+</ul>
 <br>
-<h2 id="wsl2-启动脚本">WSL2 启动脚本 </h2>
+<ul>
+<li>启动脚本
 <ol>
 <li>win + r 输入  <code>shell:startup</code></li>
-<li>新建 <code>*.vbs</code> 文件<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>Set ws <span class="token operator">=</span> WScript.CreateObject<span class="token punctuation">(</span><span class="token string">"WScript.Shell"</span><span class="token punctuation">)</span>        
+<li>新建 <code>wsl.vbs</code> 文件<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>Set ws <span class="token operator">=</span> WScript.CreateObject<span class="token punctuation">(</span><span class="token string">"WScript.Shell"</span><span class="token punctuation">)</span>        
 ws.run <span class="token string">"wsl -d Ubuntu-22.04 -u user /home/user/startup.sh"</span>
 </code></pre></li>
 </ol>
+</li>
+</ul>
 <br>
-<h2 id="wsl2-挂载-windows-磁盘">WSL2 挂载 Windows 磁盘 </h2>
+<ul>
+<li>挂载 Windows 网络磁盘 <a href="https://www.public-health.uiowa.edu/it/support/kb48568/">非官文档</a>
 <ol>
+<li>下载软件
+<ul>
+<li><code>sudo apt install cifs-utils</code></li>
+</ul>
+</li>
 <li>在 <code>/mnt</code> 中创建挂载目录
 <ul>
 <li><code>mkdir /mnt/z</code></li>
@@ -104,10 +133,12 @@ ws.run <span class="token string">"wsl -d Ubuntu-22.04 -u user /home/user/startu
 </ul>
 </li>
 </ol>
+</li>
+</ul>
 <br>
 <h2 id="ide-and-more">IDE and more </h2>
 <p><a href="https://code.visualstudio.com/insiders/">VS Code</a> 登陆 <code>github</code> 账号，等待配置同步</p>
-<p><a href="https://visualstudio.microsoft.com/zh-hans/downloads/">VS 2022</a> 登陆 <code>MS</code> 及 <code>github</code> 账号，等待配置同步</p>
+<p><a href="https://visualstudio.microsoft.com/zh-hans/downloads/">VS 2022</a> 登陆 <code>github</code> 账号，等待配置同步</p>
 <p><a href="https://www.jetbrains.com/toolbox-app/">JetBrains Toolbox</a> 登陆 <code>JB</code> 账号，等待配置同步</p>
 <br>
 <h2 id="vs-for-algorithm">vs for Algorithm </h2>
@@ -419,20 +450,8 @@ ws.run <span class="token string">"wsl -d Ubuntu-22.04 -u user /home/user/startu
             <p>装机必备</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#wsl2-安装" class="md-toc-link">
-            <p>WSL2 安装</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#wsl2-镜像网络" class="md-toc-link">
-            <p>WSL2 镜像网络</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#wsl2-启动脚本" class="md-toc-link">
-            <p>WSL2 启动脚本</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#wsl2-挂载-windows-磁盘" class="md-toc-link">
-            <p>WSL2 挂载 Windows 磁盘</p>
+          <a href="#wsl2" class="md-toc-link">
+            <p>WSL2</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#ide-and-more" class="md-toc-link">

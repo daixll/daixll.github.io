@@ -1197,7 +1197,7 @@ $38.5066 < 39.364$
 
 $$(-\infty, -Z_\frac{\alpha}{2}) \cup (Z_\frac{\alpha}{2}, +\infty)$$
 
-$$(-\infty, T_{\frac{\alpha}{2}}(n-1)) \cup (T_{\frac{\alpha}{2}}(n-1), +\infty)$$
+$$(-\infty, -T_{\frac{\alpha}{2}}(n-1)) \cup (T_{\frac{\alpha}{2}}(n-1), +\infty)$$
 
 $$( -\infty, {\chi^2}_{1-\frac{\alpha}{2}}(n-1)) \cup ({\chi^2}_{\frac{\alpha}{2}}(n-1), +\infty)$$
 

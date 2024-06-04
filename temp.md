@@ -5,7 +5,127 @@ export_on_save:
     html: true  # 自动保存
 ---
 
-2
+```cmkae
+cmake_minimum_required(VERSION 3.10)
+
+# 设置项目名称
+project(MyProject)
+
+# 设置 C++ 标准
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# 设置库路径
+set(Qt6_DIR /opt/Qt/6.7.1/gcc_64/lib/cmake/Qt6)
+set(OpenSSL_ROOT_DIR /opt/openssl)
+set(Boost_ROOT /opt/boost)
+set(FFMPEG_DIR /opt/ffmpeg)
+
+# 查找 Qt6 库
+find_package(Qt6 COMPONENTS Core Widgets REQUIRED)
+
+# 查找 OpenSSL 库
+find_package(OpenSSL REQUIRED)
+
+# 查找 FFmpeg 库
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(FFMPEG REQUIRED libavcodec libavformat libavutil libswscale)
+
+# 查找 Boost 库
+find_package(Boost REQUIRED COMPONENTS asio)
+
+# 添加包含目录
+include_directories(${Qt6Core_INCLUDE_DIRS}
+                    ${Qt6Widgets_INCLUDE_DIRS}
+                    ${OPENSSL_INCLUDE_DIR}
+                    ${FFMPEG_INCLUDE_DIRS}
+                    ${Boost_INCLUDE_DIRS})
+
+# 添加链接库
+set(LIBS ${Qt6Core_LIBRARIES}
+         ${Qt6Widgets_LIBRARIES}
+         ${OPENSSL_LIBRARIES}
+         ${FFMPEG_LIBRARIES}
+         ${Boost_LIBRARIES})
+
+# 添加源文件
+set(SOURCES main.cpp)
+
+# 添加可执行文件
+add_executable(MyProject ${SOURCES})
+
+# 链接库到可执行文件
+target_link_libraries(MyProject ${LIBS})
+
+# 设置 RPATH 以包含当前目录
+set_target_properties(MyProject PROPERTIES INSTALL_RPATH "$ORIGIN")
+
+# 启用自动 MOC、UIC 和 RCC
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
+```
+
+```cpp
+#include <QApplication>
+#include <QWidget>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QString>
+
+// OpenSSL
+#include <openssl/opensslv.h>
+
+// Boost.Asio
+#include <boost/asio.hpp>
+
+// FFmpeg
+extern "C" {
+#include <libavutil/avutil.h>
+}
+
+QString getFFmpegVersion() {
+    return QString("FFmpeg version: ") + QString(av_version_info());
+}
+
+QString getOpenSSLVersion() {
+    return QString("OpenSSL version: ") + OPENSSL_VERSION_TEXT;
+}
+
+QString getBoostVersion() {
+    return QString("Boost.Asio version: ") +
+           QString::number(BOOST_VERSION / 100000) + "." +
+           QString::number(BOOST_VERSION / 100 % 1000) + "." +
+           QString::number(BOOST_VERSION % 100);
+}
+
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+
+    QWidget window;
+    QVBoxLayout *layout = new QVBoxLayout(&window);
+
+    // 显示 OpenSSL 版本
+    QLabel *opensslLabel = new QLabel(getOpenSSLVersion());
+    layout->addWidget(opensslLabel);
+
+    // 显示 Boost.Asio 版本
+    QLabel *boostLabel = new QLabel(getBoostVersion());
+    layout->addWidget(boostLabel);
+
+    // 显示 FFmpeg 版本
+    QLabel *ffmpegLabel = new QLabel(getFFmpegVersion());
+    layout->addWidget(ffmpegLabel);
+
+    window.setLayout(layout);
+    window.setWindowTitle("Library Versions");
+    window.resize(400, 200);
+    window.show();
+
+    return app.exec();
+}
+```
 
 线筛
 

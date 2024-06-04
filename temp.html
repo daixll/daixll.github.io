@@ -24,8 +24,123 @@
     
       <div class="crossnote markdown-preview  ">
       
-<p>1</p>
-<p>线筛</p>
+<pre data-role="codeBlock" data-info="cmkae" class="language-cmkae cmkae"><code>cmake_minimum_required(VERSION 3.10)
+
+# 设置项目名称
+project(MyProject)
+
+# 设置 C++ 标准
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# 设置库路径
+set(Qt6_DIR /opt/Qt/6.7.1/gcc_64/lib/cmake/Qt6)
+set(OpenSSL_ROOT_DIR /opt/openssl)
+set(Boost_ROOT /opt/boost)
+set(FFMPEG_DIR /opt/ffmpeg)
+
+# 查找 Qt6 库
+find_package(Qt6 COMPONENTS Core Widgets REQUIRED)
+
+# 查找 OpenSSL 库
+find_package(OpenSSL REQUIRED)
+
+# 查找 FFmpeg 库
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(FFMPEG REQUIRED libavcodec libavformat libavutil libswscale)
+
+# 查找 Boost 库
+find_package(Boost REQUIRED COMPONENTS asio)
+
+# 添加包含目录
+include_directories(${Qt6Core_INCLUDE_DIRS}
+                    ${Qt6Widgets_INCLUDE_DIRS}
+                    ${OPENSSL_INCLUDE_DIR}
+                    ${FFMPEG_INCLUDE_DIRS}
+                    ${Boost_INCLUDE_DIRS})
+
+# 添加链接库
+set(LIBS ${Qt6Core_LIBRARIES}
+         ${Qt6Widgets_LIBRARIES}
+         ${OPENSSL_LIBRARIES}
+         ${FFMPEG_LIBRARIES}
+         ${Boost_LIBRARIES})
+
+# 添加源文件
+set(SOURCES main.cpp)
+
+# 添加可执行文件
+add_executable(MyProject ${SOURCES})
+
+# 链接库到可执行文件
+target_link_libraries(MyProject ${LIBS})
+
+# 设置 RPATH 以包含当前目录
+set_target_properties(MyProject PROPERTIES INSTALL_RPATH "$ORIGIN")
+
+# 启用自动 MOC、UIC 和 RCC
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QApplication&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QWidget&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QVBoxLayout&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QLabel&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;QString&gt;</span></span>
+
+<span class="token comment">// OpenSSL</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;openssl/opensslv.h&gt;</span></span>
+
+<span class="token comment">// Boost.Asio</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;boost/asio.hpp&gt;</span></span>
+
+<span class="token comment">// FFmpeg</span>
+<span class="token keyword keyword-extern">extern</span> <span class="token string">"C"</span> <span class="token punctuation">{</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;libavutil/avutil.h&gt;</span></span>
+<span class="token punctuation">}</span>
+
+QString <span class="token function">getFFmpegVersion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> <span class="token function">QString</span><span class="token punctuation">(</span><span class="token string">"FFmpeg version: "</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">QString</span><span class="token punctuation">(</span><span class="token function">av_version_info</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+QString <span class="token function">getOpenSSLVersion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> <span class="token function">QString</span><span class="token punctuation">(</span><span class="token string">"OpenSSL version: "</span><span class="token punctuation">)</span> <span class="token operator">+</span> OPENSSL_VERSION_TEXT<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+QString <span class="token function">getBoostVersion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> <span class="token function">QString</span><span class="token punctuation">(</span><span class="token string">"Boost.Asio version: "</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+           <span class="token class-name">QString</span><span class="token double-colon punctuation">::</span><span class="token function">number</span><span class="token punctuation">(</span>BOOST_VERSION <span class="token operator">/</span> <span class="token number">100000</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span>
+           <span class="token class-name">QString</span><span class="token double-colon punctuation">::</span><span class="token function">number</span><span class="token punctuation">(</span>BOOST_VERSION <span class="token operator">/</span> <span class="token number">100</span> <span class="token operator">%</span> <span class="token number">1000</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span>
+           <span class="token class-name">QString</span><span class="token double-colon punctuation">::</span><span class="token function">number</span><span class="token punctuation">(</span>BOOST_VERSION <span class="token operator">%</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> argc<span class="token punctuation">,</span> <span class="token keyword keyword-char">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    QApplication <span class="token function">app</span><span class="token punctuation">(</span>argc<span class="token punctuation">,</span> argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    QWidget window<span class="token punctuation">;</span>
+    QVBoxLayout <span class="token operator">*</span>layout <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QVBoxLayout</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>window<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 显示 OpenSSL 版本</span>
+    QLabel <span class="token operator">*</span>opensslLabel <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QLabel</span><span class="token punctuation">(</span><span class="token function">getOpenSSLVersion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    layout<span class="token operator">-&gt;</span><span class="token function">addWidget</span><span class="token punctuation">(</span>opensslLabel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 显示 Boost.Asio 版本</span>
+    QLabel <span class="token operator">*</span>boostLabel <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QLabel</span><span class="token punctuation">(</span><span class="token function">getBoostVersion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    layout<span class="token operator">-&gt;</span><span class="token function">addWidget</span><span class="token punctuation">(</span>boostLabel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 显示 FFmpeg 版本</span>
+    QLabel <span class="token operator">*</span>ffmpegLabel <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">QLabel</span><span class="token punctuation">(</span><span class="token function">getFFmpegVersion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    layout<span class="token operator">-&gt;</span><span class="token function">addWidget</span><span class="token punctuation">(</span>ffmpegLabel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    window<span class="token punctuation">.</span><span class="token function">setLayout</span><span class="token punctuation">(</span>layout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    window<span class="token punctuation">.</span><span class="token function">setWindowTitle</span><span class="token punctuation">(</span><span class="token string">"Library Versions"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    window<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    window<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-return">return</span> app<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>线筛</p>
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-bool">bool</span> st<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token comment">// 0,1不是素数</span>
 <span class="token keyword keyword-int">int</span> primes<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
