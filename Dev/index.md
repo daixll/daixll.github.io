@@ -104,15 +104,13 @@ export_on_save:
 ## IDE and more
 
 [VS Code](https://code.visualstudio.com/insiders/) 登陆 `github` 账号，等待配置同步
-
 [VS 2022](https://visualstudio.microsoft.com/zh-hans/downloads/) 登陆 `github` 账号，等待配置同步
-
 [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) 登陆 `JB` 账号，等待配置同步
 
 
 <br>
 
-## vs for Algorithm
+## vsc for Algorithm
 
 1. vscode 下载拓展 `WSL`
 
@@ -120,8 +118,8 @@ export_on_save:
     * 我们仅需 `C++` 的代码提示（IntelliSense）功能
     * 如果你不需要代码提示也可以不下
 
-3. 进入 ubuntu 环境，下载 `gcc` `gdb`
-    * `sudo apt install gcc`
+3. 进入 ubuntu 环境，下载 `g++` `gdb`
+    * `sudo apt install g++`
     * `sudo apt install gdb`
 
 4. 在项目目录下创建运行任务 `.vscode/tasks.json`
@@ -132,7 +130,7 @@ export_on_save:
             {
                 "label": "AC",
                 "type": "shell",
-                "command": "echo -n '⏳' > '${fileDirname}/exes/out'  && g++ -g -std=c++23 '${file}' -o '${fileDirname}/exes/${fileBasenameNoExtension}' && cat '${fileDirname}/exes/in' | '${fileDirname}/exes/${fileBasenameNoExtension}' > '${fileDirname}/exes/out' && sync",
+                "command": "./ac.sh",
                 "problemMatcher": [
                     "$gcc"
                 ]
@@ -168,8 +166,28 @@ export_on_save:
     }
     ```
 
+6. 在项目目录下创建运行脚本 `ac.sh`
 
-* 文件结构如此：**[已整理](AC.zip)**
+    ```shell
+    cppVersion="c++17"
+    runTime="3s"
+    keepLine="30000"
+
+    echo -n '⏳' > 'exes/out' && \
+    g++ -g -std="$cppVersion" ac.cpp -o exes/ac && \
+    cat 'exes/in' | \
+    timeout "$runTime" sh -c "'exes/ac' > 'exes/out.raw'"
+
+    if [ $? -ne 0 ]; then
+        echo -e "\033[0;31m TLE "$runTime" \033[0m"
+    fi  # 检查 timeout 命令的退出状态
+
+    head -n "$keepLine" 'exes/out.raw' > 'exes/out'
+    ```
+
+
+
+7. 所有文件结构如此：
     ```
     ├── .vscode/
     |   ├── launch.json
@@ -179,13 +197,13 @@ export_on_save:
     |   ├── ac
     |   ├── in
     |   ├── out
+    |   ├── out.raw
     |
     ├── ac.cpp
+    ├── ac.sh
     ```
 
-    * 使用 `g++` 编译源文件 `ac.cpp`，生成可执行文件 `ac`，将 `in` 的数据输入到 `ac`，`ac` 再输出到 `out`
-
-5. 配置快捷方式，f5一键执行命令
+8. 配置快捷方式，f5一键执行命令
 
     修改 `C:\Users\USERNAME\AppData\Roaming\Code\User\keybindings.json` 文件
 
@@ -202,7 +220,7 @@ export_on_save:
 
     在 `ac.cpp` 文件中，即可 `f5` 一键执行。
 
-6. 打断点 -> `运行` -> `启动调试`
+9. 打断点 -> `运行` -> `启动调试`
     * 需要先 `f5` 一次，再 `启动调试`
 
 
