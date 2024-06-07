@@ -25,6 +25,36 @@
       <div class="crossnote markdown-preview  ">
       
 <h1 id="引子">引子 </h1>
+<ol>
+<li>
+<p>在项目目录下创建运行脚本 <code>ac.sh</code></p>
+<pre data-role="codeBlock" data-info="shell" class="language-shell shell"><code><span class="token assign-left variable">cppVersion</span><span class="token operator">=</span><span class="token string">"c++17"</span>
+<span class="token assign-left variable">runTime</span><span class="token operator">=</span><span class="token string">"3s"</span>
+<span class="token assign-left variable">keepLine</span><span class="token operator">=</span><span class="token string">"30000"</span>
+
+<span class="token builtin class-name">echo</span> <span class="token parameter variable">-n</span> <span class="token string">'⏳'</span> <span class="token operator">&gt;</span> <span class="token string">'exes/out'</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+g++ <span class="token parameter variable">-g</span> <span class="token parameter variable">-std</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$cppVersion</span>"</span> ac.cpp <span class="token parameter variable">-o</span> exes/ac <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+<span class="token function">cat</span> <span class="token string">'exes/in'</span> <span class="token operator">|</span> <span class="token punctuation">\</span>
+<span class="token function">timeout</span> <span class="token string">"<span class="token variable">$runTime</span>"</span> <span class="token function">sh</span> <span class="token parameter variable">-c</span> <span class="token string">"'exes/ac' &gt; 'exes/out.raw'"</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token punctuation">[</span> <span class="token variable">$?</span> <span class="token parameter variable">-ne</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword keyword-then">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token parameter variable">-e</span> <span class="token string">"<span class="token entity" title="\033">\033</span>[0;31m TLE "</span><span class="token variable">$runTime</span><span class="token string">" <span class="token entity" title="\033">\033</span>[0m"</span>
+<span class="token keyword keyword-fi">fi</span>  <span class="token comment"># 检查 timeout 命令的退出状态</span>
+
+<span class="token function">head</span> <span class="token parameter variable">-n</span> <span class="token string">"<span class="token variable">$keepLine</span>"</span> <span class="token string">'exes/out.raw'</span> <span class="token operator">&gt;</span> <span class="token string">'exes/out'</span>
+</code></pre></li>
+<li>
+<p>所有文件结构如此：</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>├── exes/
+|   ├── ac
+|   ├── in
+|   ├── out
+|   ├── out.raw
+|
+├── ac.cpp
+├── ac.sh
+</code></pre></li>
+</ol>
 <br>
 <hr>
 <h1 id="入门">入门 </h1>

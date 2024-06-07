@@ -7,6 +7,39 @@ export_on_save:
 
 # 引子
 
+1. 在项目目录下创建运行脚本 `ac.sh`
+
+    ```shell
+    cppVersion="c++17"
+    runTime="3s"
+    keepLine="30000"
+
+    echo -n '⏳' > 'exes/out' && \
+    g++ -g -std="$cppVersion" ac.cpp -o exes/ac && \
+    cat 'exes/in' | \
+    timeout "$runTime" sh -c "'exes/ac' > 'exes/out.raw'"
+
+    if [ $? -ne 0 ]; then
+        echo -e "\033[0;31m TLE "$runTime" \033[0m"
+    fi  # 检查 timeout 命令的退出状态
+
+    head -n "$keepLine" 'exes/out.raw' > 'exes/out'
+    ```
+
+
+
+2. 所有文件结构如此：
+    ```
+    ├── exes/
+    |   ├── ac
+    |   ├── in
+    |   ├── out
+    |   ├── out.raw
+    |
+    ├── ac.cpp
+    ├── ac.sh
+    ```
+
 <br>
 
 ---
