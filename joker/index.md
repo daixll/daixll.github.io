@@ -16,17 +16,17 @@ export_on_save:
 </style>
 
 
-📄 <a href="戴兴龙的个人简历.pdf"> 戴兴龙的个人简历.pdf </a>
+# 📄 <a href="戴兴龙的个人简历.pdf"> 戴兴龙的个人简历.pdf </a>
 
 <br>
 
+---
+
 # 👨‍💻 **工作**
 
-## 2022 - 2024
+## 重庆奇灵云教育科技有限公司
 
-### 重庆奇灵云教育
-
-兼职、信息学奥赛培训
+兼职、2022 - 2024、信息学奥赛培训、C++讲师
 
 <br>
 
@@ -34,23 +34,15 @@ export_on_save:
 
 # 📚 **求学**
 
-## 2023 - 2025
+## 本科 重庆科技大学
 
-### 重庆科技大学
-
-本科、计算机科学与技术
-
-[学信网查询](https://www.chsi.com.cn/xlcx/bgcx.jsp) `AK7J41XHYJLJUNY1`
+计算机科学与技术、`AK7J41XHYJLJUNY1` [学信网查询](https://www.chsi.com.cn/xlcx/bgcx.jsp)
 
 <br>
 
-## 2020 - 2023
+## 专科 重庆工业职业技术大学
 
-### 重庆工业职业技术大学
-
-专科、计算机网络技术
-
-[学信网查询](https://www.chsi.com.cn/xlcx/bgcx.jsp) `AJMQ3S1HRKAJ5Y4Z`
+计算机网络技术、`AJMQ3S1HRKAJ5Y4Z` [学信网查询](https://www.chsi.com.cn/xlcx/bgcx.jsp)
 
 <br>
 
@@ -64,7 +56,7 @@ export_on_save:
 
 | 国家级奖项 🥇 | 省部级奖项 🥈 | 技能证书 🥉 | 奖学金 💰 | 
 |:-:|:-:|:-:|:-:|
-| 8 | 14 | 4 | 9 | 
+| 8 | 15 | 4 | 9 | 
 
 </div>
 
@@ -79,17 +71,21 @@ export_on_save:
 
 ## 2024
 
-### 省一 ICPC 四川省赛
+### 省X ICPC 四川省赛
 
-- `2024-6-16`
+- `2024-6-16` 
 
-### 省一 ICPC 重庆市赛
+### 省三 CCPC 重庆市赛
 
-- `2024-6-8`
+- `2024-6-8` `第十二届` `重庆市第十一届大学生程序设计大赛` `省赛二等奖` [报道]()
+
+<div class="center">
+    <img src="（省3）CCPCCQ.jpg" width="300"> 
+</div>
 
 ### 国三 蓝桥杯
 
-- `2024-6-1` `第十五届“蓝桥杯”C/C++程序设计本科B组` `国赛三等奖` [公示 / 排名](https://dasai.lanqiao.cn/notices/1639)
+- `2024-6-1` `第十五届“蓝桥杯”C/C++程序设计本科B组` `国赛三等奖` [公示 / 排名](https://dasai.lanqiao.cn/notices/1639) / [报道](https://www.cqust.edu.cn/info/1466/71001.htm)
 
 <div class="center">
     <img src="（国三）蓝桥杯24.jpg" width="300"> 
