@@ -23,20 +23,26 @@ export_on_save:
 
 ## 0、全概率与贝叶斯 **$^1$**
 
-> 有 $10$ 箱产品，$1, 2, 3$ 分别有 $5, 3, 2$ 箱，次品率为 $0.1, 0.2, 0.3$，任选一箱，再取一个产品，为良品的概率
+> （1）有 $10$ 箱产品，$1, 2, 3$ 分别有 $5, 3, 2$ 箱，次品率为 $0.1, 0.2, 0.3$，任选一箱，再取一个产品，为良品的概率
 
 $A$ 为抽到某家的概率
 $B$ 为良品的概率
 
-$P(A_1) = 0.5, P(B_1 | A_1) = 0.9$
-$P(A_2) = 0.3, P(B_2 | A_2) = 0.8$
-$P(A_3) = 0.2, P(B_3 | A_3) = 0.7$
+$P(A_1) = 0.5, P(B | A_1) = 0.9$
+$P(A_2) = 0.3, P(B | A_2) = 0.8$
+$P(A_3) = 0.2, P(B | A_3) = 0.7$
+
+由全概率公式 $P(B) = \sum_{i=1}^n P(B|A_i) P(A_i)$
 
 $P(B) = 0.9*0.5 + 0.8*0.3 + 0.7*0.2 = 0.83$
 
+答：任选一箱，再取一个产品，为良品的概率为 $0.83$
+
 <br>
 
-> $1, 2, 3$ 三车间加工一产品，加工量占总量的 $0.25, 0.35, 0.40$，次品率分别为 $0.03, 0.02, 0.01$，现从所有产品中抽取一个产品：（1）求产品为次品的概率；（2）是次品，次品来自 $2$ 车间的概率
+> （2）$1, 2, 3$ 三车间加工一产品，加工量占总量的 $0.25, 0.35, 0.40$，次品率分别为 $0.03, 0.02, 0.01$，现从所有产品中抽取一个产品：（1）求产品为次品的概率；（2）是次品，次品来自 $2$ 车间的概率
+
+$(1)$
 
 $A$ 为抽到某家的概率
 $B$ 为次品的概率
@@ -45,29 +51,50 @@ $P(A_1) = 0.25, P(B_1 | A_1) = 0.03$
 $P(A_2) = 0.35, P(B_2 | A_2) = 0.02$
 $P(A_3) = 0.40, P(B_3 | A_3) = 0.01$
 
+由全概率公式 $P(B) = \sum_{i=1}^n P(B|A_i) P(A_i)$
+
 $P(B) = 0.03 * 0.25 + 0.02 * 0.35 + 0.01 * 0.40 = 0.0185$
+
+答：产品为次品的概率为 $0.0185$
+
+$(2)$
+
+由贝叶斯公式 $P(A_j|B) = \frac{P(B|A_j) P(A_j)}{\sum_{i=1}^n P(B|A_i) P(A_i)}$
 
 $P(A_2|B) = \frac{0.02*0.35}{0.0185} = 0.378$
 
+答：是次品，次品来自 $2$ 车间的概率为 $0.378$
 
 <br>
 
-> 三个箱子，第 $1$ 箱有 $7$ 个黑球和 $1$ 个白球，第 $2$ 箱有 $3$ 个黑球和 $3$ 个白球，第 $3$ 箱有 $5$ 个黑球和 $3$ 个白球，现任取一箱（取到每个箱子是等可能的），再任取一球：（1）求取到的是白球的概率；（2）是白球，则属于第 $2$ 箱的概率
+> （3）三个箱子，第 $1$ 箱有 $7$ 个黑球和 $1$ 个白球，第 $2$ 箱有 $3$ 个黑球和 $3$ 个白球，第 $3$ 箱有 $5$ 个黑球和 $3$ 个白球，现任取一箱（取到每个箱子是等可能的），再任取一球：（1）求取到的是白球的概率；（2）是白球，则属于第 $2$ 箱的概率
+
+$(1)$
 
 $A$ 为抽到某箱的概率
 $B$ 为抽到白球的概率
 
-$P(A_1) = \frac{1}{3}, P(B_1 | A_1) = \frac{1}{8}$
-$P(A_2) = \frac{1}{3}, P(B_2 | A_2) = \frac{3}{6}$
-$P(A_3) = \frac{1}{3}, P(B_3 | A_3) = \frac{3}{8}$
+$P(A_1) = \frac{1}{3}, P(B | A_1) = \frac{1}{8}$
+$P(A_2) = \frac{1}{3}, P(B | A_2) = \frac{3}{6}$
+$P(A_3) = \frac{1}{3}, P(B | A_3) = \frac{3}{8}$
 
 $P(B) = \frac{1}{8}*\frac{1}{3} + \frac{3}{6}*\frac{1}{3} + \frac{3}{8}*\frac{1}{3} = \frac{1}{3}$
 
+由全概率公式 $P(B) = \sum_{i=1}^n P(B|A_i) P(A_i)$
+
+答：取到的是白球的概率为 $\frac{1}{3}$
+
+$(2)$
+
+由贝叶斯公式 $P(A_j|B) = \frac{P(B|A_j) P(A_j)}{\sum_{i=1}^n P(B|A_i) P(A_i)}$
+
 $P(A_2|B) = \frac{\frac{3}{6} * \frac{1}{3}}{ \frac{1}{3} } = \frac{1}{2}$
+
+答：是白球，属于第 $2$ 箱的概率为 $\frac{1}{2}$
 
 <br>
 
-> 甲乙丙三人同时向一架飞机射击，设击中飞机的概率分别为 $0.4, 0.5, 0.7$，若只有 $1$ 人击中飞机，则飞机被击落的概率为 $0.2$，若有 $2$ 人击中飞机，则飞机被击落的概率为 $0.6$，若三人击中飞机，则飞机一定被击落，求飞机被击落的概率
+> （4）甲乙丙三人同时向一架飞机射击，设击中飞机的概率分别为 $0.4, 0.5, 0.7$，若只有 $1$ 人击中飞机，则飞机被击落的概率为 $0.2$，若有 $2$ 人击中飞机，则飞机被击落的概率为 $0.6$，若三人击中飞机，则飞机一定被击落，求飞机被击落的概率
 
 $A$ 有几人击中飞机的概率
 $B$ 飞机被击落的概率
@@ -76,15 +103,21 @@ $P(A_1) = 0.4(中)*0.5*0.3 + 0.6*0.5(中)*0.3 + 0.6*0.5*0.7(中) = 0.36$
 $P(A_2) = 0.4(中)*0.5(中)*0.3 + 0.6*0.5(中)*0.7(中) + 0.4(中)*0.5*0.7(中) = 0.41$
 $P(A_3) = 0.4(中)*0.5(中)*0.7(中) = 0.14$
 
-$P(B_1 | A_1) = 0.2$
-$P(B_2 | A_2) = 0.6$
-$P(B_3 | A_3) = 1$
+$P(B | A_1) = 0.2$
+$P(B | A_2) = 0.6$
+$P(B | A_3) = 1$
+
+由全概率公式 $P(B) = \sum_{i=1}^n P(B|A_i) P(A_i)$
 
 $P(B) = 0.2*0.36 + 0.6*0.41 + 1*0.14 = 0.458$
 
+答：飞机被击落的概率为 $0.458$
+
 <br>
 
-> 某道单项选择题（$4$ 个选项），不会做的学生从中随机选择，假定学生会做此题的概率为 $0.7$：（1）学生答对此题的概率；（2）答对此题的学生确实会做的概率
+> （5）某道单项选择题（$4$ 个选项），不会做的学生从中随机选择，假定学生会做此题的概率为 $0.7$：（1）学生答对此题的概率；（2）答对此题的学生确实会做的概率
+
+$(1)$
 
 $A$ 为确实会做的概率
 $B$ 为答对此题的概率
@@ -92,22 +125,36 @@ $B$ 为答对此题的概率
 $P(A) = 0.7, P(B|A) = 1$
 $P(\bar A) = 0.3, P(B|\bar A) = \frac{1}{4}$
 
+由全概率公式 $P(B) = \sum_{i=1}^n P(B|A_i) P(A_i)$
+
 $P(B) = 1*0.7 + \frac{1}{4}*0.3 = 0.775$
+
+答：学生答对此题的概率为 $0.775$
+
+$(2)$
+
+由贝叶斯公式 $P(A_j|B) = \frac{P(B|A_j) P(A_j)}{\sum_{i=1}^n P(B|A_i) P(A_i)}$
 
 $P(A|B) = \frac{1*0.7}{0.775} = \frac{28}{31}$
 
+答：答对此题的学生确实会做的概率为 $\frac{28}{31}$
+
 <br>
 
-> 某病人发烧，认为病人患 $A, B, C$ 三种病的概率分别为 $0.5, 0.2, 0.3$，在这三种病之下，发烧的概率分别为 $0.2, 0.5, 0.8$，请推断该病人发烧由那一种病引起的可能性比较大
+> （6）某病人发烧，认为病人患 $A, B, C$ 三种病的概率分别为 $0.5, 0.2, 0.3$，在这三种病之下，发烧的概率分别为 $0.2, 0.5, 0.8$，请推断该病人发烧由那一种病引起的可能性比较大
 
-$D$ 为病人患病的概率
+$D$ 为病人患某病的概率
 $E$ 为病人发烧的概率
 
 $P(D_A)=0.5, P(E|D_A) = 0.2$
 $P(D_B)=0.2, P(E|D_B) = 0.5$
 $P(D_C)=0.3, P(E|D_C) = 0.8$
 
+由全概率公式 $P(E) = \sum_{i=1}^n P(E|D_i) P(D_i)$
+
 $P(E) = 0.2 * 0.5 + 0.5 * 0.2 + 0.8 * 0.3 = 0.44$
+
+由贝叶斯公式 $P(D_j|E) = \frac{P(E|D_j) P(D_j)}{\sum_{i=1}^n P(E|D_i) P(D_i)}$
 
 $P(D_A|E) = \frac{0.2 * 0.5}{0.44} = 0.227$
 
@@ -115,7 +162,7 @@ $P(D_B|E) = \frac{0.5 * 0.2}{0.44} = 0.227$
 
 $P(D_C|E) = \frac{0.8 * 0.3}{0.44} = 0.545$
 
-病人发烧由 $C$ 病引发的可能性大
+答：病人发烧由 $C$ 病引发的可能性大
 
 <br>
 
@@ -583,17 +630,17 @@ $$X \sim N(\mu, \sigma^2)$$
 
 1. 由规范性 $\int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} f(x, y) \text{d}x \text{d}y = 1$
 
-&emsp;&emsp;&emsp;&emsp; $\int_{-1}^{1} \int_{x^2}^{1} kx^2y \text{d}y \text{d}x = 1$
+    $\int_{-1}^{1} \int_{x^2}^{1} kx^2y \text{d}y \text{d}x = 1$
 
-&emsp;&emsp;&emsp;&emsp; $k = \frac{21}{4}$
+    $k = \frac{21}{4}$
 
 <br>
 
 2. $\begin{cases}f_X(x) = \int_{-\infty}^{+\infty} f(x,y) \text{d}y \\ f_Y(y) = \int_{-\infty}^{+\infty} f(x,y) \text{d}x \end{cases}$
 
-&emsp;&emsp;&emsp;&emsp; $f_X(x) = \begin{cases} \int_{x^2}^{1} \frac{21}{4} x^2 y \text{d}y, & -1 \leq x \leq  1 \\ 0, & else\end{cases} = \begin{cases} \frac{21x^2-21x^6}{8}, & -1 \leq x \leq 1 \\ 0, & else\end{cases}$
+    $f_X(x) = \begin{cases} \int_{x^2}^{1} \frac{21}{4} x^2 y \text{d}y, & -1 \leq x \leq  1 \\ 0, & else\end{cases} = \begin{cases} \frac{21x^2-21x^6}{8}, & -1 \leq x \leq 1 \\ 0, & else\end{cases}$
 
-&emsp;&emsp;&emsp;&emsp; $f_Y(y) = \begin{cases} \int_{-\sqrt y}^{ \sqrt y} \frac{21}{4} x^2 y \text{d}x, & 0 \leq y \leq 1 \\ 0, & else\end{cases} = \begin{cases} \frac{21y^2 \sqrt y}{6}, & 0 \leq y \leq 1 \\ 0, & else\end{cases}$
+    $f_Y(y) = \begin{cases} \int_{-\sqrt y}^{ \sqrt y} \frac{21}{4} x^2 y \text{d}x, & 0 \leq y \leq 1 \\ 0, & else\end{cases} = \begin{cases} \frac{21y^2 \sqrt y}{6}, & 0 \leq y \leq 1 \\ 0, & else\end{cases}$
 
 <br>
 
@@ -605,9 +652,9 @@ $$X \sim N(\mu, \sigma^2)$$
 
 1. $\begin{cases}f_X(x) = \int_{-\infty}^{+\infty} f(x,y) \text{d}y \\ f_Y(y) = \int_{-\infty}^{+\infty} f(x,y) \text{d}x \end{cases}$
 
-&emsp;&emsp;&emsp;&emsp; $f_X(x) = \begin{cases} \int_0^1 4xy \text{d}y , & 0 < x < 1 \\ 0 , & else \end{cases} = \begin{cases} 2x, & 0 < x < 1 \\ 0 , & else \end{cases}$
+    $f_X(x) = \begin{cases} \int_0^1 4xy \text{d}y , & 0 < x < 1 \\ 0 , & else \end{cases} = \begin{cases} 2x, & 0 < x < 1 \\ 0 , & else \end{cases}$
 
-&emsp;&emsp;&emsp;&emsp; $f_Y(y) = \begin{cases} \int_0^1 4xy \text{d}x , & 0 < y < 1 \\ 0 , & else \end{cases} = \begin{cases} 2y, & 0 < y < 1 \\ 0 , & else \end{cases}$
+    $f_Y(y) = \begin{cases} \int_0^1 4xy \text{d}x , & 0 < y < 1 \\ 0 , & else \end{cases} = \begin{cases} 2y, & 0 < y < 1 \\ 0 , & else \end{cases}$
 
 <br>
 
@@ -617,7 +664,7 @@ $$X \sim N(\mu, \sigma^2)$$
 
 3. $P\{Y \leq X^2 \} = \underset{G^{'}}{\int\int} f(x, y) \text{d} x \text{d} y$
 
-&emsp;&emsp;&emsp;&emsp; $\int_0^1 \int_0^{x^2} 4xy \text{d}y \text{d}x = \frac{1}{3}$
+    $\int_0^1 \int_0^{x^2} 4xy \text{d}y \text{d}x = \frac{1}{3}$
 
 <br>
 
@@ -631,13 +678,13 @@ $$X \sim N(\mu, \sigma^2)$$
 
 1. $E(X) = \int_{-\infty}^{+\infty} x f(x) \text{d}x$
 
-&emsp;&emsp;&emsp;&emsp; $E(X) = \int^1_0 x(2x) \text{d}x = \frac{2}{3} x^3 |^1_0 = \frac{2}{3}$
+    $E(X) = \int^1_0 x(2x) \text{d}x = \frac{2}{3} x^3 |^1_0 = \frac{2}{3}$
 
 2. $D(X) = E(X^2) - E^2(X)$
 
-&emsp;&emsp;&emsp;&emsp; $E(X^2) = \int^1_0 x^2(2x) \text{d}x = \frac{1}{2}x^4 |^1_0 = \frac{1}{2}$
+    $E(X^2) = \int^1_0 x^2(2x) \text{d}x = \frac{1}{2}x^4 |^1_0 = \frac{1}{2}$
 
-&emsp;&emsp;&emsp;&emsp; $D(X) = \frac{1}{2} - (\frac{2}{3})^2 = \frac{1}{18}$
+    $D(X) = \frac{1}{2} - (\frac{2}{3})^2 = \frac{1}{18}$
 
 <br>
 
@@ -645,23 +692,23 @@ $$X \sim N(\mu, \sigma^2)$$
 
 1. 由二项分布的期望方差
 
-&emsp;&emsp;&emsp;&emsp; $E(X) = np = 1.8$
+    $E(X) = np = 1.8$
 
-&emsp;&emsp;&emsp;&emsp; $D(X) = np(1-p) = 1.26$
+    $D(X) = np(1-p) = 1.26$
 
-&emsp;&emsp;&emsp;&emsp; $n = 6, p = 0.3$
+    $n = 6, p = 0.3$
 
 <br>
 
 > （3）设 $X_i \sim P(\lambda)(i=1,2,3)$，且 $\lambda = 3$，$X_1, X_2, X_3$ 相互独立，则 $D[\frac{1}{3}(X_1 + X_2 + X_3)]$
 
-&emsp;&emsp;&emsp;&emsp; $D[\frac{1}{3}(X_1 + X_2 + X_3)] = \frac{1}{9} D(X_1 + X_2 + X_3)$
+$D[\frac{1}{3}(X_1 + X_2 + X_3)] = \frac{1}{9} D(X_1 + X_2 + X_3)$
 
-&emsp;&emsp;&emsp;&emsp; $D(X_1 + X_2 + X_3) = D(X_1) + D(X_2) + D(X_3) + 2(E(X_1 X_2) - E(X_1)E(X_2)) + 2(E(X_1 X_3) - E(X_1)E(X_3)) + 2(E(X_2 X_3) - E(X_2)E(X_3))$
+$D(X_1 + X_2 + X_3) = D(X_1) + D(X_2) + D(X_3) + 2(E(X_1 X_2) - E(X_1)E(X_2)) + 2(E(X_1 X_3) - E(X_1)E(X_3)) + 2(E(X_2 X_3) - E(X_2)E(X_3))$
 
-&emsp;&emsp;&emsp;&emsp; 因为独立，$E(XY) = E(X)E(Y)$
+因为独立，$E(XY) = E(X)E(Y)$
 
-&emsp;&emsp;&emsp;&emsp; 所以原式 $= \frac{1}{9}(D(X_1) + D(X_2) + D(X_3)) = 1$
+所以原式 $= \frac{1}{9}(D(X_1) + D(X_2) + D(X_3)) = 1$
 
 <br>
 
@@ -802,6 +849,8 @@ $C$ 为常数
 
 * $D(X \pm Y) = D(X) + D(Y) \pm 2(E(XY) - E(X)E(Y))$
     * 独立，有 $D(X \pm Y) = D(X) + D(Y)$（不能反推）（就是 $+$，没写错）
+    * $\rho(X,Y) = \frac{Cov(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}$
+    * $Cov(X,Y) = E(XY) - E(X)(Y)$
 
 斜方差：
 
@@ -823,15 +872,14 @@ $C$ 为常数
 
 1. 求出总体矩 $E(X)$
 
-&emsp;&emsp;&emsp;&emsp; $E(X) = np = p$
+    $E(X) = np = p$
 
 2. 令 $\bar X = E(X)$
 
-&emsp;&emsp;&emsp;&emsp; $\frac{\sum_{i=1}^5 X_i}{5} = p$
+    $\frac{\sum_{i=1}^5 X_i}{5} = p$
 
 3. 求解方程
-
-&emsp;&emsp;&emsp;&emsp; $\hat p = \frac{3}{5}$
+    $\hat p = \frac{3}{5}$
 
 <br>
 
@@ -839,15 +887,15 @@ $C$ 为常数
 
 1. 求出总体矩 $E(X)$
 
-&emsp;&emsp;&emsp;&emsp; $E(X) = \lambda$
+    $E(X) = \lambda$
 
 2. 令 $\bar X = E(X)$
 
-&emsp;&emsp;&emsp;&emsp; $\frac{\sum_{i=1}^{m} X_i}{m} = \lambda$
+    $\frac{\sum_{i=1}^{m} X_i}{m} = \lambda$
 
 3. 求解方程
 
-&emsp;&emsp;&emsp;&emsp; $\hat \lambda = \frac{\sum_{i=1}^{m} X_i}{m}$
+    $\hat \lambda = \frac{\sum_{i=1}^{m} X_i}{m}$
 
 
 <br>
@@ -861,38 +909,38 @@ $C$ 为常数
 
 1. 求出总体矩 $E(X)$
 
-&emsp;&emsp;&emsp;&emsp; $E(X) = \sum_{i=1}^k(X_i * P_i) $
+    $E(X) = \sum_{i=1}^k(X_i * P_i) $
 
-&emsp;&emsp;&emsp;&emsp; $= \theta^2 + 4\theta(1-\theta) + 3(1-\theta)^2 $
+    $= \theta^2 + 4\theta(1-\theta) + 3(1-\theta)^2 $
 
-&emsp;&emsp;&emsp;&emsp; $= 3 - 2\theta$
+    $= 3 - 2\theta$
 
 2. 令 $\bar X = E(X)$
     
-&emsp;&emsp;&emsp;&emsp; $\bar X = \frac{1+2+1}{3} = \frac{4}{3}$
+    $\bar X = \frac{1+2+1}{3} = \frac{4}{3}$
 
-&emsp;&emsp;&emsp;&emsp; $\frac{4}{3} = 3 - 2\theta$
+    $\frac{4}{3} = 3 - 2\theta$
 
 3. 求解方程
 
-&emsp;&emsp;&emsp;&emsp; $\hat \theta = \frac{5}{6}$
+    $\hat \theta = \frac{5}{6}$
 
 
 <br>
 
 1. 写出样本似然函数 $L (\theta)$
 
-&emsp;&emsp;&emsp;&emsp; $L(x, \theta) = \prod_{i=1}^{3} P\{X=x_i\}$
+    $L(x, \theta) = \prod_{i=1}^{3} P\{X=x_i\}$
 
-&emsp;&emsp;&emsp;&emsp; $ = \theta^2 * 2\theta(1-\theta) *\theta^2$
+    $ = \theta^2 * 2\theta(1-\theta) *\theta^2$
 
-&emsp;&emsp;&emsp;&emsp; $ = 2 \theta^5  - 2 \theta^6$
+    $ = 2 \theta^5  - 2 \theta^6$
 
 2. 求导数 $\frac{\text{d} L(\theta) }{\text{d} \theta} = 0$
 
-&emsp;&emsp;&emsp;&emsp; $\frac{\text{d} L(x, \theta) }{\text{d} \theta} = 10 \theta^4 - 12\theta^5 = 0$
+    $\frac{\text{d} L(x, \theta) }{\text{d} \theta} = 10 \theta^4 - 12\theta^5 = 0$
 
-&emsp;&emsp;&emsp;&emsp; $\hat \theta = \frac{5}{6}$
+    $\hat \theta = \frac{5}{6}$
 
 <br>
 
@@ -900,23 +948,23 @@ $C$ 为常数
 
 1. 写出样本似然函数 $L (\theta)$
     
-&emsp;&emsp;&emsp;&emsp; $L(x, \theta) = \prod_{i=1}^{n} f(x_i)$
+    $L(x, \theta) = \prod_{i=1}^{n} f(x_i)$
 
-&emsp;&emsp;&emsp;&emsp; $= \prod_{i=1}^{\theta} \theta e^{-\theta x_i}$
+    $= \prod_{i=1}^{\theta} \theta e^{-\theta x_i}$
 
-&emsp;&emsp;&emsp;&emsp; $= \theta ^ n e^{-\theta \sum_{i=1}^{n}x_i}$
+    $= \theta ^ n e^{-\theta \sum_{i=1}^{n}x_i}$
 
 2. 对似然函数取对数 $\ln L(\theta)$
     
-&emsp;&emsp;&emsp;&emsp; $\ln L(x, \theta) = \ln \theta^n + \ln e^{-\theta \sum_{i=1}^{n} x_i}$
+    $\ln L(x, \theta) = \ln \theta^n + \ln e^{-\theta \sum_{i=1}^{n} x_i}$
 
-&emsp;&emsp;&emsp;&emsp; $= n \ln \theta - \theta \sum_{i=1}^{n}x_i$
+    $= n \ln \theta - \theta \sum_{i=1}^{n}x_i$
 
 3. 求导数 $\frac{\text{d}\ln L(\theta) }{\text{d} \theta} = 0$
 
-&emsp;&emsp;&emsp;&emsp; $\frac{\text{d}\ln L(x, \theta) }{\text{d} \theta} = \frac{n}{\theta} - \sum_{i=1}^{n}x_i = 0$
+    $\frac{\text{d}\ln L(x, \theta) }{\text{d} \theta} = \frac{n}{\theta} - \sum_{i=1}^{n}x_i = 0$
 
-&emsp;&emsp;&emsp;&emsp; $\hat \theta = \frac{n}{\sum_{n}^{i=1}x_i}$
+    $\hat \theta = \frac{n}{\sum_{n}^{i=1}x_i}$
 
 <br>
 
@@ -1154,641 +1202,8 @@ $-0.632 \notin M$，接受原假设 $H_0$
 
 拒绝域：
 
-$$(-\infty, -Z_\frac{\alpha}{2}) \cup (Z_\frac{\alpha}{2}, +\infty)$$
+**$$(-\infty, -Z_\frac{\alpha}{2}) \cup (Z_\frac{\alpha}{2}, +\infty)$$**
 
-$$(-\infty, -T_{\frac{\alpha}{2}}(n-1)) \cup (T_{\frac{\alpha}{2}}(n-1), +\infty)$$
+**$$(-\infty, -T_{\frac{\alpha}{2}}(n-1)) \cup (T_{\frac{\alpha}{2}}(n-1), +\infty)$$**
 
-$$( -\infty, -{\chi^2}_{1-\frac{\alpha}{2}}(n-1)) \cup ({\chi^2}_{\frac{\alpha}{2}}(n-1), +\infty)$$
-
-<!--
-
-# 最后一题
-
-大抵的意思：
-
-* 已知 总体 $\chi\sim N(\mu,{\sigma}^2)$
-* 已知 一组样本，均值为 $\bar{u}$
-
-## 题型一：已知 $\sigma , \bar\mu$，可否认为 $\mu = \bar \mu$
-
-**题目** 根据长期的经验，某工厂生产的特种特种金属丝的折断力服从 $\chi\sim N(\mu,{\sigma}^2)$，已知 $\mu=8kg$，现从该工厂生产的金属丝中随机抽取 $10$ 根，测得样本均值 $\bar{x}=575.2kg$，问这批特种金属丝的平均折断力可否认为是 $570kg$ ？$(\alpha=0.05)$
-
-s: 样本总量
-
-
-1. 提出假设
-
-    $$
-    H_0:\mu=570kg\\
-    H_1:\mu\neq570kg
-    $$
-
-2. 构造检验统计量
-
-    $$
-    Z=\frac{\bar{x}-\mu}{\frac{\sigma}{\sqrt{n}}}
-    $$
-
-
-
-3. 求出拒绝域
-
-    $$
-    |Z| > Z {\frac{\alpha}{2}}
-    $$
-
-<br>
-
-----
-
-
-
-# 旧题
-
-## 随机试验
-
-随机试验是指具有以下特点的试验：
-
-1. 可以在相同的条件下重复进行；
-2. 试验的结果不止一个，且能事先明确试验的所有可能结果；
-3. 进行一次试验之前不能确定哪一个结果会出现
-
-> 掷骰子、掷硬币、抽签、抽奖、生产产品、检查产品、调查统计等
-
-## 样本空间 
-
-随机试验的 **所有可能结果组成的集合** 称为随机试验的样本空间，记作 $S$
-
-集合的全集 -> 事件的所有可能结果 -> 样本空间
-
-## 随机事件
-
-样本空间 $S$ 的子集称为随机事件
-
-集合的子集 -> 事件的某些可能结果 -> 随机事件
-
-## 基本事件
-
-样本空间 $S$ 的单个元素称为基本事件
-
-集合的单个元素 -> 事件的某一个可能结果 -> 基本事件
-
-## 必然事件与不可能事件
-
-* 必然事件：样本空间 $S$ 
-
-* 不可能事件：空集 $\emptyset$ 
-
-## 事件的关系
-
-* 包含：$A \subset B$，，$B$ 包含 $A$，事件 $A$ 发生必然导致事件 $B$ 发生
-
-* 并：$A \cup B$，事件 $A$ 与 $B$ 至少发生一个
-
-* 交：$A \cap B$，事件 $A$ 与 $B$ 同时发生，有时候也称为积，也写作 $AB$
-
-* 差：$A - B$，事件 $A$ 发生而 $B$ 不发生
-
-* 互斥：$A \cap B = \emptyset$，事件 $A$ 与 $B$ 不可能同时发生
-
-* 逆（对立）：$\bar{A}$，事件 $A$ 不发生
-
-* 互斥：$A \cap \bar{A} = \emptyset$，$A \cup \bar{A} = S$，事件 $A$ 与 $\bar{A}$ 互斥
-
-## <span style="color:orange;">事件的运算</span>
-
-* 交换律：$A \cup B = B \cup A$，$A \cap B = B \cap A$
-* 结合律：$(A \cup B) \cup C = A \cup (B \cup C)$，$(A \cap B) \cap C = A \cap (B \cap C)$
-* 分配律：$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$，$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
-* 德摩根律：$\overline{A \cup B} = \bar{A} \cap \bar{B}$，$\overline{A \cap B} = \bar{A} \cup \bar{B}$
-
-
-## 频率
-
-在相同条件下，进行了 $n$ 次试验，事件 $A$ 发生的次数 $n_A$ 与 $n$ 的比值
-
-## <span style="color:orange;">概率</span>
-
-事件 $A$ 发生的可能性大小的度量，记作 $P(A)$
-
-性质：
-
-* 非负性：$P(A) \geq 0$
-* 规范性：$P(S) = 1$
-* 可列可加性：若 $A_1, A_2, \cdots$ 两两互斥，则 $P(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)$
-
-根据性质拓展：
-
-* $P(\emptyset) = 0$
-* $P(\bar{A}) = 1 - P(A)$
-* 若 $A \subset B$，则 $P(A) \leq P(B)$，有 $P(B - A) = P(B) - P(A)$
-* <span style="color:orange;">$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</span>
-* <span style="color:orange;">$P(A-B) = P(A) - P(A \cap B) = P(A \cap \bar B)$</span>
-
-## 古典（等可能）概型
-
-样本空间 $S$ 中的基本事件发生的可能性相同
-
-## <span style="color:orange;">条件概率</span>
-
-在事件 $B$ 已经发生的条件下，事件 $A$ 发生的概率，记作 $P(A|B)$
-
-<span style="color:orange;">$P(A|B) = \frac{P(A \cap B)}{P(B)}$</span>
-
-可拓展：
-
-* 乘法定理：
-    **$P(A \cap B) = P(A|B) P(B)$**
-
-* 全概率公式：
-    **$P(A) = \sum_{i=1}^n P(A|B_i) P(B_i)$**
-
-* 贝叶斯公式：
-    **$P(B_j|A) = \frac{P(A|B_j) P(B_j)}{\sum_{i=1}^n P(A|B_i) P(B_i)}$**
-
-## <span style="color:orange;">独立性</span>
-
-若 <span style="color:orange;">$P(A \cap B) = P(A)P(B)$</span>，则称事件 $A$ 与 $B$ 相互独立，反之亦然
-
-<br>
-
-## <span style="color:orange;">2题</span>
-
-### 分布函数求概率密度
-
-p58 20
-
-> 设随机变量 $X$ 的分布函数为：
-> 
->$F(x) = \begin{cases}
-    0,      & x < 1         \\ 
-    \ln x,  & 1 \leq x < e  \\ 
-    1,      & x \geq e      \\ 
-\end{cases}$
-
-> **Q1：求 $X$ 的概率密度函数 $f(x)$**
-
-* 分段求导：
-    * $x < 1$，$F(x) = 0$$f^{'}(x) = 0$
-    * $1 \leq x < e$，$F(x) = \ln x$$f^{'}(x) = \frac{1}{x}$
-    * $x \geq e$，$F(x) = 1$$f^{'}(x) = 0$
-
-    因此，有：
-    $f(x) = \begin{cases}
-    \frac{1}{x},    & 1 \leq x < e  \\
-    0,              & else    
-    \end{cases}$
-
-> **Q2: 求 $P\{X < 2\}$，$P\{0 < X \leq 3\}$，$P\{2 < X < \frac{5}{2}\}$**
-
-> 在概率论中，事件 `X<=2` 与事件 `x<2` 的概率是相等的
-> 这是因为在实数轴上，概率为零的点是可忽略的
-> 在连续型随机变量的情况下，单个点的概率为零
-
-* $P\{X < 2\} = P\{X \leq 2\} = F(2) = \ln 2$
-
-* $P\{0 < X \leq 3\} = P\{X \leq 3\} - P\{X \leq 0\} = F(3) - F(0) = 1 - 0 = 1$
-
-* $P\{2 < X < \frac{5}{2}\} = P\{X \leq \frac{5}{2}\} - P\{X \leq 2\} = F(\frac{5}{2}) - F(2) = \ln \frac{5}{2} - \ln 2 = \ln \frac{5}{4}$
-
-p59 34
-
-> 设随机变量 $X$ 在区间 $(0,1)$ 上服从均匀分布
-
-> **Q1：求 $Y = e^X$ 的概率密度**
-
-因为 $X$ 在区间 $(0,1)$ 上服从均匀分布，所以：
-
-* $f(x) = \begin{cases}
-    1,      & 0 < x < 1     \\ 
-    0,      & else          \\
-\end{cases}$
-
-### ? 概率密度求分布函数
-
-### 正态分布
-
-p59 26
-
-> 设 $X \sim N(3,2^2)$（即 $X$ 服从 **正态分布**，均值为 $3$，方差为 $2^2$）
-
-$\mu = 3$，$\sigma = 2$
-
-$F(x) = \Phi (\frac{x - \mu}{ \sigma })$，其中 $\Phi$ 为标准正态分布的分布函数
-
-> **Q1：求 $P\{2 < X \leq 5\}，P\{-4 < X \leq 10\}，P\{|X| > 2\}，P\{X > 3\}$**
-
-* $P\{2 < X \leq 5\}$ 
-    $= P\{X \leq 5\} - P\{X \leq 2\} = F(5) - F(2) $
-    $= \Phi (\frac{5 - 3}{2}) - \Phi (\frac{2 - 3}{2}) = \Phi (1) - \Phi (-0.5) = 0.8413 - 0.3085 = 0.5328$
-
-* $P\{-4 < X \leq 10\}$
-    $= P\{X \leq 10\} - P\{X \leq -4\} = F(10) - F(-4) $
-    $= \Phi (\frac{10 - 3}{2}) - \Phi (\frac{-4 - 3}{2}) = \Phi (3.5) - \Phi (-3.5) = 0.9998 - 0.0002 = 0.9996$
-
-* $P\{|X| > 2\}$
-    $= P\{X > 2\} + P\{X < -2\} = 1 - P\{X \leq 2\} + P\{X \leq -2\} $
-    $= 1 - F(2) + F(-2) $
-    $= 1 - \Phi (\frac{2 - 3}{2}) + \Phi (\frac{-2 - 3}{2}) $
-    $= 1 - \Phi (-0.5) + \Phi (-2.5) = 1 - 0.3085 + 0.0062 = 0.6977$
-
-* $P\{X > 3\}$
-    $= 1 - P\{X \leq 3\} = 1 - F(3) $
-    $= 1 - \Phi (\frac{3 - 3}{2}) = 1 - \Phi (0) = 1 - 0.5 = 0.5$
-
-> **Q2：确定 $c$，使得 $P\{X > c\} = P \{ X \leq c \}$**
-
-$P\{X > c\} = P \{ X \leq c \}$
-
-即
-
-$1 - P \{ X \leq c \} = P \{ X \leq c \}$ 
-
-$P \{ X \leq c \} = \frac{1}{2}$
-
-$\Phi (\frac{c - 3}{2}) = \frac{1}{2} = \Phi (0)$
-
-$\frac{c - 3}{2} = 0$，$c = 3$
-
-> **Q3：$P\{X > d\} \geq 0.9$，求 $d$ 的最大值**
-
-$P\{X > d\} \geq 0.9$
-
-即
-
-$1 - P\{X \leq d\} \geq 0.9$
-
-$P\{X \leq d\} \leq 0.1$
-
-$\Phi (\frac{d - 3}{2}) \leq 0.1 = \Phi (-1.28)$
-
-$\frac{d - 3}{2} \leq -1.28$
-
-$d \leq 0.44$
-
-### 分布律
-
-p59 33
-
-> 设随机变量 $X$ 的分布律为：
->
-> X | -2 | -1 | 0 | 1 | 3
-> :-:|:-:|:-:|:-:|:-:|:-:
-> p(X) | $\frac{1}{5}$ | $\frac{1}{6}$ | $\frac{1}{5}$ | $\frac{1}{15}$ | $\frac{11}{30}$
-> 
-> _
-
-> **Q1：求$Y = X^2$ 的分布律**
-
-* $Y = (-2)^2 = 4$
-    $P\{Y = 4\} = P\{X^2 = 4\}$
-    $= P\{X = -2\} = \frac{1}{5}$
-
-* $Y = (-1)^2 = 1$
-    $P\{Y = 1\} = P\{X^2 = 1\}$
-    $= P\{X = -1\} + P\{X = 1\} = \frac{1}{6} + \frac{1}{15} = \frac{7}{30}$
-
-* $Y = 0^2 = 0$
-    $P\{Y = 0\} = P\{X^2 = 0\}$
-    $= P\{X = 0\} = \frac{1}{5}$
-
-* $Y = 3^2 = 9$
-    $P\{Y = 9\} = P\{X^2 = 9\}$
-    $= P\{X = 3\} = \frac{11}{30}$
-
-因此，$Y$ 的分布律为：
-
-Y | 0 | 1 | 4 | 9
-:-:|:-:|:-:|:-:|:-:
-p(Y) | $\frac{1}{5}$ | $\frac{7}{30}$ | $\frac{1}{5}$ | $\frac{11}{30}$
-
-
-<br>
-
----
-
-
-## <span style="color:orange;">3题</span>
-
-### 求联合分布律
-
-p86 1
-
-> 在一箱子中装有 12 只开关，其中 2 只是次品，在其中取两次，每次任取一只，考虑两种试验：（1）放回抽样；（2）不放回抽样，我们定义随机变量 $X, Y$ 如下：
->$X = \begin{cases}
-    0,      & \text{第一次取到正品}         \\ 
-    1,      & \text{第一次取到次品}         \\
-    \end{cases}$
->$Y = \begin{cases}
-    0,      & \text{第二次取到正品}         \\
-    1,      & \text{第二次取到次品}         \\
-    \end{cases}$
-> 试分别就（1）、（2）两种情况，写出 $X, Y$ 的联合分布律
-
-（1）
-
-放回抽样，那么第一次和第二次独立，所以：
-
-$P\{X = 0\} = \frac{5}{6}$
-
-$P\{X = 1\} = \frac{1}{6}$
-
-$P\{Y = 0\} = \frac{5}{6}$
-
-$P\{Y = 1\} = \frac{1}{6}$
-
-$P\{X = 0, Y = 0\} = P\{X = 0\} P\{Y = 0\} = \frac{5}{6} \times \frac{5}{6} = \frac{25}{36}$
-
-$P\{X = 0, Y = 1\} = P\{X = 0\} P\{Y = 1\} = \frac{5}{6} \times \frac{1}{6} = \frac{5}{36}$
-
-$P\{X = 1, Y = 0\} = P\{X = 1\} P\{Y = 0\} = \frac{1}{6} \times \frac{5}{6} = \frac{5}{36}$
-
-$P\{X = 1, Y = 1\} = P\{X = 1\} P\{Y = 1\} = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}$
-
-分布律：
-
-| Y \ X | 0 | 1 | 
-|:-:|:-:|:-:|
-| 0 | $\frac{25}{36}$ | $\frac{5}{36}$ |
-| 1 | $\frac{5}{36}$ | $\frac{1}{36}$ |
-
-（2）
-
-不放回抽样，那么第一次和第二次不独立，所以：
-
-$P\{X = 0\} = \frac{5}{6}$
-
-此时，箱子里有 11 只开关，其中 2 只是次品，所以：
-
-$P\{X = 0, Y = 0\} = \frac{5}{6} \times \frac{9}{11} = \frac{45}{66}$
-
-$P\{X = 0, Y = 1\} = \frac{5}{6} \times \frac{2}{11} = \frac{10}{66}$
-
-因为 $P\{X = 1\} = \frac{1}{6}$
-
-此时，箱子里有 11 只开关，其中 1 只是次品，所以：
-
-$P\{X = 1, Y = 0\} = \frac{1}{6} \times \frac{10}{11} = \frac{10}{66}$
-
-$P\{X = 1, Y = 1\} = \frac{1}{6} \times \frac{1}{11} = \frac{1}{66}$
-
-| Y \ X | 0 | 1 | 
-|:-:|:-:|:-:|
-| 0 | $\frac{45}{66}$ | $\frac{10}{66}$ |
-| 1 | $\frac{10}{66}$ | $\frac{1}{66}$ |
-
-<br>
-
-### ???
-
-p86 3
-
-> 设随机变量 $(X,Y)$ 的概率密度为：
-$f(x,y) = \begin{cases}
-    k(6 - x - y),       & 0 < x < 2, 2 < y < 4  \\ 
-    0,                  & else           \\
-    \end{cases}$
-> （1）确定常数 $k$
-> （2）求 $P\{ X<1, Y<3 \}$
-> （3）求 $P\{ X<1.5 \}$
-> （4）求 $P\{ X+Y \leq 4 \}$
-
-（1）
-
-<br>
-
-### 求边缘概率密度
-
-p87 7
-
-> 设二维随机变量 $(X, Y)$ 的概率密度为：
-> 
-> $f(x,y) = \begin{cases}
-    4.8y(2-x),       & 0 \leq x \leq 1.0, 0 \leq y \leq x  \\ 
-    0,                  & else           \\
-    \end{cases}$
-> 求边缘概率密度
-
-<br>
-
-### ？
-
-p87 9
-
-> 
-
----
-
-
-
-## <span style="color:orange;">4题</span>
-
-### 常见分布的数字特征（期望，方差）
-
-> 设 $X_1,X_2,X_3$ 相互独立，其中 $X_1 \sim U(0,6)$，$X_2 \sim N(0,4)$，$X_3 \sim P(3)$，则 $D(X_1 - 2 X_2 + 3 X_3)$ = ?
-
-$X_1 \sim U(0,6)$ => $D(X_1) = \frac{(6-0)^2}{12} = 3$
-
-$X_2 \sim N(0,4)$ => $D(X_2) = 4$
-
-$X_3 \sim P(3)$ => $D(X_3) = 3$ 
-
-因为 $X_1,X_2,X_3$ 相互独立，所以：
-
-$D(X_1 - 2 X_2 + 3 X_3) = D(X_1) + D(-2 X_2) + D(3 X_3) = D(X_1) + 4 D(X_2) + 9 D(X_3) = 46$
-
-> 设 $X$ 表示 $10$ 次独立重复射击命中目标的次数，每次命中目标的概率为 $0.4$ ，求 $E(X^2)$
-
-由题意（10次试验，独立，两种结果（命中、丢失）），$X \sim B(n, p) = B(10,0.4)$
-
-$E(X) = np = 10 \times 0.4 = 4$
-
-$D(X) = np(1-p) = 10 \times 0.4 \times 0.6 = 2.4$
-
-$E(X^2) = D(X) + E^2(X) = 2.4 + 4^2 = 18.4$
-
-
-### 离散型 $R.V.$ 的协方差、相关系数
-
-> 已知离散型变量 $X、Y、XY$ 的分布律如下，求 (1) $cov(X-Y,Y)$；(2) $\rho(X,Y)$
-> 
->| $X$ | $0$ | $1$ | $2$ |
->|:-:|:-:|:-:|:-:|
->| 0 | $\frac{1}{2}$ | $\frac{1}{3}$ | $\frac{1}{6}$ |
-> 
->| $Y$ | $0$ | $1$ | $2$ |
->|:-:|:-:|:-:|:-:|
->| 0 | $\frac{1}{3}$ | $\frac{1}{3}$ | $\frac{1}{3}$ |
->
->| $XY$ | $0$ | $1$ | $2$ | $4$ |
->|:-:|:-:|:-:|:-:|:-:|
->| 0 | $\frac{7}{12}$ | $\frac{1}{3}$ | $0$ |$\frac{1}{12}$ |
-
-（1）
-
-$cov(X-Y,Y) = cov(X,Y) - cov(Y,Y)$
-
-$cov(X,Y) = E(XY) - E(X)E(Y)$
-
-$cov(Y,Y) = D(Y)$ 
-
-$D(Y) = E(Y^2) - E^2(Y)$
-
-$E(XY) = 0 \times \frac{7}{12} + 1 \times \frac{1}{3} + 2 \times 0 + 4 \times \frac{1}{12} = \frac{2}{3}$
-
-$E(X) = 0 \times \frac{1}{2} + 1 \times \frac{1}{3} + 2 \times \frac{1}{6} = \frac{2}{3}$
-
-$E(Y) = 0 \times \frac{1}{3} + 1 \times \frac{1}{3} + 2 \times \frac{1}{3} = 1$
-
-$E(Y^2) = 0^2 \times \frac{1}{3} + 1^2 \times \frac{1}{3} + 2^2 \times \frac{1}{3} = \frac{5}{3}$
-
-$cov(X,Y) = -\frac{2}{3}$
-
-（2）
-
-$\rho(X,Y) = \frac{cov(X,Y)}{\sqrt{D(X)} \sqrt{D(Y)}} = 0$
-
-
-### 连续型 $R.V.$ 的协方差、相关系数
-
-> 设 $(x, y)$ 的概率密度为：
-> $ f(x,y) = \begin{cases}
->    \frac{3}{4}x^2 y,      & 0 \leq x \leq 2,  0 \leq y \leq 1 \\ 
->    0,      & else       \\
->\end{cases}$
-> 求 $\rho(x,y)$
-
-$\rho(x, y) = \frac{cov(xy)}{\sqrt{D(x)} \sqrt{D(y)}} = \frac{E(xy) - E(x)E(y)}{\sqrt{D(x)} \sqrt{D(y)}}$
-
-$E(xy) = ?$ 
-
-<br>
-
----
-
-## <span style="color:orange;">6题</span>
-
-### ${\chi^2}$ （卡方）分布
-
-p149 4
-
-> 设 $X_1, X_2, \cdots, X_6$ 是来自总体 $N(0,1)$ 的样本，$Y = (X_1+X_2+X_3)^2 + (X_4+X_5+X_6)^2$，试确定常数 $C$，使 $CY$ 服从 ${\chi^2}$ 分布
-
-$CY 服从 {\chi^2}$ 分布：
-
-* ${(\sqrt{C}(X_1+X_2+X_3))}^2 + {(\sqrt{C}(X_4+X_5+X_6))}^2 \sim {\chi^2}(2)$
-
-同理：
-
-* ${(\sqrt{C}(X_1+X_2+X_3))}^2 \sim {\chi^2}(1)$，${(\sqrt{C}(X_4+X_5+X_6))}^2 \sim {\chi^2}(1)$
-
-因为 $X_1, X_2, \cdots, X_6$ 是来自总体 $N(0,1)$ 的样本，所以：
-
-* $X_1 + X_2 + X_3 \sim N(0,3)$，$X_4 + X_5 + X_6 \sim N(0,3)$
-
-为了将 $X_1 + X_2 + X_3$ 和 $X_4 + X_5 + X_6$ 的方差变为 1：
-
-* 当前方差为3，即 $a^2+b^2+c^2=3$，所以 $a=b=c=1$
-* 令 $a^2+b^2+c^2=1$，所以 $a=b=c=\frac{1}{\sqrt{3}}$
-
-因此：
-
-* $\frac{x_1+x_2+x_3}{\sqrt{3}} \sim N(0,1)$，$\frac{x_4+x_5+x_6}{\sqrt{3}} \sim N(0,1)$
-
-由 ${\chi^2}$ 分布的定义可知：
-
-* ${(\frac{x_1+x_2+x_3}{\sqrt{3}})}^2 \sim {\chi^2}(1)$，${(\frac{x_4+x_5+x_6}{\sqrt{3}})}^2 \sim {\chi^2}(1)$
-
-因此：
-
-* $\sqrt{C} = \frac{1}{\sqrt{3}}$，$C = \frac{1}{3}$
-
-
-### $t$ 分布
-
-* $Y = \frac{C(X_1 + X_2)}{ \sqrt{(X^2_3 + X^2_4 + X^2_5)}}$
-
-因为 $X_1, X_2, \cdots, X_5$ 是来自总体 $N(0,1)$ 的样本，所以：
-
-* $X_1 + X_2 \sim N(0,2)$
-
-为了将 $X_1 + X_2$ 的方差变为 1：
-
-* 当前方差为2，即 $a^2+b^2=2$，所以 $a=b=1$
-* 令 $a^2+b^2=1$，所以 $a=b=\frac{1}{\sqrt{2}}$
-
-因此：
-
-* $\frac{x_1+x_2}{\sqrt{2}} \sim N(0,1)$
-
-由 ${\chi^2}$ 分布的定义可知：
-
-* $X^2_3 + X^2_4 + X^2_5 \sim {\chi^2}(3)$
-
-由 $t$ 分布的定义可知：
-
-* $Y = \frac{\frac{x_1+x_2}{\sqrt{2}}}{ \sqrt{\frac{X^2_3 + X^2_4 + X^2_5}{3}}} \sim t(3)$
-
-因此，整理一下：
-
-* $Y = \frac{\frac{1}{\sqrt{2}}{(X_1+X_2)} }{ \frac{1}{\sqrt{3}} \sqrt{X^2_3+X^2_4 + X^2_5 }}$
-
-所以：
-
-* $C = \frac{\sqrt{3}}{\sqrt{2}} = \frac{\sqrt{6}}{2}$
-
-
-### $F$ 分布
-
-> 已知总体 $X \sim t(n)$，求证 $X^2 \sim F(1,n)$
-
-* $X \sim t(n)$，$X^2 \sim t^2(n)$
-
-由 $t$ 分布的定义可知：
-
-* $X = \frac{Z}{\sqrt{\frac{Y}{n}}}$，其中 $Z \sim N(0,1)$，$Y \sim {\chi^2}(n)$
-
-<br>
-
-* $X^2 = \frac{Z^2}{ Y / n}$
-
-由 ${\chi^2}$ 分布的定义可知：
-
-* $Z^2 \sim {\chi^2}(1)$
-
-由 $F$ 分布的定义可知：
-
-
-### 均值、方差
-
-> 设总体 $X \sim {\chi^2}(n)$，$X_1, X_2, \cdots, X_{10}$ 是来自总体 $X$ 的样本，求 $E(\bar{X})$，$D(\bar{X})$，$E(S^2)$
-
-> * $E(\bar{X})$：样本均值的期望
-
-对于卡方分布，其均值为自由度，因此，有：
-
-* $E(X) = n$
-
-对于样本均值，样本均值的期望等于总体均值：
-
-* $E(\bar{X}) = E(\frac{1}{n} \sum_{i=1}^n X_i) = \frac{1}{n} \sum_{i=1}^n E(X_i) = \frac{1}{n} \sum_{i=1}^n n = n$
-
-> * $D(\bar{X})$：样本均值的方差
-
-对于卡方分布，其方差为自由度的两倍，因此，有：
-
-* $D(X) = 2n$
-
-对于样本均值，有：
-
-* $D(\bar{X}) = \frac{2n}{10} = \frac{n}{5}$
-
-> * $E(S^2)$：样本方差的期望
-
-对于卡方分布，其方差为自由度的两倍，因此，有：
-
-* $D(X) = 2n$
-
-<br>
-
----
+**$$( -\infty, {\chi^2}_{1-\frac{\alpha}{2}}(n-1)) \cup ({\chi^2}_{\frac{\alpha}{2}}(n-1), +\infty)$$**
