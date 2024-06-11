@@ -516,48 +516,6 @@ p(X) | 1-p | p
 
 $$ P \{ X=k \} = p^k (1-p)^{1-k} $$ $$ 其中 (k=0,1), (0<p<1) $$
 
-### 二项分布 $B$
-
-二项分布是 $n$ 重伯努利试验
-
-> * 伯努利试验
->   设试验 $E$ 只有两个可能结果：$A$（事件 $A$ 发生）和 $B$（事件 $A$ 不发生，也称 $\bar{A}$），且 $P(A) = p$，$P(B) = 1-p$，则称 $E$ 为一次伯努利试验
-> * n重伯努利试验
-> 将上述试验 $E$ 重复 $n$ 次，称为 $n$ 重伯努利试验
-
-设 $X$ 为 $n$ 重伯努利试验中事件 $A$ 发生的次数，则 $X$ 服从参数为 $n$ 和 $p$ 的二项分布，记作：
-$$X \sim b(n,p)$$
-
-二项分布的分布函数：
-
-$$P \{ X=k \} = {C_n^k} p^k (1-p)^{n-k}$$ $$其中, k 表示成功的次数, n 表示试验的总次数, p 表示每次试验成功的概率(不变)$$
-
-特殊的，当 $n=1$ 时，二项分布就是 0-1 分布
-
-### 泊松分布 $P$
-
-泊松分布的分布函数：
-
-$$P \{ X=k \} = \frac{\lambda^k}{k!} e^{-\lambda}$$ $$其中, k=0,1,2,..., \lambda > 0$$
-
-记作：
-
-$$ X \sim P(\lambda) $$
-
-> 单位时间内，某一件事情发生的次数
-> 常见的：单位时间内，某一机器发生故障的次数，单位时间内，某一服务台接待的顾客数
-
-### 几何分布 $G$
-
-几何分布的分布函数：
-
-$$P \{ X=k \} = (1-p)^{k-1} p$$ $$其中, k=1,2,3,..., 0<p<1$$
-
-记作：
-
-$$ X \sim G(p) $$
-
-
 <br>
 
 ---
@@ -580,42 +538,6 @@ $$ X \sim G(p) $$
 $$F(x) = \int_{-\infty}^{x} f(t) dt$$ $$其中, -\infty < x < +\infty$$
 
 $x$ 为连续型随机变量，$f(x)$ 称为 $X$ 的概率密度函数
-
-### 均匀分布 $U$
-
-若连续型随机变量 $X$ 的概率密度函数为：
-
-$$f(x) = \begin{cases} \frac{1}{b-a}, & a < x < b \\ 0, & else \end{cases}$$
-
-则 $X$ 在区间 $(a,b)$ 上服从 **均匀分布**，记作：
-
-$$X \sim U(a,b)$$
-
-* 对于随机变量 $X$，落在区间 $a,b$ 中任意 **等长度** 的子区间的概率相等
-
-* 概率密度函数为常数，区间内所有点的概率密度相等
-
-
-### 指数分布 $E$
-
-若连续型随机变量 $X$ 的概率密度函数为：
-
-$$f(x) = \begin{cases} \lambda e^{-\lambda x}, & x > 0 \\ 0, & x \leq 0 \end{cases}$$ $$其中, \lambda > 0$$
-
-则 $X$ 服从 **指数分布**，记作：
-
-$$X \sim E(\lambda)$$
-
-> 电子原件的寿命分布都近似的服从指数分布
-
-### 正态分布 $N$
-
-若连续型随机变量 $X$ 的概率密度函数为：
-
-$$f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$ $$其中 \mu 为均值, \sigma 为标准差, -\infty < x < +\infty$$
-
-则 $X$ 服从 **正态分布**，记作：
-$$X \sim N(\mu, \sigma^2)$$
 
 <br>
 
@@ -648,7 +570,7 @@ $$X \sim N(\mu, \sigma^2)$$
 
 <br>
 
-> 设二维连续型随机变量 $(X, Y)$ 的联合概率密度函数为 $ f(x,y) = \begin{cases} 4xy, & 0 < x < 1 \\ 0 , & else \end{cases}$ 求（1）边缘密度函数；（2）$X, Y$ 是否独立；（3）求 $P\{Y \leq X^2\}$
+> 设二维连续型随机变量 $(X, Y)$ 的联合概率密度函数为 $ f(x,y) = \begin{cases} 4xy, & 0 < x < 1, 0 < y < 1 \\ 0 , & else \end{cases}$ 求（1）边缘密度函数；（2）$X, Y$ 是否独立；（3）求 $P\{Y \leq X^2\}$
 
 1. $\begin{cases}f_X(x) = \int_{-\infty}^{+\infty} f(x,y) \text{d}y \\ f_Y(y) = \int_{-\infty}^{+\infty} f(x,y) \text{d}x \end{cases}$
 
@@ -797,33 +719,7 @@ $$D(X+Y) = D(X) + D(Y) + 2Cov(X, Y)$$
 
 ---
 
-## 4、常见分布的期望和方差 **$^*$**
-
-#### 0-1分布
-
-$$E(X) = p$$ $$D(X) = p(1-p)$$
-
-#### 二项分布 $B$
-
-$$E(X) = np$$ $$D(X) = np(1-p)$$
-
-#### 泊松分布 $P$
-
-$$E(X) = \lambda$$ $$D(X) = \lambda$$
-
-#### 均匀分布 $U$
-
-$$E(X) = \frac{a+b}{2}$$ $$D(X) = \frac{(b-a)^2}{12}$$
-
-#### 指数分布 $E$
-
-$$E(X) = \frac{1}{\lambda}$$ $$D(X) = \frac{1}{\lambda^2}$$
-
-#### 正态分布 $N$
-
-$$E(X) = \mu$$ $$D(X) = \sigma^2$$
-
-#### 性质
+## 4、性质 **$^*$**
 
 $C$ 为常数
 
@@ -968,38 +864,6 @@ $C$ 为常数
 
 <br>
 
-> 设总体 $X \sim f(x, \theta) = \begin{cases} (\theta + 1)x^\theta , 0<x<1 \\ 0, else\end{cases}, \theta > -1$，$X_1, X_2, X_3 ... X_n$ 是来自总体 $X$ 的样本，求 $\theta$ 的矩估计量 
-
-$E(X) = \int_0^1x(\theta+1)x^\theta \text{d}x = \frac{\theta + 1}{\theta + 2}$
-
-令 $E(X) = \bar X$，$\bar X = \frac{\theta + 1}{\theta + 2}$
-
-解得 $\hat \theta = \frac{1 - 2\bar X}{\bar X - 1}$
-
-<br>
-
-> 设总体 $X \sim P(x), \lambda > 0$ 且未知，其分布律 $P\{X=k\} = \frac{\lambda^k e^{-\lambda}}{k!}, k=0,1...$， $x_1, x_2, ... , x_n$ 是来自总体 $X$ 的一个样本，求 $\lambda$ 的极大似然估计
-
-$L(x_1, x_2, ... , x_n) = P \{ X=x_1 \} * P \{ X=x_2 \} * ... * P\{ X=x_n \} = \frac{\lambda^{x_1} e^{-\lambda}}{x_1!} * \frac{\lambda^{x_2} e^{-\lambda}}{x_2!} * ... * \frac{\lambda^{x_n} e^{-\lambda}}{x_n!}$
-
-$L(x_1, x_2, ... , x_n) = \frac{\lambda^{\sum_{i=1}^n x_i} e^{-n\lambda}}{x_1!x_2!...x_n!}$
-
-$\ln L(\lambda) = \sum_{i=1}^n x_i \ln \lambda - n\lambda - \ln(x_1!x_2!...x_n!)$
-
-$\frac{\text{d}\ln L(\lambda)}{\text{d} \lambda} = \frac{\sum_{i=1}^n x_i}{\lambda} - n + 0 \triangleq 0$
-
-解得 $\hat \lambda = \frac{\sum_{i=1}^{n} x_i}{n} = \bar x$
-
-<br>
-
-> 设总体 $X \sim N(\mu, \sigma^2)$，$\mu, \sigma^2$ 为未知参数，$x_1, x_2, ... , x_n$ 是来自总体 $X$ 的一组样本值，求 $\mu, \sigma^2$ 的极大似然估计量
-
-$f(x; \mu \sigma^2) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
-
-$L(\mu, \sigma^2) = \sum_{i=1}^n \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}$
-
-<br>
-
 ---
 
 ## 1、矩估计
@@ -1031,7 +895,7 @@ $L(\mu, \sigma^2) = \sum_{i=1}^n \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x_i-\mu
 
 0. 设 $x_1, x_2, x_3, ... , x_n$ 为一组观测值
 
-1. 样本似然函数 $L(\theta)$
+1. 样本似然函数 $L(x, \theta) = \prod_{i=1}^n f(x_i)$
 
 2. 取对数 $\ln L(\theta)$
 
@@ -1207,3 +1071,98 @@ $-0.632 \notin M$，接受原假设 $H_0$
 **$$(-\infty, -T_{\frac{\alpha}{2}}(n-1)) \cup (T_{\frac{\alpha}{2}}(n-1), +\infty)$$**
 
 **$$( -\infty, {\chi^2}_{1-\frac{\alpha}{2}}(n-1)) \cup ({\chi^2}_{\frac{\alpha}{2}}(n-1), +\infty)$$**
+
+
+<br>
+
+---
+
+# 常见分布 **$^*$**
+
+## 二项分布 $B$
+
+二项分布是 $n$ 重伯努利试验
+
+> * 伯努利试验
+>   设试验 $E$ 只有两个可能结果：$A$（事件 $A$ 发生）和 $B$（事件 $A$ 不发生，也称 $\bar{A}$），且 $P(A) = p$，$P(B) = 1-p$，则称 $E$ 为一次伯努利试验
+> * n重伯努利试验
+> 将上述试验 $E$ 重复 $n$ 次，称为 $n$ 重伯努利试验
+
+设 $X$ 为 $n$ 重伯努利试验中事件 $A$ 发生的次数，则 $X$ 服从参数为 $n$ 和 $p$ 的二项分布，记作：
+
+$$X \sim b(n,p)$$
+
+二项分布的分布函数：
+
+$$P \{ X=k \} = {C_n^k} p^k (1-p)^{n-k}$$ $$其中, k 表示成功的次数, n 表示试验的总次数, p 表示每次试验成功的概率(不变)$$
+
+期望方差：
+
+$$E(X) = np$$ $$D(X) = np(1-p)$$
+
+> 特殊的，当 $n=1$ 时，二项分布就是 0-1 分布
+
+## 泊松分布 $P$
+
+泊松分布的分布函数：
+
+$$P \{ X=k \} = \frac{\lambda^k}{k!} e^{-\lambda}$$ $$其中, k=0,1,2,..., \lambda > 0$$
+
+记作：
+
+$$ X \sim P(\lambda) $$
+
+> 单位时间内，某一件事情发生的次数
+> 常见的：单位时间内，某一机器发生故障的次数，单位时间内，某一服务台接待的顾客数
+
+期望方差：
+
+$$E(X) = \lambda$$ $$D(X) = \lambda$$
+
+## 均匀分布 $U$
+
+若连续型随机变量 $X$ 的概率密度函数为：
+
+$$f(x) = \begin{cases} \frac{1}{b-a}, & a < x < b \\ 0, & else \end{cases}$$
+
+则 $X$ 在区间 $(a,b)$ 上服从 **均匀分布**，记作：
+
+$$X \sim U(a,b)$$
+
+期望方差：
+
+$$E(X) = \frac{a+b}{2}$$ $$D(X) = \frac{(b-a)^2}{12}$$
+
+> 对于随机变量 $X$，落在区间 $a,b$ 中任意 **等长度** 的子区间的概率相等
+
+> 概率密度函数为常数，区间内所有点的概率密度相等
+
+
+## 指数分布 $E$
+
+若连续型随机变量 $X$ 的概率密度函数为：
+
+$$f(x) = \begin{cases} \lambda e^{-\lambda x}, & x > 0 \\ 0, & x \leq 0 \end{cases}$$ $$其中, \lambda > 0$$
+
+则 $X$ 服从 **指数分布**，记作：
+
+$$X \sim E(\lambda)$$
+
+期望方差：
+
+$$E(X) = \frac{1}{\lambda}$$ $$D(X) = \frac{1}{\lambda^2}$$
+
+> 电子原件的寿命分布都近似的服从指数分布
+
+## 正态分布 $N$
+
+若连续型随机变量 $X$ 的概率密度函数为：
+
+$$f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$ $$其中 \mu 为均值, \sigma 为标准差, -\infty < x < +\infty$$
+
+则 $X$ 服从 **正态分布**，记作：
+$$X \sim N(\mu, \sigma^2)$$
+
+期望方差：
+
+$$E(X) = \mu$$ $$D(X) = \sigma^2$$
