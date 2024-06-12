@@ -343,6 +343,10 @@ g++ main.cpp <span class="token parameter variable">-lssl</span> <span class="to
 <li>下载 <a href="https://www.openssl.org/source/">openssl</a></li>
 <li>解压，进入解压后的目录</li>
 <li>配置安装选项<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>./config shared <span class="token parameter variable">--prefix</span><span class="token operator">=</span>/opt/openssl-x.y.z <span class="token parameter variable">--openssldir</span><span class="token operator">=</span>/opt/openssl-x.y.z
+</code></pre><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>./config <span class="token parameter variable">-fPIC</span> no-shared
+<span class="token comment"># fPIC 指生成位置无关代码</span>
+<span class="token comment"># 生成静态文件</span>
+<span class="token comment"># 直接在当前目录下生成</span>
 </code></pre></li>
 <li>安装<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">make</span> <span class="token function">install</span>
 </code></pre></li>
@@ -357,8 +361,14 @@ g++ main.cpp <span class="token parameter variable">-lssl</span> <span class="to
     <span class="token keyword keyword-return">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre><ul>
-<li>编译<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc a.c -I/opt/openssl-x.y.z/include -L/opt/openssl-x.y.z/lib64 -Wl,-rpath<span class="token operator">=</span>/opt/openssl-x.y.z/lib64 <span class="token parameter variable">-lssl</span> <span class="token parameter variable">-lcrypto</span>
+<li>
+<p>编译</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>gcc a.c -I/opt/openssl-x.y.z/include -L/opt/openssl-x.y.z/lib64 -Wl,-rpath<span class="token operator">=</span>/opt/openssl-x.y.z/lib64 <span class="token parameter variable">-lssl</span> <span class="token parameter variable">-lcrypto</span>
 ./a.out
+</code></pre></li>
+<li>
+<p>编译</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>g++ test.cpp -I/openssl-x.y.z/include -L/openssl-x.y.z <span class="token parameter variable">-lssl</span> <span class="token parameter variable">-lcrypto</span>
 </code></pre></li>
 </ul>
 </li>

@@ -338,6 +338,12 @@ export_on_save:
         ```bash
         ./config shared --prefix=/opt/openssl-x.y.z --openssldir=/opt/openssl-x.y.z
         ```
+        ```bash
+        ./config -fPIC no-shared
+        # fPIC 指生成位置无关代码
+        # 生成静态文件
+        # 直接在当前目录下生成
+        ```
     4. 安装
         ```bash
         make && sudo make install
@@ -359,6 +365,11 @@ export_on_save:
             ```bash
             gcc a.c -I/opt/openssl-x.y.z/include -L/opt/openssl-x.y.z/lib64 -Wl,-rpath=/opt/openssl-x.y.z/lib64 -lssl -lcrypto
             ./a.out
+            ```
+        
+        * 编译
+            ```bash
+            g++ test.cpp -I/openssl-x.y.z/include -L/openssl-x.y.z -lssl -lcrypto
             ```
 
 ## Linux-dev-use
