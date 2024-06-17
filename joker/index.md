@@ -73,7 +73,11 @@ export_on_save:
 
 ### 省X ICPC 四川省赛
 
-- `2024-6-16` 
+- `2024-6-16` `第十六届四川省大学生程序设计竞赛` `省赛三等奖` [报道]()
+
+<div class="center">
+    <img src="（省3）SCCPC.png" width="300"> 
+</div>
 
 ### 省三 CCPC 重庆市赛
 
@@ -88,7 +92,7 @@ export_on_save:
 - `2024-6-1` `第十五届“蓝桥杯”C/C++程序设计本科B组` `国赛三等奖` [公示 / 排名](https://dasai.lanqiao.cn/notices/1639) / [报道](https://www.cqust.edu.cn/info/1466/71001.htm)
 
 <div class="center">
-    <img src="（国三）蓝桥杯24.jpg" width="300"> 
+    <img src="（国3）蓝桥杯.png" width="300"> 
 </div>
 <div class="center">
     <img src="排名/（国3）蓝桥杯24.jpg" width="300">

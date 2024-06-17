@@ -773,18 +773,19 @@ export_on_save:
 
 ## Linux-setup
 
-* 在线安装
+* 简单安装
 
     1. 下载 [在线安装器](https://mirrors.tuna.tsinghua.edu.cn/qt/official_releases/online_installers/)
     2. 使用镜像启动
         ```shell
-        sudo ./Qt
+        sudo ./qt*
         ```
         * 启动过程 **可能** 出现依赖缺失问题：~~*不知道装什么，那就全装*~~
             ```bash
             sudo apt install libxcb*
             sudo apt install libgl1-mesa-dev
             ```
+        * 只需要 `Desktop`
     3. 检测是否安装成功
         ```shell
         /opt/Qt/x.y.z/gcc_64/bin/qmake -v
@@ -798,6 +799,9 @@ export_on_save:
 
         > 另外一方案是，修改 `/usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf` 文件，将 `qt4` 的路径修改为 `/opt/Qt/x.y.z/gcc_64/bin`。
 
+## Linux-use
+
+* 
 
 <br>
 
