@@ -38,7 +38,7 @@
 <li>调用业务逻辑返回结果</li>
 </ul>
 </blockquote>
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Controller.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Controller.java</span></summary><br>
 <ul>
 <li><code>@RestController</code> 处理 HTTP 请求并返回响应数据</li>
 <li><code>@Resource</code> 依赖注入，解耦一个类对其依赖对象的创建和管理过程</li>
@@ -72,7 +72,7 @@
 <li>MyBatis 等组件使用</li>
 </ul>
 </blockquote>
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Mapper.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Mapper.java</span></summary><br>
 <ul>
 <li><code>@Mapper</code> 使用 MyBatis 框架为接口生成对应实现类</li>
 </ul>
@@ -113,7 +113,7 @@
 <li>常用于封装数据传输对象</li>
 </ul>
 </blockquote>
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Result.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Result.java</span></summary><br>
 <ul>
 <li><code>@Override</code> 重写父类方法</li>
 </ul>
@@ -173,7 +173,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre></details>
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Emp.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Emp.java</span></summary><br>
 <p><code>Lombok</code> 提供的注解</p>
 <ul>
 <li><code>@Data</code> 用于自动生成类的 <code>toString()</code> 等</li>
@@ -193,17 +193,55 @@
 <span class="token annotation punctuation">@NoArgsConstructor</span>
 <span class="token annotation punctuation">@AllArgsConstructor</span>
 <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Emp</span> <span class="token punctuation">{</span>
-    <span class="token keyword keyword-private">private</span> <span class="token class-name">Integer</span> id<span class="token punctuation">;</span>
-    <span class="token keyword keyword-private">private</span> <span class="token class-name">String</span> userName<span class="token punctuation">;</span>
-    <span class="token keyword keyword-private">private</span> <span class="token class-name">String</span> password<span class="token punctuation">;</span>
-    <span class="token keyword keyword-private">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
-    <span class="token keyword keyword-private">private</span> <span class="token class-name">Short</span> gender<span class="token punctuation">;</span>
-    <span class="token keyword keyword-private">private</span> <span class="token class-name">String</span> image<span class="token punctuation">;</span>
-    <span class="token keyword keyword-private">private</span> <span class="token class-name">Short</span> job<span class="token punctuation">;</span>
-    <span class="token keyword keyword-private">private</span> <span class="token class-name">LocalDate</span> entryDate<span class="token punctuation">;</span>
-    <span class="token keyword keyword-private">private</span> <span class="token class-name">Integer</span> deptId<span class="token punctuation">;</span>
-    <span class="token keyword keyword-private">private</span> <span class="token class-name">LocalDateTime</span> createTime<span class="token punctuation">;</span>
-    <span class="token keyword keyword-private">private</span> <span class="token class-name">LocalDateTime</span> updateTime<span class="token punctuation">;</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">Integer</span> id<span class="token punctuation">;</span>                 <span class="token comment">// 员工编号</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">String</span> userName<span class="token punctuation">;</span>            <span class="token comment">// 用户名</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">String</span> password<span class="token punctuation">;</span>            <span class="token comment">// 密码</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>                <span class="token comment">// 姓名</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">Short</span> gender<span class="token punctuation">;</span>               <span class="token comment">// 性别</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">String</span> image<span class="token punctuation">;</span>               <span class="token comment">// 头像</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">Short</span> job<span class="token punctuation">;</span>                  <span class="token comment">// 职务</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">LocalDate</span> entryDate<span class="token punctuation">;</span>        <span class="token comment">// 入职日期</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">Integer</span> deptId<span class="token punctuation">;</span>             <span class="token comment">// 部门编号</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">LocalDateTime</span> createTime<span class="token punctuation">;</span>   <span class="token comment">// 创建时间</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">LocalDateTime</span> updateTime<span class="token punctuation">;</span>   <span class="token comment">// 更新时间</span>
+<span class="token punctuation">}</span>
+</code></pre></details>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Dept.java</span></summary><br>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token keyword keyword-package">package</span> <span class="token namespace">org<span class="token punctuation">.</span>dxl<span class="token punctuation">.</span>pojo</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">AllArgsConstructor</span></span><span class="token punctuation">;</span>
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">Data</span></span><span class="token punctuation">;</span>
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">NoArgsConstructor</span></span><span class="token punctuation">;</span>
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>time<span class="token punctuation">.</span></span><span class="token class-name">LocalDateTime</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">Dept</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">Integer</span> id<span class="token punctuation">;</span>                 <span class="token comment">// ID</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>                <span class="token comment">// 部门名称</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">LocalDateTime</span> createTime<span class="token punctuation">;</span>   <span class="token comment">// 创建时间</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">LocalDateTime</span> updateTime<span class="token punctuation">;</span>   <span class="token comment">// 修改时间</span>
+<span class="token punctuation">}</span>
+</code></pre></details>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">PageBean.java</span></summary><br>
+<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token keyword keyword-package">package</span> <span class="token namespace">org<span class="token punctuation">.</span>dxl<span class="token punctuation">.</span>pojo</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">AllArgsConstructor</span></span><span class="token punctuation">;</span>
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">Data</span></span><span class="token punctuation">;</span>
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">NoArgsConstructor</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+
+<span class="token doc-comment comment">/**
+ * 分页查询结果封装类
+ */</span>
+<span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">PageBean</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">Long</span> total<span class="token punctuation">;</span>     <span class="token comment">// 总记录数</span>
+    <span class="token keyword keyword-private">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> rows<span class="token punctuation">;</span> <span class="token comment">// 当前页数据列表</span>
 <span class="token punctuation">}</span>
 </code></pre></details>
 <br>
@@ -216,13 +254,13 @@
 <li>调用 DAO 层实现对数据的访问和操作</li>
 </ul>
 </blockquote>
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Service.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Service.java</span></summary><br>
 <pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token comment">// EmpService.java</span>
 <span class="token keyword keyword-public">public</span> <span class="token keyword keyword-interface">interface</span> <span class="token class-name">EmpService</span> <span class="token punctuation">{</span>
     <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> <span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre></details>
-<details><summary><a href="" target="_blank"></a><span style="color: blue">impl / ServiceImpl.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">impl / ServiceImpl.java</span></summary><br>
 <ul>
 <li><code>@Server</code> 标识为 Spring Bean，由 Spring 管理的服务类</li>
 <li><code>@Resource</code> 依赖注入</li>
@@ -243,23 +281,13 @@
 </code></pre></details>
 <br>
 <hr>
-<h3 id="org--dxl--dao">org / dxl / dao </h3>
-<blockquote>
-<p><strong>数据访问对象</strong></p>
-<ul>
-<li>CRUD</li>
-<li>数据访问与业务逻辑分离</li>
-</ul>
-</blockquote>
-<br>
-<hr>
 <h3 id="application">Application </h3>
 <br>
 <hr>
 <h2 id="resources"><strong>resources</strong> </h2>
 <h3 id="org--dxl--mapper-1">org / dxl / mapper </h3>
 <blockquote></blockquote>
-<details><summary><a href="" target="_blank"></a><span style="color: blue">EmpMapper.xml</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">EmpMapper.xml</span></summary><br>
 <pre data-role="codeBlock" data-info="xml" class="language-xml xml"><code><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
 <span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">mapper</span>
         <span class="token name">PUBLIC</span> <span class="token string">"-//mybatis.org//DTD Mapper 3.0//EN"</span>
@@ -287,7 +315,7 @@
 <blockquote>
 <p><strong>配置文件</strong></p>
 </blockquote>
-<details><summary><a href="" target="_blank"></a><span style="color: blue"> application.properties</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange"> application.properties</span></summary><br>
 <pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token assign-left variable">spring.application.name</span><span class="token operator">=</span>项目名字
 
 <span class="token comment"># mysql 配置</span>
@@ -301,7 +329,7 @@ spring.datasource.driver-class-name<span class="token operator">=</span>com.mysq
 <h1 id="test"><strong>test</strong> </h1>
 <h2 id="java-1"><strong>java</strong> </h2>
 <h3 id="org--dxl--applicationtests">org / dxl / ApplicationTests </h3>
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Tests</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Tests</span></summary><br>
 <pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token keyword keyword-package">package</span> <span class="token namespace">org<span class="token punctuation">.</span>dxl</span><span class="token punctuation">;</span>
 
 <span class="token keyword keyword-import">import</span> <span class="token import"><span class="token namespace">jakarta<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Resource</span></span><span class="token punctuation">;</span>
@@ -367,10 +395,6 @@ spring.datasource.driver-class-name<span class="token operator">=</span>com.mysq
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#org--dxl--service" class="md-toc-link">
             <p>org / dxl / service</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#org--dxl--dao" class="md-toc-link">
-            <p>org / dxl / dao</p>
 
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#application" class="md-toc-link">

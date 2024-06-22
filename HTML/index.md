@@ -224,6 +224,29 @@ export_on_save:
 
 # VUE
 
+```
+my-vue-project
+├── node_modules/       # 项目依赖包
+├── public/             # 静态文件
+├── src/                # 源代码
+│   ├── assets/         # 静态资源（图片、字体等）
+│   ├── components/     # 公共组件
+│   ├── router/         # 路由配置
+│   │   └── index.js    # 路由定义
+│   ├── views/          # 视图组件
+│   │   ├── Home.vue    # Home 视图
+│   │   └── About.vue   # About 视图
+│   ├── App.vue         # 根组件
+│   └── main.js         # 入口文件
+├── .gitignore          # Git 忽略文件
+├── babel.config.js     # Babel 配置
+├── package.json        # 项目信息和依赖
+└── README.md           # 项目说明
+
+```
+
+## 本地运行
+
 1. 下载 [Node.js](https://nodejs.org/en)
     * 终端验证 `node -v`
 
@@ -236,7 +259,7 @@ export_on_save:
     * `npm install`
     * `npm run dev`
     
-## 使用 CDN 运行
+## CDN 运行
 
 ```html
 <!DOCTYPE html>
@@ -266,7 +289,7 @@ export_on_save:
 </html>
 ```
 
-## `v-bind`
+## v-bind
 
 ```html
 <!DOCTYPE html>
@@ -317,7 +340,7 @@ export_on_save:
 
 ---
 
-## `v-for`
+## v-for
 
 ```html
 <!DOCTYPE html>
@@ -470,7 +493,7 @@ export_on_save:
 
 ---
 
-## `v-if`
+## v-if
 
 
 
@@ -478,7 +501,7 @@ export_on_save:
 
 ---
 
-## `v-show`
+## v-show
 
 
 <br>
@@ -486,7 +509,7 @@ export_on_save:
 ---
 
 
-## `v-model`
+## v-model
 
 
 <br>
@@ -494,7 +517,7 @@ export_on_save:
 ---
 
 
-## `v-on`
+## v-on
 
 
 <br>

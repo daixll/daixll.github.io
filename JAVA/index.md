@@ -25,7 +25,7 @@ export_on_save:
 > * 处理 HTTP 请求，返回 HTTP 响应
 > * 调用业务逻辑返回结果
 
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Controller.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Controller.java</span></summary><br>
 
 * `@RestController` 处理 HTTP 请求并返回响应数据
 * `@Resource` 依赖注入，解耦一个类对其依赖对象的创建和管理过程
@@ -62,7 +62,7 @@ public class EmpController {
 > **映射器**
 > * MyBatis 等组件使用
 
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Mapper.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Mapper.java</span></summary><br>
 
 * `@Mapper` 使用 MyBatis 框架为接口生成对应实现类
 
@@ -107,7 +107,7 @@ public interface EmpMapper {
 > **普通 Java 对象**
 > * 常用于封装数据传输对象
 
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Result.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Result.java</span></summary><br>
 
 * `@Override` 重写父类方法
 
@@ -171,7 +171,7 @@ public class Result {
 </details>
 
 
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Emp.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Emp.java</span></summary><br>
 
 `Lombok` 提供的注解
 
@@ -193,17 +193,63 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Emp {
-    private Integer id;
-    private String userName;
-    private String password;
-    private String name;
-    private Short gender;
-    private String image;
-    private Short job;
-    private LocalDate entryDate;
-    private Integer deptId;
-    private LocalDateTime createTime;
-    private LocalDateTime updateTime;
+    private Integer id;                 // 员工编号
+    private String userName;            // 用户名
+    private String password;            // 密码
+    private String name;                // 姓名
+    private Short gender;               // 性别
+    private String image;               // 头像
+    private Short job;                  // 职务
+    private LocalDate entryDate;        // 入职日期
+    private Integer deptId;             // 部门编号
+    private LocalDateTime createTime;   // 创建时间
+    private LocalDateTime updateTime;   // 更新时间
+}
+```
+</details>
+
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Dept.java</span></summary><br>
+
+```java
+package org.dxl.pojo;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Dept {
+    private Integer id;                 // ID
+    private String name;                // 部门名称
+    private LocalDateTime createTime;   // 创建时间
+    private LocalDateTime updateTime;   // 修改时间
+}
+```
+</details>
+
+<details><summary><a href="" target="_blank"></a><span style="color: orange">PageBean.java</span></summary><br>
+
+```java
+package org.dxl.pojo;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+/**
+ * 分页查询结果封装类
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class PageBean {
+    private Long total;     // 总记录数
+    private List<Emp> rows; // 当前页数据列表
 }
 ```
 </details>
@@ -219,7 +265,7 @@ public class Emp {
 > * 封装业务逻辑和数据处理，提供给 Controller 使用
 > * 调用 DAO 层实现对数据的访问和操作
 
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Service.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Service.java</span></summary><br>
 
 ```java
 // EmpService.java
@@ -229,7 +275,7 @@ public interface EmpService {
 ```
 </details>
 
-<details><summary><a href="" target="_blank"></a><span style="color: blue">impl / ServiceImpl.java</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">impl / ServiceImpl.java</span></summary><br>
 
 * `@Server` 标识为 Spring Bean，由 Spring 管理的服务类
 * `@Resource` 依赖注入
@@ -257,17 +303,6 @@ public class EmpServiceImpl implements EmpService {
 ---
 
 
-
-### org / dxl / dao
-
-> **数据访问对象**
-> * CRUD
-> * 数据访问与业务逻辑分离
-
-<br>
-
----
-
 ### Application
 
 
@@ -281,7 +316,7 @@ public class EmpServiceImpl implements EmpService {
 
 > 
 
-<details><summary><a href="" target="_blank"></a><span style="color: blue">EmpMapper.xml</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">EmpMapper.xml</span></summary><br>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -321,7 +356,7 @@ public class EmpServiceImpl implements EmpService {
 
 > **配置文件**
 
-<details><summary><a href="" target="_blank"></a><span style="color: blue"> application.properties</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange"> application.properties</span></summary><br>
 
 ```sh
 spring.application.name=项目名字
@@ -346,7 +381,7 @@ spring.datasource.password=1234
 ### org / dxl / ApplicationTests
 
 
-<details><summary><a href="" target="_blank"></a><span style="color: blue">Tests</span></summary><br>
+<details><summary><a href="" target="_blank"></a><span style="color: orange">Tests</span></summary><br>
 
 ```java
 package org.dxl;
