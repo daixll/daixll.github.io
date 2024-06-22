@@ -1,0 +1,98 @@
+site_name: 戴兴龙
+copyright: Copyright © 2020 - 2024 Xinglong Dai
+repo_name: daixll/daixll.github.io
+repo_url: https://github.com/daixll/daixll.github.io
+
+
+
+theme:
+  logo: assets/head.png     # 主图标
+  favicon: assets/head.png  # 标签栏图标
+  name: material            # 主题
+  language: 'zh'            # 中文网站
+  palette:                  # 明/暗模式
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+  features:                 # 功能
+    - navigation.top    # 返回顶部的按钮 在上滑时出现
+    - navigation.tabs   # 顶部导航
+    - content.code.copy # 代码复制
+  font:
+    text: 'Noto Serif SC' # 字体
+    code: 'Fira Mono'     # 代码字体
+
+# 插件
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:                    # 侧边目录
+      permalink: true                                 # 启用目录项的永久链接功能
+      slugify: !!python/name:pymdownx.slugs.uslugify  # 标题生成永久链接的方式
+  - pymdownx.superfences:   # ?
+      custom_fences:                                  # 自定义代码块
+        - name: mermaid                                                 # 自定义代码块的名称
+          format: !!python/name:pymdownx.superfences.fence_code_format  # 如何格式化 mermaid 代码块
+  - pymdownx.arithmatex:
+      generic: true
+  - attr_list
+  - md_in_html
+
+extra:
+  generator: false    # 删除 Made with Material for MkDocs
+
+extra_css:
+  - stylesheets/extra.css
+  - https://unpkg.com/katex@0/dist/katex.min.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+# 文章
+nav:
+  - JIAO:
+    - About: index.md
+    - Project: src/about/project.md
+    - Work: src/about/work.md
+    - Education: src/about/education.md
+    - Honor: src/about/Honor.md
+  - 🪂 Algorithm:
+    - 入门: a.md
+    - 基础: a.md
+  - 🚀 C/C++:
+    - moderncpp:
+      - Item 2: cpp/moderncpp.md
+      - Item 3: d.md
+  - 🌥️ DevOps:
+    - 开发环境: a.md
+    - 常用软件: a.md
+  - 🌿 Language:
+    - Python:
+      - xxi: 123.md
+      - xxx: sas.md
+    - Golang:
+      - xixi: aaa.md
+      - jiji: kkk.md
+  - 📖 CS:
+    - 数据结构: a.md
+    - 操作系统: a.md
+  - 👷 Φιλοσοφία:
+    - 马克思主义: a.md
