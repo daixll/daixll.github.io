@@ -64,7 +64,6 @@ extra_css:
 extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
-  #- https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML
 
 # 文章
@@ -86,12 +85,19 @@ nav:
     - 开发环境: a.md
     - 常用软件: a.md
   - 🌿 Language:
+    - ONE: src/language/python/a.md
     - Python:
-      - xxi: 123.md
+      - xxi: src/language/python/b.md
       - xxx: sas.md
     - Golang:
       - xixi: aaa.md
       - jiji: kkk.md
+    - Java:
+      - main:
+        - java: src/language/java/main_java.md
+        - resources: src/language/java/main_resources.md
+      - test:
+        - java: src/language/java/test_java.md
   - 📖 CS:
     - 数据结构: a.md
     - 操作系统: a.md
@@ -99,4 +105,4 @@ nav:
     - 微积分: a.md
     - 概率论: a.md
   - 👷 Φιλοσοφία:
-    - 马克思主义: a.md
+    - 马克思主义: src/philosophy/marx.md
