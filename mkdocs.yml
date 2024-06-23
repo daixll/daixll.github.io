@@ -79,25 +79,24 @@ nav:
     - 基础: index.md
   - 🚀 C/C++:
     - moderncpp:
-      - Item 2: cpp/moderncpp.md
-      - Item 3: d.md
+      - Item 2: index.md
+      - Item 3: index.md
   - 🌥️ DevOps:
     - 开发环境: index.md
     - 常用软件: index.md
   - 🌿 Language:
-    - ONE: src/language/python/index.md
     - Python:
-      - xxi: src/language/python/b.md
-      - xxx: sas.md
+      - xxi: index.md
+      - xxx: index.md
     - Golang:
-      - xixi: aaindex.md
-      - jiji: kkk.md
+      - xixi: index.md
+      - jiji: index.md
     - Java:
       - main:
-        - java: src/language/java/main_javindex.md
+        - java: src/language/java/main_java.md
         - resources: src/language/java/main_resources.md
       - test:
-        - java: src/language/java/test_javindex.md
+        - java: src/language/java/test_java.md
   - 📖 CS:
     - 数据结构: index.md
     - 操作系统: index.md
