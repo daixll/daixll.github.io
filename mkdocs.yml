@@ -75,34 +75,34 @@ nav:
     - Education: src/about/education.md
     - Honor: src/about/Honor.md
   - 🪂 Algorithm:
-    - 入门: a.md
-    - 基础: a.md
+    - 入门: index.md
+    - 基础: index.md
   - 🚀 C/C++:
     - moderncpp:
       - Item 2: cpp/moderncpp.md
       - Item 3: d.md
   - 🌥️ DevOps:
-    - 开发环境: a.md
-    - 常用软件: a.md
+    - 开发环境: index.md
+    - 常用软件: index.md
   - 🌿 Language:
-    - ONE: src/language/python/a.md
+    - ONE: src/language/python/index.md
     - Python:
       - xxi: src/language/python/b.md
       - xxx: sas.md
     - Golang:
-      - xixi: aaa.md
+      - xixi: aaindex.md
       - jiji: kkk.md
     - Java:
       - main:
-        - java: src/language/java/main_java.md
+        - java: src/language/java/main_javindex.md
         - resources: src/language/java/main_resources.md
       - test:
-        - java: src/language/java/test_java.md
+        - java: src/language/java/test_javindex.md
   - 📖 CS:
-    - 数据结构: a.md
-    - 操作系统: a.md
+    - 数据结构: index.md
+    - 操作系统: index.md
   - 🔢 Math:
-    - 微积分: a.md
-    - 概率论: a.md
+    - 微积分: index.md
+    - 概率论: index.md
   - 👷 Φιλοσοφία:
     - 马克思主义: src/philosophy/marx.md
