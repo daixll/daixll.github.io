@@ -13,7 +13,9 @@
 
 * `@Override` 重写父类方法
 
-<details><summary><a href="" target="_blank"></a>Result.java</span></summary>
+<details>
+
+<summary>Result.java</summary>
 
 ```java
 package org.dxl.pojo;

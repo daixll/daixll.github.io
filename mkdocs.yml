@@ -3,8 +3,6 @@ copyright: Copyright © 2020 - 2024 Xinglong Dai
 repo_name: daixll/daixll.github.io
 repo_url: https://github.com/daixll/daixll.github.io
 
-
-
 theme:
   logo: assets/head.png     # 主图标
   favicon: assets/head.png  # 标签栏图标
@@ -20,14 +18,14 @@ theme:
       primary: white
       accent: indigo
       toggle:
-        icon: material/toggle-switch
+        icon: material/toggle-switch-off
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
       accent: indigo
       toggle:
-        icon: material/toggle-switch-off
+        icon: material/toggle-switch
         name: Switch to system preference
   features:                 # 功能
     - navigation.top    # 返回顶部的按钮 在上滑时出现
@@ -37,6 +35,27 @@ theme:
     text: 'Noto Serif SC' # 字体
     code: 'Fira Mono'     # 代码字体
 
+extra:
+  generator: true     # 删除 Made with Material for MkDocs
+  social:             # 右下角小标
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/dxlcqy
+    - icon: fontawesome/brands/github
+      link: https://github.com/daixll
+    - icon: fontawesome/brands/bilibili
+      link: https://space.bilibili.com/35306765
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:<dxlcq@outlook.com>
+
+extra_css:
+  #- stylesheets/extra.css
+  #- https://unpkg.com/katex@0/dist/katex.min.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  #- https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML
+
 # 插件
 plugins:
   - search
@@ -45,26 +64,15 @@ markdown_extensions:
   - toc:                    # 侧边目录
       permalink: true                                 # 启用目录项的永久链接功能
       slugify: !!python/name:pymdownx.slugs.uslugify  # 标题生成永久链接的方式
-  - pymdownx.superfences:   # ?
-      custom_fences:                                  # 自定义代码块
-        - name: mermaid                                                 # 自定义代码块的名称
-          format: !!python/name:pymdownx.superfences.fence_code_format  # 如何格式化 mermaid 代码块
+  - pymdownx.highlight: # 代码块高亮
+      anchor_linenums: true
+      linenums: true    # 显示行号
+      auto_title: true  # 显示编程语言名称
+  - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true
   - attr_list
   - md_in_html
-
-extra:
-  generator: false    # 删除 Made with Material for MkDocs
-
-extra_css:
-  - stylesheets/extra.css
-  - https://unpkg.com/katex@0/dist/katex.min.css
-
-extra_javascript:
-  - javascripts/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML
 
 # 文章
 nav:
@@ -75,33 +83,33 @@ nav:
     - Education: src/about/education.md
     - Honor: src/about/Honor.md
   - 🪂 Algorithm:
-    - 入门: index.md
-    - 基础: index.md
+    - 入门: _index.md
+    - 基础: _index.md
   - 🚀 C/C++:
     - moderncpp:
-      - Item 2: index.md
-      - Item 3: index.md
+      - Item 2: _index.md
+      - Item 3: _index.md
   - 🌥️ DevOps:
-    - 开发环境: index.md
-    - 常用软件: index.md
+    - 开发环境: _index.md
+    - 常用软件: _index.md
   - 🌿 Language:
-    - Python:
-      - xxi: index.md
-      - xxx: index.md
-    - Golang:
-      - xixi: index.md
-      - jiji: index.md
     - Java:
       - main:
         - java: src/language/java/main_java.md
         - resources: src/language/java/main_resources.md
       - test:
         - java: src/language/java/test_java.md
+    - Python:
+      - xxi: _index.md
+      - xxx: _index.md
+    - Golang:
+      - xixi: _index.md
+      - jiji: _index.md
   - 📖 CS:
-    - 数据结构: index.md
-    - 操作系统: index.md
+    - 数据结构: _index.md
+    - 操作系统: _index.md
   - 🔢 Math:
-    - 微积分: index.md
-    - 概率论: index.md
+    - 微积分: _index.md
+    - 概率论: _index.md
   - 👷 Φιλοσοφία:
     - 马克思主义: src/philosophy/marx.md

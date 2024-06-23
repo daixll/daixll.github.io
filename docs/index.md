@@ -5,5 +5,40 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;全世界无产者，联合起来！
 
 <div align="right">
-——《<a href="https://www.marxists.org/chinese/marx/01.htm">共产党宣言</a>》
+——《<a href="https://www.marxists.org/chinese/marx/01.htm">共产党宣言</a>》&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
+
+## test
+
+$\frac{1}{2} = 0.5$
+
+$$
+\int_{-\infty}^{+\infty} x \text{d}x
+$$
+
+```cpp
+#include <iostream>
+
+int main(){
+    int x;
+    std::cout << x << std::endl;
+    return 0;
+}
+```
+
+!!! Info
+
+   === "py"
+
+      ```py
+      i = 2
+      while(i < 100):
+         j = 2
+         while(j <= (i/j)):
+            if not(i%j): break
+            j = j + 1
+         if (j > i/j) : print i, " is prime"
+         i = i + 1
+
+      print "Good bye!"
+      ```
