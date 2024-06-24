@@ -26,19 +26,15 @@ int main(){
 }
 ```
 
-!!! Info
+<details><summary>嘻嘻</summary>
 
-   === "py"
+```cpp
+#include <iostream>
+using namespace std;
 
-      ```py
-      i = 2
-      while(i < 100):
-         j = 2
-         while(j <= (i/j)):
-            if not(i%j): break
-            j = j + 1
-         if (j > i/j) : print i, " is prime"
-         i = i + 1
+int main(){
 
-      print "Good bye!"
-      ```
+   return 0;
+}
+```
+</details>
