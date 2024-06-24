@@ -1843,6 +1843,52 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
 <hr>
 <h2 id="msvc">MSVC </h2>
 <p>MSVC（Microsoft Visual C++）是微软的 C++ 编译器，通常与 Visual Studio 集成使用。</p>
+<h1 id="mysql">mysql </h1>
+<h2 id="ubuntu">ubuntu </h2>
+<ol>
+<li>
+<p>下载安装</p>
+<ul>
+<li><code>apt install mysql-server</code></li>
+<li><code>apt install mysql-client</code></li>
+</ul>
+</li>
+<li>
+<p>初始化</p>
+<ul>
+<li><code>mysql_secure_installation</code></li>
+</ul>
+</li>
+<li>
+<p>启动服务</p>
+<ul>
+<li><code>service mysql start</code></li>
+</ul>
+</li>
+<li>
+<p>登录</p>
+<ul>
+<li><code>mysql -u root -p</code></li>
+</ul>
+</li>
+<li>
+<p>设置密码</p>
+<ul>
+<li><code>use mysql;</code></li>
+<li><code>ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '12345678';</code></li>
+</ul>
+</li>
+<li>
+<p>退出</p>
+<ul>
+<li><code>quit</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="windows-2">windows </h2>
+<ol>
+<li>下载</li>
+</ol>
 
       </div>
       <div class="md-sidebar-toc">
@@ -2403,6 +2449,23 @@ CFLAGS <span class="token operator">=</span> -g -std<span class="token operator"
           </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
           <a href="#msvc" class="md-toc-link">
             <p>MSVC</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#mysql" class="md-toc-link"><p>mysql</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#ubuntu" class="md-toc-link">
+            <p>ubuntu</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#windows-2" class="md-toc-link">
+            <p>windows</p>
 
           </a></div>
         </div>
