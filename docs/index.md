@@ -9,34 +9,3 @@
 <div align="right">
 ——《<a href="https://www.marxists.org/chinese/marx/01.htm">共产党宣言</a>》&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
-
-## test
-
-$\frac{1}{2} = 0.5$
-
-$$
-\int_{-\infty}^{+\infty} x \text{d}x
-$$
-
-```cpp
-#include <iostream>
-
-int main(){
-    int x;
-    std::cout << x << std::endl;
-    return 0;
-}
-```
-
-<details><summary>嘻嘻</summary>
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int main(){
-
-   return 0;
-}
-```
-</details>
