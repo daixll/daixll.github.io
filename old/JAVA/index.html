@@ -31,38 +31,6 @@
 <h1 id="main"><strong>main</strong> </h1>
 <h2 id="java"><strong>java</strong> </h2>
 <h3 id="org--dxl--controller">org / dxl / controller </h3>
-<blockquote>
-<p><strong>控制器</strong></p>
-<ul>
-<li>处理 HTTP 请求，返回 HTTP 响应</li>
-<li>调用业务逻辑返回结果</li>
-</ul>
-</blockquote>
-<details><summary><a href="" target="_blank"></a><span style="color: orange">Controller.java</span></summary><br>
-<ul>
-<li><code>@RestController</code> 处理 HTTP 请求并返回响应数据</li>
-<li><code>@Resource</code> 依赖注入，解耦一个类对其依赖对象的创建和管理过程</li>
-<li><code>@GetMapping</code> 处理 HTTP GET 请求</li>
-<li><code>@RequestParam</code> 从请求中获取 key 的 value，并且赋值给某个变量</li>
-</ul>
-<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token comment">// EmpController.java</span>
-<span class="token annotation punctuation">@RestController</span>
-<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">EmpController</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Resource</span>
-    <span class="token class-name">EmpService</span> empService<span class="token punctuation">;</span>              <span class="token comment">// 暂时按照自动实例化、智能指针理解吧</span>
-
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/list"</span><span class="token punctuation">)</span>                <span class="token comment">// 处理客户端对 "/list" 路径的 GET 请求</span>
-    <span class="token keyword keyword-public">public</span> <span class="token class-name">Result</span> <span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token comment">// 返回一个 Result</span>
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> emps <span class="token operator">=</span> empService<span class="token punctuation">.</span><span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 调用服务层</span>
-        <span class="token keyword keyword-return">return</span> <span class="token class-name">Result</span><span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span>emps<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
-    <span class="token keyword keyword-public">public</span> <span class="token class-name">RedirectView</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">RedirectView</span><span class="token punctuation">(</span><span class="token string">"emp.html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 重定向</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre></details>
 <br>
 <hr>
 <h3 id="org--dxl--mapper">org / dxl / mapper </h3>
@@ -110,38 +78,6 @@
 <br>
 <hr>
 <h3 id="org--dxl--service">org / dxl / service </h3>
-<blockquote>
-<p><strong>服务层</strong></p>
-<ul>
-<li>封装业务逻辑和数据处理，提供给 Controller 使用</li>
-<li>调用 DAO 层实现对数据的访问和操作</li>
-</ul>
-</blockquote>
-<details><summary><a href="" target="_blank"></a><span style="color: orange">Service.java</span></summary><br>
-<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token comment">// EmpService.java</span>
-<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-interface">interface</span> <span class="token class-name">EmpService</span> <span class="token punctuation">{</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> <span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre></details>
-<details><summary><a href="" target="_blank"></a><span style="color: orange">impl / ServiceImpl.java</span></summary><br>
-<ul>
-<li><code>@Server</code> 标识为 Spring Bean，由 Spring 管理的服务类</li>
-<li><code>@Resource</code> 依赖注入</li>
-<li><code>@Override</code> 重写父类方法</li>
-</ul>
-<pre data-role="codeBlock" data-info="java" class="language-java java"><code><span class="token comment">// EmpServiceImpl.java</span>
-<span class="token annotation punctuation">@Service</span>
-<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">EmpServiceImpl</span> <span class="token keyword keyword-implements">implements</span> <span class="token class-name">EmpService</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@Resource</span>
-    <span class="token class-name">EmpMapper</span> empMapper<span class="token punctuation">;</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword keyword-public">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> <span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Emp</span><span class="token punctuation">&gt;</span></span> emps <span class="token operator">=</span> empMapper<span class="token punctuation">.</span><span class="token function">getEmpList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword keyword-return">return</span> emps<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre></details>
 <br>
 <hr>
 <h3 id="application">Application </h3>

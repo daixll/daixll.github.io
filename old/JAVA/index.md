@@ -21,37 +21,7 @@ export_on_save:
 
 ### org / dxl / controller
 
-> **控制器**
-> * 处理 HTTP 请求，返回 HTTP 响应
-> * 调用业务逻辑返回结果
 
-<details><summary><a href="" target="_blank"></a><span style="color: orange">Controller.java</span></summary><br>
-
-* `@RestController` 处理 HTTP 请求并返回响应数据
-* `@Resource` 依赖注入，解耦一个类对其依赖对象的创建和管理过程
-* `@GetMapping` 处理 HTTP GET 请求
-* `@RequestParam` 从请求中获取 key 的 value，并且赋值给某个变量
-
-```java
-// EmpController.java
-@RestController
-public class EmpController {
-    @Resource
-    EmpService empService;              // 暂时按照自动实例化、智能指针理解吧
-
-    @GetMapping("/list")                // 处理客户端对 "/list" 路径的 GET 请求
-    public Result getEmpList() {        // 返回一个 Result
-        List<Emp> emps = empService.getEmpList();   // 调用服务层
-        return Result.success(emps);
-    }
-
-    @GetMapping("/")
-    public RedirectView index() {
-        return new RedirectView("emp.html");    // 重定向
-    }
-}
-```
-</details>
 
 <br>
 
@@ -113,41 +83,6 @@ public interface EmpMapper {
 
 ### org / dxl / service
 
-> **服务层**
-> * 封装业务逻辑和数据处理，提供给 Controller 使用
-> * 调用 DAO 层实现对数据的访问和操作
-
-<details><summary><a href="" target="_blank"></a><span style="color: orange">Service.java</span></summary><br>
-
-```java
-// EmpService.java
-public interface EmpService {
-    List<Emp> getEmpList();
-}
-```
-</details>
-
-<details><summary><a href="" target="_blank"></a><span style="color: orange">impl / ServiceImpl.java</span></summary><br>
-
-* `@Server` 标识为 Spring Bean，由 Spring 管理的服务类
-* `@Resource` 依赖注入
-* `@Override` 重写父类方法
-
-```java
-// EmpServiceImpl.java
-@Service
-public class EmpServiceImpl implements EmpService {
-    @Resource
-    EmpMapper empMapper;
-
-    @Override
-    public List<Emp> getEmpList() {
-        List<Emp> emps = empMapper.getEmpList();
-        return emps;
-    }
-}
-```
-</details>
 
 
 <br>

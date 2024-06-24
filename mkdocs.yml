@@ -1,3 +1,46 @@
+# 文章
+nav:
+  - JIAO:
+    - About: index.md
+    - Project: src/about/project.md
+    - Work: src/about/work.md
+    - Education: src/about/education.md
+    - Honor: src/about/Honor.md
+  - 🪂 Algorithm:
+    - 入门: _index.md
+    - 基础: _index.md
+  - 🚀 C/C++:
+    - moderncpp:
+      - Item 2: _index.md
+      - Item 3: _index.md
+  - 🌥️ DevOps:
+    - 开发环境: _index.md
+    - 常用软件: _index.md
+  - 🌿 Language:
+    - Java:
+      - main/java:      src/language/java/main_java.md
+      - main/resources: src/language/java/main_resources.md
+      - test/java:      src/language/java/test_java.md
+    - Python:
+      - todo: _index.md
+    - Golang:
+      - todo: _index.md
+  - 📖 CS:
+    - 数据库: 
+      - mysql速查: src/cs/database/quick_mysql.md
+    - 数据结构: _index.md
+    - 操作系统: _index.md
+  - 🔢 Math:
+    - 微积分: _index.md
+    - 概率论: _index.md
+  - 👷 Φιλοσοφία:
+    - 马克思主义: src/philosophy/marx.md
+
+
+
+
+
+
 site_name: 戴兴龙
 copyright: Copyright © 2020 - 2024 Xinglong Dai
 repo_name: daixll/daixll.github.io
@@ -64,42 +107,3 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true         # 启用通用的数学公式支持 貌似是 $$ 的支持
 
-# 文章
-nav:
-  - JIAO:
-    - About: index.md
-    - Project: src/about/project.md
-    - Work: src/about/work.md
-    - Education: src/about/education.md
-    - Honor: src/about/Honor.md
-  - 🪂 Algorithm:
-    - 入门: _index.md
-    - 基础: _index.md
-  - 🚀 C/C++:
-    - moderncpp:
-      - Item 2: _index.md
-      - Item 3: _index.md
-  - 🌥️ DevOps:
-    - 开发环境: _index.md
-    - 常用软件: _index.md
-  - 🌿 Language:
-    - Java:
-      - main:
-        - java: src/language/java/main_java.md
-        - resources: src/language/java/main_resources.md
-      - test:
-        - java: src/language/java/test_java.md
-    - Python:
-      - xxi: _index.md
-      - xxx: _index.md
-    - Golang:
-      - xixi: _index.md
-      - jiji: _index.md
-  - 📖 CS:
-    - 数据结构: _index.md
-    - 操作系统: _index.md
-  - 🔢 Math:
-    - 微积分: _index.md
-    - 概率论: _index.md
-  - 👷 Φιλοσοφία:
-    - 马克思主义: src/philosophy/marx.md
