@@ -1568,7 +1568,45 @@
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><span class="cm">&lt;!-- EmpMapper.xml --&gt;</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><span class="cm">&lt;!-- EmpMapper.xml --&gt;</span>
 <span class="cp">&lt;!DOCTYPE mapper</span>
 <span class="cp">        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span>
 <span class="cp">        &quot;https://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span>
@@ -1577,12 +1615,50 @@
 
 <span class="w">    </span><span class="nt">&lt;resultMap</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;empResultMap&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;org.dxl.pojo.Emp&quot;</span><span class="nt">&gt;</span>
 <span class="w">        </span><span class="cm">&lt;!-- 映射 左为数据库中的名字 右为类中的名字 --&gt;</span>
-<span class="w">        </span><span class="nt">&lt;result</span><span class="w"> </span><span class="na">column=</span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="na">property=</span><span class="s">&quot;id&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;result</span><span class="w"> </span><span class="na">column=</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="na">property=</span><span class="s">&quot;userName&quot;</span><span class="nt">/&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/resultMap&gt;</span>
 
+<span class="w">    </span><span class="cm">&lt;!-- 插入 --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;insert</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;insertEmp&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>insert<span class="w"> </span>into<span class="w"> </span>emp(username,<span class="w"> </span>password)
+<span class="w">        </span>values(#{userName},<span class="w"> </span>#{password})
+<span class="w">    </span><span class="nt">&lt;/insert&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- 删除 --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;delete</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;deleteById&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>delete<span class="w"> </span>from<span class="w"> </span>emp<span class="w"> </span>where<span class="w"> </span>id<span class="w"> </span>=<span class="w"> </span>#{id}
+<span class="w">    </span><span class="nt">&lt;/delete&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- 批量删除 --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;delete</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;deleteByIds&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>delete<span class="w"> </span>from<span class="w"> </span>emp<span class="w"> </span>where<span class="w"> </span>id<span class="w"> </span>in
+<span class="w">        </span><span class="nt">&lt;foreach</span><span class="w"> </span><span class="na">collection=</span><span class="s">&quot;ids&quot;</span><span class="w"> </span><span class="na">item=</span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="na">separator=</span><span class="s">&quot;,&quot;</span><span class="w"> </span><span class="na">open=</span><span class="s">&quot;(&quot;</span><span class="w"> </span><span class="na">close=</span><span class="s">&quot;)&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>#{id}
+<span class="w">        </span><span class="nt">&lt;/foreach&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/delete&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- 更新 --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;update</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;updateEmp&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>update<span class="w"> </span>emp
+<span class="w">        </span><span class="nt">&lt;set&gt;</span>
+<span class="w">            </span><span class="nt">&lt;if</span><span class="w"> </span><span class="na">test=</span><span class="s">&quot;userName != null&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>username=#{userName},
+<span class="w">            </span><span class="nt">&lt;/if&gt;</span>
+<span class="w">            </span><span class="nt">&lt;if</span><span class="w"> </span><span class="na">test=</span><span class="s">&quot;password != null&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>password=#{password},
+<span class="w">            </span><span class="nt">&lt;/if&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/set&gt;</span>
+<span class="w">        </span>where<span class="w"> </span>id<span class="w"> </span>=<span class="w"> </span>#{id}
+<span class="w">    </span><span class="nt">&lt;/update&gt;</span>
+
 <span class="w">    </span><span class="cm">&lt;!-- 查询所有 --&gt;</span>
-<span class="w">    </span><span class="nt">&lt;select</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;getEmpList&quot;</span><span class="w"> </span><span class="na">resultMap=</span><span class="s">&quot;empResultMap&quot;</span><span class="nt">&gt;</span>
-<span class="w">        </span>select<span class="w"> </span>*<span class="w"> </span>from<span class="w"> </span>表名
+<span class="w">    </span><span class="nt">&lt;select</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;selectEmp&quot;</span><span class="w"> </span><span class="na">resultMap=</span><span class="s">&quot;empResultMap&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>select<span class="w"> </span>*<span class="w"> </span>from<span class="w"> </span>emp
+<span class="w">    </span><span class="nt">&lt;/select&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- 根据id查询 --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;select</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;selectEmpById&quot;</span><span class="w"> </span><span class="na">resultMap=</span><span class="s">&quot;empResultMap&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>select<span class="w"> </span>*<span class="w"> </span>from<span class="w"> </span>emp<span class="w"> </span>where<span class="w"> </span>id<span class="w"> </span>=<span class="w"> </span>#{id}
 <span class="w">    </span><span class="nt">&lt;/select&gt;</span>
 
 <span class="nt">&lt;/mapper&gt;</span>
