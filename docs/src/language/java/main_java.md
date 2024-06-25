@@ -174,13 +174,8 @@ public class Dept {
 package org.dxl.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.cglib.core.Local;
 import org.dxl.pojo.Emp;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Mapper
@@ -193,10 +188,8 @@ public interface EmpMapper {
     // 改
     void updateEmp(Emp emp);            // update emp set ... where id = ?;
     // 查
-    List<Emp> getEmpList();             // select * from emp;
-    Emp selectById(int id);             // select * from emp where id = ?;
-    List<Emp> selectByName(String name, Short gender, LocalDate begin, LocalDate end);
-                                        // select * from emp where name like ?
+    List<Emp> selectEmp();              // select * from emp;
+         Emp  selectEmpById(int id);    // select * from emp where id = ?;
 }
 ```
 </details>
@@ -226,7 +219,16 @@ import org.dxl.pojo.Emp;
 import java.util.List;
 
 public interface EmpService {
-    List<Emp> getEmpList();
+    // 增
+    void insertEmp(Emp emp);
+    // 删
+    void deleteById(int id);
+    void deleteByIds(List<Integer> ids);
+    // 改
+    void updateEmp(Emp emp);
+    // 查
+    List<Emp> selectEmp();
+         Emp  selectEmpById(int id);
 }
 ```
 </details>
@@ -234,18 +236,52 @@ public interface EmpService {
 <details><summary>impl/ServiceImpl.java</summary>
 
 ```java
-// EmpServiceImpl.java
+package org.dxl.service.impl;
+
+import jakarta.annotation.Resource;
+import org.dxl.mapper.EmpMapper;
+import org.dxl.pojo.Emp;
+import org.dxl.service.EmpService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public class EmpServiceImpl implements EmpService {
     @Resource
     EmpMapper empMapper;
 
     @Override
-    public List<Emp> getEmpList() {
-        List<Emp> emps = empMapper.getEmpList();
-        return emps;
+    public void insertEmp(Emp emp) {
+        empMapper.insertEmp(emp);
+    }
+
+    @Override
+    public void deleteById(int id) {
+        empMapper.deleteById(id);
+    }
+
+    @Override
+    public void deleteByIds(List<Integer> ids) {
+        empMapper.deleteByIds(ids);
+    }
+
+    @Override
+    public void updateEmp(Emp emp) {
+        empMapper.updateEmp(emp);
+    }
+
+    @Override
+    public List<Emp> selectEmp() {
+        return empMapper.selectEmp();
+    }
+
+    @Override
+    public Emp selectEmpById(int id) {
+        return empMapper.selectEmpById(id);
     }
 }
+
 ```
 </details>
 
@@ -262,7 +298,11 @@ public class EmpServiceImpl implements EmpService {
 * `@RestController` 处理 HTTP 请求并返回响应数据
 * `@Resource` 依赖注入，解耦一个类对其依赖对象的创建和管理过程
 * `@GetMapping` 处理 HTTP GET 请求
+* `@PostMapping` 处理 HTTP POST 请求
+* `@PutMapping` 处理 HTTP PUT 请求
 * `@RequestParam` 从请求中获取 key 的 value，并且赋值给某个变量
+* `@PathVariable` 用于从 URL 路径中提取变量
+* `@RequestBody` 将 HTTP 请求体中的内容绑定到方法参数上
 
 <details><summary>Controller.java</summary>
 
@@ -274,8 +314,7 @@ import jakarta.annotation.Resource;
 import org.dxl.pojo.Emp;
 import org.dxl.pojo.Result;
 import org.dxl.service.EmpService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -284,10 +323,40 @@ public class EmpController {
     @Resource
     EmpService empService;              // 暂时按照自动实例化、智能指针理解吧
 
-    @GetMapping("/list")                // 处理客户端对 "/list" 路径的 GET 请求
-    public Result getEmpList() {        // 返回一个 Result
-        List<Emp> emps = empService.getEmpList();       // 调用服务层
-        return Result.success(emps);
+    @PostMapping("/insert")             // 处理客户端对 "/insert" 路径的 POST 请求
+    public Result insertEmp(@RequestBody Emp emp) {
+        empService.insertEmp(emp);      // 调用服务层
+        return Result.success();        // 返回一个 Result
+    }
+
+    @DeleteMapping("/delete/{id}")      // 处理客户端对 "/delete/{id}" 路径的 DELETE 请求
+    public Result deleteById(@PathVariable Integer id) {
+        empService.deleteById(id);
+        return Result.success();
+    }
+
+    @DeleteMapping("/delete")           // 处理客户端对 "/delete" 路径的 DELETE 请求
+    public Result deleteByIds(@RequestBody List<Integer> ids) {
+        empService.deleteByIds(ids);
+        return Result.success();
+    }
+
+    @PutMapping("/update")              // 处理客户端对 "/update" 路径的 PUT 请求
+    public Result updateEmp(@RequestBody Emp emp) {
+        empService.updateEmp(emp);
+        return Result.success();
+    }
+
+    @GetMapping("/select")              // 处理客户端对 "/list" 路径的 GET 请求
+    public Result selectEmp() {
+        List<Emp> e = empService.selectEmp();
+        return Result.success(e);
+    }
+
+    @GetMapping("/select/{id}")         // 处理客户端对 "/select/{id}" 路径的 Get 请求
+    public Result selectEmpById(@PathVariable Integer id) {
+        Emp e = empService.selectEmpById(id);
+        return Result.success(e);
     }
 }
 ```

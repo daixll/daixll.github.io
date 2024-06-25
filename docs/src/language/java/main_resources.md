@@ -16,12 +16,50 @@
 
     <resultMap id="empResultMap" type="org.dxl.pojo.Emp">
         <!-- 映射 左为数据库中的名字 右为类中的名字 -->
-        <result column="id" property="id"/>
+        <result column="username" property="userName"/>
     </resultMap>
 
+    <!-- 插入 -->
+    <insert id="insertEmp">
+        insert into emp(username, password)
+        values(#{userName}, #{password})
+    </insert>
+
+    <!-- 删除 -->
+    <delete id="deleteById">
+        delete from emp where id = #{id}
+    </delete>
+
+    <!-- 批量删除 -->
+    <delete id="deleteByIds">
+        delete from emp where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!-- 更新 -->
+    <update id="updateEmp">
+        update emp
+        <set>
+            <if test="userName != null">
+                username=#{userName},
+            </if>
+            <if test="password != null">
+                password=#{password},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
     <!-- 查询所有 -->
-    <select id="getEmpList" resultMap="empResultMap">
-        select * from 表名
+    <select id="selectEmp" resultMap="empResultMap">
+        select * from emp
+    </select>
+
+    <!-- 根据id查询 -->
+    <select id="selectEmpById" resultMap="empResultMap">
+        select * from emp where id = #{id}
     </select>
 
 </mapper>
