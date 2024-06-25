@@ -18,16 +18,49 @@ import java.util.List;
 @SpringBootTest
 class SpringbootWebMybatisCrudApplicationTests {
 
-	@Resource
-	EmpMapper empMapper;
+    @Resource
+    EmpMapper empMapper;
 
-	@Test
-	void testGetEmpList(){
-		List<Emp> list = empMapper.getEmpList();
-		for (Emp e : list){
-			System.out.println(e);
-		}
-	}
+    @Test
+    void testInsertEmp(){
+        Emp emp = new Emp();
+        emp.setUserName("root");
+        emp.setPassword("1234");
+        empMapper.insertEmp(emp);
+    }
+
+    @Test
+    void testDeleteById(){
+        empMapper.deleteById(2);
+    }
+
+    @Test
+    void testDeleteByIds(){
+        empMapper.deleteByIds(List.of(3, 4));
+    }
+
+    @Test
+    void testUpdateEmp(){
+        Emp emp = new Emp();
+        emp.setId(1);
+        emp.setUserName("root");
+        emp.setPassword("1234");
+        empMapper.updateEmp(emp);
+    }
+
+    @Test
+    void testSelectEmp(){
+        List<Emp> list = empMapper.selectEmp();
+        for (Emp e : list){
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    void testSelectEmpById(){
+        Emp emp = empMapper.selectEmpById(1);
+        System.out.println(emp);
+    }
 }
 ```
 </details>
