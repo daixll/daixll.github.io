@@ -1,6 +1,8 @@
 # develop
 
-## windows develop
+## 桌面平台
+
+*windows 11 pro*
 
 * [NV 驱动](https://www.nvidia.com/en-us/software/nvidia-app/) / [INTEL 驱动](https://www.intel.com/content/www/us/en/support/detect.html)
 
@@ -14,8 +16,6 @@
 * [Office](https://otp.landian.vip/zh-cn/download.html) / [WPS](https://www.wps.cn/)
 
 * [todesk](https://dl.todesk.com/windows/ToDesk_Lite.exe)
-
-<br>
 
 * [VS Code](https://code.visualstudio.com/insiders/) 登陆 `github` 账号，等待配置同步
 
@@ -190,22 +190,123 @@
 
 ---
 
-## macos develop
+## 移动平台
 
+*macos*
 
 
 <br>
 
 ---
 
-## windows server
+## 文件服务
 
-用于文件存储
+*windows server 2022*
 
 <br>
 
 ---
 
-## linux server
+## 应用服务
 
-用于服务驱动
+*ubuntu server 22.04*
+
+<br>
+
+### network
+
+**DDNS + 公网 IPv4**
+
+路由器上配置即可，最好的方式
+
+
+**DDNS + 公网 IPv6**
+
+DDNS 用于动态更新域名解析，使域名指向动态公网 IP
+
+一般而言，每台设备都有公网 IPv6，所以直接在设备上配置 DDNS 即可
+
+在设备上运行 DDNS 客户端，使域名指向该设备的公网IPv6
+
+<details><summary>noip</summary>
+
+<a href="https://my.noip.com/dynamic-dns">管理面板</a> |
+<a href="https://www.noip.com/support/knowledgebase/install-linux-3-x-dynamic-update-client-duc/">官方文档</a> | 
+<a href="https://www.noip.com/support/knowledgebase/automatic-ipv6-updates-linux-duc/">Linux IPv6 使用方法</a>
+
+<ol>
+
+<li> <a href="https://my.noip.com/dynamic-dns/duc">下载</a> </li>
+<li> 解压 <code>tar -zxvf noip*.tar.gz</code> </li>
+<li> 安装 <code>cd binaries && apt install ./noip-duc_3.0.0-beta.5_amd64.deb</code> </li>
+<li> 运行 noip-duc --username 账号 --password 密码 -g 域名 --ip-method http://ip1.dynupdate6.no-ip.com/<code></code> </li>
+
+</ol>
+
+</details>
+
+<br>
+
+**frp + 内网 IPv4**
+
+<details><summary>小鸡穿透</summary>
+
+<a href="https://console.chickfrp.com/#/penManage/tunnel">管理面板</a> |
+<a href="http://help.chickfrp.com/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">官方文档</a> |
+固定ip，高带宽（1.25MB/s），高流量（5GB）
+
+<ol>
+<li> 下载 <code>wget https://chickfrp.com/download/frp045/linux/frp_0.45.0_linux_amd64.tar.gz</code> </li>
+<li> 解压 <code>tar -zxvf frp*.tar.gz</code> </li>
+<li> 复制 管理面板中的配置文件代码 </li>
+<li> 替换 <code>frpc.ini</code> 文件 </li>
+<li> 穿透 <code>./frpc</code> </li>
+</ol>
+
+</details>
+
+<details><summary>cpolar</summary>
+
+<a href="https://dashboard.cpolar.com/status">管理面板</a> |
+<a href="https://www.cpolar.com/docs">官方文档</a> |
+无固定ip，低带宽（128K/s），流量无限
+
+<ol>
+<li> 安装 <code>curl -sL https://git.io/cpolar | sudo bash</code> </li>
+<li> 查看 <code>token</code> 在管理面板</li>
+<li> 认证 <code>cpolar authtoken 你的token</code> </li>
+<li> 穿透 <code>cpolar http 端口</code> </li>
+</ol>
+
+</details>
+
+<details><summary>花生壳</summary>
+
+<a href="https://console.hsk.oray.com/forward">管理面板</a> |
+<a href="https://service.oray.com/question/11630.html">官方文档</a> |
+两个固定ip
+
+<ol>
+<li> 安装 <code>dpkg -i phddns-5.0.0-amd64.deb</code> </li>
+<li> 运行 <code>phddns start</code> </li>
+<li> 查看 <code>phddns status</code> </li>
+<li> 登录 <code>sn码</code> + <code>admin</code> 登录管理面板</li>
+<li> 穿透 管理面板添加映射 </li>
+</ol>
+
+</details>
+
+
+### storage
+
+**挂载 Windows 网络磁盘**
+
+1. 下载软件 `sudo apt install cifs-utils`
+2. 在 `/mnt` 中创建挂载目录 `mkdir /mnt/z`
+3. 挂载
+
+
+### web
+
+
+### av

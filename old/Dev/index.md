@@ -86,48 +86,6 @@ export_on_save:
 
 <br>
 
-##### 公网 IPv6 + DDNS
-
-> DDNS 用于动态更新域名解析，使域名指向动态公网IP，这里以 **noip** 为例
-> 一般而言，每台设备都有 公网IPv6，所以直接在设备上配置 DDNS 即可 
-> 在 Linux 上运行 DDNS 客户端，使域名指向该设备的公网IPv6：
-
-[NO-IP 管理面板](https://my.noip.com/dynamic-dns) / [官方文档](https://www.noip.com/support/knowledgebase/install-linux-3-x-dynamic-update-client-duc/) / [Linux IPv6 使用方法](https://www.noip.com/support/knowledgebase/automatic-ipv6-updates-linux-duc/)
-
-1. 下载 [地址](https://my.noip.com/dynamic-dns/duc)
-2. 解压 `tar -zxvf noip*.tar.gz`
-3. 安装 `cd binaries && apt install ./noip-duc_3.0.0-beta.5_amd64.deb`
-4. `noip-duc --username 账号 --password 密码 -g 域名 --ip-method http://ip1.dynupdate6.no-ip.com/`
-
-
-<br>
-
-##### 内网 IPv4 + frp
-
-> 一般，内网穿透 和 内网IPv4 一起使用 
-
-**小鸡穿透** [管理面板](https://console.chickfrp.com/#/penManage/tunnel) [官方文档](http://help.chickfrp.com/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8) 固定ip，高带宽（1.25MB/s），高流量（5GB）
-
-1. 下载 `wget https://chickfrp.com/download/frp045/linux/frp_0.45.0_linux_amd64.tar.gz` 
-2. 解压 `tar -zxvf frp*.tar.gz`
-3. 复制 管理面板中的配置文件代码
-4. 替换 `frpc.ini` 文件
-5. 穿透 `./frpc`
-
-**cpolar** [管理面板](https://dashboard.cpolar.com/status) [官方文档](https://www.cpolar.com/docs) 无固定ip，低带宽（128K/s），流量无限
-1. 安装 `curl -sL https://git.io/cpolar | sudo bash`
-2. 查看 `token` 在管理面板
-3. 认证 `cpolar authtoken 你的token`
-4. 穿透 `cpolar http 端口`
-
-**花生壳** [管理面板](https://console.hsk.oray.com/forward) [官方文档](https://service.oray.com/question/11630.html) 两个固定ip
-1. 安装 `dpkg -i phddns-5.0.0-amd64.deb`
-2. 运行 `phddns start`
-3. 查看 `phddns status`
-4. 登录 `sn码` + `admin` 登录管理面板  
-5. 穿透 管理面板添加映射  
-
-<br>
 
 ### 访问到外面
 

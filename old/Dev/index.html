@@ -81,48 +81,6 @@
 <li>ggg</li>
 </ol>
 <br>
-<h5 id="公网-ipv6--ddns">公网 IPv6 + DDNS </h5>
-<blockquote>
-<p>DDNS 用于动态更新域名解析，使域名指向动态公网IP，这里以 <strong>noip</strong> 为例<br>
-一般而言，每台设备都有 公网IPv6，所以直接在设备上配置 DDNS 即可<br>
-在 Linux 上运行 DDNS 客户端，使域名指向该设备的公网IPv6：</p>
-</blockquote>
-<p><a href="https://my.noip.com/dynamic-dns">NO-IP 管理面板</a> / <a href="https://www.noip.com/support/knowledgebase/install-linux-3-x-dynamic-update-client-duc/">官方文档</a> / <a href="https://www.noip.com/support/knowledgebase/automatic-ipv6-updates-linux-duc/">Linux IPv6 使用方法</a></p>
-<ol>
-<li>下载 <a href="https://my.noip.com/dynamic-dns/duc">地址</a></li>
-<li>解压 <code>tar -zxvf noip*.tar.gz</code></li>
-<li>安装 <code>cd binaries &amp;&amp; apt install ./noip-duc_3.0.0-beta.5_amd64.deb</code></li>
-<li><code>noip-duc --username 账号 --password 密码 -g 域名 --ip-method http://ip1.dynupdate6.no-ip.com/</code></li>
-</ol>
-<br>
-<h5 id="内网-ipv4--frp">内网 IPv4 + frp </h5>
-<blockquote>
-<p>一般，内网穿透 和 内网IPv4 一起使用</p>
-</blockquote>
-<p><strong>小鸡穿透</strong> <a href="https://console.chickfrp.com/#/penManage/tunnel">管理面板</a> <a href="http://help.chickfrp.com/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">官方文档</a> 固定ip，高带宽（1.25MB/s），高流量（5GB）</p>
-<ol>
-<li>下载 <code>wget https://chickfrp.com/download/frp045/linux/frp_0.45.0_linux_amd64.tar.gz</code></li>
-<li>解压 <code>tar -zxvf frp*.tar.gz</code></li>
-<li>复制 管理面板中的配置文件代码</li>
-<li>替换 <code>frpc.ini</code> 文件</li>
-<li>穿透 <code>./frpc</code></li>
-</ol>
-<p><strong>cpolar</strong> <a href="https://dashboard.cpolar.com/status">管理面板</a> <a href="https://www.cpolar.com/docs">官方文档</a> 无固定ip，低带宽（128K/s），流量无限</p>
-<ol>
-<li>安装 <code>curl -sL https://git.io/cpolar | sudo bash</code></li>
-<li>查看 <code>token</code> 在管理面板</li>
-<li>认证 <code>cpolar authtoken 你的token</code></li>
-<li>穿透 <code>cpolar http 端口</code></li>
-</ol>
-<p><strong>花生壳</strong> <a href="https://console.hsk.oray.com/forward">管理面板</a> <a href="https://service.oray.com/question/11630.html">官方文档</a> 两个固定ip</p>
-<ol>
-<li>安装 <code>dpkg -i phddns-5.0.0-amd64.deb</code></li>
-<li>运行 <code>phddns start</code></li>
-<li>查看 <code>phddns status</code></li>
-<li>登录 <code>sn码</code> + <code>admin</code> 登录管理面板</li>
-<li>穿透 管理面板添加映射</li>
-</ol>
-<br>
 <h3 id="访问到外面">访问到外面 </h3>
 <h5 id="clash">Clash </h5>
 <blockquote>

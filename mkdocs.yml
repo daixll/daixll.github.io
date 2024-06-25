@@ -14,7 +14,7 @@ nav:
       - Item 2: _index.md
       - Item 3: _index.md
   - 🌥️ DevOps:
-    - 🧑‍💻:       src/dev/dev.md
+    - 💻:       src/dev/dev.md
     - GCC:      src/dev/gcc.md
     - MySQL:    src/dev/mysql.md
   - 🌿 Language:
