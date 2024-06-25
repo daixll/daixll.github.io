@@ -14,8 +14,9 @@ nav:
       - Item 2: _index.md
       - Item 3: _index.md
   - 🌥️ DevOps:
-    - 开发环境: _index.md
-    - 常用软件: _index.md
+    - 🧑‍💻:       src/dev/dev.md
+    - GCC:      src/dev/gcc.md
+    - MySQL:    src/dev/mysql.md
   - 🌿 Language:
     - Java:
       - main/java:      src/language/java/main_java.md
