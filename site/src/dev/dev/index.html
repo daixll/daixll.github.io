@@ -1826,7 +1826,7 @@ ws.run<span class="w"> </span><span class="s2">&quot;wsl -d Ubuntu-22.04 -u user
 <span class="w">        </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AC&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shell&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./ac.sh&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./qwq/ac.sh&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;problemMatcher&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                </span><span class="s2">&quot;$gcc&quot;</span>
 <span class="w">            </span><span class="p">]</span>
@@ -1836,8 +1836,8 @@ ws.run<span class="w"> </span><span class="s2">&quot;wsl -d Ubuntu-22.04 -u user
 </code></pre></div></td></tr></table></div></p>
 </li>
 <li>
-<p>在项目目录下创建调试任务 <code>.vscode/launch.json</code>
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<p>在项目目录下创建运行脚本 <code>qwq/ac.sh</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1859,60 +1859,39 @@ ws.run<span class="w"> </span><span class="s2">&quot;wsl -d Ubuntu-22.04 -u user
 <span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span>
-<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// 配置的名称，可以自定义</span>
-<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Debug&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="c1">// 配置类型为cppdbg，表示C++调试</span>
-<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cppdbg&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="c1">// 请求类型为launch，表示启动调试</span>
-<span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="c1">// 可执行文件路径为当前打开文件的路径和文件名（不带扩展名）</span>
-<span class="w">            </span><span class="nt">&quot;program&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${fileDirname}/exes/${fileBasenameNoExtension}&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="c1">// 是否在程序入口处停止</span>
-<span class="w">            </span><span class="nt">&quot;stopAtEntry&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">            </span><span class="c1">// 当前工作目录为VS Code的工作区目录</span>
-<span class="w">            </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="c1">// 调试器类型为gdb</span>
-<span class="w">            </span><span class="nt">&quot;MIMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="c1">// 指定gdb的可执行文件路径</span>
-<span class="w">            </span><span class="nt">&quot;miDebuggerPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div></td></tr></table></div></p>
-</li>
-<li>
-<p>在项目目录下创建运行脚本 <code>ac.sh</code></p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">cppVersion</span><span class="o">=</span><span class="s2">&quot;c++17&quot;</span>
-<span class="nv">runTime</span><span class="o">=</span><span class="s2">&quot;3s&quot;</span>
-<span class="nv">keepLine</span><span class="o">=</span><span class="s2">&quot;30000&quot;</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 以下配置不会对代码造成任何影响</span>
+<span class="nv">cppVersion</span><span class="o">=</span><span class="s2">&quot;c++17&quot;</span><span class="w">  </span><span class="c1"># 指定 C++ 版本</span>
+<span class="nv">runTime</span><span class="o">=</span><span class="s2">&quot;3s&quot;</span><span class="w">        </span><span class="c1"># 限定程序运行时间</span>
+<span class="nv">keepLine</span><span class="o">=</span><span class="s2">&quot;100&quot;</span><span class="w">      </span><span class="c1"># 保留输出数据长度</span>
 
-<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;⏳&#39;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s1">&#39;exes/out&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
-g++<span class="w"> </span>-g<span class="w"> </span>-std<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$cppVersion</span><span class="s2">&quot;</span><span class="w"> </span>ac.cpp<span class="w"> </span>-o<span class="w"> </span>exes/ac<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
-cat<span class="w"> </span><span class="s1">&#39;exes/in&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
-timeout<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$runTime</span><span class="s2">&quot;</span><span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;&#39;exes/ac&#39; &gt; &#39;exes/out.raw&#39;&quot;</span>
+<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;⏳&#39;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s1">&#39;qwq/out&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+g++<span class="w"> </span>-g<span class="w"> </span>-std<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$cppVersion</span><span class="s2">&quot;</span><span class="w"> </span>ac.cpp<span class="w"> </span>-o<span class="w"> </span>qwq/ac<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+cat<span class="w"> </span><span class="s1">&#39;qwq/in&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+timeout<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$runTime</span><span class="s2">&quot;</span><span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;&#39;qwq/ac&#39; &gt; &#39;qwq/out.raw&#39;&quot;</span>
 
 <span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\033[0;31m TLE &quot;</span><span class="nv">$runTime</span><span class="s2">&quot; \033[0m&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\033[0;31m TLE [ac1] &quot;</span><span class="nv">$runTime</span><span class="s2">&quot; \033[0m&quot;</span>
 <span class="k">fi</span><span class="w">  </span><span class="c1"># 检查 timeout 命令的退出状态</span>
 
-head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$keepLine</span><span class="s2">&quot;</span><span class="w"> </span><span class="s1">&#39;exes/out.raw&#39;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s1">&#39;exes/out&#39;</span>
+head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$keepLine</span><span class="s2">&quot;</span><span class="w"> </span><span class="s1">&#39;qwq/out.raw&#39;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s1">&#39;qwq/out&#39;</span>
+
+<span class="c1"># 第二个程序</span>
+
+<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;⏳&#39;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s1">&#39;qwq/out2&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+g++<span class="w"> </span>-g<span class="w"> </span>-std<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$cppVersion</span><span class="s2">&quot;</span><span class="w"> </span>ac2.cpp<span class="w"> </span>-o<span class="w"> </span>qwq/ac2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+cat<span class="w"> </span><span class="s1">&#39;qwq/in&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+timeout<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$runTime</span><span class="s2">&quot;</span><span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;&#39;qwq/ac2&#39; &gt; &#39;qwq/out2.raw&#39;&quot;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\033[0;31m TLE [ac2] &quot;</span><span class="nv">$runTime</span><span class="s2">&quot; \033[0m&quot;</span>
+<span class="k">fi</span><span class="w">  </span><span class="c1"># 检查 timeout 命令的退出状态</span>
+
+head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$keepLine</span><span class="s2">&quot;</span><span class="w"> </span><span class="s1">&#39;qwq/out2.raw&#39;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s1">&#39;qwq/out2&#39;</span>
 </code></pre></div></td></tr></table></div>
 </li>
 <li>
@@ -1928,18 +1907,24 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</s
 <span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
-<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>├── .vscode/
-|   ├── launch.json
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code>├── .vscode/
 |   ├── tasks.json
 |
-├── exes/
-|   ├── ac
+├── qwq/
+|   ├── ac.sh
 |   ├── in
+|   ├── ac
 |   ├── out
 |   ├── out.raw
+|   ├── ac2
+|   ├── out2
+|   ├── out2.raw
 |
 ├── ac.cpp
-├── ac.sh
+├── ac2.cpp
 </code></pre></div></td></tr></table></div></p>
 </li>
 <li>
@@ -1961,13 +1946,11 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</s
 <span class="w">    </span><span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div></td></tr></table></div>
-<p>在 <code>ac.cpp</code> 文件中，即可 <code>f5</code> 一键执行。</p>
+<p>在 <code>ac.cpp</code> 文件中，即可 <code>f5</code> 一键执行</p>
 </li>
 <li>
-<p>打断点 -&gt; <code>运行</code> -&gt; <code>启动调试</code></p>
-<ul>
-<li>需要先 <code>f5</code> 一次，再 <code>启动调试</code></li>
-</ul>
+<p>打断点 -&gt; <code>运行</code> -&gt; <code>启动调试</code>
+    <code>f11</code> 单步运行，如果单步进入库函数，可以通过 <code>shift + f11</code> 跳出，相当于 <code>finsh</code> 命令</p>
 </li>
 </ol>
 <p><br></p>

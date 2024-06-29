@@ -93,7 +93,7 @@
             {
                 "label": "AC",
                 "type": "shell",
-                "command": "./ac.sh",
+                "command": "./qwq/ac.sh",
                 "problemMatcher": [
                     "$gcc"
                 ]
@@ -102,71 +102,61 @@
     }
     ```
 
-5. 在项目目录下创建调试任务 `.vscode/launch.json`
-    ```json
-    {
-        "version": "0.2.0",
-        "configurations": [
-            {
-                // 配置的名称，可以自定义
-                "name": "Debug",
-                // 配置类型为cppdbg，表示C++调试
-                "type": "cppdbg",
-                // 请求类型为launch，表示启动调试
-                "request": "launch",
-                // 可执行文件路径为当前打开文件的路径和文件名（不带扩展名）
-                "program": "${fileDirname}/exes/${fileBasenameNoExtension}",
-                // 是否在程序入口处停止
-                "stopAtEntry": true,
-                // 当前工作目录为VS Code的工作区目录
-                "cwd": "${workspaceFolder}",
-                // 调试器类型为gdb
-                "MIMode": "gdb",
-                // 指定gdb的可执行文件路径
-                "miDebuggerPath": "gdb",
-            }
-        ]
-    }
-    ```
-
-6. 在项目目录下创建运行脚本 `ac.sh`
+5. 在项目目录下创建运行脚本 `qwq/ac.sh`
 
     ```shell
-    cppVersion="c++17"
-    runTime="3s"
-    keepLine="30000"
+    # 以下配置不会对代码造成任何影响
+    cppVersion="c++17"  # 指定 C++ 版本
+    runTime="3s"        # 限定程序运行时间
+    keepLine="100"      # 保留输出数据长度
 
-    echo -n '⏳' > 'exes/out' && \
-    g++ -g -std="$cppVersion" ac.cpp -o exes/ac && \
-    cat 'exes/in' | \
-    timeout "$runTime" sh -c "'exes/ac' > 'exes/out.raw'"
+    echo -n '⏳' > 'qwq/out' && \
+    g++ -g -std="$cppVersion" ac.cpp -o qwq/ac && \
+    cat 'qwq/in' | \
+    timeout "$runTime" sh -c "'qwq/ac' > 'qwq/out.raw'"
 
     if [ $? -ne 0 ]; then
-        echo -e "\033[0;31m TLE "$runTime" \033[0m"
+        echo -e "\033[0;31m TLE [ac1] "$runTime" \033[0m"
     fi  # 检查 timeout 命令的退出状态
 
-    head -n "$keepLine" 'exes/out.raw' > 'exes/out'
+    head -n "$keepLine" 'qwq/out.raw' > 'qwq/out'
+
+    # 第二个程序
+
+    echo -n '⏳' > 'qwq/out2' && \
+    g++ -g -std="$cppVersion" ac2.cpp -o qwq/ac2 && \
+    cat 'qwq/in' | \
+    timeout "$runTime" sh -c "'qwq/ac2' > 'qwq/out2.raw'"
+
+    if [ $? -ne 0 ]; then
+        echo -e "\033[0;31m TLE [ac2] "$runTime" \033[0m"
+    fi  # 检查 timeout 命令的退出状态
+
+    head -n "$keepLine" 'qwq/out2.raw' > 'qwq/out2'
     ```
 
 
 
-7. 所有文件结构如此：
+6. 所有文件结构如此：
     ```
     ├── .vscode/
-    |   ├── launch.json
     |   ├── tasks.json
     |
-    ├── exes/
-    |   ├── ac
+    ├── qwq/
+    |   ├── ac.sh
     |   ├── in
+    |   ├── ac
     |   ├── out
     |   ├── out.raw
+    |   ├── ac2
+    |   ├── out2
+    |   ├── out2.raw
     |
     ├── ac.cpp
-    ├── ac.sh
+    ├── ac2.cpp
     ```
 
-8. 配置快捷方式，f5一键执行命令
+7. 配置快捷方式，f5一键执行命令
 
     修改 `C:\Users\USERNAME\AppData\Roaming\Code\User\keybindings.json` 文件
 
@@ -181,10 +171,10 @@
     ]
     ```
 
-    在 `ac.cpp` 文件中，即可 `f5` 一键执行。
+    在 `ac.cpp` 文件中，即可 `f5` 一键执行
 
-9. 打断点 -> `运行` -> `启动调试`
-    * 需要先 `f5` 一次，再 `启动调试`
+8. 打断点 -> `运行` -> `启动调试`
+    `f11` 单步运行，如果单步进入库函数，可以通过 `shift + f11` 跳出，相当于 `finsh` 命令
 
 <br>
 
