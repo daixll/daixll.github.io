@@ -1,5 +1,10 @@
 ## 其他
 
+* 导出数据库
+    ```shell
+    mysqldump -uroot -p1234 --databases db1 --tables t1 >/tmp/db1.sql
+    ```
+
 ## 库
 
 ### 增

@@ -1052,6 +1052,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#orgdxlutils" class="md-nav__link">
+    <span class="md-ellipsis">
+      org/dxl/utils
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orgdxlinterceptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      org/dxl/interceptor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orgdxlconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      org/dxl/config
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#orgdxlpojo" class="md-nav__link">
     <span class="md-ellipsis">
       org/dxl/pojo
@@ -1529,6 +1556,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#orgdxlutils" class="md-nav__link">
+    <span class="md-ellipsis">
+      org/dxl/utils
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orgdxlinterceptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      org/dxl/interceptor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orgdxlconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      org/dxl/config
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#orgdxlpojo" class="md-nav__link">
     <span class="md-ellipsis">
       org/dxl/pojo
@@ -1583,6 +1637,341 @@
 
 
 <h1 id="mainjava">main/java</h1>
+<h2 id="orgdxlutils">org/dxl/utils</h2>
+<details><summary>JwtUtils.java</summary>
+
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// JwtUtils.java</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">org.dxl.utils</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">io.jsonwebtoken.Claims</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io.jsonwebtoken.Jws</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io.jsonwebtoken.JwsHeader</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io.jsonwebtoken.Jwts</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io.jsonwebtoken.security.Keys</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io.jsonwebtoken.security.SecureDigestAlgorithm</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.crypto.SecretKey</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.time.Instant</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Date</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Map</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.UUID</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">JwtUtils</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">SECRET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;12345678901234567890123456789012&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// 32个字节的密钥</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">expireTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span><span class="w"> </span><span class="c1">// token有效期</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">ISSUER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;dxl&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Token 签发者</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">SecureDigestAlgorithm</span><span class="o">&lt;</span><span class="n">SecretKey</span><span class="p">,</span><span class="w"> </span><span class="n">SecretKey</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ALGORITHM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Jwts</span><span class="p">.</span><span class="na">SIG</span><span class="p">.</span><span class="na">HS256</span><span class="p">;</span><span class="w"> </span><span class="c1">// 签名算法</span>
+
+<span class="w">    </span><span class="c1">//subject: token 使用主体，通常是token所有人的ID</span>
+<span class="w">    </span><span class="c1">// username 和 userid 用于 payload</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">buildJwt</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">subject</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">claims</span><span class="p">){</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Date</span><span class="w"> </span><span class="n">expireDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Date</span><span class="p">.</span><span class="na">from</span><span class="p">(</span><span class="n">Instant</span><span class="p">.</span><span class="na">now</span><span class="p">().</span><span class="na">plusSeconds</span><span class="p">(</span><span class="n">expireTime</span><span class="p">));</span>
+<span class="w">        </span><span class="c1">//HMAC : Hash-based Message Authentication Code</span>
+<span class="w">        </span><span class="n">SecretKey</span><span class="w"> </span><span class="n">KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Keys</span><span class="p">.</span><span class="na">hmacShaKeyFor</span><span class="p">(</span><span class="n">SECRET</span><span class="p">.</span><span class="na">getBytes</span><span class="p">());</span><span class="w"> </span><span class="c1">// 基于密钥产生 SecretKey</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Jwts</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">header</span><span class="p">()</span>
+<span class="w">                </span><span class="c1">//设置头部信息header</span>
+<span class="w">                </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;typ&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;JWT&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;alg&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;HS256&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">and</span><span class="p">()</span>
+<span class="w">                </span><span class="c1">//设置自定义负载信息payload</span>
+<span class="w">                </span><span class="p">.</span><span class="na">claims</span><span class="p">(</span><span class="n">claims</span><span class="p">)</span>
+<span class="w">                </span><span class="c1">//令牌ID</span>
+<span class="w">                </span><span class="p">.</span><span class="na">id</span><span class="p">(</span><span class="n">uuid</span><span class="p">)</span>
+<span class="w">                </span><span class="c1">// 过期时间</span>
+<span class="w">                </span><span class="p">.</span><span class="na">expiration</span><span class="p">(</span><span class="n">expireDate</span><span class="p">)</span>
+<span class="w">                </span><span class="c1">//生效时间</span>
+<span class="w">                </span><span class="p">.</span><span class="na">notBefore</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Date</span><span class="p">())</span>
+<span class="w">                </span><span class="c1">//签发时间</span>
+<span class="w">                </span><span class="p">.</span><span class="na">issuedAt</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Date</span><span class="p">())</span>
+<span class="w">                </span><span class="c1">//令牌所有者，通常是用户ID</span>
+<span class="w">                </span><span class="p">.</span><span class="na">subject</span><span class="p">(</span><span class="n">subject</span><span class="p">)</span>
+<span class="w">                </span><span class="c1">//签发者</span>
+<span class="w">                </span><span class="p">.</span><span class="na">issuer</span><span class="p">(</span><span class="n">ISSUER</span><span class="p">)</span>
+<span class="w">                </span><span class="c1">//签名</span>
+<span class="w">                </span><span class="p">.</span><span class="na">signWith</span><span class="p">(</span><span class="n">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">ALGORITHM</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">compact</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Jws</span><span class="o">&lt;</span><span class="n">Claims</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">parseToken</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">SecretKey</span><span class="w"> </span><span class="n">KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Keys</span><span class="p">.</span><span class="na">hmacShaKeyFor</span><span class="p">(</span><span class="n">SECRET</span><span class="p">.</span><span class="na">getBytes</span><span class="p">());</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Jwts</span><span class="p">.</span><span class="na">parser</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">verifyWith</span><span class="p">(</span><span class="n">KEY</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">parseSignedClaims</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">JwsHeader</span><span class="w"> </span><span class="nf">parseHeader</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">parseToken</span><span class="p">(</span><span class="n">token</span><span class="p">).</span><span class="na">getHeader</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Claims</span><span class="w"> </span><span class="nf">parsePayload</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">parseToken</span><span class="p">(</span><span class="n">token</span><span class="p">).</span><span class="na">getPayload</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getSubject</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">parseToken</span><span class="p">(</span><span class="n">token</span><span class="p">).</span><span class="na">getPayload</span><span class="p">().</span><span class="na">getSubject</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">validateToken</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">parseToken</span><span class="p">(</span><span class="n">token</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">&lt;dependency&gt;</span>
+<span class="cm">    &lt;groupId&gt;io.jsonwebtoken&lt;/groupId&gt;</span>
+<span class="cm">    &lt;artifactId&gt;jjwt&lt;/artifactId&gt;</span>
+<span class="cm">    &lt;version&gt;0.12.5&lt;/version&gt;</span>
+<span class="cm">&lt;/dependency&gt;</span>
+<span class="cm">*/</span>
+</code></pre></div></td></tr></table></div>
+</details>
+
+<h2 id="orgdxlinterceptor">org/dxl/interceptor</h2>
+<details><summary>LoginCheckInterceptor.java</summary>
+
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// LoginCheckInterceptor.java</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">org.dxl.interceptor</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.servlet.http.HttpServletRequest</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.servlet.http.HttpServletResponse</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lombok.extern.slf4j.Slf4j</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.stereotype.Component</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.util.StringUtils</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.servlet.HandlerInterceptor</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.servlet.ModelAndView</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.dxl.utils.JwtUtils</span><span class="p">;</span>
+
+<span class="nd">@Slf4j</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LoginCheckInterceptor</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">HandlerInterceptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="c1">// 目标资源方法运行前执行，返回 true: 执行；返回 false: 不执行</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">preHandle</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">handler</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">//1. 获取请求头中的令牌</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">jwt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="na">getHeader</span><span class="p">(</span><span class="s">&quot;token&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">//2. 判断令牌是否存在</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">StringUtils</span><span class="p">.</span><span class="na">hasLength</span><span class="p">(</span><span class="n">jwt</span><span class="p">)){</span>
+<span class="w">            </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;请求头token为空，返回未登录的信息&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">//3. 解析token,如果解析失败，返回 false</span>
+<span class="w">        </span><span class="k">try</span><span class="p">{</span>
+<span class="w">            </span><span class="n">JwtUtils</span><span class="p">.</span><span class="na">parseToken</span><span class="p">(</span><span class="n">jwt</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">){</span><span class="w"> </span><span class="c1">// 解析失败</span>
+<span class="w">            </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;token解析失败&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">//解析token成功</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">HandlerInterceptor</span><span class="p">.</span><span class="na">super</span><span class="p">.</span><span class="na">preHandle</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">handler</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="c1">// 目标资源方法运行后执行</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">postHandle</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">handler</span><span class="p">,</span><span class="w"> </span><span class="n">ModelAndView</span><span class="w"> </span><span class="n">modelAndView</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">HandlerInterceptor</span><span class="p">.</span><span class="na">super</span><span class="p">.</span><span class="na">postHandle</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">handler</span><span class="p">,</span><span class="w"> </span><span class="n">modelAndView</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="c1">// 视图渲染完毕后执行，最后运行，执行释放资源的工作</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">afterCompletion</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">handler</span><span class="p">,</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">HandlerInterceptor</span><span class="p">.</span><span class="na">super</span><span class="p">.</span><span class="na">afterCompletion</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">handler</span><span class="p">,</span><span class="w"> </span><span class="n">ex</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</details>
+
+<h2 id="orgdxlconfig">org/dxl/config</h2>
+<details><summary>WebConfig.java</summary>
+
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// WebConfig.java</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">org.dxl.config</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.annotation.Resource</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.context.annotation.Configuration</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.servlet.config.annotation.InterceptorRegistry</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.servlet.config.annotation.WebMvcConfigurer</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.dxl.interceptor.LoginCheckInterceptor</span><span class="p">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WebConfig</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">WebMvcConfigurer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Resource</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">LoginCheckInterceptor</span><span class="w"> </span><span class="n">loginCheckInterceptor</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addInterceptors</span><span class="p">(</span><span class="n">InterceptorRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">registry</span><span class="p">.</span><span class="na">addInterceptor</span><span class="p">(</span><span class="n">loginCheckInterceptor</span><span class="p">).</span><span class="na">addPathPatterns</span><span class="p">(</span><span class="s">&quot;/**&quot;</span><span class="p">).</span><span class="na">excludePathPatterns</span><span class="p">(</span><span class="s">&quot;/login&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">WebMvcConfigurer</span><span class="p">.</span><span class="na">super</span><span class="p">.</span><span class="na">addInterceptors</span><span class="p">(</span><span class="n">registry</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</details>
+
 <h2 id="orgdxlpojo">org/dxl/pojo</h2>
 <p><strong>普通 Java 对象</strong>，常用于封装数据传输对象</p>
 <ul>
@@ -1861,7 +2250,7 @@
 <ul>
 <li><code>@Mapper</code> 使用 <code>MyBatis</code> 框架为接口生成对应实现类</li>
 </ul>
-<details><summary>Mapper.java</summary>
+<details><summary>Mapper</summary>
 
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1883,7 +2272,9 @@
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// EmpMapper.java</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// EmpMapper.java</span>
 <span class="kn">package</span><span class="w"> </span><span class="nn">org.dxl.mapper</span><span class="p">;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.ibatis.annotations.Mapper</span><span class="p">;</span>
@@ -1903,6 +2294,8 @@
 <span class="w">    </span><span class="c1">// 查</span>
 <span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Emp</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">selectEmp</span><span class="p">();</span><span class="w">              </span><span class="c1">// select * from emp;</span>
 <span class="w">         </span><span class="n">Emp</span><span class="w">  </span><span class="nf">selectEmpById</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w">    </span><span class="c1">// select * from emp where id = ?;</span>
+<span class="w">    </span><span class="c1">// 登录</span>
+<span class="w">    </span><span class="n">Emp</span><span class="w"> </span><span class="nf">login</span><span class="p">(</span><span class="n">Emp</span><span class="w"> </span><span class="n">emp</span><span class="p">);</span><span class="w">                 </span><span class="c1">// select * from emp where username = ? and password = ?;</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 </details>
@@ -1916,7 +2309,7 @@
 <li><code>@Server</code> 标识为 <code>Spring Bean</code>，由 <code>Spring</code> 管理的服务类</li>
 <li><code>@Resource</code> 依赖注入</li>
 </ul>
-<details><summary>Service.java</summary>
+<details><summary>Service</summary>
 
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1956,7 +2349,7 @@
 </code></pre></div></td></tr></table></div>
 </details>
 
-<details><summary>impl/ServiceImpl.java</summary>
+<details><summary>impl/ServiceImpl</summary>
 
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -2002,7 +2395,9 @@
 <span class="normal">42</span>
 <span class="normal">43</span>
 <span class="normal">44</span>
-<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">org.dxl.service.impl</span><span class="p">;</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// EmpServiceImpl.java</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">org.dxl.service.impl</span><span class="p">;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.annotation.Resource</span><span class="p">;</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">org.dxl.mapper.EmpMapper</span><span class="p">;</span>
@@ -2064,7 +2459,7 @@
 <li><code>@PathVariable</code> 用于从 URL 路径中提取变量</li>
 <li><code>@RequestBody</code> 将 HTTP 请求体中的内容绑定到方法参数上</li>
 </ul>
-<details><summary>Controller.java</summary>
+<details><summary>Controller</summary>
 
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -2167,6 +2562,88 @@
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="nf">selectEmpById</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">Emp</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empService</span><span class="p">.</span><span class="na">selectEmpById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</details>
+
+<details><summary>LoginController.java</summary>
+
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// LoginController.java</span>
+<span class="kn">package</span><span class="w"> </span><span class="nn">org.dxl.controller</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.annotation.Resource</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">lombok.extern.slf4j.Slf4j</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.PostMapping</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.RequestBody</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.dxl.pojo.Emp</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.dxl.pojo.Result</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.dxl.service.EmpService</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.dxl.utils.JwtUtils</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.HashMap</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Map</span><span class="p">;</span>
+
+<span class="nd">@Slf4j</span>
+<span class="nd">@RestController</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LoginController</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Resource</span>
+<span class="w">    </span><span class="n">EmpService</span><span class="w"> </span><span class="n">empService</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/login&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="nf">login</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">Emp</span><span class="w"> </span><span class="n">emp</span><span class="p">){</span>
+<span class="w">        </span><span class="n">Emp</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empService</span><span class="p">.</span><span class="na">login</span><span class="p">(</span><span class="n">emp</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 登录成功，生成令牌，下发令牌</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">){</span>
+<span class="w">            </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">            </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;username&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getUserName</span><span class="p">());</span>
+<span class="w">            </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getId</span><span class="p">());</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">jwt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JwtUtils</span><span class="p">.</span><span class="na">buildJwt</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getId</span><span class="p">().</span><span class="na">toString</span><span class="p">(),</span><span class="w"> </span><span class="n">map</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">success</span><span class="p">(</span><span class="n">jwt</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// 登陆失败，返回错误信息</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;用户名或密码错误&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>

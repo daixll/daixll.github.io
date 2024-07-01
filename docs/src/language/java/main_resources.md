@@ -19,6 +19,11 @@
         <result column="username" property="userName"/>
     </resultMap>
 
+    <!-- 登录 -->
+    <select id="login" resultMap="empResultMap">
+        select * from emp where username = #{userName} and password = #{password}
+    </select>
+
     <!-- 插入 -->
     <insert id="insertEmp">
         insert into emp(username, password)

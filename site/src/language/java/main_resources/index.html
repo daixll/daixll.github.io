@@ -1606,7 +1606,12 @@
 <span class="normal">53</span>
 <span class="normal">54</span>
 <span class="normal">55</span>
-<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><span class="cm">&lt;!-- EmpMapper.xml --&gt;</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><span class="cm">&lt;!-- EmpMapper.xml --&gt;</span>
 <span class="cp">&lt;!DOCTYPE mapper</span>
 <span class="cp">        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span>
 <span class="cp">        &quot;https://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span>
@@ -1617,6 +1622,11 @@
 <span class="w">        </span><span class="cm">&lt;!-- 映射 左为数据库中的名字 右为类中的名字 --&gt;</span>
 <span class="w">        </span><span class="nt">&lt;result</span><span class="w"> </span><span class="na">column=</span><span class="s">&quot;username&quot;</span><span class="w"> </span><span class="na">property=</span><span class="s">&quot;userName&quot;</span><span class="nt">/&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/resultMap&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- 登录 --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;select</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;login&quot;</span><span class="w"> </span><span class="na">resultMap=</span><span class="s">&quot;empResultMap&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>select<span class="w"> </span>*<span class="w"> </span>from<span class="w"> </span>emp<span class="w"> </span>where<span class="w"> </span>username<span class="w"> </span>=<span class="w"> </span>#{userName}<span class="w"> </span>and<span class="w"> </span>password<span class="w"> </span>=<span class="w"> </span>#{password}
+<span class="w">    </span><span class="nt">&lt;/select&gt;</span>
 
 <span class="w">    </span><span class="cm">&lt;!-- 插入 --&gt;</span>
 <span class="w">    </span><span class="nt">&lt;insert</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;insertEmp&quot;</span><span class="nt">&gt;</span>

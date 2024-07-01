@@ -1,5 +1,189 @@
 # main/java
 
+## org/dxl/utils
+
+<details><summary>JwtUtils.java</summary>
+
+```java
+// JwtUtils.java
+package org.dxl.utils;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwsHeader;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SecureDigestAlgorithm;
+
+import javax.crypto.SecretKey;
+import java.time.Instant;
+import java.util.Date;
+import java.util.Map;
+import java.util.UUID;
+
+public class JwtUtils {
+    private static final String SECRET = "12345678901234567890123456789012"; // 32个字节的密钥
+    private static final Integer expireTime = 12 * 60 * 60; // token有效期
+    private static final String ISSUER = "dxl"; // Token 签发者
+    private static final SecureDigestAlgorithm<SecretKey, SecretKey> ALGORITHM = Jwts.SIG.HS256; // 签名算法
+
+    //subject: token 使用主体，通常是token所有人的ID
+    // username 和 userid 用于 payload
+    public static String buildJwt(String subject, Map<String, Object> claims){
+        String uuid = UUID.randomUUID().toString();
+        Date expireDate = Date.from(Instant.now().plusSeconds(expireTime));
+        //HMAC : Hash-based Message Authentication Code
+        SecretKey KEY = Keys.hmacShaKeyFor(SECRET.getBytes()); // 基于密钥产生 SecretKey
+        return Jwts.builder()
+                .header()
+                //设置头部信息header
+                .add("typ", "JWT")
+                .add("alg", "HS256")
+                .and()
+                //设置自定义负载信息payload
+                .claims(claims)
+                //令牌ID
+                .id(uuid)
+                // 过期时间
+                .expiration(expireDate)
+                //生效时间
+                .notBefore(new Date())
+                //签发时间
+                .issuedAt(new Date())
+                //令牌所有者，通常是用户ID
+                .subject(subject)
+                //签发者
+                .issuer(ISSUER)
+                //签名
+                .signWith(KEY, ALGORITHM)
+                .compact();
+    }
+
+    public static Jws<Claims> parseToken(String token) {
+        SecretKey KEY = Keys.hmacShaKeyFor(SECRET.getBytes());
+        return Jwts.parser()
+                .verifyWith(KEY)
+                .build()
+                .parseSignedClaims(token);
+    }
+
+    public static JwsHeader parseHeader(String token) {
+        return parseToken(token).getHeader();
+    }
+
+    public static Claims parsePayload(String token) {
+        return parseToken(token).getPayload();
+    }
+
+    public static String getSubject(String token) {
+        return parseToken(token).getPayload().getSubject();
+    }
+
+    public static boolean validateToken(String token) {
+        try {
+            parseToken(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+}
+
+/*
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt</artifactId>
+    <version>0.12.5</version>
+</dependency>
+*/
+```
+</details>
+
+## org/dxl/interceptor
+
+<details><summary>LoginCheckInterceptor.java</summary>
+
+```java
+// LoginCheckInterceptor.java
+package org.dxl.interceptor;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+import org.dxl.utils.JwtUtils;
+
+@Slf4j
+@Component
+public class LoginCheckInterceptor implements HandlerInterceptor {
+    @Override
+    // 目标资源方法运行前执行，返回 true: 执行；返回 false: 不执行
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        //1. 获取请求头中的令牌
+        String jwt = request.getHeader("token");
+        //2. 判断令牌是否存在
+        if (!StringUtils.hasLength(jwt)){
+            log.info("请求头token为空，返回未登录的信息");
+            return false;
+        }
+        //3. 解析token,如果解析失败，返回 false
+        try{
+            JwtUtils.parseToken(jwt);
+        }catch (Exception e){ // 解析失败
+            log.info("token解析失败");
+            return false;
+        }
+        //解析token成功
+        return HandlerInterceptor.super.preHandle(request, response, handler);
+    }
+
+    @Override
+    // 目标资源方法运行后执行
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
+    }
+
+    @Override
+    // 视图渲染完毕后执行，最后运行，执行释放资源的工作
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+    }
+}
+```
+</details>
+
+## org/dxl/config
+
+<details><summary>WebConfig.java</summary>
+
+```java
+// WebConfig.java
+package org.dxl.config;
+
+import jakarta.annotation.Resource;
+import org.springframework.context.annotation.Configuration;
+
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.dxl.interceptor.LoginCheckInterceptor;
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+    @Resource
+    private LoginCheckInterceptor loginCheckInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(loginCheckInterceptor).addPathPatterns("/**").excludePathPatterns("/login");
+        WebMvcConfigurer.super.addInterceptors(registry);
+    }
+}
+```
+</details>
+
 ## org/dxl/pojo
 
 **普通 Java 对象**，常用于封装数据传输对象
@@ -167,7 +351,7 @@ public class Dept {
 
 * `@Mapper` 使用 `MyBatis` 框架为接口生成对应实现类
 
-<details><summary>Mapper.java</summary>
+<details><summary>Mapper</summary>
 
 ```java
 // EmpMapper.java
@@ -190,6 +374,8 @@ public interface EmpMapper {
     // 查
     List<Emp> selectEmp();              // select * from emp;
          Emp  selectEmpById(int id);    // select * from emp where id = ?;
+    // 登录
+    Emp login(Emp emp);                 // select * from emp where username = ? and password = ?;
 }
 ```
 </details>
@@ -209,7 +395,7 @@ public interface EmpMapper {
 * `@Server` 标识为 `Spring Bean`，由 `Spring` 管理的服务类
 * `@Resource` 依赖注入
 
-<details><summary>Service.java</summary>
+<details><summary>Service</summary>
 
 ```java
 // EmpService.java
@@ -233,9 +419,10 @@ public interface EmpService {
 ```
 </details>
 
-<details><summary>impl/ServiceImpl.java</summary>
+<details><summary>impl/ServiceImpl</summary>
 
 ```java
+// EmpServiceImpl.java
 package org.dxl.service.impl;
 
 import jakarta.annotation.Resource;
@@ -304,7 +491,7 @@ public class EmpServiceImpl implements EmpService {
 * `@PathVariable` 用于从 URL 路径中提取变量
 * `@RequestBody` 将 HTTP 请求体中的内容绑定到方法参数上
 
-<details><summary>Controller.java</summary>
+<details><summary>Controller</summary>
 
 ```java
 // EmpController.java
@@ -357,6 +544,52 @@ public class EmpController {
     public Result selectEmpById(@PathVariable Integer id) {
         Emp e = empService.selectEmpById(id);
         return Result.success(e);
+    }
+}
+```
+</details>
+
+
+<details><summary>LoginController.java</summary>
+
+```java
+// LoginController.java
+package org.dxl.controller;
+
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.dxl.pojo.Emp;
+import org.dxl.pojo.Result;
+import org.dxl.service.EmpService;
+import org.dxl.utils.JwtUtils;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@Slf4j
+@RestController
+public class LoginController {
+    @Resource
+    EmpService empService;
+
+    @PostMapping("/login")
+    public Result login(@RequestBody Emp emp){
+        Emp e = empService.login(emp);
+        // 登录成功，生成令牌，下发令牌
+        if (e != null){
+            Map<String, Object> map = new HashMap<>();
+            map.put("username", e.getUserName());
+            map.put("id", e.getId());
+            String jwt = JwtUtils.buildJwt(e.getId().toString(), map);
+            return Result.success(jwt);
+        }
+        else{
+            // 登陆失败，返回错误信息
+            return Result.error("用户名或密码错误");
+        }
     }
 }
 ```
