@@ -415,6 +415,8 @@ public interface EmpService {
     // 查
     List<Emp> selectEmp();
          Emp  selectEmpById(int id);
+    // 登录
+    Demo login(Demo demo);
 }
 ```
 </details>
@@ -466,6 +468,11 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public Emp selectEmpById(int id) {
         return empMapper.selectEmpById(id);
+    }
+
+    @Override
+    public Demo login(Demo demo) {
+        return demoMapper.login(demo);
     }
 }
 
