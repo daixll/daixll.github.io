@@ -7,21 +7,21 @@ nav:
     - Education:        src/about/education.md
     - Honor:            src/about/Honor.md
   - 🪂 Algorithm:
-    - 入门: index.md
-    - 基础: index.md
+    - 入门: _index.md
+    - 基础: _index.md
   - 🚀 C/C++:
     - c:
       - base:           src/cpp/c.md
     - moderncpp:
-      - CPP:            index.md
+      - CPP:            _index.md
   - 🌥️ DevOps:
     - 💻:               src/dev/dev.md
     - GCC:              src/dev/gcc.md
     - OpenSSL:          src/dev/openssl.md
     - MySQL:            src/dev/mysql.md
   - 🌿 Language:
-    - Python: index.md
-    - Golang: index.md
+    - Python: _index.md
+    - Golang: _index.md
     - Java:
       - main/java:      src/language/java/main_java.md
       - main/resources: src/language/java/main_resources.md
@@ -29,11 +29,11 @@ nav:
   - 📖 CS:
     - 数据库: 
       - mysql速查:      src/cs/database/quick_mysql.md
-    - 数据结构: index.md
-    - 操作系统: index.md
+    - 数据结构: _index.md
+    - 操作系统: _index.md
   - 🔢 Math:
-    - 微积分: index.md
-    - 概率论: index.md
+    - 微积分: _index.md
+    - 概率论: _index.md
   - 👷 Φιλοσοφία:
     - 马克思主义:       src/philosophy/marx.md
 
