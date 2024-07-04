@@ -7,8 +7,16 @@ nav:
     - Education:        src/about/education.md
     - Honor:            src/about/Honor.md
   - 🪂 Algorithm:
-    - 入门: _index.md
-    - 基础: _index.md
+    - 入门:             src/algorithm/start/入门.md
+    - 基础:             _index.md
+    - 搜索:             _index.md
+    - 图论:             _index.md
+    - 动规:             _index.md
+    - 数学:             _index.md
+    - 数论:             _index.md
+    - 数据结构:         _index.md
+    - 字符串:           _index.md
+    - 计算几何:         _index.md
   - 🚀 C/C++:
     - c:
       - base:           src/cpp/c.md
@@ -35,7 +43,7 @@ nav:
       - mysql速查:      src/cs/database/quick_mysql.md
   - 🔢 Math:
     - 概率论:           src/math/概率论.md
-    - 微积分:           src/math/微积分.xxx
+    - 微积分:           src/math/微积分.md
   - 👷 Φιλοσοφία:
     - 马克思主义:       src/philosophy/marx.md
 
