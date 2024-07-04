@@ -80,6 +80,7 @@
 1. 指针的算术操作
 
     不同类型的指针运算时，步长不同
+
     * `char` 占用 1 字节， `char *` 步长为 1。
         ```cpp
         char c = '6';   // c 的地址为 0xa
@@ -133,13 +134,161 @@
     }
     ```
 
+<br>
 
-
-
-## 文件读写
+---
 
 ## 内存管理
 
-## 字节流处理
+`#include <stdlib.h>`
+
+**申请内存**
+
+`void* malloc(size_t size)`
+
+* 申请 `size` 字节的空间，返回指向这片空间的指针
+
+* 申请失败返回 `NULL`
+
+<br>
+
+**释放内存**
+
+`void free(void *ptr)`
+
+* 释放 `ptr` 指向的内存空间
+
+<br>
+
+---
+
+## 文件操作
+
+此处只整理二进制的方法
+
+**打开文件**
+
+`FILE* fopen(const char* filename, const char* mode)`
+
+* 失败返回 `NULL`
+
+<center>
+
+| type | read | write | add | create | clean | note |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| `rb`  | 🟢 |    |    |
+| `wb`  |    | 🟢 |    | 🟢 | 🟢 | 覆盖写入 |
+| `ab`  |    |    | 🟢 | 🟢 |    |
+| `rb+` | 🟢 | 🟢 |    |    |     | 文首插入 |
+| `wb+` | 🟢 | 🟢 |    | 🟢 | 🟢 | 覆盖写入 |
+| `ab+` | 🟢 |    | 🟢 | 🟢 |    | 文末追加 |
+
+</center>
+
+**关闭文件**
+
+`int fclose(FILE *fp)`
+
+* 成功返回 `0`
+
+**文件定位**
+
+`int fseek(FILE* fptr, long int offset, int whence)`
+
+* `whence`：偏移起始位
+
+    * `SEEK_SET`：文件开头
+
+    * `SEEK_CUR`：当前位置
+
+    * `SEEK_END`：文件末尾
+
+* `offset`：偏移量
+
+* 成功返回 `0`
+
+**偏移量读取**
+
+`long int ftell(FILE* fptr);`
+
+* 失败返回 `-1`
+
+**读取文件**
+
+`size_t fread(void* ptr, size_t size_of_elements, size_t number_of_elements, FILE* fptr)`
+
+* `ptr`：保存内存位置
+
+* `size_of_elements`：每个元素的大小
+
+* `number_of_elements`：元素的数量
+
+* `fptr`：文件指针
+
+* 成功返回 `number_of_elements`
+
+**写入文件**
+
+``size_t fwrite(void* ptr, size_t size_of_elements, size_t number_of_elements, FILE* fptr)``
+
+* 成功返回 `number_of_elements`
+
+
+<br>
+
+**分段读取**
+
+```cpp
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+
+#define MBLOCK 1024 // 1kb
+
+int8_t ERRIF(int8_t flg, const char* msg){
+    if(flg == 1){
+        perror(msg);
+        exit(1);
+    }
+    return 1;
+}
+
+int main(char arg, char* argc[]){
+    FILE* fptr_in = fopen(argc[1], "rb");
+    ERRIF(fptr_in == NULL, "打开输入文件错误");
+    
+    FILE* fptr_out = fopen(argc[2], "wb"); 
+    ERRIF(fptr_out == NULL, "打开输出文件错误");
+
+    char* ptr = malloc(MBLOCK);
+    ERRIF(ptr == NULL, "内存申请失败");
+
+    fseek(fptr_in, 0, SEEK_END);
+    size_t flen = ftell(fptr_in);   // 文件大小
+
+    for(size_t i=0; i<flen; i+=MBLOCK){
+        fseek(fptr_in, i, SEEK_SET);
+        size_t len = i+MBLOCK > flen ? flen-i : MBLOCK;
+        printf("%lu\n", len);
+
+        size_t read_len = fread(ptr, 1, len, fptr_in);
+        ERRIF(read_len != len, "写入内存错误");
+        // deal();
+
+        size_t write_len = fwrite(ptr, 1, len, fptr_out);
+        ERRIF(write_len != len, "写入文件错误");
+    }
+
+    free(ptr);
+    fclose(fptr_out);
+    fclose(fptr_in);
+    return 0;
+}
+```
+
+
+<br>
+
+---
 
 ## 异常处理
