@@ -1904,37 +1904,242 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">类型</th>
-<th style="text-align: center;">字节数</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: center;">byte</th>
 <th style="text-align: center;">signed</th>
 <th style="text-align: center;">unsigned</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><code>short</code></td>
+<td style="text-align: center;"><code>short int</code></td>
 <td style="text-align: center;">2</td>
-<td style="text-align: center;"><span class="arithmatex">\(-2^{15}\)</span> 到 <span class="arithmatex">\(2^{15} - 1\)</span> <code>%hd</code></td>
-<td style="text-align: center;">0 到 <span class="arithmatex">\(2^{16} - 1\)</span> <code>%hu</code></td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{15}\)</span> ~ <span class="arithmatex">\(2^{15} - 1\)</span> <code>%hd</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{16} - 1\)</span> <code>%hu</code></td>
 </tr>
 <tr>
 <td style="text-align: center;"><code>int</code></td>
 <td style="text-align: center;">4</td>
-<td style="text-align: center;"><span class="arithmatex">\(-2^{31}\)</span> 到 <span class="arithmatex">\(2^{31} - 1\)</span> <code>%d</code></td>
-<td style="text-align: center;">0 到 <span class="arithmatex">\(2^{32} - 1\)</span> <code>%u</code></td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{31}\)</span> ~ <span class="arithmatex">\(2^{31} - 1\)</span> <code>%d</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{32} - 1\)</span> <code>%u</code></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>long long</code></td>
+<td style="text-align: center;"><code>long int</code></td>
 <td style="text-align: center;">8</td>
-<td style="text-align: center;"><span class="arithmatex">\(-2^{63}\)</span> 到 <span class="arithmatex">\(2^{63} - 1\)</span> <code>%lld</code></td>
-<td style="text-align: center;">0 到 <span class="arithmatex">\(2^{64} - 1\)</span> <code>%llu</code></td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{63}\)</span> ~ <span class="arithmatex">\(2^{63} - 1\)</span> <code>%ld</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{64} - 1\)</span> <code>%lu</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>long long int</code></td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{63}\)</span> ~ <span class="arithmatex">\(2^{63} - 1\)</span> <code>%lld</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{64} - 1\)</span> <code>%llu</code></td>
 </tr>
 </tbody>
 </table>
 <p></center></p>
-<p>int
-size_t
-int32_t</p>
+<p>历史遗留问题，在不同的平台上，以上类型的长度无法统一</p>
+<p><br></p>
+<p><strong>精确宽度整数类型</strong>（exact-width integers types）</p>
+<p><code>#include &lt;stdint.h&gt;</code></p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">type</th>
+<th style="text-align: center;">byte</th>
+<th style="text-align: center;">signed</th>
+<th style="text-align: center;">unsigned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>int8_t</code></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{7}\)</span> ~ <span class="arithmatex">\(2^{7} - 1\)</span></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{8} - 1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>int16_t</code></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{15}\)</span> ~ <span class="arithmatex">\(2^{15} - 1\)</span> <code>%hd</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{16} - 1\)</span> <code>%hu</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>int32_t</code></td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{31}\)</span> ~ <span class="arithmatex">\(2^{31} - 1\)</span> <code>%d</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{32} - 1\)</span> <code>%u</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>int64_t</code></td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{63}\)</span> ~ <span class="arithmatex">\(2^{63} - 1\)</span> <code>%ld</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{64} - 1\)</span> <code>%lu</code></td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p>值得一提，<code>int8_t</code> 是一个 <code>char</code> 类型，使用 <code>cout</code> 输出需要处理一下</p>
+<p><br></p>
+<p><strong>最大对象的字节数</strong> <code>size_t</code></p>
+<p><code>#include &lt;stddef.h&gt;</code></p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">平台</th>
+<th style="text-align: center;">byte</th>
+<th style="text-align: center;">本质</th>
+<th style="text-align: center;">range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><code>uint32_t size_t</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{32} - 1\)</span> <code>%u</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">64</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><code>uint64_t size_t</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{64} - 1\)</span> <code>%lu</code></td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p><br></p>
+<p><strong>指针</strong></p>
+<p>指针也是一种数据类型，它用于存储内存地址</p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">type</th>
+<th style="text-align: center;">byte</th>
+<th style="text-align: center;">format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>void *</code></td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><code>%p</code></td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p>和其他数据类型一样</p>
+<ul>
+<li>
+<p><code>int</code> 存储数字</p>
+</li>
+<li>
+<p><code>char</code> 存储字符</p>
+</li>
+<li>
+<p><code>double</code> 存储浮点数</p>
+</li>
+<li>
+<p><strong><code>void *</code> 存储内存地址</strong></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>那为何有 <code>char *</code>、<code>int *</code>、<code>double *</code> 等类型呢？</strong>
+<strong>指明指针指向的数据类型：</strong></p>
+</blockquote>
+<ol>
+<li>
+<p>指针的算术操作</p>
+<p>不同类型的指针运算时，步长不同
+* <code>char</code> 占用 1 字节， <code>char *</code> 步长为 1。
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C++</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;6&#39;</span><span class="p">;</span><span class="w">   </span><span class="c1">// c 的地址为 0xa</span>
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w">    </span><span class="c1">// p 的 值 为 0xa</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">      </span><span class="c1">// p 的 值 为 0xb</span>
+</code></pre></div></td></tr></table></div></p>
+<ul>
+<li><code>int</code> 占用 4 字节， <code>int *</code> 步长为 4
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C++</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w">      </span><span class="c1">// i 的地址为 0x1</span>
+<span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w">     </span><span class="c1">// p 的 值 为 0x1</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">      </span><span class="c1">// p 的 值 为 0x5</span>
+</code></pre></div></td></tr></table></div></li>
+</ul>
+</li>
+<li>
+<p>类型安全</p>
+<p>编译器会在编译时检查指针的类型，从而避免不同类型的指针直接赋值或比较，确保了在程序中正确使用指针</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;6&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;?&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 变量 c 的值</span>
+<span class="w">    </span><span class="c1">// 变量 c 的地址</span>
+<span class="w">    </span><span class="c1">// 指针 p 的值</span>
+<span class="w">    </span><span class="c1">// 指针 p 的地址</span>
+<span class="w">    </span><span class="c1">// 通过指针 p 访问变量 c 的值</span>
+<span class="w">    </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;c的地址 和 p的值，都是一样的 | *p 就是 c的值&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">c                &amp;c               p                &amp;p               *p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%-16c %-16p %-16p %-16p %-16c</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;c+1的地址 和 p+1的值，都是一样的 | *p+1 就是 t的值&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">c                &amp;c+1             p+1              &amp;p+1             *(p+1)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%-16c %-16p %-16p %-16p %-16c</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;输入一个数，到 p+1 的值里面去：&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%c&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;c+1的地址 和 p+1的值，都是一样的 | *p+1 就是 t的值&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">c                &amp;c+1             p+1              &amp;p+1             *(p+1)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%-16c %-16p %-16p %-16p %-16c</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;输出t的值：&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%c&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</li>
+</ol>
 <h2 id="_2">文件读写</h2>
 <h2 id="_3">内存管理</h2>
 <h2 id="_4">字节流处理</h2>
