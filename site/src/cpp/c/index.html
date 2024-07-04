@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -935,6 +940,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    base
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -944,6 +960,68 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本数据类型
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件读写
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      内存管理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      字节流处理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      异常处理
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1749,6 +1827,59 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本数据类型
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件读写
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      内存管理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      字节流处理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      异常处理
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1767,14 +1898,47 @@
 
   <h1>base</h1>
 
-<p>数据类型
-int
+<h2 id="_1">基本数据类型</h2>
+<p><strong>整型</strong></p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">类型</th>
+<th style="text-align: center;">字节数</th>
+<th style="text-align: center;">signed</th>
+<th style="text-align: center;">unsigned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>short</code></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{15}\)</span> 到 <span class="arithmatex">\(2^{15} - 1\)</span> <code>%hd</code></td>
+<td style="text-align: center;">0 到 <span class="arithmatex">\(2^{16} - 1\)</span> <code>%hu</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>int</code></td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{31}\)</span> 到 <span class="arithmatex">\(2^{31} - 1\)</span> <code>%d</code></td>
+<td style="text-align: center;">0 到 <span class="arithmatex">\(2^{32} - 1\)</span> <code>%u</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>long long</code></td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{63}\)</span> 到 <span class="arithmatex">\(2^{63} - 1\)</span> <code>%lld</code></td>
+<td style="text-align: center;">0 到 <span class="arithmatex">\(2^{64} - 1\)</span> <code>%llu</code></td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p>int
 size_t
 int32_t</p>
-<p>文件读写</p>
-<p>内存管理</p>
-<p>字节流处理</p>
-<p>异常处理</p>
+<h2 id="_2">文件读写</h2>
+<h2 id="_3">内存管理</h2>
+<h2 id="_4">字节流处理</h2>
+<h2 id="_5">异常处理</h2>
 
 
 
