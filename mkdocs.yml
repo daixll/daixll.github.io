@@ -12,28 +12,30 @@ nav:
   - 🚀 C/C++:
     - c:
       - base:           src/cpp/c.md
-    - moderncpp:
-      - CPP:            _index.md
   - 🌥️ DevOps:
-    - 💻:               src/dev/dev.md
+    - Conf:             src/dev/dev.md
     - GCC:              src/dev/gcc.md
+    - GDB:              src/dev/gdb.md
+    - Make:             src/dev/make.md
+    - CMake:            src/dev/cmake.md
     - OpenSSL:          src/dev/openssl.md
     - MySQL:            src/dev/mysql.md
   - 🌿 Language:
-    - Python: _index.md
-    - Golang: _index.md
+    - Python:
+      - venv:           src/language/py/venv.md
+    - Golang:           src/language/go/one.md
     - Java:
       - main/java:      src/language/java/main_java.md
       - main/resources: src/language/java/main_resources.md
       - test/java:      src/language/java/test_java.md
   - 📖 CS:
+    - 操作系统:
+      - linux速查:      src/cs/os/quick_linux.md
     - 数据库: 
       - mysql速查:      src/cs/database/quick_mysql.md
-    - 数据结构: _index.md
-    - 操作系统: _index.md
   - 🔢 Math:
-    - 微积分: _index.md
-    - 概率论: _index.md
+    - 概率论:           src/math/概率论.md
+    - 微积分:           src/math/微积分.xxx
   - 👷 Φιλοσοφία:
     - 马克思主义:       src/philosophy/marx.md
 

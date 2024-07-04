@@ -158,8 +158,7 @@
 
 7. 配置快捷方式，f5一键执行命令
 
-    修改 `C:\Users\USERNAME\AppData\Roaming\Code\User\keybindings.json` 文件
-
+    `ctrl + k` + `ctrl + s` 打开键盘快捷方式，右上角选择 `json`，填入
     ```json
     // 将键绑定放在此文件中以覆盖默认值auto[]
     [
