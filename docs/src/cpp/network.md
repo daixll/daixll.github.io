@@ -1,16 +1,6 @@
+# 网络编程
 
-
-<style>
-    .center
-    {
-    width: auto;
-    display: table;
-    margin-left: auto;
-    margin-right: auto;
-    }
-</style>
-
-# 引子
+## 引子
 
 **[源代码](https://github.com/daixll/A_Tour_of_Socket)**
 
@@ -59,7 +49,7 @@
 
 ---
 
-# 1 阻塞 IO
+## 1 阻塞 IO
 
 当 **进程** 发起 **IO请求** 后，如果 **内核** 没有准备好数据，那么 **进程** 将一直等待，直到 **内核** 准备好数据为止
 
@@ -67,7 +57,7 @@
 
 > 当程序发起接收数据的请求时，如果接收缓冲区为空，那么程序将一直等待，直到接收缓冲区有数据为止
 
-## TCP
+### TCP
 
 **TCP 通信模型**
 
@@ -90,7 +80,7 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
 | 4 | `close()` | 关闭 socket |
 
 
-### server
+#### server
 
 1. 创建套接字 `socket()`
     ```cpp
@@ -200,7 +190,7 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
 
 <br>
 
-### client
+#### client
 
 1. 创建套接字 `socket()`
 
@@ -241,7 +231,7 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
 
 <br>
 
-### send 和 recv
+#### send 和 recv
 
 * `> 0` 发送或接收的字节数
 * `= 0` 对端已经关闭连接
@@ -250,7 +240,7 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
 
 <br>
 
-###  TCP 三握四挥
+####  TCP 三握四挥
 
 * 连接
     1. `客户端` 请求连接，`connect` 阻塞
@@ -274,7 +264,7 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
 
 ---
 
-## UDP
+### UDP
 
 **UDP 通信模型**
 
@@ -291,7 +281,7 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
 | 2 | `sendto()` | 发送消息 |
 | 3 | `close()` | 关闭 socket |
 
-### server
+#### server
 
 1. 创建套接字 `socket()`
 
@@ -335,7 +325,7 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
     close(server);
     ```
 
-### client
+#### client
 
 1. 创建套接字 `socket()`
 
@@ -375,15 +365,15 @@ socket 是一个接口，而不是一种协议，其抽象在应用层与传输�
 
 ---
 
-## Boost.Asio
+### Boost.Asio
 
 直接使用其提供的 `boost::asio::ip::tcp`
 
-### server
+#### server
 
 ```cpp
-#include <boost/asio.hpp>
-#include <iostream>
+##include <boost/asio.hpp>
+##include <iostream>
 
 using namespace boost::asio;
 
@@ -418,11 +408,11 @@ int main(int argc, char* argv[]){
 }
 ```
 
-### client
+#### client
 
 ```cpp
-#include <boost/asio.hpp>
-#include <iostream>
+##include <boost/asio.hpp>
+##include <iostream>
 
 using namespace boost::asio;
 
@@ -457,11 +447,11 @@ int main(int argc, char* argv[]){
 
 ---
 
-# 2 非阻塞 IO
+## 2 非阻塞 IO
 
 当 **进程** 发起 **IO请求** 后，即使 **内核** 没有准备好数据，**进程** 也将立即返回，不会等待，同时 **内核** 会返回一个错误码，告诉 **进程** 为什么没有准备好数据
 
-## 非阻塞输入
+### 非阻塞输入
 
 ```cpp
 std::cin.sync_with_stdio(false);        // 关闭同步
@@ -469,7 +459,7 @@ if(std::cin.rdbuf() -> in_avail() > 0)  // 如果输入缓冲区有数据
     std::getline(std::cin, s);          // 读取数据
 ```
 
-## c2s
+### c2s
 
 此时，我们可以构建一个简单的 c2s 通信模型：
 **多个** 客户端可以与 **一个** 服务端 **收发任意条** 消息
@@ -514,7 +504,7 @@ if(std::cin.rdbuf() -> in_avail() > 0)  // 如果输入缓冲区有数据
 
 ---
 
-## echo server
+### echo server
 
 echo server，即客户端发送什么，服务端就回复什么
 在 c2s 的基础上，初步尝试使用面向对象的思想实现：
@@ -527,7 +517,7 @@ echo server，即客户端发送什么，服务端就回复什么
 
 ---
 
-## http server
+### http server
 
 在 echo server 中，使用 deal 函数处理接收到的消息，如果想处理 http 请求，只需要重写 deal 函数即可：
 * 获取 http 请求的请求
@@ -539,7 +529,7 @@ echo server，即客户端发送什么，服务端就回复什么
 
 ---
 
-## c2c
+### c2c
 
 之前的 c2s 通信模型，是多个客户端与一个服务端收发任意条消息，现在我们尝试构建一个 c2c 通信模型：
 
@@ -552,7 +542,7 @@ echo server，即客户端发送什么，服务端就回复什么
 ---
 
 
-# 3 复用 IO
+## 3 复用 IO
 
 在阻塞 IO 中，如何没有连接请求，`accept()` 函数将一直阻塞，直到有连接请求为止，`recv()` 和 `send()` 函数也是如此，如果没有数据，将一直阻塞，直到有数据为止。
 
@@ -561,7 +551,7 @@ echo server，即客户端发送什么，服务端就回复什么
 在 IO 复用 中，我们可以使用 `select()`、`poll()`、`epoll()` 函数，将多个文件描述符注册到内核中，当有文件描述符准备好数据时，内核将通知进程，进程再调用 `accept()`、`recv()`、`send()` 函数，这样就不需要循环调用这些函数了。
 
 
-## c2s_epoll
+### c2s_epoll
 
 在 c2s 的基础上，使用 `epoll()` 函数实现 IO 复用，客户端是非阻塞的普通客户端。
 
@@ -636,23 +626,23 @@ eventpoll，事件轮询，Linux 内核实现IO多路复用（IO multiplexing）
 
 ---
 
-# 4 信号驱动 IO
+## 4 信号驱动 IO
 
-## TCP
+### TCP
 
 <br>
 
 ---
 
-# 5 异步 IO
+## 5 异步 IO
 
 前 4 种 IO 模型都是同步 IO，即用户进程发起 IO 请求后，需要等待内核完成 IO 操作后才能继续执行。
 
 异步 IO 模型，用户进程发起 IO 请求后，不需要等待内核完成 IO 操作，用户进程可以继续执行，当内核完成 IO 操作后，会通知用户进程。
 
 ```cpp
-#include <boost/asio.hpp>
-#include <iostream>
+##include <boost/asio.hpp>
+##include <iostream>
 
 using namespace boost::asio;
 
@@ -688,10 +678,10 @@ int main(){
 前者是异步的，而后者是同步的，通过代码不难理解：同步的是 `wait()`，阻塞；异步的是 `async_wait()`，不阻塞，任务在 `io.run()` 之后，由后台处理。 
 
 
-## TCP_Server
+### TCP_Server
 
 
-## UDP_Server
+### UDP_Server
 
 [boost官网的udp异步](https://www.boost.org/doc/libs/1_84_0/doc/html/boost_asio/tutorial/tutdaytime6/src.html)
 
@@ -704,10 +694,8 @@ int main(){
 
 ---
 
-# errno
+## errno
 
-
-<div class="center">
 
 | 错误码 | 别名 | 错误描述 | note | 
 | :-: | :-: | :-: | :-: |
@@ -718,13 +706,11 @@ int main(){
 | 107 |  | 传输终点没有连接 | |
 
 
-</div>
-
 <br>
 
 ---
 
-# HTTP
+## HTTP
 
 HTTP 协议是基于 TCP 协议的应用层协议，默认端口号是 80（HTTPS是 443），HTTP 协议的通信模型是 **请求-响应** 模型
 
@@ -826,5 +812,5 @@ HTTP 协议的请求消息和响应消息都是由 **请求 / 响应行**、**�
 
 ---
 
-# RTP/RTCP
+## RTP/RTCP
 

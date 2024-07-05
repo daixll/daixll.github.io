@@ -18,8 +18,13 @@ nav:
     - 字符串:           _index.md
     - 计算几何:         _index.md
   - 🚀 C/C++:
-    - c:
-      - base:           src/cpp/c.md
+    - C:                src/cpp/c.md
+    - CPP:              src/cpp/_index.md
+    - STL:              src/cpp/_index.md
+    - Network:          src/cpp/network.md
+    - Thread:           src/cpp/_index.md
+    - Qt:               src/cpp/_index.md
+    - FFmpeg:           src/cpp/_index.md
   - 🌥️ DevOps:
     - Conf:             src/dev/dev.md
     - GCC:              src/dev/gcc.md
