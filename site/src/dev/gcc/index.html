@@ -1145,6 +1145,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mingw-w64" class="md-nav__link">
+    <span class="md-ellipsis">
+      mingw-w64
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1915,6 +1924,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mingw-w64" class="md-nav__link">
+    <span class="md-ellipsis">
+      mingw-w64
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2090,6 +2108,100 @@ sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--remove<
 </ul>
 </li>
 </ul>
+<h2 id="mingw-w64">mingw-w64</h2>
+<p><a href="https://github.com/niXman/mingw-builds-binaries/releases">下载地址</a></p>
+<p>mingw-w64 是一个跨平台的编译器，可以在 Windows 上编译出 Linux 下可执行文件。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">系统架构</th>
+<th style="text-align: center;">位数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>i686</strong></td>
+<td style="text-align: center;">32位</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>x86-64</strong></td>
+<td style="text-align: center;">64位</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">接口标准</th>
+<th style="text-align: center;">跨平台性</th>
+<th style="text-align: center;">主要特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>POSIX</strong></td>
+<td style="text-align: center;">跨UNIX和类UNIX系统</td>
+<td style="text-align: center;">标准化的UNIX系统API，跨平台</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>MCF</strong></td>
+<td style="text-align: center;">仅限于Windows平台</td>
+<td style="text-align: center;">Windows API集成，提供高级功能</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Win32</strong></td>
+<td style="text-align: center;">仅限于Windows平台</td>
+<td style="text-align: center;">提供Windows操作系统的各种功能</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">异常处理与调试</th>
+<th style="text-align: center;">用途</th>
+<th style="text-align: center;">应用范围</th>
+<th style="text-align: center;">使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>SEH</strong></td>
+<td style="text-align: center;">仅限于Windows平台，处理Windows特定的异常</td>
+<td style="text-align: center;">处理程序运行时的异常，提供结构化的异常处理</td>
+<td style="text-align: center;">应用程序中处理可能出现的异常情况，如文件读取失败或内存访问错误</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>DWARF</strong></td>
+<td style="text-align: center;">用于多种操作系统，包括Linux、Unix、macOS等</td>
+<td style="text-align: center;">提供编译后程序的调试信息给调试器</td>
+<td style="text-align: center;">由编译器生成，提供源代码级别的调试信息给开发者，用于程序调试和分析</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">运行时库</th>
+<th style="text-align: center;">版本兼容性和兼容性</th>
+<th style="text-align: center;">提供的函数和特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>ucrt</strong></td>
+<td style="text-align: center;">较新的Windows版本</td>
+<td style="text-align: center;">标准C库函数，包括C11和POSIX标准的扩展函数</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>msvcrt</strong></td>
+<td style="text-align: center;">早期和某些Windows版本</td>
+<td style="text-align: center;">早期的C库函数和一些扩展函数</td>
+</tr>
+</tbody>
+</table>
+<p>值得一提，虽然 POSIX 接口标准是跨平台的，但是 Windows 并不支持 POSIX 标准，如果使用 POSIX 标准，那么程序会</p>
+<p><br></p>
 
 
 

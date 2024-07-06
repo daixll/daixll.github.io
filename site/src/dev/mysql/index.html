@@ -2003,6 +2003,46 @@
 
 <h2 id="setup">setup</h2>
 <h3 id="linux">linux</h3>
+<ol>
+<li>
+<p>下载安装</p>
+<ul>
+<li><code>apt install mysql-server</code></li>
+<li><code>apt install mysql-client</code></li>
+</ul>
+</li>
+<li>
+<p>初始化</p>
+<ul>
+<li><code>mysql_secure_installation</code></li>
+</ul>
+</li>
+<li>
+<p>启动服务</p>
+<ul>
+<li><code>service mysql start</code></li>
+</ul>
+</li>
+<li>
+<p>登录</p>
+<ul>
+<li><code>mysql -u root -p</code></li>
+</ul>
+</li>
+<li>
+<p>设置密码</p>
+<ul>
+<li><code>use mysql;</code></li>
+<li><code>ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '12345678';</code></li>
+</ul>
+</li>
+<li>
+<p>退出</p>
+<ul>
+<li><code>quit</code></li>
+</ul>
+</li>
+</ol>
 <h3 id="windows">windows</h3>
 <ol>
 <li>

@@ -8,7 +8,7 @@
     3. 添加至环境变量 `GCC\XY\mingw-w64\bin`
 
 
-    
+
 
 
 * **编译安装指定版本**
@@ -123,3 +123,37 @@
     g++ main.cpp -I/usr/local/openssl-x.y.z/include -L/usr/local/openssl-x.y.z/lib -lssl
     ```
     * 在手动连接动态库时，通常还需要指定头文件搜索位置
+
+
+
+
+## mingw-w64
+
+[下载地址](https://github.com/niXman/mingw-builds-binaries/releases)
+
+mingw-w64 是一个跨平台的编译器，可以在 Windows 上编译出 Linux 下可执行文件。
+
+| 系统架构 | 位数 |
+|:-:|:-:
+| **i686** | 32位 |
+| **x86-64**| 64位 | 
+
+| 接口标准 | 跨平台性 | 主要特点 |
+|:-------:|:-------:|:-------:|
+| **POSIX**  | 跨UNIX和类UNIX系统   | 标准化的UNIX系统API，跨平台 |
+| **MCF**    | 仅限于Windows平台    | Windows API集成，提供高级功能 |
+| **Win32**  | 仅限于Windows平台    | 提供Windows操作系统的各种功能 |
+
+| 异常处理与调试 | 用途 | 应用范围 | 使用场景 | 
+|:-:|:-:|:-:|:-:|
+| **SEH** | 仅限于Windows平台，处理Windows特定的异常 | 处理程序运行时的异常，提供结构化的异常处理           | 应用程序中处理可能出现的异常情况，如文件读取失败或内存访问错误    |
+| **DWARF** | 用于多种操作系统，包括Linux、Unix、macOS等             | 提供编译后程序的调试信息给调试器                  | 由编译器生成，提供源代码级别的调试信息给开发者，用于程序调试和分析    |
+
+| 运行时库   | 版本兼容性和兼容性 | 提供的函数和特性 |
+|:-:|:-:|:-:|
+| **ucrt**   | 较新的Windows版本 | 标准C库函数，包括C11和POSIX标准的扩展函数 |
+| **msvcrt** | 早期和某些Windows版本 | 早期的C库函数和一些扩展函数         |
+
+值得一提，虽然 POSIX 接口标准是跨平台的，但是 Windows 并不支持 POSIX 标准，如果使用 POSIX 标准，那么程序会
+
+<br>
