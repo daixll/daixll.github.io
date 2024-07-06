@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../gcc/">
+        <link rel="prev" href="../cmake/">
       
       
-        <link rel="next" href="../make/">
+        <link rel="next" href="../boost/">
       
       
       <link rel="icon" href="../../../assets/head.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>GDB - 戴兴龙</title>
+        <title>Perf - 戴兴龙</title>
       
     
     
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              GDB
+              Perf
             
           </span>
         </div>
@@ -1108,17 +1108,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../gdb/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1127,7 +1120,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1179,10 +1171,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../perf/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1191,6 +1190,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1874,79 +1874,66 @@
   
 
 
-  <h1>GDB</h1>
+  <h1>Perf</h1>
 
 <ol>
 <li>
-<p><strong>启动GDB：</strong>
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>gdb<span class="w"> </span>ac
+<p><strong>安装 perf</strong>
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>linux-tools-common<span class="w"> </span>linux-tools-generic<span class="w"> </span>linux-tools-<span class="sb">`</span>uname<span class="w"> </span>-r<span class="sb">`</span>
 </code></pre></div></td></tr></table></div></p>
 <ul>
-<li><code>ac</code> 是需要调试的程序。</li>
+<li><code>linux-tools-common</code>：Linux 性能分析工具的公共文件。</li>
+<li><code>linux-tools-generic</code>：Linux 性能分析工具的通用文件。</li>
+<li><code>linux-tools-&lt;version&gt;</code>：Linux 性能分析工具的内核版本文件。<ul>
+<li><code>uname -r</code> 命令用于查看内核版本。</li>
 </ul>
 </li>
-<li>
-<p><strong>设置断点：</strong>
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">break</span><span class="w"> </span>ac.cpp:main
-<span class="k">break</span><span class="w"> </span>ac.cpp:10
-</code></pre></div></td></tr></table></div></p>
-<ul>
-<li><code>break</code> 命令用于设置断点，可以简写为 <code>b</code>。</li>
-<li><code>ac.cpp:main</code> 是断点的位置，这里是 <code>ac.cpp</code> 文件的 <code>main</code> 函数。</li>
-<li><code>ac.cpp:10</code> 是断点的位置，这里是 <code>ac.cpp</code> 文件的第 <code>10</code> 行。</li>
-<li>如果不指定文件名，那么默认是当前文件。</li>
 </ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>perf<span class="w"> </span>-v<span class="w"> </span><span class="c1"># 验证是否安装成功</span>
+</code></pre></div></td></tr></table></div>
 </li>
 <li>
-<p><strong>运行程序：</strong>
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>run
-</code></pre></div></td></tr></table></div></p>
-<ul>
-<li><code>run</code> 命令用于运行程序，可以简写为 <code>r</code>。</li>
-</ul>
+<p><strong>下载 FlameGraph</strong></p>
+<p>FlameGraph 是一个生成火焰图的工具。</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/brendangregg/FlameGraph.git
+</code></pre></div></td></tr></table></div>
 </li>
 <li>
-<p><strong>单步执行：</strong>
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>step
-</code></pre></div></td></tr></table></div></p>
+<p><strong>使用</strong> </p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>perf<span class="w"> </span>record<span class="w"> </span>-g<span class="w"> </span>./a.out<span class="w"> </span>sleep<span class="w"> </span><span class="m">10</span>
+</code></pre></div></td></tr></table></div>
 <ul>
-<li><code>step</code> 命令用于单步执行程序，可以简写为 <code>s</code>。</li>
+<li><code>perf record</code> 命令用于记录性能数据。</li>
+<li><code>-g</code> 选项用于记录调用图。</li>
+<li><code>./a.out</code> 需要记录性能的程序。</li>
+<li><code>sleep 10</code> 程序运行 10 秒。</li>
 </ul>
-</li>
-<li>
-<p><strong>继续执行：</strong>
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">continue</span>
-</code></pre></div></td></tr></table></div></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>perf<span class="w"> </span>script<span class="w"> </span>-i<span class="w"> </span>perf.data<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>perf.unfold<span class="w"> </span>
+</code></pre></div></td></tr></table></div>
 <ul>
-<li><code>continue</code> 命令用于继续执行程序，直到遇到下一个断点，可以简写为 <code>c</code>。</li>
+<li><code>perf script</code> 命令用于将性能数据转换为可读的格式。</li>
+<li><code>-i</code> 选项用于指定输入文件。</li>
+<li><code>perf.data</code> 是性能数据文件。</li>
+<li><code>&amp;&gt; perf.unfold</code> 用于将输出重定向到 <code>perf.unfold</code> 文件。</li>
 </ul>
-</li>
-<li>
-<p><strong>查看变量：</strong>
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>print<span class="w"> </span>a
-</code></pre></div></td></tr></table></div></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>FlameGraph/stackcollapse-perf.pl<span class="w"> </span>perf.unfold<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>perf.folded
+</code></pre></div></td></tr></table></div>
 <ul>
-<li><code>print</code> 命令用于查看变量，可以简写为 <code>p</code>。</li>
+<li><code>stackcollapse-perf.pl</code> 命令用于将性能数据转换为火焰图的输入格式。</li>
+<li><code>perf.unfold</code> 是性能数据文件。</li>
+<li><code>&amp;&gt; perf.folded</code> 用于将输出重定向到 <code>perf.folded</code> 文件。</li>
 </ul>
-</li>
-<li>
-<p><strong>查看堆栈：</strong>
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>backtrace
-</code></pre></div></td></tr></table></div></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>FlameGraph/flamegraph.pl<span class="w"> </span>perf.folded<span class="w"> </span>&gt;<span class="w"> </span>perf.svg
+</code></pre></div></td></tr></table></div>
 <ul>
-<li><code>backtrace</code> 命令用于查看堆栈，可以简写为 <code>bt</code>。</li>
-</ul>
-</li>
-<li>
-<p><strong>退出GDB：</strong>
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>quit
-</code></pre></div></td></tr></table></div></p>
-<ul>
-<li><code>quit</code> 命令用于退出GDB，可以简写为 <code>q</code>。</li>
+<li><code>flamegraph.pl</code> 命令用于生成火焰图。</li>
+<li><code>perf.folded</code> 是火焰图需要的性能数据文件。</li>
+<li><code>&gt; perf.svg</code> 用于将输出重定向到 <code>perf.svg</code> 文件。</li>
 </ul>
 </li>
 </ol>
+<p><br></p>
+<hr />
 
 
 

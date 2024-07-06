@@ -1,4 +1,4 @@
-[官网](https://www.openssl.org/) | [下载](https://www.openssl.org/source/) | [使用文档](https://www.feistyduck.com/library/openssl-cookbook/online/) | [开发文档](https://www.openssl.org/docs/man3.0/man7/)
+[官网](https://www.openssl.org/) | [下载](https://www.openssl.org/source/) | [使用文档](https://www.feistyduck.com/library/openssl-cookbook/online/) | [开发文档](https://www.openssl.org/docs/manmaster/man3/index.html)
 
 
 ## setup

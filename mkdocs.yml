@@ -31,6 +31,7 @@ nav:
     - GDB:              src/dev/gdb.md
     - Make:             src/dev/make.md
     - CMake:            src/dev/cmake.md
+    - Perf:             src/dev/perf.md
     - Boost:            src/dev/boost.md
     - OpenSSL:          src/dev/openssl.md
     - MySQL:            src/dev/mysql.md

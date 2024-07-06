@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#setup" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1139,6 +1144,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Make
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1148,6 +1164,65 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use" class="md-nav__link">
+    <span class="md-ellipsis">
+      use
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1166,6 +1241,27 @@
   
   <span class="md-ellipsis">
     CMake
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Perf
   </span>
   
 
@@ -1837,6 +1933,56 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use" class="md-nav__link">
+    <span class="md-ellipsis">
+      use
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1855,7 +2001,111 @@
 
   <h1>Make</h1>
 
+<p><a href="https://www.gnu.org/software/make/">官网</a></p>
+<h2 id="setup">setup</h2>
+<h3 id="linux">linux</h3>
+<h3 id="windows">windows</h3>
+<ol>
+<li>下载 <a href="https://gnuwin32.sourceforge.net/downlinks/make.php">Make</a></li>
+<li>安装</li>
+<li>添加环境变量 <code>GnuWin32\bin</code></li>
+</ol>
+<p><br></p>
+<hr />
+<h2 id="use">use</h2>
+<ul>
+<li>
+<p>当前目录下存在 <code>Makefile</code> 文件
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>project/
+├── main.cpp
+└── Makefile
+</code></pre></div></td></tr></table></div></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make<span class="w"> </span><span class="c1"># 直接 make 即可</span>
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p><code>Makefile</code> 最简示例
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Makefile</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c"># 声明变量</span>
+<span class="nv">CXX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>g++<span class="w">                       </span><span class="c1"># 编译器命令</span>
+<span class="nv">CXXFLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-std<span class="o">=</span>c++26<span class="w"> </span>-O2<span class="w">       </span><span class="c1"># 编译选项</span>
+<span class="nv">TARGET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>main<span class="w">                   </span><span class="c1"># 目标可执行文件名</span>
+<span class="nv">SRCS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>main.cpp<span class="w">                 </span><span class="c1"># 源文件列表</span>
 
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">TARGET</span><span class="k">)</span>                  <span class="c"># 默认目标规则</span>
+
+<span class="nf">$(TARGET)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">SRCS</span><span class="k">)</span>              <span class="c"># 生成可执行文件的规则</span>
+<span class="w">        </span><span class="k">$(</span>CXX<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CXXFLAGS<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="k">$(</span>TARGET<span class="k">)</span><span class="w"> </span><span class="k">$(</span>SRCS<span class="k">)</span>
+
+<span class="nf">clean</span><span class="o">:</span><span class="w">                          </span><span class="c"># 清理生成的文件</span>
+<span class="w">        </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>TARGET<span class="k">)</span>
+
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">all</span> <span class="n">clean</span>               <span class="c"># 声明伪目标，避免与文件名冲突</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p><code>Makefile</code> 连接动态库
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Makefile</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c"># 声明变量</span>
+<span class="nv">CXX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>g++
+<span class="nv">CXXFLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-std<span class="o">=</span>c++26
+<span class="nv">TARGET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>main
+<span class="nv">SRCS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>main.cpp
+
+<span class="c"># 需要链接的动态库列表</span>
+<span class="nv">LIBS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-lssl<span class="w"> </span>-lcrypto<span class="w"> </span>-lz<span class="w">       </span><span class="c1"># OpenSSL 的 SSL 库、加密库和 zlib 库</span>
+
+<span class="c"># 头文件和库文件路径</span>
+<span class="nv">INC_DIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>/usr/local/XYZ/include
+<span class="nv">LIB_DIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>/usr/local/XYZ/lib<span class="w"> </span>/usr/lib
+
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">TARGET</span><span class="k">)</span>                  <span class="c"># 默认目标规则</span>
+
+<span class="nf">$(TARGET)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">SRCS</span><span class="k">)</span>              <span class="c"># 生成可执行文件的规则</span>
+<span class="w">    </span><span class="k">$(</span>CXX<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CXXFLAGS<span class="k">)</span><span class="w"> </span>-I<span class="k">$(</span>INC_DIR<span class="k">)</span><span class="w"> </span>-L<span class="k">$(</span>LIB_DIR<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="k">$(</span>TARGET<span class="k">)</span><span class="w"> </span>$<span class="w"> </span><span class="o">(</span>SRCS<span class="o">)</span><span class="w"> </span><span class="k">$(</span>LIBS<span class="k">)</span>
+
+<span class="nf">clean</span><span class="o">:</span><span class="w">                          </span><span class="c"># 清理生成的文件</span>
+<span class="w">    </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>TARGET<span class="k">)</span>
+
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">all</span> <span class="n">clean</span>               <span class="c"># 声明伪目标，避免与文件名冲突</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+</ul>
 
 
 

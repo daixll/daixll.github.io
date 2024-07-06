@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../cmake/">
+        <link rel="prev" href="../perf/">
       
       
         <link rel="next" href="../openssl/">
@@ -1176,6 +1176,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../perf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Perf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -2027,6 +2048,62 @@
 </code></pre></div></td></tr></table></div></li>
 </ol>
 <h3 id="windows">windows</h3>
+<ol>
+<li>
+<p>下载
+    <a href="https://www.boost.org/users/download/">Boost</a></p>
+</li>
+<li>
+<p>解压</p>
+</li>
+<li>
+<p>进入解压后的目录，执行 <code>.\bootstrap.bat gcc</code></p>
+<ul>
+<li>编译前的配置工作</li>
+</ul>
+</li>
+<li>
+<p>执行 <code>.\b2.exe install</code></p>
+<ul>
+<li>编译安装</li>
+</ul>
+</li>
+<li>
+<p>测试
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C++</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/version.hpp&gt;</span><span class="c1">//包含 Boost 头文件</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/config.hpp&gt;</span><span class="c1"> //包含 Boost 头文件</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">BOOST_VERSION</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">      </span><span class="c1">// Boost 版本号</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">BOOST_LIB_VERSION</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">  </span><span class="c1">// Boost 版本号</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">BOOST_PLATFORM</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">     </span><span class="c1">// 操作系统</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">BOOST_COMPILER</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">     </span><span class="c1">// 编译器</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">BOOST_STDLIB</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">       </span><span class="c1">// 标准库</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<ul>
+<li>编译
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>g++<span class="w"> </span>-o<span class="w"> </span><span class="nb">test</span><span class="w"> </span>test.cpp<span class="w"> </span>-I<span class="s2">&quot;C:\Boost\include\boost-1_84&quot;</span><span class="w"> </span>-L<span class="s2">&quot;C:\Boost\lib&quot;</span>
+</code></pre></div></td></tr></table></div></li>
+<li>如果使用网络库，还需要 <code>-lws2_32</code></li>
+</ul>
+</li>
+</ol>
 <hr />
 <h2 id="dev">dev</h2>
 

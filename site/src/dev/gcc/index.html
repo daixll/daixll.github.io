@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#linux-use" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1097,6 +1102,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    GCC
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1106,6 +1122,32 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#linux-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux-use
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1166,6 +1208,27 @@
   
   <span class="md-ellipsis">
     CMake
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Perf
   </span>
   
 
@@ -1837,6 +1900,23 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#linux-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux-use
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1855,7 +1935,161 @@
 
   <h1>GCC</h1>
 
-
+<ul>
+<li>
+<p><strong>安装</strong></p>
+<ol>
+<li>
+<p>下载 <a href="https://github.com/niXman/mingw-builds-binaries/releases">mingw-w64</a> <code>x86_64</code> <code>posix</code> <code>seh</code> <code>ucrt</code></p>
+</li>
+<li>
+<p>解压</p>
+</li>
+<li>
+<p>添加至环境变量 <code>GCC\XY\mingw-w64\bin</code></p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>编译安装指定版本</strong></p>
+<ol>
+<li>
+<p><a href="https://ftp.tsukuba.wide.ad.jp/software/gcc/releases/">下载（日本镜像站）</a></p>
+</li>
+<li>
+<p>解压缩
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>tar<span class="w"> </span>-zxvf<span class="w"> </span>*.tar.gz
+<span class="nb">cd</span><span class="w"> </span>gcc*
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>安装依赖
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libgmp-dev<span class="w"> </span>libmpfr-dev<span class="w"> </span>libmpc-dev
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>配置编译选项
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>./configure<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--enable-languages<span class="o">=</span>c,c++<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--prefix<span class="o">=</span><span class="s1">&#39;/usr/local/gcc-x.y.z&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--disable-multilib
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>编译
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>安装
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>make<span class="w"> </span>install
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>添加动态连接
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>export LD_LIBRARY_PATH=/usr/local/gcc-x.y.z/lib64:$LD_LIBRARY_PATH
+</code></pre></div></td></tr></table></div></p>
+</li>
+</ol>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li>
+<p><strong>多个版本切换</strong></p>
+<ol>
+<li>
+<p>设置候选项
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--install<span class="w"> </span>/usr/bin/gcc<span class="w"> </span>gcc<span class="w"> </span>/usr/bin/gcc-11<span class="w"> </span><span class="m">110</span>
+sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--install<span class="w"> </span>/usr/bin/g++<span class="w"> </span>g++<span class="w"> </span>/usr/bin/g++-11<span class="w"> </span><span class="m">110</span>
+sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--install<span class="w"> </span>/usr/bin/gcc<span class="w"> </span>gcc<span class="w"> </span>/usr/local/gcc-14.1.0/bin/gcc<span class="w"> </span><span class="m">140</span>
+sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--install<span class="w"> </span>/usr/bin/g++<span class="w"> </span>g++<span class="w"> </span>/usr/local/gcc-14.1.0/bin/g++<span class="w"> </span><span class="m">140</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>切换版本
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--config<span class="w"> </span>gcc
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>删除多余候选项
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--remove<span class="w"> </span>gcc<span class="w"> </span>/usr/local/gcc-14.1.0/bin/gcc
+sudo<span class="w"> </span>update-alternatives<span class="w"> </span>--remove<span class="w"> </span>g++<span class="w"> </span>/usr/local/gcc-14.1.0/bin/g++
+</code></pre></div></td></tr></table></div></p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="linux-use">Linux-use</h2>
+<ul>
+<li>指定输出文件名字
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>g++<span class="w"> </span>main.cpp<span class="w"> </span>-o<span class="w"> </span>main
+</code></pre></div></td></tr></table></div></li>
+<li>指定 <code>c++</code> 标准
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>g++<span class="w"> </span>main.cpp<span class="w"> </span>-std<span class="o">=</span>c++26
+</code></pre></div></td></tr></table></div></li>
+<li>
+<p>指定编译器优化</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>g++<span class="w"> </span>main.cpp<span class="w"> </span>-O2
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><code>-O0</code> 无优化<ul>
+<li>效果：不进行任何优化，生成的代码与源代码结构一致，方便试</li>
+<li>适用：开发和调试阶段，用于方便调试和查找问题</li>
+</ul>
+</li>
+<li><code>-O1</code> 基本优化（缺省）<ul>
+<li>效果：应用基本的优化策略，如内联函数、去除未使用的变量等</li>
+<li>适用：提供一些优化，但不会显著增加编译时间，适用于大多情况</li>
+</ul>
+</li>
+<li><code>-O2</code> 标准优化<ul>
+<li>效果：包括更多的内联、循环展开、消除不必要的指令等优化略</li>
+<li>适用：提供更多的性能优化，适用于发布版本，编译时间可能增加</li>
+</ul>
+</li>
+<li><code>-O3</code> 更高级的优化<ul>
+<li>效果：包括更多复杂的优化，如矢量化、函数调用优化等</li>
+<li>适用：对性能要求非常高的应用，但可能增加编译时间，不建用于所有应用</li>
+</ul>
+</li>
+<li><code>-Ofast</code> 最高级的优化<ul>
+<li>效果：启用所有可能的优化，包括不遵循标准的优化，例如非准数学优化和禁用安全性检查</li>
+<li>适用：对极致性能要求的应用，但可能引入精度损失和不可预的行为</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>输出文件带调试信息
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>g++<span class="w"> </span>main.cpp<span class="w"> </span>-g
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>生成动态库
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>g++<span class="w"> </span>-shared<span class="w"> </span>-fPIC<span class="w"> </span>-o<span class="w"> </span>libutil.so<span class="w"> </span>util.cpp
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>连接动态库
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>g++<span class="w"> </span>main.cpp<span class="w"> </span>-lssl
+</code></pre></div></td></tr></table></div></p>
+<ul>
+<li><code>-lssl</code> 是 <code>OpenSSL</code> 的 <code>SSL</code> 库
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>g++<span class="w"> </span>main.cpp<span class="w"> </span>-I/usr/local/openssl-x.y.z/include<span class="w"> </span>-L/usr/local/openssl-x.y.z/lib<span class="w"> </span>-lssl
+</code></pre></div></td></tr></table></div></li>
+<li>在手动连接动态库时，通常还需要指定头文件搜索位置</li>
+</ul>
+</li>
+</ul>
 
 
 

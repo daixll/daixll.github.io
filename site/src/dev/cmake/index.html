@@ -12,7 +12,7 @@
         <link rel="prev" href="../make/">
       
       
-        <link rel="next" href="../boost/">
+        <link rel="next" href="../perf/">
       
       
       <link rel="icon" href="../../../assets/head.png">
@@ -72,6 +72,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#setup" class="md-skip">
+          跳转至
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -1160,6 +1165,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    CMake
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1170,6 +1186,86 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use" class="md-nav__link">
+    <span class="md-ellipsis">
+      use
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Perf
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1837,6 +1933,56 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use" class="md-nav__link">
+    <span class="md-ellipsis">
+      use
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1855,7 +2001,73 @@
 
   <h1>CMake</h1>
 
+<h2 id="setup">setup</h2>
+<h3 id="linux">linux</h3>
+<h3 id="windows">windows</h3>
+<p><br></p>
+<hr />
+<h2 id="use">use</h2>
+<ul>
+<li>
+<p>当前目录下存在 <code>CMakeLists.txt</code> 文件</p>
+<ol>
+<li><code>mkdir build &amp;&amp; cd build</code> 通常做法，避免中间文件污染源代码目录（out-of-source）</li>
+<li><code>cmake ..</code> 生成构建系统文件</li>
+<li><code>cmake --build .</code> 执行相应的构建命令（例如 <code>make</code>）</li>
+</ol>
+</li>
+<li>
+<p>开始
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">cmake_minimum_required</span><span class="p">(</span><span class="n">VERSION</span><span class="w"> </span><span class="mf">3.29</span><span class="p">)</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">指定</span><span class="w"> </span><span class="n">CMake</span><span class="w"> </span><span class="n">的最低版本要求</span>
 
+<span class="n">project</span><span class="p">(</span><span class="n">main</span><span class="w"> </span><span class="n">VERSION</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w">               </span><span class="err">#</span><span class="w"> </span><span class="n">设置项目名称和版本号</span>
+
+<span class="n">set</span><span class="p">(</span><span class="n">CMAKE_CXX_STANDARD</span><span class="w"> </span><span class="mi">23</span><span class="p">)</span><span class="w">              </span><span class="err">#</span><span class="w"> </span><span class="n">指定</span><span class="w"> </span><span class="n">C</span><span class="o">++</span><span class="w"> </span><span class="n">标准版本</span>
+<span class="n">set</span><span class="p">(</span><span class="n">CMAKE_CXX_STANDARD_REQUIRED</span><span class="w"> </span><span class="n">True</span><span class="p">)</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="n">编译器必须严格遵循指定的</span><span class="w"> </span><span class="n">C</span><span class="o">++</span><span class="w"> </span><span class="n">标准版本</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>生成可执行文件
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">add_executable</span><span class="p">(</span><span class="n">main</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="n">cpp</span><span class="p">)</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="n">生成可执行文件</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>生成库目标
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">add_library</span><span class="p">(</span><span class="n">util</span><span class="w"> </span><span class="n">STATIC</span><span class="w"> </span><span class="n">util</span><span class="p">.</span><span class="n">cpp</span><span class="p">)</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="n">生成静态库</span><span class="w"> </span><span class="n">libutil</span><span class="p">.</span><span class="n">a</span>
+<span class="n">add_library</span><span class="p">(</span><span class="n">util</span><span class="w"> </span><span class="n">SHARED</span><span class="w"> </span><span class="n">util</span><span class="p">.</span><span class="n">cpp</span><span class="p">)</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="n">生成动态库</span><span class="w"> </span><span class="n">libutil</span><span class="p">.</span><span class="n">so</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>链接动态库
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">LINK_DIRECTORIES</span><span class="p">(</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">xyz</span><span class="o">/</span><span class="n">lib</span><span class="p">)</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">添加动态库目录</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">main</span><span class="w"> </span><span class="n">libssl</span><span class="p">.</span><span class="n">so</span><span class="p">)</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="n">链接库到</span><span class="w"> </span><span class="n">main</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>选择判断
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CMAKE_SYSTEM_NAME</span><span class="w"> </span><span class="n">STREQUAL</span><span class="w"> </span><span class="s">&quot;Linux&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">set</span><span class="p">(</span><span class="n">LIB_PATH</span><span class="w"> </span><span class="s">&quot;/usr/local/xyz/lib&quot;</span><span class="p">)</span>
+<span class="n">elseif</span><span class="w"> </span><span class="p">(</span><span class="n">CMAKE_SYSTEM_NAME</span><span class="w"> </span><span class="n">STREQUAL</span><span class="w"> </span><span class="s">&quot;Windows&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">set</span><span class="p">(</span><span class="n">LIB_PATH</span><span class="w"> </span><span class="s">&quot;C:/Path/To/Your/Libraries&quot;</span><span class="p">)</span>
+<span class="n">endif</span><span class="p">()</span>
+
+<span class="n">LINK_DIRECTORIES</span><span class="p">(</span><span class="n">$</span><span class="p">{</span><span class="n">LIB_PATH</span><span class="p">})</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+</ul>
 
 
 
