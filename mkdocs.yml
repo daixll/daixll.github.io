@@ -19,7 +19,7 @@ nav:
     - 计算几何:         _index.md
   - 🚀 C/C++:
     - C:                src/cpp/c.md
-    - CPP:              src/cpp/_index.md
+    - CPP:              src/cpp/cpp.md
     - STL:              src/cpp/_index.md
     - Network:          src/cpp/network.md
     - Thread:           src/cpp/_index.md

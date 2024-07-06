@@ -12,7 +12,7 @@
         <link rel="prev" href="../../algorithm/start/%E5%85%A5%E9%97%A8/">
       
       
-        <link rel="next" href="../network/">
+        <link rel="next" href="../cpp/">
       
       
       <link rel="icon" href="../../../assets/head.png">
@@ -926,7 +926,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      基本数据类型
+      异常处理
     </span>
   </a>
   
@@ -935,7 +935,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      内存管理
+      基本数据类型
     </span>
   </a>
   
@@ -944,7 +944,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      文件操作
+      内存管理
     </span>
   </a>
   
@@ -953,7 +953,7 @@
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      异常处理
+      文件操作
     </span>
   </a>
   
@@ -975,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../_index.md" class="md-nav__link">
+      <a href="../cpp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1936,7 +1936,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      基本数据类型
+      异常处理
     </span>
   </a>
   
@@ -1945,7 +1945,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      内存管理
+      基本数据类型
     </span>
   </a>
   
@@ -1954,7 +1954,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      文件操作
+      内存管理
     </span>
   </a>
   
@@ -1963,7 +1963,7 @@
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      异常处理
+      文件操作
     </span>
   </a>
   
@@ -1989,443 +1989,7 @@
 
   <h1>C</h1>
 
-<h2 id="_1">基本数据类型</h2>
-<p><strong>整型</strong></p>
-<p><center></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">type</th>
-<th style="text-align: center;">byte</th>
-<th style="text-align: center;">signed</th>
-<th style="text-align: center;">unsigned</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>short int</code></td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;"><span class="arithmatex">\(-2^{15}\)</span> ~ <span class="arithmatex">\(2^{15} - 1\)</span> <code>%hd</code></td>
-<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{16} - 1\)</span> <code>%hu</code></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>int</code></td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;"><span class="arithmatex">\(-2^{31}\)</span> ~ <span class="arithmatex">\(2^{31} - 1\)</span> <code>%d</code></td>
-<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{32} - 1\)</span> <code>%u</code></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>long int</code></td>
-<td style="text-align: center;">8</td>
-<td style="text-align: center;"><span class="arithmatex">\(-2^{63}\)</span> ~ <span class="arithmatex">\(2^{63} - 1\)</span> <code>%ld</code></td>
-<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{64} - 1\)</span> <code>%lu</code></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>long long int</code></td>
-<td style="text-align: center;">8</td>
-<td style="text-align: center;"><span class="arithmatex">\(-2^{63}\)</span> ~ <span class="arithmatex">\(2^{63} - 1\)</span> <code>%lld</code></td>
-<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{64} - 1\)</span> <code>%llu</code></td>
-</tr>
-</tbody>
-</table>
-<p></center></p>
-<p>历史遗留问题，在不同的平台上，以上类型的长度无法统一</p>
-<p><br></p>
-<p><strong>精确宽度整数类型</strong>（exact-width integers types）</p>
-<p><code>#include &lt;stdint.h&gt;</code></p>
-<p><center></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">type</th>
-<th style="text-align: center;">byte</th>
-<th style="text-align: center;">signed</th>
-<th style="text-align: center;">unsigned</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>int8_t</code></td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;"><span class="arithmatex">\(-2^{7}\)</span> ~ <span class="arithmatex">\(2^{7} - 1\)</span></td>
-<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{8} - 1\)</span></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>int16_t</code></td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;"><span class="arithmatex">\(-2^{15}\)</span> ~ <span class="arithmatex">\(2^{15} - 1\)</span> <code>%hd</code></td>
-<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{16} - 1\)</span> <code>%hu</code></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>int32_t</code></td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;"><span class="arithmatex">\(-2^{31}\)</span> ~ <span class="arithmatex">\(2^{31} - 1\)</span> <code>%d</code></td>
-<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{32} - 1\)</span> <code>%u</code></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>int64_t</code></td>
-<td style="text-align: center;">8</td>
-<td style="text-align: center;"><span class="arithmatex">\(-2^{63}\)</span> ~ <span class="arithmatex">\(2^{63} - 1\)</span> <code>%ld</code></td>
-<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{64} - 1\)</span> <code>%lu</code></td>
-</tr>
-</tbody>
-</table>
-<p></center></p>
-<p>值得一提，<code>int8_t</code> 是一个 <code>char</code> 类型，使用 <code>cout</code> 输出需要处理一下</p>
-<p><br></p>
-<p><strong>最大对象的字节数</strong> <code>size_t</code></p>
-<p><code>#include &lt;stddef.h&gt;</code></p>
-<p><center></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">平台</th>
-<th style="text-align: center;">byte</th>
-<th style="text-align: center;">本质</th>
-<th style="text-align: center;">range</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">32</td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;"><code>uint32_t size_t</code></td>
-<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{32} - 1\)</span> <code>%u</code></td>
-</tr>
-<tr>
-<td style="text-align: center;">64</td>
-<td style="text-align: center;">8</td>
-<td style="text-align: center;"><code>uint64_t size_t</code></td>
-<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{64} - 1\)</span> <code>%lu</code></td>
-</tr>
-</tbody>
-</table>
-<p></center></p>
-<p><br></p>
-<p><strong>指针</strong></p>
-<p>指针也是一种数据类型，它用于存储内存地址</p>
-<p><center></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">type</th>
-<th style="text-align: center;">byte</th>
-<th style="text-align: center;">format</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>void*</code></td>
-<td style="text-align: center;">8</td>
-<td style="text-align: center;"><code>%p</code></td>
-</tr>
-</tbody>
-</table>
-<p></center></p>
-<p>和其他数据类型一样</p>
-<ul>
-<li>
-<p><code>int</code> 存储数字</p>
-</li>
-<li>
-<p><code>char</code> 存储字符</p>
-</li>
-<li>
-<p><code>double</code> 存储浮点数</p>
-</li>
-<li>
-<p><strong><code>void*</code> 存储内存地址</strong></p>
-</li>
-</ul>
-<blockquote>
-<p><strong>那为何有 <code>char*</code>、<code>int*</code>、<code>double*</code> 等类型呢？</strong>
-<strong>指明指针指向的数据类型：</strong></p>
-</blockquote>
-<ol>
-<li>
-<p>指针的算术操作</p>
-<p>不同类型的指针运算时，步长不同</p>
-<ul>
-<li>
-<p><code>char</code> 占用 1 字节， <code>char*</code> 步长为 1。
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C++</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;6&#39;</span><span class="p">;</span>
-<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">;</span><span class="w">               </span><span class="c1">// p   == 0x0</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">%p&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w">   </span><span class="c1">// p+1 == 0x1</span>
-</code></pre></div></td></tr></table></div></p>
-</li>
-<li>
-<p><code>int32_t</code> 占用 4 字节， <code>int32_t*</code> 步长为 4
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C++</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int32_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
-<span class="kt">int32_t</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">i</span><span class="p">;</span><span class="w">            </span><span class="c1">// p   == 0x0</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">%p&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w">   </span><span class="c1">// p+1 == 0x4</span>
-</code></pre></div></td></tr></table></div></p>
-</li>
-</ul>
-</li>
-<li>
-<p>类型安全</p>
-<p>编译器会在编译时检查指针的类型，从而避免不同类型的指针直接赋值或比较，确保了在程序中正确使用指针</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">todo</span>
-</code></pre></div></td></tr></table></div>
-</li>
-</ol>
-<p><br></p>
-<hr />
-<h2 id="_2">内存管理</h2>
-<p><code>#include &lt;stdlib.h&gt;</code></p>
-<p><strong>申请内存</strong></p>
-<p><code>void* malloc(size_t size)</code></p>
-<ul>
-<li>
-<p>申请 <code>size</code> 字节的空间，返回指向这片空间的指针</p>
-</li>
-<li>
-<p>申请失败返回 <code>NULL</code></p>
-</li>
-</ul>
-<p><br></p>
-<p><strong>释放内存</strong></p>
-<p><code>void free(void *ptr)</code></p>
-<ul>
-<li>释放 <code>ptr</code> 指向的内存空间</li>
-</ul>
-<p><br></p>
-<hr />
-<h2 id="_3">文件操作</h2>
-<p>此处只整理二进制的方法</p>
-<p><strong>打开文件</strong></p>
-<p><code>FILE* fopen(const char* filename, const char* mode)</code></p>
-<ul>
-<li>失败返回 <code>NULL</code></li>
-</ul>
-<p><center></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">type</th>
-<th style="text-align: center;">read</th>
-<th style="text-align: center;">write</th>
-<th style="text-align: center;">add</th>
-<th style="text-align: center;">create</th>
-<th style="text-align: center;">clean</th>
-<th style="text-align: center;">note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><code>rb</code></td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>wb</code></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;">覆盖写入</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>ab</code></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>rb+</code></td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">文首插入</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>wb+</code></td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;">覆盖写入</td>
-</tr>
-<tr>
-<td style="text-align: center;"><code>ab+</code></td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;">🟢</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">文末追加</td>
-</tr>
-</tbody>
-</table>
-<p></center></p>
-<p><strong>关闭文件</strong></p>
-<p><code>int fclose(FILE *fp)</code></p>
-<ul>
-<li>成功返回 <code>0</code></li>
-</ul>
-<p><strong>文件定位</strong></p>
-<p><code>int fseek(FILE* fptr, long int offset, int whence)</code></p>
-<ul>
-<li>
-<p><code>whence</code>：偏移起始位</p>
-<ul>
-<li>
-<p><code>SEEK_SET</code>：文件开头</p>
-</li>
-<li>
-<p><code>SEEK_CUR</code>：当前位置</p>
-</li>
-<li>
-<p><code>SEEK_END</code>：文件末尾</p>
-</li>
-</ul>
-</li>
-<li>
-<p><code>offset</code>：偏移量</p>
-</li>
-<li>
-<p>成功返回 <code>0</code></p>
-</li>
-</ul>
-<p><strong>偏移量读取</strong></p>
-<p><code>long int ftell(FILE* fptr);</code></p>
-<ul>
-<li>失败返回 <code>-1</code></li>
-</ul>
-<p><strong>读取文件</strong></p>
-<p><code>size_t fread(void* ptr, size_t size_of_elements, size_t number_of_elements, FILE* fptr)</code></p>
-<ul>
-<li>
-<p><code>ptr</code>：保存内存位置</p>
-</li>
-<li>
-<p><code>size_of_elements</code>：每个元素的大小</p>
-</li>
-<li>
-<p><code>number_of_elements</code>：元素的数量</p>
-</li>
-<li>
-<p><code>fptr</code>：文件指针</p>
-</li>
-<li>
-<p>成功返回 <code>number_of_elements</code></p>
-</li>
-</ul>
-<p><strong>写入文件</strong></p>
-<p><code>size_t fwrite(void* ptr, size_t size_of_elements, size_t number_of_elements, FILE* fptr)</code></p>
-<ul>
-<li>成功返回 <code>number_of_elements</code></li>
-</ul>
-<p><br></p>
-<p><strong>分段读取</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C++</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
-
-<span class="cp">#define MBLOCK 1024 </span><span class="c1">// 1kb</span>
-
-<span class="kt">int8_t</span><span class="w"> </span><span class="nf">ERRIF</span><span class="p">(</span><span class="kt">int8_t</span><span class="w"> </span><span class="n">flg</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">msg</span><span class="p">){</span>
-<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">flg</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span>
-<span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
-<span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argc</span><span class="p">[]){</span>
-<span class="w">    </span><span class="kt">FILE</span><span class="o">*</span><span class="w"> </span><span class="n">fptr_in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="n">argc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;rb&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">ERRIF</span><span class="p">(</span><span class="n">fptr_in</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;打开输入文件错误&quot;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="kt">FILE</span><span class="o">*</span><span class="w"> </span><span class="n">fptr_out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="n">argc</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;wb&quot;</span><span class="p">);</span><span class="w"> </span>
-<span class="w">    </span><span class="n">ERRIF</span><span class="p">(</span><span class="n">fptr_out</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;打开输出文件错误&quot;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">MBLOCK</span><span class="p">);</span>
-<span class="w">    </span><span class="n">ERRIF</span><span class="p">(</span><span class="n">ptr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;内存申请失败&quot;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">fseek</span><span class="p">(</span><span class="n">fptr_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">SEEK_END</span><span class="p">);</span>
-<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">flen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ftell</span><span class="p">(</span><span class="n">fptr_in</span><span class="p">);</span><span class="w">   </span><span class="c1">// 文件大小</span>
-
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">flen</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">+=</span><span class="n">MBLOCK</span><span class="p">){</span>
-<span class="w">        </span><span class="n">fseek</span><span class="p">(</span><span class="n">fptr_in</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">SEEK_SET</span><span class="p">);</span>
-<span class="w">        </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="n">MBLOCK</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">flen</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">flen</span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">MBLOCK</span><span class="p">;</span>
-<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">);</span>
-
-<span class="w">        </span><span class="kt">size_t</span><span class="w"> </span><span class="n">read_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fread</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="n">fptr_in</span><span class="p">);</span>
-<span class="w">        </span><span class="n">ERRIF</span><span class="p">(</span><span class="n">read_len</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;写入内存错误&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="c1">// deal();</span>
-
-<span class="w">        </span><span class="kt">size_t</span><span class="w"> </span><span class="n">write_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fwrite</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="n">fptr_out</span><span class="p">);</span>
-<span class="w">        </span><span class="n">ERRIF</span><span class="p">(</span><span class="n">write_len</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;写入文件错误&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
-<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fptr_out</span><span class="p">);</span>
-<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fptr_in</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-<p><br></p>
-<hr />
-<h2 id="_4">异常处理</h2>
+<h2 id="_1">异常处理</h2>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -3278,6 +2842,442 @@
 </code></pre></div></td></tr></table></div>
 <p><strong>errno</strong></p>
 <p>一个全局变量，在程序运行过程中会被标准库函数设置为不同的值，以表示不同类型的错误</p>
+<p><br></p>
+<hr />
+<h2 id="_2">基本数据类型</h2>
+<p><strong>整型</strong></p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">type</th>
+<th style="text-align: center;">byte</th>
+<th style="text-align: center;">signed</th>
+<th style="text-align: center;">unsigned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>short int</code></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{15}\)</span> ~ <span class="arithmatex">\(2^{15} - 1\)</span> <code>%hd</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{16} - 1\)</span> <code>%hu</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>int</code></td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{31}\)</span> ~ <span class="arithmatex">\(2^{31} - 1\)</span> <code>%d</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{32} - 1\)</span> <code>%u</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>long int</code></td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{63}\)</span> ~ <span class="arithmatex">\(2^{63} - 1\)</span> <code>%ld</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{64} - 1\)</span> <code>%lu</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>long long int</code></td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{63}\)</span> ~ <span class="arithmatex">\(2^{63} - 1\)</span> <code>%lld</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{64} - 1\)</span> <code>%llu</code></td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p>历史遗留问题，在不同的平台上，以上类型的长度无法统一</p>
+<p><br></p>
+<p><strong>精确宽度整数类型</strong>（exact-width integers types）</p>
+<p><code>#include &lt;stdint.h&gt;</code></p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">type</th>
+<th style="text-align: center;">byte</th>
+<th style="text-align: center;">signed</th>
+<th style="text-align: center;">unsigned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>int8_t</code></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{7}\)</span> ~ <span class="arithmatex">\(2^{7} - 1\)</span></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{8} - 1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>int16_t</code></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{15}\)</span> ~ <span class="arithmatex">\(2^{15} - 1\)</span> <code>%hd</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{16} - 1\)</span> <code>%hu</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>int32_t</code></td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{31}\)</span> ~ <span class="arithmatex">\(2^{31} - 1\)</span> <code>%d</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{32} - 1\)</span> <code>%u</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>int64_t</code></td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><span class="arithmatex">\(-2^{63}\)</span> ~ <span class="arithmatex">\(2^{63} - 1\)</span> <code>%ld</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{64} - 1\)</span> <code>%lu</code></td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p>值得一提，<code>int8_t</code> 是一个 <code>char</code> 类型，使用 <code>cout</code> 输出需要处理一下</p>
+<p><br></p>
+<p><strong>最大对象的字节数</strong> <code>size_t</code></p>
+<p><code>#include &lt;stddef.h&gt;</code></p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">平台</th>
+<th style="text-align: center;">byte</th>
+<th style="text-align: center;">本质</th>
+<th style="text-align: center;">range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><code>uint32_t size_t</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{32} - 1\)</span> <code>%u</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">64</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><code>uint64_t size_t</code></td>
+<td style="text-align: center;">0 ~ <span class="arithmatex">\(2^{64} - 1\)</span> <code>%lu</code></td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p><br></p>
+<p><strong>指针</strong></p>
+<p>指针也是一种数据类型，它用于存储内存地址</p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">type</th>
+<th style="text-align: center;">byte</th>
+<th style="text-align: center;">format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>void*</code></td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;"><code>%p</code></td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p>和其他数据类型一样</p>
+<ul>
+<li>
+<p><code>int</code> 存储数字</p>
+</li>
+<li>
+<p><code>char</code> 存储字符</p>
+</li>
+<li>
+<p><code>double</code> 存储浮点数</p>
+</li>
+<li>
+<p><strong><code>void*</code> 存储内存地址</strong></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>那为何有 <code>char*</code>、<code>int*</code>、<code>double*</code> 等类型呢？</strong>
+<strong>指明指针指向的数据类型：</strong></p>
+</blockquote>
+<ol>
+<li>
+<p>指针的算术操作</p>
+<p>不同类型的指针运算时，步长不同</p>
+<ul>
+<li>
+<p><code>char</code> 占用 1 字节， <code>char*</code> 步长为 1。
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C++</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;6&#39;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">c</span><span class="p">;</span><span class="w">               </span><span class="c1">// p   == 0x0</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">%p&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w">   </span><span class="c1">// p+1 == 0x1</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p><code>int32_t</code> 占用 4 字节， <code>int32_t*</code> 步长为 4
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C++</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int32_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+<span class="kt">int32_t</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">i</span><span class="p">;</span><span class="w">            </span><span class="c1">// p   == 0x0</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p</span><span class="se">\n</span><span class="s">%p&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w">   </span><span class="c1">// p+1 == 0x4</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+</ul>
+</li>
+<li>
+<p>类型安全</p>
+<p>编译器会在编译时检查指针的类型，从而避免不同类型的指针直接赋值或比较，确保了在程序中正确使用指针</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">todo</span>
+</code></pre></div></td></tr></table></div>
+</li>
+</ol>
+<p><br></p>
+<hr />
+<h2 id="_3">内存管理</h2>
+<p><code>#include &lt;stdlib.h&gt;</code></p>
+<p><strong>申请内存</strong></p>
+<p><code>void* malloc(size_t size)</code></p>
+<ul>
+<li>
+<p>申请 <code>size</code> 字节的空间，返回指向这片空间的指针</p>
+</li>
+<li>
+<p>申请失败返回 <code>NULL</code></p>
+</li>
+</ul>
+<p><br></p>
+<p><strong>释放内存</strong></p>
+<p><code>void free(void *ptr)</code></p>
+<ul>
+<li>释放 <code>ptr</code> 指向的内存空间</li>
+</ul>
+<p><br></p>
+<hr />
+<h2 id="_4">文件操作</h2>
+<p>此处只整理二进制的方法</p>
+<p><strong>打开文件</strong></p>
+<p><code>FILE* fopen(const char* filename, const char* mode)</code></p>
+<ul>
+<li>失败返回 <code>NULL</code></li>
+</ul>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">type</th>
+<th style="text-align: center;">read</th>
+<th style="text-align: center;">write</th>
+<th style="text-align: center;">add</th>
+<th style="text-align: center;">create</th>
+<th style="text-align: center;">clean</th>
+<th style="text-align: center;">note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>rb</code></td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>wb</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;">覆盖写入</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>ab</code></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>rb+</code></td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">文首插入</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>wb+</code></td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;">覆盖写入</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>ab+</code></td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;">🟢</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">文末追加</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p><strong>关闭文件</strong></p>
+<p><code>int fclose(FILE *fp)</code></p>
+<ul>
+<li>成功返回 <code>0</code></li>
+</ul>
+<p><strong>文件定位</strong></p>
+<p><code>int fseek(FILE* fptr, long int offset, int whence)</code></p>
+<ul>
+<li>
+<p><code>whence</code>：偏移起始位</p>
+<ul>
+<li>
+<p><code>SEEK_SET</code>：文件开头</p>
+</li>
+<li>
+<p><code>SEEK_CUR</code>：当前位置</p>
+</li>
+<li>
+<p><code>SEEK_END</code>：文件末尾</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>offset</code>：偏移量</p>
+</li>
+<li>
+<p>成功返回 <code>0</code></p>
+</li>
+</ul>
+<p><strong>偏移量读取</strong></p>
+<p><code>long int ftell(FILE* fptr);</code></p>
+<ul>
+<li>失败返回 <code>-1</code></li>
+</ul>
+<p><strong>读取文件</strong></p>
+<p><code>size_t fread(void* ptr, size_t size_of_elements, size_t number_of_elements, FILE* fptr)</code></p>
+<ul>
+<li>
+<p><code>ptr</code>：保存内存位置</p>
+</li>
+<li>
+<p><code>size_of_elements</code>：每个元素的大小</p>
+</li>
+<li>
+<p><code>number_of_elements</code>：元素的数量</p>
+</li>
+<li>
+<p><code>fptr</code>：文件指针</p>
+</li>
+<li>
+<p>成功返回 <code>number_of_elements</code></p>
+</li>
+</ul>
+<p><strong>写入文件</strong></p>
+<p><code>size_t fwrite(void* ptr, size_t size_of_elements, size_t number_of_elements, FILE* fptr)</code></p>
+<ul>
+<li>成功返回 <code>number_of_elements</code></li>
+</ul>
+<p><br></p>
+<p><strong>分段读取</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C++</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+
+<span class="cp">#define MBLOCK 1024 </span><span class="c1">// 1kb</span>
+
+<span class="kt">int8_t</span><span class="w"> </span><span class="nf">ERRIF</span><span class="p">(</span><span class="kt">int8_t</span><span class="w"> </span><span class="n">flg</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">msg</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">flg</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span>
+<span class="w">        </span><span class="n">perror</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+<span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argc</span><span class="p">[]){</span>
+<span class="w">    </span><span class="kt">FILE</span><span class="o">*</span><span class="w"> </span><span class="n">fptr_in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="n">argc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;rb&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ERRIF</span><span class="p">(</span><span class="n">fptr_in</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;打开输入文件错误&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">FILE</span><span class="o">*</span><span class="w"> </span><span class="n">fptr_out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="n">argc</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;wb&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ERRIF</span><span class="p">(</span><span class="n">fptr_out</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;打开输出文件错误&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">MBLOCK</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ERRIF</span><span class="p">(</span><span class="n">ptr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;内存申请失败&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">fseek</span><span class="p">(</span><span class="n">fptr_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">SEEK_END</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">flen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ftell</span><span class="p">(</span><span class="n">fptr_in</span><span class="p">);</span><span class="w">   </span><span class="c1">// 文件大小</span>
+
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">flen</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">+=</span><span class="n">MBLOCK</span><span class="p">){</span>
+<span class="w">        </span><span class="n">fseek</span><span class="p">(</span><span class="n">fptr_in</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">SEEK_SET</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="n">MBLOCK</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">flen</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">flen</span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">MBLOCK</span><span class="p">;</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%lu</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">size_t</span><span class="w"> </span><span class="n">read_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fread</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="n">fptr_in</span><span class="p">);</span>
+<span class="w">        </span><span class="n">ERRIF</span><span class="p">(</span><span class="n">read_len</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;写入内存错误&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// deal();</span>
+
+<span class="w">        </span><span class="kt">size_t</span><span class="w"> </span><span class="n">write_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fwrite</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="n">fptr_out</span><span class="p">);</span>
+<span class="w">        </span><span class="n">ERRIF</span><span class="p">(</span><span class="n">write_len</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;写入文件错误&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fptr_out</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fptr_in</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
 
 
 
