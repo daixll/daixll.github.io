@@ -36,7 +36,7 @@
     wsl --install -d Ubuntu-22.04   # 下载安装 Ubuntu 22.04
     ```
 
-* 手动安装：[ms/WSL](https://github.commicrosoft/WSL)
+* 手动安装：[ms/WSL](https://github.com/microsoft/WSL/releases)
 
 <br>
 
