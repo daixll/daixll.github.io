@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../cmake/">
+        <link rel="prev" href="../boost/">
       
       
         <link rel="next" href="../mysql/">
@@ -1176,6 +1176,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../boost/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Boost
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1259,6 +1280,21 @@
       use
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成密钥对
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1946,6 +1982,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成密钥对
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1977,14 +2028,59 @@
 
   <h1>OpenSSL</h1>
 
+<p><a href="https://www.openssl.org/">官网</a> | <a href="https://www.openssl.org/source/">下载</a> | <a href="https://www.feistyduck.com/library/openssl-cookbook/online/">使用文档</a> | <a href="https://www.openssl.org/docs/man3.0/man7/">开发文档</a></p>
 <h2 id="setup">setup</h2>
 <h3 id="linux">linux</h3>
+<ol>
+<li>
+<p>下载 <code>wget</code> / 解压 <code>tar -zxvf</code> / 提权 <code>chmod +x</code></p>
+</li>
+<li>
+<p>配置安装选项 <code>./config shared --prefix=/opt/openssl-x.y.z --openssldir=/opt/openssl-x.y.z</code></p>
+</li>
+<li>
+<p>安装 <code>make &amp;&amp; sudo make install</code></p>
+</li>
+<li>
+<p>编写测试代码
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;openssl/opensslv.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;openssl/crypto.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 输出 OpenSSL 版本信息</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;OpenSSL version: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">OpenSSL_version</span><span class="p">(</span><span class="n">OPENSSL_VERSION</span><span class="p">));</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;OpenSSL version number: %lx</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">OpenSSL_version_num</span><span class="p">());</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>编译
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>gcc<span class="w"> </span>a.c<span class="w"> </span>-I/opt/openssl-x.y.z/include<span class="w"> </span>-L/opt/openssl-x.y.z/lib64<span class="w"> </span>-Wl,-rpath<span class="o">=</span>/opt/openssl-x.y.z/lib64<span class="w"> </span>-lssl<span class="w"> </span>-lcrypto
+<span class="w">        </span>./a.out
+</code></pre></div></td></tr></table></div></p>
+</li>
+</ol>
 <h3 id="windows">windows</h3>
+<hr />
 <h2 id="use">use</h2>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>openssl<span class="w"> </span>genpkey<span class="w"> </span>-out<span class="w"> </span>pri.pem<span class="w"> </span>-algorithm<span class="w"> </span>RSA<span class="w"> </span>-pkeyopt<span class="w"> </span>rsa_keygen_bits:2048
+<h3 id="_1">生成密钥对</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>openssl<span class="w"> </span>genpkey<span class="w"> </span>-out<span class="w"> </span>pri.pem<span class="w"> </span>-algorithm<span class="w"> </span>RSA<span class="w"> </span>-pkeyopt<span class="w"> </span>rsa_keygen_bits:2048
+openssl<span class="w"> </span>pkey<span class="w"> </span>-in<span class="w"> </span>pri.pem<span class="w"> </span>-pubout<span class="w"> </span>-out<span class="w"> </span>pub.pem
 </code></pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>openssl<span class="w"> </span>pkey<span class="w"> </span>-in<span class="w"> </span>pri.pem<span class="w"> </span>-pubout<span class="w"> </span>-out<span class="w"> </span>pub.pem
-</code></pre></div></td></tr></table></div>
+<hr />
 <h2 id="dev">dev</h2>
 
 
