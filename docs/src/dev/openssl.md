@@ -7,7 +7,7 @@
 
 1. 下载 `wget` / 解压 `tar -zxvf` / 提权 `chmod +x`
 
-2. 配置安装选项 `./config shared --prefix=/opt/openssl-x.y.z --openssldir=/opt/openssl-x.y.z`
+2. 配置安装选项 `./config shared --prefix=/opt/OpenSSL-x.y.z --openssldir=/opt/OpenSSL-x.y.z`
 
 3. 安装 `make && sudo make install`
 
@@ -27,8 +27,7 @@
 
 5. 编译
     ```bash
-    gcc a.c -I/opt/openssl-x.y.z/include -L/opt/openssl-x.y.z/lib64 -Wl,-rpath=/opt/openssl-x.y.z/lib64 -lssl -lcrypto
-            ./a.out
+    gcc a.c -I/.../openssl-x.y.z/include -L/.../openssl-x.y.z/lib64 -Wl,-rpath=/opt/openssl-x.y.z/lib64 -lssl -lcrypto
     ```
 
 

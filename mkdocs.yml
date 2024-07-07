@@ -34,6 +34,8 @@ nav:
     - Perf:             src/dev/perf.md
     - Boost:            src/dev/boost.md
     - OpenSSL:          src/dev/openssl.md
+    - FFmpeg:           src/dev/ffmpeg.md
+    - Qt:               src/dev/qt.md
     - MySQL:            src/dev/mysql.md
   - 🌿 Language:
     - Python:

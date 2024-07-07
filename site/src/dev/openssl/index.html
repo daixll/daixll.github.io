@@ -12,7 +12,7 @@
         <link rel="prev" href="../boost/">
       
       
-        <link rel="next" href="../mysql/">
+        <link rel="next" href="../ffmpeg/">
       
       
       <link rel="icon" href="../../../assets/head.png">
@@ -1344,6 +1344,48 @@
   
   
     <li class="md-nav__item">
+      <a href="../ffmpeg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FFmpeg
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Qt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mysql/" class="md-nav__link">
         
   
@@ -2057,7 +2099,7 @@
 <p>下载 <code>wget</code> / 解压 <code>tar -zxvf</code> / 提权 <code>chmod +x</code></p>
 </li>
 <li>
-<p>配置安装选项 <code>./config shared --prefix=/opt/openssl-x.y.z --openssldir=/opt/openssl-x.y.z</code></p>
+<p>配置安装选项 <code>./config shared --prefix=/opt/OpenSSL-x.y.z --openssldir=/opt/OpenSSL-x.y.z</code></p>
 </li>
 <li>
 <p>安装 <code>make &amp;&amp; sudo make install</code></p>
@@ -2087,9 +2129,7 @@
 </li>
 <li>
 <p>编译
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>gcc<span class="w"> </span>a.c<span class="w"> </span>-I/opt/openssl-x.y.z/include<span class="w"> </span>-L/opt/openssl-x.y.z/lib64<span class="w"> </span>-Wl,-rpath<span class="o">=</span>/opt/openssl-x.y.z/lib64<span class="w"> </span>-lssl<span class="w"> </span>-lcrypto
-<span class="w">        </span>./a.out
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>gcc<span class="w"> </span>a.c<span class="w"> </span>-I/.../openssl-x.y.z/include<span class="w"> </span>-L/.../openssl-x.y.z/lib64<span class="w"> </span>-Wl,-rpath<span class="o">=</span>/opt/openssl-x.y.z/lib64<span class="w"> </span>-lssl<span class="w"> </span>-lcrypto
 </code></pre></div></td></tr></table></div></p>
 </li>
 </ol>
