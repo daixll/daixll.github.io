@@ -8,7 +8,9 @@
 
 2. 下载编译工具 `sudo apt install nasm pkg-config`
 
-3. 配置安装选项 `./configure --prefix=/.../FFmpeg-x.y.z`
+2. `sudo apt install libsdl2-dev`
+
+3. 配置安装选项 `./configure --prefix=/.../FFmpeg-x.y.z --enable-shared --enable-sdl`
 
 4. 编译安装 `make && make install`
 
