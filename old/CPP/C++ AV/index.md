@@ -1,10 +1,3 @@
----
-html:
-    toc: true   # 打开侧边目录
-export_on_save:
-    html: true  # 自动保存
----
-
 # 引子
 
 [影视飓风将停止制作25帧视频（影视飓风）](https://www.bilibili.com/video/BV1hp4y1f7B5/)

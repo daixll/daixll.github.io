@@ -919,11 +919,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cpp/_index.md" class="md-nav__link">
+      <a href="../../cpp/stl/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     STL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/thread/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Thread
   </span>
   
 
@@ -961,11 +982,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cpp/_index.md" class="md-nav__link">
+      <a href="../../cpp/gui/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Thread
+    GUI
   </span>
   
 
@@ -982,32 +1003,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cpp/_index.md" class="md-nav__link">
+      <a href="../../cpp/av/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Qt
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../cpp/_index.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    FFmpeg
+    AV
   </span>
   
 
@@ -1331,6 +1331,75 @@
       dev
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="dev">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#avutil" class="md-nav__link">
+    <span class="md-ellipsis">
+      avutil
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swscale" class="md-nav__link">
+    <span class="md-ellipsis">
+      swscale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swresample" class="md-nav__link">
+    <span class="md-ellipsis">
+      swresample
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avcodec" class="md-nav__link">
+    <span class="md-ellipsis">
+      avcodec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avformat" class="md-nav__link">
+    <span class="md-ellipsis">
+      avformat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avdevice" class="md-nav__link">
+    <span class="md-ellipsis">
+      avdevice
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      avfilter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2039,6 +2108,75 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="dev">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#avutil" class="md-nav__link">
+    <span class="md-ellipsis">
+      avutil
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swscale" class="md-nav__link">
+    <span class="md-ellipsis">
+      swscale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swresample" class="md-nav__link">
+    <span class="md-ellipsis">
+      swresample
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avcodec" class="md-nav__link">
+    <span class="md-ellipsis">
+      avcodec
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avformat" class="md-nav__link">
+    <span class="md-ellipsis">
+      avformat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avdevice" class="md-nav__link">
+    <span class="md-ellipsis">
+      avdevice
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      avfilter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2062,6 +2200,7 @@
   <h1>FFmpeg</h1>
 
 <p><a href="https://ffmpeg.org/">官网</a> | <a href="https://ffmpeg.org/download.html">下载</a> | <a href="https://ffmpeg.org/documentation.html">文档</a></p>
+<p><a href="https://ffmpeg.github.net.cn/documentation.html">中文文档 6.0.1</a></p>
 <h2 id="setup">setup</h2>
 <h3 id="linux">linux</h3>
 <ol>
@@ -2107,7 +2246,7 @@
 </li>
 <li>
 <p>编译
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>g++<span class="w"> </span>-std<span class="o">=</span>c++20<span class="w"> </span>-O2<span class="w"> </span>-g<span class="w"> </span>a.cpp<span class="w"> </span>-I/.../FFmpeg-7.0.1/include<span class="w"> </span>-L/.../FFmpeg-7.0.1/lib<span class="w"> </span>-o<span class="w"> </span>a<span class="w"> </span>-lavutil
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>g++<span class="w"> </span>a.cpp<span class="w"> </span>-I/.../FFmpeg-7.0.1/include<span class="w"> </span>-L/.../FFmpeg-7.0.1/lib<span class="w"> </span>-o<span class="w"> </span>a<span class="w"> </span>-lavutil
 </code></pre></div></td></tr></table></div></p>
 </li>
 </ol>
@@ -2118,6 +2257,20 @@
 <p><br></p>
 <hr />
 <h2 id="dev">dev</h2>
+<h3 id="avutil">avutil</h3>
+<p>通用的辅助函数和数据结构</p>
+<h3 id="swscale">swscale</h3>
+<p>视频的像素格式和分辨率转换，缩放、色彩空间转换</p>
+<h3 id="swresample">swresample</h3>
+<p>音频的采样率转换和通道布局转换</p>
+<h3 id="avcodec">avcodec</h3>
+<p>音频和视频的编解码</p>
+<h3 id="avformat">avformat</h3>
+<p>音视频容器格式的封装和解封装</p>
+<h3 id="avdevice">avdevice</h3>
+<p>处理捕获和播放设备的输入输出操作</p>
+<h3 id="avfilter">avfilter</h3>
+<p>提供音视频滤镜功能，用于处理音视频数据流中的过滤操作</p>
 
 
 

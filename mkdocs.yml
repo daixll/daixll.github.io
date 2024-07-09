@@ -20,11 +20,11 @@ nav:
   - 🚀 C/C++:
     - C:                src/cpp/c.md
     - CPP:              src/cpp/cpp.md
-    - STL:              src/cpp/_index.md
+    - STL:              src/cpp/stl.md
+    - Thread:           src/cpp/thread.md
     - Network:          src/cpp/network.md
-    - Thread:           src/cpp/_index.md
-    - Qt:               src/cpp/_index.md
-    - FFmpeg:           src/cpp/_index.md
+    - GUI:              src/cpp/gui.md
+    - AV:               src/cpp/av.md
   - 🌥️ DevOps:
     - Conf:             src/dev/dev.md
     - GCC:              src/dev/gcc.md

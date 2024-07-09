@@ -1,5 +1,7 @@
 [官网](https://ffmpeg.org/) | [下载](https://ffmpeg.org/download.html) | [文档](https://ffmpeg.org/documentation.html)
 
+[中文文档 6.0.1](https://ffmpeg.github.net.cn/documentation.html)
+
 ## setup
 
 ### linux
@@ -31,7 +33,7 @@
 
 6. 编译
     ```bash
-    g++ -std=c++20 -O2 -g a.cpp -I/.../FFmpeg-7.0.1/include -L/.../FFmpeg-7.0.1/lib -o a -lavutil
+    g++ a.cpp -I/.../FFmpeg-7.0.1/include -L/.../FFmpeg-7.0.1/lib -o a -lavutil
     ```
 
 ### windows
@@ -50,3 +52,30 @@
 
 ## dev
 
+### avutil
+
+通用的辅助函数和数据结构
+
+### swscale
+
+视频的像素格式和分辨率转换，缩放、色彩空间转换
+
+### swresample
+
+音频的采样率转换和通道布局转换
+
+### avcodec
+
+音频和视频的编解码
+
+### avformat
+
+音视频容器格式的封装和解封装
+
+### avdevice
+
+处理捕获和播放设备的输入输出操作
+
+### avfilter
+
+提供音视频滤镜功能，用于处理音视频数据流中的过滤操作
