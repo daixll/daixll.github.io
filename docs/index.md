@@ -13,7 +13,7 @@
 
 <center>
 
-Algorithm 🤺 Contests
+Algorithm 🤺 Contests ⚔️ Training 🔧 Tools
 
 </center>
 
@@ -35,12 +35,6 @@ Algorithm 🤺 Contests
     </div>
 </div>
 
-<center>
-
-Algorithm ⚔️ Training
-
-</center>
-
 <div class="container">
     <div class="item">
         <a href="https://www.acwing.com/user/myspace/activity/126160/" target="_blank"> yxc </a> | <a href="https://www.luogu.com.cn/training/list" target="_blank"> Luogu </a> | <a href="https://www.luogu.com/paste/b7vhgqco" target="_blank"> TEMP </a> | <a href="https://www.acwing.com/activity/content/90/" target="_blank"> Kb </a> | <a href="https://www.acwing.com/activity/content/6/" target="_blank"> lyd </a> | <a href="http://ybt.ssoier.cn:8088/index.php" target="_blank"> ybt </a>
@@ -49,12 +43,6 @@ Algorithm ⚔️ Training
          <a href="https://www.luogu.com.cn/problem/list?type=B%7CP&tag=343%7C37&page=1" target="_blank"> CSP </a> | <a href="https://www.acwing.com/activity/content/89/" target="_blank"> USACO </a> | <a href="https://pintia.cn/market" target="_blank"> PTA-XCPC </a> | <a href="http://noi.openjudge.cn/" target="_blank"> CIE-C </a>
     </div>
 </div>
-
-<center>
-
-Algorithm 🔧 T o o l s
-
-</center>
 
 <div class="container">
     <div class="item">
