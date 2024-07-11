@@ -39,7 +39,9 @@ nav:
     - MySQL:            src/dev/mysql.md
   - 🌿 Language:
     - Python:
-      - venv:           src/language/py/venv.md
+      - env:            src/language/py/env.md
+      - pandas:         src/language/py/pandas.md
+      - openpyxl:       src/language/py/openpyxl.md
     - Golang:           src/language/go/one.md
     - Java:
       - main/java:      src/language/java/main_java.md
