@@ -47,6 +47,10 @@ nav:
       - main/java:      src/language/java/main_java.md
       - main/resources: src/language/java/main_resources.md
       - test/java:      src/language/java/test_java.md
+    - HTML:
+      - HTML:           src/HTML/html.md
+      - CSS:            src/HTML/css.md
+      - JS:             src/HTML/js.md
   - 📖 CS:
     - 操作系统:
       - linux速查:      src/cs/os/quick_linux.md
