@@ -8,7 +8,8 @@ nav:
     - Honor:            src/about/Honor.md
   - 🪂 Algorithm:
     - 入门:             src/algorithm/start/入门.md
-    - 基础:             _index.md
+    - 基础:
+      - 二分:           src/algorithm/base/二分.md
     - 搜索:             _index.md
     - 图论:             _index.md
     - 动规:             _index.md
