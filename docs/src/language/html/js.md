@@ -65,7 +65,7 @@ my-vue-project
 
 ```
 
-## 本地运行
+### 本地运行
 
 1. 下载 [Node.js](https://nodejs.org/en)
     * 终端验证 `node -v`
@@ -79,7 +79,7 @@ my-vue-project
     * `npm install`
     * `npm run dev`
     
-## CDN 运行
+### CDN 运行
 
 ```html
 <!DOCTYPE html>
@@ -109,7 +109,7 @@ my-vue-project
 </html>
 ```
 
-## v-bind
+### v-bind
 
 ```html
 <!DOCTYPE html>
@@ -160,7 +160,7 @@ my-vue-project
 
 ---
 
-## v-for
+### v-for
 
 ```html
 <!DOCTYPE html>
@@ -313,7 +313,7 @@ my-vue-project
 
 ---
 
-## v-if
+### v-if
 
 
 
@@ -321,7 +321,7 @@ my-vue-project
 
 ---
 
-## v-show
+### v-show
 
 
 <br>
@@ -329,7 +329,7 @@ my-vue-project
 ---
 
 
-## v-model
+### v-model
 
 
 <br>
@@ -337,14 +337,14 @@ my-vue-project
 ---
 
 
-## v-on
+### v-on
 
 
 <br>
 
 ---
 
-# AXIOS
+## AXIOS
 
 ```html
 <!DOCTYPE html>
@@ -361,7 +361,7 @@ my-vue-project
 </html>
 ```
 
-## get
+### get
 
 ```html
 <!DOCTYPE html>

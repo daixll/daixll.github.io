@@ -1216,6 +1216,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#remotedesktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      remoteDesktop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      code-server
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1410,6 +1428,27 @@
   
   <span class="md-ellipsis">
     Qt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
   </span>
   
 
@@ -1769,7 +1808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../HTML/html.md" class="md-nav__link">
+      <a href="../../language/html/html/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1790,7 +1829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../HTML/css.md" class="md-nav__link">
+      <a href="../../language/html/css/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1811,7 +1850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../HTML/js.md" class="md-nav__link">
+      <a href="../../language/html/js/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2295,6 +2334,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#remotedesktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      remoteDesktop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      code-server
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2341,10 +2398,10 @@
 <p><a href="https://dl.todesk.com/windows/ToDesk_Lite.exe">todesk</a></p>
 </li>
 <li>
-<p><a href="https://code.visualstudio.com/insiders/">VS Code</a> 登陆 <code>github</code> 账号，等待配置同步</p>
+<p><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro">VM-win-linux</a> / <a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Fusion">VM-mac</a></p>
 </li>
 <li>
-<p><a href="https://visualstudio.microsoft.com/zh-hans/vs/preview/">VS 2022</a> 登陆 <code>github</code> 账号，等待配置同步</p>
+<p><a href="https://code.visualstudio.com/insiders/">VS Code</a> / <a href="https://visualstudio.microsoft.com/zh-hans/vs/preview/">VS 2022</a> 登陆 <code>github</code> 账号，等待配置同步</p>
 </li>
 <li>
 <p><a href="https://www.jetbrains.com/toolbox-app/">JetBrains Toolbox</a> 登陆 <code>JB</code> 账号，等待配置同步</p>
@@ -2654,8 +2711,122 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</s
 <li>在 <code>/mnt</code> 中创建挂载目录 <code>mkdir /mnt/z</code></li>
 <li>挂载</li>
 </ol>
+<p><strong>SAMBA</strong></p>
+<ol>
+<li>下载 <code>sudo apt install samba</code></li>
+<li>配置分享文件夹 <code>chmod 777 /home/user/Public/ -R</code></li>
+<li>添加samba用户 <code>sudo smbpasswd -a 用户名</code></li>
+<li>提示输入密码 x2</li>
+<li>配置samba <code>sudo vim /etc/samba/smb.conf</code>
+    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">[</span>share<span class="w"> </span>name<span class="o">]</span><span class="w">            </span><span class="c1"># 共享名</span>
+<span class="w">    </span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>/home/user/Public/#<span class="w"> </span>共享路径
+<span class="w">    </span><span class="nv">writable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>yes<span class="w">      </span><span class="c1"># 可写</span>
+</code></pre></div></td></tr></table></div></li>
+<li>重启samba <code>sudo samba restart</code><ul>
+<li>可能还需要重启一下电脑</li>
+</ul>
+</li>
+<li>开启端口 <code>sudo ufw allow 445</code></li>
+</ol>
 <h3 id="web">web</h3>
+<p><code>docker</code> + <code>nginx</code> 搭建静态网站服务</p>
+<p>配置修改并不多，只需要修改一下 <code>default.conf</code> 文件即可</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code>server {
+    listen       80;            # IPv4 监听端口
+    listen  [::]:80;            # IPv6 监听端口
+    server_name  localhost;     # 域名
+
+    location / {                # 网站根目录
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    location /doc {             # 文档根目录
+        charset utf-8;          # 文档编码
+        alias   /usr/share/nginx/doc;
+        autoindex on;           # 自动索引
+    }
+
+    error_page  404               /404.html;
+    error_page   500 502 503 504  /50x.html; # 错误页面
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+</code></pre></div></td></tr></table></div>
+<p>写一个启动脚本 <code>NginxRun.sh</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+-p<span class="w"> </span><span class="m">2023</span>:80<span class="w"> </span><span class="se">\</span>
+--name<span class="w"> </span>nginx<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/home/jiao/Public/daixll.github.io:/usr/share/nginx/html<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/home/jiao/Public/doc:/usr/share/nginx/doc<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/home/jiao/Documents/NGINX/:/etc/nginx/conf.d<span class="w"> </span><span class="se">\</span>
+--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
+-d<span class="w"> </span>nginx:latest
+</code></pre></div></td></tr></table></div>
 <h3 id="av">av</h3>
+<p><code>docker</code> + <code>emby</code> 搭建影音服务</p>
+<p>写一个启动脚本 <code>EmbyRun.sh</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+-p<span class="w"> </span><span class="m">8096</span>:8096<span class="w"> </span><span class="se">\</span>
+--name<span class="w"> </span>emby<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/home/jiao/Videos:/mnt/share1<span class="w"> </span><span class="se">\</span>
+--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
+-d<span class="w"> </span>emby/embyserver:latest
+</code></pre></div></td></tr></table></div>
+<h3 id="remotedesktop">remoteDesktop</h3>
+<p>直接使用微软的远程桌面协议（RDP）</p>
+<ol>
+<li>下载 <code>sudo apt install xrdp</code></li>
+<li>打开端口 <code>sudo ufw allow 3389</code></li>
+</ol>
+<h3 id="code-server">code-server</h3>
+<ol>
+<li>下载 <a href="https://github.com/coder/code-server/releases">地址</a></li>
+<li>安装 <code>sudo apt install ./code-server*.deb</code></li>
+<li>启动 <code>export PASSWORD="密码" &amp;&amp; ./code-server* --host 0.0.0.0 --port 端口 &amp;</code></li>
+</ol>
+<blockquote>
+<ul>
+<li>此方法非常不安全，建议使用 <code>docker</code> 部署</li>
+<li><code>--host</code> 后面的 IP地址，只有是 <code>0.0.0.0</code> 时，外网才可访问到。</li>
+</ul>
+</blockquote>
 
 
 
