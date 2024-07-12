@@ -21,6 +21,45 @@
 </html>
 ```
 
+## 捕获
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <title> v </title>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // 捕获摄像头
+                navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                    .then(stream => {
+                        document.getElementById('video').srcObject = stream;
+                    })
+                    .catch(err => { 
+                        alert('访问摄像头失败: ' + err);
+                    });
+                // 捕获屏幕
+                navigator.mediaDevices.getDisplayMedia({ video: true, audio: true })
+                    .then(stream => {
+                        document.getElementById('screen').srcObject = stream;
+                    })
+                    .catch(err => { 
+                        alert('访问屏幕失败: ' + err);
+                    });
+            });
+        </script>
+    </head>    
+
+    <body>
+        <video id="video" autoplay width=49%></video>
+        <video id="screen" autoplay width=49%></video>
+    </body>
+</html>
+```
+
+
 ## socketio
 
 ```html
