@@ -21,6 +21,63 @@
 </html>
 ```
 
+## socketio
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"> 
+        <title> c </title>
+        
+        <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // 创建一个 socketio 对象，指定连接的服务器地址
+                var sock = io('http://localhost:5000');
+                
+                // 当连接建立时，如果服务器发送 response 消息，弹出提示
+                sock.on('response', function (data) {
+                    alert('server: ' + data);
+                });
+
+                // 当点击按钮时，向服务器发送消息
+                document.getElementById('sss').addEventListener('click', function () {
+                    sock.send(document.getElementById('ttt').value);
+                });
+            });
+        </script>
+    </head>    
+
+    <body>
+        <input type="text" id="ttt">
+        <button type="submit" id="sss">Send</button>
+    </body>
+</html>
+```
+
+```py
+from flask import Flask
+from flask_socketio import SocketIO, send, emit
+
+app = Flask(__name__)               # 创建一个 Flask 实例
+socketio = SocketIO(app, cors_allowed_origins="http://127.0.0.1:2024")                
+
+@socketio.on('connect')             # 监听 connect 事件
+def handle_connect():
+    emit('response', 'connected')   # 发送 response 事件，内容为 Connected
+
+@socketio.on('message')             # 监听 message 事件
+def handle_message(msg):            # 如果收到 message 事件，执行此函数            
+    emit('response', msg)           # 发送 response 事件
+
+if __name__ == '__main__':
+    socketio.run(app, debug=True, host='127.0.0.1', port=5000)
+```
+
+
+## 下面未整理
+
 ## 操纵 html 元素
 
 ```html

@@ -4,6 +4,11 @@
 * 安装 `python get-pip.py`
 * 测试 `python -m pip --version`
 
+**查看当前软件包**
+
+* `pip list`
+
+
 ## miniconda
 
 1. 下载安装脚本
