@@ -62,6 +62,8 @@
 
 ## socketio
 
+基于 WebSocket 的 JavaScript 库
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -115,7 +117,7 @@ if __name__ == '__main__':
 ```
 
 
-## 下面未整理
+## --下面未整理--
 
 ## 操纵 html 元素
 
