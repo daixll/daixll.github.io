@@ -1,8 +1,6 @@
 # develop
 
-## 桌面平台
-
-*windows 11 pro*
+## *Windows 11 Pro*
 
 * [NV 驱动](https://www.nvidia.com/en-us/software/nvidia-app/) / [INTEL 驱动](https://www.intel.com/content/www/us/en/support/detect.html)
 
@@ -22,7 +20,6 @@
 * [VS Code](https://code.visualstudio.com/insiders/) / [VS 2022](https://visualstudio.microsoft.com/zh-hans/vs/preview/) 登陆 `github` 账号，等待配置同步
 
 * [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) 登陆 `JB` 账号，等待配置同步
-
 
 <br>
 
@@ -179,26 +176,22 @@
 
 ---
 
-## 移动平台
+## *Ubuntu Desktop 22.04.4 LTS*
 
-*macos*
+* [WeChat](https://blog.csdn.net/Jason_Yansir/article/details/138117714)
 
-
-<br>
-
----
-
-## 文件服务
-
-*windows server 2022*
 
 <br>
 
 ---
 
-## 应用服务
+## *Windows Server 2022*
 
-*ubuntu server 22.04*
+<br>
+
+---
+
+## *Ubuntu Server 22.04.4 LTS*
 
 <br>
 
