@@ -34,131 +34,6 @@
 }
 </style>
 <h1 id="go">GO </h1>
-<ol>
-<li>
-<p><a href="https://golang.google.cn/dl/">官网</a> 康康最新版本，下载</p>
-<ul>
-<li><code>wget https://golang.google.cn/dl/go1.22.0.linux-amd64.tar.gz</code></li>
-</ul>
-</li>
-<li>
-<p>解压缩至 <code>/usr/local/</code></p>
-<ul>
-<li><code>sudo tar -zxvf go1.22.0.linux-amd64.tar.gz -C /usr/local/</code></li>
-</ul>
-</li>
-<li>
-<p>配置环境变量 （WSL下的建议方案）</p>
-<ul>
-<li>
-<p><code>vim ~/.bashrc</code></p>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:/usr/local/go/bin
-</code></pre></li>
-<li>
-<p>刷新<br>
-<code>source ~/.bashrc</code></p>
-</li>
-</ul>
-</li>
-<li>
-<p>测试 <code>go version</code></p>
-</li>
-</ol>
-<h2 id="单个文件运行">单个文件运行 </h2>
-<pre data-role="codeBlock" data-info="" class="language-text text"><code>── my_project/
-   ├── go.mod
-   ├── main.go
-</code></pre><ol>
-<li>
-<p><code>mkdir my_project &amp;&amp; cd my_project</code></p>
-</li>
-<li>
-<p><code>go mod init github.com/daixll/my_project</code></p>
-</li>
-<li>
-<p><code>vim main.go</code></p>
-<pre data-role="codeBlock" data-info="go" class="language-go go"><code><span class="token comment">// main.go</span>
-<span class="token keyword keyword-package">package</span> main
-<span class="token keyword keyword-import">import</span> <span class="token string">"fmt"</span>
-<span class="token keyword keyword-func">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Hello, World!"</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-</code></pre></li>
-<li>
-<p><code>go run main.go</code></p>
-</li>
-</ol>
-<br>
-<h2 id="多个文件运行">多个文件运行 </h2>
-<pre data-role="codeBlock" data-info="" class="language-text text"><code>── my_project/
-   ├── go.mod
-   ├── main.go
-   ├── one.go
-</code></pre><ol>
-<li>
-<p><code>vim one.go</code></p>
-<pre data-role="codeBlock" data-info="go" class="language-go go"><code><span class="token keyword keyword-package">package</span> main  <span class="token comment">// 在同一目录下，一定要是 main 包</span>
-<span class="token keyword keyword-import">import</span> <span class="token string">"fmt"</span>
-<span class="token keyword keyword-func">func</span> <span class="token function">One</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment">// 首字母大写，表示可以被外部调用</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Hello, one"</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-</code></pre></li>
-<li>
-<p><code>vim main.go</code></p>
-<pre data-role="codeBlock" data-info="go" class="language-go go"><code><span class="token keyword keyword-package">package</span> main
-<span class="token keyword keyword-func">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">One</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 调用包中的函数</span>
-<span class="token punctuation">}</span>
-</code></pre></li>
-<li>
-<p><code>go run main.go one.go</code></p>
-</li>
-</ol>
-<br>
-<h2 id="调用本地包">调用本地包 </h2>
-<pre data-role="codeBlock" data-info="" class="language-text text"><code>── my_project/
-   ├── go.mod
-   ├── main.go
-   ├── one.go
-   ├── two
-       ├── two.go
-</code></pre><ol>
-<li>
-<p><code>mkdir two &amp;&amp; vim two/two.go</code></p>
-<pre data-role="codeBlock" data-info="go" class="language-go go"><code><span class="token keyword keyword-package">package</span> two
-<span class="token keyword keyword-import">import</span> <span class="token string">"fmt"</span>
-<span class="token keyword keyword-func">func</span> <span class="token function">Two</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Hello, two"</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-</code></pre></li>
-<li>
-<p><code>vim main.go</code></p>
-<pre data-role="codeBlock" data-info="go" class="language-go go"><code><span class="token keyword keyword-package">package</span> main
-<span class="token keyword keyword-import">import</span> <span class="token punctuation">(</span>
-    <span class="token string">"github.com/daixll/my_project/two"</span>  <span class="token comment">// 导入本地包</span>
-<span class="token punctuation">)</span>
-<span class="token keyword keyword-func">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    two<span class="token punctuation">.</span><span class="token function">Two</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 调用包中的函数</span>
-<span class="token punctuation">}</span>
-</code></pre></li>
-<li>
-<p><code>vim go.mod</code></p>
-<pre data-role="codeBlock" data-info="sh" class="language-bash sh"><code>module github.com/daixll/my_project
-
-go <span class="token number">1.22</span>
-// 重定向到本地
-require github.com/daixll/my_project/two <span class="token operator">=</span><span class="token operator">&gt;</span> ./two
-</code></pre></li>
-<li>
-<p><code>go mod tidy</code></p>
-</li>
-<li>
-<p><code>go build</code></p>
-</li>
-<li>
-<p><code>./my_project</code></p>
-</li>
-</ol>
 <br>
 <hr>
 <ol>
@@ -1066,28 +941,11 @@ func <span class="token function">main</span><span class="token punctuation">(</
       </div>
       <div class="md-sidebar-toc">
 <div class="md-toc">
-<details style="padding:0;;padding-left:0px;" open="">
-        <summary class="md-toc-link-wrapper">
-          <a href="#go" class="md-toc-link"><p>GO</p>
-</a>
-          </summary>
-        <div>
-          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#单个文件运行" class="md-toc-link">
-            <p>单个文件运行</p>
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#go" class="md-toc-link">
+            <p>GO</p>
 
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#多个文件运行" class="md-toc-link">
-            <p>多个文件运行</p>
-
-          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
-          <a href="#调用本地包" class="md-toc-link">
-            <p>调用本地包</p>
-
-          </a></div>
-        </div>
-      </details>
-    <details style="padding:0;;padding-left:0px;" open="">
+          </a></div><details style="padding:0;;padding-left:0px;" open="">
         <summary class="md-toc-link-wrapper">
           <a href="#go-的优点" class="md-toc-link"><p>Go 的优点</p>
 </a>
