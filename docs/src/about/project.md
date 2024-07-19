@@ -2,10 +2,12 @@
 
 ## chatchat
 
-地址：[github](https://github.com/daixll/chatchat)
+* 一个加密通信软件，用于学习 C/C++
 
-一个加密通信软件，用于学习 C/C++
+* [源码](https://github.com/daixll/chatchat)
 
-## GenRNA
+## GenRNA3D
 
-待整理...
+* 帮助西大某生物团队写的一个小小程序
+
+* [文档](../more/xd.md)

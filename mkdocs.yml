@@ -2,8 +2,8 @@
 nav:
   - JIAO:
     - About:            index.md
-    - Project:          src/about/project.md
     - Work:             src/about/work.md
+    - Project:          src/about/project.md
     - Education:        src/about/education.md
     - Honor:            src/about/Honor.md
   - 🪂 Algorithm:
@@ -63,10 +63,12 @@ nav:
     - 数据库: 
       - mysql速查:      src/cs/database/quick_mysql.md
   - 🔢 Math:
-    - 概率论:           src/math/概率论.md
     - 微积分:           src/math/微积分.md
+    - 概率论:           src/math/概率论.md
   - 👷 Φιλοσοφία:
     - 马克思主义:       src/philosophy/marx.md
+  - 🕶️ More:
+    - GenRNA3D:         src/more/xd.md
 
 
 

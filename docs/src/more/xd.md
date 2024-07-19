@@ -1,10 +1,3 @@
----
-html:
-    toc: true   # 打开侧边目录
-export_on_save:
-    html: true  # 自动保存
----
-
 * Ubuntu `20.04.6`
 * Python `3.8`
 * GCC `9.4.0`
@@ -296,7 +289,7 @@ for i, s in enumerate(my_subopt):
     1. 去目标目录 `cd rosetta.binary.ubuntu.release-371/main/source/`
     2. 搞个软链接 `sudo ln -s /usr/bin/python3 /usr/bin/python`
     2. 运行 `sudo ./scons.py -j20 mode=release bin`
-        * `-j20` 是指用 24 个线程
+        * `-j20` 是指用 20 个线程
     3. 创建文件夹 `mkdir ~/Desktop/TestRosetta && cd ~/Desktop/TestRosetta`
     4. 测试 `~/Desktop/rosetta.binary.ubuntu.release-371/main/source/bin/rna_denovo.linuxgccrelease -sequence "ucaggu aagcag" -secstruct "(....( )....)" -nstruct 2 -out:file:silent test.out -minimize_rna -dump`
         * 运行结束，出现下面几个文件则说明成功
