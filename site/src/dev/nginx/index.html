@@ -2138,9 +2138,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#docker" class="md-nav__link">
+  <a href="#nginx_docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Docker
+      Nginx_Docker
     </span>
   </a>
   
@@ -2277,7 +2277,8 @@ sudo<span class="w"> </span>make<span class="w"> </span>install
     }
 }
 </code></pre></div></td></tr></table></div>
-<h2 id="docker">Docker</h2>
+<h2 id="nginx_docker">Nginx_Docker</h2>
+<p><code>docker pull nginx</code></p>
 <p>启动脚本：<code>runNginx.conf</code></p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -2290,13 +2291,13 @@ sudo<span class="w"> </span>make<span class="w"> </span>install
 -p 2024:80 \
 --name nginx \
 -v /.../web:/usr/share/nginx/html \
--v /.../dow:/usr/share/nginx/doc \
+-v /.../doc:/usr/share/nginx/doc \
 -v /.../NGINX/:/etc/nginx/conf.d \
 --restart unless-stopped \
--d nginx:latest
+-d nginx
 </code></pre></div></td></tr></table></div>
 <h2 id="rtmp_docker">RTMP_Docker</h2>
-<p><code>docker pull</code></p>
+<p><code>docker pull tiangolo/nginx-rtmp</code></p>
 
 
 

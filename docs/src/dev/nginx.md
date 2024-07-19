@@ -72,7 +72,9 @@ server {
 }
 ```
 
-## Docker
+## Nginx_Docker
+
+`docker pull nginx`
 
 启动脚本：`runNginx.conf`
 
@@ -81,12 +83,13 @@ docker run \
 -p 2024:80 \
 --name nginx \
 -v /.../web:/usr/share/nginx/html \
--v /.../dow:/usr/share/nginx/doc \
+-v /.../doc:/usr/share/nginx/doc \
 -v /.../NGINX/:/etc/nginx/conf.d \
 --restart unless-stopped \
--d nginx:latest
+-d nginx
 ```
 
 ## RTMP_Docker
 
-`docker pull `
+`docker pull tiangolo/nginx-rtmp`
+
