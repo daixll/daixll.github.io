@@ -21,7 +21,7 @@
 </html>
 ```
 
-## 捕获
+## WebRTC
 
 ```html
 <!DOCTYPE html>
@@ -59,8 +59,7 @@
 </html>
 ```
 
-
-## socketio
+## SocketIo
 
 基于 WebSocket 的 JavaScript 库
 
@@ -115,6 +114,11 @@ def handle_message(msg):            # 如果收到 message 事件，执行此函
 if __name__ == '__main__':
     socketio.run(app, debug=True, host='127.0.0.1', port=5000)
 ```
+
+## WebSocket
+
+
+
 
 
 ## --下面未整理--

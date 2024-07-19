@@ -45,6 +45,7 @@ nav:
       - env:            src/language/py/env.md
       - pandas:         src/language/py/pandas.md
       - openpyxl:       src/language/py/openpyxl.md
+      - tornado:        src/language/py/tornado.md
     - Golang:           src/language/go/one.md
     - Java:
       - main/java:      src/language/java/main_java.md
