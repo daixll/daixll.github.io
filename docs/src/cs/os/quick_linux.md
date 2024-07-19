@@ -7,11 +7,15 @@
 * 更新软件源、软件、系统更新（非升级）
     `sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && sudo apt autoremove`
 
+* 使用代理
+    `sudo apt -o Acquire::http::proxy="http://127.0.0.1:7897/" update`
+
 * 查看已安装的软件
     `sudo apt list --installed | grep 软件名`
 
 * 查找软件
     `sudo apt-cache search 软件名`
+
 
 ### 文件管理
 

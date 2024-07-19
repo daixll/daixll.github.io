@@ -38,6 +38,7 @@ nav:
     - FFmpeg:           src/dev/ffmpeg.md
     - Qt:               src/dev/qt.md
     - Docker:           src/dev/docker.md
+    - Nginx:            src/dev/nginx.md
     - MySQL:            src/dev/mysql.md
   - 🌿 Language:
     - Python:
