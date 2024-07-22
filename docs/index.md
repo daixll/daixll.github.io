@@ -13,7 +13,7 @@
 
 <center>
 
-Algorithm 🤺 Contests ⚔️ Training 🔧 Tools
+
 
 </center>
 
@@ -25,38 +25,15 @@ Algorithm 🤺 Contests ⚔️ Training 🔧 Tools
         <a href="https://atcoder.jp/contests/" target="_blank"> AtCoder </a>
     </div>
     <div class="item">
+        Algorithm🤺Contests
+    </div>
+    <div class="item">
         <a href="https://ac.nowcoder.com/acm/contest/vip-index" target="_blank"> nowcoder </a>
     </div>
     <div class="item">
         <a href="https://www.luogu.com.cn/contest/list" target="_blank"> Luogu </a>
     </div>
-    <div class="item">
-        <a href="https://leetcode.cn/contest/" target="_blank"> leetcode </a>
-    </div>
 </div>
-
-<div class="container">
-    <div class="item">
-        <a href="https://www.acwing.com/user/myspace/activity/126160/" target="_blank"> yxc </a> | <a href="https://www.luogu.com.cn/training/list" target="_blank"> Luogu </a> | <a href="https://www.luogu.com/paste/b7vhgqco" target="_blank"> TEMP </a> | <a href="https://www.acwing.com/activity/content/90/" target="_blank"> Kb </a> | <a href="https://www.acwing.com/activity/content/6/" target="_blank"> lyd </a> | <a href="http://ybt.ssoier.cn:8088/index.php" target="_blank"> ybt </a>
-    </div>
-    <div class="item">
-         <a href="https://www.luogu.com.cn/problem/list?type=B%7CP&tag=343%7C37&page=1" target="_blank"> CSP </a> | <a href="https://www.acwing.com/activity/content/89/" target="_blank"> USACO </a> | <a href="https://pintia.cn/market" target="_blank"> PTA-XCPC </a> | <a href="http://noi.openjudge.cn/" target="_blank"> CIE-C </a>
-    </div>
-</div>
-
-<div class="container">
-    <div class="item">
-        <a href="https://csacademy.com/app/graph_editor/" target="_blank"> 画图-图论</a>
-    </div>
-    <div class="item">
-        <a href="https://www.desmos.com/calculator?lang=zh-CN" target="_blank"> 画图-坐标系 </a>
-    </div>
-    <div class="item">
-        <a href="https://mathsolver.microsoft.com/zh" target="_blank"> 计算-MS </a> | 
-        <a href="https://mathdf.com/cn/" target="_blank"> 计算-DF </a> 
-    </div>
-</div>
-
 
 <center>
 
