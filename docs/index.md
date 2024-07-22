@@ -13,7 +13,7 @@
 
 <center>
 
-
+Algorithm 🤺 Contests
 
 </center>
 
@@ -23,9 +23,6 @@
     </div>
     <div class="item">
         <a href="https://atcoder.jp/contests/" target="_blank"> AtCoder </a>
-    </div>
-    <div class="item">
-        Algorithm🤺Contests
     </div>
     <div class="item">
         <a href="https://ac.nowcoder.com/acm/contest/vip-index" target="_blank"> nowcoder </a>
@@ -78,8 +75,6 @@ Air ✈ port
 </div>
 
 ---
-
-> 旧网站内容还没迁移过来
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;共产党人不屑于隐瞒自己的观点和意图。他们公开宣布：他们的目的只有用暴力推翻全部现存的社会制度才能达到。让统治阶级在共产主义革命面前发抖吧。无产者在这个革命中失去的只是锁链。他们获得的将是整个世界。
 

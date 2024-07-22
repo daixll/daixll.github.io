@@ -1418,15 +1418,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dockerfile" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dockerfile 构建镜像
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       查看镜像
@@ -1501,9 +1492,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dockerfile_1" class="md-nav__link">
+  <a href="#dockerfile" class="md-nav__link">
     <span class="md-ellipsis">
       Dockerfile
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dockerfile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dockerfile 构建镜像
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k8s" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 K8s
     </span>
   </a>
   
@@ -2499,15 +2514,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dockerfile" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dockerfile 构建镜像
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       查看镜像
@@ -2582,9 +2588,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dockerfile_1" class="md-nav__link">
+  <a href="#dockerfile" class="md-nav__link">
     <span class="md-ellipsis">
       Dockerfile
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dockerfile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dockerfile 构建镜像
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k8s" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 K8s
     </span>
   </a>
   
@@ -2610,17 +2640,24 @@
 
   <h1>Docker</h1>
 
+<p><a href="https://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html">Docker 入门教程 - 阮一峰</a></p>
+<p><strong>Virtual Machines</strong> </p>
+<ul>
+<li><strong>更强的隔离性</strong>：在硬件层面上实现虚拟化</li>
+<li><strong>文件特性</strong>：硬盘文件、快照都是文件，可以持久化</li>
+</ul>
 <p><strong>Docker</strong></p>
 <ul>
 <li><strong>轻量化</strong>：在操作系统层面上实现虚拟化</li>
 <li><strong>分布式</strong>：可以在同一台机器上运行多个容器，每个容器之间相互隔离</li>
 <li><strong>无状态</strong>：容器每次创建都是全新的，容器内的进程也是全新的，容器内的内容不可持久化</li>
 </ul>
-<p><strong>Virtual Machines</strong> </p>
+<p><strong>Kubernetes</strong></p>
 <ul>
-<li><strong>更强的隔离性</strong>：在硬件层面上实现虚拟化</li>
-<li><strong>文件特性</strong>：硬盘文件、快照都是文件，可以持久化</li>
+<li>容器编排平台</li>
 </ul>
+<p><br></p>
+<hr />
 <h2 id="docker">安装 Docker</h2>
 <p>使用官方安装脚本（<a href="https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script">参考文档</a>）：</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -2635,7 +2672,7 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 </ul>
 <h3 id="docker-hub">Docker Hub 下载镜像</h3>
 <p><a href="https://hub.docker.com/search?q=">Docker Hub</a></p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>IMAGE_NAME<span class="o">[</span>:TAG<span class="o">]</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>IMAGE_NAME<span class="o">[</span>:TAG<span class="o">]</span>
 </code></pre></div></td></tr></table></div>
 <ul>
 <li><code>IMAGE_NAME</code> 镜像名称</li>
@@ -2662,16 +2699,8 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 <p><code>sudo systemctl show --property=Environment docker</code></p>
 </li>
 </ul>
-<h3 id="dockerfile">Dockerfile 构建镜像</h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>IMAGE_NAME<span class="o">[</span>:TAG<span class="o">]</span><span class="w"> </span>PATH_TO_DOCKERFILE
-</code></pre></div></td></tr></table></div>
-<ul>
-<li><code>IMAGE_NAME</code> 镜像名称</li>
-<li><code>TAG</code> 可选，镜像版本或标签</li>
-<li><code>PATH_TO_DOCKERFILE</code> Dockerfile 所在路径</li>
-</ul>
 <h3 id="_1">查看镜像</h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>images
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>images
 </code></pre></div></td></tr></table></div>
 <ul>
 <li><code>REPOSITORY</code> 镜像名称</li>
@@ -2681,70 +2710,87 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 <li><code>SIZE</code> 镜像大小</li>
 </ul>
 <h3 id="_2">删除镜像</h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>rmi<span class="w"> </span>IMAGE_NAME<span class="o">[</span>:TAG<span class="o">]</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>rmi<span class="w"> </span>IMAGE_NAME<span class="o">[</span>:TAG<span class="o">]</span>
 </code></pre></div></td></tr></table></div>
+<p><br></p>
+<hr />
 <h2 id="container">容器 CONTAINER</h2>
 <h3 id="_3">查看容器</h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>ps<span class="w"> </span><span class="o">[</span>-a<span class="o">]</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span><span class="o">[</span>-a<span class="o">]</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="_4">创建 / 删除容器</h3>
 <p><strong>删除容器</strong></p>
-<blockquote>
-<p>删除容器前需要先停止容器</p>
-</blockquote>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>rm<span class="w"> </span>CONTAINER_ID
+<ul>
+<li>删除容器前需要先停止容器</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>rm<span class="w"> </span><span class="o">[</span>CONTAINER_ID<span class="o">]</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>删除所有已停止容器</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>container<span class="w"> </span>prune
 </code></pre></div></td></tr></table></div>
 <p><strong>创建容器</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>IMAGE_NAME<span class="o">[</span>:TAG<span class="o">]</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="o">[</span>COMMAND<span class="o">]</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="o">[</span>ARG...<span class="o">]</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>IMAGE<span class="w"> </span><span class="o">[</span>COMMAND<span class="o">]</span><span class="w"> </span><span class="o">[</span>ARG...<span class="o">]</span>
 </code></pre></div></td></tr></table></div>
-<ol>
-<li><strong>OPTIONS</strong> 命令选项<ul>
-<li><code>-it</code> 进入容器终端，通常与 <code>/bin/bash</code> 一起使用</li>
-<li><code>-d</code> 后台运行容器，通常与 <code>sleep infinity</code> 一起使用</li>
-<li><code>--name</code> 容器名称</li>
-<li><code>--restart</code> 容器停止后自动重启<ul>
-<li><code>no</code>（默认），不重启</li>
-<li><code>on-failure</code>，非 0 退出时重启</li>
-<li><code>always</code>，总是重启</li>
-</ul>
-</li>
-<li><code>--net</code> 网络模式<ul>
-<li><code>bridge</code>（默认），需要端口映射</li>
-<li><code>host</code>，直接使用宿主机端口</li>
-<li><code>none</code>，无网络</li>
-</ul>
-</li>
-<li><code>--rm</code> 容器停止后自动删除</li>
-<li><code>-p</code> 端口映射，<code>HOST_PORT:CONTAINER_PORT</code>，<code>外:内</code></li>
-<li><code>-v</code> 挂载目录，<code>HOST_DIR:CONTAINER_DIR</code>，<code>外:内</code></li>
-<li><code>-e</code> 环境变量，<code>KEY=VALUE</code></li>
-<li><code>-w</code> 工作目录，<code>WORK_DIR</code>，指定容器内的工作目录</li>
-</ul>
-</li>
-</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--name<span class="w"> </span><span class="o">[</span>c_name<span class="o">]</span><span class="w"> </span><span class="se">\ </span><span class="w">          </span><span class="c1"># 容器名</span>
+<span class="w">    </span>-it<span class="w"> </span><span class="se">\ </span><span class="w">                      </span><span class="c1"># 台前运行，容器在没有指定长时间运行的进程时会立即退出</span>
+<span class="w">    </span>--detach<span class="w"> </span><span class="se">\ </span><span class="w">                 </span><span class="c1"># 后台运行</span>
+<span class="w">    </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\ </span><span class="w"> </span><span class="c1"># 非手动停止自动重启</span>
+<span class="w">    </span>-p<span class="w"> </span><span class="m">10086</span>:80<span class="w"> </span><span class="se">\ </span><span class="w">              </span><span class="c1"># 容器内 80 -&gt; 主机 10086</span>
+<span class="w">    </span>-P<span class="w"> </span><span class="se">\ </span><span class="w">                       </span><span class="c1"># 容器公开的所有端口随机映射到主机的可用端口</span>
+<span class="w">    </span>-v<span class="w"> </span>/host/path:/c/path<span class="w"> </span><span class="se">\ </span><span class="w">    </span><span class="c1"># 映射目录</span>
+<span class="w">    </span>-v<span class="w"> </span>/host/file:/c/file:ro<span class="w"> </span><span class="se">\ </span><span class="w"> </span><span class="c1"># 映射文件 [:ro] 只读</span>
+<span class="o">[</span>image_name<span class="o">]</span><span class="w">                    </span><span class="c1"># 镜像名</span>
+</code></pre></div></td></tr></table></div>
 <h3 id="_5">进入 / 退出容器</h3>
 <p><strong>进入容器</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>CONTAINER_ID<span class="w"> </span>/bin/bash
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="o">[</span>CONTAINER_ID<span class="o">]</span><span class="w"> </span>/bin/bash
 </code></pre></div></td></tr></table></div>
 <p><strong>退出容器</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">exit</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="_6">启动 / 停止容器</h3>
+<p><strong>重启容器</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>restart<span class="w"> </span><span class="o">[</span>CONTAINER_ID<span class="o">]</span>
+</code></pre></div></td></tr></table></div>
 <p><strong>启动容器</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>start<span class="w"> </span>CONTAINER_ID
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span><span class="o">[</span>CONTAINER_ID<span class="o">]</span>
 </code></pre></div></td></tr></table></div>
 <p><strong>停止容器</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>stop<span class="w"> </span>CONTAINER_ID
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>stop<span class="w"> </span><span class="o">[</span>CONTAINER_ID<span class="o">]</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="dockerfile_1">Dockerfile</h2>
+<p><br></p>
+<hr />
+<h2 id="dockerfile">Dockerfile</h2>
+<h3 id="dockerfile_1">Dockerfile 构建镜像</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>IMAGE_NAME<span class="o">[</span>:TAG<span class="o">]</span><span class="w"> </span>PATH_TO_DOCKERFILE
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><code>IMAGE_NAME</code> 镜像名称</li>
+<li><code>TAG</code> 可选，镜像版本或标签</li>
+<li><code>PATH_TO_DOCKERFILE</code> Dockerfile 所在路径</li>
+</ul>
+<p><br></p>
+<hr />
+<h2 id="k8s">安装 K8s</h2>
+<p><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">文档</a></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>curl<span class="w"> </span>-LO<span class="w"> </span><span class="s2">&quot;https://dl.k8s.io/release/</span><span class="k">$(</span>curl<span class="w"> </span>-L<span class="w"> </span>-s<span class="w"> </span>https://dl.k8s.io/release/stable.txt<span class="k">)</span><span class="s2">/bin/linux/amd64/kubectl&quot;</span>
+sudo<span class="w"> </span>install<span class="w"> </span>-o<span class="w"> </span>root<span class="w"> </span>-g<span class="w"> </span>root<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>kubectl<span class="w"> </span>/usr/local/bin/kubectl
+kubectl<span class="w"> </span>version<span class="w"> </span>--client<span class="w"> </span>--output<span class="o">=</span>yaml
+</code></pre></div></td></tr></table></div>
 
 
 
