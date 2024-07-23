@@ -12,10 +12,6 @@
 * **分布式**：可以在同一台机器上运行多个容器，每个容器之间相互隔离
 * **无状态**：容器每次创建都是全新的，容器内的进程也是全新的，容器内的内容不可持久化
 
-**Kubernetes**
-
-* 容器编排平台
-
 <br>
 
 ---
@@ -36,7 +32,7 @@ sudo sh get-docker.sh
 * 面向对象中的类，容器是对象
 * 虚拟机中的 `.iso`，容器是虚拟机
 
-### Docker Hub 下载镜像
+### 下载镜像
 
 [Docker Hub](https://hub.docker.com/search?q=)
 
@@ -93,7 +89,7 @@ sudo docker rmi IMAGE_NAME[:TAG]
 sudo docker ps [-a]
 ```
 
-### 创建 / 删除容器
+### 增删容器
 
 **删除容器**
 
@@ -129,7 +125,7 @@ docker run \
 ```
 
 
-### 进入 / 退出容器
+### 进出容器
 
 **进入容器**
 
@@ -143,7 +139,7 @@ sudo docker exec -it [CONTAINER_ID] /bin/bash
 exit
 ```
 
-### 启动 / 停止容器
+### 启停容器
 
 **重启容器**
 
@@ -180,16 +176,3 @@ sudo docker build -t IMAGE_NAME[:TAG] PATH_TO_DOCKERFILE
 * `TAG` 可选，镜像版本或标签
 * `PATH_TO_DOCKERFILE` Dockerfile 所在路径
 
-<br>
-
----
-
-## 安装 K8s
-
-[文档](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
-
-```sh
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-kubectl version --client --output=yaml
-```

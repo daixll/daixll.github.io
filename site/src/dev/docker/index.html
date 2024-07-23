@@ -12,7 +12,7 @@
         <link rel="prev" href="../qt/">
       
       
-        <link rel="next" href="../nginx/">
+        <link rel="next" href="../kubernetes/">
       
       
       <link rel="icon" href="../../../assets/head.png">
@@ -1409,16 +1409,16 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#docker-hub" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Docker Hub 下载镜像
+      下载镜像
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       查看镜像
     </span>
@@ -1427,7 +1427,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       删除镜像
     </span>
@@ -1451,7 +1451,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       查看容器
     </span>
@@ -1460,18 +1460,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      创建 / 删除容器
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      进入 / 退出容器
+      增删容器
     </span>
   </a>
   
@@ -1480,7 +1471,16 @@
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      启动 / 停止容器
+      进出容器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      启停容器
     </span>
   </a>
   
@@ -1515,19 +1515,31 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#k8s" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装 K8s
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2505,16 +2517,16 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#docker-hub" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Docker Hub 下载镜像
+      下载镜像
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       查看镜像
     </span>
@@ -2523,7 +2535,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       删除镜像
     </span>
@@ -2547,7 +2559,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       查看容器
     </span>
@@ -2556,18 +2568,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      创建 / 删除容器
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      进入 / 退出容器
+      增删容器
     </span>
   </a>
   
@@ -2576,7 +2579,16 @@
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      启动 / 停止容器
+      进出容器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      启停容器
     </span>
   </a>
   
@@ -2608,15 +2620,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#k8s" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装 K8s
-    </span>
-  </a>
   
 </li>
       
@@ -2652,10 +2655,6 @@
 <li><strong>分布式</strong>：可以在同一台机器上运行多个容器，每个容器之间相互隔离</li>
 <li><strong>无状态</strong>：容器每次创建都是全新的，容器内的进程也是全新的，容器内的内容不可持久化</li>
 </ul>
-<p><strong>Kubernetes</strong></p>
-<ul>
-<li>容器编排平台</li>
-</ul>
 <p><br></p>
 <hr />
 <h2 id="docker">安装 Docker</h2>
@@ -2670,7 +2669,7 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 <li>面向对象中的类，容器是对象</li>
 <li>虚拟机中的 <code>.iso</code>，容器是虚拟机</li>
 </ul>
-<h3 id="docker-hub">Docker Hub 下载镜像</h3>
+<h3 id="_1">下载镜像</h3>
 <p><a href="https://hub.docker.com/search?q=">Docker Hub</a></p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>IMAGE_NAME<span class="o">[</span>:TAG<span class="o">]</span>
 </code></pre></div></td></tr></table></div>
@@ -2699,7 +2698,7 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 <p><code>sudo systemctl show --property=Environment docker</code></p>
 </li>
 </ul>
-<h3 id="_1">查看镜像</h3>
+<h3 id="_2">查看镜像</h3>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>images
 </code></pre></div></td></tr></table></div>
 <ul>
@@ -2709,16 +2708,16 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 <li><code>CREATED</code> 创建时间</li>
 <li><code>SIZE</code> 镜像大小</li>
 </ul>
-<h3 id="_2">删除镜像</h3>
+<h3 id="_3">删除镜像</h3>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>rmi<span class="w"> </span>IMAGE_NAME<span class="o">[</span>:TAG<span class="o">]</span>
 </code></pre></div></td></tr></table></div>
 <p><br></p>
 <hr />
 <h2 id="container">容器 CONTAINER</h2>
-<h3 id="_3">查看容器</h3>
+<h3 id="_4">查看容器</h3>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span><span class="o">[</span>-a<span class="o">]</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="_4">创建 / 删除容器</h3>
+<h3 id="_5">增删容器</h3>
 <p><strong>删除容器</strong></p>
 <ul>
 <li>删除容器前需要先停止容器</li>
@@ -2753,14 +2752,14 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 <span class="w">    </span>-v<span class="w"> </span>/host/file:/c/file:ro<span class="w"> </span><span class="se">\ </span><span class="w"> </span><span class="c1"># 映射文件 [:ro] 只读</span>
 <span class="o">[</span>image_name<span class="o">]</span><span class="w">                    </span><span class="c1"># 镜像名</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="_5">进入 / 退出容器</h3>
+<h3 id="_6">进出容器</h3>
 <p><strong>进入容器</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="o">[</span>CONTAINER_ID<span class="o">]</span><span class="w"> </span>/bin/bash
 </code></pre></div></td></tr></table></div>
 <p><strong>退出容器</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">exit</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="_6">启动 / 停止容器</h3>
+<h3 id="_7">启停容器</h3>
 <p><strong>重启容器</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>restart<span class="w"> </span><span class="o">[</span>CONTAINER_ID<span class="o">]</span>
 </code></pre></div></td></tr></table></div>
@@ -2781,16 +2780,6 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 <li><code>TAG</code> 可选，镜像版本或标签</li>
 <li><code>PATH_TO_DOCKERFILE</code> Dockerfile 所在路径</li>
 </ul>
-<p><br></p>
-<hr />
-<h2 id="k8s">安装 K8s</h2>
-<p><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">文档</a></p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>curl<span class="w"> </span>-LO<span class="w"> </span><span class="s2">&quot;https://dl.k8s.io/release/</span><span class="k">$(</span>curl<span class="w"> </span>-L<span class="w"> </span>-s<span class="w"> </span>https://dl.k8s.io/release/stable.txt<span class="k">)</span><span class="s2">/bin/linux/amd64/kubectl&quot;</span>
-sudo<span class="w"> </span>install<span class="w"> </span>-o<span class="w"> </span>root<span class="w"> </span>-g<span class="w"> </span>root<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>kubectl<span class="w"> </span>/usr/local/bin/kubectl
-kubectl<span class="w"> </span>version<span class="w"> </span>--client<span class="w"> </span>--output<span class="o">=</span>yaml
-</code></pre></div></td></tr></table></div>
 
 
 
