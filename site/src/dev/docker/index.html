@@ -1492,19 +1492,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dockerfile" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      Dockerfile
+      画蛇添足
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Dockerfile">
+    <nav class="md-nav" aria-label="画蛇添足">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dockerfile_1" class="md-nav__link">
+  <a href="#0" class="md-nav__link">
     <span class="md-ellipsis">
-      Dockerfile 构建镜像
+      0 准备
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 编写 Dockerfile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 构建镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dockerhub" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 推送到 dockerhub
     </span>
   </a>
   
@@ -2600,19 +2627,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dockerfile" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      Dockerfile
+      画蛇添足
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Dockerfile">
+    <nav class="md-nav" aria-label="画蛇添足">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dockerfile_1" class="md-nav__link">
+  <a href="#0" class="md-nav__link">
     <span class="md-ellipsis">
-      Dockerfile 构建镜像
+      0 准备
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 编写 Dockerfile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 构建镜像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dockerhub" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 推送到 dockerhub
     </span>
   </a>
   
@@ -2670,14 +2724,14 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 <li>虚拟机中的 <code>.iso</code>，容器是虚拟机</li>
 </ul>
 <h3 id="_1">下载镜像</h3>
-<p><a href="https://hub.docker.com/search?q=">Docker Hub</a></p>
+<p><a href="https://hub.docker.com/explore">Docker Hub</a></p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>IMAGE_NAME<span class="o">[</span>:TAG<span class="o">]</span>
 </code></pre></div></td></tr></table></div>
 <ul>
 <li><code>IMAGE_NAME</code> 镜像名称</li>
 <li><code>TAG</code> 可选，镜像版本或标签，默认为 <code>latest</code></li>
 </ul>
-<p>代理加速（<a href="https://www.lfhacks.com/tech/pull-docker-images-behind-proxy/#practice">参考文档</a>）:</p>
+<p><strong>代理加速</strong>（<a href="https://www.lfhacks.com/tech/pull-docker-images-behind-proxy/#practice">参考文档</a>）:</p>
 <ul>
 <li>
 <p><code>sudo mkdir -p /etc/systemd/system/docker.service.d</code></p>
@@ -2771,14 +2825,123 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 </code></pre></div></td></tr></table></div>
 <p><br></p>
 <hr />
-<h2 id="dockerfile">Dockerfile</h2>
-<h3 id="dockerfile_1">Dockerfile 构建镜像</h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>IMAGE_NAME<span class="o">[</span>:TAG<span class="o">]</span><span class="w"> </span>PATH_TO_DOCKERFILE
+<h2 id="_8">画蛇添足</h2>
+<h3 id="0">0 准备</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>myapp/
+├── Dockerfile
+├── go.mod
+├── main.go
+├── static/
+    └── index.html
+</code></pre></div></td></tr></table></div>
+<details><summary>code</summary>
+
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>go<span class="w"> </span>mod<span class="w"> </span>init<span class="w"> </span>web_server
+</code></pre></div></td></tr></table></div>
+
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Go</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<span class="w">    </span><span class="s">&quot;net/http&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">http</span><span class="p">.</span><span class="nx">Handle</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">http</span><span class="p">.</span><span class="nx">FileServer</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">Dir</span><span class="p">(</span><span class="s">&quot;./static&quot;</span><span class="p">)))</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Server is running on port 80...&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="s">&quot;:80&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>hello docker
+</code></pre></div></td></tr></table></div>
+</details>
+
+<h3 id="1-dockerfile">1 编写 Dockerfile</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Docker</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c"># 第一阶段：构建阶段</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">golang</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">builder</span>
+<span class="c"># 设置工作目录</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/web_server</span>
+
+<span class="c"># 复制 go.mod 和 go.sum 文件并下载依赖</span>
+<span class="k">COPY</span><span class="w"> </span>go.mod<span class="w"> </span>go.sum<span class="w"> </span>./
+<span class="k">RUN</span><span class="w"> </span>go<span class="w"> </span>mod<span class="w"> </span>download
+<span class="c"># 复制源代码</span>
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<span class="c"># 编译 Go 代码</span>
+<span class="k">RUN</span><span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>web_server<span class="w"> </span>.
+
+<span class="c"># 第二阶段：生产阶段</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu</span>
+<span class="c"># 设置工作目录</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/root/</span>
+
+<span class="c"># 从构建阶段复制编译好的二进制文件</span>
+<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/web_server/web_server<span class="w"> </span>.
+<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/web_server/static<span class="w"> </span>./static
+
+<span class="c"># 暴露端口</span>
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8080</span>
+<span class="c"># 运行应用程序</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./web_server&quot;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="2">2 构建镜像</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>web_server<span class="w"> </span>.
 </code></pre></div></td></tr></table></div>
 <ul>
-<li><code>IMAGE_NAME</code> 镜像名称</li>
-<li><code>TAG</code> 可选，镜像版本或标签</li>
-<li><code>PATH_TO_DOCKERFILE</code> Dockerfile 所在路径</li>
+<li><code>-t</code> 指定名称</li>
+<li><code>.</code> 在当前目录构建</li>
+</ul>
+<h3 id="3-dockerhub">3 推送到 dockerhub</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>login
+sudo<span class="w"> </span>docker<span class="w"> </span>tag<span class="w"> </span>web_server<span class="w"> </span>dxlcq/web_server
+sudo<span class="w"> </span>docker<span class="w"> </span>push<span class="w"> </span>dxlcq/web_server
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><code>tag</code> 默认为 <code>latest</code></li>
 </ul>
 
 

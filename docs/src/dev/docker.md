@@ -34,7 +34,7 @@ sudo sh get-docker.sh
 
 ### 下载镜像
 
-[Docker Hub](https://hub.docker.com/search?q=)
+[Docker Hub](https://hub.docker.com/explore)
 
 ```sh
 sudo docker pull IMAGE_NAME[:TAG]
@@ -43,7 +43,7 @@ sudo docker pull IMAGE_NAME[:TAG]
 * `IMAGE_NAME` 镜像名称
 * `TAG` 可选，镜像版本或标签，默认为 `latest`
 
-代理加速（[参考文档](https://www.lfhacks.com/tech/pull-docker-images-behind-proxy/#practice)）:
+**代理加速**（[参考文档](https://www.lfhacks.com/tech/pull-docker-images-behind-proxy/#practice)）:
 
 * `sudo mkdir -p /etc/systemd/system/docker.service.d`
 
@@ -163,16 +163,95 @@ sudo docker stop [CONTAINER_ID]
 
 ---
 
-## Dockerfile
+## 画蛇添足
 
+### 0 准备
 
-### Dockerfile 构建镜像
-
-```sh
-sudo docker build -t IMAGE_NAME[:TAG] PATH_TO_DOCKERFILE
+```txt
+myapp/
+├── Dockerfile
+├── go.mod
+├── main.go
+├── static/
+    └── index.html
 ```
 
-* `IMAGE_NAME` 镜像名称
-* `TAG` 可选，镜像版本或标签
-* `PATH_TO_DOCKERFILE` Dockerfile 所在路径
 
+
+<details><summary>code</summary>
+
+```bash
+go mod init web_server
+```
+
+```go
+package main
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func main() {
+    http.Handle("/", http.FileServer(http.Dir("./static")))
+    fmt.Println("Server is running on port 80...")
+    http.ListenAndServe(":80", nil)
+}
+```
+
+```html
+hello docker
+```
+</details>
+
+
+### 1 编写 Dockerfile
+
+```Dockerfile
+# 第一阶段：构建阶段
+FROM golang AS builder
+# 设置工作目录
+WORKDIR /web_server
+
+# 复制 go.mod 和 go.sum 文件并下载依赖
+COPY go.mod go.sum ./
+RUN go mod download
+# 复制源代码
+COPY . .
+# 编译 Go 代码
+RUN go build -o web_server .
+
+# 第二阶段：生产阶段
+FROM ubuntu
+# 设置工作目录
+WORKDIR /root/
+
+# 从构建阶段复制编译好的二进制文件
+COPY --from=builder /web_server/web_server .
+COPY --from=builder /web_server/static ./static
+
+# 暴露端口
+EXPOSE 8080
+# 运行应用程序
+CMD ["./web_server"]
+```
+
+### 2 构建镜像
+
+```bash
+sudo docker build -t web_server .
+```
+
+* `-t` 指定名称
+* `.` 在当前目录构建
+
+### 3 推送到 dockerhub
+
+
+```bash
+sudo docker login
+sudo docker tag web_server dxlcq/web_server
+sudo docker push dxlcq/web_server
+```
+
+* `tag` 默认为 `latest`
