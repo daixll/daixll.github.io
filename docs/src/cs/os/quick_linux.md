@@ -13,6 +13,9 @@
 * 查看已安装的软件
     `sudo apt list --installed | grep 软件名`
 
+* 删除软件
+    `sudo apt purge 软件名`
+
 * 查找软件
     `sudo apt-cache search 软件名`
 
@@ -102,23 +105,28 @@
 
 **`mount` 磁盘挂载**
 
-
+* 挂载
+    `mount -t ntfs /dev/sda1 /mnt`
+    * `-t` 指定文件系统类型
+    * `/dev/sda1` 磁盘分区
+    * `/mnt` 挂载点
 
 **`umount` 磁盘卸载**
-
-<br>
-
----
-
-## 常用命令
-
 
 
 ### 守护进程
 
+[Systemd](https://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html)
+
 ### 计划作业
 
 `crontab`
+
+* 查看计划作业 `crontab -l`
+* 编辑计划作业 `crontab -e`
+* 删除计划作业 `crontab -r`
+
+### 脚本编写
 
 ### 文件传输
 
@@ -184,13 +192,6 @@
 
 ## 常用软件
 
-### build-essential
-
-GNU编辑器合辑
-
-
-### ssh
-
 ### ufw
 
 1. 启动防火墙 `ufw enable`
@@ -199,22 +200,6 @@ GNU编辑器合辑
 4. 关闭端口 `ufw delete allow 22`
 5. 防火墙状态 `ufw status`
 
-### vim
-
-1. 编辑文件 `vim a.txt`
-2. 默认进入文件的 normal 模式
-    * `i` 进入 编辑 模式  
-    * `esc` 切换回 normal 模式
-3. 大部分操作需要在 normal 模式下进行
-    * 退出 `q`，强制退出 `q!`
-    * 保存 `wq`，强制保存 `wq!`
-    * 选择
-        * 全选
-        * 部分选择
-    * 复制
-    * 粘贴
-    * 查找
-    * 替换
 
 ### curl
 
@@ -240,13 +225,7 @@ GNU编辑器合辑
     * `-c` 打包（tar）
 
 
-### mount
 
-* 挂载
-    `mount -t ntfs /dev/sda1 /mnt`
-    * `-t` 指定文件系统类型
-    * /dev/sda1 磁盘分区
-    * /mnt 挂载点
 
 
 

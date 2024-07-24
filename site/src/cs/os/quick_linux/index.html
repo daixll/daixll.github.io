@@ -2087,23 +2087,8 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      常用命令
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="常用命令">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       守护进程
     </span>
@@ -2112,9 +2097,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       计划作业
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      脚本编写
     </span>
   </a>
   
@@ -2232,36 +2226,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#build-essential" class="md-nav__link">
-    <span class="md-ellipsis">
-      build-essential
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ssh" class="md-nav__link">
-    <span class="md-ellipsis">
-      ssh
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#ufw" class="md-nav__link">
     <span class="md-ellipsis">
       ufw
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vim" class="md-nav__link">
-    <span class="md-ellipsis">
-      vim
     </span>
   </a>
   
@@ -2289,15 +2256,6 @@
   <a href="#tar" class="md-nav__link">
     <span class="md-ellipsis">
       tar
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mount" class="md-nav__link">
-    <span class="md-ellipsis">
-      mount
     </span>
   </a>
   
@@ -2706,23 +2664,8 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      常用命令
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="常用命令">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       守护进程
     </span>
@@ -2731,9 +2674,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       计划作业
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      脚本编写
     </span>
   </a>
   
@@ -2851,36 +2803,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#build-essential" class="md-nav__link">
-    <span class="md-ellipsis">
-      build-essential
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ssh" class="md-nav__link">
-    <span class="md-ellipsis">
-      ssh
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#ufw" class="md-nav__link">
     <span class="md-ellipsis">
       ufw
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vim" class="md-nav__link">
-    <span class="md-ellipsis">
-      vim
     </span>
   </a>
   
@@ -2908,15 +2833,6 @@
   <a href="#tar" class="md-nav__link">
     <span class="md-ellipsis">
       tar
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mount" class="md-nav__link">
-    <span class="md-ellipsis">
-      mount
     </span>
   </a>
   
@@ -2980,6 +2896,10 @@
 <li>
 <p>查看已安装的软件
     <code>sudo apt list --installed | grep 软件名</code></p>
+</li>
+<li>
+<p>删除软件
+    <code>sudo apt purge 软件名</code></p>
 </li>
 <li>
 <p>查找软件
@@ -3082,13 +3002,26 @@
 <p><br></p>
 <h3 id="_5">磁盘管理</h3>
 <p><strong><code>mount</code> 磁盘挂载</strong></p>
+<ul>
+<li>挂载
+    <code>mount -t ntfs /dev/sda1 /mnt</code><ul>
+<li><code>-t</code> 指定文件系统类型</li>
+<li><code>/dev/sda1</code> 磁盘分区</li>
+<li><code>/mnt</code> 挂载点</li>
+</ul>
+</li>
+</ul>
 <p><strong><code>umount</code> 磁盘卸载</strong></p>
-<p><br></p>
-<hr />
-<h2 id="_6">常用命令</h2>
-<h3 id="_7">守护进程</h3>
-<h3 id="_8">计划作业</h3>
+<h3 id="_6">守护进程</h3>
+<p><a href="https://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html">Systemd</a></p>
+<h3 id="_7">计划作业</h3>
 <p><code>crontab</code></p>
+<ul>
+<li>查看计划作业 <code>crontab -l</code></li>
+<li>编辑计划作业 <code>crontab -e</code></li>
+<li>删除计划作业 <code>crontab -r</code></li>
+</ul>
+<h3 id="_8">脚本编写</h3>
 <h3 id="_9">文件传输</h3>
 <p><code>scp</code> <code>rsync</code> <code>rz</code> <code>sz</code></p>
 <h3 id="_10">文件定位</h3>
@@ -3143,9 +3076,6 @@
 <h3 id="io">IO状态</h3>
 <p><code>iostat</code> <code>df</code> <code>du</code></p>
 <h2 id="_17">常用软件</h2>
-<h3 id="build-essential">build-essential</h3>
-<p>GNU编辑器合辑</p>
-<h3 id="ssh">ssh</h3>
 <h3 id="ufw">ufw</h3>
 <ol>
 <li>启动防火墙 <code>ufw enable</code></li>
@@ -3153,29 +3083,6 @@
 <li>打开端口 <code>ufw allow 22</code></li>
 <li>关闭端口 <code>ufw delete allow 22</code></li>
 <li>防火墙状态 <code>ufw status</code></li>
-</ol>
-<h3 id="vim">vim</h3>
-<ol>
-<li>编辑文件 <code>vim a.txt</code></li>
-<li>默认进入文件的 normal 模式<ul>
-<li><code>i</code> 进入 编辑 模式  </li>
-<li><code>esc</code> 切换回 normal 模式</li>
-</ul>
-</li>
-<li>大部分操作需要在 normal 模式下进行<ul>
-<li>退出 <code>q</code>，强制退出 <code>q!</code></li>
-<li>保存 <code>wq</code>，强制保存 <code>wq!</code></li>
-<li>选择<ul>
-<li>全选</li>
-<li>部分选择</li>
-</ul>
-</li>
-<li>复制</li>
-<li>粘贴</li>
-<li>查找</li>
-<li>替换</li>
-</ul>
-</li>
 </ol>
 <h3 id="curl">curl</h3>
 <ul>
@@ -3203,16 +3110,6 @@
     <code>tar -zcvf *.tar.gz *</code> </p>
 <ul>
 <li><code>-c</code> 打包（tar）</li>
-</ul>
-</li>
-</ul>
-<h3 id="mount">mount</h3>
-<ul>
-<li>挂载
-    <code>mount -t ntfs /dev/sda1 /mnt</code><ul>
-<li><code>-t</code> 指定文件系统类型</li>
-<li>/dev/sda1 磁盘分区</li>
-<li>/mnt 挂载点</li>
 </ul>
 </li>
 </ul>
