@@ -10,14 +10,14 @@ nav:
     - 入门:             src/algorithm/start/入门.md
     - 基础:
       - 二分:           src/algorithm/base/二分.md
-    - 搜索:             _index.md
-    - 图论:             _index.md
-    - 动规:             _index.md
-    - 数学:             _index.md
-    - 数论:             _index.md
-    - 数据结构:         _index.md
-    - 字符串:           _index.md
-    - 计算几何:         _index.md
+    - 搜索:             src/algorithm/base/二分.md
+    - 图论:             src/algorithm/base/二分.md
+    - 动规:             src/algorithm/base/二分.md
+    - 数学:             src/algorithm/base/二分.md
+    - 数论:             src/algorithm/base/二分.md
+    - 数据结构:         src/algorithm/base/二分.md
+    - 字符串:           src/algorithm/base/二分.md
+    - 计算几何:         src/algorithm/base/二分.md
   - 🚀 C/C++:
     - C:                src/cpp/c.md
     - CPP:              src/cpp/cpp.md
