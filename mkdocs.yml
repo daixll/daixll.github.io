@@ -38,6 +38,7 @@ nav:
       - FFmpeg:         src/dev/ffmpeg.md
       - Qt:             src/dev/qt.md
     - 通用:
+      - OpenSSH:        src/dev/openssh.md
       - Git:            src/dev/git.md
       - Docker:         src/dev/docker.md
       - Kubernetes:     src/dev/kubernetes.md
