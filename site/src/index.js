@@ -1,4 +1,3 @@
-const IPIP = daixll.tpddns.cn
 const PORT = 3001
 
 let myInfo = {}
@@ -34,7 +33,7 @@ function initClickEvent() {
 
 // 初始化socket事件
 function initSocket() {
-  socket = io(`http://${IPIP}:${PORT}`)
+  socket = io(`http://daixll.tpddns.cn:${PORT}`)
 
   socket.on('connected', onConnected)
   socket.on('room_created', onCreateRoom)
