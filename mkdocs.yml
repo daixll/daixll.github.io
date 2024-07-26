@@ -61,6 +61,7 @@ nav:
   - 📖 CS:
     - 操作系统:
       - linux速查:      src/cs/os/quick_linux.md
+      - 操作系统结构:    src/cs/os/操作系统结构.md
     - 数据库: 
       - mysql速查:      src/cs/database/quick_mysql.md
     - 工程师:           src/cs/engineer.md
