@@ -128,7 +128,7 @@ function acceptVideoCall() {
 
 // 创建本地媒体流
 async function createLocalMediaStream() {
-  localStream = await navigator.mediaDevices.getUserMedia({
+  localStream = await navigator.mediaDevices.getDisplayMedia({
     video: true,
     audio: false,
   })
