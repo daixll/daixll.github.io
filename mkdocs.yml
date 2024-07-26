@@ -63,6 +63,7 @@ nav:
       - linux速查:      src/cs/os/quick_linux.md
     - 数据库: 
       - mysql速查:      src/cs/database/quick_mysql.md
+    - 工程师:           src/cs/engineer.md
   - 🔢 Math:
     - 微积分:           src/math/微积分.md
     - 概率论:           src/math/概率论.md
