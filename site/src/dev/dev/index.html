@@ -3516,11 +3516,7 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</s
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code>server {
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code>server {
     listen       80;            # IPv4 监听端口
     listen  [::]:80;            # IPv6 监听端口
     server_name  localhost;     # 域名
@@ -3534,12 +3530,8 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</s
         charset utf-8;          # 文档编码
         alias   /usr/share/nginx/doc;
         autoindex on;           # 自动索引
-    }
-
-    error_page  404               /404.html;
-    error_page   500 502 503 504  /50x.html; # 错误页面
-    location = /50x.html {
-        root   /usr/share/nginx/html;
+        autoindex_localtime on;
+        autoindex_exact_size off;
     }
 }
 </code></pre></div></td></tr></table></div>
@@ -3551,9 +3543,11 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</s
 <span class="normal">5</span>
 <span class="normal">6</span>
 <span class="normal">7</span>
-<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
 -p<span class="w"> </span><span class="m">2023</span>:80<span class="w"> </span><span class="se">\</span>
 --name<span class="w"> </span>nginx<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime<span class="w"> </span><span class="se">\</span>
 -v<span class="w"> </span>/home/jiao/Public/daixll.github.io:/usr/share/nginx/html<span class="w"> </span><span class="se">\</span>
 -v<span class="w"> </span>/home/jiao/Public/doc:/usr/share/nginx/doc<span class="w"> </span><span class="se">\</span>
 -v<span class="w"> </span>/home/jiao/Documents/NGINX/:/etc/nginx/conf.d<span class="w"> </span><span class="se">\</span>

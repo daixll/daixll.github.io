@@ -1,7 +1,7 @@
 [Linux 命令大全](https://www.linuxcool.com/)
 
 ## 基础命令
-
+`cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime`
 ### 软件安装
 
 * 更新软件源、软件、系统更新（非升级）

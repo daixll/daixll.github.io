@@ -321,15 +321,11 @@ server {
     }
 
     location /doc {             # 文档根目录
-	    charset utf-8;          # 文档编码
+        charset utf-8;          # 文档编码
         alias   /usr/share/nginx/doc;
         autoindex on;           # 自动索引
-    }
-
-    error_page  404               /404.html;
-    error_page   500 502 503 504  /50x.html; # 错误页面
-    location = /50x.html {
-        root   /usr/share/nginx/html;
+        autoindex_localtime on;
+        autoindex_exact_size off;
     }
 }
 ```
@@ -340,6 +336,7 @@ server {
 docker run \
 -p 2023:80 \
 --name nginx \
+-v /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime \
 -v /home/jiao/Public/daixll.github.io:/usr/share/nginx/html \
 -v /home/jiao/Public/doc:/usr/share/nginx/doc \
 -v /home/jiao/Documents/NGINX/:/etc/nginx/conf.d \
