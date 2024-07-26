@@ -15,14 +15,14 @@ export_on_save:
 ## 设计模式
 
 * [UML类图和时序图]()
-* [创建型模式 ( 总结 )](./设计模式/创建型模式.html)
-    1. [简单工厂模式 ( Simple Factory Pattern )](./设计模式/简单工厂模式.html)
-    2. [工厂方法模式 ( Factory Method Pattern )](./设计模式/工厂方法模式.html)
-    3. [抽象工厂模式 ( Abstract Factory Pattern )](./设计模式/抽象工厂模式.html)
+* [创建型模式 ( 总结 )]
+    1. [简单工厂模式 ( Simple Factory Pattern )]
+    2. [工厂方法模式 ( Factory Method Pattern )]
+    3. [抽象工厂模式 ( Abstract Factory Pattern )]
     4. [建造者模式()]
     5. [单例模式()]
 * 结构型模式
-    1. [适配器模式](./设计模式/适配器模式.html)
+    1. [适配器模式]
     2. [桥接模式]
     3. [装饰模式]
     4. [外观模式]
@@ -68,10 +68,10 @@ export_on_save:
 class 产品
 {
 public:
-	// 提供接口框架的纯虚函数
-	virtual std::string 产品名字() = 0;
-	产品() {};
-	~产品() {};
+    // 提供接口框架的纯虚函数
+    virtual std::string 产品名字() = 0;
+    产品() {};
+    ~产品() {};
 };
 ```
 
@@ -80,29 +80,29 @@ public:
 // 三个实际产品
 class 电脑 : public 产品 {
 public:
-	电脑() {};
-	~电脑() {};
-	std::string 产品名字() {
-		return "电脑";
-	};
+    电脑() {};
+    ~电脑() {};
+    std::string 产品名字() {
+        return "电脑";
+    };
 };
 
 class 手机 : public 产品 {
 public:
-	手机() {};
-	~手机() {};
-	std::string 产品名字() {
-		return "手机";
-	};
+    手机() {};
+    ~手机() {};
+    std::string 产品名字() {
+        return "手机";
+    };
 };
 
 class 平板 : public 产品 {
 public:
-	平板() {};
-	~平板() {};
-	std::string 产品名字() {
-		return "平板";
-	};
+    平板() {};
+    ~平板() {};
+    std::string 产品名字() {
+        return "平板";
+    };
 };
 ```
 
@@ -111,28 +111,28 @@ public:
 class 工厂
 {
 public:
-	工厂() {};
-	~工厂() {};
-	产品* 制造产品(std::string 产品名) {
-		if (产品名 == "电脑")
-			return new 电脑;
-		if (产品名 == "手机")
-			return new 手机;
-		if (产品名 == "平板")
-			return new 平板;
-		return NULL;
-	};
+    工厂() {};
+    ~工厂() {};
+    产品* 制造产品(std::string 产品名) {
+        if (产品名 == "电脑")
+            return new 电脑;
+        if (产品名 == "手机")
+            return new 手机;
+        if (产品名 == "平板")
+            return new 平板;
+        return NULL;
+    };
 };
 ```
 
 ```cpp
 int main() {
-	工厂* 龙龙的血汗工厂 = new 工厂();
-	产品* 佳佳的电脑 = 龙龙的血汗工厂->制造产品("电脑");
+    工厂* 龙龙的血汗工厂 = new 工厂();
+    产品* 佳佳的电脑 = 龙龙的血汗工厂->制造产品("电脑");
 
-	std::cout << 佳佳的电脑->产品名字();
+    std::cout << 佳佳的电脑->产品名字();
 
-	return 0;
+    return 0;
 }
 ```
 
@@ -182,9 +182,9 @@ int main() {
 ```cpp
 class 产品 {
 public:
-	virtual std::string 产品名字() = 0;
-	产品() {};
-	~产品() {};
+    virtual std::string 产品名字() = 0;
+    产品() {};
+    ~产品() {};
 };
 ```
 
@@ -192,11 +192,11 @@ public:
 ```cpp
 class 手机 : public 产品 {
 public:
-	std::string 产品名字() {
-		return "手机";
-	}
-	手机() {};
-	~手机() {};
+    std::string 产品名字() {
+        return "手机";
+    }
+    手机() {};
+    ~手机() {};
 };
 ```
 
@@ -204,9 +204,9 @@ public:
 ```cpp
 class 工厂 {
 public:
-	virtual 产品* 制造产品() = 0;
-	工厂() {};
-	~工厂() {};
+    virtual 产品* 制造产品() = 0;
+    工厂() {};
+    ~工厂() {};
 };
 ```
 
@@ -214,24 +214,24 @@ public:
 ```cpp
 class 手机厂 :public 工厂 {
 public:
-	手机* 制造产品() {
-		return new 手机();
-	}
-	手机厂() {};
-	~手机厂() {};
+    手机* 制造产品() {
+        return new 手机();
+    }
+    手机厂() {};
+    ~手机厂() {};
 };
 ```
 
 ```cpp
 int main() {
-	工厂* 龙龙的手机工厂 = new 手机厂();
-	产品* 佳佳的小手机 = 龙龙的手机工厂->制造产品();
+    工厂* 龙龙的手机工厂 = new 手机厂();
+    产品* 佳佳的小手机 = 龙龙的手机工厂->制造产品();
 
-	std::cout << 佳佳的小手机->产品名字();
+    std::cout << 佳佳的小手机->产品名字();
 
-	delete 龙龙的手机工厂;
-	delete 佳佳的小手机;
-	return 0;
+    delete 龙龙的手机工厂;
+    delete 佳佳的小手机;
+    return 0;
 }
 ```
 
@@ -278,28 +278,28 @@ int main() {
 // 抽象类
 class 电视 {
 public:
-	virtual std::string 尺寸() = 0;
-	电视() {};
-	~电视() {};
+    virtual std::string 尺寸() = 0;
+    电视() {};
+    ~电视() {};
 };
 
 // 具体类
 class oppo电视 : public 电视 {
 public:
-	std::string 尺寸() {
-		return "88寸";
-	}
-	oppo电视() {};
-	~oppo电视() {};
+    std::string 尺寸() {
+        return "88寸";
+    }
+    oppo电视() {};
+    ~oppo电视() {};
 };
 
 class 三星电视 : public 电视 {
 public:
-	std::string 尺寸() {
-		return "32寸";
-	}
-	三星电视() {};
-	~三星电视() {};
+    std::string 尺寸() {
+        return "32寸";
+    }
+    三星电视() {};
+    ~三星电视() {};
 };
 ```
 
@@ -308,27 +308,27 @@ public:
 // 抽象类
 class 手机 {
 public:
-	virtual std::string 芯片() = 0;
-	手机() {};
-	~手机() {};
+    virtual std::string 芯片() = 0;
+    手机() {};
+    ~手机() {};
 };
 
 // 具体类
 class oppo手机 : public 手机 {
 public:
-	std::string 芯片() {
-		return "马里亚纳海沟";
-	}
-	oppo手机() {};
-	~oppo手机() {};
+    std::string 芯片() {
+        return "马里亚纳海沟";
+    }
+    oppo手机() {};
+    ~oppo手机() {};
 };
 class 三星手机 : public 手机 {
 public:
-	std::string 芯片(){
-		return "猎户座";
-	}
-	三星手机() {};
-	~三星手机() {};
+    std::string 芯片(){
+        return "猎户座";
+    }
+    三星手机() {};
+    ~三星手机() {};
 };
 ```
 
@@ -337,48 +337,48 @@ public:
 // 抽象类
 class 品牌 {
 public:
-	virtual 电视* 制造电视() = 0;
-	virtual 手机* 制造手机() = 0;
-	品牌() {};
-	~品牌() {};
+    virtual 电视* 制造电视() = 0;
+    virtual 手机* 制造手机() = 0;
+    品牌() {};
+    ~品牌() {};
 };
 
 // 具体类
 class oppo : public 品牌 {
 public:
-	电视* 制造电视() {
-		return new oppo电视();
-	}
-	手机* 制造手机() {
-		return new oppo手机();
-	}
-	oppo() {};
-	~oppo() {};
+    电视* 制造电视() {
+        return new oppo电视();
+    }
+    手机* 制造手机() {
+        return new oppo手机();
+    }
+    oppo() {};
+    ~oppo() {};
 };
 class 三星 : public 品牌 {
 public:
-	电视* 制造电视() {
-		return new 三星电视();
-	}
-	手机* 制造手机() {
-		return new 三星手机();
-	}
-	三星() {};
-	~三星() {};
+    电视* 制造电视() {
+        return new 三星电视();
+    }
+    手机* 制造手机() {
+        return new 三星手机();
+    }
+    三星() {};
+    ~三星() {};
 };
 ```
 
 ```cpp
 int main() {
-	三星* 三星重庆分厂 = new 三星();
-	oppo* oppo重庆分厂 = new oppo();
+    三星* 三星重庆分厂 = new 三星();
+    oppo* oppo重庆分厂 = new oppo();
 
-	手机* 小精灵的小手机 = oppo重庆分厂->制造手机();
-	电视* 佳佳的大电视 = 三星重庆分厂->制造电视();
+    手机* 小精灵的小手机 = oppo重庆分厂->制造手机();
+    电视* 佳佳的大电视 = 三星重庆分厂->制造电视();
 
-	std::cout << 小精灵的小手机->芯片() << "\n";
-	std::cout << 佳佳的大电视->尺寸();
-	return 0;
+    std::cout << 小精灵的小手机->芯片() << "\n";
+    std::cout << 佳佳的大电视->尺寸();
+    return 0;
 }
 ```
 
@@ -419,32 +419,32 @@ int main() {
 
 class 不兼容类 {
 public:
-	不兼容类() {};
-	~不兼容类() {};
-	std::string 功能() {
-		return "一个接口不兼容的功能";
-	}
+    不兼容类() {};
+    ~不兼容类() {};
+    std::string 功能() {
+        return "一个接口不兼容的功能";
+    }
 };
 
 class 适配器 {
 private:
-	不兼容类* 旧;
+    不兼容类* 旧;
 public:
-	适配器() {};
-	~适配器() {};
+    适配器() {};
+    ~适配器() {};
 
-	std::string 统一接口(不兼容类* 旧) {
-		return 旧->功能();
-	};
+    std::string 统一接口(不兼容类* 旧) {
+        return 旧->功能();
+    };
 };
 
 int main() {
-	不兼容类* 旧 = new 不兼容类();
-	适配器* 目标 = new 适配器();
+    不兼容类* 旧 = new 不兼容类();
+    适配器* 目标 = new 适配器();
 
-	std::cout << 目标->统一接口(旧);
-	
-	return 0;
+    std::cout << 目标->统一接口(旧);
+    
+    return 0;
 }
 ```
 

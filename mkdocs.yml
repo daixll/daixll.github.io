@@ -5,7 +5,7 @@ nav:
     - Work:             src/about/work.md
     - Project:          src/about/project.md
     - Education:        src/about/education.md
-    - Honor:            src/about/Honor.md
+    - Honor:            src/about/honor.md
   - 🪂 Algorithm:
     - 入门:             src/algorithm/start/入门.md
     - 基础:
@@ -28,19 +28,28 @@ nav:
     - AV:               src/cpp/av.md
   - 🌥️ DevOps:
     - Conf:             src/dev/dev.md
-    - GCC:              src/dev/gcc.md
-    - GDB:              src/dev/gdb.md
-    - Make:             src/dev/make.md
-    - CMake:            src/dev/cmake.md
-    - Perf:             src/dev/perf.md
-    - Boost:            src/dev/boost.md
-    - OpenSSL:          src/dev/openssl.md
-    - FFmpeg:           src/dev/ffmpeg.md
-    - Qt:               src/dev/qt.md
-    - Docker:           src/dev/docker.md
-    - Kubernetes:       src/dev/kubernetes.md
-    - Nginx:            src/dev/nginx.md
-    - MySQL:            src/dev/mysql.md
+    - CPP:
+      - GCC:            src/dev/gcc.md
+      - GDB:            src/dev/gdb.md
+      - Make:           src/dev/make.md
+      - CMake:          src/dev/cmake.md
+      - Boost:          src/dev/boost.md
+      - OpenSSL:        src/dev/openssl.md
+      - FFmpeg:         src/dev/ffmpeg.md
+      - Qt:             src/dev/qt.md
+    - 通用:
+      - Git:            src/dev/git.md
+      - Docker:         src/dev/docker.md
+      - Kubernetes:     src/dev/kubernetes.md
+      - Nginx:          src/dev/nginx.md
+    - 测试:
+      - Perf:           src/dev/perf.md
+    - 网络:
+      - nc:             src/dev/nc.md
+      - nmap:           src/dev/nmap.md
+    - 存储:
+      - MySQL:          src/dev/mysql.md
+      - Redis:          src/dev/redis.md
   - 🌿 Language:
     - Python:
       - env:            src/language/py/env.md
@@ -62,14 +71,19 @@ nav:
     - 操作系统:
       - linux速查:      src/cs/os/quick_linux.md
       - 操作系统结构:    src/cs/os/操作系统结构.md
+    - 数据结构:
+      - 线性表:         src/cs/dataStruct/list.md
     - 数据库: 
-      - mysql速查:      src/cs/database/quick_mysql.md
+      - mysql速查:      src/cs/dataBase/quick_mysql.md
+    - 设计模式:         src/cs/designPattern.md
+    - 系统架构:         src/cs/systemArchitecture/systemArchitecture.md
     - 工程师:           src/cs/engineer.md
   - 🔢 Math:
     - 微积分:           src/math/微积分.md
     - 概率论:           src/math/概率论.md
   - 👷 Φιλοσοφία:
     - 马克思主义:       src/philosophy/marx.md
+    - 中国近代史:       src/philosophy/historyOfChina.md
   - 🕶️ More:
     - GenRNA3D:         src/more/xd.md
 
