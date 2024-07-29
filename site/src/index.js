@@ -33,7 +33,7 @@ function initClickEvent() {
 
 // 初始化socket事件
 function initSocket() {
-  socket = io(`http://frphn1.chickfrp.com:${PORT}`)
+  socket = io(`https://74be5890.r27.cpolar.top`)
 
   socket.on('connected', onConnected)
   socket.on('room_created', onCreateRoom)
