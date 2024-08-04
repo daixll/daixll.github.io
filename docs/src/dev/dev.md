@@ -254,10 +254,22 @@ DDNS 用于动态更新域名解析，使域名指向动态公网 IP
 无固定ip，低带宽（128K/s），流量无限
 
 <ol>
-<li> 安装 <code>curl -sL https://git.io/cpolar | sudo bash</code> </li>
+<li> 安装 <code>curl -L https://www.cpolar.com/static/downloads/install-release-cpolar.sh | sudo bash</code> </li>
 <li> 查看 <code>token</code> 在管理面板</li>
-<li> 认证 <code>cpolar authtoken 你的token</code> </li>
-<li> 穿透 <code>cpolar http 端口</code> </li>
+<li> 脚本 <code>vim /home/jiao/.cpolar/cpolar.yml</code> </li>
+
+    ```yaml
+    authtoken: xxxxxxxxxxxxxxxx
+    tunnels:
+        a:         
+            addr: 80        
+            proto: http     
+        b:             
+            addr: 3001
+            proto: http
+    ```
+
+<li> 穿透 <code>sudo cpolar start-all -config /home/jiao/.cpolar/cpolar.yml</code> </li>
 </ol>
 
 </details>

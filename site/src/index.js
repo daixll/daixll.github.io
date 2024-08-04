@@ -1,4 +1,4 @@
-const PORT = 53001
+const PORT = 3001
 
 let myInfo = {}
 
@@ -33,7 +33,7 @@ function initClickEvent() {
 
 // 初始化socket事件
 function initSocket() {
-  socket = io(`https://74be5890.r27.cpolar.top`)
+  socket = io(`http://daixll.tpddns.cn:${PORT}`)
 
   socket.on('connected', onConnected)
   socket.on('room_created', onCreateRoom)
@@ -128,7 +128,7 @@ function acceptVideoCall() {
 
 // 创建本地媒体流
 async function createLocalMediaStream() {
-  localStream = await navigator.mediaDevices.getUserMedia({
+  localStream = await navigator.mediaDevices.getDisplayMedia({
     video: true,
     audio: false,
   })

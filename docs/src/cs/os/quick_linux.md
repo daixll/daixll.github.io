@@ -1,7 +1,16 @@
 [Linux 命令大全](https://www.linuxcool.com/)
 
 ## 基础命令
+
+修改时间
+
 `cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime`
+
+修改网络
+
+`vim /etc/netplan/00-in`
+
+
 ### 软件安装
 
 * 更新软件源、软件、系统更新（非升级）

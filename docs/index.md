@@ -11,13 +11,10 @@
 
 # 😶‍🌫️
 
-<center>
-
-Algorithm 🤺 Contests
-
-</center>
-
 <div class="container">
+    <div class="item">
+        🤺
+    </div>
     <div class="item">
         <a href="https://codeforces.com/contests" target="_blank"> Codeforces </a>
     </div>
@@ -32,13 +29,11 @@ Algorithm 🤺 Contests
     </div>
 </div>
 
-<center>
-
-Artificial 🤖 Intelligence
-
-</center>
 
 <div class="container">
+    <div class="item">
+        🤖
+    </div>
     <div class="item">
         <a href="https://chatgpt.com/" target="_blank"> ChatGPT </a> 
     </div>
@@ -53,13 +48,28 @@ Artificial 🤖 Intelligence
     </div>
 </div>
 
-<center>
-
-Air ✈ port
-
-</center>
+<div class="container">
+    <div class="item">
+        ☁️
+    </div>
+    <div class="item">
+        <a href="https://smbcloud.tp-link.com.cn" target="_blank"> TP-LINK 商云 </a> 
+    </div>
+    <div class="item">
+        <a href="https://home.console.aliyun.com/home/dashboard/ProductAndService" target="_blank"> 阿里云 </a> 
+    </div>
+    <div class="item">
+        <a href="https://dash.cloudflare.com" target="_blank"> cloudflare </a> 
+    </div>
+    <div class="item">
+        <a href="https://suno.com/" target="_blank"></a> 
+    </div>
+</div>
 
 <div class="container">
+    <div class="item">
+        ✈
+    </div>
     <div class="item">
         <a href="https://www.duyaoss.com/archives/3/" target="_blank"> 机场测速 </a> 
     </div>
