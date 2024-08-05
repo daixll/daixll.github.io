@@ -11,12 +11,9 @@
 
 # 😶‍🌫️
 
-<div class="container">
+<div class="container">🤺
     <div class="item">
-        🤺
-    </div>
-    <div class="item">
-        <a href="https://codeforces.com/contests" target="_blank"> Codeforces </a>
+        <a href="https://codeforces.com/contests" target="_blank">Codeforces </a>
     </div>
     <div class="item">
         <a href="https://atcoder.jp/contests/" target="_blank"> AtCoder </a>
@@ -30,10 +27,7 @@
 </div>
 
 
-<div class="container">
-    <div class="item">
-        🤖
-    </div>
+<div class="container">🤖
     <div class="item">
         <a href="https://chatgpt.com/" target="_blank"> ChatGPT </a> 
     </div>
@@ -48,10 +42,7 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="item">
-        ☁️
-    </div>
+<div class="container">☁️
     <div class="item">
         <a href="https://smbcloud.tp-link.com.cn" target="_blank"> TP-LINK 商云 </a> 
     </div>
@@ -66,10 +57,7 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="item">
-        ✈
-    </div>
+<div class="container">✈
     <div class="item">
         <a href="https://www.duyaoss.com/archives/3/" target="_blank"> 机场测速 </a> 
     </div>

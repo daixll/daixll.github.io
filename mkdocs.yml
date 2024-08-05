@@ -27,7 +27,7 @@ nav:
     - GUI:              src/cpp/gui.md
     - AV:               src/cpp/av.md
   - 🌥️ DevOps:  
-    - BASE:             src/dev/dev.md
+    - Best Practices:   src/dev/bestpractices.md
     - GCC:              src/dev/gcc.md
     - GDB:              src/dev/gdb.md
     - Make:             src/dev/make.md
