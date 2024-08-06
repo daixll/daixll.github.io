@@ -44,7 +44,7 @@
 
 <div class="container">☁️
     <div class="item">
-        <a href="https://smbcloud.tp-link.com.cn" target="_blank"> TP-LINK 商云 </a> 
+        <a href="https://smbcloud.tp-link.com.cn" target="_blank"> TP-LINK </a> 
     </div>
     <div class="item">
         <a href="https://home.console.aliyun.com/home/dashboard/ProductAndService" target="_blank"> 阿里云 </a> 
@@ -62,7 +62,7 @@
         <a href="https://www.duyaoss.com/archives/3/" target="_blank"> 机场测速 </a> 
     </div>
     <div class="item">
-        <a href="https://www.xn--mes358aby2apfg.com/#/register?code=LiwVR4BR" target="_blank"> 赔钱机场 </a> 
+        <a href="https://xn--mes358aby2apfg.com/#/register?code=LiwVR4BR" target="_blank"> 赔钱机场 </a> 
     </div>
     <div class="item">
         <a href="https://feiniaoyun.top/#/register?code=MfZSDsfM" target="_blank"> 飞鸟云 </a> 
