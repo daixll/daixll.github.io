@@ -3197,7 +3197,7 @@
 <p><a href="https://www.nvidia.com/en-us/software/nvidia-app/">NV 驱动</a> / <a href="https://www.intel.com/content/www/us/en/support/detect.html">INTEL 驱动</a></p>
 </li>
 <li>
-<p><a href="https://github.com/massgravel/Microsoft-Activation-Scripts">MS 激活</a> <code>irm https://get.activated.win | iex</code></p>
+<p><a href="https://github.com/massgravel/Microsoft-Activation-Scripts">MS 激活</a> <code>irm https://get.activated.win │ iex</code></p>
 </li>
 <li>
 <p><a href="https://github.com/clash-verge-rev/clash-verge-rev/releases">clash-verge</a> / <a href="https://www.bandisoft.com/bandizip/">Bandizip</a></p>
@@ -3350,7 +3350,7 @@ ws.run<span class="w"> </span><span class="s2">&quot;wsl -d Ubuntu-22.04 -u user
 
 <span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;⏳&#39;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s1">&#39;qwq/out&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
 g++<span class="w"> </span>-g<span class="w"> </span>-std<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$cppVersion</span><span class="s2">&quot;</span><span class="w"> </span>ac.cpp<span class="w"> </span>-o<span class="w"> </span>qwq/ac<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
-cat<span class="w"> </span><span class="s1">&#39;qwq/in&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+cat<span class="w"> </span><span class="s1">&#39;qwq/in&#39;</span><span class="w"> </span>│<span class="w"> </span><span class="se">\</span>
 timeout<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$runTime</span><span class="s2">&quot;</span><span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;&#39;qwq/ac&#39; &gt; &#39;qwq/out.raw&#39;&quot;</span>
 
 <span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
@@ -3363,7 +3363,7 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</s
 
 <span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;⏳&#39;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s1">&#39;qwq/out2&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
 g++<span class="w"> </span>-g<span class="w"> </span>-std<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$cppVersion</span><span class="s2">&quot;</span><span class="w"> </span>ac2.cpp<span class="w"> </span>-o<span class="w"> </span>qwq/ac2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
-cat<span class="w"> </span><span class="s1">&#39;qwq/in&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+cat<span class="w"> </span><span class="s1">&#39;qwq/in&#39;</span><span class="w"> </span>│<span class="w"> </span><span class="se">\</span>
 timeout<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$runTime</span><span class="s2">&quot;</span><span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;&#39;qwq/ac2&#39; &gt; &#39;qwq/out2.raw&#39;&quot;</span>
 
 <span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
@@ -3390,18 +3390,18 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</s
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code>├── .vscode/
-|   ├── tasks.json
-|
+│   ├── tasks.json
+│
 ├── qwq/
-|   ├── ac.sh
-|   ├── in
-|   ├── ac
-|   ├── out
-|   ├── out.raw
-|   ├── ac2
-|   ├── out2
-|   ├── out2.raw
-|
+│   ├── ac.sh
+│   ├── in
+│   ├── ac
+│   ├── out
+│   ├── out.raw
+│   ├── ac2
+│   ├── out2
+│   ├── out2.raw
+│
 ├── ac.cpp
 ├── ac2.cpp
 </code></pre></div></td></tr></table></div></p>
@@ -3454,8 +3454,8 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</s
 <p>在设备上运行 DDNS 客户端，使域名指向该设备的公网IPv6</p>
 <details><summary>noip</summary>
 
-<a href="https://my.noip.com/dynamic-dns">管理面板</a> |
-<a href="https://www.noip.com/support/knowledgebase/install-linux-3-x-dynamic-update-client-duc/">官方文档</a> | 
+<a href="https://my.noip.com/dynamic-dns">管理面板</a> │
+<a href="https://www.noip.com/support/knowledgebase/install-linux-3-x-dynamic-update-client-duc/">官方文档</a> │ 
 <a href="https://www.noip.com/support/knowledgebase/automatic-ipv6-updates-linux-duc/">Linux IPv6 使用方法</a>
 
 <ol>
@@ -3473,8 +3473,8 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</s
 <p><strong>frp + 内网 IPv4</strong></p>
 <details><summary>小鸡穿透</summary>
 
-<a href="https://console.chickfrp.com/#/penManage/tunnel">管理面板</a> |
-<a href="http://help.chickfrp.com/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">官方文档</a> |
+<a href="https://console.chickfrp.com/#/penManage/tunnel">管理面板</a> │
+<a href="http://help.chickfrp.com/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">官方文档</a> │
 固定ip，高带宽（1.25MB/s），高流量（5GB）
 
 <ol>
@@ -3489,12 +3489,12 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</s
 
 <details><summary>cpolar</summary>
 
-<a href="https://dashboard.cpolar.com/status">管理面板</a> |
-<a href="https://www.cpolar.com/docs">官方文档</a> |
+<a href="https://dashboard.cpolar.com/status">管理面板</a> │
+<a href="https://www.cpolar.com/docs">官方文档</a> │
 无固定ip，低带宽（128K/s），流量无限
 
 <ol>
-<li> 安装 <code>curl -L https://www.cpolar.com/static/downloads/install-release-cpolar.sh | sudo bash</code> </li>
+<li> 安装 <code>curl -L https://www.cpolar.com/static/downloads/install-release-cpolar.sh │ sudo bash</code> </li>
 <li> 查看 <code>token</code> 在管理面板</li>
 <li> 脚本 <code>vim /home/jiao/.cpolar/cpolar.yml</code> </li>
 
@@ -3522,8 +3522,8 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</s
 
 <details><summary>花生壳</summary>
 
-<a href="https://console.hsk.oray.com/forward">管理面板</a> |
-<a href="https://service.oray.com/question/11630.html">官方文档</a> |
+<a href="https://console.hsk.oray.com/forward">管理面板</a> │
+<a href="https://service.oray.com/question/11630.html">官方文档</a> │
 两个固定ip
 
 <ol>

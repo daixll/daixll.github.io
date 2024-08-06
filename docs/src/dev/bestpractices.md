@@ -127,7 +127,7 @@
 
 * [NV 驱动](https://www.nvidia.com/en-us/software/nvidia-app/) / [INTEL 驱动](https://www.intel.com/content/www/us/en/support/detect.html)
 
-* [MS 激活](https://github.com/massgravel/Microsoft-Activation-Scripts) `irm https://get.activated.win | iex`
+* [MS 激活](https://github.com/massgravel/Microsoft-Activation-Scripts) `irm https://get.activated.win │ iex`
 
 * [clash-verge](https://github.com/clash-verge-rev/clash-verge-rev/releases) / [Bandizip](https://www.bandisoft.com/bandizip/)
 
@@ -232,7 +232,7 @@
 
     echo -n '⏳' > 'qwq/out' && \
     g++ -g -std="$cppVersion" ac.cpp -o qwq/ac && \
-    cat 'qwq/in' | \
+    cat 'qwq/in' │ \
     timeout "$runTime" sh -c "'qwq/ac' > 'qwq/out.raw'"
 
     if [ $? -ne 0 ]; then
@@ -245,7 +245,7 @@
 
     echo -n '⏳' > 'qwq/out2' && \
     g++ -g -std="$cppVersion" ac2.cpp -o qwq/ac2 && \
-    cat 'qwq/in' | \
+    cat 'qwq/in' │ \
     timeout "$runTime" sh -c "'qwq/ac2' > 'qwq/out2.raw'"
 
     if [ $? -ne 0 ]; then
@@ -260,18 +260,18 @@
 6. 所有文件结构如此：
     ```
     ├── .vscode/
-    |   ├── tasks.json
-    |
+    │   ├── tasks.json
+    │
     ├── qwq/
-    |   ├── ac.sh
-    |   ├── in
-    |   ├── ac
-    |   ├── out
-    |   ├── out.raw
-    |   ├── ac2
-    |   ├── out2
-    |   ├── out2.raw
-    |
+    │   ├── ac.sh
+    │   ├── in
+    │   ├── ac
+    │   ├── out
+    │   ├── out.raw
+    │   ├── ac2
+    │   ├── out2
+    │   ├── out2.raw
+    │
     ├── ac.cpp
     ├── ac2.cpp
     ```
@@ -335,8 +335,8 @@ DDNS 用于动态更新域名解析，使域名指向动态公网 IP
 
 <details><summary>noip</summary>
 
-<a href="https://my.noip.com/dynamic-dns">管理面板</a> |
-<a href="https://www.noip.com/support/knowledgebase/install-linux-3-x-dynamic-update-client-duc/">官方文档</a> | 
+<a href="https://my.noip.com/dynamic-dns">管理面板</a> │
+<a href="https://www.noip.com/support/knowledgebase/install-linux-3-x-dynamic-update-client-duc/">官方文档</a> │ 
 <a href="https://www.noip.com/support/knowledgebase/automatic-ipv6-updates-linux-duc/">Linux IPv6 使用方法</a>
 
 <ol>
@@ -356,8 +356,8 @@ DDNS 用于动态更新域名解析，使域名指向动态公网 IP
 
 <details><summary>小鸡穿透</summary>
 
-<a href="https://console.chickfrp.com/#/penManage/tunnel">管理面板</a> |
-<a href="http://help.chickfrp.com/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">官方文档</a> |
+<a href="https://console.chickfrp.com/#/penManage/tunnel">管理面板</a> │
+<a href="http://help.chickfrp.com/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">官方文档</a> │
 固定ip，高带宽（1.25MB/s），高流量（5GB）
 
 <ol>
@@ -372,12 +372,12 @@ DDNS 用于动态更新域名解析，使域名指向动态公网 IP
 
 <details><summary>cpolar</summary>
 
-<a href="https://dashboard.cpolar.com/status">管理面板</a> |
-<a href="https://www.cpolar.com/docs">官方文档</a> |
+<a href="https://dashboard.cpolar.com/status">管理面板</a> │
+<a href="https://www.cpolar.com/docs">官方文档</a> │
 无固定ip，低带宽（128K/s），流量无限
 
 <ol>
-<li> 安装 <code>curl -L https://www.cpolar.com/static/downloads/install-release-cpolar.sh | sudo bash</code> </li>
+<li> 安装 <code>curl -L https://www.cpolar.com/static/downloads/install-release-cpolar.sh │ sudo bash</code> </li>
 <li> 查看 <code>token</code> 在管理面板</li>
 <li> 脚本 <code>vim /home/jiao/.cpolar/cpolar.yml</code> </li>
 
@@ -399,8 +399,8 @@ DDNS 用于动态更新域名解析，使域名指向动态公网 IP
 
 <details><summary>花生壳</summary>
 
-<a href="https://console.hsk.oray.com/forward">管理面板</a> |
-<a href="https://service.oray.com/question/11630.html">官方文档</a> |
+<a href="https://console.hsk.oray.com/forward">管理面板</a> │
+<a href="https://service.oray.com/question/11630.html">官方文档</a> │
 两个固定ip
 
 <ol>

@@ -4,23 +4,23 @@
 
 ```
 Control Plane (控制平面)
-    |
+    │
     ├── Master Node (主节点)
-    |   |
-    |   ├── kube-apiserver (API 服务器)
-    |   ├── kube-scheduler (调度器)
-    |   ├── kube-controller-manager (控制器管理器)
-    |   └── etcd (分布式键值存储)
-    |
+    │   │
+    │   ├── kube-apiserver (API 服务器)
+    │   ├── kube-scheduler (调度器)
+    │   ├── kube-controller-manager (控制器管理器)
+    │   └── etcd (分布式键值存储)
+    │
     ├── Worker Node (工作节点)
-    |   |
-    |   ├── Pod (k8s 最小部署单元)
-    |   |   ├── Container (容器)
-    |   |   └── Container
-    |   |
-    |   ├── Pod
-    |   └── Pod
-    |
+    │   │
+    │   ├── Pod (k8s 最小部署单元)
+    │   │   ├── Container (容器)
+    │   │   └── Container
+    │   │
+    │   ├── Pod
+    │   └── Pod
+    │
     └── Worker Node (工作节点)
 ```
 
@@ -53,13 +53,13 @@ Control Plane (控制平面)
 2. 下载签名
 
     ```bash
-    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key │ sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
     ```
 
 3. 添加 `Kubernetes` 的 `apt` 存储库
 
     ```bash
-    echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+    echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' │ sudo tee /etc/apt/sources.list.d/kubernetes.list
     ```
 
 4. 更新 `apt` 包索引，安装 `kubelet`、`kubeadm` 和 `kubectl`，并固定其版本

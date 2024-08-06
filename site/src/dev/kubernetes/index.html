@@ -2780,23 +2780,23 @@
 <span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code>Control Plane (控制平面)
-    |
+    │
     ├── Master Node (主节点)
-    |   |
-    |   ├── kube-apiserver (API 服务器)
-    |   ├── kube-scheduler (调度器)
-    |   ├── kube-controller-manager (控制器管理器)
-    |   └── etcd (分布式键值存储)
-    |
+    │   │
+    │   ├── kube-apiserver (API 服务器)
+    │   ├── kube-scheduler (调度器)
+    │   ├── kube-controller-manager (控制器管理器)
+    │   └── etcd (分布式键值存储)
+    │
     ├── Worker Node (工作节点)
-    |   |
-    |   ├── Pod (k8s 最小部署单元)
-    |   |   ├── Container (容器)
-    |   |   └── Container
-    |   |
-    |   ├── Pod
-    |   └── Pod
-    |
+    │   │
+    │   ├── Pod (k8s 最小部署单元)
+    │   │   ├── Container (容器)
+    │   │   └── Container
+    │   │
+    │   ├── Pod
+    │   └── Pod
+    │
     └── Worker Node (工作节点)
 </code></pre></div></td></tr></table></div>
 <p>对于每个 Cluster</p>
@@ -2822,12 +2822,12 @@
 </li>
 <li>
 <p>下载签名</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/etc/apt/keyrings/kubernetes-apt-keyring.gpg
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key<span class="w"> </span>│<span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/etc/apt/keyrings/kubernetes-apt-keyring.gpg
 </code></pre></div></td></tr></table></div>
 </li>
 <li>
 <p>添加 <code>Kubernetes</code> 的 <code>apt</code> 存储库</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/kubernetes.list
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /&#39;</span><span class="w"> </span>│<span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/kubernetes.list
 </code></pre></div></td></tr></table></div>
 </li>
 <li>
