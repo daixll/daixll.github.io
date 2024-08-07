@@ -169,3 +169,11 @@ todo
 ## 文件操作
 
 
+## 面向对象
+
+
+[C++ 语言面向对象](https://docs.net9.org/languages/c-oop/)
+
+## 动态链接
+
+[为什么不能在动态库里静态链接？](https://liam.page/2017/04/03/not-to-link-libstdc-statically-and-why/)

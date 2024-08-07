@@ -45,51 +45,85 @@
 
 ```
 server {
-    listen       80;            # IPv4 监听端口
-    listen  [::]:80;            # IPv6 监听端口
-    server_name  localhost;     # 域名
+    listen [::]80;                              # ipv6 端口 
+    listen 80;                                  # http 端口
+    listen 1314 ssl;                            # https 端口
+    server_name xn--e6q212bhn0c.xn--6qq986b3xl; # 与证书绑定的域名
 
-    # 网页服务
-    location / {                # 网站根目录
+    # 证书文件绝对路径
+    ssl_certificate /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem;
+    # 证书私钥文件绝对路径
+    ssl_certificate_key /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem;
+    # ssl 相关配置
+    ssl_session_cache shared:SSL:1m;
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers on;
+
+    location / {                    # 访问路径
         root   /usr/share/nginx/html;
         index  index.html index.htm;
     }
 
-    # 下载服务
-    location /doc {                 # 文档根目录
+    location /doc {                 # 访问路径
         charset utf-8;              # 文档编码
-        alias   /usr/share/nginx/doc;
+        alias /usr/share/nginx/doc; # 文件目录
         autoindex on;               # 自动索引
-        autoindex_exact_size off;   # 关闭计算文件确切大小（单位bytes），只显示大概大小（单位kb、mb、gb）
+	    autoindex_exact_size off;   # 关闭计算文件确切大小（单位bytes），只显示大概大小（单位kb、mb、gb）
         autoindex_localtime on;     # 显示本机时间而非 GMT 时间
-
     }
 
-    error_page   500 502 503 504  /50x.html;
+    error_page  404             /404.html;  # 没找到
+    error_page  500 502 503 504 /50x.html;  # 错误页面
     location = /50x.html {
         root   /usr/share/nginx/html;
     }
 }
 ```
 
-## Nginx_Docker
+## Docker_Nginx
 
 `docker pull nginx`
 
-启动脚本：`runNginx.conf`
+启动脚本：`runNginx.sh`
 
 ```
-docker run \
--p 2024:80 \
+sudo docker run \
+-p 80:80 \
+-p 1314:1314 \
 --name nginx \
 -v /.../web:/usr/share/nginx/html \
 -v /.../doc:/usr/share/nginx/doc \
 -v /.../NGINX/:/etc/nginx/conf.d \
+-v /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime \
+-v /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem:/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem \
+-v /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem:/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem \
 --restart unless-stopped \
 -d nginx
 ```
 
-## RTMP_Docker
+## 获取 SSL 证书
 
-`docker pull tiangolo/nginx-rtmp`
+参考：
 
+[为没有80、443端口的域名申请SSL证书](https://www.fisheryung.top:9002/%E4%B8%BA%E6%B2%A1%E6%9C%8980%E3%80%81443%E7%AB%AF%E5%8F%A3%E7%9A%84%E5%9F%9F%E5%90%8D%E7%94%B3%E8%AF%B7ssl%E8%AF%81%E4%B9%A6.html)
+
+[阿里云：Nginx或Tengine服务器配置SSL证书](https://help.aliyun.com/zh/ssl-certificate/user-guide/install-ssl-certificates-on-nginx-servers-or-tengine-servers)
+
+1. 下载 `certbot`
+
+    ```bash
+    sudo snap install --classic certbot
+    sudo ln -s /snap/bin/certbot /usr/bin/certbot
+    ```
+
+2. 申请
+
+    ```bash
+    sudo certbot certonly --preferred-challenges dns -d "*.fisheryung.top" --manual
+    ```
+
+    * 此时会让你，给你的域名，添加一个txt解析
+    * 域名是带前缀的，看仔细咯
+    * 输出证书保存的位置
