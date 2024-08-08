@@ -56,6 +56,10 @@ nav:
     - Golang:
       - go:             src/language/go/go.md
       - gin:            src/language/go/gin.md
+      - websocket:      src/language/go/websocket.md
+    - JS:
+      - websocket:      src/language/js/websocket.md
+      - webrtc:         src/language/js/webrtc.md
     - Java:
       - main/java:      src/language/java/main_java.md
       - main/resources: src/language/java/main_resources.md
@@ -63,7 +67,6 @@ nav:
     - HTML:
       - HTML:           src/language/html/html.md
       - CSS:            src/language/html/css.md
-      - JS:             src/language/html/js.md
   - 📖 CS:
     - 操作系统:
       - linux速查:      src/cs/os/quick_linux.md
