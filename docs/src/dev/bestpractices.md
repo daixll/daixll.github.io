@@ -37,15 +37,15 @@
 ├── D:/
 │   ├── AC/                 AC
 │   ├── daixll.github.io/   网站
-│   ├── project/            自己的项目
+│   ├── project/            自己的项目（github 同步）
+│   ├── work/               工作的项目（）
 │   ├── tmp/
 │
 ├── E:/
     ├── AV/                 音视频
-    ├── ☁️ DATA/             个人资料            
-    ├── ☁️ WQF/              微信QQ              
-    ├── download/           常用的各类文件
-    ├── ☁️ work/             工作环境下，无 git
+    ├── ☁️ DATA/             个人资料（自动备份）
+    ├── ☁️ WQF/              微信QQ（手动备份）
+    ├── download/           下载站/资源站
     ├── tmp/
 ```
 

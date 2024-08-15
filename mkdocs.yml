@@ -7,17 +7,20 @@ nav:
     - Education:        src/about/education.md
     - Honor:            src/about/honor.md
   - 🪂 Algorithm:
-    - 入门:             src/algorithm/start/入门.md
+    - README:           src/algorithm/README.md
+    - CSP:              src/algorithm/really/csp.md
+    - GESP:             src/algorithm/really/gesp.md
+    - CIE:              src/algorithm/really/cie.md
     - 基础:
       - 二分:           src/algorithm/base/二分.md
-    - 搜索:             src/algorithm/base/二分.md
-    - 图论:             src/algorithm/base/二分.md
-    - 动规:             src/algorithm/base/二分.md
-    - 数学:             src/algorithm/base/二分.md
-    - 数论:             src/algorithm/base/二分.md
+    #- 搜索:             src/algorithm/base/二分.md
+    #- 图论:             src/algorithm/base/二分.md
+    #- 动规:             src/algorithm/base/二分.md
+    #- 数学:             src/algorithm/base/二分.md
+    #- 数论:             src/algorithm/base/二分.md
     - 数据结构:         src/algorithm/base/二分.md
-    - 字符串:           src/algorithm/base/二分.md
-    - 计算几何:         src/algorithm/base/二分.md
+    #- 字符串:           src/algorithm/base/二分.md
+    #- 计算几何:         src/algorithm/base/二分.md
   - 🚀 C/C++:
     - C:                src/cpp/c.md
     - CPP:              src/cpp/cpp.md

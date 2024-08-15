@@ -4,6 +4,17 @@
 * [WebRTC samples](https://webrtc.github.io/samples/)
 * [扩展 WebRTC 的 3 种关键方法：SFU、MCU 和 XDN](https://www.red5.net/blog/3-key-approaches-for-scaling-webrtc-sfu-mcu-and-xdn/)
 
+* [WebRTC 基础知识](https://getstream.io/resources/projects/webrtc/basics/)
+
+## offer sdp
+
+## answer sdp
+
+## ice candidate
+
+
+
+
 ## 1c1s
 
 ```js
