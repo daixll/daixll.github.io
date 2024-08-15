@@ -7,7 +7,7 @@ nav:
     - Education:        src/about/education.md
     - Honor:            src/about/honor.md
   - 🪂 Algorithm:
-    - README:           src/algorithm/README.md
+    - Pre:              src/algorithm/pre.md
     - CSP:              src/algorithm/really/csp.md
     - GESP:             src/algorithm/really/gesp.md
     - CIE:              src/algorithm/really/cie.md
