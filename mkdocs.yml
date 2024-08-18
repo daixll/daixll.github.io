@@ -32,7 +32,7 @@ nav:
     - GUI:              src/cpp/gui.md
     - AV:               src/cpp/av.md
   - 🌥️ DevOps:  
-    - Best Practices:   src/dev/bestpractices.md
+    - HomeLab:          src/dev/homelab.md
     - MkDocs:           src/dev/mkdocs.md
     - GCC:              src/dev/gcc.md
     - GDB:              src/dev/gdb.md
