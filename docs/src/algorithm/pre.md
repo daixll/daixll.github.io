@@ -9,7 +9,13 @@
     }
 </style>
 
+全部重新整理中
 
+短期目标
+
+* CSP 普及组，写题解录视频
+* 数据结构的链表
+* 图论的二叉树
 
 <div class="container">
     <div class="item">
