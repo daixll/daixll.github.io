@@ -66,7 +66,7 @@
 
 [[R系列企业VPN路由器] PPTP PC到站点VPN配置指南](https://smb.tp-link.com.cn/service/detail_article_3829.html)
 
-* 手机连接时，`MTU` 需要设置小一点
+* 手机连接时，`MTU` 设置为 `1372`
 
 ### 虚拟服务器（端口映射）
 
