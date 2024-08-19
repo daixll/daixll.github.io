@@ -6,6 +6,8 @@
 
 * [WebRTC 基础知识](https://getstream.io/resources/projects/webrtc/basics/)
 
+* [WebRTC 简单教程](https://www.scaledrone.com/blog/webrtc-tutorial-simple-video-chat/)
+
 ## offer sdp
 
 ## answer sdp

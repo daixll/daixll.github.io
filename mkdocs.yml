@@ -77,6 +77,8 @@ nav:
     - 操作系统:
       - linux速查:      src/cs/os/quick_linux.md
       - 操作系统结构:    src/cs/os/操作系统结构.md
+    #- 网络:
+    #  - 
     - 数据结构:
       - 线性表:         src/cs/dataStruct/list.md
     - 数据库: 
