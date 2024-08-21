@@ -9,13 +9,13 @@
 | 设备 | 配置 | OS | IP | 网口 | 备注 |
 |:-:|:-:|:-:|:-:|:-:|:-:|
 | routing | - | TP-Link | 10.0.0.1 | 2.5G | |
-| gateway | 2c4g | OpenWrt |10.0.0.2 | 10G | idc 下 Hyper-V |
+| gateway | 2c4g | OpenWrt |10.0.0.2 | 10G | idc: Hyper-V |
 | idc | 12c32g | WinServer 2022 | 10.0.0.3 | 10G |
-| 下载机 | 4c8g | Win10 LTSC | 10.0.0.4 | 1G | idc 下 Hyper-V | 
-| web | 2c4g | ubuntu 22.04 | 10.0.0.5 | 1G | idc 下 Hyper-V |
+| 下载机 | 4c8g | Win10 LTSC | 10.0.0.4 | 1G | idc: Hyper-V | 
+| web | 2c4g | ubuntu 22.04 | 10.0.0.5 | 1G | idc: Hyper-V |
 | rog | 24c64g | Win11 Pro for Workstations | 10.0.0.6 | 2.5G | |
-| 16c32g | - | ub |10.0.0.7 | 1G | rog 下 Hyper-V |
-| 8c16g | - | ub | 10.0.0.8 | 1G | rog 下 Hyper-V |
+| 16c32g | - | ub |10.0.0.7 | 1G | rog: Hyper-V |
+| 8c16g | - | ub | 10.0.0.8 | 1G | rog: Hyper-V |
 
 </center>
 
