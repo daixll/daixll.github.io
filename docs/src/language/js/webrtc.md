@@ -10,12 +10,58 @@
 
 ## offer sdp
 
+> `SDP`（会话描述协议 Session Description Protocol）是描述点对点连接的标准，`SDP` 包含音视频的编解码器、源地址和时序信息
+
+使用 `createOffer()` 创建 `offer sdp`
+
+```json
+sdp:
+    v=0
+    o=- 7093805778388360368 2 IN IP4 127.0.0.1
+    s=-
+    t=0 0
+    a=extmap-allow-mixed
+    a=msid-semantic: WMS
+type:
+    offer
+```
+
+
+* `v`
+    * `SDP` 版本号：`0` 表示使用 `SDP` 的第一个版本
+* `o`
+    * 用户名字段：`-` 表示没有指定用户名
+    * 会话的唯一标识符（Session ID）：`7093805778388360368`
+    * 会话版本号：`2`，每当会话信息改变时，这个版本号会增加
+    * 网络类型：`IN`，表示 `Internet`
+    * 地址类型：`IP4` 表示 `IPv4`
+    * 本机 `IP` 地址：`127.0.0.1`
+* `s`
+    * 会话名称: `-` 表示未指定具体名称
+* `t`
+    * 时间：`0 0` 没有时间限制
+* `a`
+    * 允许 `RTP` 扩展的混合使用：`extmap-allow-mixed`
+    * 标识符语义：`msid-semantic: WMS`，`WMS` 通常是 `WebRTC` 中使用的标识符
+
+<br>
+
+---
+
 ## answer sdp
+
+
+
+<br>
+
+---
 
 ## ice candidate
 
 
+<br>
 
+---
 
 ## 1c1s
 
@@ -141,6 +187,10 @@ func main() {
     http.ListenAndServe(":3002", nil)
 }
 ```
+
+<br>
+
+---
 
 ## p2p
 

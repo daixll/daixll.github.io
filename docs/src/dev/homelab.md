@@ -2,22 +2,42 @@
 
 ---
 
+## 配置
+
+<center>
+
+| 设备 | 配置 | OS | IP | 网口 | 备注 |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| routing | - | TP-Link | 10.0.0.1 | 2.5G | |
+| gateway | 2c4g | OpenWrt |10.0.0.2 | 10G | idc 下 Hyper-V |
+| idc | 12c32g | WinServer 2022 | 10.0.0.3 | 10G |
+| 下载机 | 4c8g | Win10 LTSC | 10.0.0.4 | 1G | idc 下 Hyper-V | 
+| web | 2c4g | ubuntu 22.04 | 10.0.0.5 | 1G | idc 下 Hyper-V |
+| rog | 24c64g | Win11 Pro for Workstations | 10.0.0.6 | 2.5G | |
+| 16c32g | - | ub |10.0.0.7 | 1G | rog 下 Hyper-V |
+| 8c16g | - | ub | 10.0.0.8 | 1G | rog 下 Hyper-V |
+
+</center>
+
+<br>
+
+---
+
 ## UPS
 
 ### 断电延迟关机
 
 ### 来电自动开机
 
+<br>
+
 ---
 
-## 主路由 TP-Link
-
-* `10.0.0.1`
-* `2.5G`
+## routing
 
 ### WAN：拨号
 
-1. 光猫改桥接，默认模式拨号即可
+1. 光猫改桥接，默认模式拨号
 
 * `IPv6` 不使用代理
     1. 复用 `IPv4` 拨号链路，地址获取协议为 `SLAAC`，开启前缀授权，`MTU: 1432`
@@ -25,24 +45,16 @@
 * `IPv6` 下启用代理（还未验证）
     1. 复用 `IPv4` 拨号链路，地址获取协议为 `DHCPv6`，开启前缀授权，`MTU: 1432`
     2. 设置 `DHCPv6` 网关
- 
-### LAN：DHCPv4
+
+<br>
+
+### LAN：DHCPv4与静态IP
 
 1. 地址 `10.0.0.100 - 10.0.0.254`
 2. 网关地址 `10.0.0.2`
-3. `DNS` 地址 `10.0.0.2`，备用 `DNS` 地址 `8.8.8.8`
+3. `DNS` 地址 `8.8.8.8`，备用 `DNS` 地址 `8.8.8.8`
 
-### LAN：静态IP
-
-| 设备 | IP | 备注 |
-|:-:|:-:|:-:|
-| 网关 | 10.0.0.2 | |
-| NAS | 10.0.0.3 | |
-| 下载机 | 10.0.0.4 | NAS 下 VM | 
-| 站点 | 10.0.0.5 | NAS 下 VM |
-| PC | 10.0.0.6 | |
-| 16c32g | 10.0.0.7 | PC 下 VM |
-| 8c16g | 10.0.0.8 | PC 下 VM |
+<br>
 
 ### 定时重启
 
@@ -54,11 +66,15 @@
 
 * 每天 `3:00`，射频调优
 
+<br>
+
 ### 安全管理
 
 * `ARP` 防护
 
 * 攻击防护
+
+<br>
 
 ### VPN-PPTP
 
@@ -66,7 +82,9 @@
 
 [[R系列企业VPN路由器] PPTP PC到站点VPN配置指南](https://smb.tp-link.com.cn/service/detail_article_3829.html)
 
-* 手机连接时，`MTU` 设置为 `1372`
+* 连接手机热点时，客户端 `MTU` 设置为 `1400`
+
+<br>
 
 ### 虚拟服务器（端口映射）
 
@@ -76,152 +94,110 @@
 |:-:|:-:|:-:|:-:|
 | 站点 | 10.0.0.5 | 1314 | 1314 |
 
+<br>
+
 ### DDNS
 
 * TP-Link（更新很快，但解析效果不行）
 
 * 科迈（解析效果很好，但是更新很慢）
 
+<br>
+
 ### 网络唤醒
 
 | 设备 | IP | 备注 |
 |:-:|:-:|:-:|
-| 网关 | 10.0.0.2 | ups 控制 |
-| NAS | 10.0.0.3 | ups 控制 |
-| PC | 10.0.0.6 | |
+| tp | 10.0.0.1| ups 保护 |
+| idc | 10.0.0.3 | ups 保护 |
+| rog | 10.0.0.6 | ups 保护 |
+
+<br>
 
 ### 云管理-TP商云
 
 当 `VPN` 失效时的唯一管理手段
 
----
-
-## 网关 OpenWrt
-
-**hardware**
-
-* `4c8g`
-* `2.5G` `10.0.0.2` `lan` `网关`
-* `2.5G` `10.0.0.3` `wan` `流量出口`
-
-**OpenWrt**
-
-* 网关，代理上网
+<br>
 
 ---
 
-## 存储
+
+## idc
 
 ```
-├── D:/
-│   ├── AC/                 AC
+├── C:/                     SSD / 1T
+│   
+├── D:/                     SSD / 512G
 │   ├── daixll.github.io/   网站
-│   ├── project/            自己的项目（github 同步）
-│   ├── work/               工作的项目（）
-│   ├── tmp/
+│   ├── ☁️ project/          自己的项目（github 同步）
+│   │     ├── AC/
+│   │     └── STL/
+│   ├── ☁️ work/             工作的项目（可能需要私有云备）
+│   └── tmp/
 │
-├── E:/
+└── E:/                     HDD / 8T
     ├── AV/                 音视频
-    ├── ☁️ DATA/             个人资料（自动备份）
+    ├── ☁️ DATA/             个人资料（云备份）
+    │     └── run/          包括运行依赖，例如私钥备份，各配置文件
     ├── ☁️ WQF/              微信QQ（手动备份）
-    ├── download/           下载站/资源站
-    ├── tmp/
+    ├── download/           下载站 / 资源站
+    └── tmp/
 ```
 
-**hardware**
+### SSD Cache
 
-* `8c8g`
-* `2.5G` `10.0.0.4` `445`
-* `1T SSD + 8T HDD`
+PrimoCache
 
-**Windows Server 2022**
+### SAMBA
 
-* raid1
-* samba
-    * 公开文件提供到下载目录
-* 云备份
-    * 金山云备份
-    * 阿里云备份
-* 冷备份
-* 下载机
-
----
-
-## 网页服务器 [对外]
-
-**hardware**
-
-* `2c2g`
-* `1G` `10.0.0.5` `1314` `22 [对内]`
-* `8G SSD`
-
-**Ubuntu Server 22.04 LTS**
-
-1. 挂 samba
-
-* 网站及下载站点
-    * https 证书申请
-    * nginx 一条龙
-* 阿里云域名 ddns
-
----
-
-
-## 开发服务器 [对外]
-
-**hardware**
-
-* `24c64g`
-
-* `2.5G` `10.0.0.6` `3389 [win]` `22 [wsl]`
-
-* `2T`
-
-**WSL [Ubuntu Server 22.04 LTS]**
-
-1. 配置镜像网络
-
-2. 挂 samba
-
-3. 跑 code-server
-
-**Test Server**
-
-在此设备上开虚拟机
-
+### Hyper-V
 
 <br>
 
 ---
 
-## 备用开发服务器 [对外]
+## gateway
+
+* `4c8g` / `1G`
+
+### ImmortalWrt
+
+
+<br>
+
+### OpenClash
 
 
 
 
 <br>
 
+### OpenVPN
+
+
+<br>
+
 ---
 
-## 桌面设备
 
+## web
 
+### 挂载磁盘
 
-### Windows
+### 启动服务
 
+<br>
 
-### Linux
+---
 
+## rog
 
-### Macos
+### WSL2 安装
 
+### WSL2 网络
 
-
-
-
-
-
-
+### WSL2 挂载
 
 
 
@@ -250,6 +226,8 @@
 * [VS Code](https://code.visualstudio.com/insiders/) / [VS 2022](https://visualstudio.microsoft.com/zh-hans/vs/preview/) 登陆 `github` 账号，等待配置同步
 
 * [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) 登陆 `JB` 账号，等待配置同步
+
+* [Linux WeChat](https://blog.csdn.net/Jason_Yansir/article/details/138117714)
 
 <br>
 
@@ -408,7 +386,7 @@
 
 ## *Ubuntu Desktop 22.04.4 LTS*
 
-* [WeChat](https://blog.csdn.net/Jason_Yansir/article/details/138117714)
+* 
 
 
 <br>

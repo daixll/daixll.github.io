@@ -2954,8 +2954,64 @@
 </li>
 </ul>
 <h2 id="offer-sdp">offer sdp</h2>
+<blockquote>
+<p><code>SDP</code>（会话描述协议 Session Description Protocol）是描述点对点连接的标准，<code>SDP</code> 包含音视频的编解码器、源地址和时序信息</p>
+</blockquote>
+<p>使用 <code>createOffer()</code> 创建 <code>offer sdp</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">sdp</span><span class="p">:</span>
+<span class="w">    </span><span class="err">v=</span><span class="mi">0</span>
+<span class="w">    </span><span class="err">o=</span><span class="mi">-</span><span class="w"> </span><span class="mi">7093805778388360368</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">IN</span><span class="w"> </span><span class="err">IP</span><span class="mi">4</span><span class="w"> </span><span class="mf">127.0.0.1</span>
+<span class="w">    </span><span class="err">s=</span><span class="mi">-</span>
+<span class="w">    </span><span class="kc">t</span><span class="err">=</span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="err">a=ex</span><span class="kc">t</span><span class="err">map</span><span class="mi">-</span><span class="err">allow</span><span class="mi">-</span><span class="err">mixed</span>
+<span class="w">    </span><span class="err">a=msid</span><span class="mi">-</span><span class="err">sema</span><span class="kc">nt</span><span class="err">ic</span><span class="p">:</span><span class="w"> </span><span class="err">WMS</span>
+<span class="kc">t</span><span class="err">ype</span><span class="p">:</span>
+<span class="w">    </span><span class="err">o</span><span class="kc">ffer</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><code>v</code><ul>
+<li><code>SDP</code> 版本号：<code>0</code> 表示使用 <code>SDP</code> 的第一个版本</li>
+</ul>
+</li>
+<li><code>o</code><ul>
+<li>用户名字段：<code>-</code> 表示没有指定用户名</li>
+<li>会话的唯一标识符（Session ID）：<code>7093805778388360368</code></li>
+<li>会话版本号：<code>2</code>，每当会话信息改变时，这个版本号会增加</li>
+<li>网络类型：<code>IN</code>，表示 <code>Internet</code></li>
+<li>地址类型：<code>IP4</code> 表示 <code>IPv4</code></li>
+<li>本机 <code>IP</code> 地址：<code>127.0.0.1</code></li>
+</ul>
+</li>
+<li><code>s</code><ul>
+<li>会话名称: <code>-</code> 表示未指定具体名称</li>
+</ul>
+</li>
+<li><code>t</code><ul>
+<li>时间：<code>0 0</code> 没有时间限制</li>
+</ul>
+</li>
+<li><code>a</code><ul>
+<li>允许 <code>RTP</code> 扩展的混合使用：<code>extmap-allow-mixed</code></li>
+<li>标识符语义：<code>msid-semantic: WMS</code>，<code>WMS</code> 通常是 <code>WebRTC</code> 中使用的标识符</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<hr />
 <h2 id="answer-sdp">answer sdp</h2>
+<p><br></p>
+<hr />
 <h2 id="ice-candidate">ice candidate</h2>
+<p><br></p>
+<hr />
 <h2 id="1c1s">1c1s</h2>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -3185,6 +3241,8 @@
 <span class="w">    </span><span class="nx">http</span><span class="p">.</span><span class="nx">ListenAndServe</span><span class="p">(</span><span class="s">&quot;:3002&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
+<p><br></p>
+<hr />
 <h2 id="p2p">p2p</h2>
 <p>两人皆收发</p>
 <h2 id="_1"></h2>
