@@ -6,16 +6,15 @@
 
 <center>
 
-| 设备 | 配置 | OS | IP | 网口 | 备注 |
-|:-:|:-:|:-:|:-:|:-:|:-:|
-| routing | - | TP-Link | 10.0.0.1 | 2.5G | |
-| gateway | 2c4g | OpenWrt |10.0.0.2 | 10G | idc: Hyper-V |
-| idc | 12c32g | WinServer 2022 | 10.0.0.3 | 10G |
-| 下载机 | 4c8g | Win10 LTSC | 10.0.0.4 | 1G | idc: Hyper-V | 
-| web | 2c4g | ubuntu 22.04 | 10.0.0.5 | 1G | idc: Hyper-V |
-| rog | 24c64g | Win11 Pro for Workstations | 10.0.0.6 | 2.5G | |
-| 16c32g | - | ub |10.0.0.7 | 1G | rog: Hyper-V |
-| 8c16g | - | ub | 10.0.0.8 | 1G | rog: Hyper-V |
+| 设备 | 配置 | OS | IP | 网口 | 硬盘 | 备注 |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| routing | - | TP-Link | 10.0.0.1 | 2.5G |  | |
+| gateway | 2c4g | OpenWrt |10.0.0.2 | 10G | 30G | Hyper-V |
+| rog | 24c64g | Win11 Pro for Workstations | 10.0.0.3 | 10G | 2T + (500G) + (500G + 8T) | |
+| 下载机 | 4c8g | Win10 LTSC | 10.0.0.4 | 1G | 100G | Hyper-V | 
+| web | 2c4g | ubuntu 22.04 | 10.0.0.5 | 1G | 60G | Hyper-V |
+| 16c32g | - | ub |10.0.0.10 | 1G | - | Hyper-V |
+| 8c16g | - | ub | 10.0.0.11 | 1G | - | Hyper-V |
 
 </center>
 
@@ -122,11 +121,11 @@
 
 ---
 
+## rog
 
-## idc
 
 ```
-├── C:/                     SSD / 1T
+├── C:/                     SSD / 2T
 │   
 ├── D:/                     SSD / 512G
 │   ├── daixll.github.io/   网站
@@ -136,6 +135,7 @@
 │   ├── ☁️ work/             工作的项目（可能需要私有云备）
 │   └── tmp/
 │
+├── E:/                     SSD / 512G
 └── E:/                     HDD / 8T
     ├── AV/                 音视频
     ├── ☁️ DATA/             个人资料（云备份）
@@ -153,6 +153,14 @@ PrimoCache
 
 ### Hyper-V
 
+### WSL2 安装
+
+### WSL2 网络
+
+### WSL2 挂载
+
+
+
 <br>
 
 ---
@@ -163,6 +171,7 @@ PrimoCache
 
 ### ImmortalWrt
 
+`vim /etc/config/network`
 
 <br>
 
@@ -191,13 +200,6 @@ PrimoCache
 
 ---
 
-## rog
-
-### WSL2 安装
-
-### WSL2 网络
-
-### WSL2 挂载
 
 
 
