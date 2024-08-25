@@ -9,7 +9,7 @@
 | 设备 | 配置 | OS | IP | 网口 | 硬盘 | 备注 |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | routing | - | TP-Link | 10.0.0.1 | 2.5G |  | |
-| gateway | 2c4g | OpenWrt |10.0.0.2 | 10G | 30G | Hyper-V |
+| gateway | 4c4g | OpenWrt |10.0.0.2 | 10G | 30G | Hyper-V |
 | rog | 24c64g | Win11 Pro for Workstations | 10.0.0.3 | 10G | 2T + (500G) + (500G + 8T) | |
 | 下载机 | 4c8g | Win10 LTSC | 10.0.0.4 | 1G | 100G | Hyper-V | 
 | web | 2c4g | ubuntu 22.04 | 10.0.0.5 | 1G | 60G | Hyper-V |
@@ -51,7 +51,7 @@
 
 1. 地址 `10.0.0.100 - 10.0.0.254`
 2. 网关地址 `10.0.0.2`
-3. `DNS` 地址 `8.8.8.8`，备用 `DNS` 地址 `8.8.8.8`
+3. `DNS` 地址 `10.0.0.2`
 
 <br>
 
@@ -108,8 +108,7 @@
 | 设备 | IP | 备注 |
 |:-:|:-:|:-:|
 | tp | 10.0.0.1| ups 保护 |
-| idc | 10.0.0.3 | ups 保护 |
-| rog | 10.0.0.6 | ups 保护 |
+| rog | 10.0.0.3 | ups 保护 |
 
 <br>
 
@@ -167,8 +166,6 @@ PrimoCache
 
 ## gateway
 
-* `4c8g` / `1G`
-
 ### ImmortalWrt
 
 `vim /etc/config/network`
@@ -194,7 +191,13 @@ PrimoCache
 
 ### 挂载磁盘
 
+[挂载 SMB](/site/src/cs/os/quick_linux/index.html/#1)
+
 ### 启动服务
+
+[安装 docker]()
+
+[nginx for docker]()
 
 <br>
 

@@ -1530,18 +1530,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#docker_nginx" class="md-nav__link">
+  <a href="#ssl" class="md-nav__link">
     <span class="md-ellipsis">
-      Docker_Nginx
+      获取 SSL 证书
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ssl" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      获取 SSL 证书
+      站点加密
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Docker
     </span>
   </a>
   
@@ -2880,18 +2889,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#docker_nginx" class="md-nav__link">
+  <a href="#ssl" class="md-nav__link">
     <span class="md-ellipsis">
-      Docker_Nginx
+      获取 SSL 证书
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ssl" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      获取 SSL 证书
+      站点加密
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Docker
     </span>
   </a>
   
@@ -2955,12 +2973,16 @@ sudo<span class="w"> </span>make<span class="w"> </span>install
 </code></pre></div></td></tr></table></div></p>
 </li>
 </ol>
+<p><br></p>
+<hr />
 <h2 id="etcnginxnginxconf">/etc/nginx/nginx.conf</h2>
 <ul>
 <li>主配置文件：用于定义全局配置和基本设置</li>
 <li>包含指令：包含服务器级别的设置、全局变量、工作进程数、日志文件位置、用户权限、加载模块等</li>
 <li>包含其他文件：通常会使用include指令将其他配置文件包含进来，如/etc/nginx/conf.d/*.conf，从而组织和管理配置文件</li>
 </ul>
+<p><br></p>
+<hr />
 <h2 id="etcnginxconfdconf">/etc/nginx/conf.d/*.conf</h2>
 <ul>
 <li>虚拟主机配置文件：用于定义具体的虚拟主机（服务器）配置的文件，通常用于设置特定域名的服务器块</li>
@@ -3002,16 +3024,24 @@ sudo<span class="w"> </span>make<span class="w"> </span>install
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
-<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code>server {
-    listen [::]80;                              # ipv6 端口 
-    listen 80;                                  # http 端口
-    listen 1314 ssl;                            # https 端口
-    server_name xn--e6q212bhn0c.xn--6qq986b3xl; # 与证书绑定的域名
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code>server {
+    listen 80;
+    listen 1314 ssl;
+    server_name xn--e6q212bhn0c.xn--6qq986b3xl;
 
-    # 证书文件绝对路径
+    # http:80 -&gt; https:1314
+    error_page 497 https://$server_name:1314$request_uri;
+
+    # 证书文件、私钥绝对路径
     ssl_certificate /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem;
-    # 证书私钥文件绝对路径
     ssl_certificate_key /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem;
+
     # ssl 相关配置
     ssl_session_cache shared:SSL:1m;
     ssl_session_timeout 5m;
@@ -3019,53 +3049,32 @@ sudo<span class="w"> </span>make<span class="w"> </span>install
     ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
     ssl_prefer_server_ciphers on;
 
-    location / {                    # 访问路径
-        root   /usr/share/nginx/html;
-        index  index.html index.htm;
+    location / {                # 网站根目录
+        root    /usr/share/nginx/html;
+        index   index.html index.htm;
     }
 
-    location /doc {                 # 访问路径
+    location /down {            # 文档根目录
+        alias   /usr/share/nginx/down;
         charset utf-8;              # 文档编码
-        alias /usr/share/nginx/doc; # 文件目录
         autoindex on;               # 自动索引
-        autoindex_exact_size off;   # 关闭计算文件确切大小（单位bytes），只显示大概大小（单位kb、mb、gb）
+        autoindex_exact_size off;   # 关闭计算文件确切大小
         autoindex_localtime on;     # 显示本机时间而非 GMT 时间
+        sendfile on;                # 高效传输，零拷贝
+
+        # 鉴权
+        auth_basic_user_file /usr/share/nginx/htpwd;
     }
 
-    error_page  404             /404.html;  # 没找到
-    error_page  500 502 503 504 /50x.html;  # 错误页面
+    error_page  404               /404.html;
+    error_page   500 502 503 504  /50x.html; # 错误页面
     location = /50x.html {
         root   /usr/share/nginx/html;
     }
 }
 </code></pre></div></td></tr></table></div>
-<h2 id="docker_nginx">Docker_Nginx</h2>
-<p><code>docker pull nginx</code></p>
-<p>启动脚本：<code>runNginx.sh</code></p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo docker run \
--p 80:80 \
--p 1314:1314 \
---name nginx \
--v /.../web:/usr/share/nginx/html \
--v /.../doc:/usr/share/nginx/doc \
--v /.../NGINX/:/etc/nginx/conf.d \
--v /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime \
--v /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem:/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem \
--v /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem:/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem \
---restart unless-stopped \
--d nginx
-</code></pre></div></td></tr></table></div>
+<p><br></p>
+<hr />
 <h2 id="ssl">获取 SSL 证书</h2>
 <p>参考：</p>
 <p><a href="https://www.fisheryung.top:9002/%E4%B8%BA%E6%B2%A1%E6%9C%8980%E3%80%81443%E7%AB%AF%E5%8F%A3%E7%9A%84%E5%9F%9F%E5%90%8D%E7%94%B3%E8%AF%B7ssl%E8%AF%81%E4%B9%A6.html">为没有80、443端口的域名申请SSL证书</a></p>
@@ -3089,6 +3098,42 @@ sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>
 </ul>
 </li>
 </ol>
+<p><br></p>
+<hr />
+<h2 id="_2">站点加密</h2>
+<p><code>sudo apt install apache2-utils</code></p>
+<p><code>htpasswd -c /home/admin/htpwd admin</code></p>
+<p><br></p>
+<hr />
+<h2 id="for-docker">For Docker</h2>
+<p>启动脚本：<code>runNginx.sh</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span><span class="se">\</span>
+-p<span class="w"> </span><span class="m">1314</span>:1314<span class="w"> </span><span class="se">\</span>
+--name<span class="w"> </span>nginx<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/.../site/:/usr/share/nginx/html<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/.../doc/:/usr/share/nginx/down<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/.../htpwd:/usr/share/nginx/htpwd<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/.../NGINX/:/etc/nginx/conf.d<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem:/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem<span class="w"> </span><span class="se">\</span>
+-v<span class="w"> </span>/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem:/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem<span class="w"> </span><span class="se">\</span>
+--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
+-d<span class="w"> </span>nginx:latest
+</code></pre></div></td></tr></table></div>
+<p>热重载配置文件：<code>sudo docker exec [CONTAINER ID] nginx -s reload</code></p>
 
 
 

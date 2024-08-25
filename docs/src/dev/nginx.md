@@ -31,11 +31,19 @@
     sudo /usr/local/nginx/sbin/nginx -V
     ```
 
+<br>
+
+---
+
 ## /etc/nginx/nginx.conf
 
 * 主配置文件：用于定义全局配置和基本设置
 * 包含指令：包含服务器级别的设置、全局变量、工作进程数、日志文件位置、用户权限、加载模块等
 * 包含其他文件：通常会使用include指令将其他配置文件包含进来，如/etc/nginx/conf.d/*.conf，从而组织和管理配置文件
+
+<br>
+
+---
 
 ## /etc/nginx/conf.d/*.conf
 
@@ -43,17 +51,19 @@
 * 作用范围：这个文件主要包含HTTP服务器块（server block），定义了具体的域名、监听端口、根目录、日志路径、反向代理设置等
 * 从属关系：这个文件通常被主配置文件 nginx.conf 通过 include 指令包含进来，使得Nginx能够加载这些虚拟主机配置
 
-```
+```conf
 server {
-    listen [::]80;                              # ipv6 端口 
-    listen 80;                                  # http 端口
-    listen 1314 ssl;                            # https 端口
-    server_name xn--e6q212bhn0c.xn--6qq986b3xl; # 与证书绑定的域名
+    listen 80;
+    listen 1314 ssl;
+    server_name xn--e6q212bhn0c.xn--6qq986b3xl;
+    
+    # http:80 -> https:1314
+    error_page 497 https://$server_name:1314$request_uri;
 
-    # 证书文件绝对路径
+    # 证书文件、私钥绝对路径
     ssl_certificate /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem;
-    # 证书私钥文件绝对路径
     ssl_certificate_key /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem;
+ 
     # ssl 相关配置
     ssl_session_cache shared:SSL:1m;
     ssl_session_timeout 5m;
@@ -61,47 +71,34 @@ server {
     ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
     ssl_prefer_server_ciphers on;
 
-    location / {                    # 访问路径
-        root   /usr/share/nginx/html;
-        index  index.html index.htm;
+    location / {                # 网站根目录
+        root	/usr/share/nginx/html;
+        index   index.html index.htm;
     }
 
-    location /doc {                 # 访问路径
+    location /down {            # 文档根目录
+        alias   /usr/share/nginx/down;
         charset utf-8;              # 文档编码
-        alias /usr/share/nginx/doc; # 文件目录
         autoindex on;               # 自动索引
-	    autoindex_exact_size off;   # 关闭计算文件确切大小（单位bytes），只显示大概大小（单位kb、mb、gb）
+	    autoindex_exact_size off;   # 关闭计算文件确切大小
         autoindex_localtime on;     # 显示本机时间而非 GMT 时间
+        sendfile on;                # 高效传输，零拷贝
+
+        # 鉴权
+        auth_basic_user_file /usr/share/nginx/htpwd;
     }
 
-    error_page  404             /404.html;  # 没找到
-    error_page  500 502 503 504 /50x.html;  # 错误页面
+    error_page  404               /404.html;
+    error_page   500 502 503 504  /50x.html; # 错误页面
     location = /50x.html {
         root   /usr/share/nginx/html;
     }
 }
 ```
 
-## Docker_Nginx
+<br>
 
-`docker pull nginx`
-
-启动脚本：`runNginx.sh`
-
-```
-sudo docker run \
--p 80:80 \
--p 1314:1314 \
---name nginx \
--v /.../web:/usr/share/nginx/html \
--v /.../doc:/usr/share/nginx/doc \
--v /.../NGINX/:/etc/nginx/conf.d \
--v /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime \
--v /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem:/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem \
--v /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem:/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem \
---restart unless-stopped \
--d nginx
-```
+---
 
 ## 获取 SSL 证书
 
@@ -127,3 +124,43 @@ sudo docker run \
     * 此时会让你，给你的域名，添加一个txt解析
     * 域名是带前缀的，看仔细咯
     * 输出证书保存的位置
+
+<br>
+
+---
+
+## 站点加密
+
+
+`sudo apt install apache2-utils`
+
+`htpasswd -c /home/admin/htpwd admin`
+
+
+
+<br>
+
+---
+
+
+## For Docker
+
+启动脚本：`runNginx.sh`
+
+```bash
+sudo docker run \
+-p 80:80 \
+-p 1314:1314 \
+--name nginx \
+-v /.../site/:/usr/share/nginx/html \
+-v /.../doc/:/usr/share/nginx/down \
+-v /.../htpwd:/usr/share/nginx/htpwd \
+-v /.../NGINX/:/etc/nginx/conf.d \
+-v /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime \
+-v /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem:/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem \
+-v /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem:/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem \
+--restart unless-stopped \
+-d nginx:latest
+```
+
+热重载配置文件：`sudo docker exec [CONTAINER ID] nginx -s reload`
