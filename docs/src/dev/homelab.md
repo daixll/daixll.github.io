@@ -9,12 +9,12 @@
 | 设备 | 配置 | OS | IP | 网口 | 硬盘 | 备注 |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | routing | - | TP-Link | 10.0.0.1 | 2.5G |  | |
-| gateway | 4c4g | OpenWrt |10.0.0.2 | 10G | 30G | Hyper-V |
-| rog | 24c64g | Win11 Pro for Workstations | 10.0.0.3 | 10G | 2T + (500G) + (500G + 8T) | |
-| 下载机 | 4c8g | Win10 LTSC | 10.0.0.4 | 1G | 100G | Hyper-V | 
-| web | 2c4g | ubuntu 22.04 | 10.0.0.5 | 1G | 60G | Hyper-V |
-| 16c32g | - | ub |10.0.0.10 | 1G | - | Hyper-V |
-| 8c16g | - | ub | 10.0.0.11 | 1G | - | Hyper-V |
+| gateway | 2c2g | OpenWrt |10.0.0.2 | 2.5G（独占） | 30G | Hyper-V |
+| idc | 8c8g | WinServer 2022 | 10.0.0.3 | 10G（独占） | 500G + 1T + 8T | Hyper-V |
+| down | 4c8g | Win10 LTSC | 10.0.0.4 | 1G | 100G | Hyper-V | 
+| web | 2c2g | ubuntu 22.04 | 10.0.0.5 | 1G | 60G | Hyper-V |
+| rog | 24c64g | Win11 Pro for Workstations | 10.0.0.6 | 10G | 2T | |
+
 
 </center>
 
