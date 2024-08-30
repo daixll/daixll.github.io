@@ -191,7 +191,7 @@ PrimoCache
 
 ### 挂载磁盘
 
-[挂载 SMB](/site/src/cs/os/quick_linux/index.html/#1)
+[挂载 SMB](../cs/os/quick_linux.md#_6)
 
 ### 启动服务
 

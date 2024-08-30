@@ -13,7 +13,8 @@ nav:
     - CIE:              src/algorithm/really/cie.md
     - 基础:
       - 二分:           src/algorithm/基础/二分.md
-    #- 搜索:
+    - 搜索:
+      - DFS:            src/algorithm/搜索/DFS.md
     - 图论:
       - 二叉树:         src/algorithm/图论/二叉树.md
     #- 动规:
@@ -21,6 +22,7 @@ nav:
     #- 数论:
     - 数据结构:
       - 链表:           src/algorithm/数据结构/链表.md
+      - 线段树:         src/algorithm/数据结构/线段树.md
     #- 字符串:
     #- 计算几何:
   - 🚀 C/C++:
@@ -140,12 +142,6 @@ theme:
 extra:
   generator: false          # 是否显示 Made with Material for MkDocs
   social:                   # 右下角小标
-    - icon: fontawesome/brands/x-twitter
-      link: https://x.com/dxlcqy
-    - icon: fontawesome/brands/github
-      link: https://github.com/daixll
-    - icon: fontawesome/brands/bilibili
-      link: https://space.bilibili.com/35306765
     - icon: fontawesome/solid/paper-plane
       link: mailto:<dxlcq@outlook.com>
 
