@@ -14,16 +14,15 @@
 
 ### 2024 四川省赛
 
-- `2024-6-16` `第十六届四川省大学生程序设计竞赛` `铜` [报道]
+- `2024-6-16` `第十六届四川省大学生程序设计竞赛` `铜`
 
 <center>
     <img src="/images/joker/（省3）SCCPC.png" width="300">
 </center>
 
-
 ### 2024 重庆市赛
 
-- `2024-6-8` `重庆市第十二届大学生程序设计大赛` `铜` [报道]
+- `2024-6-8` `重庆市第十二届大学生程序设计大赛` `铜`
 
 <center>
     <img src="/images/joker/（省3）CCPCCQ.jpg" width="300"> 
@@ -47,13 +46,13 @@
 
 ### 省二 码蹄杯
 
-- `2024-6-22` `第` `省赛银奖` [公示 / 排名]()
+- `2024-6-22` `第` `省赛银奖` [公示 / 排名](https://mp.weixin.qq.com/s/yZjUuFb_OZ7Yw66sHmEQjQ)
 
 <center>
-    <img src="/images/joker/（省2）码蹄杯.png" width="300"> 
+    <img src="/images/joker/（省2）码蹄杯24.png" width="300"> 
 </center>
 <center>
-    <img src="/images/joker/排名/（省2）码蹄杯.jpg" width="300">
+    <img src="/images/joker/排名/（省2）码蹄杯24.jpg" width="300">
 </center>
 
 
