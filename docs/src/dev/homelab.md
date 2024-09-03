@@ -6,14 +6,14 @@
 
 <center>
 
-| 设备 | 配置 | OS | IP | 网口 | 硬盘 | 备注 |
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| routing | - | TP-Link | 10.0.0.1 | 2.5G |  | |
-| gateway | 2c2g | OpenWrt |10.0.0.2 | 2.5G（独占） | 30G | Hyper-V |
-| idc | 8c8g | WinServer 2022 | 10.0.0.3 | 10G（独占） | 500G + 1T + 8T | Hyper-V |
-| down | 4c8g | Win10 LTSC | 10.0.0.4 | 1G | 100G | Hyper-V | 
-| web | 2c2g | ubuntu 22.04 | 10.0.0.5 | 1G | 60G | Hyper-V |
-| rog | 24c64g | Win11 Pro for Workstations | 10.0.0.6 | 10G | 2T | |
+| 设备 | 配置 | OS | IP | 网口 | 硬盘 |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| routing | - | TP-Link | 10.0.0.1 | 2.5G |  |
+| gateway | 2c2g | OpenWrt（V） |10.0.0.2 | 2.5G（独占） | |
+| idc | 4c8g | WinServer 2022（V） | 10.0.0.3 | 10G（独占） | 500G + 1T + 8T |
+| down | 4c8g | Win10 LTSC（V） | 10.0.0.4 | 1G | 100G |
+| run | 4c8g | ubuntu 22.04（V） | 10.0.0.5 | 1G | 60G |
+| rog | 24c64g | Win11 Pro for Workstations | 10.0.0.6 | 10G + WiFi | 2T |
 
 
 </center>

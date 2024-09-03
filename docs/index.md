@@ -9,23 +9,12 @@
     }
 </style>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FPS7WT406"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9FPS7WT406');
-</script>
-
-# 😶‍🌫️
+# 👨🏽‍💻
 
 * 23年毕业于重庆工业职业技术学院，25年毕业于重庆科技大学
 * 较为丰富的 [竞赛](./src/about/honor.md) 与 [教学](./src/about/work.md) 经验
 * 喜欢玩 [路由器和电脑](./src/dev/homelab.md)
 * 会一点点 [C/C++](./src/cpp/c.md)
-
 
 <br>
 
@@ -38,14 +27,20 @@
     <div class="item">
         <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank"> dxlcqy@gmail.com </a> 
     </div>
+</div>
+
+<div class="container">📧
     <div class="item">
         <a href="https://wx.mail.qq.com/" target="_blank"> dxl.cq@qq.com </a> 
+    </div>
+    <div class="item">
+        <a href="" target="_blank"></a> 
     </div>
 </div>
 
 ---
 
-<div class="container">🤺
+<div class="container">🏇
     <div class="item">
         <a href="https://codeforces.com/contests" target="_blank">Codeforces </a>
     </div>
@@ -76,7 +71,7 @@
     </div>
 </div>
 
-<div class="container">🐟
+<div class="container">🐬
     <div class="item">
         <a href="https://github.com/daixll" target="_blank"> Github </a> 
     </div>
@@ -93,7 +88,7 @@
 
 ---
 
-<div class="container">☁️
+<div class="container">🌩
     <div class="item">
         <a href="https://smbcloud.tp-link.com.cn" target="_blank"> TP-LINK </a> 
     </div>
@@ -101,22 +96,37 @@
         <a href="https://home.console.aliyun.com/home/dashboard/ProductAndService" target="_blank"> Aliyun </a> 
     </div>
     <div class="item">
-        <a href="https://www.kdocs.cn/latest" target="_blank"> WPS </a> 
+        <a href="https://dash.cloudflare.com/" target="_blank">CLOUDFLARE</a> 
     </div>
     <div class="item">
-        <a href="" target="_blank"></a> 
+        <a href="https://www.kdocs.cn/latest" target="_blank"> WPS </a> 
     </div>
 </div>
 
 <div class="container">🖥️
     <div class="item">
-        <a href="http://10.0.0.1" target="_blank"> 路由 10.0.0.1 </a> 
+        <a href="http://10.0.0.1" target="_blank"> 路由 </a> 
     </div>
     <div class="item">
-        <a href="http://10.0.0.70" target="_blank"> 网关 10.0.0.2 </a> 
+        <a href="http://10.0.0.70" target="_blank"> 网关 </a> 
     </div>
     <div class="item">
-        <a href="" target="_blank"></a> 
+        <a href="" target="_blank"> 云盘 </a> 
+    </div>
+    <div class="item">
+        <a href="" target="_blank"> 影音 </a>
+    </div>
+</div>
+
+<div class="container">🛜
+    <div class="item">
+        <a href="https://test.nju.edu.cn/" target="_blank">南大测速</a> 
+    </div>
+    <div class="item">
+        <a href="https://speed.cloudflare.com/" target="_blank">Cloudflare 测速</a> 
+    </div>
+    <div class="item">
+        <a href="" target="_blank">本站测速</a> 
     </div>
     <div class="item">
         <a href="" target="_blank"></a> 
@@ -125,7 +135,7 @@
 
 ---
 
-<div class="container">✈
+<div class="container">🛩
     <div class="item">
         <a href="https://www.duyaoss.com/archives/3/" target="_blank"> 机场测速 </a> 
     </div>
@@ -141,21 +151,6 @@
 </div>
 
 
-<div class="container">🚾
-    <div class="item">
-        <a href="https://web.telegram.org/a/" target="_blank"> Telegram </a> 
-    </div>
-    <div class="item">
-        <a href="https://x.com/dxlcqy" target="_blank"> X </a> 
-    </div>
-    <div class="item">
-        <a href=" " target="_blank"> Meta </a> / <a href=" " target="_blank"> Ig </a> 
-    </div>
-    <div class="item">
-        <a href=" " target="_blank">   </a> 
-    </div>
-</div>
-
 <div class="container">🌊
     <div class="item">
         <a href="https://www.youtube.com/@骄骄" target="_blank"> YouTube </a> 
@@ -164,10 +159,10 @@
         <a href="https://www.tiktok.com/@daixllg" target="_blank"> TikTok </a> 
     </div>
     <div class="item">
-        <a href="https://space.bilibili.com/35306765" target="_blank"> bilibili </a> 
+        <a href="https://x.com/dxlcqy" target="_blank"> X </a> 
     </div>
     <div class="item">
-        <a href=" " target="_blank">   </a> 
+        <a href="https://web.telegram.org/a/" target="_blank"> Telegram </a> 
     </div>
 </div>
 
