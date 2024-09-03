@@ -1,45 +1,15 @@
-[Linux 命令大全](https://www.linuxcool.com/)
+参考：[Linux 命令大全](https://www.linuxcool.com/)
 
-## 从零开始
+## 软件
 
-* 修改网络
+### apt
 
-```bash
-sudo vi /etc/netplan/00-installer-config.yaml
-```
+参考：[apt 终极指南](https://itsfoss.com/apt-command-guide/)
 
-```yaml
-network:
-  ethernets:
-      eth0:
-        dhcp4: false
-        addresses:
-          - 10.0.0.2/24
-        routes:
-          - to: default
-            via: 10.0.0.1
-        nameservers:
-          addresses: [10.0.0.1,8.8.8.8]
-  version: 2
-```
-
-* 修改时间
+* 更新软件源、软件，自动删除无关依赖
 
 ```bash
-sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime`
-```
-
-
-<br>
-
----
-
-## 软件安装
-
-* 更新软件源、软件、系统（非升级），自动删除无关依赖
-
-```bash
-sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && sudo apt autoremove
+sudo apt update && sudo apt full-upgrade && sudo apt autoremove
 ```
 
 * 使用代理
@@ -66,14 +36,37 @@ sudo apt-cache search 软件名
 sudo apt list --installed | grep 软件名
 ```
 
+* 添加软件源
+
+
+* 查看软件源
+
+
+* 删除软件源
+
+<br>
+
+### snap
+
+一托
+
 <br>
 
 ---
 
 
-## 文件管理
+## 文件
 
-* 查看 `ls`
+### 文件查找
+
+find，grep
+
+
+<br>
+
+### 文件管理
+
+* **`ls` 查看**
 
     * `ls -a` 列出全部文件（含隐藏）
 
@@ -88,45 +81,48 @@ sudo apt list --installed | grep 软件名
         * `s` 套接字
         * `p` 管道
 
-* 切换目录 `cd`
+* **`cd` 切换目录**
 
-* 创建目录 `mkdir`
+* **`pwd` 输出当前目录**
+
+* **`mkdir ` 创建目录**
     * `mkdir -m 711 dir` 创建目录，权限为 `711`
     * `mkdir -p dir/dir/dir` 创建多层目录
 
-* 复制文件 `cp`
+* **`cp` 复制文件**
     * `cp -r dir/ dir.bak/` 递归复制
     * `cp -p file file.bak` 同时复制文件属性
 
-* 移动文件 `mv`
+* **`mv` 移动文件**
     * 如果移动目录，建议使用 `cp`，确认后再删除
+    * `mv dirOld/ dirNew/`，从旧的目录移动到新的目录
 
-* 删除文件 `rm`
+* **`rm `删除文件**
     * `rm -r dir/` 递归删除
     * `rm -f dir/` 忽略不存在的文件
 
 
 <br>
 
----
-
-## 权限管理
+### 文件权限
 
 每个文件有三种粒度
 
-| 所属人 `u` | 所属组 `g` | 其他人 `o` |
+| 所属人 | 所属组 | 其他人 |
 |:-:|:-:|:-:|
+| `u` | `g` | `o` |
 
 各自有三种权限
 
-| 读 `r` `4` | 写 `w` `2` | 行 `x` `1` |
+| 读 | 写 | 行 |
 |:-:|:-:|:-:|
+| `r` `4` | `w` `2` | `x` `1` |
 
 修改
 
-* 修改所属人 `u` `chown`
-* 修改所属组 `g` `chgrp`
-* 修改权限 `chmod`
+* **`chown` 修改所属人 `u`** 
+* **`chgrp` 修改所属组 `g`**
+* **`chmod` 修改权限**
 
     * `chmod +x`，给 **全部人 `a`** 添加执行权限，等价于 `chmod a+x`
 
@@ -150,15 +146,43 @@ sudo apt list --installed | grep 软件名
 
     * `chmod -R`，递归修改
 
+
+<br>
+
+### 文件解压缩
+
+tar，zip
+
+* **`tar -zxvf *.tar.gz`**
+    * `-z` 解压缩（gz）（有时可以省略）
+    * `-x` 解包（tar）
+    * `-v` 显示详细的解压过程信息
+    * `-f` 指定名称
+    * `-C` 指定路径
+
+* **`tar -zcvf *.tar.gz *`**
+    * `-c` 打包（tar）
+
+<br>
+
+### 文件备份
+
+dump，rsync
+
 <br>
 
 ---
 
-## 磁盘管理
+## 磁盘
+
+### 磁盘管理
+
+
+<br>
 
 ### 挂载网络磁盘
 
-[系统启动时自动挂载 SMB 共享](https://docs.redhat.com/zh_hans/documentation/red_hat_enterprise_linux/8/html/managing_file_systems/proc_mounting-an-smb-share-automatically-when-the-system-boots_assembly_mounting-an-smb-share-on-red-hat-enterprise-linux)
+参考：[系统启动时自动挂载 SMB 共享](https://docs.redhat.com/zh_hans/documentation/red_hat_enterprise_linux/8/html/managing_file_systems/proc_mounting-an-smb-share-automatically-when-the-system-boots_assembly_mounting-an-smb-share-on-red-hat-enterprise-linux)
 
 
 1. 下载工具 `sudo apt install cifs-utils`
@@ -208,9 +232,122 @@ sudo apt list --installed | grep 软件名
 
 ---
 
+## 系统
+
+* **`btop`** 状态
+* **`screenfetch`** 配置
+
+### Process
+
+
+
+<br>
+
+### MEM
+
+
+
+<br>
+
+### IO
+
+
+
+<br>
+
+### 其他
+
+* 查看时间 `date`，修改时区
+
+```bash
+sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+
+<br>
+
+---
+
+## 网络
+
+### net
+
+```bash
+sudo vi /etc/netplan/00-installer-config.yaml
+```
+
+* 静态 IP
+
+```yaml
+network:
+  ethernets:
+      eth0:
+        dhcp4: false
+        addresses:
+          - 10.0.0.2/24
+        routes:
+          - to: default
+            via: 10.0.0.1
+        nameservers:
+          addresses: [10.0.0.1,8.8.8.8]
+  version: 2
+```
+
+
+<br>
+
+### ssh
+
+
+<br>
+
+### scp
+
+
+<br>
+
+### ping
+
+
+<br>
+
+### wget
+
+
+<br>
+
+### curl
+
+
+<br>
+
+### nmap
+
+
+
+<br>
+
+
+### telnet
+
+
+<br>
+
+### iperf3
+
+
+<br>
+
+---
+
 ## 守护进程
 
 [Systemd](https://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html)
+
+
+
+<br>
+
+---
 
 ## 计划作业
 
@@ -220,107 +357,14 @@ sudo apt list --installed | grep 软件名
 * 编辑计划作业 `crontab -e`
 * 删除计划作业 `crontab -r`
 
-## 脚本编写
-
-## 文件传输
-
-`scp` `rsync` `rz` `sz`
-
-## 文件定位
-
-`find` `whereis`
-
-## 软链接
-
-`ln`
-
-## `lsof`
-
-## 跟踪系统调用
-
-* **`strace`** 
-    `strace ./a.out`
-    > 显示程序执行过程的系统调用
-
-
-
 <br>
 
 ---
 
+## UFW
 
-## 基本信息
-
-* **screenfetch**
-    `sudo apt install screenfetch`
-
-* **btop**
-    `sudo apt install btop`
-
-* **top**
-
-## 进程
-
-* **`ps -ef`**
-    > 显示全部用户的全部进程
-
-* **`pstree`**
-    > 显示进程树
-
-* **`pgrep 进程名`**
-    > 通过进程名查找 pid
-
-* **`kill PID`**
-    > 结束进程，`kill -9 PID` 强制结束
-
-## 内存状态
-
-`memstat` `free`
-
-## IO状态
-
-`iostat` `df` `du`
-
-## ufw
-
-1. 启动防火墙 `ufw enable`
-2. 关闭防火墙 `ufw disenable`
-3. 打开端口 `ufw allow 22`
-4. 关闭端口 `ufw delete allow 22`
-5. 防火墙状态 `ufw status`
-
-
-## curl
-
-* get 请求
-    `curl https://www.bing.com` 
-* get 请求，返回 http 标头
-    `curl -i https://www.bing.com`
-
-## wget
-
-
-## tar
-* 解压文件
-    `tar -zxvf *.tar.gz`
-    * `-z` 解压缩（gz）（有时可以省略）
-    * `-x` 解包（tar）
-    * `-v` 显示详细的解压过程信息
-    * `-f` 指定名称
-    * `-C` 指定路径
-
-* 压缩文件
-    `tar -zcvf *.tar.gz *` 
-    * `-c` 打包（tar）
-
-
-
-
-
-
-## rsync
-
-
-## nc
-
-网络工具
+* **`ufw enable`** 启动防火墙 
+* **`ufw disenable`**  关闭防火墙 
+* **`ufw allow 22`** 打开端口
+* **`ufw delete allow 22`** 关闭端口
+* **`ufw status`** 防火墙状态

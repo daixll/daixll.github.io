@@ -79,8 +79,19 @@ nav:
     - 操作系统:
       - linux速查:      src/cs/os/quick_linux.md
       - 操作系统结构:    src/cs/os/操作系统结构.md
-    #- 网络:
-    #  - 
+    - 网络:
+      - 冲浪:           src/cs/net/冲浪.md
+      - Application:
+        - HTTP:         src/cs/net/http.md
+      - Transport:
+        - TCP:          src/cs/net/tcp.md
+        - UDP:          src/cs/net/udp.md
+      - Network:
+        - PPPoE:        src/cs/net/pppoe.md
+        - IP:           src/cs/net/ip.md
+      - DataLink:
+        - Ethernet:     src/cs/net/ethernet.md
+        - MTU:          src/cs/net/mtu.md
     - 数据结构:
       - 线性表:         src/cs/dataStruct/list.md
     - 数据库: 
