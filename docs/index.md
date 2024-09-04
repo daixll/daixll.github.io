@@ -13,7 +13,7 @@
 
 * 23年毕业于重庆工业职业技术学院，25年毕业于重庆科技大学
 * 较为丰富的 [竞赛](./src/about/honor.md) 与 [教学](./src/about/work.md) 经验
-* 喜欢玩 [路由器和电脑](./src/dev/homelab.md)
+* 喜欢玩 [路由器和电脑](./src/dev/cloud.md)
 * 会一点点 [C/C++](./src/cpp/c.md)
 
 <br>

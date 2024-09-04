@@ -122,34 +122,6 @@
 
 ## rog
 
-
-```
-├── C:/                     SSD / 2T
-│   
-├── D:/                     SSD / 512G
-│   ├── daixll.github.io/   网站
-│   ├── ☁️ project/          自己的项目（github 同步）
-│   │     ├── AC/
-│   │     └── STL/
-│   ├── ☁️ work/             工作的项目（可能需要私有云备）
-│   └── tmp/
-│
-├── E:/                     SSD / 512G
-└── E:/                     HDD / 8T
-    ├── AV/                 音视频
-    ├── ☁️ DATA/             个人资料（云备份）
-    │     └── run/          包括运行依赖，例如私钥备份，各配置文件
-    ├── ☁️ WQF/              微信QQ（手动备份）
-    ├── download/           下载站 / 资源站
-    └── tmp/
-```
-
-### SSD Cache
-
-PrimoCache
-
-### SAMBA
-
 ### Hyper-V
 
 ### WSL2 安装
@@ -157,7 +129,6 @@ PrimoCache
 ### WSL2 网络
 
 ### WSL2 挂载
-
 
 
 <br>
@@ -172,15 +143,79 @@ PrimoCache
 
 <br>
 
-### OpenClash
-
-
+### HomeProxy
 
 
 <br>
 
 ### OpenVPN
 
+
+<br>
+
+---
+
+## idc
+
+```
+├── C:/
+│   
+├── D:/
+│   │
+│   ├── daixll.github.io/
+│   ├── AC/
+│   ├── STL/
+│   ├── ...
+│   │
+│   ├── work/
+│   └── t/
+│
+└── E:/
+    ├── AV/
+    ├── ☁️ WQF/
+    │
+    └── ☁️ DATA/
+        ├── conf
+        ├── down        
+        ├── 2024
+        ├── 辉煌迎来虚伪的看客，黄昏见证真正的信徒
+        ├── 纸上得来终得浅，绝知此事要躬行
+        ├── 认清生活真相之后依然热爱生活 
+        │   ├── 公司 A
+        │   └── ...
+        │
+        └── 往事堪堪亦澜澜，前路漫漫亦灿灿
+            ├── 2023
+            ├── 2022
+            └── ...
+```
+
+
+* `C / SSD / 1T`
+
+    * 800G 做缓存
+
+* `D / SSD / 512G`
+
+    * 全盘共享, 只放项目，同步 github / gitee
+
+    * `D:/work` 工作上的项目
+
+* `E / HDD / 8T`
+
+    * 全盘共享，只放文件，静态依赖，配置文件信息等
+
+    * `E:/AV` 娱乐
+
+    * `E:/WQF` wxqq 文件，手动备份
+
+    * `E:/DATA` 多云盘介入，自动同步备份
+
+### SSD Cache
+
+PrimoCache
+
+### SAMBA
 
 <br>
 
@@ -193,11 +228,17 @@ PrimoCache
 
 [挂载 SMB](../cs/os/quick_linux.md#_6)
 
-### 启动服务
-
 [安装 docker]()
 
+### 网页服务
+
 [nginx for docker]()
+
+### 云盘
+
+
+### 影音
+
 
 <br>
 
