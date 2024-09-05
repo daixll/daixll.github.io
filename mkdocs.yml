@@ -34,27 +34,27 @@ nav:
     - GUI:              src/cpp/gui.md
     - AV:               src/cpp/av.md
   - 🌥️ DevOps:  
-    - Cloud:            src/dev/cloud.md
-    - MkDocs:           src/dev/mkdocs.md
-    - GCC:              src/dev/gcc.md
-    - GDB:              src/dev/gdb.md
-    - Make:             src/dev/make.md
-    - CMake:            src/dev/cmake.md
-    - Boost:            src/dev/boost.md
-    - OpenSSL:          src/dev/openssl.md
-    - FFmpeg:           src/dev/ffmpeg.md
-    - Qt:               src/dev/qt.md
-    - OpenSSH:          src/dev/openssh.md
-    - Git:              src/dev/git.md
-    - Docker:           src/dev/docker.md
-    - Kubernetes:       src/dev/kubernetes.md
-    - Nginx:            src/dev/nginx.md
-    - Perf:             src/dev/perf.md
-    - nc:               src/dev/nc.md
-    - Coturn:           src/dev/coturn.md
-    - nmap:             src/dev/nmap.md
-    - MySQL:            src/dev/mysql.md
-    - Redis:            src/dev/redis.md
+    - 🫥 Cloud:         src/dev/cloud.md
+    - 🫥 MkDocs:        src/dev/mkdocs.md
+    - 😳 GCC:           src/dev/gcc.md
+    - 😳 GDB:           src/dev/gdb.md
+    - 😳 Make:          src/dev/make.md
+    - 😳 CMake:         src/dev/cmake.md
+    - 😳 Perf:          src/dev/perf.md
+    - 😳 Boost:         src/dev/boost.md
+    - 😳 OpenSSL:       src/dev/openssl.md
+    - 😳 FFmpeg:        src/dev/ffmpeg.md
+    - 😳 Qt:            src/dev/qt.md
+    - 💪🏻 OpenSSH:       src/dev/openssh.md
+    - 💪🏻 Git:           src/dev/git.md
+    - 💪🏻 Docker:        src/dev/docker.md
+    - 💪🏻 Kubernetes:    src/dev/kubernetes.md
+    - 💪🏻 Nginx:         src/dev/nginx.md
+    - 🪖 Coturn:        src/dev/coturn.md
+    - 🪖 FRP:           src/dev/frp.md
+    - 🪖 DDNS:          src/dev/ddns.md
+    - 📒 MySQL:         src/dev/mysql.md
+    - 📒 Redis:         src/dev/redis.md
   - 🌿 Language:
     - Python:
       - env:            src/language/py/env.md
@@ -114,7 +114,7 @@ nav:
 
 
 site_name: 戴兴龙
-copyright: Copyright © 2020 - 2024 Xinglong Dai
+copyright: 版权所有 © 2020 - 2024 全世界无产阶级战士
 repo_name: daixll/daixll.github.io
 repo_url: https://github.com/daixll/daixll.github.io
 

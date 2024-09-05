@@ -34,24 +34,35 @@
 
 ## routing
 
-### WAN：拨号
+### WAN
 
-1. 光猫改桥接，默认模式拨号
+* `PPPoE`
 
-* `IPv6` 不使用代理
-    1. 复用 `IPv4` 拨号链路，地址获取协议为 `SLAAC`，开启前缀授权，`MTU: 1432`
+    1. 光猫改桥接，默认模式拨号
 
-* `IPv6` 下启用代理（还未验证）
-    1. 复用 `IPv4` 拨号链路，地址获取协议为 `DHCPv6`，开启前缀授权，`MTU: 1432`
-    2. 设置 `DHCPv6` 网关
+    2. 关闭 `IPv6`
 
 <br>
 
-### LAN：DHCPv4与静态IP
+### LAN
 
-1. 地址 `10.0.0.100 - 10.0.0.254`
-2. 网关地址 `10.0.0.2`
-3. `DNS` 地址 `10.0.0.2`
+* `DHCPv4` 
+
+    1. `DNS` 与网关 `10.0.0.2`
+
+    2. 地址范围
+        
+        * 保留 `.2 - .100`
+        
+        * 临时 `.101 - .200` `DHCP`
+
+        * 隔离 `.201 - .254`
+
+* `static IP`
+
+    * 长期 `.1 - .20`
+
+    * 短期 `.21 - .100`
 
 <br>
 
@@ -77,21 +88,25 @@
 
 ### VPN-PPTP
 
-`OpenVPN` 失效时的冗余方案，平时关闭
+* `OpenVPN` 失效时的冗余方案，平时关闭
 
-[[R系列企业VPN路由器] PPTP PC到站点VPN配置指南](https://smb.tp-link.com.cn/service/detail_article_3829.html)
+* 参考：[[R系列企业VPN路由器] PPTP PC到站点VPN配置指南](https://smb.tp-link.com.cn/service/detail_article_3829.html)
 
 * 连接手机热点时，客户端 `MTU` 设置为 `1400`
 
 <br>
 
-### 虚拟服务器（端口映射）
+### 端口映射
 
-非必要不做端口映射
+非必要不做端口映射，尽量使用 `VPN`
+
+<center>
 
 | 设备 | IP | 外部端口 | 内部端口 |
 |:-:|:-:|:-:|:-:|
 | 站点 | 10.0.0.5 | 1314 | 1314 |
+
+</center>
 
 <br>
 
@@ -105,16 +120,19 @@
 
 ### 网络唤醒
 
+<center>
+
 | 设备 | IP | 备注 |
 |:-:|:-:|:-:|
-| tp | 10.0.0.1| ups 保护 |
 | rog | 10.0.0.3 | ups 保护 |
+
+</center>
 
 <br>
 
 ### 云管理-TP商云
 
-当 `VPN` 失效时的唯一管理手段
+* 当 `VPN` 失效时的唯一管理手段
 
 <br>
 
@@ -122,11 +140,33 @@
 
 ## rog
 
+### 驱动和软件
+
+* [NV 驱动](https://www.nvidia.com/en-us/software/nvidia-app/) / [INTEL 驱动](https://www.intel.com/content/www/us/en/support/detect.html)
+
+* [MS 激活](https://github.com/massgravel/Microsoft-Activation-Scripts) `irm https://get.activated.win │ iex`
+
+* [状态监控](https://github.com/zhongyang219/TrafficMonitor) / [Bandizip](https://www.bandisoft.com/bandizip/) / [Office](https://otp.landian.vip/zh-cn/download.html) / [WPS](https://www.wps.cn/) / [todesk](https://dl.todesk.com/windows/ToDesk_Lite.exe)
+
+* [VM-win-linux](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro) / [VM-mac](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Fusion)
+
+* [VS Code](https://code.visualstudio.com/insiders/) / [VS 2022](https://visualstudio.microsoft.com/zh-hans/vs/preview/) 登陆 `github` 账号，等待配置同步
+
+* [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) 登陆 `JB` 账号，等待配置同步
+
+<br>
+
 ### Hyper-V
+
+<br>
 
 ### WSL2 安装
 
+<br>
+
 ### WSL2 网络
+
+<br>
 
 ### WSL2 挂载
 
@@ -222,7 +262,7 @@ PrimoCache
 ---
 
 
-## web
+## run
 
 ### 挂载磁盘
 
@@ -254,24 +294,7 @@ PrimoCache
 
 ## *Windows 11 Pro*
 
-* [NV 驱动](https://www.nvidia.com/en-us/software/nvidia-app/) / [INTEL 驱动](https://www.intel.com/content/www/us/en/support/detect.html)
 
-* [MS 激活](https://github.com/massgravel/Microsoft-Activation-Scripts) `irm https://get.activated.win │ iex`
-
-* [clash-verge](https://github.com/clash-verge-rev/clash-verge-rev/releases) / [Bandizip](https://www.bandisoft.com/bandizip/)
-
-* [状态栏状态显示](https://github.com/zhongyang219/TrafficMonitor)
-
-
-* [Office](https://otp.landian.vip/zh-cn/download.html) / [WPS](https://www.wps.cn/)
-
-* [todesk](https://dl.todesk.com/windows/ToDesk_Lite.exe)
-
-* [VM-win-linux](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro) / [VM-mac](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Fusion)
-
-* [VS Code](https://code.visualstudio.com/insiders/) / [VS 2022](https://visualstudio.microsoft.com/zh-hans/vs/preview/) 登陆 `github` 账号，等待配置同步
-
-* [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) 登陆 `JB` 账号，等待配置同步
 
 * [Linux WeChat](https://blog.csdn.net/Jason_Yansir/article/details/138117714)
 
@@ -483,66 +506,7 @@ DDNS 用于动态更新域名解析，使域名指向动态公网 IP
 
 <br>
 
-**frp + 内网 IPv4**
 
-<details><summary>小鸡穿透</summary>
-
-<a href="https://console.chickfrp.com/#/penManage/tunnel">管理面板</a> │
-<a href="http://help.chickfrp.com/#/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">官方文档</a> │
-固定ip，高带宽（1.25MB/s），高流量（5GB）
-
-<ol>
-<li> 下载 <code>wget https://chickfrp.com/download/frp045/linux/frp_0.45.0_linux_amd64.tar.gz</code> </li>
-<li> 解压 <code>tar -zxvf frp*.tar.gz</code> </li>
-<li> 复制 管理面板中的配置文件代码 </li>
-<li> 替换 <code>frpc.ini</code> 文件 </li>
-<li> 穿透 <code>./frpc</code> </li>
-</ol>
-
-</details>
-
-<details><summary>cpolar</summary>
-
-<a href="https://dashboard.cpolar.com/status">管理面板</a> │
-<a href="https://www.cpolar.com/docs">官方文档</a> │
-无固定ip，低带宽（128K/s），流量无限
-
-<ol>
-<li> 安装 <code>curl -L https://www.cpolar.com/static/downloads/install-release-cpolar.sh │ sudo bash</code> </li>
-<li> 查看 <code>token</code> 在管理面板</li>
-<li> 脚本 <code>vim /home/jiao/.cpolar/cpolar.yml</code> </li>
-
-    ```yaml
-    authtoken: xxxxxxxxxxxxxxxx
-    tunnels:
-        a:         
-            addr: 80        
-            proto: http     
-        b:             
-            addr: 3001
-            proto: http
-    ```
-
-<li> 穿透 <code>sudo cpolar start-all -config /home/jiao/.cpolar/cpolar.yml</code> </li>
-</ol>
-
-</details>
-
-<details><summary>花生壳</summary>
-
-<a href="https://console.hsk.oray.com/forward">管理面板</a> │
-<a href="https://service.oray.com/question/11630.html">官方文档</a> │
-两个固定ip
-
-<ol>
-<li> 安装 <code>dpkg -i phddns-5.0.0-amd64.deb</code> </li>
-<li> 运行 <code>phddns start</code> </li>
-<li> 查看 <code>phddns status</code> </li>
-<li> 登录 <code>sn码</code> + <code>admin</code> 登录管理面板</li>
-<li> 穿透 管理面板添加映射 </li>
-</ol>
-
-</details>
 
 
 ### storage
