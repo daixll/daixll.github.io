@@ -408,9 +408,9 @@ PrimoCache
 
 ### 挂载磁盘
 
-[挂载 SMB](../cs/os/quick_linux.md#挂载网络磁盘)
+[挂载 SMB](../cs/os/quick_linux.md)
 
-[安装 docker](./docker.md#安装-docker)
+[安装 docker](./docker.md)
 
 <br>
 
