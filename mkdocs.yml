@@ -2,10 +2,7 @@
 nav:
   - JIAO:
     - About:            index.md
-    - Work:             src/about/work.md
-    - Project:          src/about/project.md
-    - Education:        src/about/education.md
-    - Honor:            src/about/honor.md
+    - 我这一生如履薄冰:    src/about/honor.md
   - 🪂 Algorithm:
     - Pre:              src/algorithm/pre.md
     - CSP:              src/algorithm/really/csp.md
