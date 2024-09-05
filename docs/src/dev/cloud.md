@@ -160,151 +160,11 @@
 
 <br>
 
-### WSL2 安装
-
-<br>
-
-### WSL2 网络
-
-<br>
-
-### WSL2 挂载
-
-
-<br>
-
----
-
-## gateway
-
-### ImmortalWrt
-
-`vim /etc/config/network`
-
-<br>
-
-### HomeProxy
-
-
-<br>
-
-### OpenVPN
-
-
-<br>
-
----
-
-## idc
-
-```
-├── C:/
-│   
-├── D:/
-│   │
-│   ├── daixll.github.io/
-│   ├── AC/
-│   ├── STL/
-│   ├── ...
-│   │
-│   ├── work/
-│   └── t/
-│
-└── E:/
-    ├── AV/
-    ├── ☁️ WQF/
-    │
-    └── ☁️ DATA/
-        ├── conf
-        ├── down        
-        ├── 2024
-        ├── 辉煌迎来虚伪的看客，黄昏见证真正的信徒
-        ├── 纸上得来终得浅，绝知此事要躬行
-        ├── 认清生活真相之后依然热爱生活 
-        │   ├── 公司 A
-        │   └── ...
-        │
-        └── 往事堪堪亦澜澜，前路漫漫亦灿灿
-            ├── 2023
-            ├── 2022
-            └── ...
-```
-
-
-* `C / SSD / 1T`
-
-    * 800G 做缓存
-
-* `D / SSD / 512G`
-
-    * 全盘共享, 只放项目，同步 github / gitee
-
-    * `D:/work` 工作上的项目
-
-* `E / HDD / 8T`
-
-    * 全盘共享，只放文件，静态依赖，配置文件信息等
-
-    * `E:/AV` 娱乐
-
-    * `E:/WQF` wxqq 文件，手动备份
-
-    * `E:/DATA` 多云盘介入，自动同步备份
-
-### SSD Cache
-
-PrimoCache
-
-### SAMBA
-
-<br>
-
----
-
-
-## run
-
-### 挂载磁盘
-
-[挂载 SMB](../cs/os/quick_linux.md#_6)
-
-[安装 docker]()
-
-### 网页服务
-
-[nginx for docker]()
-
-### 云盘
-
-
-### 影音
-
-
-<br>
-
----
-
-
-
-
-
-## ---
-
-
-
-## *Windows 11 Pro*
-
-
-
-* [Linux WeChat](https://blog.csdn.net/Jason_Yansir/article/details/138117714)
-
-<br>
-
 ### WSL2
 
 **安装**
 
-* 自动安装：[官方文档](https://learnmicrosoft.com/zh-cn/windows/wsl/install)
+* 自动安装 [官方文档](https://learnmicrosoft.com/zh-cn/windows/wsl/install)
     ```sh
     wsl --update                    # powershell
     wsl --install -d Ubuntu-22.04   # 下载安装 Ubuntu 22.04
@@ -337,11 +197,14 @@ PrimoCache
 
 <br>
 
-**挂载 Windows 网络磁盘** [非官文档](https://www.public-health.uiowa.edu/it/support/kb48568/)
+**挂载网络磁盘** [非官文档](https://www.public-health.uiowa.edu/it/support/kb48568/)
 
 1. 下载软件 `sudo apt install cifs-utils`
-2. 在 `/mnt` 中创建挂载目录 `mkdir /mnt/z`
-3. 挂载 `mount -t drvfs Z: /mnt/z`
+
+2. 创建挂载目录 `sudo mkdir /mnt/z`
+
+3. 挂载 `sudo mount -t drvfs Z: /mnt/z`
+
 4. 持久化 `vim /etc/fstab`
     ```sh
     Z: /mnt/z drvfs defaults 0 0
@@ -449,137 +312,122 @@ PrimoCache
 8. 打断点 -> `运行` -> `启动调试`
     `f11` 单步运行，如果单步进入库函数，可以通过 `shift + f11` 跳出，相当于 `finsh` 命令
 
-<br>
-
----
-
-## *Ubuntu Desktop 22.04.4 LTS*
-
-* 
-
 
 <br>
 
 ---
 
-## *Windows Server 2022*
+## gateway
+
+### ImmortalWrt
+
+`vim /etc/config/network`
+
+<br>
+
+### HomeProxy
+
+
+<br>
+
+### OpenVPN
+
 
 <br>
 
 ---
 
-## *Ubuntu Server 22.04.4 LTS*
+## idc
 
-<br>
-
-### network
-
-**DDNS + 公网 IPv4**
-
-路由器上配置即可，最好的方式
-
-
-**DDNS + 公网 IPv6**
-
-DDNS 用于动态更新域名解析，使域名指向动态公网 IP
-
-一般而言，每台设备都有公网 IPv6，所以直接在设备上配置 DDNS 即可
-
-在设备上运行 DDNS 客户端，使域名指向该设备的公网IPv6
-
-<details><summary>noip</summary>
-
-<a href="https://my.noip.com/dynamic-dns">管理面板</a> │
-<a href="https://www.noip.com/support/knowledgebase/install-linux-3-x-dynamic-update-client-duc/">官方文档</a> │ 
-<a href="https://www.noip.com/support/knowledgebase/automatic-ipv6-updates-linux-duc/">Linux IPv6 使用方法</a>
-
-<ol>
-
-<li> <a href="https://my.noip.com/dynamic-dns/duc">下载</a> </li>
-<li> 解压 <code>tar -zxvf noip*.tar.gz</code> </li>
-<li> 安装 <code>cd binaries && apt install ./noip-duc_3.0.0-beta.5_amd64.deb</code> </li>
-<li> 运行 noip-duc --username 账号 --password 密码 -g 域名 --ip-method http://ip1.dynupdate6.no-ip.com/<code></code> </li>
-
-</ol>
-
-</details>
-
-<br>
-
-
-
-
-### storage
-
-**挂载 Windows 网络磁盘**
-
-1. 下载软件 `sudo apt install cifs-utils`
-2. 在 `/mnt` 中创建挂载目录 `mkdir /mnt/z`
-3. 挂载
-
-**SAMBA**
-
-1. 下载 `sudo apt install samba`
-2. 配置分享文件夹 `chmod 777 /home/user/Public/ -R`
-3. 添加samba用户 `sudo smbpasswd -a 用户名`
-4. 提示输入密码 x2
-5. 配置samba `sudo vim /etc/samba/smb.conf`
-    ```sh
-    [share name]            # 共享名
-        path = /home/user/Public/# 共享路径
-        writable = yes      # 可写
-    ```
-6. 重启samba `sudo samba restart`
-    * 可能还需要重启一下电脑
-7. 开启端口 `sudo ufw allow 445`
-
-### web
-
-`docker` + `nginx` 搭建静态网站服务
-
-配置修改并不多，只需要修改一下 `default.conf` 文件即可
-
-```conf
-server {
-    listen       80;            # IPv4 监听端口
-    listen  [::]:80;            # IPv6 监听端口
-    server_name  localhost;     # 域名
-
-    location / {                # 网站根目录
-        root   /usr/share/nginx/html;
-        index  index.html index.htm;
-    }
-
-    location /doc {             # 文档根目录
-        charset utf-8;          # 文档编码
-        alias   /usr/share/nginx/doc;
-        autoindex on;           # 自动索引
-        autoindex_localtime on;
-        autoindex_exact_size off;
-    }
-}
 ```
-
-写一个启动脚本 `NginxRun.sh`
-
-```sh
-docker run \
--p 2023:80 \
---name nginx \
--v /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime \
--v /home/jiao/Public/daixll.github.io:/usr/share/nginx/html \
--v /home/jiao/Public/doc:/usr/share/nginx/doc \
--v /home/jiao/Documents/NGINX/:/etc/nginx/conf.d \
---restart unless-stopped \
--d nginx:latest
+├── C:/
+│   
+├── D:/
+│   │
+│   ├── daixll.github.io/
+│   ├── AC/
+│   ├── STL/
+│   ├── ...
+│   │
+│   ├── work/
+│   └── t/
+│
+└── E:/
+    ├── AV/
+    ├── ☁️ WQF/
+    │
+    └── ☁️ DATA/
+        ├── conf
+        ├── down        
+        ├── 2024
+        ├── 辉煌迎来虚伪的看客，黄昏见证真正的信徒
+        ├── 纸上得来终得浅，绝知此事要躬行
+        ├── 认清生活真相之后依然热爱生活 
+        │   ├── 公司 A
+        │   └── ...
+        │
+        └── 往事堪堪亦澜澜，前路漫漫亦灿灿
+            ├── 2023
+            ├── 2022
+            └── ...
 ```
 
 
-### av
+* `C / SSD / 1T`
 
-`docker` + `emby` 搭建影音服务
+    * 800G 做缓存
 
-写一个启动脚本 `EmbyRun.sh`
+* `D / SSD / 512G`
+
+    * 全盘共享, 只放项目，同步 github / gitee
+
+    * `D:/work` 工作上的项目
+
+* `E / HDD / 8T`
+
+    * 全盘共享，只放文件，静态依赖，配置文件信息等
+
+    * `E:/AV` 娱乐
+
+    * `E:/WQF` wxqq 文件，手动备份
+
+    * `E:/DATA` 多云盘介入，自动同步备份
+
+### SSD Cache
+
+PrimoCache
+
+### SAMBA
+
+<br>
+
+---
+
+
+## run
+
+### 挂载磁盘
+
+[挂载 SMB](../cs/os/quick_linux.md#挂载网络磁盘)
+
+[安装 docker](./docker.md#安装-docker)
+
+<br>
+
+### 网页服务
+
+[nginx for docker](./nginx.md#for-docker)
+
+<br>
+
+### 云盘
+
+
+<br>
+
+### 影音
+
+`docker` + `emby` 搭建影音服务，启动脚本 `EmbyRun.sh`
 
 ```sh
 docker run \
@@ -590,19 +438,59 @@ docker run \
 -d emby/embyserver:latest
 ```
 
-### remoteDesktop
-
-直接使用微软的远程桌面协议（RDP）
-
-1. 下载 `sudo apt install xrdp`
-2. 打开端口 `sudo ufw allow 3389`
-
+<br>
 
 ### code-server
 
 1. 下载 [地址](https://github.com/coder/code-server/releases)
+
 2. 安装 `sudo apt install ./code-server*.deb`
+
 3. 启动 `export PASSWORD="密码" && ./code-server* --host 0.0.0.0 --port 端口 &`
 
-> * 此方法非常不安全，建议使用 `docker` 部署
-> * `--host` 后面的 IP地址，只有是 `0.0.0.0` 时，外网才可访问到。
+    * IP 地址，只有是 `0.0.0.0` 时，对外才可访问
+
+<br>
+
+---
+
+
+
+## Ubuntu 22.04
+
+* [Linux WeChat](https://blog.csdn.net/Jason_Yansir/article/details/138117714)
+
+### SMB 对外共享
+
+1. 下载 `sudo apt install samba`
+
+2. 配置分享文件夹 `chmod 777 /home/user/Public/ -R`
+
+3. 添加samba用户 `sudo smbpasswd -a 用户名`
+
+4. 提示输入密码 x2
+
+5. 配置samba `sudo vim /etc/samba/smb.conf`
+    
+    ```sh
+    [share name]            # 共享名
+        path = /home/user/Public/# 共享路径
+        writable = yes      # 可写
+    ```
+
+6. 重启samba `sudo samba restart`
+    
+    * 可能还需要重启一下电脑
+
+7. 开启端口 `sudo ufw allow 445`
+
+
+<br>
+
+### 远程控制本机
+
+直接使用微软的远程桌面协议（RDP）
+
+1. 下载 `sudo apt install xrdp`
+
+2. 打开端口 `sudo ufw allow 3389`
