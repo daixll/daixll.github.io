@@ -40,22 +40,6 @@
 
 ---
 
-<div class="container">🏇
-    <div class="item">
-        <a href="https://codeforces.com/contests" target="_blank">Codeforces </a>
-    </div>
-    <div class="item">
-        <a href="https://atcoder.jp/contests/" target="_blank"> AtCoder </a>
-    </div>
-    <div class="item">
-        <a href="" target="_blank"></a>
-    </div>
-    <div class="item">
-        <a href="" target="_blank"></a>
-    </div>
-</div>
-
-
 <div class="container">🤖
     <div class="item">
         <a href="https://chatgpt.com/" target="_blank"> ChatGPT </a> 
@@ -64,25 +48,10 @@
         <a href="https://kimi.moonshot.cn/" target="_blank"> Kimi </a> 
     </div>
     <div class="item">
-        <a href="" target="_blank"></a> 
-    </div>
-    <div class="item">
-        <a href="" target="_blank"></a> 
-    </div>
-</div>
-
-<div class="container">🐬
-    <div class="item">
         <a href="https://github.com/daixll" target="_blank"> Github </a> 
     </div>
     <div class="item">
-        <a href="https://stackoverflow.com/users/23513870/jiao" target="_blank"> stackoverflow </a> 
-    </div>
-    <div class="item">
-        <a href=" " target="_blank">    </a> 
-    </div>
-    <div class="item">
-        <a href=" " target="_blank">   </a> 
+        <a href="" target="_blank"></a> 
     </div>
 </div>
 
@@ -99,22 +68,22 @@
         <a href="https://dash.cloudflare.com/" target="_blank">CLOUDFLARE</a> 
     </div>
     <div class="item">
-        <a href="https://www.kdocs.cn/latest" target="_blank"> WPS </a> 
+        <a href="https://www.kdocs.cn/latest" target="_blank"> 金山云盘 </a> 
     </div>
 </div>
 
 <div class="container">🖥️
     <div class="item">
-        <a href="http://10.0.0.1" target="_blank"> 路由 </a> 
+        <a href="http://10.0.0.1" target="_blank"> 路由 </a> / <a href="http://10.0.0.70" target="_blank"> 网关 </a> 
     </div>
     <div class="item">
-        <a href="http://10.0.0.70" target="_blank"> 网关 </a> 
+        <a href="" target="_blank"> 终端 </a> 
     </div>
     <div class="item">
-        <a href="" target="_blank"> 云盘 </a> 
+        <a href="" target="_blank"> 影音 </a> / <a href="" target="_blank"> 测速 </a> 
     </div>
     <div class="item">
-        <a href="" target="_blank"> 影音 </a>
+        <a href="" target="_blank"> 本地云盘 </a> 
     </div>
 </div>
 
@@ -126,10 +95,10 @@
         <a href="https://speed.cloudflare.com/" target="_blank">Cloudflare 测速</a> 
     </div>
     <div class="item">
-        <a href="" target="_blank">本站测速</a> 
+        <a href="https://fast.com/" target="_blank">奈飞测速</a> 
     </div>
     <div class="item">
-        <a href="" target="_blank"></a> 
+        <a href="" target="_blank">  </a> 
     </div>
 </div>
 
