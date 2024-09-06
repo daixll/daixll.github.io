@@ -84,10 +84,10 @@ nav:
         - TCP:          src/cs/net/tcp.md
         - UDP:          src/cs/net/udp.md
       - Network:
-        - PPPoE:        src/cs/net/pppoe.md
-        - IP:           src/cs/net/ip.md
+        - IPv4:         src/cs/net/ipv4.md
       - DataLink:
         - Ethernet:     src/cs/net/ethernet.md
+        - PPPoE:        src/cs/net/pppoe.md
         - MTU:          src/cs/net/mtu.md
     - 数据结构:
       - 线性表:         src/cs/dataStruct/list.md

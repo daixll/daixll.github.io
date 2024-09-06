@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../ip/">
+        <link rel="prev" href="../ipv4/">
       
       
-        <link rel="next" href="../mtu/">
+        <link rel="next" href="../pppoe/">
       
       
       <link rel="icon" href="../../../../assets/head.png">
@@ -2591,32 +2591,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../pppoe/" class="md-nav__link">
+      <a href="../ipv4/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    PPPoE
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ip/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    IP
+    IPv4
   </span>
   
 
@@ -2745,9 +2724,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#ethernet-ii-framing" class="md-nav__link">
     <span class="md-ellipsis">
-      以太网帧
+      Ethernet II framing
     </span>
   </a>
   
@@ -2757,6 +2736,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pppoe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PPPoE
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -3288,9 +3288,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#ethernet-ii-framing" class="md-nav__link">
     <span class="md-ellipsis">
-      以太网帧
+      Ethernet II framing
     </span>
   </a>
   
@@ -3318,30 +3318,39 @@
 <h2 id="_1">是什么</h2>
 <ul>
 <li>
-<p>以太网协议（标准 802.3），位于 OSI 模型的数据链路层（第 2 层）和物理层（第 1 层）</p>
+<p><strong>以太网协议（IEEE 802.3）</strong></p>
 </li>
 <li>
-<p>在 OSI <strong>数据链路层</strong> 中，定义了帧的格式、MAC 地址等，以及如何在 <strong>同一网络</strong> 中传输数据等</p>
+<p>位于 OSI 模型的数据链路层（第 2 层）和物理层（第 1 层）</p>
+</li>
+<li>
+<p>在 OSI <strong>数据链路层</strong> 中，定义了帧的基本结构、MAC 地址等，以及如何在 <strong>同一网络</strong> 中传输数据等</p>
 </li>
 <li>
 <p>在 OSI <strong>物理层</strong> 中，定义了传输介质和接口标准，包括以太网线缆的类型和传输速率</p>
 </li>
 <li>
-<p>在交换机，网卡上使用</p>
+<p>常见于交换机，网卡</p>
 </li>
 </ul>
 <h2 id="_2">不是什么</h2>
 <ul>
 <li>
-<p><strong>不是</strong> Wi-Fi（基于 802.11），其帧格式完全不同</p>
+<p>不是 <strong>Ethernet II framing</strong>，这是一个具体帧格式，<strong>IEEE 802.3</strong> 的具体实现</p>
 </li>
 <li>
-<p><strong>不是</strong> 互联网协议（IP），其完全根据目标 MAC 地址将数据帧转发到正确的端口</p>
+<p>不是 <strong>Wi-Fi（IEEE 802.11）</strong></p>
+<blockquote>
+<p>值得一提，IEEE 802.11 规范了无线局域网的具体帧格式，这与 IEEE 802.3 不同</p>
+</blockquote>
+</li>
+<li>
+<p>不是 <strong>互联网协议（IP）</strong></p>
 </li>
 </ul>
 <p><br></p>
 <hr />
-<h2 id="_3">以太网帧</h2>
+<h2 id="ethernet-ii-framing">Ethernet II framing</h2>
 <p>参考：<a href="https://en.wikipedia.org/wiki/Ethernet_frame">以太网帧</a></p>
 <p><center></p>
 <table>
@@ -3386,7 +3395,7 @@
 <li>
 <p>由于上层协议众多，所以在处理数据的时候必须设置该字段，标识数据交付哪个协议处理</p>
 <blockquote>
-<p>字段为 <code>0x0800</code> 时，将数据交付给 <strong>网络层的 <a href="../ip/">IP</a></strong> 协议</p>
+<p>字段为 <code>0x0800</code> 时，将数据交付给 <strong>网络层的 <a href="../ipv4/">IP</a></strong> 协议</p>
 </blockquote>
 </li>
 <li>

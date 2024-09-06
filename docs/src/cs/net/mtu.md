@@ -8,7 +8,7 @@
 
 * [cloudflare：什么是 MTU](https://www.cloudflare.com/zh-cn/learning/network-layer/what-is-mtu/)
 
-> MTU 定义并不唯一，我个人倾向于 **IP MTU**，即 [以太网帧](./ethernet.md/#_3) 中的有效载荷
+> MTU 定义并不唯一，我个人倾向于 **IP MTU**，即 [以太网帧](./ethernet.md#ethernet-ii-framing) 中的有效载荷
 
 > 下文所有的 MTU == **IP MTU**，单位均为 byte（8 bit）
 
