@@ -15,6 +15,23 @@
 
 ---
 
+<div class="container">CQU
+    <div class="item">
+        <a href="https://login.cqu.edu.cn/" target="_blank"> 上网 </a> 
+    </div>
+    <div class="item">
+        <a href="https://my.cqu.edu.cn/workspace/home" target="_blank"> 教务 </a> 
+    </div>
+    <div class="item">
+        <a href="" target="_blank"> </a> 
+    </div>
+    <div class="item">
+        <a href="" target="_blank"> </a> 
+    </div>
+</div>
+
+---
+
 <div class="container">📧
     <div class="item">
         <a href="https://outlook.live.com/mail/0/" target="_blank"> dxlcq@outlook.com </a> 
