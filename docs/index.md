@@ -37,7 +37,7 @@
         <a href="https://outlook.live.com/mail/0/" target="_blank"> dxlcq@outlook.com </a> 
     </div>
     <div class="item">
-        <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank"> dxlcqy@gmail.com </a> 
+        <a href="https://mail.cqu.edu.cn/" target="_blank"> E2021244@stu.cqu.edu.cn</a> 
     </div>
 </div>
 
@@ -46,7 +46,7 @@
         <a href="https://wx.mail.qq.com/" target="_blank"> dxl.cq@qq.com </a> 
     </div>
     <div class="item">
-        <a href="" target="_blank"></a> 
+        <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank"> dxlcqy@gmail.com </a> 
     </div>
 </div>
 
