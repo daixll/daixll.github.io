@@ -332,6 +332,7 @@
 
 ### OpenVPN
 
+[openvpn 网络速率优化](http://www.xixicool.com/870.html)
 
 <br>
 

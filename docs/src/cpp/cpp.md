@@ -302,18 +302,94 @@ int main(){
 }
 ```
 
-
 <br>
 
 ### 继承
 
 **基类**
 
+```cpp
+class A{
+public:
+    void pubShow(){
+        std::cout << "A_pub\n";
+    }
+private:
+    void priShow(){
+        std::cout << "A_pri\n";
+    }
+protected:
+    void proShow(){
+        std::cout << "A_pro\n";
+    }
+};
+```
+
+<br>
+
 **派生**
+
+<center>
+
+| 继承方式 | public | protected | private |
+|:-:|:-:|:-:|:-:|
+| public 继承（内）    | 🟢 | 🟢 |   |
+| public 继承（外）    | 🟢 |   |   |
+| protected 继承（内） | 🟢 | 🟢 |   |
+| protected 继承（外） |  |   |   |
+| private 继承（内）   | 🟢 | 🟢 |   |
+| private 继承（外）   |  |   |   |
+
+
+</center>
 
 <br>
 
 ### 多态
+
+```cpp
+#include <iostream>
+
+class A{
+public:
+    virtual void pubShow(){
+        std::cout << "A_pub\n";
+    }
+private:
+    void priShow(){
+        std::cout << "A_pri\n";
+    }
+protected:
+    void proShow(){
+        std::cout << "A_pro\n";
+    }
+};
+
+class B: public A{
+public:
+    void pubShow(){
+        std::cout << "B_pub\n";
+    }
+};
+
+class C: public A{
+public:
+    void pubShow(){
+        std::cout << "C_pub\n";
+    }
+};
+
+int main(){
+    A* a = new B();
+    a->pubShow();
+
+    delete a;
+    a = new C();
+    a->pubShow();
+
+    return 0;
+}
+```
 
 <br>
 
