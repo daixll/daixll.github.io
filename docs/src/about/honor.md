@@ -517,19 +517,20 @@
 ### 重庆大学
 
 * 时间: 2024.9.9 - 2025.6.28
-* 学历：本科
-* 专业：智能网联汽车（国家卓越工程师学院）
+* 学历：本科四年级
+* 专业：智能网联汽车 - [国家（重庆）卓越工程师学院](https://eie.cqu.edu.cn/)
+* [修读课程及我的本科毕业论文](https://github.com/daixll/EIE)
 
 ### 重庆科技大学
 
 * 时间：2023.9.1 - 2025.6.28
-* 学历：本科
+* 学历：全日制本科
 * 专业：计算机科学与技术
-* [学信网查询](https://www.chsi.com.cn/xlcx/bgcx.jsp)：`AK7J41XHYJLJUNY1`
+* `AK7J41XHYJLJUNY1` [学信网查询](https://www.chsi.com.cn/xlcx/bgcx.jsp)
 
 ### 重庆工业职业技术大学
 
 * 时间：2020.9.24 - 2023.6.29
-* 学历：专科
+* 学历：全日制专科
 * 专业：计算机网络技术
-* [学信网查询](https://www.chsi.com.cn/xlcx/bgcx.jsp): `AJMQ3S1HRKAJ5Y4Z`
+* `AJMQ3S1HRKAJ5Y4Z` [学信网查询](https://www.chsi.com.cn/xlcx/bgcx.jsp)
