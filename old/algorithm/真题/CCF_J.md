@@ -879,71 +879,18 @@ int main(){
 
 # 2016
 
-<details><summary><a href="https://www.acwing.com/problem/content/467/" target="_blank">AcWing 465. 买铅笔</a> code</summary>
-
-```cpp
-#include <iostream>
-using namespace std;
-
-int n;
-
-int main(){
-    cin>>n;
-    int ans = 0x3f3f3f3f;
-    for(int i=1; i<=3; i++){
-        int a, b; cin>>a>>b;
-        ans = min(ans,  b * ((n+a-1)/a) );
-    }
-    cout<<ans;
-    return 0;
-}
-```
-</details>
-
 <details><summary><a href="https://www.acwing.com/problem/content/468/" target="_blank">AcWing 466. 回文日期</a> code</summary><br>
 
 **大意**
 
-给定一个起始日期和一个终止日期，求这两个日期之间有多少个回文日期。
-即满足：
-* `YYYYMMDD` 是合法的日期
-* `YYYYMMDD` 是回文的
+
 
 **思路**
 
-对于回文类型的题目，我们首先考虑列举出所有的回文，然后再判断是否合法。
-而不是列举出所有的合法日期，然后再判断是否回文。
 
-1. 通过 `YYYY` 直接生成 `YYYYMMDD` 的回文
-2. 判断 `YYYYMMDD` 是否合法
 
 ```cpp
-#include <iostream>
-using namespace std;
 
-int a, b, ans;
-
-int months[13]={0,31,28,31,30,31,30,31,31,30,31,30,31};
-bool ck(int y, int m, int d){
-    if((y*1e4+m*1e2+d)<a || (y*1e4+m*1e2+d)>b) return 0;
-    
-    months[2]=28;
-    if(y%400==0 || y%4==0 && y%100!=0) months[2]=29;
-    if(m<1 || m>12) return 0;
-    if(d<1 || d>months[m]) return 0;
-    return 1;
-}
-
-int main(){
-    cin>>a>>b;
-    
-    for(int i=a/10000; i<=b/10000; i++)
-        if( ck(i, (i%10)*10+(i/10%10), (i/100%10)*10+(i/1000)) ) ans++;
-
-    cout<<ans;
-    
-    return 0;
-}
 ```
 </details>
 
@@ -952,68 +899,14 @@ int main(){
 
 **大意**
 
-给定 $n$ 条信息，每条信息：
 
-$t, k, x_1, x_2, ... , x_k$ 
-
-$t$ 时间，$k$ 个人，第 $i$ 个人的国籍为 $x_i$。
-
-对于每条信息，输出在 $(vt, t+86400]$ 时间内，有多少种国籍。
 
 **思路**
 
-1. 将所有的信息保存下来，按照时间排序（也就是题目给的顺序）
 
-2. 对于每条信息，该条船上的人的国籍肯定需要考虑
-
-3. 对于每条信息，回望过去，是否有船超过了时间范围
-    * 没有超过，那么就不用考虑
-    * 超过了，那么就需要将这条船上的人干掉
 
 ```cpp
-#define pb push_back
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <map>
-using namespace std;
 
-const int N = 1e5+10;
-
-vector<int> a[N];   // 每条船上人的国籍
-int T[N];           // 每条船到达的时间
-int n;
-map<int, int> ans;
-
-int main(){
-    int n; cin>>n;
-    for(int i=1; i<=n; i++){
-        int m;
-        cin>>T[i]>>m;
-        for(int j=1; j<=m; j++){
-            int x; cin>>x;
-            a[i].pb(x);
-        }
-    }
-
-    queue<int> q;               // 每条信息
-    for(int i=1; i<=n; i++){    // 遍历每条信息
-        q.push(i);              // 对于第 i 条船，肯定要考虑
-        for(auto &j: a[i]) ans[j]++;    // 国籍数量
-
-        // 如果队头的船，不在时间范围内内，干掉
-        while( T[i] - T[q.front()] >= 86400){
-            for(auto &k: a[q.front()]){
-                ans[k]--;
-                if(ans[k] == 0) ans.erase(k);
-            }
-            q.pop();
-        }
-        cout<<ans.size()<<"\n";
-    }
-
-    return 0;
-}
 ```
 </details>
 
