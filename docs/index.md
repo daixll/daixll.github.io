@@ -11,22 +11,17 @@
 
 # 👨🏽‍💻
 
+* 我目前在重庆大学进行为期一年的交流学习，同时 **寻求 C/C++ 的工作机会 [我的简历]()**
+
+* 参加过 XCPC 省赛（尽管破铜烂银），以及蓝桥杯等算法竞赛的国二&国一
+
+* 曾在电信实习 3 个月，主要是做音视频的开发（WebRTC 与 Go）
+
+* 喜欢玩羽毛球与软路由
+
 ---
 
-<div class="container">CQU
-    <div class="item">
-        <a href="https://login.cqu.edu.cn/" target="_blank"> 上网 </a> 
-    </div>
-    <div class="item">
-        <a href="https://my.cqu.edu.cn/workspace/home" target="_blank"> 教务 </a> 
-    </div>
-    <div class="item">
-        <a href="" target="_blank"> </a> 
-    </div>
-    <div class="item">
-        <a href="" target="_blank"> </a> 
-    </div>
-</div>
+[投递记录](https://www.kdocs.cn/l/cowEefopxHH3) / [PTA作业](https://pintia.cn/problem-sets/active) / 
 
 ---
 
@@ -102,15 +97,16 @@
         <a href="https://test.nju.edu.cn/" target="_blank">南大测速</a> 
     </div>
     <div class="item">
-        <a href="https://speed.cloudflare.com/" target="_blank">Cloudflare 测速</a> 
+        <a href="https://fast.com/" target="_blank">网飞测速</a> 
     </div>
     <div class="item">
-        <a href="https://fast.com/" target="_blank">Netflix 测速</a> 
+        <a href="https://www.itdog.cn/localhost/" target="_blank"> 本地网络 </a> 
     </div>
     <div class="item">
-        <a href="" target="_blank">  </a> 
+        <a href="https://www.itdog.cn/ping/" target="_blank"> 在线 Ping </a> 
     </div>
 </div>
+
 
 ---
 
@@ -142,6 +138,23 @@
     </div>
     <div class="item">
         <a href="https://web.telegram.org/a/" target="_blank"> Telegram </a> 
+    </div>
+</div>
+
+---
+
+<div class="container">🔭
+    <div class="item">
+        <a href="https://www.sci-hub.pub/" target="_blank"> Sci-Hub </a> 
+    </div>
+    <div class="item">
+        <a href="https://www.library.hb.cn/resource/szzy/" target="_blank"> 免费知网 </a> 
+    </div>
+    <div class="item">
+        <a href="https://scholar.google.com/" target="_blank"> 谷歌学术 </a> 
+    </div>
+    <div class="item">
+        <a href="https://xueshu.baidu.com/" target="_blank"> 百度学术 </a> 
     </div>
 </div>
 

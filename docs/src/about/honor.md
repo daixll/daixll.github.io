@@ -516,6 +516,7 @@
 
 ### 重庆大学
 
+* [官网](https://www.cqu.edu.cn/) / [教务](https://my.cqu.edu.cn/workspace/home)
 * 时间: 2024.9.9 - 2025.6.28
 * 学历：本科四年级
 * 专业：智能网联汽车 - [国家（重庆）卓越工程师学院](https://eie.cqu.edu.cn/)
@@ -523,6 +524,7 @@
 
 ### 重庆科技大学
 
+* [官网](https://www.cqust.edu.cn/) / [学生手册](https://flbook.com.cn/c/obIkcHiKC6)
 * 时间：2023.9.1 - 2025.6.28
 * 学历：全日制本科
 * 专业：计算机科学与技术
