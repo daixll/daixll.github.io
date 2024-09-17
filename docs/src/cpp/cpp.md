@@ -1,5 +1,7 @@
 ## 参考
 
+* [C/C++ 语言参考](https://en.cppreference.com/w/)
+
 * [欢迎回到 C++ 现代 C++](https://learn.microsoft.com/zh-cn/cpp/cpp/welcome-back-to-cpp-modern-cpp?view=msvc-170)
 
 * [ILE C/C++ 语言参考](https://www.ibm.com/docs/zh/i/7.5?topic=c-ile-cc-language-reference)
