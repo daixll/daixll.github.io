@@ -93,9 +93,9 @@ nav:
       - 线性表:         src/cs/dataStruct/list.md
     - 数据库: 
       - mysql速查:      src/cs/dataBase/quick_mysql.md
-    - 设计模式:         src/cs/designPattern.md
+    - 设计模式:         src/cs/designPattern/designPattern.md
     - 系统架构:         src/cs/systemArchitecture/systemArchitecture.md
-    - 工程师:           src/cs/engineer.md
+    - 工程师:           src/cs/engineer/engineer.md
   - 🔢 Math:
     - 微积分:           src/math/微积分.md
     - 概率论:           src/math/概率论.md
