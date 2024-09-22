@@ -6,15 +6,13 @@
 
 <center>
 
-| 设备 | 配置 | OS | IP | 网口 | 硬盘 |
-|:-:|:-:|:-:|:-:|:-:|:-:|
-| routing | - | TP-Link | 10.0.0.1 | 2.5G |  |
-| gateway | 2c2g | OpenWrt（V） |10.0.0.2 | 2.5G（独占） | |
-| idc | 4c8g | WinServer 2022（V） | 10.0.0.3 | 10G（独占） | 500G + 1T + 8T |
-| down | 4c8g | Win10 LTSC（V） | 10.0.0.4 | 1G | 100G |
-| run | 4c8g | ubuntu 22.04（V） | 10.0.0.5 | 1G | 60G |
-| rog | 24c64g | Win11 Pro for Workstations | 10.0.0.6 | 10G + WiFi | 2T |
-
+| 设备 | 配置 | OS | IP | 网口 |
+|:-:|:-:|:-:|:-:|:-:|
+| routing | - | TP-Link | .1 | 2.5G |
+| gateway | 2c2g | V-OpenWrt | .2 | 2.5G（独占） |
+| rog | 24c64g | Win11 Pro | .3 + .6 | 10G + WiFi |
+| sos | 4c8g | Win10 LTSC | .4 | 1G |
+| run | 4c8g | V-ub 22V | .5 | 1G |
 
 </center>
 
@@ -138,6 +136,33 @@
 
 ---
 
+## gateway
+
+### ImmortalWrt
+
+`vim /etc/config/network`
+
+<br>
+
+### HomeProxy
+
+
+<br>
+
+### OpenVPN
+
+[openvpn 网络速率优化](http://www.xixicool.com/870.html)
+
+```conf
+sndbuf 0
+rcvbuf 0
+#comp-lzo
+```
+
+<br>
+
+---
+
 ## rog
 
 ### 驱动和软件
@@ -162,15 +187,95 @@
 
 <br>
 
+### data
+
+```
+├── C:/
+│   
+├── D:/
+│   │
+│   ├── daixll.github.io/
+│   ├── AC/
+│   ├── STL/
+│   ├── ...
+│   │
+│   ├── work/
+│   └── t/
+│
+└── E:/
+    ├── AV/
+    ├── ☁️ WQF/
+    │
+    └── ☁️ DATA/
+        ├── conf
+        ├── down        
+        ├── 2024
+        ├── 辉煌迎来虚伪的看客，黄昏见证真正的信徒
+        ├── 纸上得来终得浅，绝知此事要躬行
+        ├── 认清生活真相之后依然热爱生活 
+        │   ├── 公司 A
+        │   └── ...
+        │
+        └── 往事堪堪亦澜澜，前路漫漫亦灿灿
+            ├── 2023
+            ├── 2022
+            └── ...
+```
+
+* `SSD / 512G / PCIE4.0`
+
+    * 全盘共享，只放项目，同步 github / gitee
+
+    * `D:/work` 工作上的项目
+
+* `HDD / 8T`
+
+    * 全盘共享，只放文件，配置文件信息等
+
+    * `E:/AV` 娱乐
+
+    * `E:/WQF` wxqq 文件，手动备份
+
+    * `E:/DATA` 多云盘介入，自动同步备份
+
+#### SSD Cache
+
+PrimoCache
+
+<br>
+
+#### SAMBA
+
+<br>
+
 ### WSL2
 
 **安装**
 
-* 自动安装 [官方文档](https://learnmicrosoft.com/zh-cn/windows/wsl/install)
+* 自动安装 [官方文档](https://learn.microsoft.com/en-us/windows/wsl/install) / [基本命令](https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands)
+    
+    * 启用适用于 Linux 的 Windows 子系统
+    
     ```sh
-    wsl --update                    # powershell
+    wsl --update --web-download     # 更新 WSL
+    ```
+
+    ```sh
+    wsl -l -o                       # 查看可用 Linux 发行版
+    ```
+
+    ```sh
     wsl --install -d Ubuntu-22.04   # 下载安装 Ubuntu 22.04
     ```
+
+    ```sh
+    wsl -l -v                       # 查看已安装的
+    ```
+
+    ```sh
+    wsl --unregister Ubuntu         # 删除 Ubuntu
+    ```
+    
 
 * 手动安装：[ms/WSL](https://github.com/microsoft/WSL/releases)
 
@@ -178,7 +283,7 @@
 
 **镜像网络** [官方文档](https://learn.microsoft.com/zh-cn/windows/wsl/networking#mirrored-mode-networking)
 
-1. 创建 `C:\Users\<UserName>\.wslconfig` 文件
+* 创建 `C:\Users\<UserName>\.wslconfig` 文件
     ```sh
     [wsl2]
     networkingMode=mirrored
@@ -319,94 +424,6 @@
 
 ---
 
-## gateway
-
-### ImmortalWrt
-
-`vim /etc/config/network`
-
-<br>
-
-### HomeProxy
-
-
-<br>
-
-### OpenVPN
-
-[openvpn 网络速率优化](http://www.xixicool.com/870.html)
-
-<br>
-
----
-
-## idc
-
-```
-├── C:/
-│   
-├── D:/
-│   │
-│   ├── daixll.github.io/
-│   ├── AC/
-│   ├── STL/
-│   ├── ...
-│   │
-│   ├── work/
-│   └── t/
-│
-└── E:/
-    ├── AV/
-    ├── ☁️ WQF/
-    │
-    └── ☁️ DATA/
-        ├── conf
-        ├── down        
-        ├── 2024
-        ├── 辉煌迎来虚伪的看客，黄昏见证真正的信徒
-        ├── 纸上得来终得浅，绝知此事要躬行
-        ├── 认清生活真相之后依然热爱生活 
-        │   ├── 公司 A
-        │   └── ...
-        │
-        └── 往事堪堪亦澜澜，前路漫漫亦灿灿
-            ├── 2023
-            ├── 2022
-            └── ...
-```
-
-
-* `C / SSD / 1T`
-
-    * 800G 做缓存
-
-* `D / SSD / 512G`
-
-    * 全盘共享, 只放项目，同步 github / gitee
-
-    * `D:/work` 工作上的项目
-
-* `E / HDD / 8T`
-
-    * 全盘共享，只放文件，静态依赖，配置文件信息等
-
-    * `E:/AV` 娱乐
-
-    * `E:/WQF` wxqq 文件，手动备份
-
-    * `E:/DATA` 多云盘介入，自动同步备份
-
-### SSD Cache
-
-PrimoCache
-
-### SAMBA
-
-<br>
-
----
-
-
 ## run
 
 ### 挂载磁盘
@@ -497,3 +514,7 @@ docker run \
 1. 下载 `sudo apt install xrdp`
 
 2. 打开端口 `sudo ufw allow 3389`
+
+### 远程控制他机
+
+`sudo apt install freerdp2-x11`
