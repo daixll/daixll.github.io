@@ -3362,11 +3362,13 @@ catkin_make
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/hello_ros/src
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/hello_ros/src
 catkin_create_pkg<span class="w"> </span>hello<span class="w"> </span>std_msgs<span class="w"> </span>roscpp
 <span class="nb">cd</span><span class="w"> </span>..
 catkin_make
 <span class="nb">source</span><span class="w"> </span>devel/setup.bash
+<span class="nb">cd</span><span class="w"> </span>~/hello_ros/src/hello
 </code></pre></div></td></tr></table></div>
 <ul>
 <li>创建一个 <code>hello</code> 的 ros 包，并指定依赖</li>
@@ -3488,10 +3490,10 @@ catkin_make
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>add_executable(publisher_node src/publisher_node.cpp)
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>add_executable(publisher_node publisher_node.cpp)
 target_link_libraries(publisher_node ${catkin_LIBRARIES})
 
-add_executable(subscriber_node src/subscriber_node.cpp)
+add_executable(subscriber_node subscriber_node.cpp)
 target_link_libraries(subscriber_node ${catkin_LIBRARIES})
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>

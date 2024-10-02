@@ -9,10 +9,11 @@
 | 设备 | 配置 | OS | IP | 网口 |
 |:-:|:-:|:-:|:-:|:-:|
 | routing | - | TP-Link | .1 | 2.5G |
-| gateway | 2c2g | V-OpenWrt | .2 | 2.5G（独占） |
-| rog | 24c64g | Win11 Pro | .3 + .6 | 10G + WiFi |
+| gateway | 2c2g | V-OpenWrt | .2 | 2.5G |
+| rog | 24c64g | Win11 Pro | .3 + .7 | 2.5G + WiFi |
 | sos | 4c8g | Win10 LTSC | .4 | 1G |
-| run | 4c8g | V-ub 22V | .5 | 1G |
+| idc | 4c8g | V-Win10 Server | .5 | 2.5G |
+| run | 4c8g | V-ub 22V | .6 | 2.5G |
 
 </center>
 
@@ -146,18 +147,23 @@
 
 ### HomeProxy
 
+[homeproxy 教程](https://www.youtube.com/watch?v=nNRpbn9M2Lc&t=703s)
+
+
 
 <br>
 
 ### OpenVPN
 
+
+[openwrt ovpn教程](https://www.youtube.com/watch?v=yb-g4ZaNm9Y)
+
 [openvpn 网络速率优化](http://www.xixicool.com/870.html)
 
-```conf
-sndbuf 0
-rcvbuf 0
-#comp-lzo
-```
+实际上删除 openvpn comp_lzo 即可
+
+防火墙设置：
+    forwarded ipv4 来自所有区域，ip 10.0.1.0/24 到 lan，静态重写到源 ip 10.0.0.2
 
 <br>
 
@@ -185,62 +191,9 @@ rcvbuf 0
 
 ### Hyper-V
 
-<br>
+硬盘直通
 
-### data
 
-```
-├── C:/
-│   
-├── D:/
-│   │
-│   ├── daixll.github.io/
-│   ├── AC/
-│   ├── STL/
-│   ├── ...
-│   │
-│   ├── work/
-│   └── t/
-│
-└── E:/
-    ├── AV/
-    ├── ☁️ WQF/
-    │
-    └── ☁️ DATA/
-        ├── conf
-        ├── down        
-        ├── 2024
-        ├── 辉煌迎来虚伪的看客，黄昏见证真正的信徒
-        ├── 纸上得来终得浅，绝知此事要躬行
-        ├── 认清生活真相之后依然热爱生活 
-        │   ├── 公司 A
-        │   └── ...
-        │
-        └── 往事堪堪亦澜澜，前路漫漫亦灿灿
-            ├── 2023
-            ├── 2022
-            └── ...
-```
-
-* `SSD / 512G / PCIE4.0`
-
-    * 全盘共享，只放项目，同步 github / gitee
-
-    * `D:/work` 工作上的项目
-
-* `HDD / 8T`
-
-    * 全盘共享，只放文件，配置文件信息等
-
-    * `E:/AV` 娱乐
-
-    * `E:/WQF` wxqq 文件，手动备份
-
-    * `E:/DATA` 多云盘介入，自动同步备份
-
-#### SSD Cache
-
-PrimoCache
 
 <br>
 
@@ -419,6 +372,72 @@ PrimoCache
 8. 打断点 -> `运行` -> `启动调试`
     `f11` 单步运行，如果单步进入库函数，可以通过 `shift + f11` 跳出，相当于 `finsh` 命令
 
+
+<br>
+
+---
+
+
+## idc
+
+[tfm](https://github.com/prasathmani/tinyfilemanager)
+
+### data
+
+```
+├── C:/
+│   
+├── D:/
+│   │
+│   ├── daixll.github.io/
+│   ├── AC/
+│   ├── STL/
+│   ├── ...
+│   │
+│   ├── work/
+│   └── t/
+│
+└── E:/
+    ├── AV/
+    ├── ☁️ WQF/
+    │
+    └── ☁️ DATA/
+        ├── conf
+        ├── down        
+        ├── 2024
+        ├── 辉煌迎来虚伪的看客，黄昏见证真正的信徒
+        ├── 纸上得来终得浅，绝知此事要躬行
+        ├── 认清生活真相之后依然热爱生活 
+        │   ├── 公司 A
+        │   └── ...
+        │
+        └── 往事堪堪亦澜澜，前路漫漫亦灿灿
+            ├── 2023
+            ├── 2022
+            └── ...
+```
+
+* `SSD / 512G / PCIE4.0`
+
+    * 全盘共享，只放项目，同步 github / gitee
+
+    * `D:/work` 工作上的项目
+
+* `HDD / 8T`
+
+    * 全盘共享，只放文件，配置文件信息等
+
+    * `E:/AV` 娱乐
+
+    * `E:/WQF` wxqq 文件，手动备份
+
+    * `E:/DATA` 多云盘介入，自动同步备份
+
+#### SSD Cache
+
+PrimoCache
+
+<br>
 
 <br>
 
