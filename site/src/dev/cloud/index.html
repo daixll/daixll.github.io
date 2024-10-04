@@ -1614,15 +1614,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#smb" class="md-nav__link">
-    <span class="md-ellipsis">
-      SMB 对外共享
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       远程控制本机
@@ -4000,15 +3991,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#smb" class="md-nav__link">
-    <span class="md-ellipsis">
-      SMB 对外共享
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       远程控制本机
@@ -4686,39 +4668,6 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</s
 <ul>
 <li><a href="https://blog.csdn.net/Jason_Yansir/article/details/138117714">Linux WeChat</a></li>
 </ul>
-<h3 id="smb">SMB 对外共享</h3>
-<ol>
-<li>
-<p>下载 <code>sudo apt install samba</code></p>
-</li>
-<li>
-<p>配置分享文件夹 <code>chmod 777 /home/user/Public/ -R</code></p>
-</li>
-<li>
-<p>添加samba用户 <code>sudo smbpasswd -a 用户名</code></p>
-</li>
-<li>
-<p>提示输入密码 x2</p>
-</li>
-<li>
-<p>配置samba <code>sudo vim /etc/samba/smb.conf</code></p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">[</span>share<span class="w"> </span>name<span class="o">]</span><span class="w">            </span><span class="c1"># 共享名</span>
-<span class="w">    </span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>/home/user/Public/#<span class="w"> </span>共享路径
-<span class="w">    </span><span class="nv">writable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>yes<span class="w">      </span><span class="c1"># 可写</span>
-</code></pre></div></td></tr></table></div>
-</li>
-<li>
-<p>重启samba <code>sudo samba restart</code></p>
-<ul>
-<li>可能还需要重启一下电脑</li>
-</ul>
-</li>
-<li>
-<p>开启端口 <code>sudo ufw allow 445</code></p>
-</li>
-</ol>
 <p><br></p>
 <h3 id="_14">远程控制本机</h3>
 <p>直接使用微软的远程桌面协议（RDP）</p>

@@ -190,7 +190,7 @@ dump，rsync
 2. 添加共享条目 `sudo vim /etc/fstab`
 
     ```conf
-    //10.0.0.2/administrator /mnt/idc cifs credentials=/root/smb.cred 0 0
+    //10.0.0.2/administrator /mnt/idc cifs credentials=/root/smb.cred,uid=1000,gid=1000 0 0
     ```
 
     * `//idc/administrator` 网络路径
@@ -227,6 +227,31 @@ dump，rsync
 
 **`umount` 磁盘卸载**
 
+<br>
+
+### SMB 对外共享
+
+1. 下载 `sudo apt install samba`
+
+2. 配置分享文件夹 `chmod 777 /home/user/Public/ -R`
+
+3. 添加samba用户 `sudo smbpasswd -a 用户名`
+
+4. 提示输入密码 x2
+
+5. 配置samba `sudo vim /etc/samba/smb.conf`
+    
+    ```sh
+    [share name]            # 共享名
+        path = /home/user/Public/# 共享路径
+        writable = yes      # 可写
+    ```
+
+6. 重启samba `sudo samba restart`
+    
+    * 可能还需要重启一下电脑
+
+7. 开启端口 `sudo ufw allow 445`
 
 <br>
 
