@@ -79,16 +79,16 @@
 
 <div class="container">🖥️
     <div class="item">
-        <a href="http://10.0.0.1" target="_blank"> 路由 </a> / <a href="http://10.0.0.70" target="_blank"> 网关 </a> 
+        <a href="http://10.0.0.1" target="_blank"> 路由 </a> / <a href="http://10.0.0.2" target="_blank"> 网关 </a> 
     </div>
     <div class="item">
-        <a href="" target="_blank"> 终端 </a> 
+        <a href="http://10.0.0.6:1234" target="_blank"> 终端 </a> 
     </div>
     <div class="item">
-        <a href="" target="_blank"> 影音 </a> / <a href="" target="_blank"> 测速 </a> 
+        <a href="" target="_blank"> 影音 </a> / <a href="http://10.0.0.6:5202" target="_blank"> 测速 </a> 
     </div>
     <div class="item">
-        <a href="" target="_blank"> 本地云盘 </a> 
+        <a href="http://10.0.0.6:8080" target="_blank"> 本地云盘 </a> 
     </div>
 </div>
 
