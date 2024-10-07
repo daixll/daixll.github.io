@@ -208,7 +208,7 @@ dump，rsync
 4. 修改凭据权限
 
     ```bash
-    chmod 600 /root/smb.cred
+    sudo chmod 600 /root/smb.cred
     ```
 
 5. 重启验证
