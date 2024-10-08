@@ -11,7 +11,43 @@
 <details><summary> dfs 求组合数 <a href=""></a></summary>
 
 ```cpp
+#include <iostream>
+using namespace std;
 
+int n, k;               // 从 n 个选 k 个
+char a[9];
+bool st[9];
+
+void dfs(int u, int m){ // 选到 u 个，选了 m 个
+    // 答案
+    if(m == k){
+        for(int i=1; i<=n; i++)
+            if(st[i] == 1)
+                cout << a[i] << " ";
+        cout << "\n";
+        return ;
+    }
+
+    // 边界
+    if(u > n){
+        return ;
+    }
+
+    // 情况 1，选择
+    st[u] = 1;
+    dfs(u+1, m+1);
+
+    // 情况 2, 不选择
+    st[u] = 0;
+    dfs(u+1, m);
+}
+
+int main(){
+    cin >> n >> k;
+    for(int i=1; i<=n; i++) a[i] = 'a' + i - 1;
+    dfs(1, 0);
+    return 0;
+}
 ```
 </details>
 
@@ -25,6 +61,14 @@
     > $\{1, 2\}$ 与 $\{2, 1\}$ 视为 **不同排序**
 
 * 数量：$A_{n}^{k} = \frac{n!}{(n-k)!}$
+
+<details><summary> dfs 求组合数 <a href=""></a></summary>
+
+```cpp
+
+```
+
+</details>
 
 
 <br>
