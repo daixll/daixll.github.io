@@ -23,7 +23,6 @@ nav:
     #- 字符串:
     #- 计算几何:
   - 🚀 C/C++:
-    - C:                src/cpp/c.md
     - CPP:              src/cpp/cpp.md
     - STL:              src/cpp/stl.md
     - Thread:           src/cpp/thread.md
