@@ -1222,6 +1222,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    🫥 MkDocs
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1231,6 +1242,49 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参考">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      我的网站
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3200,6 +3254,38 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参考">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      我的网站
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3217,12 +3303,52 @@
 
 
 <h1 id="_1">网站搭建</h1>
-<p>参考：
-* <a href="https://blog.csdn.net/m0_63203517/article/details/129765689">Mkdocs配置文件说明(mkdocs.yml)</a>
-* <a href="https://blog.csdn.net/m0_63203517/article/details/131946304">如何在Mkdocs里自定义字体（霞鹜文楷）</a>
-* <a href="https://shafish.cn/blog/mkdocs/">Mkdocs Material使用记录</a>
-* <a href="https://herointene.github.io/tech/mkdocsbuild/">Material for Mkdocs 個人網站搭建</a>
-* <a href="https://wcowin.work/tag.html#mkdocs">mkdocs教程</a></p>
+<h2 id="_2">参考</h2>
+<ul>
+<li>
+<p><a href="https://blog.csdn.net/m0_63203517/article/details/129765689">Mkdocs配置文件说明(mkdocs.yml)</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/m0_63203517/article/details/131946304">如何在Mkdocs里自定义字体（霞鹜文楷）</a></p>
+</li>
+<li>
+<p><a href="https://shafish.cn/blog/mkdocs/">Mkdocs Material使用记录</a></p>
+</li>
+<li>
+<p><a href="https://herointene.github.io/tech/mkdocsbuild/">Material for Mkdocs 個人網站搭建</a></p>
+</li>
+<li>
+<p><a href="https://wcowin.work/tag.html#mkdocs">mkdocs教程</a></p>
+</li>
+</ul>
+<p><br></p>
+<hr />
+<h3 id="_3">我的网站</h3>
+<ol>
+<li>
+<p>安装 <code>python</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-pip
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>安装 <code>mkdocs</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>安装 <code>mkdocs-material</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>拉取网站</p>
+</li>
+<li>
+<p>生成网站</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>build
+</code></pre></div></td></tr></table></div>
+</li>
+</ol>
 
 
 
