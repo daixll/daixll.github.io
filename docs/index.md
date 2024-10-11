@@ -11,16 +11,6 @@
 
 # 👨🏽‍💻
 
-* 我目前在重庆大学进行为期一年的交流学习，同时 **寻求 C/C++ 的工作机会 [我的简历]()**
-
-* 参加过 XCPC 省赛（尽管破铜烂银），以及蓝桥杯等算法竞赛的国二&国一
-
-* 曾在电信实习 3 个月，主要是做音视频的开发（WebRTC 与 Go）
-
-* 喜欢玩羽毛球与软路由
-
----
-
 <style>
   .search-container {
     width: 100%; /* 搜索框宽度与页面相同 */
@@ -41,13 +31,15 @@
 
 <div class="search-container">
   <form action="https://www.google.com/search" method="GET">
-    <textarea name="q" placeholder="在谷歌搜索" rows="1" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';" onkeydown="if(event.key==='Enter' && !event.shiftKey){event.preventDefault(); this.form.submit();}"></textarea>
+    <textarea id="searchBox" name="q" placeholder="search on Google" rows="1" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';" onkeydown="if(event.key==='Enter' && !event.shiftKey){event.preventDefault(); this.form.submit();}"></textarea>
   </form>
 </div>
 
----
-
-[投递记录](https://www.kdocs.cn/l/cowEefopxHH3) / [PTA作业](https://pintia.cn/problem-sets/active) / 
+<script>
+  window.onload = function() {
+    document.getElementById('searchBox').focus(); // 页面加载时自动聚焦搜索框
+  }
+</script>
 
 ---
 

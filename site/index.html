@@ -3282,21 +3282,6 @@
 </style>
 
 <h1 id="_1">👨🏽‍💻</h1>
-<ul>
-<li>
-<p>我目前在重庆大学进行为期一年的交流学习，同时 <strong>寻求 C/C++ 的工作机会 <a href="">我的简历</a></strong></p>
-</li>
-<li>
-<p>参加过 XCPC 省赛（尽管破铜烂银），以及蓝桥杯等算法竞赛的国二&amp;国一</p>
-</li>
-<li>
-<p>曾在电信实习 3 个月，主要是做音视频的开发（WebRTC 与 Go）</p>
-</li>
-<li>
-<p>喜欢玩羽毛球与软路由</p>
-</li>
-</ul>
-<hr />
 <style>
   .search-container {
     width: 100%; /* 搜索框宽度与页面相同 */
@@ -3317,12 +3302,16 @@
 
 <div class="search-container">
   <form action="https://www.google.com/search" method="GET">
-    <textarea name="q" placeholder="在谷歌搜索" rows="1" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';" onkeydown="if(event.key==='Enter' && !event.shiftKey){event.preventDefault(); this.form.submit();}"></textarea>
+    <textarea id="searchBox" name="q" placeholder="search on Google" rows="1" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';" onkeydown="if(event.key==='Enter' && !event.shiftKey){event.preventDefault(); this.form.submit();}"></textarea>
   </form>
 </div>
 
-<hr />
-<p><a href="https://www.kdocs.cn/l/cowEefopxHH3">投递记录</a> / <a href="https://pintia.cn/problem-sets/active">PTA作业</a> / </p>
+<script>
+  window.onload = function() {
+    document.getElementById('searchBox').focus(); // 页面加载时自动聚焦搜索框
+  }
+</script>
+
 <hr />
 <div class="container">📧
     <div class="item">
