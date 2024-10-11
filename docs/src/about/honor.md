@@ -516,7 +516,7 @@
 
 ### 重庆大学
 
-* [官网](https://www.cqu.edu.cn/) / [教务](https://my.cqu.edu.cn/workspace/home)
+* [官网](https://www.cqu.edu.cn/) / [教务](https://my.cqu.edu.cn/workspace/home) / [E2021244@stu.cqu.edu.cn](https://mail.cqu.edu.cn/)
 * 时间: 2024.9.9 - 2025.6.28
 * 学历：本科四年级
 * 专业：智能网联汽车 - [国家（重庆）卓越工程师学院](https://eie.cqu.edu.cn/)
