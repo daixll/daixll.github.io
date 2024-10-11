@@ -21,6 +21,32 @@
 
 ---
 
+<style>
+  .search-container {
+    width: 100%; /* 搜索框宽度与页面相同 */
+    margin: 0 auto;
+  }
+  .search-container textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: transparent;
+    outline: none;
+    resize: none; /* 禁止用户手动调整大小 */
+    overflow: hidden; /* 防止出现滚动条 */
+  }
+</style>
+
+<div class="search-container">
+  <form action="https://www.google.com/search" method="GET">
+    <textarea name="q" placeholder="在谷歌搜索" rows="1" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';" onkeydown="if(event.key==='Enter' && !event.shiftKey){event.preventDefault(); this.form.submit();}"></textarea>
+  </form>
+</div>
+
+---
+
 [投递记录](https://www.kdocs.cn/l/cowEefopxHH3) / [PTA作业](https://pintia.cn/problem-sets/active) / 
 
 ---
