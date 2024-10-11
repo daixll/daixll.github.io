@@ -8,7 +8,7 @@
 
 * 数量：$C_{n}^{k} = \frac{n!}{k! (n-k)!} = C_{n}^{n-k}$
 
-<details><summary> dfs 求组合数 <a href=""></a></summary>
+<details><summary> dfs 求组合 <a href=""></a></summary>
 
 ```cpp
 #include <iostream>
@@ -62,10 +62,46 @@ int main(){
 
 * 数量：$A_{n}^{k} = \frac{n!}{(n-k)!}$
 
-<details><summary> dfs 求组合数 <a href=""></a></summary>
+<details><summary> dfs 求排列 <a href=""></a></summary>
 
 ```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
 
+const int N=2e5+10;
+
+int n, k;
+char a[N];
+bool st[N];
+
+vector<char> ans;
+
+void dfs(){
+    if(ans.size() == k){
+        for(auto i: ans)
+            cout << i << " ";
+        cout << "\n";
+        return ;
+    }
+
+    for(int i=1; i<=n; i++)
+        if(st[i] == 0){
+            st[i] = 1;
+            ans.push_back(a[i]);
+            dfs();
+
+            st[i] = 0;
+            ans.pop_back();
+        }
+}
+
+int main(){
+    cin >> n >> k;
+    for(int i=1; i<=n; i++) a[i] = 'a' + i - 1;
+    dfs();
+    return 0;
+}
 ```
 
 </details>
@@ -80,6 +116,13 @@ int main(){
     > $\{1, 2, 3\}, \{1, 3, 2\}, \{2, 1, 3\}, \{2, 3, 1\}, \{3, 1, 2\}, \{3, 2, 1\}$
 
 * 数量：$n!$
+
+<details><summary><a href="" target="_blank"></a>dfs 求全排列</summary>
+
+```cpp
+
+```
+</details>
 
 <br>
 
