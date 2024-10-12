@@ -31,7 +31,13 @@
 
 <div class="search-container">
   <form action="https://www.google.com/search" method="GET">
-    <textarea id="searchBox" name="q" placeholder="search on Google" rows="1" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';" onkeydown="if(event.key==='Enter' && !event.shiftKey){event.preventDefault(); this.form.submit();}"></textarea>
+    <textarea id="searchBox" name="q" placeholder="search on Google" rows="1"
+      oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';"
+      onkeydown="if(event.key==='Enter' && !event.shiftKey){
+        event.preventDefault();
+        if(this.value.trim() !== ''){ this.form.submit(); }
+      }">
+    </textarea>
   </form>
 </div>
 
