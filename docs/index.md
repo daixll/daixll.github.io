@@ -36,8 +36,7 @@
       onkeydown="if(event.key==='Enter' && !event.shiftKey){
         event.preventDefault();
         if(this.value.trim() !== ''){ this.form.submit(); }
-      }">
-    </textarea>
+      }"></textarea>
   </form>
 </div>
 
