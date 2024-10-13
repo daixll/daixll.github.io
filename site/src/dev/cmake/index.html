@@ -1378,6 +1378,84 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#must" class="md-nav__link">
+    <span class="md-ellipsis">
+      must
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find_package" class="md-nav__link">
+    <span class="md-ellipsis">
+      find_package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include_directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      include_directories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_executable" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_executable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target_link_libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      target_link_libraries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_library" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_library
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if_else" class="md-nav__link">
+    <span class="md-ellipsis">
+      if_else
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -3312,6 +3390,84 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基础用法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#must" class="md-nav__link">
+    <span class="md-ellipsis">
+      must
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find_package" class="md-nav__link">
+    <span class="md-ellipsis">
+      find_package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#include_directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      include_directories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_executable" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_executable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target_link_libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      target_link_libraries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_library" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_library
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if_else" class="md-nav__link">
+    <span class="md-ellipsis">
+      if_else
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -3340,18 +3496,21 @@
 <p><br></p>
 <hr />
 <h2 id="use">use</h2>
-<ul>
-<li>
+<h3 id="_1">基础用法</h3>
 <p>当前目录下存在 <code>CMakeLists.txt</code> 文件</p>
 <ol>
-<li><code>mkdir build &amp;&amp; cd build</code> 通常做法，避免中间文件污染源代码目录（out-of-source）</li>
-<li><code>cmake ..</code> 生成构建系统文件</li>
-<li><code>cmake --build .</code> 执行相应的构建命令（例如 <code>make</code>）</li>
-</ol>
+<li>
+<p><code>mkdir build &amp;&amp; cd build</code> 通常做法，避免中间文件污染源代码目录（out-of-source）</p>
 </li>
 <li>
-<p>开始
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<p><code>cmake ..</code> 生成构建系统文件</p>
+</li>
+<li>
+<p><code>cmake --build .</code> 执行相应的构建命令（例如 <code>make</code>）</p>
+</li>
+</ol>
+<h3 id="must">must</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
@@ -3362,30 +3521,49 @@
 
 <span class="n">set</span><span class="p">(</span><span class="n">CMAKE_CXX_STANDARD</span><span class="w"> </span><span class="mi">23</span><span class="p">)</span><span class="w">              </span><span class="err">#</span><span class="w"> </span><span class="n">指定</span><span class="w"> </span><span class="n">C</span><span class="o">++</span><span class="w"> </span><span class="n">标准版本</span>
 <span class="n">set</span><span class="p">(</span><span class="n">CMAKE_CXX_STANDARD_REQUIRED</span><span class="w"> </span><span class="n">True</span><span class="p">)</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="n">编译器必须严格遵循指定的</span><span class="w"> </span><span class="n">C</span><span class="o">++</span><span class="w"> </span><span class="n">标准版本</span>
-</code></pre></div></td></tr></table></div></p>
-</li>
-<li>
-<p>生成可执行文件
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">add_executable</span><span class="p">(</span><span class="n">main</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="n">cpp</span><span class="p">)</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="n">生成可执行文件</span>
-</code></pre></div></td></tr></table></div></p>
-</li>
-<li>
-<p>生成库目标
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="find_package">find_package</h3>
+<p>查找库文件</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">set</span><span class="p">(</span><span class="n">Boost_DIR</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">boost</span><span class="p">)</span><span class="w">         </span><span class="err">#</span><span class="w"> </span><span class="n">设置</span><span class="w"> </span><span class="n">Boost</span><span class="w"> </span><span class="n">库的路径</span><span class="err">，</span><span class="n">非必须</span>
+<span class="n">find_package</span><span class="p">(</span><span class="n">Boost</span><span class="w"> </span><span class="n">REQUIRED</span><span class="p">)</span><span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">查找</span><span class="w"> </span><span class="n">Boost</span><span class="w"> </span><span class="n">库</span>
+<span class="n">find_package</span><span class="p">(</span><span class="n">Boost</span><span class="w"> </span><span class="mf">1.75</span><span class="w"> </span><span class="n">REQUIRED</span><span class="p">)</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="n">查找</span><span class="w"> </span><span class="n">Boost</span><span class="w"> </span><span class="n">库的指定版本</span>
+<span class="n">find_package</span><span class="p">(</span><span class="n">Boost</span><span class="w"> </span><span class="n">COMPONENTS</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="n">filesystem</span><span class="w"> </span><span class="n">REQUIRED</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">查找</span><span class="w"> </span><span class="n">Boost</span><span class="w"> </span><span class="n">库的</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="n">和</span><span class="w"> </span><span class="n">filesystem</span><span class="w"> </span><span class="n">组件</span>
+</code></pre></div></td></tr></table></div>
+<p>常见的变量：</p>
+<p><code>PackageName_FOUND</code>：是否找到了指定的包
+<code>PackageName_INCLUDE_DIRS</code>：包含目录
+<code>PackageName_LIBRARIES</code>：库文件
+<code>PackageName_VERSION</code>：版本号</p>
+<h3 id="include_directories">include_directories</h3>
+<p>添加头文件目录</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">include_directories</span><span class="p">(</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">include</span><span class="p">)</span><span class="w">     </span><span class="err">#</span><span class="w"> </span><span class="n">添加头文件目录</span>
+<span class="n">include_directories</span><span class="p">(</span><span class="n">$</span><span class="p">{</span><span class="n">Boost_INCLUDE_DIRS</span><span class="p">})</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">添加</span><span class="w"> </span><span class="n">Boost</span><span class="w"> </span><span class="n">头文件目录</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="add_executable">add_executable</h3>
+<p>生成可执行文件</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">add_executable</span><span class="p">(</span><span class="n">main</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="n">cpp</span><span class="p">)</span><span class="w">               </span><span class="err">#</span><span class="w"> </span><span class="n">生成可执行文件</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="target_link_libraries">target_link_libraries</h3>
+<p>链接库文件</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">LINK_DIRECTORIES</span><span class="p">(</span><span class="n">dir1</span><span class="w"> </span><span class="n">dir2</span><span class="p">)</span><span class="w">                 </span><span class="err">#</span><span class="w"> </span><span class="n">添加动态库目录</span><span class="err">，</span><span class="n">不推荐使用</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">main</span><span class="w"> </span><span class="n">libssl</span><span class="p">.</span><span class="n">so</span><span class="p">)</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="n">链接库到</span><span class="w"> </span><span class="n">main</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">Boost_LIBRARIES</span><span class="p">})</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">链接</span><span class="w"> </span><span class="n">Boost</span><span class="w"> </span><span class="n">库到</span><span class="w"> </span><span class="n">a</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="add_library">add_library</h3>
+<p>生成库文件</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">add_library</span><span class="p">(</span><span class="n">util</span><span class="w"> </span><span class="n">STATIC</span><span class="w"> </span><span class="n">util</span><span class="p">.</span><span class="n">cpp</span><span class="p">)</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="n">生成静态库</span><span class="w"> </span><span class="n">libutil</span><span class="p">.</span><span class="n">a</span>
 <span class="n">add_library</span><span class="p">(</span><span class="n">util</span><span class="w"> </span><span class="n">SHARED</span><span class="w"> </span><span class="n">util</span><span class="p">.</span><span class="n">cpp</span><span class="p">)</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="n">生成动态库</span><span class="w"> </span><span class="n">libutil</span><span class="p">.</span><span class="n">so</span>
-</code></pre></div></td></tr></table></div></p>
-</li>
-<li>
-<p>链接动态库
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">LINK_DIRECTORIES</span><span class="p">(</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">xyz</span><span class="o">/</span><span class="n">lib</span><span class="p">)</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">添加动态库目录</span>
-<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">main</span><span class="w"> </span><span class="n">libssl</span><span class="p">.</span><span class="n">so</span><span class="p">)</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="n">链接库到</span><span class="w"> </span><span class="n">main</span>
-</code></pre></div></td></tr></table></div></p>
-</li>
-<li>
-<p>选择判断
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="if_else">if_else</h3>
+<p>选择判断</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
@@ -3398,9 +3576,7 @@
 <span class="n">endif</span><span class="p">()</span>
 
 <span class="n">LINK_DIRECTORIES</span><span class="p">(</span><span class="n">$</span><span class="p">{</span><span class="n">LIB_PATH</span><span class="p">})</span>
-</code></pre></div></td></tr></table></div></p>
-</li>
-</ul>
+</code></pre></div></td></tr></table></div>
 
 
 
