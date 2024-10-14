@@ -505,3 +505,26 @@ git config --global --unset https.proxy
 ```
 git config --local credential.helper store
 ```
+
+## .gitignore
+
+忽略某些文件和目录
+
+### 忽略文件或目录
+
+```
+a.txt
+a/
+```
+
+### 忽略某类文件
+
+```
+*.txt
+```
+
+### 例外规则
+
+```
+!a.txt
+```
