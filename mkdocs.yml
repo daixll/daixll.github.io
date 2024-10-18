@@ -9,17 +9,17 @@ nav:
     - GESP:             src/algorithm/really/gesp.md
     - CIE:              src/algorithm/really/cie.md
     - 基础:
-      - 二分:           src/algorithm/基础/二分.md
+      - 二分:           src/algorithm/base/binary-answer.md
     - 搜索:
-      - DFS:            src/algorithm/搜索/DFS.md
+      - 深搜:            src/algorithm/search/DFS.md
     - 图论:
-      - 二叉树:         src/algorithm/图论/二叉树.md
+      - 二叉树:         src/algorithm/graph/binary-tree.md
     #- 动规:
     #- 数学:
     #- 数论:
     - 数据结构:
-      - 链表:           src/algorithm/数据结构/链表.md
-      - 线段树:         src/algorithm/数据结构/线段树.md
+      - 链表:           src/algorithm/data-struct/linked-list.md
+      - 线段树:         src/algorithm/data-struct/segment-tree.md
     #- 字符串:
     #- 计算几何:
   - 🚀 C/C++:
@@ -31,12 +31,13 @@ nav:
     - AV:               src/cpp/av.md
     - ROS:              src/cpp/ros.md
   - 🌥️ DevOps:  
-    - 🫥 Cloud:         src/dev/cloud.md
-    - 🫥 MkDocs:        src/dev/mkdocs.md
+    - 🥳 Cloud:         src/dev/cloud.md
+    - 🥳 MkDocs:        src/dev/mkdocs.md
     - 😳 GCC:           src/dev/gcc.md
     - 😳 GDB:           src/dev/gdb.md
     - 😳 Make:          src/dev/make.md
     - 😳 CMake:         src/dev/cmake.md
+    - 😳 GTest:         src/dev/gtest.md
     - 😳 Perf:          src/dev/perf.md
     - 😳 Boost:         src/dev/boost.md
     - 😳 OpenSSL:       src/dev/openssl.md
@@ -96,14 +97,13 @@ nav:
     - 设计模式:         src/cs/designPattern/designPattern.md
     - 系统架构:         src/cs/systemArchitecture/systemArchitecture.md
     - 工程师:           src/cs/engineer/engineer.md
-  - 🔢 Math:
-    - 微积分:           src/math/微积分.md
-    - 概率论:           src/math/概率论.md
   - 👷 Φιλοσοφία:
     - 马克思主义:       src/philosophy/marx.md
     - 中国近代史:       src/philosophy/historyOfChina.md
   - 🕶️ More:
-    - GenRNA3D:         src/more/xd.md
+    - GenRNA3D:        src/more/xd.md
+    - 微积分:           src/more/微积分.md
+    - 概率论:           src/more/概率论.md
 
 
 
