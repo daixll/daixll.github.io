@@ -25,7 +25,7 @@
 - `2024-6-8` `重庆市第十二届大学生程序设计大赛` `铜`
 
 <center>
-    <img src="/images/joker/（省3）CCPCCQ.jpg" width="300"> 
+    <img src="/images/joker/（省3）CCPCCQ.jpg" width="300">
 </center>
 
 #### 2023 重庆市赛
