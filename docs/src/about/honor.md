@@ -4,7 +4,7 @@
 
 | 国家级奖项 🥇 | 省部级奖项 🥈 | 技能证书 🥉 | 奖学金 💰 |
 |:-:|:-:|:-:|:-:|
-| 8 | 17 | 4 | 9 | 
+| 8 | 17 | 4 | 12 | 
 
 [哪晓岁月蹉跎过](https://戴兴龙.我爱你:1314/public/) [依旧名利两无收](https://戴兴龙.我爱你:1314/file/)
 
@@ -396,27 +396,22 @@
     <img src="/images/joker/（证）计算机二级.png" width="300">
 </center>
 
-### 奖学金 ￥17600
-
-<!--
+### 奖学金 ￥23100
 
 #### 单项奖学金 (3)
 
-- `2023-12` `重庆工业职业技术学院单项奖学金`
+- `2024-9` `重庆工业职业技术学院单项奖学金`
 
 <center>
-    <img src="/images/joker/（金单项）0.jpg" width="300">
+    <img src="/images/joker/（金单项）2000-2.jpg" width="300"> 
 </center>
-
 <center>
-    <img src="/images/joker/（金单项）0.jpg" width="300">
+    <img src="/images/joker/（金单项）2000.jpg" width="300">
 </center>
-
 <center>
-    <img src="/images/joker/（金单项）0.jpg" width="300">
+    <img src="/images/joker/（金单项）1500.jpg" width="300">
 </center>
 
--->
 
 #### 单项奖学金 (2)
 
