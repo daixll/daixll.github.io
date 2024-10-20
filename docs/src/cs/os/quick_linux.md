@@ -190,7 +190,7 @@ dump，rsync
 2. 添加共享条目 `sudo vim /etc/fstab`
 
     ```conf
-    //10.0.0.2/administrator /mnt/idc cifs credentials=/root/smb.cred,uid=1000,gid=1000 0 0
+    //10.0.0.2/administrator /mnt/idc cifs credentials=/root/smb.cred,uid=1000,gid=1000,iocharset=utf8 0 0
     ```
 
     * `//idc/administrator` 网络路径
