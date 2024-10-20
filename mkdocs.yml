@@ -149,9 +149,9 @@ theme:
 
 extra:
   generator: false          # 是否显示 Made with Material for MkDocs
-  social:                   # 右下角小标
-    - icon: fontawesome/solid/paper-plane
-      link: mailto:<dxlcq@outlook.com>
+  #social:                   # 右下角小标
+  #  - icon: fontawesome/solid/paper-plane
+  #    link: mailto:<dxlcq@outlook.com>
 
 extra_css:
   - stylesheets/extra.css

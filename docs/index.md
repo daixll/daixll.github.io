@@ -49,39 +49,37 @@
 ---
 
 
-<div class="container">☁️
-    <div class="item">
-        <a href="https://account.microsoft.com/" target="_blank"> Microsoft </a> 
-    </div>
-    <div class="item">
-        <a href="https://onedrive.live.com/" target="_blank"> OneDrive </a> 
-    </div>
+<div class="container">📮
     <div class="item">
         <a href="https://outlook.live.com/mail/0/" target="_blank"> dxlcq@outlook.com </a> 
     </div>
+    <div class="item">
+        <a href="https://mail.cqu.edu.cn/" target="_blank"> dxlcq@stu.cqu.edu.cn </a>
+    </div>
+
 </div>
 
 <div class="container">🌈
     <div class="item">
+        <a href="https://account.microsoft.com/" target="_blank"> Microsoft </a> 
+    </div>
+    <div class="item">
         <a href="https://myaccount.google.com/" target="_blank"> Google </a> 
+    </div>
+    <div class="item">
+        <a href="https://account.apple.com/account/manage" target="_blank"> Apple </a> 
+    </div>
+</div>
+
+<div class="container">🌞
+    <div class="item">
+        <a href="https://onedrive.live.com/" target="_blank"> OneDrive </a> 
     </div>
     <div class="item">
         <a href="https://drive.google.com/drive/my-drive" target="_blank"> Google Drive </a> 
     </div>
     <div class="item">
-        <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank"> dxlcqy@gmail.com </a> 
-    </div>
-</div>
-
-<div class="container">🍎
-    <div class="item">
-        <a href="https://account.apple.com/account/manage" target="_blank"> Apple </a> 
-    </div>
-    <div class="item">
         <a href="https://www.icloud.com/" target="_blank"> iCloud</a> 
-    </div>
-    <div class="item">
-        <a href="" target="_blank"></a> 
     </div>
 </div>
 
