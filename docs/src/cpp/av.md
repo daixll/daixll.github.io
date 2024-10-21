@@ -5,6 +5,8 @@
 [“视频”是怎么来的？H.264、码率这些词又是什么意思？（极客湾）](https://www.bilibili.com/video/BV1nt411Q7S6/)
 [为什么要编码](https://juejin.cn/post/6945838292017840135#heading-3)
 
+[字节跳动 - 音视频技术原理及应用](https://mp.weixin.qq.com/s/krCqizgTVG9_T7yGe5bi6Q)
+
 [OpenCV 入门教程](https://vincentqin.gitee.io/blogresource-2/cv-books/OpenCV-Guide-Primer.pdf)
 [FFmpeg 视频处理入门教程（使用，非开发）](https://www.ruanyifeng.com/blog/2020/01/ffmpeg.html)
 [FFMPEG开发快速入坑——绪论](https://zhuanlan.zhihu.com/p/345402619)
