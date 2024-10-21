@@ -30,19 +30,19 @@ nav:
     - GUI:              src/cpp/gui.md
     - AV:               src/cpp/av.md
     - ROS:              src/cpp/ros.md
+    - 😳 GCC:           src/cpp/gcc.md
+    - 😳 GDB:           src/cpp/gdb.md
+    - 😳 Make:          src/cpp/make.md
+    - 😳 CMake:         src/cpp/cmake.md
+    - 😳 GTest:         src/cpp/gtest.md
+    - 😳 Perf:          src/cpp/perf.md
+    - 😳 Boost:         src/cpp/boost.md
+    - 😳 OpenSSL:       src/cpp/openssl.md
+    - 😳 FFmpeg:        src/cpp/ffmpeg.md
+    - 😳 Qt:            src/cpp/qt.md
   - 🌥️ DevOps:  
     - 🥳 Cloud:         src/dev/cloud.md
     - 🥳 MkDocs:        src/dev/mkdocs.md
-    - 😳 GCC:           src/dev/gcc.md
-    - 😳 GDB:           src/dev/gdb.md
-    - 😳 Make:          src/dev/make.md
-    - 😳 CMake:         src/dev/cmake.md
-    - 😳 GTest:         src/dev/gtest.md
-    - 😳 Perf:          src/dev/perf.md
-    - 😳 Boost:         src/dev/boost.md
-    - 😳 OpenSSL:       src/dev/openssl.md
-    - 😳 FFmpeg:        src/dev/ffmpeg.md
-    - 😳 Qt:            src/dev/qt.md
     - 💪🏻 OpenSSH:       src/dev/openssh.md
     - 💪🏻 Git:           src/dev/git.md
     - 💪🏻 Docker:        src/dev/docker.md
