@@ -1,32 +1,32 @@
 ## 参考
 
-* [C/C++ 语言参考](https://en.cppreference.com/w/)
-
-* [欢迎回到 C++ 现代 C++](https://learn.microsoft.com/zh-cn/cpp/cpp/welcome-back-to-cpp-modern-cpp?view=msvc-170)
-
-* [ILE C/C++ 语言参考](https://www.ibm.com/docs/zh/i/7.5?topic=c-ile-cc-language-reference)
-
 * [C++ 语言面向对象](https://docs.net9.org/languages/c-oop/)
 
 * [C++ 运算符号重载](https://www.runoob.com/cplusplus/cpp-overloading.html)
 
+
 [cpp 面试指北](https://csguide.cn/cpp/intro.html)
+
 
 
 ---
 
-## 零｜关于此文
+## 0 关于此文
 
 1. 目的是形成一套集 **查询** 与 **八股** 的手册
 
-2. 将以 [《C++ Primer Plus》](https://www.kdocs.cn/l/cf3MMQTFyNku) 为主线
+    * 以 [《C++ Primer Plus》](https://www.kdocs.cn/l/cf3MMQTFyNku) 为主线
+
+    * 以 [《Effective C++》](https://www.kdocs.cn/l/cjUist8CmOmt) 与 [《More Effecitve C++》](https://www.kdocs.cn/l/clykya3sDwyW) 为规范
+
+    * 以 [cppreference.com](https://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5) 与 [C++ 语言参考](https://learn.microsoft.com/zh-cn/cpp/cpp/cpp-language-reference?view=msvc-170)、[ILE C/C++ 语言参考](https://www.ibm.com/docs/zh/i/7.5?topic=c-ile-cc-language-reference) 为标准
 
 
 <br>
 
 ---
 
-## 一｜预备知识
+## 1 预备知识
 
 ### 支持的编程范式
 
@@ -36,12 +36,16 @@
 * 泛型编程
 * 元编程
 
+<br>
+
+---
+
 ### 程序如何运行
 
 > 通俗的，计算机是如何看懂我给它下达的指令？
-> 具体的，如何把 `.cpp`（文本文件） -> `.exe`（可执行文件）？
+> 具体的，如何把 `.cpp`（文本文件） -> `.out`（可执行文件）？
 
-文本文件 `.cpp` -> **预处理 -> 编译 -> 汇编 -> 链接** -> 可执行文件
+文本文件 `.cpp` -> **预处理 -> 编译 -> 汇编 -> 链接** -> 可执行文件 `.out`
 
 **预处理**
 
@@ -57,6 +61,8 @@
     int a[MAX];               // int a[100]; 定义一个大小为 100 的数组
     printf("%d", MAX * MAX);  // printf("%d", 100*100); 输出 10000
     ```
+
+    > 但并不建议使用 #define 定义常量，因为它不会进行类型检查，容易出错
     
     C 语言自带一些宏定义：`__TIME__`，`__FILE__` 等等，更多内容可以参考：[C语言预处理器](https://www.runoob.com/cprogramming/c-preprocessors.html)
     
@@ -169,37 +175,315 @@
 
 ---
 
-## 九｜内存模型和名称空间
+## 9 内存模型和名称空间
 
-内核空间
+### 存储说明符和类型限定符
 
-* 
+**存储说明符**
 
-栈区
+* `register`
 
-动态链接库
+    * 已被弃用
 
-堆区
+    * 建议将变量存储在寄存器中
 
-全局数据区
-
-常量区
-
-程序代码区
+    * 不能取地址
 
 
+* `static`
+
+    * 静态局部变量
+
+        * 只初始化一次，且在程序运行期间一直存在
+
+    * 静态全局变量
+
+        * 只能在当前文件中使用
+
+    * 静态成员变量
+
+        * 所有对象共享，而不是每个对象有一份
+    
+    * 静态成员函数
+
+        * 不属于任何对象，而是属于类
+
+        ```cpp
+        class Math {
+        public:
+          static int add(int a, int b) { return a + b; }
+        };
+
+        int main() {
+          std::cout << Math::add(2, 3); // 直接调用
+          return 0;
+        }
+        ```
+
+* `extern`
+
+    * 声明一个变量，但不定义它
+
+    * 告诉编译器，这个变量在其他地方定义，但你可以在当前文件中使用它
+
+    * 通常用于在多个文件中共享全局变量
+
+    * 与 `static` 相反
+
+    * 与 `static` 一起使用时，`extern` 会覆盖 `static`
+
+    ```cpp
+    extern int x; // 声明一个变量
+    ```
+
+* `mutable`
+
+    * 修饰类的成员变量
+
+    * 允许在 `const` 函数中修改成员变量
+
+    ```cpp
+    class A {
+    public:
+      mutable int x;
+      int y;
+    };
+
+    int main() {
+      const A a;
+      a.x = 666; // 可以修改
+      //a.y = 888; // 不可以修改
+      return 0;
+    }
+    ```
+
+**类型限定符**
+
+* `const`
+
+    * 常量
+
+    * 修饰变量，表示变量的值不能被修改
+
+    * 修饰函数，表示函数不会修改成员变量
+
+    ```cpp
+    const int* p = &x; // 指针指向的值不能被修改，等价于 int const* p = &x;
+    int* const p = &x; // 指针不能被修改
+    const int* const p = &x; // 指针和指针指向的值都不能被修改
+    ```
+
+* `const_cast`
+
+    * 用于去除 `const` 限定符
+
+    ```cpp
+    const int x = 666;
+    int* p = const_cast<int*>(&x);
+    *p = 888;
+    ```
+
+* `constexpr`
+
+    * 常量表达式
+
+    * 修饰变量，表示变量的值在编译期间就能确定
+
+    * 修饰函数，表示函数的返回值在编译期间就能确定
+
+    ```cpp
+    constexpr int x = 666;
+    int constexpr add(int a, int b) { return a + b; }
+    ```
 
 
-### 存储持续性（生命周期）
 
-### 作用域与链接性
 
-### 内存四区
+* `volatile`
+
+    * 告诉编译器，变量的值可能会在程序的控制之外被修改
+
+    * 通常用于多线程、中断处理等
+
+    ```cpp
+    volatile int x;
+    ```
 
 <br>
 
 ---
 
+### 内存分区
+
+从 **高** 地址到 **低** 地址：
+
+1. 内核空间 `env`
+
+    * 内核处理系统调用、硬件交互、进程调度等
+
+2. 栈区 `stack`
+
+    * 向 **低** 地址方向增长
+
+    ```cpp
+    class A{
+    public:
+      int a;
+    };
+    ```
+
+    ```cpp
+    void func(){
+      int a1; // 栈区
+      A a2;   // 栈区
+      return ;
+    }
+    ```
+
+
+3. 动态链接库（文件映射区）
+
+
+4. 堆区 `heap`
+
+    * 向 **高** 地址方向增长
+
+    ```cpp
+    void func(){
+      int* a3 = new int;  // 堆区
+      A* a4 = new A;      // 堆区
+      return ;
+    }
+    ```
+
+5. 静态区 `static`
+
+    * 有时也称 **全局区** `global`，这俩在内存中同一块区域
+
+    * 向 **高** 地址方向增长
+
+    * 按照初始化方式分为：
+
+        * 静态局部变量
+
+            ```cpp
+            void func(){
+              static int a7;      // 静态局部变量，在 .bss 段
+              static int a8 = 8;  // 静态局部变量，在 .data 段
+              return ;
+            }
+            ```
+
+        * 静态全局变量
+
+            ```cpp
+            static int a5;    // 静态全局变量，在 .bss 段
+            static int a6 = 6;// 静态全局变量，在 .data 段
+            ```
+
+        * 全局变量
+
+            ```cpp
+            int a9;       // 全局变量，在 .bss 段
+            int a10 = 10; // 全局变量，在 .data 段
+            ```
+
+        * 常量区 `.rodata`，read only data
+
+            * 与前三种所在的内存区域不连续
+
+            ```cpp
+            const int a11 = 1;  // 常量，在 .rodata 段
+            const char* p = "1";// 常量，在 .rodata 段
+            ```
+
+6. 代码区 `.text`
+
+    * 存放程序的代码（可执行文件）
+
+    ```cpp
+    void func(){  // 函数入口在代码区
+      return ;
+    }
+    ```
+
+<br>
+
+---
+
+### 存储持续性（生命周期）
+
+**自动存储持续性**
+
+* 函数内部的局部变量
+
+* 函数调用时分配内存，函数结束时释放内存
+
+**静态存储持续性**
+
+* 全局变量、静态变量
+
+* 程序运行时分配内存，程序结束时释放内存
+
+**动态存储持续性**
+
+* `new`、`malloc` 分配的内存
+
+* 手动创建，手动释放
+
+**线程存储持续性**
+
+* `thread_local` 修饰的变量
+
+* 每个线程有一份独立的变量
+
+<br>
+
+---
+
+### 作用域
+
+**代码块**
+
+* 由 `{}` 包围的区域
+
+**全局**
+
+* `{}` 外部的区域
+
+<br>
+
+---
+
+### 链接性
+
+**外部链接性**
+
+* 在 `{}` 外部定义，且没有使用 `static` 修饰
+
+**内部链接性**
+
+* 在 `{}` 内部定义，且使用 `static` 修饰
+
+
+<br>
+
+---
+
+### 命名空间
+
+```cpp
+namespace A{
+  int a = 1;
+  namespace B{  // 允许嵌套
+    int a = 2;  // A::B::a
+  }
+}
+```
+
+<br>
+
+---
 
 
 ## 1 异常处理
