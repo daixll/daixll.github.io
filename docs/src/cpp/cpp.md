@@ -43,6 +43,7 @@
 ### 程序如何运行
 
 > 通俗的，计算机是如何看懂我给它下达的指令？
+> 
 > 具体的，如何把 `.cpp`（文本文件） -> `.out`（可执行文件）？
 
 文本文件 `.cpp` -> **预处理 -> 编译 -> 汇编 -> 链接** -> 可执行文件 `.out`
@@ -62,7 +63,7 @@
     printf("%d", MAX * MAX);  // printf("%d", 100*100); 输出 10000
     ```
 
-    > 但并不建议使用 #define 定义常量，因为它不会进行类型检查，容易出错
+    > 但并不建议使用 `#define` 定义常量，因为它不会进行类型检查，容易出错
     
     C 语言自带一些宏定义：`__TIME__`，`__FILE__` 等等，更多内容可以参考：[C语言预处理器](https://www.runoob.com/cprogramming/c-preprocessors.html)
     
@@ -289,7 +290,7 @@
 
     * 修饰变量，表示变量的值在编译期间就能确定
 
-    * 修饰函数，表示函数的返回值在编译期间就能确定
+    * 修饰函数，表示函数的返回值在编译期间就能确定（如果函数的参数也是常量表达式）
 
     ```cpp
     constexpr int x = 666;
@@ -485,6 +486,161 @@ namespace A{
 
 ---
 
+## 10 对象和类
+
+### 三大特性
+
+**封装**
+
+* 将客观事物抽象为类，隐藏实现细节，只提供接口
+
+* 对内部数据提供了不同级别的访问权限，以保护数据
+
+**继承**
+
+* 一个类可以继承（或者扩展）另一个类的属性和方法
+
+* 通过继承，可以实现代码的复用
+
+* 主要有两种继承的概念：**实现继承** 和 **接口继承**
+
+    * **实现继承** 是指一个类（子类）继承另一个类（父类）的实现
+
+        ```cpp
+        #include <iostream>
+
+        class A{
+        public:
+          A() { std::cout << 666 << std::endl; }
+        };
+
+        class B : public A {};
+
+        int main() {
+          B b;  // 666
+          return 0;
+        }
+        ```
+
+    * **接口继承** 是指一个类（子类）继承另一个类（父类）的接口
+
+        ```cpp
+        #include <iostream>
+
+        class A {
+        public:
+          virtual void func() = 0;  // = 0 意味着这是纯虚函数
+        };
+
+        class B : public A {
+        public:
+          void func() override { std::cout << 888 << std::endl; }
+        };
+
+        int main() {
+          B b; // 888
+          b.func();
+          return 0;
+        }
+        ```
+
+**多态**
+
+* 一个类的实例可以被当作它的父类的实例
+
+* 不同类的对象使用相同的接口名字
+
+    ```cpp
+    #include <iostream>
+
+    class A {
+    public:
+      virtual void func() = 0;
+    };
+
+    class B : public A {
+    public:
+      void func() override { std::cout << 888 << std::endl; }
+    };
+
+    int main() {
+      A *a = new B;
+      a->func(); // 888
+      return 0;
+    }
+    ```
+
+<br>
+
+---
+
+### 访问控制
+
+<center>
+
+| 访问控制符 | public | protected | private |
+|:----------:|:------:|:---------:|:-------:|
+| 内部       | 🟢     | 🟢        | 🟢      |
+| 外部       | 🟢     |           |         |
+
+
+| 继承方式 \ 不同成员在派生类            | public | protected | private |
+|:--------------------:|:------------------------:|:----------------------:|:---------------------:|
+| **public 继承（内）**     | 🟢 仍为 public            | 🟡 仍为 protected   |                 |
+| **public 继承（外）**     | 🟢 仍为 public            |                  |                 |
+| **protected 继承（内）**  | 🟡 作为 protected         | 🟡 仍为 protected    |                 |
+| **protected 继承（外）**  |                    |                  |                 |
+| **private 继承（内）**    | 🔴 作为 private           | 🔴 作为 private         |                 |
+| **private 继承（外）**    |                    |                  |                 |
+
+
+
+</center>
+
+
+简单来说：
+
+* 如果是 `public` 继承，那么派生类的访问权限不会改变
+
+* 如果是 `protected` 继承，那么派生类最高的访问权限是 `protected`
+
+* 如果是 `private` 继承，那么派生类最高的访问权限是 `private`
+
+<br>
+
+---
+
+### 虚函数
+
+
+
+<br>
+
+---
+
+
+### 构造函数
+
+
+<br>
+
+---
+
+
+### 析构函数
+
+
+<br>
+
+---
+
+
+## 11 使用类
+
+
+<br>
+
+---
 
 ## 1 异常处理
 
@@ -960,19 +1116,7 @@ protected:
 
 **派生**
 
-<center>
 
-| 继承方式 | public | protected | private |
-|:-:|:-:|:-:|:-:|
-| public 继承（内）    | 🟢 | 🟢 |   |
-| public 继承（外）    | 🟢 |   |   |
-| protected 继承（内） | 🟢 | 🟢 |   |
-| protected 继承（外） |  |   |   |
-| private 继承（内）   | 🟢 | 🟢 |   |
-| private 继承（外）   |  |   |   |
-
-
-</center>
 
 <br>
 
