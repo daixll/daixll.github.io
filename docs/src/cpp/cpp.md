@@ -612,6 +612,33 @@ namespace A{
 
 ### 虚函数
 
+```cpp
+class A {
+public:
+  virtual ~A() = default;                                       // 默认析构函数（存在虚函数时，析构函数也应该是虚函数）
+  virtual void func1() { std::cout << 6 << std::endl; }         // 可选重写
+  virtual void func2() = 0;                                     // 必须重写（纯虚函数）
+  virtual void func3() final { std::cout << 8 << std::endl; }   // 不可重写
+};
+
+class B : public A {
+public:
+  void func1() override { std::cout << 66 << std::endl; }       // 重写
+  void func2() override { std::cout << 88 << std::endl; }       // 重写
+  //void func3() override { std::cout << 888 << std::endl; }    // 不可重写
+};
+```
+
+**虚函数表 V-Table**
+
+* 当一个类中有虚函数时，编译器会在对象中添加一个指向虚函数表的指钋
+* 当子类重写了父类的虚函数，子类会有自己的虚函数表
+* 存储在静态区中的 `.rodata` 段
+
+**虚函数表指针 V-Table Pointer**
+
+* 如果一个类中有虚函数，那么这个类的对象中会有一个指向虚函数表的指针
+* 存储在对象的内存中（对象在哪个内存区域，这个指针就在哪个内存区域），通常是对象的第一个成员
 
 
 <br>
@@ -620,6 +647,70 @@ namespace A{
 
 
 ### 构造函数
+
+**默认构造**
+
+```cpp
+class A {
+public:
+  //A() = default;
+};
+```
+
+* 如果类中没有定义构造函数，那么编译器会自动生成一个默认构造函数
+
+* 如果类中定义了构造函数，那么编译器不会生成默认构造函数
+
+* 也可以显式声明一个默认构造函数
+
+**初始化列表**
+
+```cpp
+class A{
+public:
+    A(int a, int b): x(a), y(b){};
+    // 在构造函数主体运行之前初始化类成员
+private:
+    int x, y;
+};
+```
+
+**拷贝构造**
+
+```cpp
+#include <iostream>
+
+class A {
+public:
+  // 默认拷贝构造函数（浅拷贝）
+  // A(const A &a) : x(a.x) {};
+  int x = 0;
+};
+
+A createA() { return A(); }
+
+int main() {
+  A a1;
+  a1.x = 6;
+
+  // 1. 赋值初始化
+  A a2 = a1;
+  std::cout << a2.x << std::endl;
+
+  // 2. 函数参数传递
+  A a3(a1);
+  std::cout << a3.x << std::endl;
+
+  // 3. 返回对象
+  A a4 = createA();
+
+  return 0;
+}
+```
+
+* 如果类中没有定义拷贝构造函数，那么编译器会自动生成一个默认拷贝构造函数（浅拷贝）
+* 浅拷贝只会拷贝成员变量的值，不会拷贝指针指向的内存
+* 深拷贝函数一般自己实现，手动拷贝指针指向的内存
 
 
 <br>
@@ -1017,15 +1108,7 @@ todo
 
 ### 构造：初始化列表
 
-```cpp
-class A{
-public:
-    A(int a, int b): x(a), y(b){};
-    // 在构造函数主体运行之前初始化类成员
-private:
-    int x, y;
-};
-```
+
 
 ### 构造：拷贝构造
 
