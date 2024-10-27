@@ -657,9 +657,13 @@ public:
 };
 ```
 
-* 如果类中没有定义构造函数，那么编译器会自动生成一个默认构造函数
+* 如果类中没有定义：
 
-* 如果类中定义了构造函数，那么编译器不会生成默认构造函数
+    1. 构造函数
+    2. 拷贝构造函数
+    3. 移动构造函数
+  
+  那么编译器会自动生成一个默认构造函数
 
 * 也可以显式声明一个默认构造函数
 
@@ -668,10 +672,10 @@ public:
 ```cpp
 class A{
 public:
-    A(int a, int b): x(a), y(b){};
-    // 在构造函数主体运行之前初始化类成员
+  A(int a, int b): _x(a), _y(b){};
+  // 在构造函数主体运行之前初始化类成员
 private:
-    int x, y;
+  int _x, _y;
 };
 ```
 
@@ -682,35 +686,171 @@ private:
 
 class A {
 public:
-  // 默认拷贝构造函数（浅拷贝）
-  // A(const A &a) : x(a.x) {};
-  int x = 0;
+  std::string x = "";
+  int *y = nullptr;
+
+  // 默认拷贝构造（浅拷贝）
+  //A(const A &a) : x(a.x), y(a.y) {}
+
+  // （非默认）拷贝赋值运算符（深拷贝）
+  A &operator=(const A &a) {
+    // 自我赋值检查
+    if (this == &a)
+      return *this;
+
+    // 拷贝静态变量
+    x = a.x;
+
+    // 拷贝动态变量
+    delete y;
+    if (a.y == nullptr)
+      y = nullptr;
+    else
+      y = new int(*a.y);
+
+    // 返回当前对象的引用
+    return *this;
+  }
 };
 
-A createA() { return A(); }
+A createA() {
+  A a;
+  a.x = "xixi";
+  a.y = new int(8);
+  return a;
+}
 
 int main() {
   A a1;
-  a1.x = 6;
+  a1.x = "xixi";
+  a1.y = new int(8);
+  std::cout << a1.x << " " << &a1.x << " " << a1.y << "\n";
 
-  // 1. 赋值初始化
-  A a2 = a1;
-  std::cout << a2.x << std::endl;
+  A a2;
+  a2 = a1;          // 赋值初始化，如果没有实现拷贝赋值运算符，则调用拷贝运算函数
+  std::cout << a2.x << " " << &a2.x << " " << a2.y << "\n";
 
-  // 2. 函数参数传递
-  A a3(a1);
-  std::cout << a3.x << std::endl;
+  A a3(a1);         // 函数参数传递
+  std::cout << a3.x << " " << &a3.x << " " << a3.y << "\n";
 
-  // 3. 返回对象
-  A a4 = createA();
+  A a4 = createA(); // 返回对象
+  std::cout << a4.x << " " << &a4.x << " " << a4.y << "\n";
 
   return 0;
 }
+
+/*
+xixi 0x16dc8b388 0x14a704f40
+xixi 0x16dc8b358 0x14a704f50
+xixi 0x16dc8b338 0x14a704f40
+xixi 0x16dc8b318 0x14a704de0
+*/
 ```
 
-* 如果类中没有定义拷贝构造函数，那么编译器会自动生成一个默认拷贝构造函数（浅拷贝）
+* 如果类中没有定义：
+    1. 拷贝构造函数
+    2. 拷贝赋值运算符
+  
+  那么编译器会自动生成默认拷贝构造函数和拷贝赋值运算符（浅拷贝）
+
 * 浅拷贝只会拷贝成员变量的值，不会拷贝指针指向的内存
+
 * 深拷贝函数一般自己实现，手动拷贝指针指向的内存
+
+**移动构造**
+
+```cpp
+#include <iostream>
+
+class A {
+public:
+  std::string x = "";
+  int *y;
+
+  //A() = default;
+
+  // 默认移动构造
+  //A(A &&a) noexcept : x(std::move(a.x)), y(a.y) {}
+
+  // 默认移动赋值运算符
+  /*
+  A &operator=(A &&a) noexcept {
+    // 自我复制检查
+    if (this == &a)
+      return *this;
+
+    // 移动静态变量
+    x = std::move(a.x);
+
+    // 移动动态变量
+    delete y;
+    y = a.y;
+
+    // 返回当前对象引用
+    return *this;
+  }
+  */
+};
+
+int main() {
+  A a1;
+  a1.x = "xixi";
+  a1.y = new int(6);
+
+  std::cout << a1.x << " " << &a1.x << " " << *a1.y << " " << a1.y << "\n\n";
+
+  // 移动构造
+  A a2(std::move(a1));
+  std::cout << a1.x << " " << &a1.x << " " << *a1.y << " " << a1.y << "\n";
+  std::cout << a2.x << " " << &a2.x << " " << *a2.y << " " << a2.y << "\n\n";
+
+  // 移动赋值运算符
+  A a3;
+  a3 = std::move(a2);
+  std::cout << a2.x << " " << &a2.x << " " << *a2.y << " " << a2.y << "\n";
+  std::cout << a3.x << " " << &a3.x << " " << *a3.y << " " << a3.y << "\n";
+
+  return 0;
+}
+
+/*
+xixi 0x16f777388 6 0x12be05f00
+
+ 0x16f777388 6 0x12be05f00
+xixi 0x16f777358 6 0x12be05f00
+
+ 0x16f777358 6 0x12be05f00
+xixi 0x16f777338 6 0x12be05f00
+*/
+```
+
+* 如果类中没有定义：
+    1. 移动构造函数
+    2. 移动赋值运算符
+  
+  那么编译器会自动生成默认移动构造函数和移动赋值运算符
+
+
+有点抽象的是：
+
+|  | 浅拷贝 | 深拷贝 | （默认）移动构造 |
+|:-:|:-:|:-:|:-:|
+| 值，旧 |  |  | |
+| 值，新 | 复制 | 复制 | 复制 |
+| 地址，旧 |  |  | |
+| 地址，新 | 新的 | 新的 | 新的 |
+| *ptr，旧 | | | （不变，不安全） |
+| *ptr，新 | 复制 | 复制 | （同旧，不安全） |
+| ptr，旧 |  |  | 保持原地址（不变，不安全） |
+| ptr，新 | 指向旧地址（共享） | 新地址 | 指向旧地址（共享，不安全） |
+
+> 空的位置意味着不变
+>
+> 对于支持移动语义的类型，不适用于以上表格
+>
+> * `std::unique_ptr`，它的移动构造函数会将旧对象的指针置为 `nullptr`
+>
+> * `std::string`，它的移动构造函数会将旧对象值置为 `""`，但是地址不变
 
 
 <br>
