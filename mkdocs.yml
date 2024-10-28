@@ -40,9 +40,10 @@ nav:
     - 😳 OpenSSL:       src/cpp/openssl.md
     - 😳 FFmpeg:        src/cpp/ffmpeg.md
     - 😳 Qt:            src/cpp/qt.md
-  - 🌥️ DevOps:  
+  - 🌥️ DevOps:
     - 🥳 Cloud:         src/dev/cloud.md
     - 🥳 MkDocs:        src/dev/mkdocs.md
+    - 🐧 Linux:         src/dev/linux.md
     - 💪🏻 OpenSSH:       src/dev/openssh.md
     - 💪🏻 Git:           src/dev/git.md
     - 💪🏻 Docker:        src/dev/docker.md
@@ -75,7 +76,6 @@ nav:
       - CSS:            src/language/html/css.md
   - 📖 CS:
     - 操作系统:
-      - linux速查:      src/cs/os/quick_linux.md
       - 操作系统结构:    src/cs/os/操作系统结构.md
     - 网络:
       - 冲浪:           src/cs/net/冲浪.md
@@ -93,7 +93,7 @@ nav:
     - 数据结构:
       - 线性表:         src/cs/dataStruct/list.md
     - 数据库: 
-      - mysql速查:      src/cs/dataBase/quick_mysql.md
+      - 第一章:         src/cs/dataBase/t.md
     - 设计模式:         src/cs/designPattern/designPattern.md
     - 系统架构:         src/cs/systemArchitecture/systemArchitecture.md
     - 工程师:           src/cs/engineer/engineer.md

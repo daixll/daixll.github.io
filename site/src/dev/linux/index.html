@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../kubernetes/">
+        <link rel="prev" href="../mkdocs/">
       
       
-        <link rel="next" href="../coturn/">
+        <link rel="next" href="../openssh/">
       
       
       <link rel="icon" href="../../../assets/head.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>💪🏻 Nginx - 戴兴龙</title>
+        <title>🐧 Linux - 戴兴龙</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              💪🏻 Nginx
+              🐧 Linux
             
           </span>
         </div>
@@ -1423,10 +1423,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../linux/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    🐧 Linux
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1435,6 +1453,537 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      软件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="软件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apt" class="md-nav__link">
+    <span class="md-ellipsis">
+      apt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snap" class="md-nav__link">
+    <span class="md-ellipsis">
+      snap
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="文件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件查找
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件管理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件权限
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件解压缩
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件备份
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      磁盘
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="磁盘">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      磁盘管理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      挂载网络磁盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      挂载普通磁盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smb" class="md-nav__link">
+    <span class="md-ellipsis">
+      SMB 对外共享
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mem" class="md-nav__link">
+    <span class="md-ellipsis">
+      MEM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io" class="md-nav__link">
+    <span class="md-ellipsis">
+      IO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      网络
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#net" class="md-nav__link">
+    <span class="md-ellipsis">
+      net
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scp" class="md-nav__link">
+    <span class="md-ellipsis">
+      scp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ping" class="md-nav__link">
+    <span class="md-ellipsis">
+      ping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wget" class="md-nav__link">
+    <span class="md-ellipsis">
+      wget
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      curl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      nmap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="nmap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nmap_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      nmap 端口状态
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="nmap 端口状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open" class="md-nav__link">
+    <span class="md-ellipsis">
+      open（开放的）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#closed" class="md-nav__link">
+    <span class="md-ellipsis">
+      closed（关闭的）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtered" class="md-nav__link">
+    <span class="md-ellipsis">
+      filtered（屏蔽的）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unfiltered" class="md-nav__link">
+    <span class="md-ellipsis">
+      unfiltered（未屏蔽的）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openfiltered" class="md-nav__link">
+    <span class="md-ellipsis">
+      open|filtered（开放或者屏蔽的）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#closedfiltered" class="md-nav__link">
+    <span class="md-ellipsis">
+      closed|filtered（关闭或者屏蔽的）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmap_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      nmap 扫描技术
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="nmap 扫描技术">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 默认扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 扫描多个 IP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 扫描指定端口
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 TCP扫描
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 TCP扫描">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tcp-syn" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP SYN 扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP Connect 扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP 隐秘扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp-ping" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP ping 扫描
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-udp" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 UDP 扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 路由跟踪
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 操作系统探测
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#telnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      telnet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iperf3" class="md-nav__link">
+    <span class="md-ellipsis">
+      iperf3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      守护进程
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      计划作业
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      UFW
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1528,28 +2077,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    💪🏻 Nginx
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../nginx/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1558,78 +2089,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      编译安装
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#etcnginxnginxconf" class="md-nav__link">
-    <span class="md-ellipsis">
-      /etc/nginx/nginx.conf
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#etcnginxconfdconf" class="md-nav__link">
-    <span class="md-ellipsis">
-      /etc/nginx/conf.d/*.conf
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ssl" class="md-nav__link">
-    <span class="md-ellipsis">
-      获取 SSL 证书
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      站点加密
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#for-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      For Docker
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3245,52 +3704,511 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      编译安装
+      软件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="软件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apt" class="md-nav__link">
+    <span class="md-ellipsis">
+      apt
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#etcnginxnginxconf" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#snap" class="md-nav__link">
     <span class="md-ellipsis">
-      /etc/nginx/nginx.conf
+      snap
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#etcnginxconfdconf" class="md-nav__link">
-    <span class="md-ellipsis">
-      /etc/nginx/conf.d/*.conf
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ssl" class="md-nav__link">
-    <span class="md-ellipsis">
-      获取 SSL 证书
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      站点加密
+      文件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="文件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件查找
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件管理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件权限
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件解压缩
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件备份
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      磁盘
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="磁盘">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      磁盘管理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      挂载网络磁盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      挂载普通磁盘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smb" class="md-nav__link">
+    <span class="md-ellipsis">
+      SMB 对外共享
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mem" class="md-nav__link">
+    <span class="md-ellipsis">
+      MEM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io" class="md-nav__link">
+    <span class="md-ellipsis">
+      IO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      网络
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#net" class="md-nav__link">
+    <span class="md-ellipsis">
+      net
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      ssh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scp" class="md-nav__link">
+    <span class="md-ellipsis">
+      scp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ping" class="md-nav__link">
+    <span class="md-ellipsis">
+      ping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wget" class="md-nav__link">
+    <span class="md-ellipsis">
+      wget
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      curl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      nmap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="nmap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nmap_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      nmap 端口状态
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="nmap 端口状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open" class="md-nav__link">
+    <span class="md-ellipsis">
+      open（开放的）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#closed" class="md-nav__link">
+    <span class="md-ellipsis">
+      closed（关闭的）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtered" class="md-nav__link">
+    <span class="md-ellipsis">
+      filtered（屏蔽的）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unfiltered" class="md-nav__link">
+    <span class="md-ellipsis">
+      unfiltered（未屏蔽的）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openfiltered" class="md-nav__link">
+    <span class="md-ellipsis">
+      open|filtered（开放或者屏蔽的）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#closedfiltered" class="md-nav__link">
+    <span class="md-ellipsis">
+      closed|filtered（关闭或者屏蔽的）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmap_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      nmap 扫描技术
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="nmap 扫描技术">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 默认扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 扫描多个 IP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 扫描指定端口
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 TCP扫描
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 TCP扫描">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tcp-syn" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP SYN 扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP Connect 扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP 隐秘扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp-ping" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCP ping 扫描
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-udp" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 UDP 扫描
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 路由跟踪
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 操作系统探测
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#telnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      telnet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iperf3" class="md-nav__link">
+    <span class="md-ellipsis">
+      iperf3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      守护进程
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#for-docker" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
-      For Docker
+      计划作业
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ufw" class="md-nav__link">
+    <span class="md-ellipsis">
+      UFW
     </span>
   </a>
   
@@ -3314,63 +4232,333 @@
   
 
 
-  <h1>💪🏻 Nginx</h1>
+  <h1>🐧 Linux</h1>
 
-<h2 id="_1">编译安装</h2>
+<p>参考：<a href="https://www.linuxcool.com/">Linux 命令大全</a></p>
+<h2 id="_1">软件</h2>
+<h3 id="apt">apt</h3>
+<p>参考：<a href="https://itsfoss.com/apt-command-guide/">apt 终极指南</a></p>
+<ul>
+<li>更新软件源、软件，自动删除无关依赖</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>full-upgrade<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>autoremove
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>使用代理</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>-o<span class="w"> </span>Acquire::http::proxy<span class="o">=</span><span class="s2">&quot;http://127.0.0.1:7897/&quot;</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>删除软件</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>purge<span class="w"> </span>软件名
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>查找软件</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>apt-cache<span class="w"> </span>search<span class="w"> </span>软件名
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>查看已安装的软件</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>list<span class="w"> </span>--installed<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>软件名
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p>添加软件源</p>
+</li>
+<li>
+<p>查看软件源</p>
+</li>
+<li>
+<p>删除软件源</p>
+</li>
+</ul>
+<p><br></p>
+<h3 id="snap">snap</h3>
+<p>一托</p>
+<p><br></p>
+<hr />
+<h2 id="_2">文件</h2>
+<h3 id="_3">文件查找</h3>
+<p>find，grep</p>
+<p><br></p>
+<h3 id="_4">文件管理</h3>
+<ul>
+<li>
+<p><strong><code>ls</code> 查看</strong></p>
+<ul>
+<li>
+<p><code>ls -a</code> 列出全部文件（含隐藏）</p>
+</li>
+<li>
+<p><code>ls -l</code>
+    <code>文件类型[所属人权限][所属组权限][其他人权限] 硬连接数量 所属人 所属组 文件大小 修改 日期和时间 文件名</code>
+    文件类型：</p>
+<ul>
+<li><code>-</code> 普通文件</li>
+<li><code>d</code> 目录</li>
+<li><code>l</code> 软链接</li>
+<li><code>b</code> 块设备</li>
+<li><code>c</code> 字符设备</li>
+<li><code>s</code> 套接字</li>
+<li><code>p</code> 管道</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>cd</code> 切换目录</strong></p>
+</li>
+<li>
+<p><strong><code>pwd</code> 输出当前目录</strong></p>
+</li>
+<li>
+<p><strong><code>mkdir</code> 创建目录</strong></p>
+<ul>
+<li><code>mkdir -m 711 dir</code> 创建目录，权限为 <code>711</code></li>
+<li><code>mkdir -p dir/dir/dir</code> 创建多层目录</li>
+</ul>
+</li>
+<li>
+<p><strong><code>cp</code> 复制文件</strong></p>
+<ul>
+<li><code>cp -r dir/ dir.bak/</code> 递归复制</li>
+<li><code>cp -p file file.bak</code> 同时复制文件属性</li>
+</ul>
+</li>
+<li>
+<p><strong><code>mv</code> 移动文件</strong></p>
+<ul>
+<li>如果移动目录，建议使用 <code>cp</code>，确认后再删除</li>
+<li><code>mv dirOld/ dirNew/</code>，从旧的目录移动到新的目录</li>
+</ul>
+</li>
+<li>
+<p><strong><code>rm</code>删除文件</strong></p>
+<ul>
+<li><code>rm -r dir/</code> 递归删除</li>
+<li><code>rm -f dir/</code> 忽略不存在的文件</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h3 id="_5">文件权限</h3>
+<p>每个文件有三种粒度</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">所属人</th>
+<th style="text-align: center;">所属组</th>
+<th style="text-align: center;">其他人</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>u</code></td>
+<td style="text-align: center;"><code>g</code></td>
+<td style="text-align: center;"><code>o</code></td>
+</tr>
+</tbody>
+</table>
+<p>各自有三种权限</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">读</th>
+<th style="text-align: center;">写</th>
+<th style="text-align: center;">行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>r</code> <code>4</code></td>
+<td style="text-align: center;"><code>w</code> <code>2</code></td>
+<td style="text-align: center;"><code>x</code> <code>1</code></td>
+</tr>
+</tbody>
+</table>
+<p>修改</p>
+<ul>
+<li><strong><code>chown</code> 修改所属人 <code>u</code></strong> </li>
+<li><strong><code>chgrp</code> 修改所属组 <code>g</code></strong></li>
+<li>
+<p><strong><code>chmod</code> 修改权限</strong></p>
+<ul>
+<li>
+<p><code>chmod +x</code>，给 <strong>全部人 <code>a</code></strong> 添加执行权限，等价于 <code>chmod a+x</code></p>
+</li>
+<li>
+<p><code>chmod +r</code>，给 <strong>全部人 <code>a</code></strong> 添加读权限，等价于 <code>chmod a+r</code></p>
+</li>
+<li>
+<p><code>chmod +w</code>，给 <strong>所属人 <code>u</code></strong> 添加写权限，若想给全部人，<code>chmod a+w</code></p>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li>
+<p><code>chmod u+x</code>，给 <strong>所属人</strong> 添加执行权限</p>
+</li>
+<li>
+<p><code>chmod g+r</code>，给 <strong>所属组</strong> 添加读权限</p>
+</li>
+<li>
+<p><code>chmod o+w</code>，给 <strong>其他人</strong> 添加写权限</p>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li>
+<p><code>chmod 777</code>，给 <strong>全部人</strong> 添加全部权限</p>
+</li>
+<li>
+<p><code>chmod 755</code>，给 <strong>所属人</strong> 添加全部权限，给 <strong>所属组</strong> 和 <strong>其他人</strong> 添加读和执行权限</p>
+</li>
+<li>
+<p><code>chmod -R</code>，递归修改</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h3 id="_6">文件解压缩</h3>
+<p>tar，zip</p>
+<ul>
+<li>
+<p><strong><code>tar -zxvf *.tar.gz</code></strong></p>
+<ul>
+<li><code>-z</code> 解压缩（gz）（有时可以省略）</li>
+<li><code>-x</code> 解包（tar）</li>
+<li><code>-v</code> 显示详细的解压过程信息</li>
+<li><code>-f</code> 指定名称</li>
+<li><code>-C</code> 指定路径</li>
+</ul>
+</li>
+<li>
+<p><strong><code>tar -zcvf *.tar.gz *</code></strong></p>
+<ul>
+<li><code>-c</code> 打包（tar）</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h3 id="_7">文件备份</h3>
+<p>dump，rsync</p>
+<p><br></p>
+<hr />
+<h2 id="_8">磁盘</h2>
+<h3 id="_9">磁盘管理</h3>
+<p><br></p>
+<h3 id="_10">挂载网络磁盘</h3>
+<p>参考：<a href="https://docs.redhat.com/zh_hans/documentation/red_hat_enterprise_linux/8/html/managing_file_systems/proc_mounting-an-smb-share-automatically-when-the-system-boots_assembly_mounting-an-smb-share-on-red-hat-enterprise-linux">系统启动时自动挂载 SMB 共享</a></p>
 <ol>
 <li>
-<p>下载依赖</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>libpcre3<span class="w"> </span>libpcre3-dev<span class="w"> </span>libssl-dev<span class="w"> </span>zlib1g<span class="w"> </span>zlib1g-dev
+<p>下载工具 <code>sudo apt install cifs-utils</code></p>
+</li>
+<li>
+<p>添加共享条目 <code>sudo vim /etc/fstab</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>//10.0.0.2/administrator /mnt/idc cifs credentials=/root/smb.cred,uid=1000,gid=1000,iocharset=utf8 0 0
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><code>//idc/administrator</code> 网络路径</li>
+<li><code>/mnt/idc</code> 本地挂载路径</li>
+<li><code>credentials=/root/smb.cred</code> 指定了一个包含登录凭据（用户名和密码）的文件</li>
+<li><code>0 0</code> 不要进行 dump 备份，启动时不需要检查</li>
+</ul>
+</li>
+<li>
+<p>创建登陆凭据 <code>sudo vim /root/smb.cred</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>username=admin
+password=admin
 </code></pre></div></td></tr></table></div>
 </li>
 <li>
-<p>下载源码
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<p>修改凭据权限</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/root/smb.cred
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>重启验证</p>
+</li>
+</ol>
+<p><br></p>
+<h3 id="_11">挂载普通磁盘</h3>
+<p><strong><code>mount</code> 磁盘挂载</strong></p>
+<ul>
+<li>挂载
+    <code>mount -t ntfs /dev/sda1 /mnt</code><ul>
+<li><code>-t</code> 指定文件系统类型</li>
+<li><code>/dev/sda1</code> 磁盘分区</li>
+<li><code>/mnt</code> 挂载点</li>
+</ul>
+</li>
+</ul>
+<p><strong><code>umount</code> 磁盘卸载</strong></p>
+<p><br></p>
+<h3 id="smb">SMB 对外共享</h3>
+<ol>
+<li>
+<p>下载 <code>sudo apt install samba</code></p>
+</li>
+<li>
+<p>配置分享文件夹 <code>chmod 777 /home/user/Public/ -R</code></p>
+</li>
+<li>
+<p>添加samba用户 <code>sudo smbpasswd -a 用户名</code></p>
+</li>
+<li>
+<p>提示输入密码 x2</p>
+</li>
+<li>
+<p>配置samba <code>sudo vim /etc/samba/smb.conf</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>wget<span class="w"> </span>https://nginx.org/download/nginx-1.*.tar.gz
-tar<span class="w"> </span>-zxvf<span class="w"> </span>nginx*
-<span class="nb">cd</span><span class="w"> </span>nginx*
-</code></pre></div></td></tr></table></div></p>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">[</span>share<span class="w"> </span>name<span class="o">]</span><span class="w">            </span><span class="c1"># 共享名</span>
+<span class="w">    </span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>/home/user/Public/#<span class="w"> </span>共享路径
+<span class="w">    </span><span class="nv">writable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>yes<span class="w">      </span><span class="c1"># 可写</span>
+</code></pre></div></td></tr></table></div>
 </li>
 <li>
-<p>下载 <code>rtmp</code> 模块（可选）
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/arut/nginx-rtmp-module.git
-</code></pre></div></td></tr></table></div></p>
+<p>重启samba <code>sudo samba restart</code></p>
+<ul>
+<li>可能还需要重启一下电脑</li>
+</ul>
 </li>
 <li>
-<p>编译安装
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>./configure<span class="w"> </span>--add-module<span class="o">=</span>./nginx-rtmp-module
-make
-sudo<span class="w"> </span>make<span class="w"> </span>install
-</code></pre></div></td></tr></table></div></p>
-</li>
-<li>
-<p>验证
-    <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>/usr/local/nginx/sbin/nginx<span class="w"> </span>-V
-</code></pre></div></td></tr></table></div></p>
+<p>开启端口 <code>sudo ufw allow 445</code></p>
 </li>
 </ol>
 <p><br></p>
 <hr />
-<h2 id="etcnginxnginxconf">/etc/nginx/nginx.conf</h2>
+<h2 id="_12">系统</h2>
 <ul>
-<li>主配置文件：用于定义全局配置和基本设置</li>
-<li>包含指令：包含服务器级别的设置、全局变量、工作进程数、日志文件位置、用户权限、加载模块等</li>
-<li>包含其他文件：通常会使用include指令将其他配置文件包含进来，如/etc/nginx/conf.d/*.conf，从而组织和管理配置文件</li>
+<li><strong><code>btop</code></strong> 状态</li>
+<li><strong><code>screenfetch</code></strong> 配置</li>
 </ul>
+<h3 id="process">Process</h3>
+<p><br></p>
+<h3 id="mem">MEM</h3>
+<p><br></p>
+<h3 id="io">IO</h3>
+<p><br></p>
+<h3 id="_13">其他</h3>
+<ul>
+<li>查看时间 <code>date</code>，修改时区</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span>/usr/share/zoneinfo/Asia/Shanghai<span class="w"> </span>/etc/localtime
+</code></pre></div></td></tr></table></div>
 <p><br></p>
 <hr />
-<h2 id="etcnginxconfdconf">/etc/nginx/conf.d/*.conf</h2>
+<h2 id="_14">网络</h2>
+<h3 id="net">net</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>vi<span class="w"> </span>/etc/netplan/00-installer-config.yaml
+</code></pre></div></td></tr></table></div>
 <ul>
-<li>虚拟主机配置文件：用于定义具体的虚拟主机（服务器）配置的文件，通常用于设置特定域名的服务器块</li>
-<li>作用范围：这个文件主要包含HTTP服务器块（server block），定义了具体的域名、监听端口、根目录、日志路径、反向代理设置等</li>
-<li>从属关系：这个文件通常被主配置文件 nginx.conf 通过 include 指令包含进来，使得Nginx能够加载这些虚拟主机配置</li>
+<li>静态 IP</li>
 </ul>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -3381,140 +4569,145 @@ sudo<span class="w"> </span>make<span class="w"> </span>install
 <span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code>server {
-    listen 80;
-    listen 1314 ssl;
-    server_name xn--e6q212bhn0c.xn--6qq986b3xl;
-
-    # http:80 -&gt; https:1314
-    error_page 497 https://$server_name:1314$request_uri;
-
-    # 证书文件、私钥绝对路径
-    ssl_certificate /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem;
-
-    # ssl 相关配置
-    ssl_session_cache shared:SSL:1m;
-    ssl_session_timeout 5m;
-    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
-    ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
-    ssl_prefer_server_ciphers on;
-
-    location / {                # 网站根目录
-        root    /usr/share/nginx/html;
-        index   index.html index.htm;
-    }
-
-    location /down {            # 文档根目录
-        alias   /usr/share/nginx/down;
-        charset utf-8;              # 文档编码
-        autoindex on;               # 自动索引
-        autoindex_exact_size off;   # 关闭计算文件确切大小
-        autoindex_localtime on;     # 显示本机时间而非 GMT 时间
-        sendfile on;                # 高效传输，零拷贝
-
-        # 鉴权
-        auth_basic_user_file /usr/share/nginx/htpwd;
-    }
-
-    error_page  404               /404.html;
-    error_page   500 502 503 504  /50x.html; # 错误页面
-    location = /50x.html {
-        root   /usr/share/nginx/html;
-    }
-}
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">network</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">eth0</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.2/24</span>
+<span class="w">        </span><span class="nt">routes</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">            </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.1</span>
+<span class="w">        </span><span class="nt">nameservers</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">10.0.0.1</span><span class="p p-Indicator">,</span><span class="nv">8.8.8.8</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
 </code></pre></div></td></tr></table></div>
 <p><br></p>
+<h3 id="ssh">ssh</h3>
+<p><br></p>
+<h3 id="scp">scp</h3>
+<p><br></p>
+<h3 id="ping">ping</h3>
+<p><br></p>
+<h3 id="wget">wget</h3>
+<p><br></p>
+<h3 id="curl">curl</h3>
+<p><br></p>
+<h3 id="nmap">nmap</h3>
+<p><a href="https://nmap.org/man/zh/index.html">官方中文文档</a></p>
+<p><code>nmap [ &lt;扫描类型&gt; ...] [ &lt;选项&gt; ] { &lt;扫描目标说明&gt; }</code></p>
+<h4 id="nmap_1">nmap 端口状态</h4>
+<h5 id="open">open（开放的）</h5>
+<p>应用程序正在监听端口，或者响应一个请求来自已连接的客户端。接收TCP连接或者UDP报文。</p>
+<h5 id="closed">closed（关闭的）</h5>
+<p>没有应用程序监听端口。但是此端口可以被探测到，因为没有应用程序监听，所以会返回一个 RST 包或者 ICMP 端口不可达消息。</p>
+<h5 id="filtered">filtered（屏蔽的）</h5>
+<p>防火墙或者 ACL 屏蔽了端口，所以无法确定端口是否开放。目标端口可能有以下几种情况：
+* 未响应，屏蔽器丢弃了探测包，此举会让 nmap 误认为探测包丢失，导致扫描时间变长。
+* 丢弃了探测包，但是返回了 ICMP 错误消息。</p>
+<h5 id="unfiltered">unfiltered（未屏蔽的）</h5>
+<p>防火墙或者 ACL 没有屏蔽端口，但是 nmap 无法确定端口开放或者关闭。用其它类型的扫描，如窗口扫描，SYN 扫描，或者 FIN 扫描可以帮助确定端口是否开放。</p>
+<h5 id="openfiltered">open|filtered（开放或者屏蔽的）</h5>
+<p>开放的端口不响应探测包，屏蔽的端口也不响应探测包。所以无法确定端口是否开放。</p>
+<h5 id="closedfiltered">closed|filtered（关闭或者屏蔽的）</h5>
+<p>只可能出现在 IPID Idle 扫描中，因为此扫描类型需要发送两个探测包，如果两个探测包都没有响应，那么就无法确定端口是否开放。</p>
 <hr />
-<h2 id="ssl">获取 SSL 证书</h2>
-<p>参考：</p>
-<p><a href="https://www.fisheryung.top:9002/%E4%B8%BA%E6%B2%A1%E6%9C%8980%E3%80%81443%E7%AB%AF%E5%8F%A3%E7%9A%84%E5%9F%9F%E5%90%8D%E7%94%B3%E8%AF%B7ssl%E8%AF%81%E4%B9%A6.html">为没有80、443端口的域名申请SSL证书</a></p>
-<p><a href="https://help.aliyun.com/zh/ssl-certificate/user-guide/install-ssl-certificates-on-nginx-servers-or-tengine-servers">阿里云：Nginx或Tengine服务器配置SSL证书</a></p>
-<ol>
-<li>
-<p>下载 <code>certbot</code></p>
+<h4 id="nmap_2">nmap 扫描技术</h4>
+<h5 id="1">1 默认扫描</h5>
+<p><code>nmap dxll.love</code></p>
+<p>默认扫描是 nmap 的最基本的扫描方式，它会扫描 1000 个最常用的端口，扫描方式是 SYN 扫描。</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>--classic<span class="w"> </span>certbot
-sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/snap/bin/certbot<span class="w"> </span>/usr/bin/certbot
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>nmap<span class="w"> </span>-T0<span class="w"> </span>dxll.love
+nmap<span class="w"> </span>-T1<span class="w"> </span>dxll.love
+nmap<span class="w"> </span>-T2<span class="w"> </span>dxll.love
+nmap<span class="w"> </span>-T3<span class="w"> </span>dxll.love
+nmap<span class="w"> </span>-T4<span class="w"> </span>dxll.love
+nmap<span class="w"> </span>-T5<span class="w"> </span>dxll.love
 </code></pre></div></td></tr></table></div>
-</li>
-<li>
-<p>申请</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>certbot<span class="w"> </span>certonly<span class="w"> </span>--preferred-challenges<span class="w"> </span>dns<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;*.fisheryung.top&quot;</span><span class="w"> </span>--manual
+<p><code>-T0</code> 是最慢的扫描方式，<code>-T5</code> 是最快的扫描方式，<code>-T3</code> 是默认的扫描方式，<code>-T4</code> 是常用的扫描方式。</p>
+<p><code>nmap -6 dxll.love</code></p>
+<p>开启 IPv6 扫描。</p>
+<p><code>nmap -v dxll.love</code></p>
+<p>开启详细模式，显示扫描过程。</p>
+<p><code>nmap -A dxll.love</code></p>
+<p>全面扫描，包括 1-10000 端口扫描，服务版本探测，操作系统探测，脚本扫描等。</p>
+<h5 id="2-ip">2 扫描多个 IP</h5>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>nmap<span class="w"> </span>spacex.com<span class="w"> </span>dxll.love<span class="w">   </span><span class="c1"># 扫描多个域名</span>
+nmap<span class="w"> </span><span class="m">192</span>.168.31.100,101,102<span class="w"> </span><span class="c1"># 扫描同一网段的多个 IP，可以用逗号分隔</span>
+nmap<span class="w"> </span><span class="m">192</span>.168.31.*<span class="w">           </span><span class="c1"># 扫描同一网段的多个 IP，可以用通配符</span>
+nmap<span class="w"> </span><span class="m">192</span>.168.31.1/24<span class="w">        </span><span class="c1"># 扫描同一网段的多个 IP，可以用 CIDR 表示法</span>
 </code></pre></div></td></tr></table></div>
+<h5 id="3">3 扫描指定端口</h5>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>nmap<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span><span class="w"> </span>dxll.love<span class="w">        </span><span class="c1"># 扫描单个端口</span>
+nmap<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>,443<span class="w"> </span>dxll.love<span class="w">    </span><span class="c1"># 扫描多个端口</span>
+nmap<span class="w"> </span>-p<span class="w"> </span><span class="m">1</span>-100<span class="w"> </span>dxll.love<span class="w">     </span><span class="c1"># 扫描端口范围</span>
+nmap<span class="w"> </span>-p-<span class="w">                    </span><span class="c1"># 扫描所有端口 等价于 nmap -p 1-65535</span>
+</code></pre></div></td></tr></table></div>
+<h5 id="4-tcp">4 TCP扫描</h5>
+<h6 id="tcp-syn">TCP SYN 扫描</h6>
+<p><code>nmap -sS dxll.love</code></p>
+<p>此方式不完成 TCP 三次握手，而是发送一个 SYN 包，如果目标端口开放，那么会返回一个 SYN/ACK 包，如果端口关闭，那么会返回一个 RST 包。</p>
+<h6 id="tcp-connect">TCP Connect 扫描</h6>
+<p><code>nmap -sT dxll.love</code></p>
+<p>此方式完成 TCP 三次握手，如果目标端口开放，那么会返回一个 SYN/ACK 包，如果端口关闭，那么会返回一个 RST 包。
+目标主机可能会记录下连接，所以此方式不太隐蔽。</p>
+<h6 id="tcp">TCP 隐秘扫描</h6>
+<p>如果收到 RST 响应，则端口关闭，否则判定端口开放或被屏蔽。</p>
+<p><code>nmap -sN dxll.love</code></p>
+<p>不设置任何标志位。</p>
+<p><code>nmap -sF dxll.love</code></p>
+<p>只设置TCP FIN标志位。</p>
+<p><code>nmap -sX dxll.love</code></p>
+<p>flags的FIN、URG、PUSH都为1的包。</p>
+<h6 id="tcp-ping">TCP ping 扫描</h6>
+<p><code>nmap -sP dxll.love</code></p>
+<p>通过发送ICMP Echo请求（也称为Ping请求）到目标主机，命令将检测主机是否响应了请求并返回IP地址。如果主机响应，则表示主机是在线的。在这个扫描中，Nmap只检查是否有响应，而不扫描主机的任何端口。</p>
+<h5 id="5-udp">5 UDP 扫描</h5>
+<p><code>namp -sU dxll.love</code></p>
+<p>UDP 扫描需要发送 UDP 包，如果目标端口开放，那么会返回一个 ICMP 端口不可达消息，如果端口关闭，那么会返回一个 ICMP 端口不可达消息或者没有响应。</p>
+<h5 id="6">6 路由跟踪</h5>
+<p><code>nmap --traceroute dxll.love</code></p>
+<p>查出从本地计算机到目标之间所经过的网络节点，并可以看到通过各个节点的时间。</p>
+<h5 id="7">7 操作系统探测</h5>
+<p><code>nmap -O dxll.love</code></p>
+<p>nmap 会发送一系列的 TCP 和 UDP 包，然后分析返回的包，从而判断目标主机的操作系统。</p>
+<p><br></p>
+<h3 id="telnet">telnet</h3>
+<p><br></p>
+<h3 id="iperf3">iperf3</h3>
+<p><br></p>
+<hr />
+<h2 id="_15">守护进程</h2>
+<p><a href="https://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html">Systemd</a></p>
+<p><br></p>
+<hr />
+<h2 id="_16">计划作业</h2>
+<p><code>crontab</code></p>
 <ul>
-<li>此时会让你，给你的域名，添加一个txt解析</li>
-<li>域名是带前缀的，看仔细咯</li>
-<li>输出证书保存的位置</li>
+<li>查看计划作业 <code>crontab -l</code></li>
+<li>编辑计划作业 <code>crontab -e</code></li>
+<li>删除计划作业 <code>crontab -r</code></li>
 </ul>
-</li>
-</ol>
 <p><br></p>
 <hr />
-<h2 id="_2">站点加密</h2>
-<p><code>sudo apt install apache2-utils</code></p>
-<p><code>htpasswd -c /home/admin/htpwd admin</code></p>
-<p><br></p>
-<hr />
-<h2 id="for-docker">For Docker</h2>
-<p>启动脚本：<code>runNginx.sh</code></p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
--p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span><span class="se">\</span>
--p<span class="w"> </span><span class="m">1314</span>:1314<span class="w"> </span><span class="se">\</span>
---name<span class="w"> </span>nginx<span class="w"> </span><span class="se">\</span>
--v<span class="w"> </span>/.../site/:/usr/share/nginx/html<span class="w"> </span><span class="se">\</span>
--v<span class="w"> </span>/.../doc/:/usr/share/nginx/down<span class="w"> </span><span class="se">\</span>
--v<span class="w"> </span>/.../htpwd:/usr/share/nginx/htpwd<span class="w"> </span><span class="se">\</span>
--v<span class="w"> </span>/.../NGINX/:/etc/nginx/conf.d<span class="w"> </span><span class="se">\</span>
--v<span class="w"> </span>/usr/share/zoneinfo/Asia/Shanghai:/etc/localtime<span class="w"> </span><span class="se">\</span>
--v<span class="w"> </span>/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem:/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/fullchain.pem<span class="w"> </span><span class="se">\</span>
--v<span class="w"> </span>/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem:/etc/letsencrypt/live/xn--e6q212bhn0c.xn--6qq986b3xl/privkey.pem<span class="w"> </span><span class="se">\</span>
---restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\</span>
--d<span class="w"> </span>nginx:latest
-</code></pre></div></td></tr></table></div>
-<p>热重载配置文件：<code>sudo docker exec [CONTAINER ID] nginx -s reload</code></p>
+<h2 id="ufw">UFW</h2>
+<ul>
+<li><strong><code>ufw enable</code></strong> 启动防火墙 </li>
+<li><strong><code>ufw disenable</code></strong>  关闭防火墙 </li>
+<li><strong><code>ufw allow 22</code></strong> 打开端口</li>
+<li><strong><code>ufw delete allow 22</code></strong> 关闭端口</li>
+<li><strong><code>ufw status</code></strong> 防火墙状态</li>
+</ul>
 
 
 
