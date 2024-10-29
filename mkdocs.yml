@@ -44,6 +44,7 @@ nav:
     - 🥳 Cloud:         src/dev/cloud.md
     - 🥳 MkDocs:        src/dev/mkdocs.md
     - 🐧 Linux:         src/dev/linux.md
+    - 💻 MacOS:         src/dev/macos.md
     - 💪🏻 OpenSSH:       src/dev/openssh.md
     - 💪🏻 Git:           src/dev/git.md
     - 💪🏻 Docker:        src/dev/docker.md

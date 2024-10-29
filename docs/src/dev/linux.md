@@ -171,6 +171,18 @@ dump，rsync
 
 <br>
 
+### scp
+
+
+<br>
+
+
+
+### wget
+
+
+<br>
+
 ---
 
 ## 磁盘
@@ -320,22 +332,73 @@ network:
 
 <br>
 
-### ssh
-
-
-<br>
-
-### scp
-
-
-<br>
-
 ### ping
 
 
 <br>
 
-### wget
+### traceroute
+
+
+<br>
+
+
+### nextroute
+
+
+<br>
+
+### ip route
+
+
+**`ip route show` 查看路由表**
+
+- [destination network]
+    - **ip/mask**：目标网络，例如 `10.0.1.0/24`
+    - **default**：默认路由，用 `"default"` 表示
+
+- `via` [gateway ip]
+    - **gateway ip**：经过的网关 IP 地址。如果没有网关，该字段为空。
+
+- `dev` [interface]
+    - **interface**：出口接口，通过哪个接口发送数据包（如 `eth0`、`br-lan`、`tun0` 等）
+
+- `proto` [protocol]
+    - **static**：静态路由
+    - **kernel**：内核路由（系统自动生成）
+
+- `scope` [scope type]
+    - **link**：作用范围为本地链路，数据包不会被转发
+
+- `src` [source ip]
+    - **source ip**：指定源地址，用于发送到该目标网络的数据包
+
+```bash
+# （备份路由）如果没有匹配的路由，就会使用默认路由，从 eth0 发送
+default via 180.85.207.254 dev eth0 proto static src 180.85.207.68
+# 180.85.206.0/23 是本地网络，通过 eth0 发送
+180.85.206.0/23 dev eth0 proto kernel scope link src 180.85.207.68
+# DHCP 分配的本地网络，通过 br-lan 发送
+10.0.9.0/24 dev br-lan proto kernel scope link src 10.0.9.1
+
+# 所有流量通过 tun0
+0.0.0.0/1 via 10.0.1.1 dev tun0
+128.0.0.0/1 via 10.0.1.1 dev tun0
+# 到达 27.15.165.202 的流量，通过 eth0（对端 VPN 网络的公网 IP）
+27.15.165.202 via 180.85.207.254 dev eth0 
+# VPN 网络，通过 tun0 发送
+10.0.1.0/24 dev tun0 proto kernel scope link src 10.0.1.3
+# 到达 10.0.0.0/24（对端网络）的流量，通过 tun0 发送
+10.0.0.0/24 via 10.0.1.1 dev tun0
+
+# 到达 10.10.8.162 的流量，通过 eth0 发送
+10.10.8.162 via 180.85.207.254 dev eth0 proto static
+```
+
+
+<br>
+
+### iptables
 
 
 <br>
