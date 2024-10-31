@@ -59,30 +59,6 @@
 
 </div>
 
-<div class="container">🌈
-    <div class="item">
-        <a href="https://account.microsoft.com/" target="_blank"> Microsoft </a> 
-    </div>
-    <div class="item">
-        <a href="https://myaccount.google.com/" target="_blank"> Google </a> 
-    </div>
-    <div class="item">
-        <a href="https://account.apple.com/account/manage" target="_blank"> Apple </a> 
-    </div>
-</div>
-
-<div class="container">🌞
-    <div class="item">
-        <a href="https://onedrive.live.com/" target="_blank"> OneDrive </a> 
-    </div>
-    <div class="item">
-        <a href="https://drive.google.com/drive/my-drive" target="_blank"> Google Drive </a> 
-    </div>
-    <div class="item">
-        <a href="https://www.icloud.com/" target="_blank"> iCloud</a> 
-    </div>
-</div>
-
 ---
 
 <div class="container">🤖
@@ -122,7 +98,7 @@
         <a href="http://10.0.0.1" target="_blank"> 路由 </a> / <a href="http://10.0.0.2" target="_blank"> 网关 </a> 
     </div>
     <div class="item">
-        <a href="http://10.0.0.6:1234" target="_blank"> 终端 </a> 
+        <a href="http://10.0.0.3:8080" target="_blank"> 终端 </a> 
     </div>
     <div class="item">
         <a href="" target="_blank"> 影音 </a> / <a href="http://10.0.0.6:5202" target="_blank"> 测速 </a> 
@@ -144,6 +120,33 @@
     </div>
     <div class="item">
         <a href="https://www.itdog.cn/ping/" target="_blank"> 在线 Ping </a> 
+    </div>
+</div>
+
+---
+
+
+<div class="container">🌈
+    <div class="item">
+        <a href="https://account.microsoft.com/" target="_blank"> Microsoft </a> 
+    </div>
+    <div class="item">
+        <a href="https://myaccount.google.com/" target="_blank"> Google </a> 
+    </div>
+    <div class="item">
+        <a href="https://account.apple.com/account/manage" target="_blank"> Apple </a> 
+    </div>
+</div>
+
+<div class="container">🌞
+    <div class="item">
+        <a href="https://onedrive.live.com/" target="_blank"> OneDrive </a> 
+    </div>
+    <div class="item">
+        <a href="https://drive.google.com/drive/my-drive" target="_blank"> Google Drive </a> 
+    </div>
+    <div class="item">
+        <a href="https://www.icloud.com/" target="_blank"> iCloud</a> 
     </div>
 </div>
 

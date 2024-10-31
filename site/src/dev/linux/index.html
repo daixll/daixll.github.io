@@ -4612,20 +4612,89 @@ password=admin
 <p><br></p>
 <hr />
 <h2 id="_12">系统</h2>
-<ul>
-<li><strong><code>btop</code></strong> 状态</li>
-<li><strong><code>screenfetch</code></strong> 配置</li>
-</ul>
+<p><strong><code>btop</code></strong> 状态总览</p>
+<p><strong><code>screenfetch</code></strong> 配置</p>
 <h3 id="process">Process</h3>
+<p><code>ps -aux</code> 查看所有进程</p>
+<p><code>ps -aux | grep [关键字]</code> 查看包含关键字的进程</p>
+<p><code>ps -p [PID]</code> 查看指定进程</p>
+<p><code>ps -u [USER]</code> 查看指定用户的进程</p>
+<table>
+<thead>
+<tr>
+<th>USER</th>
+<th>PID</th>
+<th>%CPU</th>
+<th>%MEM</th>
+<th>VSZ(KB)</th>
+<th>RSS(KB)</th>
+<th>TTY</th>
+<th>STAT</th>
+<th>START</th>
+<th>TIME</th>
+<th>COMMAND</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>进程所有者的用户名</td>
+<td>进程 ID</td>
+<td>CPU 使用率</td>
+<td>内存使用率</td>
+<td>虚拟内存大小</td>
+<td>常驻内存集大小</td>
+<td>终端类型</td>
+<td>进程状态</td>
+<td>启动时间</td>
+<td>进程使用的 CPU 时间</td>
+<td>启动该进程的命令行</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p><code>STAT</code>：</p>
+<ul>
+<li>
+<p><code>S</code> 睡眠：等待事件（等待 I/O ）</p>
+</li>
+<li>
+<p><code>s</code> 领导：具有子进程</p>
+</li>
+<li>
+<p><code>+</code> 前台进程</p>
+</li>
+<li>
+<p><code>R</code> 运行</p>
+</li>
+<li>
+<p><code>l</code> 多线程，克隆线程</p>
+</li>
+<li>
+<p><code>L</code> 有些页被固定在内存中，不允许交换到磁盘</p>
+</li>
+<li>
+<p><code>D</code> 不可中断的睡眠：等待事件完成（正在进行 I/O ）</p>
+</li>
+<li>
+<p><code>Z</code> 僵尸：进程已经终止，但是父进程还没有回收</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>ps -ef</code> 多了一个 <code>ppid</code> 父进程 ID</p>
+<p><code>ps -ef --forest</code> 查看进程树</p>
+<p><code>pstree</code> 查看进程树</p>
+<p><code>kill -9 [PID]</code> 杀死进程，<code>-9</code> 是强制杀死</p>
+<p><code>pkill -9 [进程名]</code> 杀死进程</p>
+<p><code>killall -9 [进程名]</code> 杀死同名进程</p>
 <p><br></p>
 <h3 id="mem">MEM</h3>
 <p><br></p>
 <h3 id="io">IO</h3>
 <p><br></p>
 <h3 id="_13">其他</h3>
-<ul>
-<li>查看时间 <code>date</code>，修改时区</li>
-</ul>
+<p>查看时间 <code>date</code>，修改时区</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span>/usr/share/zoneinfo/Asia/Shanghai<span class="w"> </span>/etc/localtime
 </code></pre></div></td></tr></table></div>
 <p><br></p>
