@@ -1,8 +1,6 @@
 # 文章
 nav:
-  - JIAO:
-    - About:            index.md
-    - 我这一生如履薄冰:    src/about/honor.md
+  - 我这一生如履薄冰:      index.md
   - 🪂 Algorithm:
     - Pre:              src/algorithm/pre.md
     - CSP:              src/algorithm/really/csp.md

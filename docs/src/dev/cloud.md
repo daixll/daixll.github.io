@@ -372,6 +372,20 @@
 8. 打断点 -> `运行` -> `启动调试`
     `f11` 单步运行，如果单步进入库函数，可以通过 `shift + f11` 跳出，相当于 `finsh` 命令
 
+### code-server
+
+```sh
+curl -fsSL https://code-server.dev/install.sh | sh
+```
+
+```sh
+sudo systemctl enable --now code-server@$USER
+```
+
+```sh
+vim ~/.config/code-server/config.yaml
+```
+
 
 <br>
 
