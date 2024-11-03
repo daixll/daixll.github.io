@@ -9,9 +9,7 @@
     }
 </style>
 
-# 👨🏽‍💻
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;共产党人不屑于隐瞒自己的观点和意图。他们公开宣布：他们的目的只有用暴力推翻全部现存的社会制度才能达到。让统治阶级在共产主义革命面前发抖吧。无产者在这个革命中失去的只是锁链。他们获得的将是整个世界。
+# 北斗
 
 <style>
   .search-container {
@@ -33,7 +31,7 @@
 
 <div class="search-container">
   <form action="https://www.google.com/search" method="GET">
-    <textarea id="searchBox" name="q" placeholder="全世界无产者，联合起来！" rows="1"
+    <textarea id="searchBox" name="q" placeholder="Workers of all lands, Unite!" rows="1"
       oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';"
       onkeydown="if(event.key==='Enter' && !event.shiftKey){
         event.preventDefault();
@@ -48,8 +46,7 @@
   }
 </script>
 
----
-
+<br>
 
 <div class="container"> 📮
     <div class="item">
@@ -91,7 +88,7 @@
         <a href="http://10.0.0.3:8080" target="_blank"> Terminal </a> 
     </div>
     <div class="item">
-        <a href="http://10.0.0.6:5202" target="_blank"> SpeedTest local</a> 
+        <a href="http://10.0.0.6:5202" target="_blank"> SpeedTest </a> / <a href="http://cesu.cqwin.com/" target="_blank"> CU </a> 
     </div>
 </div>
 

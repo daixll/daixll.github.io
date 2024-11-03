@@ -1,6 +1,6 @@
 # 文章
 nav:
-  - 我这一生如履薄冰:      index.md
+  - 骄:               index.md
   - 🪂 Algorithm:
     - Pre:              src/algorithm/pre.md
     - CSP:              src/algorithm/really/csp.md
