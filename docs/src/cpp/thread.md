@@ -1,26 +1,215 @@
+## 0 关于此文
+
+对 C++ 的补充
+
+* 以 [《C++ 并发编程实战》](https://www.kdocs.cn/l/ce26I9gpXyOu) 为主线
+
+<br>
+
 ---
-html:
-    toc: true   # 打开侧边目录
-export_on_save:
-    html: true  # 自动保存
+
+## 1 你好，C++的并发世界
+
+### 并发与并行
+
+1. 并发（Concurrency）是逻辑上的，并行（Parallelism）是物理上的。
+
+    * 并发是指一个 **时间段** 内有多个程序在同一个处理器上运行
+    
+    * 并行是指多个处理器或者是多核的处理器 **同一时刻** 运行多个程序
+
+    > 当关注的重点在于任务分离或任务响应时，就会讨论到程序的并发性
+    > 在讨论使用当前可用硬件来提高批量数据处理的速度时，我们会讨论程序的并行性
+
+2. 并发包含并行
+
+    * 并发是指在同一时刻有多个线程在同一个处理器上交替运行
+
+    * 如果有多个处理器，那么这些线程可能会同时运行，此时并发包含了并行
+
+3. 并发适用于 I/O 密集型任务，并行适用于 CPU 密集型任务
+
+<br>
+
 ---
 
-# 参考
+### 为什么使用并发
 
-**视频：**
+1. 为了分离关注点
 
-* 123
+    * 通过并发，可以将程序分解为多个独立的任务，每个任务都可以独立地执行
 
-**网站：**
+2. 为了性能
 
-* 123
+<br>
+
+---
+
+## 2 线程管理
+
+
+### 启动线程 thread
+
+`std::thread` 接受多种可调用对象
+
+1. 普通函数
+
+```cpp
+void f(int n) {
+  for (int i = 1; i <= n; i++)
+    std::cout << i << std::endl;
+}
+
+int main() {
+  std::thread t1(f, 1e3);   // 创建线程 t1
+  // 调用的函数是 f
+  // 传递的参数是 1e3
+  t1.join();
+  return 0;
+}
+```
+
+2. 成员函数
+
+```cpp
+class A {
+public:
+  void f(int n) {
+    for (int i = 1; i <= n; i++)
+      std::cout << i << std::endl;
+  }
+};
+
+int main() {
+  A a;
+  std::thread t1(&A::f, &a, 1e3);  // 创建线程 t1
+  // 调用的函数是 A::f
+  // 调用的对象是 a
+  // 传递的参数是 1e3
+  t1.join();
+  return 0;
+}
+```
+
+3. 函数指针
+
+```cpp
+void f(int n) {
+  for (int i = 1; i <= n; i++)
+    std::cout << i << std::endl;
+}
+
+int main() {
+  void (*p)(int) = f;
+  std::thread t1(p, 1e3);   // 创建线程 t1
+  // 调用的函数是 f
+  // 传递的参数是 1e3
+  t1.join();
+  return 0;
+}
+```
+
+4. 函数对象
+
+```cpp
+#include <iostream>
+#include <thread>
+
+class A {
+public:
+  void operator()(int n) {
+    for (int i = 1; i <= n; i++)
+      std::cout << i << std::endl;
+  }
+};
+
+int main() {
+  A a;
+  std::thread t1(a, 1e3);   // 创建线程 t1
+  // 调用的函数是 f
+  // 传递的参数是 1e3
+  std::thread t2{A(), 1e3};
+  // 调用的是 A 的临时对象
+  // 传递的参数是 1e3
+  t1.join();
+  t2.join();
+  return 0;
+}
+```
+
+5. `Lambda`
+
+```cpp
+int main() {
+  std::thread t1(
+      [](int n) {
+        for (int i = 1; i <= n; i++)
+          std::cout << i << std::endl;
+      },
+      1e3); // 创建线程 t1
+  // 调用的函数是 lambda
+  // 传递的参数是 1e3
+  t1.join();
+  return 0;
+}
+```
+
+6. `std::function`
+
+```cpp
+void f(int n) {
+  for (int i = 1; i <= n; i++)
+    std::cout << i << std::endl;
+}
+
+int main() {
+  std::function<void(int)> func = f;
+  std::thread t1(func, 1e3); // 创建线程 t1
+  // 调用的函数是 func
+  // 传递的参数是 1e3
+  t1.join();
+  return 0;
+}
+```
+
+7. `std::bind`
+
+```cpp
+void f(int n) {
+  for (int i = 1; i <= n; i++)
+    std::cout << i << std::endl;
+}
+
+int main() {
+  auto func = std::bind(f, 1e3);
+  std::thread t1(func); // 创建线程 t1
+  // 调用的函数是 func
+  // 传递的参数是 1e3
+  t1.join();
+  return 0;
+}
+```
+
+<br>
+
+---
+
+### 分离线程 detach
+
+
+<br>
+
+---
+
+### 等待线程 join
+
 
 <br>
 
 ---
 
 
-# thread
+## thread
 
 ## thread：线程
 
@@ -51,7 +240,7 @@ int main(){
 
 ---
 
-# mutex
+## mutex
 
 ## mutex：互斥量
 
@@ -209,7 +398,7 @@ int main() {
 
 ---
 
-# atomic
+## atomic
 
 原子操作是一种不可被中断的操作，要么全部执行，要么完全不执行，不会出现在操作过程中被其他线程干扰的情况。在并发编程中，原子操作是确保数据一致性和避免竞态条件的关键。
 
@@ -271,7 +460,7 @@ int main() {
 
 ---
 
-# condition_variable
+## condition_variable
 
 条件变量，允许线程等待某个特定条件得到满足，然后再继续执行。
 它提供了一个阻塞机制，当某个条件不满足时，线程可以等待在条件变量上，直到其他线程通知它满足条件。
@@ -282,7 +471,7 @@ int main() {
 
 ---
 
-# future
+## future
 
 ## future：异步操作
 
@@ -298,7 +487,7 @@ int main() {
 
 [康康](https://www.zhihu.com/question/397916107)
 
-# 线程池
+## 线程池
 
 1. 线程管理者
 
