@@ -82,10 +82,13 @@
 
 <div class="container"> 🌥️
     <div class="item">
-        <a href="http://10.0.0.6:8080" target="_blank"> 本地云盘 </a> 
+        <a href="https://xn--e6q212bhn0c.xn--6qq986b3xl/data/" target="_blank"> Download Site </a>
     </div>
     <div class="item">
-        <a href="https://www.kdocs.cn/latest" target="_blank"> 金山云盘 </a> 
+        <a href="http://10.0.0.6:8080" target="_blank"> Local Cloud </a> 
+    </div>
+    <div class="item">
+        <a href="https://www.kdocs.cn/latest" target="_blank"> WPS Cloud </a> 
     </div>
 </div>
 
@@ -303,7 +306,7 @@
 |:-:|:-:|:-:|:-:|
 | 8 | 17 | 4 | 12 | 
 
-[哪晓岁月蹉跎过](https://戴兴龙.我爱你/public/) [依旧名利两无收](https://戴兴龙.我爱你/data/)
+[哪晓岁月蹉跎过](http://daixll.kmdns.net:1314/public/) [依旧名利两无收]()
 
 </center>
 
