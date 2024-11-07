@@ -47,3 +47,88 @@
         <a href="https://mathdf.com/cn/" target="_blank"> 计算-DF </a> 
     </div>
 </div>
+
+
+
+
+<br>
+
+---
+
+## 这是一个知识点
+
+**模板**
+
+* 时间复杂度：$O(n)$，主要是因为循环
+
+* 空间复杂度：$O(n)$，主要是因为数组
+
+```cpp
+// 代码风格为 Google
+// 模版使用方法参考例题
+```
+
+**原理**
+
+这个东西可以解决某某问题
+
+* 问题 A
+
+* 问题 B
+
+所有涉及到代码或数组的地方，用 $\LaTeX$ 写
+
+除非是题目要求
+
+### 题目 A
+
+<a href="https://www.luogu.com.cn/problem/P9748" target="_blank">Luogu P9748 [CSP-J 2023] 小苹果</a> | <a href="" target="_blank">视频解析</a> | <a href="" target="_blank">推荐阅读</a>
+
+题目大意
+
+1. 输入 $n$ 个数 $a_i$，输出 $n$ 个数的和
+
+2. 输出 `Hello World`
+
+解题思路
+
+1. 如果有朴素解法，先写朴素解法
+
+2. 再写，如何从朴素解法去优化
+
+<details><summary>朴素解法</summary>
+
+```cpp
+#include <iostream>
+
+const int N = 2e5 + 10;
+
+int main() {
+  std::cout << "Hello World";
+  return 0;
+}
+```
+
+</details>
+
+<details><summary>优化解法</summary>
+
+```cpp
+#include <iostream>
+
+const int N = 2e5 + 10;
+
+int main() {
+  std::cout << "Hello World";
+  return 0;
+}
+```
+<details>
+
+<br>
+
+### 滚动数组优化
+
+<br>
+
+---
