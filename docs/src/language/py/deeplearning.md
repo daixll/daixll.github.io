@@ -4,4 +4,12 @@
 
 ## 安装
 
-1. 
+1. 安装驱动
+
+    ```bash
+    sudo apt-get install nvidia-driver-550
+    ```
+
+2. 安装 CUDA Toolkit
+
+    [官方文档](https://developer.nvidia.com/cuda-downloads)
