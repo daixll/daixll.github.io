@@ -1,6 +1,9 @@
 # 个人工作站的最佳实践
 
----
+
+[拓扑图](https://kdocs.cn/l/cvkIlSwbLP8Q)
+
+
 
 ## 配置
 

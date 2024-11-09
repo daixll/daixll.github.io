@@ -1919,6 +1919,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deeplearning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    deeplearning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3326,6 +3347,8 @@
 <ul>
 <li><code>pip list</code></li>
 </ul>
+<p><br></p>
+<hr />
 <h2 id="miniconda">miniconda</h2>
 <ol>
 <li>
@@ -3335,9 +3358,10 @@
 </li>
 <li>
 <p>执行安装脚本</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>bash<span class="w"> </span>Miniconda3-latest-Linux-x86_64.sh<span class="w"> </span>-b<span class="w"> </span><span class="c1"># 默认安装</span>
-rm<span class="w"> </span>Miniconda3-latest-Linux-x86_64.sh<span class="w">      </span><span class="c1"># 删除安装包</span>
+<p>默认安装在 <code>~/miniconda3</code> 目录下</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>bash<span class="w"> </span>Miniconda3-latest-Linux-x86_64.sh<span class="w"> </span>-b
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm<span class="w"> </span>Miniconda3-latest-Linux-x86_64.sh
 </code></pre></div></td></tr></table></div>
 </li>
 <li>
@@ -3353,9 +3377,9 @@ rm<span class="w"> </span>Miniconda3-latest-Linux-x86_64.sh<span class="w">     
 </li>
 <li>
 <p>配置环境变量</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=$HOME/miniconda3/bin:$PATH&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
-<span class="nb">source</span><span class="w"> </span>~/.bashrc
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=$HOME/miniconda3/bin:$PATH&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">source</span><span class="w"> </span>~/.bashrc
 </code></pre></div></td></tr></table></div>
 </li>
 <li>
@@ -3413,6 +3437,8 @@ conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </
 </code></pre></div></td></tr></table></div>
 </li>
 </ul>
+<p><br></p>
+<hr />
 <h2 id="python">通过源码构建特定版本的 Python</h2>
 <p>以下是在 <code>Ubuntu 20.04</code> 上构建 <code>Python 3.12.0</code> 的步骤。</p>
 <ol>

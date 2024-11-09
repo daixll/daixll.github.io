@@ -9,6 +9,10 @@
 * `pip list`
 
 
+<br>
+
+---
+
 ## miniconda
 
 1. 下载安装脚本
@@ -19,9 +23,14 @@
 
 2. 执行安装脚本
 
+    默认安装在 `~/miniconda3` 目录下
+
     ```bash
-    bash Miniconda3-latest-Linux-x86_64.sh -b # 默认安装
-    rm Miniconda3-latest-Linux-x86_64.sh      # 删除安装包
+    bash Miniconda3-latest-Linux-x86_64.sh -b
+    ```
+
+    ```bash
+    rm Miniconda3-latest-Linux-x86_64.sh
     ```
 
 3. 更新
@@ -37,6 +46,9 @@
 
     ```bash
     echo 'export PATH=$HOME/miniconda3/bin:$PATH' >> ~/.bashrc
+    ```
+
+    ```bash
     source ~/.bashrc
     ```
 
@@ -98,6 +110,9 @@
     conda remove django
     ```
 
+<br>
+
+---
 
 ## 通过源码构建特定版本的 Python
 

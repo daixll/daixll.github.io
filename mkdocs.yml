@@ -65,6 +65,7 @@ nav:
       - pandas:         src/language/py/pandas.md
       - openpyxl:       src/language/py/openpyxl.md
       - tornado:        src/language/py/tornado.md
+      - deeplearning:   src/language/py/deeplearning.md
     - Golang:
       - go:             src/language/go/go.md
       - gin:            src/language/go/gin.md
