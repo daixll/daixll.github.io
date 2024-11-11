@@ -1,5 +1,13 @@
 参考：[Linux 命令大全](https://www.linuxcool.com/)
 
+## for me
+
+```bash
+sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove
+sudo apt install -y openssh-server wget apt-transport-https ca-certificates curl gpg
+wget "https://xn--e6q212bhn0c.xn--6qq986b3xl/public/authorized_keys" -O ~/.ssh/authorized_keys
+```
+
 ## 软件
 
 ### apt

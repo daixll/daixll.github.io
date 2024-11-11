@@ -12,7 +12,7 @@
         <link rel="prev" href="../git/">
       
       
-        <link rel="next" href="../kubernetes/">
+        <link rel="next" href="../containerd/">
       
       
       <link rel="icon" href="../../../assets/head.png">
@@ -1707,6 +1707,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../containerd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    💪🏻 Containerd
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -3570,11 +3591,20 @@
 <p><br></p>
 <hr />
 <h2 id="docker">安装 Docker</h2>
+<ol>
+<li>
+<p>使用 <code>apt</code> 安装（<a href="https://linux.cn/article-16531-1.html">参考文档</a>）：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>docker.io
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
 <p>使用官方安装脚本（<a href="https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script">参考文档</a>）：</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://get.docker.com<span class="w"> </span>-o<span class="w"> </span>get-docker.sh
 sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 </code></pre></div></td></tr></table></div>
+</li>
+</ol>
 <h2 id="image">镜像 IMAGE</h2>
 <p>是一个只读模板，用来创建容器，类似于：</p>
 <ul>

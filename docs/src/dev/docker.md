@@ -18,12 +18,18 @@
 
 ## 安装 Docker
 
-使用官方安装脚本（[参考文档](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script)）：
+1. 使用 `apt` 安装（[参考文档](https://linux.cn/article-16531-1.html)）：
 
-```sh
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-```
+    ```sh
+    sudo snap install docker.io
+    ```
+
+2. 使用官方安装脚本（[参考文档](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script)）：
+
+    ```sh
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+    ```
 
 ## 镜像 IMAGE
 
