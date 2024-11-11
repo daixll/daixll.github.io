@@ -34,32 +34,42 @@ nav:
     - GUI:              src/cpp/gui.md
     - AV:               src/cpp/av.md
     - ROS:              src/cpp/ros.md
-    - 😳 GCC:           src/cpp/gcc.md
-    - 😳 GDB:           src/cpp/gdb.md
-    - 😳 Make:          src/cpp/make.md
-    - 😳 CMake:         src/cpp/cmake.md
-    - 😳 GTest:         src/cpp/gtest.md
-    - 😳 Perf:          src/cpp/perf.md
-    - 😳 Boost:         src/cpp/boost.md
-    - 😳 OpenSSL:       src/cpp/openssl.md
-    - 😳 FFmpeg:        src/cpp/ffmpeg.md
-    - 😳 Qt:            src/cpp/qt.md
+    - 🔩 GCC:           src/cpp/gcc.md
+    - 🔩 GDB:           src/cpp/gdb.md
+    - 🔩 Make:          src/cpp/make.md
+    - 🔩 CMake:         src/cpp/cmake.md
+    - 🔩 GTest:         src/cpp/gtest.md
+    - 🔩 Perf:          src/cpp/perf.md
+    - 🔩 Boost:         src/cpp/boost.md
+    - 🔩 OpenSSL:       src/cpp/openssl.md
+    - 🔩 FFmpeg:        src/cpp/ffmpeg.md
+    - 🔩 Qt:            src/cpp/qt.md
   - 🌥️ DevOps:
-    - 🥳 Cloud:         src/dev/cloud.md
-    - 🥳 MkDocs:        src/dev/mkdocs.md
+    - Cloud:            src/dev/cloud.md
     - 🐧 Linux:         src/dev/linux.md
-    - 💻 MacOS:         src/dev/macos.md
+    - 🧑‍💻 MacOS:         src/dev/macos.md
+
+    # 📋 plan
+    # 💻 code
+    # 🔨 build
+    # 🧪 test
+    # 📦 release
+    # 🚀 deploy
+    # 🔧 operation:
+    # 📊 monitor:
+
+    - 💻 Git:           src/dev/git.md
+    #- 💻GitLab:        src/dev/gitlab.md
+    - 🔨 Docker:        src/dev/docker.md
+    - 🔨 Containerd:    src/dev/containerd.md
+    - 🚀 Kubernetes:    src/dev/kubernetes.md
+    - 🚀 Nginx:         src/dev/nginx.md
+
     - 💪🏻 OpenSSH:       src/dev/openssh.md
-    - 💪🏻 Git:           src/dev/git.md
-    - 💪🏻 Docker:        src/dev/docker.md
-    - 💪🏻 Containerd:    src/dev/containerd.md
-    - 💪🏻 Kubernetes:    src/dev/kubernetes.md
-    - 💪🏻 Nginx:         src/dev/nginx.md
-    - 🪖 Coturn:        src/dev/coturn.md
-    - 🪖 FRP:           src/dev/frp.md
-    - 🪖 DDNS:          src/dev/ddns.md
-    - 📒 MySQL:         src/dev/mysql.md
-    - 📒 Redis:         src/dev/redis.md
+    - 💪🏻 Coturn:        src/dev/coturn.md
+    - 💪🏻 FRP:           src/dev/frp.md
+    - 💪🏻 DDNS:          src/dev/ddns.md
+    - 💪🏻 MySQL:         src/dev/mysql.md
   - 🌿 Language:
     - Python:
       - env:            src/language/py/env.md
