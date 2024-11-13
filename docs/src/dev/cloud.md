@@ -1,5 +1,6 @@
 # 个人工作站的最佳实践
 
+[云图](https://cloud-atlas.readthedocs.io/zh-cn/latest/index.html)
 
 [拓扑图](https://kdocs.cn/l/cvkIlSwbLP8Q)
 
@@ -28,7 +29,7 @@
 
 ### 断电延迟关机
 
-### 来电自动开机
+### 来电自动开机q
 
 <br>
 

@@ -1547,6 +1547,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      容器
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="容器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看容器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3244,6 +3268,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      容器
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="容器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看容器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3268,10 +3316,42 @@
 <p><br></p>
 <hr />
 <h2 id="containerd">安装 containerd</h2>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>containerd
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code>wget<span class="w"> </span>https://github.com/containerd/containerd/releases/download/v2.0.0/containerd-2.0.0-linux-amd64.tar.gz
+sudo<span class="w"> </span>tar<span class="w"> </span>-C<span class="w"> </span>/usr/local<span class="w"> </span>-zxvf<span class="w"> </span>containerd-2.0.0-linux-amd64.tar.gz
+wget<span class="w"> </span>https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
+sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/usr/local/lib/systemd/system/
+sudo<span class="w"> </span>mv<span class="w"> </span>containerd.service<span class="w"> </span>/usr/local/lib/systemd/system/containerd.service
+sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>containerd
+
+wget<span class="w"> </span>https://github.com/opencontainers/runc/releases/download/v1.2.1/runc.amd64
+sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">755</span><span class="w"> </span>runc.amd64<span class="w"> </span>/usr/local/sbin/runc
+
+wget<span class="w"> </span>https://github.com/containernetworking/plugins/releases/download/v1.6.0/cni-plugins-linux-amd64-v1.6.0.tgz
+sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/cni/bin
+sudo<span class="w"> </span>tar<span class="w"> </span>-C<span class="w"> </span>/opt/cni/bin<span class="w"> </span>-zxvf<span class="w"> </span>cni-plugins-linux-amd64-v1.6.0.tgz
+
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>containerd
 </code></pre></div></td></tr></table></div>
-<p><br></p>
-<hr />
+<h2 id="_2">容器</h2>
+<h3 id="_3">查看容器</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>crictl<span class="w"> </span>ps
+</code></pre></div></td></tr></table></div>
 
 
 
