@@ -123,12 +123,4 @@ int main() {
   return 0;
 }
 ```
-<details>
-
-<br>
-
-### 滚动数组优化
-
-<br>
-
----
+</details>

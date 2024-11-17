@@ -1,6 +1,8 @@
 # 数字三角形
 
 
+## 从搜索到规划
+
 <details><summary><a href="https://www.luogu.com.cn/problem/P1216" target="_blank">Luogu P1216 [USACO1.5] [IOI1994]数字三角形 Number Triangles</a> code</summary>
 
 ```cpp
@@ -166,44 +168,63 @@ int main(){
 </details>
 
 
-<details><summary><a href="https://www.luogu.com.cn/problem/P1004" target="_blank">Luogu P1004 [NOIP2000 提高组] 方格取数</a> code</summary>
+
+
+
+### 方格取数
+
+<a href="https://www.luogu.com.cn/problem/P1004" target="_blank">Luogu P1004 [NOIP2000 提高组] 方格取数</a>
+
+题目大意
+
+1. 嘻嘻
+
+解题思路
+
+1. 嘻嘻
+
+<details><summary>code</summary>
 
 ```cpp
 #include <iostream>
 using namespace std;
 
-const int N=15;
+const int N = 15;
 
 int g[N][N];
 int dp[N][N][N][N];
 int n;
 
-int main(){
-    cin>>n;
-    while(1){
-        int a, b, c;
-        scanf("%d%d%d", &a, &b, &c);
-        if(a==b && a==c && a==0) break;
-        g[a][b]=c;
-    }
-    for(int i=1; i<=n; i++)
-        for(int j=1; j<=n; j++)
-            for(int x=1; x<=n; x++)
-                for(int y=1; y<=n; y++){
+int main() {
+  cin >> n;
+  while (1) {
+    int a, b, c;
+    scanf("%d%d%d", &a, &b, &c);
+    if (a == b && a == c && a == 0)
+      break;
+    g[a][b] = c;
+  }
+  for (int i = 1; i <= n; i++)
+    for (int j = 1; j <= n; j++)
+      for (int x = 1; x <= n; x++)
+        for (int y = 1; y <= n; y++) {
 
-                    int t = (i==x && j==y) ? g[i][y] : g[i][j]+g[x][y];
+          int t = (i == x && j == y) ? g[i][y] : g[i][j] + g[x][y];
 
-                    dp[i][j][x][y] = max(dp[i][j][x][y], dp[i-1][j][x-1][y]+t ); 
-                    dp[i][j][x][y] = max(dp[i][j][x][y], dp[i-1][j][x][y-1]+t );
-                    dp[i][j][x][y] = max(dp[i][j][x][y], dp[i][j-1][x-1][y]+t );
-                    dp[i][j][x][y] = max(dp[i][j][x][y], dp[i][j-1][x][y-1]+t );
-                }
+          dp[i][j][x][y] = max(dp[i][j][x][y], dp[i - 1][j][x - 1][y] + t);
+          dp[i][j][x][y] = max(dp[i][j][x][y], dp[i - 1][j][x][y - 1] + t);
+          dp[i][j][x][y] = max(dp[i][j][x][y], dp[i][j - 1][x - 1][y] + t);
+          dp[i][j][x][y] = max(dp[i][j][x][y], dp[i][j - 1][x][y - 1] + t);
+        }
 
-    cout<<dp[n][n][n][n];
-    return 0;
+  cout << dp[n][n][n][n];
+  return 0;
 }
 ```
+
 </details>
+
+### 传纸条
 
 <details><summary><a href="https://www.luogu.com.cn/problem/P1006" target="_blank">Luogu P1006 [NOIP2008 提高组] 传纸条</a> code</summary>
 

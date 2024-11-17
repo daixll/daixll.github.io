@@ -5,6 +5,10 @@
 
 ### linux
 
+```shell
+sudo apt-get install libssl-dev
+```
+
 1. 下载 `wget` / 解压 `tar -zxvf` / 提权 `chmod +x`
 
 2. 配置安装选项 `./config shared --prefix=/opt/OpenSSL-x.y.z --openssldir=/opt/OpenSSL-x.y.z`

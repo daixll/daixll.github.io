@@ -5,6 +5,12 @@
 
 ### linux
 
+
+```shell
+sudo apt-get install libboost-all-dev
+```
+
+
 1. 下载 `wget` / 解压 `tar -zxvf` / 提权 `chmod +x`
 
 2. 配置安装选项 `./bootstrap.sh --prefix=/.../boost-x.y.z`
