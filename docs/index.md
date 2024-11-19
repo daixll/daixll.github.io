@@ -82,7 +82,7 @@
 
 <div class="container"> 🌥️
     <div class="item">
-        <a href="https://xn--e6q212bhn0c.xn--6qq986b3xl/data/" target="_blank"> Download Site </a>
+        <a href="./data/" target="_blank"> Download Site </a>
     </div>
     <div class="item">
         <a href="http://10.0.0.6:8080" target="_blank"> Local Cloud </a> 
@@ -281,7 +281,7 @@
 |:-:|:-:|:-:|:-:|
 | 8 | 17 | 4 | 12 | 
 
-[哪晓岁月蹉跎过 依旧名利两无收](http://daixll.kmdns.net:1314/public/)
+[哪晓岁月蹉跎过 依旧名利两无收](./public/)
 
 </center>
 
