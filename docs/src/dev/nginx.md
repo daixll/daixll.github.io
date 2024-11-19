@@ -35,6 +35,35 @@
 
 ---
 
+## 普通安装及操作
+
+1. 安装
+
+    ```shell
+    sudo apt install nginx
+    ```
+
+2. 重新加载配置文件
+
+    ```shell
+    sudo systemctl reload nginx
+    ```
+
+3. 重启服务
+
+    ```shell
+    sudo systemctl restart nginx
+    ```
+
+---
+
+### 反向代理
+
+
+
+
+---
+
 ## /etc/nginx/nginx.conf
 
 * 主配置文件：用于定义全局配置和基本设置
