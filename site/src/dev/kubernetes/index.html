@@ -1578,6 +1578,54 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      pod
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pod">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pause" class="md-nav__link">
+    <span class="md-ellipsis">
+      pause
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cni" class="md-nav__link">
+    <span class="md-ellipsis">
+      CNI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CNI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#kubelet" class="md-nav__link">
     <span class="md-ellipsis">
       kubelet
@@ -1597,7 +1645,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       通过配置文件部署
     </span>
@@ -1630,7 +1678,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       查看集群相关信息
     </span>
@@ -1639,7 +1687,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pod" class="md-nav__link">
+  <a href="#pod_1" class="md-nav__link">
     <span class="md-ellipsis">
       查看 Pod 相关信息
     </span>
@@ -3338,6 +3386,54 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      pod
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pod">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pause" class="md-nav__link">
+    <span class="md-ellipsis">
+      pause
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cni" class="md-nav__link">
+    <span class="md-ellipsis">
+      CNI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CNI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#kubelet" class="md-nav__link">
     <span class="md-ellipsis">
       kubelet
@@ -3357,7 +3453,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       通过配置文件部署
     </span>
@@ -3390,7 +3486,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       查看集群相关信息
     </span>
@@ -3399,7 +3495,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pod" class="md-nav__link">
+  <a href="#pod_1" class="md-nav__link">
     <span class="md-ellipsis">
       查看 Pod 相关信息
     </span>
@@ -3449,6 +3545,9 @@
 <li>
 <p><a href="https://kubernetes.io/zh-cn/docs/tutorials/">Kubernetes 官方教程</a></p>
 </li>
+<li>
+<p><a href="https://www.bilibili.com/video/BV1PbeueyE8V">k8s 1.29 教程</a></p>
+</li>
 </ul>
 <h2 id="_2">架构</h2>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -3477,7 +3576,8 @@
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code>├── remote
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code>├── remote
 │   ├── kubectl
 │   └── kubectl-convert
 │
@@ -3487,9 +3587,10 @@
 │   ├── apiextensions-apiserver (API 扩展)
 │   ├── kube-aggregator         (API 聚合器)
 │   ├── kube-log-runner         (日志调试)
-│   ├── kube-scheduler          (调度器)
-│   ├── kube-controller-manager (控制器管理器)
-│   └── etcd                    (分布式键值存储)
+│   ├── kube-scheduler          (调度器，选择 pod 所在 node)
+│   └── kube-controller-manager (控制器，管理 Container)
+│
+├── etcd                        (分布式键值存储)
 │
 ├── Worker Node (工作节点，一台物理/虚拟机上可以有多个工作节点)
 │   │
@@ -3498,7 +3599,7 @@
 │   ├── kube-proxy              (网络代理, 负载均衡)
 │   ├── mounter                 (挂载器, 管理存储卷的挂载和卸载)
 │   └── Container-Runtime       (容器运行时, 如 Docker)
-│       ├── Pod                 (k8s 最小部署单元)
+│       ├── Pod                 (k8s 最小部署单元，逻辑概念)
 │       │   └── Container       (容器, 建议一个 Pod 一个 Container)
 │       ├── Pod
 │       └── Pod
@@ -3511,7 +3612,7 @@
 <p><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">文档</a></p>
 <ol>
 <li>
-<p>禁用交换空间</p>
+<p>禁用交换空间，以提高性能</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/\bswap\b/ s/^/#/&#39;</span><span class="w"> </span>/etc/fstab
 swapoff<span class="w"> </span>-a
@@ -3528,7 +3629,7 @@ cat<span class="w"> </span>/proc/swaps
 </blockquote>
 </li>
 <li>
-<p>启用 IPv4 转发</p>
+<p>启用 IPv4 转发，以便 <code>kubeadm</code> 可以正确的配置 <code>iptables</code> 链</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -3537,7 +3638,7 @@ cat<span class="w"> </span>/proc/swaps
 <span class="s">net.ipv4.ip_forward = 1</span>
 <span class="s">EOF</span>
 
-sudo<span class="w"> </span>sysctl<span class="w"> </span>--system
+sysctl<span class="w"> </span>--system
 </code></pre></div></td></tr></table></div>
 <blockquote>
 <p>在 <code>/etc/sysctl.d/</code> 目录下创建一个 <code>k8s.conf</code> 文件，写入 <code>net.ipv4.ip_forward = 1</code>，然后重新加载配置</p>
@@ -3549,15 +3650,19 @@ sudo<span class="w"> </span>sysctl<span class="w"> </span>--system
 </blockquote>
 </li>
 <li>
-<p>安装 Container Runtime</p>
+<p>安装并配置 Container Runtime</p>
 <ul>
 <li>
-<p>安装 <a href="../containerd/">Containerd</a> 后配置 <code>containerd</code></p>
+<p>使用 <a href="../containerd/">Containerd</a></p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/containerd
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>containerd<span class="w"> </span>-y
+mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/containerd
 containerd<span class="w"> </span>config<span class="w"> </span>default<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/containerd/config.toml
-sudo<span class="w"> </span>vim<span class="w"> </span>/etc/containerd/config.toml
+vim<span class="w"> </span>/etc/containerd/config.toml
+systemctl<span class="w"> </span>restart<span class="w"> </span>containerd
 </code></pre></div></td></tr></table></div>
 <blockquote>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">TOML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -3569,17 +3674,17 @@ sudo<span class="w"> </span>vim<span class="w"> </span>/etc/containerd/config.to
 <span class="w">    </span><span class="n">SystemdCgroup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 </code></pre></div></td></tr></table></div>
 <blockquote>
-<p>确保 <code>SystemdCgroup</code> 为 <code>true</code></p>
+<ol>
+<li>确保 <code>SystemdCgroup</code> 为 <code>true</code></li>
+</ol>
 </blockquote>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">TOML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">disabled_plugins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
 </code></pre></div></td></tr></table></div>
 <blockquote>
-<p>确保 <code>disabled_plugins</code> 中没有 <code>cri</code> 插件</p>
+<ol>
+<li>确保 <code>disabled_plugins</code> 中没有 <code>cri</code> 插件</li>
+</ol>
 </blockquote>
-</blockquote>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>containerd
-</code></pre></div></td></tr></table></div>
-<blockquote>
 <p>重启 <code>containerd</code> 服务</p>
 </blockquote>
 </li>
@@ -3617,7 +3722,7 @@ sudo<span class="w"> </span>chown<span class="w"> </span><span class="k">$(</spa
 </code></pre></div></td></tr></table></div>
 <blockquote>
 <p>在 <strong>控制平面</strong> 上执行上述命令会初始化一个 Kubernetes 集群，输出的最后会有一个 <code>kubeadm join</code> 命令，用于将其他节点加入集群</p>
-<p>在 <strong>控制平面</strong> 上执行上述命令，将 <code>kubeconfig</code> 文件拷贝到用户目录下</p>
+<p>在 <strong>控制平面</strong> 上执行上述命令，以便使用 <code>kubectl</code> 命令</p>
 </blockquote>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>kubeadm<span class="w"> </span>join<span class="w"> </span>&lt;control-plane-host&gt;:&lt;control-plane-port&gt;<span class="w"> </span>--token<span class="w"> </span>&lt;token&gt;<span class="w"> </span>--discovery-token-ca-cert-hash<span class="w"> </span>sha256:&lt;hash&gt;
 </code></pre></div></td></tr></table></div>
@@ -3626,11 +3731,11 @@ sudo<span class="w"> </span>chown<span class="w"> </span><span class="k">$(</spa
 </blockquote>
 </li>
 <li>
-<p>安装 <code>cni</code> 网络插件</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://reweave.azurewebsites.net/k8s/v1.29/net.yaml
+<p>安装 <code>CNI</code> 网络插件</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://projectcalico.docs.tigera.io/manifests/calico.yaml
 </code></pre></div></td></tr></table></div>
 <blockquote>
-<p>安装网络插件，这里使用的是 <code>weave</code> 插件</p>
+<p>安装网络插件，这里使用的是 <code>calico</code>，也可以使用其他插件</p>
 </blockquote>
 </li>
 <li>
@@ -3641,8 +3746,27 @@ sudo<span class="w"> </span>chown<span class="w"> </span><span class="k">$(</spa
 <p>查看节点状态</p>
 </blockquote>
 </li>
-<li></li>
 </ol>
+<p><br></p>
+<hr />
+<h2 id="pod">pod</h2>
+<h3 id="pause">pause</h3>
+<p>1 号容器，其他容器共享其 <code>PID</code>，<code>IPC</code>，<code>Network</code>，</p>
+<ul>
+<li>
+<p><code>PID</code>：可以通过 <code>ps</code> 命令查看到其他容器的进程，回收僵尸进程</p>
+</li>
+<li>
+<p><code>IPC</code>：可以通过共享内存进行通信</p>
+</li>
+<li>
+<p><code>Network</code>：可以通过回环地址 <code>localhost</code> 相互通信</p>
+</li>
+</ul>
+<p><br></p>
+<hr />
+<h2 id="cni">CNI</h2>
+<h3 id="_3"></h3>
 <p><br></p>
 <hr />
 <h2 id="kubelet">kubelet</h2>
@@ -3651,7 +3775,7 @@ sudo<span class="w"> </span>chown<span class="w"> </span><span class="k">$(</spa
 <hr />
 <h2 id="kubeadm">kubeadm</h2>
 <p>用于初始化集群、加入节点、重置集群等操作</p>
-<h3 id="_3">通过配置文件部署</h3>
+<h3 id="_4">通过配置文件部署</h3>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -3681,7 +3805,7 @@ sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span
 <hr />
 <h2 id="kubectl">kubectl</h2>
 <p>用于控制平面进行操作，如创建、删除、更新资源</p>
-<h3 id="_4">查看集群相关信息</h3>
+<h3 id="_5">查看集群相关信息</h3>
 <p>获取集群信息，包括 API 服务器地址、DNS 等</p>
 <p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>cluster-info
 </code></pre></div></td></tr></table></div>
@@ -3691,7 +3815,7 @@ sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span
 <p>获取组件信息</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>cs
 </code></pre></div></td></tr></table></div>
-<h3 id="pod">查看 Pod 相关信息</h3>
+<h3 id="pod_1">查看 Pod 相关信息</h3>
 <p>获取系统级别的 Pod 信息</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system
 </code></pre></div></td></tr></table></div>

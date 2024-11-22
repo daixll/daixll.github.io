@@ -8,6 +8,14 @@
 
 ## 安装 containerd
 
+`apt` 安装
+
+```shell
+sudo apt install containerd
+```
+
+手动安装
+
 ```shell
 wget https://github.com/containerd/containerd/releases/download/v2.0.0/containerd-2.0.0-linux-amd64.tar.gz
 sudo tar -C /usr/local -zxvf containerd-2.0.0-linux-amd64.tar.gz
