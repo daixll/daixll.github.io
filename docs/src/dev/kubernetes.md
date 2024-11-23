@@ -49,7 +49,7 @@
 
 ---
 
-## Getting started
+## Getting Started
 
 [文档](https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
 
@@ -165,6 +165,7 @@
 
     ```shell
     kubectl get nodes
+    kubectl get pod -A
     ```
 
     > 查看节点状态
@@ -173,6 +174,31 @@
 <br>
 
 ---
+
+## resource
+
+资源清单，一切皆资源
+
+* 名称空间级资源
+
+    * 工作负载型资源：`Pod`，`ReplicaSet`，`Deployment`
+
+    * 服务发现和负载均衡型资源：`Service`，`Ingress`
+
+    * 配置与存储型资源：`Volume`，`CSI`
+
+    * 特殊类型资源：`ConfigMap`，`Secret`
+
+* 集群级资源
+
+    * `Namespace`
+
+* 元数据型资源
+
+    * `HPA`
+
+
+
 
 ## pod
 
@@ -190,17 +216,6 @@
 <br>
 
 ---
-
-## CNI
-
-### 
-
-
-
-<br>
-
----
-
 
 
 ## kubelet

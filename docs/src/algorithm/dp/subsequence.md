@@ -1,43 +1,56 @@
----
-html:
-    toc: true           # 打开侧边目录
-    toc_depth: 6        # 打开的目录层级
-    toc_float: true     # 侧边悬停
-    collapsed: true     # 只显示高级别标题(2)
-    smooth_scroll: true # 页面滚动,标题变化
-    number_sections: false  # 显示标题编号
-    theme: united
---- 
-
-
 ## LIS 最长上升子序列
 
-> Longest Increasing Subsequence
 
-<details><summary><a href="https://www.luogu.com.cn/problem/B3637" target="_blank">Luogu B3637 最长上升子序列</a> code</summary>
+
+**模版**
+
+* 时间复杂度：$O(n)$，主要是因为循环
+
+* 空间复杂度：$O(n)$，主要是因为数组
+
+
+```cpp
+// Longest Increasing Subsequence
+
+```
+
+<br>
+
+### 朴素
+
+<a href="https://www.luogu.com.cn/problem/B3637" target="_blank">Luogu B3637 最长上升子序列</a>
+
+题目大意
+
+1. 嘻嘻
+
+解题思路
+
+2. 嘻嘻
+
+<details><summary>code</summary>
 
 ```cpp
 #include <iostream>
 using namespace std;
 
-const int N=5e3+10;
+const int N = 5e3 + 10;
 
-int a[N], dp[N];
+int a[N], dp[N];  // dp[i] 以 a[i] 作为结尾的子序列长度
 int n;
 
-int main(){
-    cin>>n;
-    for(int i=1; i<=n; i++) cin>>a[i];
-    for(int i=1; i<=n; i++){
-        dp[i]=1;
-        for(int j=1; j<i; j++)
-            if( a[i] > a[j] )
-                dp[i] = max(dp[i], dp[j] + 1);
-            *dp = max(*dp, dp[i]);
+int main() {
+  cin >> n;
+  for (int i = 1; i <= n; i++) cin >> a[i];
+  for (int i = 1; i <= n; i++) {
+    dp[i] = 1;
+    for (int j = 1; j < i; j++) {  // a[i] 与 a[j] 比较
+      if (a[i] > a[j]) dp[i] = max(dp[i], dp[j] + 1);
     }
-    cout<<(*dp);
-
-    return 0;
+    dp[0] = max(dp[0], dp[i]);
+  }
+  cout << dp[0];
+  return 0;
 }
 ```
 
@@ -72,6 +85,8 @@ int main(){
 ```
 
 </details>
+
+<br>
 
 
 <details><summary><a href="https://www.luogu.com.cn/problem/T285024" target="_blank">Luogu T285024 最大上升子序列和</a> code</summary>
@@ -189,6 +204,10 @@ int main(){
 ```
 </details>
 
+
+
+<br>
+
 --- 
 
 ## LCS 最长公共子序列
@@ -255,6 +274,9 @@ int main(){
 
 ```
 </details>
+
+
+<br>
 
 --- 
 

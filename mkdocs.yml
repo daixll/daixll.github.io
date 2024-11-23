@@ -14,7 +14,7 @@ nav:
       - 二叉树:         src/algorithm/graph/binary-tree.md
     - 动规:
       - 数字三角形:     src/algorithm/dp/number-triangles.md
-      #- 子序列模型:     src/algorithm/dp/subsequence.md
+      - 子序列模型:     src/algorithm/dp/subsequence.md
       #- 背包问题:       src/algorithm/dp/knapsack.md
       #- 状态机:         src/algorithm/dp/state-machine.md
       #- 线性DP:         src/algorithm/dp/linear-dp.md

@@ -3,6 +3,8 @@
 
 ## 从搜索到规划
 
+### 数字三角形
+
 <details><summary><a href="https://www.luogu.com.cn/problem/P1216" target="_blank">Luogu P1216 [USACO1.5] [IOI1994]数字三角形 Number Triangles</a> code</summary>
 
 ```cpp
@@ -34,6 +36,10 @@ int main(){
 }
 ```
 </details>
+
+## 从左上到右下
+
+### 朴素
 
 <details><summary><a href="https://www.acwing.com/problem/content/1017/" target="_blank">AcWing 1015. 摘花生</a> code</summary>
 
@@ -69,6 +75,8 @@ int main(){
 }
 ```
 </details>
+
+### 存在障碍
 
 <details><summary><a href="https://www.luogu.com.cn/problem/P1002" target="_blank">Luogu P1002 [NOIP2002 普及组] 过河卒</a> code</summary>
 
@@ -117,6 +125,7 @@ int main() {
 ```
 </details>
 
+### 存在多种走法
 
 <details><summary><a href="https://www.luogu.com.cn/problem/P7074" target="_blank">Luogu P7074 [CSP-J2020] 方格取数</a> code</summary>
 
@@ -168,10 +177,7 @@ int main(){
 </details>
 
 
-
-
-
-### 方格取数
+### 允许重复走
 
 <a href="https://www.luogu.com.cn/problem/P1004" target="_blank">Luogu P1004 [NOIP2000 提高组] 方格取数</a>
 
@@ -181,7 +187,13 @@ int main(){
 
 解题思路
 
-1. 嘻嘻
+1. 如果分两次走，会因为第一次取走的数而影响第二次的取数，没有保证无后效性，因此考虑一次走完
+
+2. 显然，第二次走，也可以看作是左上角到右下角，因此可以理解为两次从左上角到右下角取数
+
+3. 用 $dp[i][j][x][y]$ 表示第一次走到 $(i, j)$，第二次走到 $(x, y)$ 的最大值
+
+4. 如果 $(i, j) = (x, y)$，需要特判，因为只能取一次
 
 <details><summary>code</summary>
 
@@ -224,7 +236,7 @@ int main() {
 
 </details>
 
-### 传纸条
+### 重复走的优化
 
 <details><summary><a href="https://www.luogu.com.cn/problem/P1006" target="_blank">Luogu P1006 [NOIP2008 提高组] 传纸条</a> code</summary>
 

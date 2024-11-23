@@ -55,7 +55,7 @@
 
 ---
 
-## 这是一个知识点
+## 这是知识点 1
 
 **模板**
 
@@ -79,6 +79,8 @@
 所有涉及到代码或数组的地方，用 $\LaTeX$ 写
 
 除非是题目要求
+
+<br>
 
 ### 题目 A
 
@@ -124,3 +126,60 @@ int main() {
 }
 ```
 </details>
+
+
+<br>
+
+
+### 题目 B
+
+<a href="https://www.luogu.com.cn/problem/P9748" target="_blank">Luogu P9748 [CSP-J 2023] 小苹果</a> | <a href="" target="_blank">视频解析</a> | <a href="" target="_blank">推荐阅读</a>
+
+题目大意
+
+1. 输入 $n$ 个数 $a_i$，输出 $n$ 个数的和
+
+2. 输出 `Hello World`
+
+解题思路
+
+1. 如果有朴素解法，先写朴素解法
+
+2. 再写，如何从朴素解法去优化
+
+<details><summary>朴素解法</summary>
+
+```cpp
+#include <iostream>
+
+const int N = 2e5 + 10;
+
+int main() {
+  std::cout << "Hello World";
+  return 0;
+}
+```
+
+</details>
+
+<details><summary>优化解法</summary>
+
+```cpp
+#include <iostream>
+
+const int N = 2e5 + 10;
+
+int main() {
+  std::cout << "Hello World";
+  return 0;
+}
+```
+</details>
+
+
+<br>
+
+---
+
+
+## 这是知识点 2

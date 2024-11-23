@@ -828,6 +828,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../algorithm/dp/subsequence/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    子序列模型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1571,7 +1592,16 @@
         <li class="md-nav__item">
   <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
-      Getting started
+      Getting Started
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      resource
     </span>
   </a>
   
@@ -1602,30 +1632,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cni" class="md-nav__link">
-    <span class="md-ellipsis">
-      CNI
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="CNI">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#kubelet" class="md-nav__link">
     <span class="md-ellipsis">
       kubelet
@@ -1645,7 +1651,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       通过配置文件部署
     </span>
@@ -1678,7 +1684,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       查看集群相关信息
     </span>
@@ -3379,7 +3385,16 @@
         <li class="md-nav__item">
   <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
-      Getting started
+      Getting Started
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      resource
     </span>
   </a>
   
@@ -3410,30 +3425,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cni" class="md-nav__link">
-    <span class="md-ellipsis">
-      CNI
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="CNI">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#kubelet" class="md-nav__link">
     <span class="md-ellipsis">
       kubelet
@@ -3453,7 +3444,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       通过配置文件部署
     </span>
@@ -3486,7 +3477,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       查看集群相关信息
     </span>
@@ -3608,7 +3599,7 @@
 </code></pre></div></td></tr></table></div>
 <p><br></p>
 <hr />
-<h2 id="getting-started">Getting started</h2>
+<h2 id="getting-started">Getting Started</h2>
 <p><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">文档</a></p>
 <ol>
 <li>
@@ -3740,7 +3731,9 @@ sudo<span class="w"> </span>chown<span class="w"> </span><span class="k">$(</spa
 </li>
 <li>
 <p>在控制平面上查看集群状态</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-A
 </code></pre></div></td></tr></table></div>
 <blockquote>
 <p>查看节点状态</p>
@@ -3749,6 +3742,39 @@ sudo<span class="w"> </span>chown<span class="w"> </span><span class="k">$(</spa
 </ol>
 <p><br></p>
 <hr />
+<h2 id="resource">resource</h2>
+<p>资源清单，一切皆资源</p>
+<ul>
+<li>
+<p>名称空间级资源</p>
+<ul>
+<li>
+<p>工作负载型资源：<code>Pod</code>，<code>ReplicaSet</code>，<code>Deployment</code></p>
+</li>
+<li>
+<p>服务发现和负载均衡型资源：<code>Service</code>，<code>Ingress</code></p>
+</li>
+<li>
+<p>配置与存储型资源：<code>Volume</code>，<code>CSI</code></p>
+</li>
+<li>
+<p>特殊类型资源：<code>ConfigMap</code>，<code>Secret</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>集群级资源</p>
+<ul>
+<li><code>Namespace</code></li>
+</ul>
+</li>
+<li>
+<p>元数据型资源</p>
+<ul>
+<li><code>HPA</code></li>
+</ul>
+</li>
+</ul>
 <h2 id="pod">pod</h2>
 <h3 id="pause">pause</h3>
 <p>1 号容器，其他容器共享其 <code>PID</code>，<code>IPC</code>，<code>Network</code>，</p>
@@ -3765,17 +3791,13 @@ sudo<span class="w"> </span>chown<span class="w"> </span><span class="k">$(</spa
 </ul>
 <p><br></p>
 <hr />
-<h2 id="cni">CNI</h2>
-<h3 id="_3"></h3>
-<p><br></p>
-<hr />
 <h2 id="kubelet">kubelet</h2>
 <p>与容器运行时交互，依赖 <code>CRI</code> 容器运行时接口</p>
 <p><br></p>
 <hr />
 <h2 id="kubeadm">kubeadm</h2>
 <p>用于初始化集群、加入节点、重置集群等操作</p>
-<h3 id="_4">通过配置文件部署</h3>
+<h3 id="_3">通过配置文件部署</h3>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -3805,7 +3827,7 @@ sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span
 <hr />
 <h2 id="kubectl">kubectl</h2>
 <p>用于控制平面进行操作，如创建、删除、更新资源</p>
-<h3 id="_5">查看集群相关信息</h3>
+<h3 id="_4">查看集群相关信息</h3>
 <p>获取集群信息，包括 API 服务器地址、DNS 等</p>
 <p><div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>cluster-info
 </code></pre></div></td></tr></table></div>
