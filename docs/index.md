@@ -111,10 +111,10 @@
 
 <div class="container"> 🛜
     <div class="item">
-        <a href="https://home.console.aliyun.com/home/dashboard/ProductAndService" target="_blank"> Domain </a> 
+        <a href="https://console.huaweicloud.com/?locale=zh-cn" target="_blank"> huawei </a> / <a href="https://home.console.aliyun.com/home/dashboard/ProductAndService" target="_blank"> Ali </a>
     </div>
     <div class="item">
-        <a href="https://dash.cloudflare.com/" target="_blank"> CDN </a> 
+        <a href="https://dash.cloudflare.com/" target="_blank"> Cloudflare </a> 
     </div>
     <div class="item">
         <a href="https://www.itdog.cn/tcping/" target="_blank"> Tcping </a> 

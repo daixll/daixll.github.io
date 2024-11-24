@@ -147,7 +147,7 @@ server {
 2. 申请
 
     ```bash
-    sudo certbot certonly --preferred-challenges dns -d "*.fisheryung.top" --manual
+    sudo certbot certonly --preferred-challenges dns -d "dxlcq.cn" --manual --cert-name dxlcq.cn
     ```
 
     * 此时会让你，给你的域名，添加一个txt解析

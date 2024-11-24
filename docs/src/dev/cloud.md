@@ -151,7 +151,7 @@
 
 ### HomeProxy
 
-[homeproxy 教程](https://www.youtube.com/watch?v=nNRpbn9M2Lc&t=703s)
+[homeproxy 教程](https://www.youtube.com/watch?v=nNRpbn9M2Lc)
 
 
 
@@ -168,6 +168,12 @@
 
 防火墙设置：
     forwarded ipv4 来自所有区域，ip 10.0.1.0/24 到 lan，静态重写到源 ip 10.0.0.2
+
+### CDN
+
+
+
+
 
 <br>
 
