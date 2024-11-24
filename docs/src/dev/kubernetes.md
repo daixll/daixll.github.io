@@ -12,6 +12,29 @@
 
 * [k8s 1.29 教程](https://www.bilibili.com/video/BV1PbeueyE8V)
 
+<br>
+
+---
+
+## kubectl
+
+```shell
+kubectl explain pod.spec.containers  # 查看 pod.spec.containers 的资源描述
+kubectl logs <pod-name>              # 查看 pod 日志
+
+kubectl get pod -A              # 查看所有 pod
+kubectl get pod -n kube-system  # 查看 kube-system 命名空间下的 pod
+kubectl get pod -o wide         # 查看 pod 的详细信息
+
+kubectl exec -it <pod-name> -- /bin/bash  # 进入 pod
+
+```
+
+
+<br>
+
+---
+
 ## 架构
 
 ```
@@ -169,6 +192,69 @@
     ```
 
     > 查看节点状态
+
+8. 创建一个 `vim nginx-deployment.yaml`
+
+    ```yaml
+    apiVersion: apps/v1         # 版本             Kubernetes API 版本
+    kind: Deployment            # 资源类型         资源类型是 Deployment
+    metadata:                   # 元数据           包含资源的名称和标签
+      name: nginx-deployment
+    spec:                       # 规范             定义资源的规范
+      replicas: 2               #   副本数量        指定运行多少个 Pod 实例
+      selector:                 #   选择器          用于选择要管理的 Pod
+        matchLabels:            #       匹配标签    选择具有指定标签的 Pod
+          app: nginx
+      template:                 #   模板            定义创建的 Pod 的元数据和规范
+        metadata:               #       元数据      定义 Pod 的元数据
+          labels:               #           标签    给 Pod 添加标签
+            app: nginx
+        spec:                   #       规范        定义 Pod 的规范
+          containers:           #           容器    定义 Pod 中的容器
+          - name: nginx
+            image: nginx:latest
+            ports:
+            - containerPort: 80
+    ```
+
+    ```shell
+    kubectl apply -f nginx-deployment.yaml
+    ```
+
+9. 创建一个 `vim nginx-service.yaml`
+
+    ```yaml
+    apiVersion: v1              # 版本
+    kind: Service               # 资源类型
+    metadata:                   # 元数据
+      name: nginx-service       #   名称
+    spec:                       # 规范
+      selector:                 #   选择器          选择要暴露的 Pod
+        app: nginx              #       匹配标签
+      ports:                    #   端口
+        - protocol: TCP         #       协议
+          port: 80              #       端口        Service 端口
+          targetPort: 80        #       目标端口     Pod 端口
+      externalIPs:              #   外部 IP         暴露到外部的 IP
+        - 10.0.0.31
+    ```
+
+    ```shell
+    kubectl apply -f nginx-service.yaml
+    ```
+
+10. 查看服务
+
+    ```shell
+    kubectl get service nginx-service
+    ```
+
+11. 访问服务
+
+    ```shell
+    curl 10.0.0.31
+    ```
+    
 
 
 <br>

@@ -1581,6 +1581,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      kubectl
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       架构
@@ -1674,7 +1683,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubectl" class="md-nav__link">
+  <a href="#kubectl_1" class="md-nav__link">
     <span class="md-ellipsis">
       kubectl
     </span>
@@ -3374,6 +3383,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      kubectl
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       架构
@@ -3467,7 +3485,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kubectl" class="md-nav__link">
+  <a href="#kubectl_1" class="md-nav__link">
     <span class="md-ellipsis">
       kubectl
     </span>
@@ -3540,6 +3558,27 @@
 <p><a href="https://www.bilibili.com/video/BV1PbeueyE8V">k8s 1.29 教程</a></p>
 </li>
 </ul>
+<p><br></p>
+<hr />
+<h2 id="kubectl">kubectl</h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>explain<span class="w"> </span>pod.spec.containers<span class="w">  </span><span class="c1"># 查看 pod.spec.containers 的资源描述</span>
+kubectl<span class="w"> </span>logs<span class="w"> </span>&lt;pod-name&gt;<span class="w">              </span><span class="c1"># 查看 pod 日志</span>
+
+kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-A<span class="w">              </span><span class="c1"># 查看所有 pod</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w">  </span><span class="c1"># 查看 kube-system 命名空间下的 pod</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-o<span class="w"> </span>wide<span class="w">         </span><span class="c1"># 查看 pod 的详细信息</span>
+
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span>--<span class="w"> </span>/bin/bash<span class="w">  </span><span class="c1"># 进入 pod</span>
+</code></pre></div></td></tr></table></div>
+<p><br></p>
+<hr />
 <h2 id="_2">架构</h2>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -3739,6 +3778,90 @@ kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </
 <p>查看节点状态</p>
 </blockquote>
 </li>
+<li>
+<p>创建一个 <code>vim nginx-deployment.yaml</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span><span class="w">         </span><span class="c1"># 版本             Kubernetes API 版本</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span><span class="w">            </span><span class="c1"># 资源类型         资源类型是 Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w">                   </span><span class="c1"># 元数据           包含资源的名称和标签</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-deployment</span>
+<span class="nt">spec</span><span class="p">:</span><span class="w">                       </span><span class="c1"># 规范             定义资源的规范</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w">               </span><span class="c1">#   副本数量        指定运行多少个 Pod 实例</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">                 </span><span class="c1">#   选择器          用于选择要管理的 Pod</span>
+<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">            </span><span class="c1">#       匹配标签    选择具有指定标签的 Pod</span>
+<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">                 </span><span class="c1">#   模板            定义创建的 Pod 的元数据和规范</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">               </span><span class="c1">#       元数据      定义 Pod 的元数据</span>
+<span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">               </span><span class="c1">#           标签    给 Pod 添加标签</span>
+<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">                   </span><span class="c1">#       规范        定义 Pod 的规范</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">           </span><span class="c1">#           容器    定义 Pod 中的容器</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx:latest</span>
+<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>nginx-deployment.yaml
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>创建一个 <code>vim nginx-service.yaml</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">YAML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w">              </span><span class="c1"># 版本</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span><span class="w">               </span><span class="c1"># 资源类型</span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w">                   </span><span class="c1"># 元数据</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-service</span><span class="w">       </span><span class="c1">#   名称</span>
+<span class="nt">spec</span><span class="p">:</span><span class="w">                       </span><span class="c1"># 规范</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">                 </span><span class="c1">#   选择器          选择要暴露的 Pod</span>
+<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span><span class="w">              </span><span class="c1">#       匹配标签</span>
+<span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">                    </span><span class="c1">#   端口</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span><span class="w">         </span><span class="c1">#       协议</span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span><span class="w">              </span><span class="c1">#       端口        Service 端口</span>
+<span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span><span class="w">        </span><span class="c1">#       目标端口     Pod 端口</span>
+<span class="w">  </span><span class="nt">externalIPs</span><span class="p">:</span><span class="w">              </span><span class="c1">#   外部 IP         暴露到外部的 IP</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.31</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>nginx-service.yaml
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>查看服务</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>service<span class="w"> </span>nginx-service
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>访问服务</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>curl<span class="w"> </span><span class="m">10</span>.0.0.31
+</code></pre></div></td></tr></table></div>
+</li>
 </ol>
 <p><br></p>
 <hr />
@@ -3825,7 +3948,7 @@ sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span
 </code></pre></div></td></tr></table></div>
 <p><br></p>
 <hr />
-<h2 id="kubectl">kubectl</h2>
+<h2 id="kubectl_1">kubectl</h2>
 <p>用于控制平面进行操作，如创建、删除、更新资源</p>
 <h3 id="_4">查看集群相关信息</h3>
 <p>获取集群信息，包括 API 服务器地址、DNS 等</p>
