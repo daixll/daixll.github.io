@@ -44,7 +44,7 @@
 </style>
 
 <div class="search-container">
-  <form action="https://www.google.com/search" method="GET">
+  <form action="https://dxlcq.cn/google-search" method="GET">
     <textarea id="searchBox" name="q" placeholder="Workers of all lands, Unite!" rows="1"
       oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px';"
       onkeydown="if(event.key==='Enter' && !event.shiftKey){
@@ -209,65 +209,147 @@
 
 <br>
 
-## Work
+## Informal Work
 
 ### 中国电信北碚分公司
 
-* 时间：2024.6 - 2024.9
-* 职务：[实习] 云中台 - 研发工程师
-* 职责：音视频和数据处理的开发工作
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1;">
+    <img src="https://www.189.cn/image/189cnv2/indexv2/img_head/logo.png" alt="Image" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 3; padding-left: 20px;">
+    <ol>
+      <ul>时间：2024.6 - 2024.9</ul>
+      <ul>职务：[实习] 云中台 - 研发工程师</ul>
+      <ul>职责：音视频和数据处理的开发工作</ul>
+    </ol>
+  </div>
+</div>
+
+---
 
 ### 重庆奇灵云教育科技
 
-* 时间：2022.11 - 2024.5
-* 职务：[兼职] 讲师
-* 职责：中小学学生的算法竞赛授课工作
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1;">
+    <img src="https://p3-pc.douyinpic.com/img/aweme-avatar/tos-cn-i-0813c001_e4c22d7bd0c7456898fd72ae237851a3~c5_300x300.jpeg?from=2956013662" alt="Image" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 3; padding-left: 20px;">
+    <ol>
+      <ul>时间：2022.11 - 2024.5</ul>
+      <ul>职务：[兼职] 讲师</ul>
+      <ul>职责：中小学学生的算法竞赛授课工作</ul>
+    </ol>
+  </div>
+</div>
+
+---
 
 ### 重庆工程职业技术学院
 
-* 时间：2023.10 - 2024.1
-* 职务：[兼职] 助教
-* 职责：C++/Qt、数据结构课程的授课工作
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1;">
+    <img src="https://www.cqvie.edu.cn/SITE_RES/default/image/logo.png" alt="Image" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 3; padding-left: 20px;">
+    <ol>
+      <ul>时间：2023.10 - 2024.1</ul>
+      <ul>职务：[兼职] 助教</ul>
+      <ul>职责：C++/Qt、数据结构课程的授课工作</ul>
+    </ol>
+  </div>
+</div>
+
+---
 
 ### 清华大学出版社
 
-* 时间：2022.5 - 2024.5
-* 职务：[学生工作 / online] 志愿者
-* 职责：算法竞赛类书籍的校对工作、OJ 题库的建设工作
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1;">
+    <img src="https://www.tsinghuajournals.com/assets/img/logo-press.png" alt="Image" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 3; padding-left: 20px;">
+    <ol>
+      <ul>时间：2022.5 - 2024.5</ul>
+      <ul>职务：[学生工作 / online] 志愿者</ul>
+      <ul>职责：算法竞赛类书籍的校对工作、OJ 题库的建设工作</ul>
+    </ol>
+  </div>
+</div>
+
+---
 
 ### 国信蓝桥教育科技
 
-* 时间：2023.7 - 2023.7
-* 职务：[学生工作 / online] 蓝桥云课出题小组成员
-* 职责：OJ 题库的建设工作
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1;">
+    <img src="https://www.guoxinlanqiao.com/guoxinlanqiao-fe/dist/img/logo-white.08253bb.png" alt="Image" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 3; padding-left: 20px;">
+    <ol>
+      <ul>时间：2023.7 - 2023.7</ul>
+      <ul>职务：[学生工作 / online] 蓝桥云课出题小组成员</ul>
+      <ul>职责：OJ 题库的建设工作</ul>
+    </ol>
+  </div>
+</div>
 
 <br>
 
 ---
 
-
 ## Education
 
 ### 重庆大学
 
-* [官网](https://www.cqu.edu.cn/) / [教务](https://my.cqu.edu.cn/workspace/home)
-* 时间: 2024.9.9 - 2025.6.28
-* 学历：交换生（本科四年级）
-* 专业：智能网联汽车 - [国家（重庆）卓越工程师学院](https://eie.cqu.edu.cn/)
-* [修读课程及我的本科毕业论文](https://github.com/dxlcq/EIE)
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1;">
+    <img src="https://www.cqu.edu.cn/images/logo1.png" alt="Image" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 3; padding-left: 20px;">
+    <ol>
+      <ul><a href="https://www.cqu.edu.cn/">官网</a> / <a href="https://my.cqu.edu.cn/workspace/home">教务</a> / <a href="https://github.com/dxlcq/EIE">学士论文及课程</a></ul>
+      <ul>时间：2024.9.9 - 2025.6.28</ul>
+      <ul>学历：交换生（国家卓越工程师项目）</ul>
+      <ul>专业：智能网联汽车</ul>
+    </ol>
+  </div>
+</div>
+
+---
 
 ### 重庆科技大学
 
-* [官网](https://www.cqust.edu.cn/) / [学生手册](https://flbook.com.cn/c/obIkcHiKC6)
-* 时间：2023.9.1 - 2025.6.28
-* 学历：全日制本科
-* 专业：计算机科学与技术
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1;">
+    <img src="https://www.cqust.edu.cn/2024new/images/logo.png" alt="Image" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 3; padding-left: 20px;">
+    <ol>
+      <ul><a href="https://www.cqust.edu.cn/">官网</a> / <a href="https://flbook.com.cn/c/obIkcHiKC6">学生手册</a></ul>
+      <ul>时间：2023.9.1 - 2025.6.28</ul>
+      <ul>学历：全日制本科</ul>
+      <ul>专业：计算机科学与技术</ul>
+    </ol>
+  </div>
+</div>
+
+---
 
 ### 重庆工业职业技术学院
 
-* 时间：2020.9.24 - 2023.6.29
-* 学历：全日制专科
-* 专业：计算机网络技术
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1;">
+    <img src="https://www.cqipc.edu.cn/img/footer-logo.png" alt="Image" style="max-width: 100%; height: auto;">
+  </div>
+  <div style="flex: 3; padding-left: 20px;">
+    <ol>
+      <ul>时间：2020.9.24 - 2023.6.29</ul>
+      <ul>学历：全日制专科</ul>
+      <ul>专业：计算机网络技术</ul>
+    </ol>
+  </div>
+</div>
 
 <br>
 
