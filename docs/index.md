@@ -390,7 +390,12 @@
 - `2023-12-17` `2023重庆市第十一届大学生程序设计大赛` `银` [报道](https://www.cqust.edu.cn/info/1466/69404.htm)
 
 <div class="honor">
-    <img loading="lazy" src="/images/joker/（省2）ICPCCQ.jpg">
+    <div class="item">
+        <img loading="lazy" src="/images/joker/（省2）ICPCCQ.jpg">
+    </div>
+    <div class="item">
+        <img loading="lazy" src="/images/joker/（省2）CQCPC证书.jpg">
+    </div>
 </div>
 
 <br>

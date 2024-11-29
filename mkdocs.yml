@@ -64,6 +64,7 @@ nav:
     - 🔨 Containerd:    src/dev/containerd.md
     - 🚀 Kubernetes:    src/dev/kubernetes.md
     - 🚀 Nginx:         src/dev/nginx.md
+    - 🚀 Hadoop:        src/dev/hadoop.md
 
     - 💪🏻 OpenSSH:       src/dev/openssh.md
     - 💪🏻 Coturn:        src/dev/coturn.md
