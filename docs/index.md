@@ -215,7 +215,7 @@
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="https://www.189.cn/image/189cnv2/indexv2/img_head/logo.png" alt="Image" style="max-width: 100%; height: auto;">
+    <img src="https://p1.img.cntv.cn/photoAlbum/page/performance/img/2022/6/2/1654160284366_995.jpg" alt="Image" style="max-width: 100%; height: auto;">
   </div>
   <div style="flex: 3; padding-left: 20px;">
     <ol>
@@ -249,7 +249,7 @@
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="https://www.cqvie.edu.cn/SITE_RES/default/image/logo.png" alt="Image" style="max-width: 100%; height: auto;">
+    <img src="https://cqvie.xiaopinyun.com/image/school/20200302/20200302093134_6631583112694.jpg" alt="Image" style="max-width: 100%; height: auto;">
   </div>
   <div style="flex: 3; padding-left: 20px;">
     <ol>
@@ -266,7 +266,7 @@
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="https://www.tsinghuajournals.com/assets/img/logo-press.png" alt="Image" style="max-width: 100%; height: auto;">
+    <img src="https://p3-sdbk2-media.byteimg.com/tos-cn-i-xv4ileqgde/518102c9d5794f3ca46ee9436ecd0933~tplv-xv4ileqgde-enhance-resize-w:750.image" alt="Image" style="max-width: 100%; height: auto;">
   </div>
   <div style="flex: 3; padding-left: 20px;">
     <ol>
@@ -283,7 +283,7 @@
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="https://www.guoxinlanqiao.com/guoxinlanqiao-fe/dist/img/logo-white.08253bb.png" alt="Image" style="max-width: 100%; height: auto;">
+    <img src="https://x-static.lanqiao.cn/upload/202404/courseimg/4728918c-3ecf-4da3-b478-c69d4f69db84.png" alt="Image" style="max-width: 100%; height: auto;">
   </div>
   <div style="flex: 3; padding-left: 20px;">
     <ol>
@@ -304,7 +304,7 @@
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="https://www.cqu.edu.cn/images/logo1.png" alt="Image" style="max-width: 100%; height: auto;">
+    <img src="https://upload.wikimedia.org/wikipedia/zh/thumb/7/74/Chongqing_University_logo.svg/400px-Chongqing_University_logo.svg.png" alt="Image" style="max-width: 100%; height: auto;">
   </div>
   <div style="flex: 3; padding-left: 20px;">
     <ol>
@@ -322,7 +322,7 @@
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="https://www.cqust.edu.cn/2024new/images/logo.png" alt="Image" style="max-width: 100%; height: auto;">
+    <img src="https://upload.wikimedia.org/wikipedia/zh/f/fe/CQUST.PNG" alt="Image" style="max-width: 100%; height: auto;">
   </div>
   <div style="flex: 3; padding-left: 20px;">
     <ol>
@@ -340,7 +340,7 @@
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="https://www.cqipc.edu.cn/img/footer-logo.png" alt="Image" style="max-width: 100%; height: auto;">
+    <img src="https://www.cqipc.edu.cn/dfiles/8983/statics/images/v9/logo.png" alt="Image" style="max-width: 100%; height: auto;">
   </div>
   <div style="flex: 3; padding-left: 20px;">
     <ol>
