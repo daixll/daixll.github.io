@@ -1634,11 +1634,11 @@
         <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      画蛇添足
+      自建镜像
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="画蛇添足">
+    <nav class="md-nav" aria-label="自建镜像">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1672,6 +1672,48 @@
   <a href="#3-dockerhub" class="md-nav__link">
     <span class="md-ellipsis">
       3 推送到 dockerhub
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker-compose.yml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="docker-compose.yml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用命令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置文件的编写
     </span>
   </a>
   
@@ -3508,11 +3550,11 @@
         <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      画蛇添足
+      自建镜像
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="画蛇添足">
+    <nav class="md-nav" aria-label="自建镜像">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3546,6 +3588,48 @@
   <a href="#3-dockerhub" class="md-nav__link">
     <span class="md-ellipsis">
       3 推送到 dockerhub
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker-compose.yml
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="docker-compose.yml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用命令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置文件的编写
     </span>
   </a>
   
@@ -3591,7 +3675,7 @@
 <p><br></p>
 <hr />
 <h2 id="docker">安装 Docker</h2>
-<ol>
+<ul>
 <li>
 <p>使用 <code>apt</code> 安装（<a href="https://linux.cn/article-16531-1.html">参考文档</a>）：</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>docker.io
@@ -3604,7 +3688,7 @@
 sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 </code></pre></div></td></tr></table></div>
 </li>
-</ol>
+</ul>
 <h2 id="image">镜像 IMAGE</h2>
 <p>是一个只读模板，用来创建容器，类似于：</p>
 <ul>
@@ -3683,8 +3767,10 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\ </span>
 <span class="w">    </span>--name<span class="w"> </span><span class="o">[</span>c_name<span class="o">]</span><span class="w"> </span><span class="se">\ </span><span class="w">          </span><span class="c1"># 容器名</span>
+<span class="w">    </span>--rm<span class="w"> </span><span class="se">\ </span><span class="w">                     </span><span class="c1"># 退出时删除容器</span>
 <span class="w">    </span>-it<span class="w"> </span><span class="se">\ </span><span class="w">                      </span><span class="c1"># 台前运行，容器在没有指定长时间运行的进程时会立即退出</span>
 <span class="w">    </span>--detach<span class="w"> </span><span class="se">\ </span><span class="w">                 </span><span class="c1"># 后台运行</span>
 <span class="w">    </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span><span class="se">\ </span><span class="w"> </span><span class="c1"># 非手动停止自动重启</span>
@@ -3692,11 +3778,14 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 <span class="w">    </span>-P<span class="w"> </span><span class="se">\ </span><span class="w">                       </span><span class="c1"># 容器公开的所有端口随机映射到主机的可用端口</span>
 <span class="w">    </span>-v<span class="w"> </span>/host/path:/c/path<span class="w"> </span><span class="se">\ </span><span class="w">    </span><span class="c1"># 映射目录</span>
 <span class="w">    </span>-v<span class="w"> </span>/host/file:/c/file:ro<span class="w"> </span><span class="se">\ </span><span class="w"> </span><span class="c1"># 映射文件 [:ro] 只读</span>
-<span class="o">[</span>image_name<span class="o">]</span><span class="w">                    </span><span class="c1"># 镜像名</span>
+<span class="w">    </span><span class="o">[</span>image_name<span class="o">]</span><span class="w">                </span><span class="c1"># 镜像名</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="_6">进出容器</h3>
 <p><strong>进入容器</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span><span class="o">[</span>CONTAINER_ID<span class="o">]</span><span class="w"> </span>/bin/bash
+</code></pre></div></td></tr></table></div>
+<p><strong>执行命令</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="o">[</span>CONTAINER_ID<span class="o">]</span><span class="w"> </span><span class="o">[</span>COMMAND<span class="o">]</span><span class="w"> </span><span class="o">[</span>ARG...<span class="o">]</span>
 </code></pre></div></td></tr></table></div>
 <p><strong>退出容器</strong></p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">exit</span>
@@ -3713,7 +3802,7 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 </code></pre></div></td></tr></table></div>
 <p><br></p>
 <hr />
-<h2 id="_8">画蛇添足</h2>
+<h2 id="_8">自建镜像</h2>
 <h3 id="0">0 准备</h3>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -3724,7 +3813,7 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 ├── Dockerfile
 ├── go.mod
 ├── main.go
-├── static/
+└── static/
     └── index.html
 </code></pre></div></td></tr></table></div>
 <details><summary>code</summary>
@@ -3827,6 +3916,60 @@ sudo<span class="w"> </span>sh<span class="w"> </span>get-docker.sh
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>login
 sudo<span class="w"> </span>docker<span class="w"> </span>web_server<span class="w"> </span>dxlcq/web_server
 sudo<span class="w"> </span>docker<span class="w"> </span>push<span class="w"> </span>dxlcq/web_server
+</code></pre></div></td></tr></table></div>
+<p><br></p>
+<hr />
+<h2 id="docker-composeyml">docker-compose.yml</h2>
+<h3 id="_9">安装</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>docker-compose
+</code></pre></div></td></tr></table></div>
+<h3 id="_10">常用命令</h3>
+<ul>
+<li>
+<p>启动容器组</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><code>-d</code> 后台运行</li>
+</ul>
+</li>
+<li>
+<p>停止容器组</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker-compose<span class="w"> </span>down
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>查看容器组</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker-compose<span class="w"> </span>ps
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>查看日志</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>docker-compose<span class="w"> </span>logs<span class="w"> </span>-f
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><code>-f</code> 实时查看</li>
+</ul>
+</li>
+</ul>
+<h3 id="_11">配置文件的编写</h3>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>version: &#39;3&#39;
+services:
+  [服务名]:
+    image: [镜像名]
+    ports:
+      - &quot;[外部端口]:[容器端口]&quot;
+    volumes:
+      - &quot;[主机目录]:[容器目录]&quot;
+    restart: unless-stopped
 </code></pre></div></td></tr></table></div>
 
 

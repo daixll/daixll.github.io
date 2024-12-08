@@ -2,28 +2,9 @@
 
 [云图](https://cloud-atlas.readthedocs.io/zh-cn/latest/index.html)
 
-[拓扑图](https://kdocs.cn/l/cvkIlSwbLP8Q)
+[设备拓扑图](https://kdocs.cn/l/cvkIlSwbLP8Q)
 
-
-
-## 配置
-
-<center>
-
-| 设备 | 配置 | OS | IP | 网口 |
-|:-:|:-:|:-:|:-:|:-:|
-| routing | - | TP-Link | .1 | 2.5G |
-| gateway | 2c2g | V-OpenWrt | .2 | 2.5G |
-| rog | 24c64g | Win11 Pro | .3 + .7 | 2.5G + WiFi |
-| sos | 4c8g | Win10 LTSC | .4 | 1G |
-| idc | 4c8g | V-Win10 Server | .5 | 2.5G |
-| run | 4c8g | V-ub 22V | .6 | 2.5G |
-
-</center>
-
-<br>
-
----
+[文件结构]()
 
 ## UPS
 
@@ -169,11 +150,6 @@
 防火墙设置：
     forwarded ipv4 来自所有区域，ip 10.0.1.0/24 到 lan，静态重写到源 ip 10.0.0.2
 
-### CDN
-
-
-
-
 
 <br>
 
@@ -196,18 +172,6 @@
 * [VS Code](https://code.visualstudio.com/insiders/) / [VS 2022](https://visualstudio.microsoft.com/zh-hans/vs/preview/) 登陆 `github` 账号，等待配置同步
 
 * [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) 登陆 `JB` 账号，等待配置同步
-
-<br>
-
-### Hyper-V
-
-硬盘直通
-
-
-
-<br>
-
-#### SAMBA
 
 <br>
 
@@ -405,41 +369,6 @@ vim ~/.config/code-server/config.yaml
 ## idc
 
 [tfm](https://github.com/prasathmani/tinyfilemanager)
-
-### data
-
-```
-├── C:/
-│   
-├── D:/
-│   │
-│   ├── daixll.github.io/
-│   ├── AC/
-│   ├── STL/
-│   ├── ...
-│   │
-│   ├── work/
-│   └── t/
-│
-└── E:/
-    ├── AV/
-    ├── ☁️ WQF/
-    │
-    └── ☁️ DATA/
-        ├── conf
-        ├── down        
-        ├── 2024
-        ├── 辉煌迎来虚伪的看客，黄昏见证真正的信徒
-        ├── 纸上得来终得浅，绝知此事要躬行
-        ├── 认清生活真相之后依然热爱生活 
-        │   ├── 公司 A
-        │   └── ...
-        │
-        └── 往事堪堪亦澜澜，前路漫漫亦灿灿
-            ├── 2023
-            ├── 2022
-            └── ...
-```
 
 * `SSD / 512G / PCIE4.0`
 

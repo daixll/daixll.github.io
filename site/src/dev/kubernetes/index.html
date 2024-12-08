@@ -3704,6 +3704,19 @@ sysctl<span class="w"> </span>--system
 <p>安装并配置 Container Runtime</p>
 <ul>
 <li>
+<p>使用 <a href="../docker/">Docker</a></p>
+<ul>
+<li>
+<p>安装 Docker 运行时</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>docker.io<span class="w"> </span>-y
+</code></pre></div></td></tr></table></div>
+</li>
+<li>
+<p>在 cri-dockerd 下载二进制和源码，将二进制复制到 <code>/usr/local/bin</code> 目录下，在源码中执行官网的那个手动命令，启动 kubeadm 的时候指定 <code>--cri-socket=unix:///var/run/cri-dockerd.sock</code></p>
+</li>
+</ul>
+</li>
+<li>
 <p>使用 <a href="../containerd/">Containerd</a></p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>

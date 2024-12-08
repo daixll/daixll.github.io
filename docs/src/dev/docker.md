@@ -18,13 +18,13 @@
 
 ## 安装 Docker
 
-1. 使用 `apt` 安装（[参考文档](https://linux.cn/article-16531-1.html)）：
+* 使用 `apt` 安装（[参考文档](https://linux.cn/article-16531-1.html)）：
 
     ```sh
     sudo snap install docker.io
     ```
 
-2. 使用官方安装脚本（[参考文档](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script)）：
+* 使用官方安装脚本（[参考文档](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script)）：
 
     ```sh
     curl -fsSL https://get.docker.com -o get-docker.sh
@@ -118,8 +118,9 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
 
 ```sh
-docker run \
+docker run \ 
     --name [c_name] \           # 容器名
+    --rm \                      # 退出时删除容器
     -it \                       # 台前运行，容器在没有指定长时间运行的进程时会立即退出
     --detach \                  # 后台运行
     --restart unless-stopped \  # 非手动停止自动重启
@@ -127,7 +128,7 @@ docker run \
     -P \                        # 容器公开的所有端口随机映射到主机的可用端口
     -v /host/path:/c/path \     # 映射目录
     -v /host/file:/c/file:ro \  # 映射文件 [:ro] 只读
-[image_name]                    # 镜像名
+    [image_name]                # 镜像名
 ```
 
 
@@ -137,6 +138,12 @@ docker run \
 
 ```sh
 sudo docker exec -it [CONTAINER_ID] /bin/bash
+```
+
+**执行命令**
+
+```sh
+sudo docker exec [CONTAINER_ID] [COMMAND] [ARG...]
 ```
 
 **退出容器**
@@ -169,7 +176,7 @@ sudo docker stop [CONTAINER_ID]
 
 ---
 
-## 画蛇添足
+## 自建镜像
 
 ### 0 准备
 
@@ -178,7 +185,7 @@ myapp/
 ├── Dockerfile
 ├── go.mod
 ├── main.go
-├── static/
+└── static/
     └── index.html
 ```
 
@@ -258,4 +265,60 @@ sudo docker build -t web_server .
 sudo docker login
 sudo docker web_server dxlcq/web_server
 sudo docker push dxlcq/web_server
+```
+
+<br>
+
+---
+
+## docker-compose.yml
+
+### 安装
+
+```bash
+sudo apt install docker-compose
+```
+
+### 常用命令
+
+* 启动容器组
+
+    ```bash
+    sudo docker-compose up -d
+    ```
+
+    * `-d` 后台运行
+
+* 停止容器组
+
+    ```bash
+    sudo docker-compose down
+    ```
+
+* 查看容器组
+
+    ```bash
+    sudo docker-compose ps
+    ```
+
+* 查看日志
+
+    ```bash
+    sudo docker-compose logs -f
+    ```
+
+    * `-f` 实时查看
+
+### 配置文件的编写
+
+```yml
+version: '3'
+services:
+  [服务名]:
+    image: [镜像名]
+    ports:
+      - "[外部端口]:[容器端口]"
+    volumes:
+      - "[主机目录]:[容器目录]"
+    restart: unless-stopped
 ```

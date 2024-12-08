@@ -113,6 +113,18 @@ kubectl exec -it <pod-name> -- /bin/bash  # 进入 pod
 
 3. 安装并配置 Container Runtime
 
+    * 使用 [Docker](./docker.md)
+
+        * 安装 Docker 运行时
+
+            ```shell
+            apt install docker.io -y
+            ```
+
+        * 在 cri-dockerd 下载二进制和源码，将二进制复制到 `/usr/local/bin` 目录下，在源码中执行官网的那个手动命令，启动 kubeadm 的时候指定 `--cri-socket=unix:///var/run/cri-dockerd.sock`
+
+        
+
     * 使用 [Containerd](./containerd.md)
 
         ```shell
