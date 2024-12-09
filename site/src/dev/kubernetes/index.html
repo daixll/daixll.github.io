@@ -1608,6 +1608,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#nvidia-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nvidia GPU
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#resource" class="md-nav__link">
     <span class="md-ellipsis">
       resource
@@ -1637,6 +1646,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job" class="md-nav__link">
+    <span class="md-ellipsis">
+      job
+    </span>
+  </a>
   
 </li>
       
@@ -3431,6 +3449,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#nvidia-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nvidia GPU
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#resource" class="md-nav__link">
     <span class="md-ellipsis">
       resource
@@ -3460,6 +3487,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job" class="md-nav__link">
+    <span class="md-ellipsis">
+      job
+    </span>
+  </a>
   
 </li>
       
@@ -3899,6 +3935,12 @@ kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </
 </ol>
 <p><br></p>
 <hr />
+<h2 id="nvidia-gpu">Nvidia GPU</h2>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>bubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.11.0/nvidia-device-plugin.yml
+</code></pre></div></td></tr></table></div>
+<p>按照官方文档做即可，需要指定运行时为 <code>nvidia</code></p>
+<p><br></p>
+<hr />
 <h2 id="resource">resource</h2>
 <p>资源清单，一切皆资源</p>
 <ul>
@@ -3946,6 +3988,9 @@ kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </
 <p><code>Network</code>：可以通过回环地址 <code>localhost</code> 相互通信</p>
 </li>
 </ul>
+<p><br></p>
+<hr />
+<h2 id="job">job</h2>
 <p><br></p>
 <hr />
 <h2 id="kubelet">kubelet</h2>

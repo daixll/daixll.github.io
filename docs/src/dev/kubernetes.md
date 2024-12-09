@@ -273,6 +273,19 @@ kubectl exec -it <pod-name> -- /bin/bash  # 进入 pod
 
 ---
 
+## Nvidia GPU
+
+```shell
+bubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.11.0/nvidia-device-plugin.yml
+```
+
+按照官方文档做即可，需要指定运行时为 `nvidia`
+
+<br>
+
+---
+
+
 ## resource
 
 资源清单，一切皆资源
@@ -309,6 +322,14 @@ kubectl exec -it <pod-name> -- /bin/bash  # 进入 pod
 * `IPC`：可以通过共享内存进行通信
 
 * `Network`：可以通过回环地址 `localhost` 相互通信
+
+
+<br>
+
+---
+
+## job
+
 
 
 <br>

@@ -5,8 +5,10 @@
 ```bash
 sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove
 sudo apt install -y openssh-server wget apt-transport-https ca-certificates curl gpg
-wget "https://xn--e6q212bhn0c.xn--6qq986b3xl/public/authorized_keys" -O ~/.ssh/authorized_keys
+wget "https://dxlcq.cn/public/authorized_keys" -O ~/.ssh/authorized_keys
 ```
+
+将 `/etc/ssh/sshd_config` 设置为 `PermitRootLogin prohibit-password`
 
 ## 软件
 
