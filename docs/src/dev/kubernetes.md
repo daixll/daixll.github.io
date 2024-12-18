@@ -16,25 +16,6 @@
 
 ---
 
-## kubectl
-
-```shell
-kubectl explain pod.spec.containers  # 查看 pod.spec.containers 的资源描述
-kubectl logs <pod-name>              # 查看 pod 日志
-
-kubectl get pod -A              # 查看所有 pod
-kubectl get pod -n kube-system  # 查看 kube-system 命名空间下的 pod
-kubectl get pod -o wide         # 查看 pod 的详细信息
-
-kubectl exec -it <pod-name> -- /bin/bash  # 进入 pod
-
-```
-
-
-<br>
-
----
-
 ## 架构
 
 ```
@@ -76,54 +57,70 @@ kubectl exec -it <pod-name> -- /bin/bash  # 进入 pod
 
 [文档](https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
 
-1. 禁用交换空间，以提高性能
+1. 禁用交换空间，以提高性能，启用 IPv4 转发，以便 `kubeadm` 可以正确的配置 `iptables` 链
 
     ```shell
+    sudo su
+
     sed -i '/\bswap\b/ s/^/#/' /etc/fstab
     swapoff -a
-    ```
 
-    > 在 `/etc/fstab` 文件中查找所有包含 `swap` 的行，并在行首添加 `#`，将这些行注释掉，然后关闭交换空间
-
-    ```shell
-    free -h
-    cat /proc/swaps
-    ```
-
-    > 成功关闭后，应该是 `0`
-
-2. 启用 IPv4 转发，以便 `kubeadm` 可以正确的配置 `iptables` 链
-
-    ```shell
     cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
     net.ipv4.ip_forward = 1
     EOF
     
     sysctl --system
-    ```
 
-    > 在 `/etc/sysctl.d/` 目录下创建一个 `k8s.conf` 文件，写入 `net.ipv4.ip_forward = 1`，然后重新加载配置
+    free -h
 
-    ```shell
     sysctl net.ipv4.ip_forward
     ```
 
-    > 检查是否启用成功，应该是 `1`
+    > 在 `/etc/fstab` 文件中查找所有包含 `swap` 的行，并在行首添加 `#`，将这些行注释掉，然后关闭交换空间
+
+    > 在 `/etc/sysctl.d/` 目录下创建一个 `k8s.conf` 文件，写入 `net.ipv4.ip_forward = 1`
+    
+    > 重新加载配置
+
+    > 交换空间成功关闭后，应该是 `0`
+
+    > 检查转发是否启用成功，应该是 `1`
     
 
 3. 安装并配置 Container Runtime
 
     * 使用 [Docker](./docker.md)
 
-        * 安装 Docker 运行时
+        ```shell
+        sudo su
 
-            ```shell
-            apt install docker.io -y
-            ```
+        apt install docker.io -y
 
-        * 在 cri-dockerd 下载二进制和源码，将二进制复制到 `/usr/local/bin` 目录下，在源码中执行官网的那个手动命令，启动 kubeadm 的时候指定 `--cri-socket=unix:///var/run/cri-dockerd.sock`
+        wget https://github.com/Mirantis/cri-dockerd/archive/refs/tags/v0.3.16.zip
+        wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.16/cri-dockerd-0.3.16.amd64.tgz
 
+        unzip v0.3.16.zip
+        cp cri-dockerd/cri-dockerd /usr/local/bin
         
+        tar -zxvf cri-dockerd-0.3.16.amd64.tgz
+        cd cri-dockerd-0.3.16
+        install packaging/systemd/* /etc/systemd/system
+        sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
+        systemctl daemon-reload
+        systemctl enable --now cri-docker.socket
+        ```
+
+        > 下载容器运行时
+
+        > 下载垫片，用于将 `cri-dockerd` 作为 `CRI` 运行时，下载源码
+
+        > 解压垫片，复制二进制文件到 `/usr/local/bin` 目录下
+
+        > 解压源码，安装 `systemd` 服务，修改 `cri-docker.service` 文件，重新加载 `systemd`，启用 `cri-docker` 服务
+
+        初始化和加入集群时，都需要指定 `--cri-socket=unix:///var/run/cri-dockerd.sock`
+
+    <br>
 
     * 使用 [Containerd](./containerd.md)
 
@@ -178,9 +175,15 @@ kubectl exec -it <pod-name> -- /bin/bash  # 进入 pod
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
     ```
 
+    ```shell
+    kubeadm token create --print-join-command
+    ```
+
     > 在 **控制平面** 上执行上述命令会初始化一个 Kubernetes 集群，输出的最后会有一个 `kubeadm join` 命令，用于将其他节点加入集群
-    > 
+
     > 在 **控制平面** 上执行上述命令，以便使用 `kubectl` 命令
+
+    > **控制平面** 生成 join 命令，其他节点执行该命令加入集群
 
     ```shell
     kubeadm join <control-plane-host>:<control-plane-port> --token <token> --discovery-token-ca-cert-hash sha256:<hash>
@@ -196,14 +199,31 @@ kubectl exec -it <pod-name> -- /bin/bash  # 进入 pod
 
     > 安装网络插件，这里使用的是 `calico`，也可以使用其他插件
 
+7. 安装 nvidia GPU 插件，以 docker 为例
+
+    ```shell
+    kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.11.0/nvidia-device-plugin.yml
+    ```
+
+    > 安装 nvidia GPU 插件
+
+    ```shell
+    sudo nvidia-ctk runtime configure --runtime=docker --nvidia-set-as-default
+    sudo systemctl restart kubelet
+    cat /etc/docker/daemon.json
+    ```
+
+    > 配置 docker 使用 nvidia 运行时
+
 7. 在控制平面上查看集群状态
 
     ```shell
     kubectl get nodes
     kubectl get pod -A
+    kubectl get nodes -o jsonpath="{range .items[*]}{.metadata.name}{': '}{.status.allocatable.nvidia\.com/gpu}{'\n'}{end}"
     ```
 
-    > 查看节点状态
+    > 查看节点状态，以及节点上 GPU 的数量
 
 8. 创建一个 `vim nginx-deployment.yaml`
 
@@ -273,45 +293,53 @@ kubectl exec -it <pod-name> -- /bin/bash  # 进入 pod
 
 ---
 
-## Nvidia GPU
 
-```shell
-bubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.11.0/nvidia-device-plugin.yml
+## RESOURCE
+
+资源清单，一切皆资源
+
+```yaml
+apiVersion: v1                      # 资源的 API 版本
+kind: Pod | Service | Deployment    # kubectl api-resources 查看资源的版本和类型
+
+metadata:                           # 元数据
+  name: name                        # 这个资源的名称
+  namespace: default                # 命名空间，用于隔离资源
+  labels:                           # 标签，用于标识和组织资源
+    key: value                      # 键值对，可以有多个
+
+spec:
+  # 每个资源都有自己的规范
 ```
 
-按照官方文档做即可，需要指定运行时为 `nvidia`
 
 <br>
 
 ---
 
+## Pod
 
-## resource
+```yaml
+apiVersion: v1
+kind: Pod
 
-资源清单，一切皆资源
+metadata:
+  name: ubuntu
 
-* 名称空间级资源
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu:latest
+    command: ["sleep", "infinity"]
+    volumeMounts:
+      - name: nfs
+        mountPath: /mnt/nfs  # 挂载路径
 
-    * 工作负载型资源：`Pod`，`ReplicaSet`，`Deployment`
-
-    * 服务发现和负载均衡型资源：`Service`，`Ingress`
-
-    * 配置与存储型资源：`Volume`，`CSI`
-
-    * 特殊类型资源：`ConfigMap`，`Secret`
-
-* 集群级资源
-
-    * `Namespace`
-
-* 元数据型资源
-
-    * `HPA`
-
-
-
-
-## pod
+  volumes:
+    - name: nfs
+      persistentVolumeClaim:
+        claimName: nfs.pvc  # 引用 PVC 名称
+```
 
 ### pause
 
@@ -323,6 +351,75 @@ bubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.1
 
 * `Network`：可以通过回环地址 `localhost` 相互通信
 
+### initC
+
+初始化容器，用于初始化环境，如配置文件，数据库等
+
+* 线性启动
+
+* 返回 0 时，开始 mainC 容器
+
+### mainC
+
+主容器，用于运行应用程序
+
+**钩子**
+
+* `postStart`：在容器启动后执行
+
+* `preStop`：在容器停止前执行
+
+**探针**
+
+由当前 pod 所在的 node 节点的 kubelet 进行检查
+
+* `startupProbe`：检查容器是否启动
+
+* `livenessProbe`：检查容器是否存活
+
+* `readinessProbe`：检查容器是否就绪
+
+<br>
+
+---
+
+## deployment
+
+```yaml
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: nginx
+  
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+```
+
+<br>
+
+---
+
+## service
+
+```yaml
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+```
 
 <br>
 
@@ -330,12 +427,61 @@ bubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.1
 
 ## job
 
-
+```shell
+kubectl apply -f <job.yaml>
+kubectl get jobs
+kubectl get pods
+kubectl logs <pod-name>
+kubectl delete job <job-name>
+```
 
 <br>
 
 ---
 
+## PersistentVolume
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+
+metadata:
+  name: nfs
+
+spec:
+  capacity:
+    storage: 500Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 180.85.207.45
+    path: "/mnt/nfs"
+```
+
+## PersistentVolumeClaim
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+
+metadata:
+  name: nfs.pvc
+
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 500Gi
+  volumeName: nfs # 指定 PersistentVolume 的名称
+```
+
+
+
+<br>
+
+---
 
 ## kubelet
 
@@ -348,21 +494,6 @@ bubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.1
 ## kubeadm
 
 用于初始化集群、加入节点、重置集群等操作
-
-### 通过配置文件部署
-
-```yaml
-apiVersion: kubeadm.k8s.io/v1beta3
-kind: ClusterConfiguration
-kubernetesVersion: "stable-1.31"
-controllerManagerExtraArgs:
-  horizontal-pod-autoscaler-use-rest-clients: "true"
-  horizontal-pod-autoscaler-sync-period: "10s"
-  node-monitor-grace-period: "10s"
-apiServerExtraArgs:
-  runtime-config: "api/all=true"
-```
-
 
 ### 完整清理 k8s 集群
 
@@ -386,25 +517,15 @@ sudo rm -rf $HOME/.kube
 获取集群信息，包括 API 服务器地址、DNS 等
 
 ```shell
-kubectl cluster-info
-```
-获取节点信息
-
-```shell
-kubectl get nodes
-```
-
-获取组件信息
-
-```shell
-kubectl get cs
+kubectl cluster-info          # 查看集群信息
+kubectl get node              # 查看节点信息
+kubectl describe node <node>  # 查看节点详细信息
 ```
 
 ### 查看 Pod 相关信息
 
-获取系统级别的 Pod 信息
-
 ```shell
-kubectl get pods -n kube-system
+kubectl get pod -A              # 查看所有 pod
+kubectl get pod -n kube-system  # 查看 kube-system 命名空间下的 pod
+kubectl get pod -o wide         # 查看 pod 的详细信息
 ```
-
