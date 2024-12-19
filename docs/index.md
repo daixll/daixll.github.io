@@ -374,7 +374,12 @@
 - `2024-6-16` `第十六届四川省大学生程序设计竞赛` `铜`
 
 <div class="honor">
-    <img loading="lazy" src="/images/joker/（省3）SCCPC.png">
+    <div class="item">
+        <img loading="lazy" src="/images/joker/（省3）SCCPC.png">
+    </div>
+    <div class="item">
+        <img loading="lazy" src="/images/joker/（省3）ICPCSC证书.png">
+    </div>
 </div>
 
 #### 2024 重庆市赛
