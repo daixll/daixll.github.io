@@ -4,13 +4,13 @@
 
 [设备拓扑图](https://kdocs.cn/l/cvkIlSwbLP8Q)
 
-[文件结构]()
+<br>
+
+---
 
 ## UPS
 
-### 断电延迟关机
-
-### 来电自动开机q
+断电延迟关机、来电自动开机
 
 <br>
 
@@ -18,29 +18,30 @@
 
 ## routing
 
-### WAN
+**WAN**
 
 * `PPPoE`
 
     1. 光猫改桥接，默认模式拨号
 
-    2. 关闭 `IPv6`
 
-<br>
-
-### LAN
+**LAN**
 
 * `DHCPv4` 
 
     1. `DNS` 与网关 `10.0.0.2`
 
     2. 地址范围
-        
+
         * 保留 `.2 - .100`
-        
-        * 临时 `.101 - .200` `DHCP`
+
+        * 动态 `.101 - .200` `DHCP`
 
         * 隔离 `.201 - .254`
+
+* `SLAAC` 
+
+    * `IPv6` 地址依然下发
 
 * `static IP`
 
@@ -48,39 +49,32 @@
 
     * 短期 `.21 - .100`
 
-<br>
 
-### 定时重启
+**定时重启**
 
 * 每天 `2:00`，重新上电 POE
 
-* 每天 `2:20`，设备重启
+* 每天 `2:20`，本机清理
 
-* 每天 `2:40`，本机清理
+* 每天 `2:40`，射频调优
 
-* 每天 `3:00`，射频调优
+* 每天 `3:00`，设备重启
 
-<br>
 
-### 安全管理
+**安全管理**
 
 * `ARP` 防护
 
 * 攻击防护
 
-<br>
+**VPN-PPTP**
 
-### VPN-PPTP
+* [[R系列企业VPN路由器] PPTP PC到站点VPN配置指南](https://smb.tp-link.com.cn/service/detail_article_3829.html)
 
-* `OpenVPN` 失效时的冗余方案，平时关闭
+> `OpenVPN` 失效时的冗余方案，平时关闭
+> 连接手机热点时，客户端 `MTU` 设置为 `1400`
 
-* 参考：[[R系列企业VPN路由器] PPTP PC到站点VPN配置指南](https://smb.tp-link.com.cn/service/detail_article_3829.html)
-
-* 连接手机热点时，客户端 `MTU` 设置为 `1400`
-
-<br>
-
-### 端口映射
+**端口映射**
 
 非必要不做端口映射，尽量使用 `VPN`
 
@@ -88,21 +82,17 @@
 
 | 设备 | IP | 外部端口 | 内部端口 |
 |:-:|:-:|:-:|:-:|
-| 站点 | 10.0.0.5 | 1314 | 1314 |
+| 网站 | 10.0.0.5 | 2025 | 2025 |
 
 </center>
 
-<br>
-
-### DDNS
+**DDNS**
 
 * TP-Link（更新很快，但解析效果不行）
 
 * 科迈（解析效果很好，但是更新很慢）
 
-<br>
-
-### 网络唤醒
+**网络唤醒**
 
 <center>
 
@@ -114,41 +104,15 @@
 
 <br>
 
-### 云管理-TP商云
+**云管理-TP商云**
 
-* 当 `VPN` 失效时的唯一管理手段
+> 当 `VPN` 失效时的唯一管理手段
 
 <br>
 
 ---
 
 ## gateway
-
-### ImmortalWrt
-
-`vim /etc/config/network`
-
-<br>
-
-### HomeProxy
-
-[homeproxy 教程](https://www.youtube.com/watch?v=nNRpbn9M2Lc)
-
-
-
-<br>
-
-### OpenVPN
-
-
-[openwrt ovpn教程](https://www.youtube.com/watch?v=yb-g4ZaNm9Y)
-
-[openvpn 网络速率优化](http://www.xixicool.com/870.html)
-
-实际上删除 openvpn comp_lzo 即可
-
-防火墙设置：
-    forwarded ipv4 来自所有区域，ip 10.0.1.0/24 到 lan，静态重写到源 ip 10.0.0.2
 
 
 <br>

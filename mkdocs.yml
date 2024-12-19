@@ -48,6 +48,7 @@ nav:
     - Cloud:            src/dev/cloud.md
     - 🐧 Linux:         src/dev/linux.md
     - 🧑‍💻 MacOS:         src/dev/macos.md
+    - 📡 OpenWrt:       src/dev/openwrt.md
 
     # 📋 plan
     # 💻 code
